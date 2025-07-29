@@ -1,0 +1,64 @@
+Metadata-Version: 2.4
+Name: wanyi-today
+Version: 0.1.2
+Summary: A FastMCP demo server with basic tools and resources
+Project-URL: Homepage, https://github.com/Ryan7t/wanyi-today
+Project-URL: Repository, https://github.com/Ryan7t/wanyi-today
+Author-email: Your Name <your.email@example.com>
+License: MIT
+License-File: LICENSE
+Keywords: demo,mcp,server
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.8
+Requires-Dist: mcp[cli]>=1.12.1
+Description-Content-Type: text/markdown
+
+# Today
+
+A FastMCP demo server that provides basic tools and resources for demonstration purposes.
+
+## Features
+
+- **Addition Tool**: Add two numbers together
+- **Greeting Resource**: Get personalized greetings
+- **Greeting Prompt**: Generate greeting prompts with different styles
+
+## Installation
+
+```bash
+pip install today
+```
+
+## Usage
+
+Run the server:
+
+```bash
+today-server
+```
+
+Or run directly with Python:
+
+```bash
+python -m today.main
+```
+
+## Development
+
+This project uses `uv` for dependency management.
+
+```bash
+# Install dependencies
+uv sync
+
+# Run the server
+uv run python -m today.main
+```
+
+## License
+
+MIT License
