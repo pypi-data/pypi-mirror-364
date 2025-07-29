@@ -1,0 +1,10 @@
+README.md
+pyproject.toml
+setup.py
+reverse_word_TIB/__init__.py
+reverse_word_TIB/__main__.py
+reverseword_TIB.egg-info/PKG-INFO
+reverseword_TIB.egg-info/SOURCES.txt
+reverseword_TIB.egg-info/dependency_links.txt
+reverseword_TIB.egg-info/entry_points.txt
+reverseword_TIB.egg-info/top_level.txt

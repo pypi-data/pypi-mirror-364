@@ -1,0 +1,34 @@
+Metadata-Version: 2.4
+Name: reverseword_TIB
+Version: 0.0.1
+Summary: Un petit outil pour renverser un mot.
+Home-page: https://pypi.org/project/reverseword/
+Author: Tieba
+Author-email: meitetieba@gmail.com.com
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-python
+Dynamic: summary
+
+# reverseword_TIB
+
+Un petit outil Python en ligne de commande qui renverse un mot.
+
+## Utilisation
+
+Une fois installé utilisez reverseword suivie du mot que vous voulez inversé .
+
+Exemple: reversword mot 
+
+résultat : tom
+
+
+
