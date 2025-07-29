@@ -1,0 +1,15 @@
+LICENSE
+README.rst
+pyproject.toml
+src/quickmacapp/__init__.py
+src/quickmacapp/_background.py
+src/quickmacapp/_interactions.py
+src/quickmacapp/_notifications.py
+src/quickmacapp/_quickapp.py
+src/quickmacapp/notifications.py
+src/quickmacapp/py.typed
+src/quickmacapp.egg-info/PKG-INFO
+src/quickmacapp.egg-info/SOURCES.txt
+src/quickmacapp.egg-info/dependency_links.txt
+src/quickmacapp.egg-info/requires.txt
+src/quickmacapp.egg-info/top_level.txt

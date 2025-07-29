@@ -1,0 +1,5 @@
+pyobjc-framework-Cocoa
+pyobjc-framework-ExceptionHandling
+pyobjc-framework-UserNotifications
+datetype
+twisted[macos_platform,tls]
