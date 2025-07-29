@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "100cli"
+version = "0.0.1"
+description = "🤖 The 100 LoC CLI agent made to be hacked — simple, easy to understand, and hackable ✨"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+keywords = ["CLI", "artificial-intelligence", "agents"]
+authors = [{ name = "Bhavnick Minhas", email = "bhavnick@chonkie.ai" }]
+maintainers = [{ name = "Bhavnick Minhas", email = "bhavnick@chonkie.ai" }]
+classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Information Technology",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Text Processing :: Linguistic",
+]
+dependencies = ["typer>=0.16.0", "rich>=13.0.0"]
+
+[project.optional-dependencies]
+openai = ["openai>=1.0.0"]
+
+[project.scripts]
+"100cli" = "hundredcli.main:main"
+
+[project.urls]
+Homepage = "https://github.com/chonknick/100cli"
+Documentation = "https://github.com/chonknick/100cli"
+"Bug Tracker" = "https://github.com/chonknick/100cli/issues"

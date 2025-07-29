@@ -1,0 +1,5 @@
+typer>=0.16.0
+rich>=13.0.0
+
+[openai]
+openai>=1.0.0
