@@ -1,0 +1,5 @@
+[console_scripts]
+mailopt = mailopt.cli:main
+
+[mailopt.commands]
+check-images = mailopt.commands.images:check_images

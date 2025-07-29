@@ -1,0 +1,12 @@
+sall/__init__.py,sha256=8xtM5X3u6UPzDOcaNgc7v4EUXRNTNxCCrnhWq93CR2o,352
+sall/cli.py,sha256=uAUIz64gp9srvZi-b--nF1H0gFjKN9Lb4RUx4rCubVk,2428
+sall/utils.py,sha256=YKnKw5TeYyBDNN7Vu_4lC3AEFccI3qvjrjEt0UrLJi8,4572
+sall/commands/__init__.py,sha256=C4mcxBmO6wZV5Qvcu4F11RBdOSyq_AoX3I7BhkvVT54,69
+sall/commands/images.py,sha256=zgDUr4Eoq2560Y7rdPa4MfluijffUQ_X8uh4T4G-82c,6651
+tests/__init__.py,sha256=0qoKGI2emHIs6wVc4qz8fD8wj2qo5-t9vjL5ou17umM,55
+tests/test_images.py,sha256=rHziktcMRQ0r-op6ns6lBLvc9QPl5s6IsEA48BdPp1w,10736
+mailopt-0.1.0.dist-info/METADATA,sha256=W-MUYfhnypf1ko7KpZ-G32jM7muLc6La4qcdTXmjvtM,20692
+mailopt-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+mailopt-0.1.0.dist-info/entry_points.txt,sha256=RFG1rQ6lRThTWMzP6Eu1Yg7Z_SaN1WyN9idjL2wKwPM,117
+mailopt-0.1.0.dist-info/top_level.txt,sha256=m9WMhcxmjRsOVKzwhGb_Wjv8yM-j7a_pgdb_NbU6ST8,11
+mailopt-0.1.0.dist-info/RECORD,,
