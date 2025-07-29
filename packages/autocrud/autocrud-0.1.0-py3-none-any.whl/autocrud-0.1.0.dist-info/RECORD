@@ -1,0 +1,11 @@
+autocrud/__init__.py,sha256=-13T6EHvfaZokic53nKOiboSX21MaPSIVz80GMgOUuI,501
+autocrud/converter.py,sha256=uvzsglHvw0LRy19KbEPfLvxxndn4mN7QDb1AX1EPEHM,3791
+autocrud/core.py,sha256=87H3P_aoKcIxRHxT5HIbHtk1WVRmswF8H9g1udQP_yw,4356
+autocrud/fastapi_generator.py,sha256=v9bvwvRNhKR66oM9NLkXi9zrvHgwQ21-S4S_yoMI1ME,6461
+autocrud/multi_model.py,sha256=fgEUNjmW93OwEYYPFwbqQyhCjLbi4LRgFjaDSRPFAmA,6470
+autocrud/serializer.py,sha256=ZvJfR6ILFT0DLuKYMQ0rw5-oKQIHlHTAsY36EWpCXsA,2903
+autocrud/storage.py,sha256=4n7ZQNtt4TX9sOufY22MicURy7avTfjatqV6NlOVUJQ,5982
+autocrud-0.1.0.dist-info/METADATA,sha256=NxCPvzP2ke8RIvHPJ3xBV1QXOS4sbTRZ7CMP5bg0xRY,6736
+autocrud-0.1.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+autocrud-0.1.0.dist-info/licenses/LICENSE,sha256=NmRds4xtlcGd3Fo9ocqQdjszBfeu6tY6fIEzPlej1VA,1067
+autocrud-0.1.0.dist-info/RECORD,,
