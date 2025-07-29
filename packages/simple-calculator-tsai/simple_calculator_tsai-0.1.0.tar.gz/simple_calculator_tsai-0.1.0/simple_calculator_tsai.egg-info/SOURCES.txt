@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+setup.py
+simple_calculator_tsai/__init__.py
+simple_calculator_tsai.egg-info/PKG-INFO
+simple_calculator_tsai.egg-info/SOURCES.txt
+simple_calculator_tsai.egg-info/dependency_links.txt
+simple_calculator_tsai.egg-info/top_level.txt
+tests/test_simple_calculator_tsai.py

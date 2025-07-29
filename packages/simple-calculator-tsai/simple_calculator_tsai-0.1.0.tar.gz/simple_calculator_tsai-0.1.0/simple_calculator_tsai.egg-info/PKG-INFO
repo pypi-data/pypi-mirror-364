@@ -1,0 +1,53 @@
+Metadata-Version: 2.4
+Name: simple-calculator-tsai
+Version: 0.1.0
+Summary: A simple calculator package with basic arithmetic operations.
+Home-page: https://pypi.org/project/simple-calculator-tsai/
+Author: Your Name
+Author-email: your.email@example.com
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: requires-python
+Dynamic: summary
+
+# Simple Calculator
+
+A simple calculator Python package with basic arithmetic operations. This package is designed to be easily installable from PyPI.
+
+## Features
+- Addition
+- Subtraction
+- Multiplication
+- Division
+
+## Installation
+
+```bash
+pip install simple-calculator-tsai  # (replace with actual package name after upload)
+```
+
+## Usage
+
+```python
+from calculator import Calculator
+
+calc = Calculator()
+print(calc.add(2, 3))      # 5
+print(calc.subtract(5, 2)) # 3
+print(calc.multiply(3, 4)) # 12
+print(calc.divide(10, 2))  # 5.0
+```
+
+## License
+MIT
