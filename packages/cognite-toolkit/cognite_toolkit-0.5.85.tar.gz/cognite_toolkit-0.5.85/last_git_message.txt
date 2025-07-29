@@ -1,0 +1,28 @@
+[CDF-25260] 🦇  Dump agents (#1764)
+
+# Description
+
+Stacked on #1763
+
+A common workflow is that the user creates a CDF resource using the
+fusion UI in a CDF dev project. Then, they dump the resources down to
+YAML configuration, which is checked into version control, and deployed
+in a CI/CD to a CDF prod project.
+
+This PR adds support for dumping agents.
+
+## Changelog
+
+- [x] Patch
+- [ ] Minor
+- [ ] Skip
+
+## cdf
+
+### Added
+
+- [alpha] Support dumping agent, `cdf dump agents`. 
+
+## templates
+
+No changes.
