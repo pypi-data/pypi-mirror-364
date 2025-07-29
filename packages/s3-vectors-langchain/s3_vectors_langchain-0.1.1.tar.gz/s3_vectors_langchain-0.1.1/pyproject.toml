@@ -1,0 +1,24 @@
+ [build-system]
+ requires = ["setuptools>=61.0", "wheel"]
+ build-backend = "setuptools.build_meta"
+
+ [project]
+ name = "s3-vectors-langchain"
+ version = "0.1.1"
+ description = "LangChain VectorStore implementation using AWS S3 Vectors"
+ authors = [ { name = "Swagata Roy", email = "r.swagata98@gmail.com" } ]
+ readme = "README.md"
+ license = { file = "LICENSE" }
+ requires-python = ">=3.8"
+ dependencies = [
+     "boto3",
+     "langchain",
+     "botocore",
+ ]
+
+ [project.urls]
+ "Homepage" = "https://github.com/SwagataRoy98/s3-vector-langchain"
+
+ [tool.setuptools.packages.find]
+where = ["."]
+include = ["s3_vector_langchain"]
