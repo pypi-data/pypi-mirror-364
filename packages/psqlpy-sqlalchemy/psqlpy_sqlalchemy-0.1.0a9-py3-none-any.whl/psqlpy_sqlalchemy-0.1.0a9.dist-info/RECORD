@@ -1,0 +1,9 @@
+psqlpy_sqlalchemy/__init__.py,sha256=zNHcprFCTNjMMyrVN5vA8ywztG6gyVMDTUPFCQNbtD0,151
+psqlpy_sqlalchemy/connection.py,sha256=bIah_otG_iQYMWlhagUWTtTAZfPMn0Bd0Keu7_tH9qU,22835
+psqlpy_sqlalchemy/dbapi.py,sha256=6ZCgRS29ng1Ilfr0PEuZ8e1I0JhclMOAMBMsjtE-uGQ,4956
+psqlpy_sqlalchemy/dialect.py,sha256=oH5i_oUrudqTHI1CkEHwUV2Swm3DtBURB2LqvL824Jc,10643
+psqlpy_sqlalchemy-0.1.0a9.dist-info/METADATA,sha256=_CDM5XiJ-tBD3yVFG7leNSluU-n0scaBSE-s9zHjY-4,9732
+psqlpy_sqlalchemy-0.1.0a9.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+psqlpy_sqlalchemy-0.1.0a9.dist-info/entry_points.txt,sha256=Y5S5xIHxZPyeJ4avBOGESorM0M45dSuDtU5MP6D4bDo,82
+psqlpy_sqlalchemy-0.1.0a9.dist-info/top_level.txt,sha256=U2hGEFo4urRDzxJ0o9XUVr2o9lLDgHiS4kCXe3LXjaE,18
+psqlpy_sqlalchemy-0.1.0a9.dist-info/RECORD,,
