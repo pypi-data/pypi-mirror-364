@@ -1,0 +1,3 @@
+recursive-include pack_app/app_django *
+include README.md
+include LICENSE
