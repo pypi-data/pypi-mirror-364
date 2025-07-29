@@ -1,0 +1,9 @@
+MANIFEST.in
+README.md
+pyproject.toml
+config/qirkCode.yaml
+zagency.egg-info/PKG-INFO
+zagency.egg-info/SOURCES.txt
+zagency.egg-info/dependency_links.txt
+zagency.egg-info/requires.txt
+zagency.egg-info/top_level.txt
