@@ -1,0 +1,2 @@
+[console_scripts]
+eebackup = eebackup.__main__:main

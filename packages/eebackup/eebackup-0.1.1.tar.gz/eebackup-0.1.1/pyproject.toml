@@ -1,0 +1,10 @@
+[project]
+name = "eebackup"
+version = "0.1.1"
+description = "An incremental backup program"
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = []
+
+[project.scripts]
+eebackup = "eebackup.__main__:main"
