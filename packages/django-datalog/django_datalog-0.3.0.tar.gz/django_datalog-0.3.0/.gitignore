@@ -1,0 +1,55 @@
+# Env config
+.envrc
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+
+# Django
+*.log
+db.sqlite3
+db.sqlite3-journal
+local_settings.py
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.hypothesis/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Package management
+
+# Type checkers
+.mypy_cache/
+.ruff_cache/
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-*
+
+# Claude Code
+.claude/
+
+# macOS
+.DS_Store
+
+# Project debug files
+debug_*.py
+minimal_debug.py
+simple_debug.py
+test_fact_equality.py
+test_rule_deduplication.py
+
+# Distribution
+build/
+dist/
+*.egg-info/
