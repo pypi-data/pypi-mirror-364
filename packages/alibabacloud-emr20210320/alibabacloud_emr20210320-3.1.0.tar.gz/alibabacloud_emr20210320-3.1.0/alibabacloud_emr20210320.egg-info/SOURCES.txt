@@ -1,0 +1,15 @@
+ChangeLog.md
+LICENSE
+MANIFEST.in
+README-CN.md
+README.md
+setup.cfg
+setup.py
+alibabacloud_emr20210320/__init__.py
+alibabacloud_emr20210320/client.py
+alibabacloud_emr20210320/models.py
+alibabacloud_emr20210320.egg-info/PKG-INFO
+alibabacloud_emr20210320.egg-info/SOURCES.txt
+alibabacloud_emr20210320.egg-info/dependency_links.txt
+alibabacloud_emr20210320.egg-info/requires.txt
+alibabacloud_emr20210320.egg-info/top_level.txt
