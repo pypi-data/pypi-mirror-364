@@ -1,0 +1,7 @@
+nc-py-api
+polars[all]
+itables[widget]
+anywidget
+humanize
+
+[dev]
