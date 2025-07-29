@@ -1,0 +1,9 @@
+LICENSE
+README.md
+pyproject.toml
+src/akilan_llm_wrap.egg-info/PKG-INFO
+src/akilan_llm_wrap.egg-info/SOURCES.txt
+src/akilan_llm_wrap.egg-info/dependency_links.txt
+src/akilan_llm_wrap.egg-info/top_level.txt
+src/sample_package_akil/__init__.py
+src/sample_package_akil/example.py
