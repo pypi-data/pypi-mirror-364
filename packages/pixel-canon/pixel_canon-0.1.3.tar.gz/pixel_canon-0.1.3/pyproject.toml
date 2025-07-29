@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pixel-canon"
+version = "0.1.3" # Поднимаем версию для нового релиза
+authors = [
+  { name="GolonChenroppi", email="golonchenroppi@gmail.com" },
+]
+description = "The canon for pixel data topology. A cross-language specification to define the logical layout of images."
+
+# Ссылаемся на локальный для пакета README_pypi.md
+readme = "README_pypi.md" 
+requires-python = ">=3.8"
+
+# Лицензию тоже лучше скопировать, чтобы избежать проблем с путями
+license = { file = "LICENSE" }
+keywords = ["image", "pixel", "layout", "numpy", "pytorch", "opencv", "computer-vision", "image-processing", "hwc", "chw"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Image Processing",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = []
+
+[project.optional-dependencies]
+numpy = ["numpy"]
+
+[project.urls]
+"Homepage" = "https://github.com/GolonChenroppi/pixel-canon"
+"Documentation" = "https://github.com/GolonChenroppi/pixel-canon/blob/main/spec/v1.0.md"
+"Bug Tracker" = "https://github.com/GolonChenroppi/pixel-canon/issues"
