@@ -1,0 +1,3 @@
+[console_scripts]
+pdate=pdate_cli.cli:cli
+
