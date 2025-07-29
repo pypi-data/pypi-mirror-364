@@ -1,0 +1,15 @@
+Metadata-Version: 2.4
+Name: nullfinder
+Version: 0.0.10
+Summary: A tool to find nulls in dataframes and visualize them.
+Author: Björn Welke
+Classifier: Development Status :: 2 - Pre-Alpha
+Requires-Python: >=3.13
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: PySide6==6.9.0
+Requires-Dist: pandas~=2.3.1
+Requires-Dist: pyqtgraph~=0.13.2
+Dynamic: license-file
+
+# nullfinder
