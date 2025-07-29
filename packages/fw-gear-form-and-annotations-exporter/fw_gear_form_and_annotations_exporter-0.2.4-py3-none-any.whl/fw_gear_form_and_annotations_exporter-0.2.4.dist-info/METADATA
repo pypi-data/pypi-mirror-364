@@ -1,0 +1,374 @@
+Metadata-Version: 2.4
+Name: fw-gear-form-and-annotations-exporter
+Version: 0.2.4
+Summary: Export Form Responses and/or Annotations to CSV file(s).
+Project-URL: Repository, https://gitlab.com/flywheel-io/scientific-solutions/gears/fw-gear-form-and-annotations-exporter
+Author-email: Flywheel <support@flywheel.io>
+License-Expression: MIT
+License-File: LICENSE
+Keywords: Flywheel,Gears
+Classifier: Topic :: Scientific/Engineering
+Requires-Python: ~=3.12
+Requires-Dist: flywheel-sdk<21,>=20.1.4
+Requires-Dist: fw-client<3,>=2.1.1
+Requires-Dist: fw-gear<0.4,>=0.3.1
+Requires-Dist: pandas<3,>=2
+Description-Content-Type: text/markdown
+
+# Form and Annotation Exporter <!-- omit in toc -->
+
+- [Overview](#overview)
+  - [Summary](#summary)
+  - [License](#license)
+  - [Classification](#classification)
+- [Usage](#usage)
+  - [Inputs](#inputs)
+  - [Config](#config)
+  - [Outputs](#outputs)
+    - [Example Conversion to Wide Format](#example-conversion-to-wide-format)
+    - [Example of Merging Form Responses and Annotations](#example-of-merging-form-responses-and-annotations)
+    - [**form-responses-\<datestamp\>.csv**](#form-responses-datestampcsv)
+    - [**annotations-\<datestamp\>.csv**](#annotations-datestampcsv)
+    - [Example of Retrieving Form-Responses from Session Variables](#example-of-retrieving-form-responses-from-session-variables)
+- [Cite](#cite)
+- [Contributing](#contributing)
+
+## Overview
+
+### Summary
+
+Export Form Responses and/or Annotations to CSV file(s).
+
+### License
+
+*License:* MIT
+
+### Classification
+
+*Category:* Analysis
+
+*Gear Level:*
+
+- [X] Project
+- [X] Subject
+- [X] Session
+- [X] Acquisition
+- [ ] Analysis
+
+## Usage
+
+The Form and Annotation Exporter gear is executed by ensuring the following
+configuration parameters are provided and are in a valid combination. This gear has no
+file inputs. This gear requires that the Reader Task Workflow be enabled on the instance
+it is run on.
+
+If an `ohif_config.json` is being used to configure the OHIF Viewer, and you are
+using it to capture form responses outside of the Reader Task workflow, you cannot use
+this gear to retrieve the form responses from the sessions. See the [Example of
+Retrieving Form-Responses from Session Variables](#example-of-retrieving-form-responses-from-session-variables)
+section for anexample of how to do this.
+
+If the gear is run within a project for a protocol where the *protocol_name* is
+not defined, the gear will fail.
+
+For the *annotations-scope* configuration parameter, the following combinations are valid:
+
+- `task` and `both` settings require a valid *protocol_name* for a protocol defined
+  within the project.
+- `non-task` and `none` settings do not require a valid *protocol_name*. This allows for
+  the export of annotations and form responses that are not associated with a task.
+- if both *-scope* settings are set to `none`, the gear will fail as there will be no
+  output.
+
+For the *form-responses-scope*  configuration parameter, the following combinations are valid:
+
+- `task` and `none` are the only valid combinations
+
+Running this gear under a specific subject, session, or acquisition will constrain the
+output to only those tasks, form-responses, and annotations that are associated with
+the container and its children.
+
+Gear versions 0.2.3 and before only return form responses attached to a file. As of
+version 0.2.4, form responses not associated with a file may be returned. If utilizing
+reader tasks attached to non-file level containers, use version 0.2.4 or above.
+
+This gear will output select annotation properties for the following annotation types:
+
+- Ellipse
+- Circle
+- Rectangle
+- Freehand/Contour (closed)
+- Length
+- Annotate (Arrow)
+- Bidirectional
+- Angle
+
+The gear will output the following annotation properties if available in the tool type:
+
+- Area
+- Length
+- Angle
+- Units (of measurement)
+- min/max X/Y coordinates of a bounding box of the annotation
+- perpendicular min/max X/Y of a Bidirectional annotation
+- ShortestDiameter/LongestDiameter of a Bidirectional annotation
+
+### Inputs
+
+This gear has no file input. The exported form responses and annotations will depend
+on the level at which the gear is launched (e.g. project, subject, session, acquisition)
+and the confiugration options selected.
+
+### Config
+
+- *debug*
+  - **Type**: *boolean*
+  - **Description**: *Log debug messages*
+  - **Default**: *False*
+- *protocol_name*
+  - **Type**: *string*
+  - **Description**: *The name of the protocol to export data from.*
+  - **Optional**: *True*
+- *annotations-scope*
+  - **Type**: *string*
+  - **Description**: *The scope of the exported annotations.*
+  - **Default**: *task*
+- *form-responses-scope*
+  - **Type**: *string*
+  - **Description**: *The scope of the form responses.*
+  - **Default**: *task*
+- *read_timeout*
+  - **Type**: *integer*
+  - **Description**: *The maximum time in seconds to wait for a response from the server.*
+  - **Default**: *60*
+
+### Outputs
+
+The Form and Annotations Exporter gear has the following outputs:
+
+- form-responses-\<datestamp\>.csv
+- annotations-\<datestamp\>.csv
+
+For form responses and annotations that are coordinated with a task, the above outputs
+will correspond to the same Task ID and the `Location` column of the annotations CSV
+will correspond to the matching `Question` with a `Answer` of `yes`. The question will
+take the form of `<question #>: <Location>` (e.g. `2: LV`).
+
+Both output CSV files are in a "narrow" format where each row represents a single form
+response Question/Answer or annotation Property/Value pair. Each of these CSV files can
+be converted to a "wide" format using the `pandas` Python library with the [`pivot`
+command](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.pivot.html). A
+[data dictionary](./data_dictionary.csv) is provided for the CSV files.
+
+#### Example Conversion to Wide Format
+
+```python
+import pandas as pd
+from pathlib import Path
+root_dir = Path('~')
+# Read in the CSV file
+form_responses_path = root_dir / 'form-responses-2023-05-13_08-47-26.csv'
+df = pd.read_csv(form_responses_path)
+index_cols = [col for col in list(df.columns) if col not in ['Question', 'Answer']]
+df_wide = df.pivot(index=index_cols, columns='Question', values='Answer').reset_index()
+df_wide.to_csv(root / (form_responses_path.stem + '_wide.csv'))
+
+# Read in the CSV file
+annotations_path = root_dir / 'annotations-2023-05-13_08-47-26.csv'
+df = pd.read_csv(annotations_path)
+index_cols = [col for col in list(df.columns) if col not in ['Property', 'Value']]
+df_wide = df.pivot(index=index_cols, columns='Property', values='Value').reset_index()
+df_wide.to_csv(annotations_path.stem + '_wide.csv')
+```
+
+#### Example of Merging Form Responses and Annotations
+
+```python
+import pandas as pd
+
+annotations_wide_df = pd.read_csv('annotations-2023-05-13_08-47-26_wide.csv')
+form_responses_wide_df = pd.read_csv('form-responses-2023-05-13_08-47-26_wide.csv')
+
+# Ensure that the common columns have the same datatypes
+form_responses_wide_df=form_responses_wide_df.astype(object)
+annotations_wide_df=annotations_wide_df.astype(object)
+
+# Get the common columns between the two dataframes
+common_columns = set(annotations_wide_df.columns)
+common_columns = list(common_columns.intersection(set(form_responses_wide_df.columns)))
+common_columns = [
+  col for col in common_columns if col not in ['Created', 'Modified','Revision']
+]
+
+# Acquisition and File Name may not be common columns
+common_columns = [
+    col
+    for col in common_columns
+    if col not in ["Acquisition Label", "acquisition.id", "File Name", "file.id"]
+]
+
+# Merge the two dataframes on the common columns
+merged_df = pd.merge(
+  annotations_wide_df, 
+  form_responses_wide_df, 
+  on=list(common_columns), 
+  how="outer"
+)
+
+# More than one annotation per task.id will produce multiple rows for the same task.id
+merged_df.to_csv('merged_annotations_and_form_responses.csv')
+```
+
+The columns of each CSV output are described below.
+
+#### **form-responses-\<datestamp\>.csv**
+
+On form-response-scope being `task`, `non-task`, or `both` and a non-empty response,
+the gear will output a CSV file containing the form responses for the specified
+protocol.
+
+The file name will be prefixed with `form-responses-` and suffixed with the datestamp
+of the export (e.g. `form-responses-2023-05-13_08-47-26.csv`). The CSV will contain the
+following columns:
+
+- **Task ID**: The ID of the task the form response is associated with (e.g. R-2-1)
+- **Task Type**: The type of the task the form response is associated with (e.g. Read)
+- **Protocol Label**: The label of the protocol the form response is associated with.
+- **Group**: The group the form response is associated with.
+- **Project Label**: The project label the form response is associated with.
+- **Subject Label**: The subject label the form response is associated with.
+- **Session Label**: The session label the form response is associated with.
+- **Session Timestamp**: The timestamp of the session.
+- **Acquisition Label**: The acquisition label the form response is associated with.
+Can be blank.
+- **File Name**: The name of the file the form response is associated with.
+Can be blank.
+- **Task Assignee**: The user who was assigned the task. Blank if non-task.
+- **Task Creator**: The user who created the task. Blank if non-task.
+- **Task Due Date**: The due date of the task. Blank if non-task.
+- **Task Status**: The status of the task (e.g. Complete, Todo, In_Progress).
+Blank if non-task.
+- **Question**: The text of a question (e.g. "What is the patient's age?")
+- **Answer**: The answer to the question (e.g. "42")
+- **Created**: The date the form response was created.
+- **Modified**: The date the form response was last modified.
+- **Revision**: The revision number of the form response.
+- **Url**: The URL of the session the form response is associated with.
+- **group**: The group.id.
+- **project.id**: The ID of the project the form response is associated with.
+- **subject.id**: The ID of the subject the form response is associated with.
+- **session.id**: The ID of the session the form response is associated with.
+- **acquisition.id**: The ID of the acquisition the form response is associated with.
+- **file.file_id**: The ID of the file the form response is associated with.
+- **formresponse.id**: The ID of the form response.
+- **form.id**: The ID of the form the form response is associated with.
+- **task.id**: The ID of the task the form response is associated with.
+
+#### **annotations-\<datestamp\>.csv**
+
+On annotations-scope being `task`, `non-task`, or `both` and a non-empty response, the
+gear willoutput a CSV file containing the annotations for the specified protocol.
+The file name will be prefixed with `annotations-` and suffixed with the datestamp
+of the export (e.g. `annotations-2023-05-13_08-47-26.csv`). The CSV will contain the
+following columns:
+
+- **Task ID**: The ID of the task the annotation is associated with (e.g. R-2-1)
+- **Task Type**: The type of the task the annotation is associated with (e.g. Read)
+- **Group**: The group the annotation is associated with.
+- **Project Label**: The project label the annotation is associated with.
+- **Subject Label**: The subject label the annotation is associated with.
+- **Session Label**: The session label the annotation is associated with.
+- **Session Timestamp**: The timestamp of the session the annotation is associated with.
+- **Acquisition Label**: The acquisition label the annotation is associated with.
+- **File Name**: The name of the file the annotation is associated with.
+- **Task Assignee**: The user who was assigned the task. Blank if non-task annotation.
+- **Task Creator**: The user who created the task. Blank if non-task annotation.
+- **Task Due Date**: The due date of the task. Blank if non-task annotation.
+- **Task Status**: The status of the task (e.g. Complete, Todo, In_Progress).
+Blank if non-task annotation.
+- **SliceNumber**: The slice number of the image the annotation is drawn upon.
+- **Location**: The label of the annotation. Corresponds to the label in the
+form-responses.
+- **Annotation ID**: The ID of the annotation.
+- **Property**: The name of the property being reported on (e.g "toolType", "Area")
+- **Value**: The value of the property being reported on (e.g. "Length", "859.075")
+- **Created**: The date the annotation was created.
+- **Modified**: The date the annotation was last modified.
+- **Revision**: The revision number of the annotation.
+- **frameIndex**: The frame index of the annotation. This will be `0` for non-DICOM
+images and the slice number for DICOM images.
+- **imagePath**: This will be a `$$$`-separated string representing different attributes
+for DICOM and non-DICOM images.
+  - For DICOM images, the format is
+  `StudyInstanceUID$$$instancSeriesInstanceUIDeUID$$$SOPInstanceUID$$$frameIndex`.
+  - For NIfTI images, the format is
+  `fileName$$$Orientation$$$api-address#<slice_features>`.
+  - For other image types please see the
+  [Flywheel Annotation Data Format](https://gitlab.com/flywheel-io/public/ohif-viewer/-/wikis/Annotation-Data-Format)
+  wiki.
+- **group**: The group the annotation is associated with.
+- **project.id**: The ID of the project the annotation is associated with.
+- **subject.id**: The ID of the subject the annotation is associated with.
+- **session.id**: The ID of the session the annotation is associated with.
+- **acquisition.id**: The ID of the acquisition the annotation is associated with.
+- **file.file_id**: The ID of the file the annotation is associated with.
+- **File ID**: The ID of the file the annotation is associated with.
+- **File Version**: The version of the file the annotation is associated with.
+- **task.id**: The ID of the task the annotation is associated with.
+  Blank if non-task annotation.
+
+#### Example of Retrieving Form-Responses from Session Variables
+
+When session forms have been filled outside of the Reader Task Workflow (i.e.
+using a `ohif_config.json` stored that the project leve), the form
+responses are stored in the session custom info variable (`session.info`).
+
+You can export the responses in 2 ways:
+
+  1. Using a [DataView](https://docs.flywheel.io/hc/en-us/articles/4536056285075)
+  to export as columns the responses you need.
+
+  2. Using the SDK. For instance, the script below can be used to retrieve the form
+  responses from the session info and convert them to a CSV file.
+
+  ```python
+  import flywheel
+  import os
+  import json
+  import pandas as pd
+
+  api_key = os.environ['FW_LATEST_KEY']
+  client = flywheel.Client(api_key)
+
+  group="your_group"
+  project_label="form_and_annotation_export_project"
+  project = client.lookup(f"{group}/{project_label}")
+
+  read_df = pd.DataFrame()
+  df_indx = 0
+  for session in project.sessions.iter():
+      info = session.reload().info
+      reads = info.get("ohifViewer", {}).get("read", {})
+      reader_keys = info.get("ohifViewer", {}).get("read", {}).keys()
+      for reader in reader_keys:
+          read_df.at[df_indx, "session_id"] = session.id
+          read_df.at[df_indx, "session_label"] = session.label        
+          read_df.at[df_indx, "reader"] = reader
+          read_df.at[df_indx, "date"] = reads.get(reader, {}).get("date", {})
+          read_df.at[df_indx, "readTime"] = reads.get(reader, {}).get("readTime", {})
+          read_df.at[df_indx, "readStatus"] = reads.get(reader, {}).get("readStatus", {})
+          for k,v in reads.get(reader, {}).get("notes", {}).items():
+              read_df.at[df_indx, k] = v
+          df_indx += 1
+
+  read_df.to_csv("read_df.csv", index=False)
+  ```
+
+## Cite
+
+*License:* *MIT*
+
+## Contributing
+
+For more information about how to get started contributing to that gear,
+checkout [CONTRIBUTING.md](CONTRIBUTING.md).
