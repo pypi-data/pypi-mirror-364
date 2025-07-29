@@ -1,0 +1,30 @@
+Metadata-Version: 2.4
+Name: my_goto_logger
+Version: 0.1.0
+Summary: Another logger package
+Author-email: Larry Zhu <larry.lan.zhu@gmail.com>
+License-Expression: MIT
+Project-URL: Repository, https://github.com/myusernamehasbeentaken/my-goto-logger
+Keywords: logger,logging,log,logs
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# my-goto-logger
+Just another logger package
+
+## To Install
+```
+py -m pip install my-goto-logger
+```
+
+## Usage
+```
+import logging
+from my_goto_logger import start_logger
+start_logger()
+logging.warning("test")
+```

@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools >= 80.1.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "my_goto_logger"
+version = "0.1.0"
+description = "Another logger package"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+  { name="Larry Zhu", email="larry.lan.zhu@gmail.com" },
+]
+license = "MIT"
+dependencies = []
+keywords = ["logger", "logging", "log", "logs"]
+classifiers = [
+    "Programming Language :: Python :: 3.9",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Repository = "https://github.com/myusernamehasbeentaken/my-goto-logger"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["my_goto_logger"]
