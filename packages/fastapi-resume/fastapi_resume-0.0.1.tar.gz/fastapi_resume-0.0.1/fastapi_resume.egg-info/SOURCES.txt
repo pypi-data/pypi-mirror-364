@@ -1,0 +1,16 @@
+AUTHORS
+LICENSE
+README.md
+pyproject.toml
+fastapi_resume/__init__.py
+fastapi_resume/cli.py
+fastapi_resume/exceptions.py
+fastapi_resume/py.typed
+fastapi_resume/responses.py
+fastapi_resume/utils.py
+fastapi_resume.egg-info/PKG-INFO
+fastapi_resume.egg-info/SOURCES.txt
+fastapi_resume.egg-info/dependency_links.txt
+fastapi_resume.egg-info/entry_points.txt
+fastapi_resume.egg-info/requires.txt
+fastapi_resume.egg-info/top_level.txt
