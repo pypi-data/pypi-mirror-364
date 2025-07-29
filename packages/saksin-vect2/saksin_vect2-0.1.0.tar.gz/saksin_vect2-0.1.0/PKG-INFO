@@ -1,0 +1,17 @@
+Metadata-Version: 2.4
+Name: saksin-vect2
+Version: 0.1.0
+Summary: Python SDK for querying Saksin AI chunked retrieval API
+Home-page: https://github.com/kishanravi887321/saksin-vect2.git
+Author: Ravi Kishan
+Author-email: your.email@example.com
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Dynamic: author
+Dynamic: author-email
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
