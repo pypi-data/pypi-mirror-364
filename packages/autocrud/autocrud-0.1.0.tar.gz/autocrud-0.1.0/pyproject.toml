@@ -1,0 +1,69 @@
+[project]
+name = "autocrud"
+version = "0.1.0"
+description = "自動產生 CRUD API 的 Python 函式庫"
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.11"
+authors = [
+    {name = "HYChou0515", email = "hychou.svm@example.com"}
+]
+keywords = ["fastapi", "crud", "api", "automation", "rest"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers", 
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
+    "Framework :: FastAPI",
+]
+dependencies = [
+    "dependency-injector>=4.48.1",
+    "fastapi>=0.116.1",
+    "msgpack>=1.1.1",
+    "pydantic>=2.11.7",
+]
+
+[project.optional-dependencies]
+docs = [
+    "furo>=2025.7.19",
+    "linkify-it-py>=2.0.3",
+    "myst-parser>=4.0.1",
+    "sphinx>=8.2.3",
+    "sphinx-autodoc-typehints>=3.2.0",
+]
+dev = [
+    "coverage>=7.9.2",
+    "pytest>=8.4.1",
+    "ruff>=0.12.4",
+]
+
+[project.urls]
+Homepage = "https://github.com/HYChou0515/autocrud"
+Documentation = "https://autocrud.readthedocs.io/"
+Repository = "https://github.com/HYChou0515/autocrud.git"
+Issues = "https://github.com/HYChou0515/autocrud/issues"
+
+[dependency-groups]
+dev = [
+    "build>=1.2.2.post1",
+    "coverage>=7.9.2",
+    "furo>=2025.7.19",
+    "linkify-it-py>=2.0.3",
+    "myst-parser>=4.0.1",
+    "pytest>=8.4.1",
+    "ruff>=0.12.4",
+    "sphinx>=8.2.3",
+    "sphinx-autodoc-typehints>=3.2.0",
+    "twine>=6.1.0",
+]
+pytest = []
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
