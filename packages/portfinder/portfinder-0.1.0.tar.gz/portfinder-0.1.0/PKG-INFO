@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: portfinder
+Version: 0.1.0
+Summary: port scanner
+Home-page: https://github.com/stanley0707/portfinder
+License: MIT
+Keywords: port,scanner,network,security
+Author: Stanislav Shilov
+Author-email: s.shilow@lynkey.io
+Requires-Python: >=3.11,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Security
+Requires-Dist: aiofiles (>=24.1.0,<25.0.0)
+Requires-Dist: aiohttp (>=3.12.14,<4.0.0)
+Requires-Dist: ipaddress (>=1.0.23,<2.0.0)
+Requires-Dist: rich (>=14.0.0,<15.0.0)
+Requires-Dist: structlog (>=25.4.0,<26.0.0)
+Requires-Dist: typer (>=0.16.0,<0.17.0)
+Project-URL: Repository, https://github.com/stanley0707/portfinder
+Description-Content-Type: text/markdown
+
+
