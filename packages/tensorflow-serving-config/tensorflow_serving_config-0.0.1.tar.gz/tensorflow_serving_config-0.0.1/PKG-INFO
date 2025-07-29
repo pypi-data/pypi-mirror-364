@@ -1,0 +1,27 @@
+Metadata-Version: 2.4
+Name: tensorflow_serving_config
+Version: 0.0.1
+Summary: Python utilities for reading, writing, and validating TensorFlow Serving models.config
+Home-page: https://github.com/colorblank/tensorflow_serving_config
+Author: Colorblank
+Author-email: colorblank@example.com
+License: Apache-2.0
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: grpcio>=1.73.1
+Requires-Dist: protobuf>=6.31.1
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# tensorflow_serving_config
