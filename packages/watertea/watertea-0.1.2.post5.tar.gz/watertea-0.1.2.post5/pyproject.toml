@@ -1,0 +1,30 @@
+[project]
+name = "watertea"
+dynamic = ["version"]
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "nvitop>=1.5.1",
+    "pandas>=2.2.3",
+    "pip>=25.1.1",
+    "seaborn>=0.13.2",
+    "torch>=2.7.0",
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+
+[dependency-groups]
+dev = [
+    "watertea",
+]
+
+[tool.uv.sources]
+watertea = { workspace = true }
+
+[tool.setuptools_scm]
+version_scheme = "post-release"
+local_scheme = "no-local-version"

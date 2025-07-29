@@ -1,0 +1,22 @@
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  image: python:3.11
+  script:
+    - source /home/riccardo/dac/bin/activate
+    - pip install build
+    - python -m build
+  artifacts:
+    paths:
+      - dist/
+
+deploy:
+  stage: deploy
+  image: python:3.11
+  script:
+    - source /home/riccardo/dac/bin/activate
+    - pip install twine
+    - twine upload dist/* -u "$PYPI_USERNAME" -p "$PYPI_PASSWORD"
