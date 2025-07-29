@@ -1,0 +1,108 @@
+Metadata-Version: 2.4
+Name: jwlib
+Version: 1.0.0b2
+Summary: Wrapper for jw.org APIs
+Author-email: allejok96 <allejok96@gmail.com>
+Project-URL: Homepage, https://github.com/allejok96/jwlib
+Project-URL: Documentation, https://jwlib.readthedocs.io/en/latest
+Project-URL: Issues, https://github.com/allejok96/jwlib/issues
+Project-URL: Changelog, https://github.com/allejok96/jwlib/blob/main/HISTORY.rst
+Keywords: jw,jworg
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Internet :: WWW/HTTP :: Indexing/Search
+Classifier: Topic :: Religion
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Typing :: Typed
+Requires-Python: >=3.8
+Description-Content-Type: text/x-rst
+License-File: LICENSE
+Provides-Extra: dev
+Requires-Dist: coverage; extra == "dev"
+Requires-Dist: mypy; extra == "dev"
+Requires-Dist: Pillow; extra == "dev"
+Requires-Dist: pytest-recording; extra == "dev"
+Requires-Dist: tabulate; extra == "dev"
+Requires-Dist: pip-tools; extra == "dev"
+Provides-Extra: docs
+Requires-Dist: Sphinx; extra == "docs"
+Requires-Dist: sphinx_rtd_theme; extra == "docs"
+Requires-Dist: watchdog; extra == "docs"
+Dynamic: license-file
+
+=====
+jwlib
+=====
+
+|build| |version| |docs|
+
+Python wrappers for a few jw.org_ APIs.
+
+Installation
+============
+
+.. code-block:: bash
+
+    pip install jwlib
+
+Usage
+=====
+
+Video API
+---------
+
+.. code-block:: python
+
+    import jwlib.media as jw
+
+    # Select Swedish
+    session = jw.Session(language='Z')
+
+    # Fetch the JW Broadcasting category
+    studio_category = session.get_category('VODStudio')
+
+    # Iterate through all its subcategories
+    # (this will make more API requests as needed)
+    for subcategory in studio_category.get_subcategories():
+
+        # Print a category header
+        print(f'\n{subcategory.name}\n-----------')
+
+        # Print title and URL of all media items
+        for media in subcategory.get_media():
+            print(media.title)
+            print(media.get_file().url)
+
+See the media_ documentation for more details.
+
+Publication API
+---------------
+
+TODO
+
+Search API
+----------
+
+TODO
+
+Language API
+------------
+
+TODO
+
+.. |build| image:: https://github.com/allejok96/jwlib/actions/workflows/build.yml/badge.svg
+    :target: https://github.com/allejok96/jwlib/actions/workflows/build.yml
+    :alt: Build Status
+.. |version| image:: https://img.shields.io/pypi/v/jwlib.svg
+    :target: https://pypi.python.org/pypi/jwlib
+    :alt: Package Status
+.. |docs| image:: https://readthedocs.org/projects/jwlib/badge/?version=latest
+    :target: https://jwlib.readthedocs.io/en/latest/?version=latest
+    :alt: Documentation Status
+
+.. _jw.org: https://www.jw.org/
+.. _media: https://jwlib.readthedocs.io/en/latest/jwlib.media.html
+

@@ -1,0 +1,13 @@
+
+[dev]
+coverage
+mypy
+Pillow
+pytest-recording
+tabulate
+pip-tools
+
+[docs]
+Sphinx
+sphinx_rtd_theme
+watchdog

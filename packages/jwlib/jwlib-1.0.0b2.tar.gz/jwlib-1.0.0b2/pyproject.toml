@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools >= 68.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jwlib"
+dynamic = ["version"]
+authors = [
+    { name = "allejok96", email = "allejok96@gmail.com" },
+]
+description = "Wrapper for jw.org APIs"
+readme = "README.rst"
+requires-python = ">=3.8"
+# dependencies = []
+keywords = ["jw", "jworg"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.8",
+    "Topic :: Internet :: WWW/HTTP :: Indexing/Search",
+    "Topic :: Religion",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed"
+]
+
+[project.urls]
+Homepage = "https://github.com/allejok96/jwlib"
+Documentation = "https://jwlib.readthedocs.io/en/latest"
+Issues = "https://github.com/allejok96/jwlib/issues"
+Changelog = "https://github.com/allejok96/jwlib/blob/main/HISTORY.rst"
+
+[project.optional-dependencies]
+dev = [
+    "coverage",
+    "mypy",
+    "Pillow", # needed by media/imagetable.py
+    "pytest-recording",
+    "tabulate", # needed by media/imagetable.py
+    "pip-tools", # pip-compile needed by `make requirements`
+]
+docs = [
+    "Sphinx",
+    "sphinx_rtd_theme",
+    "watchdog", # needed by `make watchdocs`
+]
+
+[tool.setuptools.dynamic]
+version = {attr = "jwlib.__version__"}
+
+[tool.ruff]
+line-length = 120
+# target-version = "py38"
+
+[tool.ruff.format]
+quote-style = "single"
