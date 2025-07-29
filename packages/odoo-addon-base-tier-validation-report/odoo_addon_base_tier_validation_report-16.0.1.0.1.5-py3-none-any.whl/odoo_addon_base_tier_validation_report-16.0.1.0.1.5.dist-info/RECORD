@@ -1,0 +1,17 @@
+odoo/addons/base_tier_validation_report/README.rst,sha256=oHt_sB9h852Kc3zuJWpOWnoqJEUNNVnD3zzau2nr3HI,3280
+odoo/addons/base_tier_validation_report/__init__.py,sha256=eShEGRadAlxopoLqIQ4-N42FM7MWPSuBe0h_l1cXTPM,87
+odoo/addons/base_tier_validation_report/__manifest__.py,sha256=SerE7ZfyHGssJtkFYaIN2mD-89I-HrW_lf9wW_TPZZI,666
+odoo/addons/base_tier_validation_report/i18n/base_tier_validation_report.pot,sha256=z-LkBV7qGTbZWR8trZgLlqZwmKc7Aa4jgYnPzgsPOGg,3096
+odoo/addons/base_tier_validation_report/i18n/it.po,sha256=A5rWzYiN-9D7zvpPz-YUgcbyYIv-MXb1UhsGba-IRxM,3613
+odoo/addons/base_tier_validation_report/models/__init__.py,sha256=1StPdyzSxcxd1linHJ5V8bjIiZVp1UvmEvuG6o_RH7M,92
+odoo/addons/base_tier_validation_report/models/tier_review.py,sha256=BjfPoZpe8lBYN6yney2yz0JZKMg8l478XZ4tNKbGLwE,1666
+odoo/addons/base_tier_validation_report/readme/CONTRIBUTORS.rst,sha256=pUKsihocAZvdFahn02VGnzI2e6Lsu8AsQLii4aAuXzc,79
+odoo/addons/base_tier_validation_report/readme/DESCRIPTION.rst,sha256=uJcTWwyTeRIQjxXbc2DwSXxl3EobLETbhaZ0OYfDUcc,203
+odoo/addons/base_tier_validation_report/reports/tier_review_report.xml,sha256=PDBr0Iy5XelPHCOY-_RhxlUWitxrfbM3JzGt4zFXQck,5829
+odoo/addons/base_tier_validation_report/security/groups.xml,sha256=fH7w-spIpIGRUoxRJyfJAZmjtYy2RDvlDHVUVe8X4QA,440
+odoo/addons/base_tier_validation_report/static/description/icon.png,sha256=6xBPJauaFOF0KDHfHgQopSc28kKvxMaeoQFQWZtfZDo,9455
+odoo/addons/base_tier_validation_report/static/description/index.html,sha256=cW7_404QMCHKO4FyqilDwJZuoqPjpbRDi8x6qml8Kwo,12696
+odoo_addon_base_tier_validation_report-16.0.1.0.1.5.dist-info/METADATA,sha256=_LAbMusEfaqjmytVjxeOcnpGX6TTSpY0qxwVuNzHyA8,3920
+odoo_addon_base_tier_validation_report-16.0.1.0.1.5.dist-info/WHEEL,sha256=tZoeGjtWxWRfdplE7E3d45VPlLNQnvbKiYnx7gwAy8A,92
+odoo_addon_base_tier_validation_report-16.0.1.0.1.5.dist-info/top_level.txt,sha256=qBj40grFkGOfDZ2WDSw3y1RnDlgG0u8rP8pvGNdbz4w,5
+odoo_addon_base_tier_validation_report-16.0.1.0.1.5.dist-info/RECORD,,
