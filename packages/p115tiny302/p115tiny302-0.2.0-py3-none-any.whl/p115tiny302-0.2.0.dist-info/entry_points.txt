@@ -1,0 +1,4 @@
+[console_scripts]
+p115tiny302=p115tiny302.__main__:main
+tiny302=p115tiny302.__main__:main
+
