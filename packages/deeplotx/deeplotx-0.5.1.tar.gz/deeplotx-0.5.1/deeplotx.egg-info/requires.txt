@@ -1,0 +1,8 @@
+hf-xet>=1.0.5
+jupyter
+numpy
+protobuf
+python-dotenv>=1.1.0
+torch
+transformers
+typing-extensions>=4.13.2
