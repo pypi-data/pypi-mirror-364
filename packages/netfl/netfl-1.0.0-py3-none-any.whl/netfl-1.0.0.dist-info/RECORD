@@ -1,0 +1,16 @@
+netfl/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+netfl/core/client.py,sha256=GuX1BjMOcVvhsUp0pth_TbukJ5ovLPu9FWOD5zlxet4,2336
+netfl/core/experiment.py,sha256=bj7XIRlu447wEdox3qYFT3Cs47oM8VfkpX3yTQeIN6Q,3167
+netfl/core/models.py,sha256=dI3-ZnfzntTQt7bH8es2-_-0lMZeEIULrfWvrLM6aC4,836
+netfl/core/partitioner.py,sha256=RaNxWCOGmbQOHzSDKJfdt19TPrGZSKHqCMQLIszWRPE,3331
+netfl/core/server.py,sha256=YyZ3z8UORBd1d7au6JwSqs4KrumFryGkgsZUAouSDBY,2181
+netfl/core/task.py,sha256=VE7Ras6Ahtfw5h6vKil6_4LSnfXilxTG7sq7o85uIvw,2938
+netfl/utils/initializer.py,sha256=mkTjvDqHWaUQKdbZokqDRGLMvYCK5tRPOjCFmm3qeSI,3676
+netfl/utils/log.py,sha256=3lpjINlnWjxRFDcMCNTwMqzE58N2QlkyRwIUb_fCNxI,690
+netfl/utils/metrics.py,sha256=0899HoEFnxnm7bWG4j6n0Wa40og_CgyPshkV4aRjWvI,1460
+netfl/utils/net.py,sha256=VDV8-vFsJXfz55MSzP-WqaOW6F3zg5W4wT9sT49Ys60,1762
+netfl/utils/resources.py,sha256=lmTEB-iZeDZ0ELOGJIgeW0wmz_FZNRzXGKpbqxjjkYo,537
+netfl-1.0.0.dist-info/METADATA,sha256=zJ3zm65KGFGoOLv38piD8xRmug1Up2H-WZ1xpoRfoPY,7238
+netfl-1.0.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+netfl-1.0.0.dist-info/licenses/LICENSE,sha256=xx0jnfkXJvxRnG63LTGOxlggYnIysveWIZ6H3PNdCrQ,11357
+netfl-1.0.0.dist-info/RECORD,,
