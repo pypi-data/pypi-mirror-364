@@ -1,0 +1,27 @@
+Metadata-Version: 2.4
+Name: subhaloscript
+Version: 1.0.7
+Summary: Utility functions for analyzing subhalo distributions.
+Author-email: Charles Gannon <cgannon@ucmerced.edu>
+License-File: LICENSE
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.11
+Requires-Dist: h5py
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: scikit-learn
+Requires-Dist: scipy
+Description-Content-Type: text/markdown
+
+# SubScript
+The ```subscript``` python package provides a library of ergonomic utility functions for analyzing Galacticus (https://github.com/galacticusorg/galacticus) subhalo data. 
+
+## Installation 
+
+### Install via pip
+```pip install subhaloscript```
+
+### Install via conda
+```conda install cgannonucm::subhaloscript```
+
