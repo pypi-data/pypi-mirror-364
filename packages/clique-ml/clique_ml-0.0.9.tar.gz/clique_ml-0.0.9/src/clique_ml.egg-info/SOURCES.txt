@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+src/clique/__init__.py
+src/clique/clique.py
+src/clique_ml.egg-info/PKG-INFO
+src/clique_ml.egg-info/SOURCES.txt
+src/clique_ml.egg-info/dependency_links.txt
+src/clique_ml.egg-info/requires.txt
+src/clique_ml.egg-info/top_level.txt
