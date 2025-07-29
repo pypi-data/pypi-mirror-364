@@ -1,0 +1,3 @@
+[console_scripts]
+dentalmodelseg = shapeaxi.dental_model_seg:cml
+shapeaxi = shapeaxi.saxi_folds:cml
