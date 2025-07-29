@@ -1,0 +1,9 @@
+tracy_blob_storage_client/__init__.py,sha256=a8iJEOUvQ7UqjMhPjMjBKc1F4R2EbJga0hB42TCJ94I,80
+tracy_blob_storage_client/aws_blob.py,sha256=mzRl_K1k4WGL0KzWfgmJEy4N92dSC9Dq0yyLdItAbKM,3374
+tracy_blob_storage_client/azure_blob.py,sha256=zOqpaIPOhuW3IiqP0e0KLG9ZMevhuZ5Rp0Sufo-mt4s,2969
+tracy_blob_storage_client/base.py,sha256=3W0I70EnEbkbfwJTB0czYw8U28zoq8KCsezLi7RBYt4,1909
+tracy_blob_storage_client/factory.py,sha256=PlLK5te0w_sE_IYeOxG0-15r_jsnfU6RsO7aY13w3dU,565
+tracy_blob_storage_client-0.7.0.dist-info/METADATA,sha256=iazoHxhUv9Ge6dDid687LnoOp_oHL6724WfIrys-tJ4,1229
+tracy_blob_storage_client-0.7.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+tracy_blob_storage_client-0.7.0.dist-info/top_level.txt,sha256=R-hDegiXKlRADpHQiEwSxejmmtYnh3nNfeJ8OM8k0Nw,26
+tracy_blob_storage_client-0.7.0.dist-info/RECORD,,
