@@ -1,0 +1,14 @@
+appligen/__init__.py,sha256=t7aaNZGmvdvAgiaHtviSkIE975-M7MOUt1INwS8twe0,50
+appligen/admin.py,sha256=suMo4x8I3JBxAFBVIdE-5qnqZ6JAZV0FESABHOSc-vg,63
+appligen/apps.py,sha256=-a9_7mkhNTRxR4ooZjeXzUnY_vPA97habdG4MQIZ6EE,148
+appligen/cli.py,sha256=OoNPHaLrNN6xwS9tOrkwWOFCwAxfesDEZHyB7FbawZo,204
+appligen/generator.py,sha256=Zx6hDUpY5ki1_ryNRffTuTNvkVgsW4PzsfW_P7icYtA,1967
+appligen/models.py,sha256=Vjc0p2XbAPgE6HyTF6vll98A4eDhA5AvaQqsc4kQ9AQ,57
+appligen/run.py,sha256=GYqAq8YsZjbjqPHtjOjm8NzjhGQi_HzE36GdyLnMeUc,2102
+appligen/tests.py,sha256=mrbGGRNg5jwbTJtWWa7zSKdDyeB4vmgZCRc2nk6VY-g,60
+appligen/views.py,sha256=0zQL865sbR9hkJrfRsJE0Dtr1dIJv7LDmRtIGKIfh4Q,2165
+appligen/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+appligen-0.1.5.dist-info/METADATA,sha256=gi8BvJrB-zAZNvVRIC5spTe5m-e6yMwj1oPzsxi-WdU,989
+appligen-0.1.5.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+appligen-0.1.5.dist-info/top_level.txt,sha256=8ifGVSLt-WeX4u-DvLmC7Ykkn1HUd-BTBH4CIR5GYaA,9
+appligen-0.1.5.dist-info/RECORD,,
