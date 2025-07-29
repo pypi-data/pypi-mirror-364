@@ -1,0 +1,2 @@
+[console_scripts]
+stacking-pr = stacking_pr.cli:cli
