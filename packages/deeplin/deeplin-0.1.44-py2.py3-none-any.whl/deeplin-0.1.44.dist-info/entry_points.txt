@@ -1,0 +1,3 @@
+[console_scripts]
+deeplin-hexin-server=deeplin.inference_engine.hexin_server:main
+
