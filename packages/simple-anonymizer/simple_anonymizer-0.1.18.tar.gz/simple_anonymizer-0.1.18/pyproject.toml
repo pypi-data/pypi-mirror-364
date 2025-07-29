@@ -1,0 +1,130 @@
+[project]
+name = "simple-anonymizer"
+version = "0.1.18"
+description = "Privacy-first text anonymization tool with enterprise-grade accuracy for removing PII from documents"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+authors = [
+    {name = "Andrea Tirelli", email = "atirellimate@gmail.com"}
+]
+maintainers = [
+    {name = "Andrea Tirelli", email = "atirellimate@gmail.com"}
+]
+keywords = [
+    "privacy",
+    "anonymization",
+    "pii",
+    "nlp",
+    "spacy",
+    "presidio",
+    "data-protection",
+    "text-processing",
+    "privacy-tools",
+    "gdpr",
+    "enterprise"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Legal Industry",
+    "Intended Audience :: Healthcare Industry",
+    "Topic :: Text Processing :: Linguistic",
+    "Topic :: Security",
+    "Topic :: Office/Business",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Operating System :: OS Independent",
+    "Environment :: Console",
+    "Environment :: Web Environment",
+    "Environment :: X11 Applications :: GTK",
+    "Natural Language :: English"
+]
+requires-python = ">=3.9,<3.14"
+dependencies = [
+    # Core dependencies
+    "unidecode>=1.3.0",
+    "regex>=2023.0.0",
+    # NLP and anonymization
+    "spacy>=3.7.0",
+    "presidio-analyzer>=2.2.0",
+    "presidio-anonymizer>=2.2.0",
+    # Web framework
+    "flask>=3.1.0",
+    # Additional dependencies that might be needed
+    "requests>=2.31.0",
+    "certifi>=2023.0.0",
+    "urllib3>=2.0.0",
+    "text-anonymizer>=0.1.0",
+]
+
+[project.optional-dependencies]
+# Default installation includes spaCy
+ner = ["spacy>=3.8.0"]
+# All features for development
+dev = [
+    "pytest>=7.4.0",
+    "mypy>=1.5.0",
+    "ruff>=0.1.0",
+    "black>=23.9.0",
+    "nuitka>=1.8.0"
+]
+all = ["spacy>=3.7.0"]
+
+[project.scripts]
+# Main CLI commands
+anon-web = "web.cli:main"
+anon-gui = "anonymizer_gui:launch"
+# Model setup utility
+anon-setup-models = "anonymizer_core.setup_models:setup_models"
+
+
+[tool.poetry]
+packages = [
+    {include = "anonymizer_core"},
+    {include = "anonymizer_gui"},
+    {include = "web"}
+]
+
+# Include resources directory for icons
+include = [
+    "resources/**/*",
+    "customize_icon.py",
+    "LICENSE",
+    "README.md",
+    "anonymizer_core/setup_models.py"
+]
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "B", "ANN"]
+ignore = ["E501", "ANN"]
+
+[tool.mypy]
+python_version = "3.10"
+check_untyped_defs = true
+strict = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    "ignore::DeprecationWarning:spacy.*",
+    "ignore::DeprecationWarning:weasel.*",
+    "ignore:Importing 'parser.split_arg_string' is deprecated:DeprecationWarning",
+]
