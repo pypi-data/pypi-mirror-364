@@ -1,0 +1,3 @@
+[console_scripts]
+download=file_download.download:main
+
