@@ -1,0 +1,26 @@
+Metadata-Version: 2.4
+Name: policyengine-data
+Version: 0.1.0
+Summary: A package to create representative microdata for PolicyEngine's policy models.
+Author-email: PolicyEngine <hello@policyengine.org>
+License-File: LICENSE
+Requires-Python: >=3.11
+Requires-Dist: h5py
+Requires-Dist: huggingface-hub
+Requires-Dist: microdf-python==0.4.4
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: policyengine-core>=3.6.4
+Provides-Extra: dev
+Requires-Dist: black; extra == 'dev'
+Requires-Dist: build; extra == 'dev'
+Requires-Dist: flake8; extra == 'dev'
+Requires-Dist: isort; extra == 'dev'
+Requires-Dist: linecheck; extra == 'dev'
+Requires-Dist: mypy; extra == 'dev'
+Requires-Dist: pytest; extra == 'dev'
+Requires-Dist: pytest-cov; extra == 'dev'
+Requires-Dist: yaml-changelog>=0.1.7; extra == 'dev'
+Description-Content-Type: text/markdown
+
+# policyengine-data
