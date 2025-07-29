@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(source:*)",
+      "Bash(python -m pytest --cov=adversary_mcp_server --cov-report=term-missing --tb=no -q)",
+      "Bash(pytest:*)",
+      "Bash(python -m pytest tests/test_semgrep_scanner.py -v)",
+      "Bash(python -m pytest tests/test_server.py -v -k \"version\")",
+      "Bash(python -m pytest tests/test_server.py --collect-only)"
+    ],
+    "deny": []
+  }
+}
