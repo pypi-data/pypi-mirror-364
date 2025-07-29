@@ -1,0 +1,12 @@
+__pycache__
+.coverage
+build
+dist
+docs/build
+htmlcov
+
+.env
+coverage.xml
+
+packages/**/.vscode
+packages/**/src/**/_version.py
