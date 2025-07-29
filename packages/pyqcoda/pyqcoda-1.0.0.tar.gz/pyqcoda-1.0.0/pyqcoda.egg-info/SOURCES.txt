@@ -1,0 +1,11 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+pyqcoda/__init__.py
+pyqcoda/core.py
+pyqcoda.egg-info/PKG-INFO
+pyqcoda.egg-info/SOURCES.txt
+pyqcoda.egg-info/dependency_links.txt
+pyqcoda.egg-info/requires.txt
+pyqcoda.egg-info/top_level.txt
