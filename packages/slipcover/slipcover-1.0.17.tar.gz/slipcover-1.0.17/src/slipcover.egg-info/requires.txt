@@ -1,0 +1,5 @@
+tabulate
+
+[test]
+pytest
+pytest-forked
