@@ -1,0 +1,281 @@
+site_name: EmailWidget
+site_description: A powerful and beautiful Python email component library for generating HTML email reports. Verified by 600+ test cases with 90%+ code coverage.
+site_author: PythonImporter
+site_url: https://271374667.github.io/EmailWidget/
+copyright: Copyright &copy; 2025 PythonImporter
+
+repo_name: 271374667/EmailWidget
+repo_url: https://github.com/271374667/EmailWidget
+edit_uri: edit/master/docs/
+
+# GitHub Pages 配置
+use_directory_urls: true
+
+theme:
+    icon:
+        logo: material/email-outline
+        repo: fontawesome/brands/github
+    name: material
+    language: en
+    palette:
+        # 切换到亮色
+        - media: "(prefers-color-scheme: light)"
+          scheme: default
+          primary: pink
+          accent: pink
+    features:
+        - navigation.tabs
+        - navigation.tabs.sticky
+        - navigation.tracking
+        - navigation.sections
+        - navigation.expand
+        - navigation.prune
+        - navigation.indexes
+        - toc.follow
+        - toc.integrate
+        - navigation.top
+        - search.suggest
+        - search.highlight
+        - search.share
+        - navigation.footer
+        - content.code.copy
+        - content.code.annotate
+        - content.tabs.link
+        - content.tooltips
+
+markdown_extensions:
+    - admonition
+    - def_list
+    - footnotes
+    - abbr
+    - pymdownx.caret
+    - pymdownx.mark
+    - pymdownx.tilde
+    - md_in_html
+    - pymdownx.arithmatex:
+          generic: true
+    - toc:
+          permalink: true
+          toc_depth: 4
+          permalink_title: Anchor link to this section
+    - pymdownx.highlight:
+          anchor_linenums: true
+          linenums: true
+          use_pygments: true
+          pygments_lang_class: true
+          auto_title: true
+          linenums_style: pymdownx-inline
+    - pymdownx.betterem:
+          smart_enable: all
+    - pymdownx.caret
+    - pymdownx.mark
+    - pymdownx.tilde
+    - pymdownx.keys
+    - pymdownx.critic:
+          mode: view
+    - pymdownx.details
+    - pymdownx.inlinehilite
+    - pymdownx.snippets:
+          base_path: 'docs'
+          check_paths: true
+    - pymdownx.superfences:
+          custom_fences:
+              - name: mermaid
+                class: mermaid
+                format: !!python/name:pymdownx.superfences.fence_code_format
+    - pymdownx.magiclink:
+          repo_url_shorthand: true
+          user: 271374667
+          repo: EmailWidget
+    - pymdownx.smartsymbols
+    - pymdownx.tasklist:
+          custom_checkbox: true
+          clickable_checkbox: true
+    - attr_list
+    - pymdownx.emoji:
+          emoji_index: !!python/name:material.extensions.emoji.twemoji
+          emoji_generator: !!python/name:material.extensions.emoji.to_svg
+    - pymdownx.tabbed:
+          alternate_style: true
+          combine_header_slug: true
+          slugify: !!python/object/apply:pymdownx.slugs.slugify
+            kwds:
+              case: lower
+    - meta
+    - tables
+
+nav:
+    - Home: index.md
+    - Getting Started:
+        - getting-started/index.md
+        - Installation: getting-started/installation.md
+        - First Email: getting-started/first-email.md
+        - Basic Concepts: getting-started/concepts.md
+        - FAQ: getting-started/faq.md
+    - User Guide:
+        - user-guide/index.md
+        - Core Classes: user-guide/core-classes.md
+        - Widget Overview: user-guide/widget-overview.md
+        - Text Widget: user-guide/text-widget.md
+        - Table Widget: user-guide/table-widget.md
+        - Image Widget: user-guide/image-widget.md
+        - Alert Widget: user-guide/alert-widget.md
+        - Progress Widget: user-guide/progress-widget.md
+        - Circular Progress: user-guide/circular-progress-widget.md
+        - Status Widget: user-guide/status-widget.md
+        - Card Widget: user-guide/card-widget.md
+        - Quote Widget: user-guide/quote-widget.md
+        - Button Widget: user-guide/button-widget.md
+        - Separator Widget: user-guide/separator-widget.md
+        - Checklist Widget: user-guide/checklist-widget.md
+        - Timeline Widget: user-guide/timeline-widget.md
+        - Metric Widget: user-guide/metric-widget.md
+        - Column Widget: user-guide/column-widget.md
+        - Chart Widget: user-guide/chart-widget.md
+        - Log Widget: user-guide/log-widget.md
+    - API Reference:
+        - api/index.md
+        - Core Module: api/core.md
+        - Email Class: api/email.md
+        - Email Sender: api/email-sender.md
+        - Text Widget: api/text-widget.md
+        - Table Widget: api/table-widget.md
+        - Image Widget: api/image-widget.md
+        - Alert Widget: api/alert-widget.md
+        - Progress Widget: api/progress-widget.md
+        - Circular Progress: api/circular-progress-widget.md
+        - Status Widget: api/status-widget.md
+        - Card Widget: api/card-widget.md
+        - Quote Widget: api/quote-widget.md
+        - Button Widget: api/button-widget.md
+        - Separator Widget: api/separator-widget.md
+        - Checklist Widget: api/checklist-widget.md
+        - Timeline Widget: api/timeline-widget.md
+        - Metric Widget: api/metric-widget.md
+        - Column Widget: api/column-widget.md
+        - Chart Widget: api/chart-widget.md
+        - Log Widget: api/log-widget.md
+    - Examples:
+        - examples/index.md
+        - Basic Examples: examples/basic.md
+        - Data Reports: examples/data-reports.md
+        - System Monitoring: examples/system-monitoring.md
+        - Spider Reports: examples/spider-reports.md
+        - Real Applications: examples/real-world.md
+    - Development:
+        - development/index.md
+        - Contributing: development/contributing.md
+        - Setup Environment: development/setup.md
+        - Creating Widgets: development/creating-widgets.md
+        - Testing Guide: development/testing.md
+        - Release Process: development/release.md
+
+plugins:
+    - search:
+        lang: ['zh', 'en']
+        separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+    - mkdocstrings:
+          handlers:
+              python:
+                  paths: [email_widget]
+                  options:
+                      docstring_style: google
+                      show_source: false
+                      show_root_heading: false
+                      show_root_full_path: false
+                      show_category_heading: true
+                      merge_init_into_class: true
+                      show_bases: true
+                      show_inheritance_diagram: false
+                      extra:
+                          show_private_members: false
+    - i18n:
+        docs_structure: folder
+        reconfigure_material: true
+        languages:
+          - locale: en
+            default: true
+            name: English
+            build: true
+          - locale: zh
+            name: 简体中文
+            build: true
+            nav_translations:
+              Home: 首页
+              Getting Started: 快速开始
+              Installation: 安装配置
+              First Email: 第一个邮件
+              Basic Concepts: 基本概念
+              FAQ: 常见问题
+              User Guide: 用户指南
+              Core Classes: 核心类
+              Widget Overview: 组件概览
+              Text Widget: 文本组件
+              Table Widget: 表格组件
+              Image Widget: 图片组件
+              Alert Widget: 警告组件
+              Progress Widget: 进度组件
+              Circular Progress: 圆形进度组件
+              Status Widget: 状态组件
+              Card Widget: 卡片组件
+              Quote Widget: 引用组件
+              Button Widget: 按钮组件
+              Separator Widget: 分隔符组件
+              Checklist Widget: 清单组件
+              Timeline Widget: 时间线组件
+              Metric Widget: 指标组件
+              Column Widget: 布局组件
+              Chart Widget: 图表组件
+              Log Widget: 日志组件
+              API Reference: API参考
+              Core Module: 核心模块
+              Email Class: Email主类
+              Email Sender: 邮件发送器
+              Examples: 示例代码
+              Basic Examples: 基础示例
+              Data Reports: 数据报告
+              System Monitoring: 系统监控
+              Spider Reports: 爬虫报告
+              Real Applications: 实际应用
+              Development: 开发指南
+              Contributing: 贡献指南
+              Setup Environment: 开发环境
+              Creating Widgets: 创建Widget
+              Testing Guide: 测试指南
+              Release Process: 发布流程
+
+extra:
+    social:
+        - icon: fontawesome/brands/github
+          link: https://github.com/271374667
+          name: GitHub - PythonImporter
+        - icon: fontawesome/brands/bilibili  
+          link: https://space.bilibili.com/282527875
+          name: Bilibili - PythonImporter
+        - icon: material/email
+          link: mailto:271374667@qq.com
+          name: 邮件联系
+        - icon: fontawesome/brands/python
+          link: https://pypi.org/project/EmailWidget/
+          name: PyPI包
+    
+    version:
+        provider: mike
+        default: latest
+        
+    analytics:
+        provider: google
+        property: !ENV GOOGLE_ANALYTICS_KEY
+    
+    generator: false
+
+extra_css:
+    - stylesheets/extra.css
+    
+extra_javascript:
+    - javascripts/extra.js
+    - https://polyfill.io/v3/polyfill.min.js?features=es6
+    - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+watch:
+    - email_widget/ 
