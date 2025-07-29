@@ -1,0 +1,46 @@
+            <b>Filter:</b>
+            <p>This section refines the results from the terms in the "Search" section above. Each blue box here is combined with a Boolean AND, so you can use multiple
+                types of filters if you want.
+            </p>
+            <div class="floating-block">
+                <div class="floating-block">
+                    <p class="form">
+                        <label>Aquifer monitored code:</label>
+                        <input type="text" name="filter_aq_mon" value="{{ query.filter_aq_mon }}" /> (Must match exactly)
+                    </p>
+                    <p class="form">
+                        <label>Aquifer code:</label>
+                        <input type="text" name="filter_aquifer_code" value="{{ query.filter_aquifer_code }}" /> ("Tbw" will also match "Qpcb+Tbw")
+                        <br>You can include multiple codes separated by commas e.g. "JK1,K-c" will match "K-c+JK1" as well as "JK1+N".
+                    </p>
+                </div>
+                <div class="floating-block">
+                    <p class="form">
+                        <label>Latest salinity above:</label>
+                        <input type="number" name="filter_latest_tds_above" step=1 value="{{ query.filter_latest_tds_above }}"/> mg/L (use 0 to disable)
+                    </p>
+                    <p class="form">
+                        <label>Latest salinity below:</label>
+                        <input type="number" name="filter_latest_tds_below" step=1 value="{{ query.filter_latest_tds_below }}"/> mg/L (use 0 to disable)
+                    </p>
+                    <p class="form">
+                        <label>Latest salinity measurement since:</label>
+                        <input type="date" name="filter_latest_sal_date_since" value="{{ query.filter_latest_sal_date_since }}" /> 
+                    </p>
+                </div>
+                <div class="floating-block">
+                    <p class="form">
+                        <label>Has geological log type:</label>
+                        <input type="text" name="filter_log_types" value="{{ query.filter_log_types }}"/>
+                        <br>Use D for drillers log, L for lith log, S for strat log, and H for hydrostrat log. 
+                        <br>Combine them any way: "DL" or "D,L" will search for wells with drillers and/or lith logs.
+                    </p>
+                    <p class="form">
+                        <label>Combine log types with:</label>
+                        <input type="text" name="filter_log_types_bool" value="{{ query.filter_log_types_bool }}"/>
+                        <br>Use "or" to search for wells with ANY of the log types,
+                        <br>or "and" to search for wells with ALL of the log types.
+                    </p>
+                </div>
+            </div>
+            <br>
