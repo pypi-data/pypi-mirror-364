@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: litlogger
+Version: 0.0.18
+Summary: The Lightning Logger of the Lightning.AI Platform
+Author-email: Lightning-AI <thomas@lightning.ai>
+Keywords: deep learning,machine learning,pytorch,AI
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: lightning-sdk>=0.2.23
+Requires-Dist: lightning>2.0.0
+Requires-Dist: litmodels>=0.1.6
+Requires-Dist: protobuf
+Requires-Dist: psutil
+
+# Lit Logger

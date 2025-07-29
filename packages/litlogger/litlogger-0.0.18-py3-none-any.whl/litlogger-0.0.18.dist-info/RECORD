@@ -1,0 +1,15 @@
+litlogger/__init__.py,sha256=IpIXUFOrAR5O6k2uc9rwmCe2aVPaQv2cm6yO4CT-Fnk,100
+litlogger/artifacts.py,sha256=-dt8yOkXxH6j7lRYJeLFXFajxnmWDJOu3uCtbH421zo,383
+litlogger/client.py,sha256=5R3-EgR6DlELrcz3Gh7tOChuoTw2oAFvjrqvGIzx5fE,2997
+litlogger/colors.py,sha256=B6oS6Nz_DxEXtGbu-wowleXLcQfHxuJON9lsRfdC3S8,3380
+litlogger/diagnostics.py,sha256=qgAHa5tGst0JlmxL-XvjZh35GNODBMvTLaduYFTs1og,6849
+litlogger/experiment.py,sha256=5x9XXT0wgrwTiA983QK2FZ282hNWWDkx10xwBxkuAfA,12649
+litlogger/file_writer.py,sha256=REfw9fPeTYtlx6mJndAH6LH3oNHsewqJbzSXHeD1YCY,4787
+litlogger/generator.py,sha256=n91FXKZ-vDwre-1u3QUDSAL0zajZIAo6tzA6ZYwtdYs,19743
+litlogger/logger.py,sha256=ZXqVez-dWZaQIOsILR2jUp_GLYjO4MvLIN6s55dmk2I,13222
+litlogger/manager.py,sha256=bHtCjKZ1TkcBYeKhN11Bd00QGDmx4QvmUPaf5BpySBI,6531
+litlogger-0.0.18.dist-info/LICENSE,sha256=xx0jnfkXJvxRnG63LTGOxlggYnIysveWIZ6H3PNdCrQ,11357
+litlogger-0.0.18.dist-info/METADATA,sha256=djo6zAS6_6FoqoLkDCvfhWFq-zyf3aNo3IwAxIJtP_g,507
+litlogger-0.0.18.dist-info/WHEEL,sha256=iAkIy5fosb7FzIOwONchHf19Qu7_1wCWyFNR5gu9nU0,91
+litlogger-0.0.18.dist-info/top_level.txt,sha256=YF9mc8vGj9MqhSRFq6QZHVXIjQ35UgrxCmpkdhoHd3Y,10
+litlogger-0.0.18.dist-info/RECORD,,
