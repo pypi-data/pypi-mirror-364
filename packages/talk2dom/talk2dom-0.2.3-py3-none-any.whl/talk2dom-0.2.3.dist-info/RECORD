@@ -1,0 +1,17 @@
+talk2dom/__init__.py,sha256=owNBtJP-mqh-J9s1HaEM_l048T0MQFA8_aubrO6p0ig,232
+talk2dom/chain.py,sha256=Fqv97ckhJl0tBdXKgruYLmxtJzpP2vOJBTtYgTSulBk,5217
+talk2dom/cli.py,sha256=Rn3cWPi2pO7Jig7ak1_WhsWkxqlpS198KDnLai_oHeg,7090
+talk2dom/core.py,sha256=2BJWlVdTIUWDWKW1OvApp0eSb9ERWqVklg0U2_yVPFs,9003
+talk2dom/db/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+talk2dom/db/cache.py,sha256=NNecm0YnAcNO76iCl3Q_Z-e7eACcZzz_OetnyJAgSyQ,1753
+talk2dom/db/init.py,sha256=_VruUwSPMaHAR0JP3JHXdmrmCewOt-CmWhzugudvFxI,285
+talk2dom/db/models.py,sha256=rUdTnY9H5351n2IK6H4P0fpSwLzKCm-UmQg-Vv8nHU0,611
+talk2dom/db/session.py,sha256=V5C1CzE2ktGmgn9uxPm_9xle3noRtPkgayqyMlTtgJo,454
+talk2dom/prompts/locator_prompt.txt,sha256=EL9Ijqygjm7fmnbo7mUOu3Si3nhvHK8hkH_oDxkU4ZQ,581
+talk2dom/prompts/validator_prompt.txt,sha256=3fJxLdqUjKVVXoUpUAlnweZhxsjBvtEA5gDuB540i8Q,1822
+talk2dom-0.2.3.dist-info/licenses/LICENSE,sha256=xx0jnfkXJvxRnG63LTGOxlggYnIysveWIZ6H3PNdCrQ,11357
+talk2dom-0.2.3.dist-info/METADATA,sha256=PIRRYmb_fAv6vv3dAKg47DnD9s2W-v2LX0-zzfar5T0,7043
+talk2dom-0.2.3.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+talk2dom-0.2.3.dist-info/entry_points.txt,sha256=uO7TG-i19rSPJlYisKBRBM4qBTOdHwhOioeKQXt2Ztk,47
+talk2dom-0.2.3.dist-info/top_level.txt,sha256=Fxbl0qTQ5BpvGefuWss2WzQGC-OsOtwbiLp2uOYMrTA,9
+talk2dom-0.2.3.dist-info/RECORD,,
