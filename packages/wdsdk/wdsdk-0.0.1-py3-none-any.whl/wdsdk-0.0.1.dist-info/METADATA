@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: wdsdk
+Version: 0.0.1
+Summary: A Python client library for using Workday Reports-as-a-Service APIs.
+Home-page: https://github.com/lessej/workday-raas-python
+Author: lessej
+Requires-Dist: pyjwt
+Dynamic: author
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: summary
