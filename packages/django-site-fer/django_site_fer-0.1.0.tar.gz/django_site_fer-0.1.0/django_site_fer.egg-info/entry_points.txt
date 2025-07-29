@@ -1,0 +1,2 @@
+[console_scripts]
+django_site_fer = cli:main
