@@ -1,0 +1,15 @@
+losiquant/__init__.py,sha256=iDUdJAFs3d3jsdt_pzjWQ2AkrEghojCKjnJQnIX3gWU,307
+losiquant/Backend/__init__.py,sha256=AOaqsVgqcY4nld9gcRZbRfWcEoHkawGhUuBfXd5EI7Y,239
+losiquant/Backend/cpu.py,sha256=EPh5qVfkxTeKeIMbDLwyaAg186B77tO8Uh5SMRTjKeg,3415
+losiquant/Backend/micro.py,sha256=nFnUJwLJw6xY3J6G1wQdbexIQJw2iPYHyJXmQEsoqVo,3798
+losiquant/core/__init__.py,sha256=Y2FJJ4TGBjFXc5hr9bnxPTmPP5HH_LRBh60FBfhMqC8,360
+losiquant/core/bitpack.py,sha256=-hwoWV94fQHwY5xIy-_xFiG3CsMoGskaFxWrYliSUII,1701
+losiquant/core/decoder.py,sha256=ZZ7jXCdQA9BYr6sEdyVmnwt4XRVsY06lAJbla1KoxWg,955
+losiquant/core/engine.py,sha256=H71z0NuOU0FaPoAO8iePIAbNN4AqrJx8azHc7VLqe88,2103
+losiquant/formats/__init__.py,sha256=v-qBObqHzkyIZ3ZSgzXooVlHwZqUC8BCm-WHc9oTVN8,195
+losiquant/formats/lsq_model.py,sha256=3s3KELBtvuo73qwNsrI2HwQhbPtnaZMjgLsM05qvNbk,3494
+losiquant-1.0.0.1.dist-info/licenses/LICENSE,sha256=xx0jnfkXJvxRnG63LTGOxlggYnIysveWIZ6H3PNdCrQ,11357
+losiquant-1.0.0.1.dist-info/METADATA,sha256=zgr6y-Mq6-xhcuuXaWsB6gQExWN0KvRUUis6rvIhxTM,9274
+losiquant-1.0.0.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+losiquant-1.0.0.1.dist-info/top_level.txt,sha256=BZaoIGSRzad2poYVgA1gSUDb7ILE8oVp9JyvwKAZo1A,10
+losiquant-1.0.0.1.dist-info/RECORD,,
