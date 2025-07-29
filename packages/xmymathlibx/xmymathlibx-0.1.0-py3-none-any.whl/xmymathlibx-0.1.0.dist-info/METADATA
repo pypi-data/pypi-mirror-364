@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: xmymathlibx
+Version: 0.1.0
+Summary: A simple math library
+Author: Siddhardhan S
+Author-email: siddhardhan23@sidacademy.org
+Classifier: Programming Language :: Python :: 3
+License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: license-file
+Dynamic: summary
