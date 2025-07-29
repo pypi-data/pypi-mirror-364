@@ -1,0 +1,6 @@
+[console_scripts]
+cast2mp4=sh2mp4.cast2mp4:main
+sh2mp4=sh2mp4.__main__:main
+sh2mp4-measure-fonts=sh2mp4.measure_fonts:main
+sh2mp4-peep=sh2mp4.peep:main
+
