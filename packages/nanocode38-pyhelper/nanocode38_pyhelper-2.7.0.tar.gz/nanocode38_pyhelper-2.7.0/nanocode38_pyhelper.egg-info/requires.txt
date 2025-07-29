@@ -1,0 +1,10 @@
+pygame
+numba
+pywin32>=311
+
+[dev]
+black
+autoflake
+isort
+setuptools
+wheel
