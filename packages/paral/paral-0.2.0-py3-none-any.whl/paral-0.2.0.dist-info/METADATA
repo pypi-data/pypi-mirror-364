@@ -1,0 +1,78 @@
+Metadata-Version: 2.4
+Name: paral
+Version: 0.2.0
+Summary: An Git User/Credential Switcher
+Project-URL: Repository, https://github.com/aoi-cistus/parallel
+Project-URL: Issues, https://github.com/aoi-cistus/parallel/issues
+License-Expression: MIT
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Version Control :: Git
+Classifier: Topic :: Utilities
+Requires-Python: >=3.13
+Requires-Dist: pyyaml>=6.0.2
+Requires-Dist: questionary>=2.1.0
+Requires-Dist: typer>=0.16.0
+Description-Content-Type: text/markdown
+
+# Parallel (paral)
+An Git User/Credential Switcher
+
+## Install
+```shell
+pipx install paral
+```
+
+uv: 
+```shell
+uv tool install paral
+```
+
+## how to use
+### Temporarily switch users
+```shell
+$ paral env
+```
+### Add User
+```shell
+$ paral user add
+```
+### Delete User
+```shell
+$ paral user delete
+```
+### Switch User
+```shell
+$ paral user switch
+
+# or
+$ paral switch
+```
+#### Apply account switching to local only
+```shell
+$ paral user switch --local
+```
+### Add Alias
+```shell
+$ paral alias add
+```
+### Delete Alias
+```shell
+$ paral alias delete
+```
+
+## Feature
+- Terminal-Based UI
+- Manage multiple Git users
+- Manage Git credential informations and switch between credentials to use
+- Aliases
+
+## Requirements
+- Python
+- Git
+- GCM Core
+
+## Todo
+- Golang Port
+    - Need to write a parser for gitconfig

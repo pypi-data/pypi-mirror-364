@@ -1,0 +1,14 @@
+parallel/legacy.py,sha256=CsB4f1kW9-SGcNY68SLXCc8_sSAtYhmzksf3Pvxhf7o,1419
+parallel/cli/__init__.py,sha256=8Hp51E3kGgL0rX1v1-PZ-j0f84mI_9aq13sh6wosdyc,827
+parallel/cli/alias.py,sha256=zD-u5Jufsl_E2Gzjr0Ey-E0EFwlnVUht7OWlJhIbQNM,543
+parallel/cli/user.py,sha256=bMhQHRzW1ZAm3HO8TsIYoxCAYFgp0e-LNUjPoyGpLG0,833
+parallel/commands/__init__.py,sha256=7IpuuCi-RX82lMjAN8MDqoaUL7jnD122hzNW_pRjaWA,365
+parallel/commands/add_alias.py,sha256=ufGKQbX4xgfg1Dmq7kuLGRdjC4J5YuY1LHGE5kxqd7g,820
+parallel/commands/add_users.py,sha256=rMoUXwdHOMqA1sF5W0Ka6DNRzWfYxbBLIvMGLPH29G0,2420
+parallel/commands/delete_alias.py,sha256=pTcZ8AzWdOp95CKcljJX-JrNDkltjV8xeRdloVvXCIE,1600
+parallel/commands/delete_users.py,sha256=AcCnw9AMLKB9O9lwlSyF2ENsgxUkgcrDC5ZqACHR7Ek,1474
+parallel/commands/switch_user.py,sha256=P4w0j-gDivkNxgAnVUTRC5a4K70zATP699HZx7fCYuc,4056
+paral-0.2.0.dist-info/METADATA,sha256=Are9us9H-dgjY0AhZtb2nNdoS6bktp_QitlMI5EhqQ0,1423
+paral-0.2.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+paral-0.2.0.dist-info/entry_points.txt,sha256=tcMFxlBvhFCOey_Gw-ZEFNBpeyRntWWGkFzPRRTEXJQ,69
+paral-0.2.0.dist-info/RECORD,,
