@@ -1,0 +1,50 @@
+Metadata-Version: 2.4
+Name: generativellm
+Version: 0.0.1
+Summary: A lightweight Gemini chat wrapper using HTTP requests
+Home-page: https://github.com/arfjdms1/generativellm
+Author: Your Name
+Author-email: aaravkhemka9@gmail.com
+License: MIT
+Keywords: gemini,ai,chatbot,google,rest,http,wrapper
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+
+# generativellm
+
+`generativellm` is a simple wrapper around the Gemini REST API using pure HTTP requests. It lets you create chat sessions and generate responses.
+
+## Installation
+
+```bash
+pip install generativellm
+```
+
+## Usage
+
+```python
+from generativellm import AIChat
+
+chatbot = AIChat(token="your-gemini-api-key", model="gemini-pro")
+
+conversation = [
+    "Hello!",
+    "Hi there! How can I help?",
+    "Can you summarize general relativity?",
+]
+
+response = chatbot.get_response(conversation)
+print(response)
+```
