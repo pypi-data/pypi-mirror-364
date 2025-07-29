@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+privattacks.egg-info/PKG-INFO
+privattacks.egg-info/SOURCES.txt
+privattacks.egg-info/dependency_links.txt
+privattacks.egg-info/requires.txt
+privattacks.egg-info/top_level.txt
+tests/__init__.py
+tests/test_Attack.py
