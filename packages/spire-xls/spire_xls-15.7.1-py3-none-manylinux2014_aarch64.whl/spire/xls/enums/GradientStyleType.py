@@ -1,0 +1,20 @@
+from enum import Enum
+from plum import dispatch
+from typing import TypeVar,Union,Generic,List,Tuple
+from spire.xls.common import *
+from spire.xls import *
+from ctypes import *
+import abc
+
+class GradientStyleType(Enum):
+    """
+    Represents excel shape shading style.
+
+    """
+    Horizontal = 0
+    Vertical = 1
+    Diagonl_Up = 2
+    Diagonl_Down = 3
+    From_Corner = 4
+    From_Center = 5
+

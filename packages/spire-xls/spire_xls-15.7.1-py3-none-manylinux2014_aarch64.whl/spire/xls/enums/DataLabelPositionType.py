@@ -1,0 +1,25 @@
+from enum import Enum
+from plum import dispatch
+from typing import TypeVar,Union,Generic,List,Tuple
+from spire.xls.common import *
+from spire.xls import *
+from ctypes import *
+import abc
+
+class DataLabelPositionType(Enum):
+    """
+    Represents Data label placement.
+
+    """
+    Automatic = 0
+    Outside = 1
+    Inside = 2
+    Center = 3
+    OutsideBase = 4
+    Above = 5
+    Below = 6
+    Left = 7
+    Right = 8
+    BestFit = 9
+    Moved = 10
+
