@@ -1,0 +1,9 @@
+requests
+
+[develop]
+build
+pytest
+pytest-cov
+responses
+ruff
+mypy
