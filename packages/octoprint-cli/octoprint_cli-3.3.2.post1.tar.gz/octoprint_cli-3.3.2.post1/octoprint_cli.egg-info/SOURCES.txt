@@ -1,0 +1,13 @@
+LICENSE
+README.md
+setup.cfg
+setup.py
+octoprint_cli/__init__.py
+octoprint_cli/__main__.py
+octoprint_cli/api.py
+octoprint_cli.egg-info/PKG-INFO
+octoprint_cli.egg-info/SOURCES.txt
+octoprint_cli.egg-info/dependency_links.txt
+octoprint_cli.egg-info/entry_points.txt
+octoprint_cli.egg-info/requires.txt
+octoprint_cli.egg-info/top_level.txt
