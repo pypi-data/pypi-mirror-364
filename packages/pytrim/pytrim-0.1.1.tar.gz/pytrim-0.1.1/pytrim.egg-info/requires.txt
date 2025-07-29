@@ -1,0 +1,16 @@
+tqdm>=4.64.0
+fawltydeps
+pkginfo
+flask
+toml
+colorama
+
+[:python_version < "3.11"]
+tomli>=1.2.0
+
+[dev]
+pytest>=6.0
+requests
+pre-commit
+
+[docs]
