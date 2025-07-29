@@ -1,0 +1,152 @@
+DoctorCheck
+DoctorCheck est un package Python qui fournit une application Django légère pour évaluer la santé des utilisateurs en fonction de leur tension artérielle et de symptômes tels que les maux de tête et la fatigue. L'application ne nécessite pas de base de données et propose une interface utilisateur interactive développée avec HTML, CSS et JavaScript. Elle est conçue pour être facile à intégrer dans un projet Django existant et inclut une commande CLI (create_doctorcheck) pour générer automatiquement la structure de l'application.
+Fonctionnalités
+
+Évaluation de la santé basée sur l'âge, la tension artérielle (systolique et diastolique) et les symptômes.
+Interface utilisateur responsive et intuitive.
+Commande CLI create_doctorcheck pour générer l'application Django.
+Tests unitaires inclus pour valider la logique d'évaluation de la santé.
+Aucun besoin de base de données, idéal pour des déploiements simples.
+
+Prérequis
+
+Python >= 3.8
+Django >= 4.0
+Un environnement virtuel (recommandé)
+Un projet Django configuré pour intégrer l'application
+
+Installation
+Suivez ces étapes pour installer et utiliser DoctorCheck dans votre projet Django.
+1. Activer un environnement virtuel
+Créez et activez un environnement virtuel pour isoler les dépendances :
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+venv\Scripts\activate     # Windows
+
+2. Installer le package
+Installez DoctorCheck via pip :
+pip install doctorcheck
+
+
+4. Intégrer l'application dans un projet Django
+
+Déplacer l'application :Copiez le dossier doctorcheck généré dans le répertoire racine de votre projet Django (à côté de manage.py).
+
+Ajouter à INSTALLED_APPS :Modifiez le fichier settings.py de votre projet Django pour inclure doctorcheck :
+INSTALLED_APPS = [
+    ...,
+    'doctorcheck',
+]
+
+
+Configurer les URLs :Ajoutez les URLs de l'application dans le fichier urls.py principal de votre projet :
+from django.urls import include, path
+
+urlpatterns = [
+    ...,
+    path('health/', include('doctorcheck.urls')),
+]
+
+
+Collecter les fichiers statiques :Assurez-vous que les fichiers statiques (CSS, JS) sont collectés dans le répertoire statique de votre projet :
+python manage.py collectstatic
+
+Note : Configurez STATIC_URL et STATIC_ROOT dans settings.py si ce n'est pas déjà fait :
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+
+
+5. Lancer le serveur Django
+Démarrez le serveur de développement Django :
+python manage.py runserver
+
+Accédez à l'application via l'URL http://localhost:8000/health/ dans votre navigateur.
+Utilisation
+
+Ouvrez l'URL http://localhost:8000/health/ pour accéder au formulaire d'évaluation de santé.
+Remplissez les champs suivants :
+Âge (en années)
+Tension systolique (mmHg)
+Tension diastolique (mmHg)
+Cochez les cases pour indiquer si vous avez des maux de tête ou de la fatigue
+
+
+Cliquez sur Évaluer ma santé pour obtenir un diagnostic basé sur les données fournies.
+
+Le résultat s'affichera directement sur la page, indiquant si une consultation médicale est recommandée.
+Développement
+Pour contribuer au développement ou personnaliser DoctorCheck :
+
+Cloner le dépôt :
+git clone https://github.com/votre-compte/doctorcheck.git
+cd DoctorCheck
+
+
+Installer les dépendances de développement :
+pip install -r requirements.txt
+
+
+Exécuter les tests :Les tests unitaires sont fournis pour valider la logique d'évaluation de la santé :
+python -m unittest discover tests
+
+
+Reconstruire le package :Pour tester localement des modifications :
+python setup.py sdist bdist_wheel
+pip install --force-reinstall dist/DoctorCheck-0.4.4.tar.gz
+
+
+
+Structure du projet
+Le dossier généré par create_doctorcheck contient :
+doctorcheck/
+├── __init__.py
+├── apps.py
+├── health_logic.py  # Logique d'évaluation de la santé
+├── urls.py          # Configuration des URLs
+├── views.py         # Vues Django
+├── templates/
+│   ├── base.html
+│   └── health_check.html
+└── static/
+    ├── css/
+    │   └── style.css
+    └── js/
+        └── script.js
+
+Résolution des problèmes
+
+Commande create_doctorcheck introuvable :
+
+Vérifiez que le package est installé :pip show doctorcheck
+
+
+Assurez-vous que l'environnement virtuel est activé :source venv/bin/activate
+
+
+Réinstallez le package :pip install --force-reinstall doctorcheck
+
+
+
+
+Fichiers statiques non trouvés :
+
+Confirmez que STATIC_ROOT et STATIC_URL sont configurés dans settings.py.
+Exécutez python manage.py collectstatic.
+
+
+Erreur de module introuvable :
+
+Vérifiez la présence de doctorcheck/cli/create_doctorcheck.py dans site-packages :ls venv/lib/python3.x/site-packages/doctorcheck/cli/
+
+
+Réinstallez le package ou testez la commande manuellement :python -m doctorcheck.cli.create_doctorcheck
+
+
+
+
+
+Licence
+Distribué sous la licence MIT. Voir le fichier LICENSE pour plus de détails.
+Contact
+Pour toute question ou contribution, ouvrez une issue sur GitHub ou contactez votre.email@example.com.
