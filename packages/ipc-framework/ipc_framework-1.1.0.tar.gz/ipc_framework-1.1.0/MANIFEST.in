@@ -1,0 +1,21 @@
+# Include the README and other documentation
+include README.md
+include LICENSE
+include requirements.txt
+include pyproject.toml
+
+# Include example scripts
+recursive-include examples *.py
+
+# Include package data
+include ipc_framework/py.typed
+
+# Exclude development and build files
+exclude demo.py
+exclude .gitignore
+exclude *.yaml
+exclude *.yml
+global-exclude __pycache__
+global-exclude *.py[co]
+global-exclude *.so
+global-exclude .DS_Store 
