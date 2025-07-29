@@ -1,0 +1,12 @@
+tuix/__init__.py,sha256=9LjxtHYjgnDPIwHncmffLxrQ9VdqxKrgetYyBTWxzD4,4048
+tuix/tuix.py,sha256=A27_t3MZfSiUh69k6irbAIaHT1L1NEZXDCkvRlx86Lk,2401
+tuix/appearance/__init__.py,sha256=tQHwhxC1Kve9z-051BIPczhYlkOrY_oXBWocFlenvu8,4120
+tuix/appearance/appearance.py,sha256=2_DCNzd_aZgFjFRfMtnMM6GGbqE92lsgOjw5MAbCCIs,11224
+tuix/appearance/color_code.py,sha256=XthWEIkS1p5vFaOF1FsyJ97KAH6acaLkaize2cIf0wQ,1146
+tuix/appearance/escape_code.py,sha256=G9QcXQRHNxesLMavBOGNNqljZvacJRDWPjUyo14aNgA,59
+tuix/appearance/format_code.py,sha256=SSFO8F5UTdAcj51lt1xhliMll1-qGcYxaQbbGcNIXpU,450
+tuix-0.0.4.dist-info/.gitignore,sha256=aEiIwOuxfzdCmLZe4oB1JsBmCUxwG8x-u-HBCV9JT8E,1
+tuix-0.0.4.dist-info/METADATA,sha256=l9icF4XiFKsB1i2yiH_AUWIi_tLdo6if-6i3hfdQAYw,16682
+tuix-0.0.4.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+tuix-0.0.4.dist-info/top_level.txt,sha256=3uQnPz6UzsOOLYtHObcc3ewSBeiZ9IArpwM-4r3eI6Q,5
+tuix-0.0.4.dist-info/RECORD,,
