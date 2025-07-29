@@ -1,0 +1,10 @@
+README.md
+setup.py
+apiCore/__init__.py
+apiCore/core.py
+apiCore/exceptions.py
+api_hijacker.egg-info/PKG-INFO
+api_hijacker.egg-info/SOURCES.txt
+api_hijacker.egg-info/dependency_links.txt
+api_hijacker.egg-info/requires.txt
+api_hijacker.egg-info/top_level.txt
