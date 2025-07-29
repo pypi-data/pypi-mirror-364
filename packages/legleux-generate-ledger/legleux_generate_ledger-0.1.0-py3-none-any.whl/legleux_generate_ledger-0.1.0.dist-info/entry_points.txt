@@ -1,0 +1,5 @@
+[console_scripts]
+compose = generate_ledger:compose
+config = generate_ledger:config
+gen = generate_ledger:main
+ledger = generate_ledger:ledger

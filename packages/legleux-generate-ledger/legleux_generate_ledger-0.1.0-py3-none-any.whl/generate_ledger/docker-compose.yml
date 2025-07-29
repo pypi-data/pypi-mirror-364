@@ -1,0 +1,4 @@
+load_service:
+  command: ["--ledgerfile", "ledger.json"]
+net_service:
+  command: ["--net"]
