@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+openrouterfreescanner/__init__.py
+openrouterfreescanner/main.py
+openrouterfreescanner/test.py
+openrouterfreescanner.egg-info/PKG-INFO
+openrouterfreescanner.egg-info/SOURCES.txt
+openrouterfreescanner.egg-info/dependency_links.txt
+openrouterfreescanner.egg-info/top_level.txt
