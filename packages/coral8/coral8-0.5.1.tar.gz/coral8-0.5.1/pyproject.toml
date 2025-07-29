@@ -1,0 +1,33 @@
+[project]
+name = "coral8"
+version = "0.5.1"
+description = "Zero-config file loader & simple HTTP bridge"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Dylan Kennedy", email = "dylkenn89@gmail.com" },
+]
+requires-python = ">=3.8"
+dependencies = [
+  "typer>=0.7.0",
+  "openpyxl>=3.1",
+]
+
+[project.optional-dependencies]
+export = [
+  "pandas>=2.0",
+  "openpyxl>=3.1",
+]
+yaml = [
+  "PyYAML>=6.0",
+]
+
+[project.scripts]
+coral8 = "coral8.cli:app"
+
+[build-system]
+requires = [
+  "setuptools>=61.0",
+  "wheel",
+]
+build-backend = "setuptools.build_meta"

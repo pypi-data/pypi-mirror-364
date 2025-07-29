@@ -1,0 +1,9 @@
+typer>=0.7.0
+openpyxl>=3.1
+
+[export]
+pandas>=2.0
+openpyxl>=3.1
+
+[yaml]
+PyYAML>=6.0
