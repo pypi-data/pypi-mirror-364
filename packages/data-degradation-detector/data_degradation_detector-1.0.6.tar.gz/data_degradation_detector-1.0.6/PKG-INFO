@@ -1,0 +1,52 @@
+Metadata-Version: 2.4
+Name: data_degradation_detector
+Version: 1.0.6
+Summary: A part of my TFM/Research project handles data drift
+Author-email: Alonso García Velasco <alonmadrid@gmail.com>
+License: GPL-3.0-or-later
+Project-URL: Homepage, https://github.com/aloncrack7/data-degradation-detector
+Project-URL: Repository, https://github.com/aloncrack7/data-degradation-detector
+Project-URL: Documentation, https://github.com/aloncrack7/data-degradation-detector#readme
+Project-URL: Bug Tracker, https://github.com/aloncrack7/data-degradation-detector/issues
+Keywords: data-drift,data-degradation,machine-learning,data-quality
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: matplotlib
+Requires-Dist: scikit-learn
+Requires-Dist: seaborn
+Dynamic: license-file
+
+# data-degradation-detector
+
+[![Tests](https://github.com/aloncrack7/data-degradation-detector/actions/workflows/tests.yml/badge.svg)](https://github.com/aloncrack7/data-degradation-detector/actions/workflows/tests.yml)
+[![PyPI version](https://badge.fury.io/py/data-degradation-detector.svg)](https://badge.fury.io/py/data-degradation-detector)
+[![Python Support](https://img.shields.io/pypi/pyversions/data-degradation-detector.svg)](https://pypi.org/project/data-degradation-detector/)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
+Library to make estimations on data degradation
+
+## Installation
+
+```bash
+pip install data-degradation-detector
+```
+
+## Development
+
+### Running Tests
+
+```bash
+python -m pytest testing/ -v
+```

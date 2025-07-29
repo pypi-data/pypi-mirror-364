@@ -1,0 +1,34 @@
+[project]
+name = "data_degradation_detector"
+version = "1.0.6"
+description = "A part of my TFM/Research project handles data drift"
+authors = [{name="Alonso García Velasco", email="alonmadrid@gmail.com"}]
+readme = "README.md"
+license = {text = "GPL-3.0-or-later"}
+requires-python = ">=3.10"
+dependencies = ["pandas", "numpy", "matplotlib", "scikit-learn", "seaborn"]
+keywords = ["data-drift", "data-degradation", "machine-learning", "data-quality"]
+classifiers = [
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[project.urls]
+Homepage = "https://github.com/aloncrack7/data-degradation-detector"
+Repository = "https://github.com/aloncrack7/data-degradation-detector"
+Documentation = "https://github.com/aloncrack7/data-degradation-detector#readme"
+"Bug Tracker" = "https://github.com/aloncrack7/data-degradation-detector/issues"
+
+[tool.setuptools]
+packages = ["data_degradation_detector"]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
