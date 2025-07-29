@@ -1,0 +1,3 @@
+[console_scripts]
+smb-zfs = smb_zfs.cli:main
+smb-zfs-wizard = smb_zfs.smb_zfs_wizard:main
