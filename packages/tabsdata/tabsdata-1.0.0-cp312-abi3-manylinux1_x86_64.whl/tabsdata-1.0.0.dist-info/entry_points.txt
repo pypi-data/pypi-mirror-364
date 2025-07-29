@@ -1,0 +1,11 @@
+[console_scripts]
+janitor = tabsdata.tabsserver.tools.janitor:main
+td = tabsdata.cli.cli:cli
+tdcfgrsv = tabsdata.tabsserver.tools.config_resolver:main
+tdinvoker = tabsdata.tabsserver.invoker:main
+tdmntext = tabsdata.tabsserver.tools.mount_extractor:main
+tdsrvinf = tabsdata.tabsserver.tools.server_info:main
+tdtools = tabsdata.extensions.tableframe.cli.cli:cli
+tdupgrader = tabsdata.tabsserver.server.upgrader:main
+tdvenv = tabsdata.tabsserver.pyenv_creation:main
+x_oracle_check = tabsdata.tabsserver.tools.x_oracle_check:cli
