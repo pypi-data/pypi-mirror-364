@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: startapp-plus
+Version: 2.0
+Summary: Un générateur de structure d'app Django améliorée
+Author-email: prince01 <axelvianney49@gmail.com>
+Classifier: Programming Language :: Python :: 3
+Classifier: Framework :: Django
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: django>=4.2
