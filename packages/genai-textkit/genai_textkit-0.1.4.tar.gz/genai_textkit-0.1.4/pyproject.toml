@@ -1,0 +1,25 @@
+[project]
+name = "genai_textkit"
+version = "0.1.4"
+description = "A no-API-key, CPU-friendly GenAI library for text generation, summarization, sentiment classification, and translation."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+
+dependencies = [
+    "accelerate>=1.9.0",
+    "transformers>=4.40.0",
+    "pytest",
+]
+
+[project.urls]
+Homepage = "https://github.com/IamAbhinav01/GenAI"
+Documentation = "https://github.com/IamAbhinav01/GenAI#readme"
+Repository = "https://github.com/IamAbhinav01/GenAI"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["genai_toolkit"]
