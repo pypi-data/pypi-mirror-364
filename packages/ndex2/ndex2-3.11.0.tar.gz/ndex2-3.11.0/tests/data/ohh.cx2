@@ -1,0 +1,107 @@
+[
+    {
+        "CXVersion": "2.0",
+        "hasFragments": false
+    },
+    {
+        "metaData": [
+            {
+                "elementCount": 1,
+                "name": "attributeDeclarations"
+            },
+            {
+                "elementCount": 1,
+                "name": "networkAttributes"
+            },
+            {
+                "elementCount": 2,
+                "name": "nodes"
+            },
+            {
+                "elementCount": 1,
+                "name": "edges"
+            }
+        ]
+    },
+    {
+        "attributeDeclarations": [
+            {
+                "networkAttributes": {
+                    "name": {
+                        "d": "string"
+                    },
+                    "description": {
+                        "d": "string"
+                    },
+                    "version": {
+                        "d": "integer"
+                    }
+                },
+                "nodes": {
+                    "name": {
+                        "d": "string"
+                    },
+                    "color": {
+                        "d": "string"
+                    }
+                },
+                "edges": {
+                    "interaction": {
+                        "d": "string"
+                    },
+                    "weight": {
+                        "d": "double"
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "networkAttributes": [
+            {
+                "name": "my cx2 network",
+                "description": "the description of my network",
+                "version": 1
+            }
+        ]
+    },
+    {
+        "nodes": [
+            {
+                "id": 0,
+                "v": {
+                    "name": "node0",
+                    "color": "red"
+                }
+            },
+            {
+                "id": 1,
+                "v": {
+                    "name": "new name for node1",
+                    "color": "blue"
+                }
+            }
+        ]
+    },
+    {
+        "edges": [
+            {
+                "id": 1234,
+                "s": 0,
+                "t": 1,
+                "v": {
+                    "interaction": "binds",
+                    "weight": 0.5
+                }
+            }
+        ]
+    },
+    {
+        "status": [
+            {
+                "error": "",
+                "success": true
+            }
+        ]
+    }
+]
