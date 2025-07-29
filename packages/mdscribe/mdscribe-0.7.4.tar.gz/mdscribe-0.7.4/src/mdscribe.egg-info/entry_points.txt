@@ -1,0 +1,3 @@
+[console_scripts]
+pdbextract = mdscribe.helper.cli:pdbextract
+pdbrestore = mdscribe.helper.cli:pdbrestore

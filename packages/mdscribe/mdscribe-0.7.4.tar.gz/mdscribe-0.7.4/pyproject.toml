@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mdscribe"
+dynamic = ["version"]
+requires-python = ">=3.11"
+dependencies = [
+    "scipy",
+    "biopython",
+    "pypdb",
+    "numpy",
+    "rdkit>=2025.3.1",
+    "openmm", 
+    "mkdocstrings-python",
+    "pytest",
+    ]
+authors = [{name = "Sung-Hun Bae", email="sunghun.bae@gmail.com"}, ]
+maintainers = [{name = "Sung-Hun Bae", email="sunghun.bae@gmail.com"}, ]
+description = "A Toolset For Molecular Dynamics"
+readme = "README.md"
+license = "MIT"
+keywords = [
+    "Molecular Dynamics", 
+    "OpenMM", 
+    "PROTAC", 
+    "Ternary Complex Modeling",
+    ]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage        = "https://github.com/sunghunbae/mdscribe"
+Repository      = "https://github.com/sunghunbae/mdscribe.git"
+Issues          = "https://github.com/sunghunbae/mdscribe/issues"
+Changelog       = "https://github.com/sunghunbae/mdscribe/blob/master/CHANGELOG.md"
+Documentation   = "https://sunghunbae.github.io/mdscribe/"
+
+[project.scripts]
+pdbrestore      = "mdscribe.helper.cli:pdbrestore"
+pdbextract      = "mdscribe.helper.cli:pdbextract"
+
+[tool.setuptools.dynamic]
+version = {attr = "mdscribe.__version__"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+# "mdscribe.desmond" = ["*.cfg", "*.msj"]
+# "mdscribe.desmond.script" = ["*.py"]

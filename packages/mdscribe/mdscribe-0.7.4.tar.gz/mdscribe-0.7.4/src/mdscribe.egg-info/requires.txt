@@ -1,0 +1,8 @@
+scipy
+biopython
+pypdb
+numpy
+rdkit>=2025.3.1
+openmm
+mkdocstrings-python
+pytest
