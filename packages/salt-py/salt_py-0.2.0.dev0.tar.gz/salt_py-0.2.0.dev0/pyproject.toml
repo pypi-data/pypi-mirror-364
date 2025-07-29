@@ -1,0 +1,40 @@
+[project]
+name = "salt-py"
+description = ""
+authors = [
+    {name = "ginwakeup", email = "iacopoantonelli@gmail.com"},
+]
+dynamic = ["version"]
+dependencies = [
+    "typer>=0.16.0",
+    "toml>=0.10.2",
+    "pex>=2.46.2",
+    "setuptools>=80.9.0",
+    "loguru<1.0",
+    "redis<7.0",
+    "build<2.0",
+    "grpcio-tools",
+    "boto3",
+    "PyYaml",
+    "apscheduler",
+    "pydantic_settings",
+    "pika<2",
+    "docker"
+]
+
+requires-python = "<3.11"
+readme = "README.md"
+license = {text = "MIT"}
+
+[project.scripts]
+salt = "salt.cli:app"
+
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.4.1",
+    "grpcio-tools"
+]
+
+[tool.setuptools.dynamic]
+version = {attr = "salt.version.__version__"}
