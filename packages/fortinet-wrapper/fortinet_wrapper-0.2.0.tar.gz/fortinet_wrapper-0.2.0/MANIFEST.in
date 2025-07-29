@@ -1,0 +1,7 @@
+include README.md
+include LICENSE
+include pyproject.toml
+include setup.py
+recursive-include src/fortinet_wrapper *.py
+# Excludes
+global-exclude src/fortinet_wrapper/main.py
