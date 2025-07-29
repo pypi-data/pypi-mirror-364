@@ -1,0 +1,4 @@
+graft tests
+include DEVELOPMENT.md
+include Makefile
+global-exclude *.py[cod]

@@ -1,0 +1,2 @@
+[console_scripts]
+deptrack-client = violetbeacon_deptrack_client:cli.main

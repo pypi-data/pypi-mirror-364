@@ -1,0 +1,159 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "violetbeacon-deptrack-client"
+version = "0.1.0"
+authors = [
+    {name = "Kris Hardy", email = "kris.hardy@vltbcn.com"},
+]
+description = "Dependency-Track client by VioletBeacon"
+readme = "README.md"
+keywords = ["owasp", "dependency-track"]
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE.md"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: POSIX",
+    "Programming Language :: Python :: 3",
+    "Topic :: Utilities"
+]
+dependencies = [
+    "importlib",
+    "pydantic",
+    "requests",
+    "pyyaml",
+]
+
+[project.urls]
+Homepage = "https://github.com/VioletBeacon/deptrack-client"
+Issues = "https://github.com/VioletBeacon/deptrack-client/issues"
+
+[project.scripts]
+deptrack-client = "violetbeacon_deptrack_client:cli.main"
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]
+
+[tool.tox]
+env_list = [
+    "lint",
+    "type",
+    "audit",
+    "coverage",
+    "3.13",
+    "3.12",
+    "3.11",
+    "3.10",
+    "3.9",
+    "cyclonedx"
+]
+requires = [
+    "tox>=4.28.0"
+]
+# NOTE: Update base_python whenever a new version of Python is released
+base_python = "py313"
+
+[tool.tox.env_run_base]
+description = "run unit tests under {base_python}"
+deps = ["pytest", "pytest-cov", "pytest-datadir"]
+commands = [
+    ["pytest", "tests/", { replace = "posargs", extend = true} ]
+]
+
+[tool.tox.env.lint]
+description = "run linters"
+skip_install = false
+deps = ["pylint", "pytest"]
+commands = [
+    ["pylint", "src", { replace = "posargs", extend = true} ],
+    ["pylint", "tests", { replace = "posargs", extend = true} ],
+]
+
+[tool.tox.env.type]
+description = "run type check on code base"
+deps = [
+    "mypy>=1.17.0",
+    "types-cachetools>=6.1.0.20250717",
+    "types-chardet>=5.0.4.6",
+    "types-requests",
+    "types-pyYAML",
+    "pytest",
+]
+commands = [
+    ["mypy", "src/violetbeacon_deptrack_client", "tests", { replace = "posargs", extend = true} ],
+]
+
+[tool.tox.env.coverage]
+description = "create test coverage report"
+deps = [
+    "pytest",
+    "pytest-cov",
+    "pytest-datadir"
+]
+commands = [
+    ["pytest", "--cov=violetbeacon_deptrack_client", "--cov-report=html", "tests/", { replace = "posargs", extend = true} ]
+]
+
+[tool.tox.env.audit]
+description = "audit dependencies"
+deps = [
+    "pip-audit>=2.9.0"
+]
+commands = [
+    ["pip-audit", "-v", { replace = "posargs", extend = true} ]
+]
+
+[tool.tox.env."3.13"]
+description = "run unit tests under python 3.13"
+deps = ["pytest", "pytest-cov", "pytest-datadir"]
+commands = [
+    ["pytest", "tests/", { replace = "posargs", extend = true} ],
+]
+
+[tool.tox.env."3.12"]
+description = "run unit tests under python 3.12"
+deps = ["pytest", "pytest-cov", "pytest-datadir"]
+commands = [
+    ["pytest", "tests/", { replace = "posargs", extend = true} ],
+]
+
+[tool.tox.env."3.11"]
+description = "run unit tests under python 3.11"
+deps = ["pytest", "pytest-cov", "pytest-datadir"]
+commands = [
+    ["pytest", "tests/", { replace = "posargs", extend = true} ],
+]
+
+[tool.tox.env."3.10"]
+description = "run unit tests under python 3.10"
+deps = ["pytest", "pytest-cov", "pytest-datadir"]
+commands = [
+    ["pytest", "tests/", { replace = "posargs", extend = true} ],
+]
+
+[tool.tox.env."3.9"]
+description = "run unit tests under python 3.9"
+deps = ["pytest", "pytest-cov", "pytest-datadir"]
+commands = [
+    ["pytest", "tests/", { replace = "posargs", extend = true} ],
+]
+
+[tool.tox.env.cyclonedx]
+description = "Build CycloneDX SBOM"
+deps = ["cyclonedx-bom"]
+commands = [
+    ["cyclonedx-py", "environment", "--of", "json", "-o", "bom.json", { replace = "posargs", extend = true} ],
+]
+
+[tool.tox.env.build]
+description = "build the release"
+deps = ["build"]
+commands = [
+    ["python3", "-m", "build", { replace = "posargs", extend = true} ],
+]
