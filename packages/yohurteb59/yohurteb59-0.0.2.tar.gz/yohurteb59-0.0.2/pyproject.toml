@@ -1,0 +1,8 @@
+[project]
+name = "yohurteb59"
+version = "0.0.2"
+description = "A sample test package"
+authors = [{ name = "yo59", email = "yhurtebize58@gmail.com" }]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.8"
