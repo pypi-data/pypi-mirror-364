@@ -1,0 +1,2 @@
+[console_scripts]
+addition-cli = monpackage_addition.cli:main
