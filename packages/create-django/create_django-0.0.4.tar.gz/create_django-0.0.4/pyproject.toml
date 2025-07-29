@@ -1,0 +1,10 @@
+[project]
+name = "create_django"
+version = "0.0.4"
+description = "Un utilitaire pour créer rapidement une structure d'app Django avec des templates de base."
+authors = [{ name = "Meite", email = "metetieba@gmail.com" }]
+readme = "README.md"
+requires-python = ">=3.7"
+
+[project.scripts]
+create-django = "create_django.__main__:main"
