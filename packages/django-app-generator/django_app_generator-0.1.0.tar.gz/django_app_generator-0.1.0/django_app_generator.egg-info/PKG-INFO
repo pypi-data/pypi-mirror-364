@@ -1,0 +1,51 @@
+Metadata-Version: 2.4
+Name: django-app-generator
+Version: 0.1.0
+Summary: Un outil pour créer des applications Django similaires à django-admin startapp
+Home-page: https://github.com/votre-repo/django-app-generator
+Author: Nicosidick
+Author-email: abou210traore@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-python
+Dynamic: summary
+
+Django App Generator
+Un outil en ligne de commande pour créer une structure d'application Django similaire à celle générée par django-admin startapp.
+Installation
+pip install django-app-generator
+
+Utilisation
+Pour créer une nouvelle application Django, exécutez :
+django-create-app nom_application
+
+Pour spécifier un répertoire cible :
+django-create-app nom_application --target-dir chemin/vers/repertoire
+
+Structure générée
+L'outil crée les fichiers suivants :
+
+__init__.py
+admin.py
+apps.py
+models.py
+tests.py
+urls.py
+views.py
+migrations/__init__.py
+
+Prérequis
+
+Python 3.6 ou supérieur
+
+Licence
+MIT

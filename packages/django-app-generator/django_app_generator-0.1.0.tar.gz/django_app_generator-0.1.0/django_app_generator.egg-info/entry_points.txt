@@ -1,0 +1,2 @@
+[console_scripts]
+django-create-app = django_app_generator.create_app:main
