@@ -1,0 +1,27 @@
+Metadata-Version: 2.4
+Name: s3-vectors-langchain
+Version: 0.1.1
+Summary: LangChain VectorStore implementation using AWS S3 Vectors
+Author-email: Swagata Roy <r.swagata98@gmail.com>
+Project-URL: Homepage, https://github.com/SwagataRoy98/s3-vector-langchain
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: boto3
+Requires-Dist: langchain
+Requires-Dist: botocore
+
+ # s3-vector-langchain
+ A LangChain VectorStore connecting to AWS S3 Vectors.
+
+ ## Installation
+ ```bash
+ pip install s3-vectors-langchain
+ ```
+
+ ## Usage
+ ```python
+ from s3_vector_langchain import S3VectorsStore
+
+ store = S3VectorsStore(...)
+ ...
+ ```
