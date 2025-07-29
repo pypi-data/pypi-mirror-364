@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: soda-update-version
+Version: 2025.7.24.0
+Summary: update version using datetime format for python projects
+Project-URL: Repository, https://github.com/soda92/update-version
+License-File: LICENSE
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+
+# update-version
+update version using datetime format for python projects
