@@ -1,0 +1,4 @@
+[console_scripts]
+theme-editor = theme_manager.qt.theme_editor:launch_theme_editor
+theme-manager = theme_manager.cli.main:main
+theme-preview = theme_manager.qt.preview:launch_preview
