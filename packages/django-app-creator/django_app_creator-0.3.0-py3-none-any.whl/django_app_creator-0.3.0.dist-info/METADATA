@@ -1,0 +1,41 @@
+Metadata-Version: 2.4
+Name: django-app-creator
+Version: 0.3.0
+Summary: Générateur de structure d'app Django personnalisée
+Author: kamax
+Author-email: blab97400@gmail.com
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: Framework :: Django
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license
+Dynamic: summary
+
+# django-app-creator
+
+`django-app-creator` est un outil en ligne de commande qui permet de générer rapidement la structure d'une application Django avec une organisation de fichiers personnalisée.
+
+##  Fonctionnalités
+
+- Crée automatiquement une application Django avec la structure suivante :
+  - Un dossier `models/` contenant un fichier `__init__.py`
+  - Un dossier `views/` contenant un fichier `__init__.py`
+  - Un dossier `migrations/` contenant un fichier `__init__.py`
+  - Un fichier `urls.py` prêt à l'emploi
+  - Les fichiers standards : `admin.py`, `apps.py`, `tests.py`, `__init__.py`
+
+##  Installation
+
+Assurez-vous d’avoir Python 3 et `pip` installés, puis exécutez :
+
+```bash
+pip install django-app-creator
+
+## Utilisation
+django-create-app <nom_de_l_app>
