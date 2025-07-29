@@ -1,0 +1,21 @@
+[project]
+name = "utg-pkg"
+version = "0.1.1"
+description = "Generate production-ready pytest unit tests."
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    { name="Gazal", email="2580gazal@gmail.com" }
+]
+dependencies = [
+    "python-dotenv",
+    "google-generativeai",
+]
+
+[project.scripts]
+utg-pkg = "utg_pkg.cli:main"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"

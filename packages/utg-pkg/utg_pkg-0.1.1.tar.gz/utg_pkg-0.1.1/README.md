@@ -1,0 +1,101 @@
+# utg-pkg
+
+[![PyPI version](https://badge.fury.io/py/utg-pkg.svg)](https://pypi.org/project/utg-pkg/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+**utg-pkg** is a CLI tool that uses Google Gemini to generate **production-ready `pytest` unit tests** from your Python code.
+
+---
+
+## 🚀 Features
+
+- Full coverage test generation using AI
+- Mocks file I/O, API calls, and databases where applicable
+- Output is clean, modular, and `pytest`-compliant
+- Easily customizable via CLI
+- Great for legacy projects and automation
+
+---
+
+## 📦 Installation
+
+### From PyPI (once published)
+
+```bash
+pip install utg-pkg
+```
+
+### From Source
+
+```bash
+git clone https://github.com/G5277/utg-pkg.git
+cd utg-pkg
+pip install .
+```
+
+---
+
+## 🔑 Environment Setup
+
+Create a `.env` file in the root directory:
+
+```env
+GEMINI_API_KEY=your_gemini_api_key_here
+```
+
+You can obtain a key from [Google AI Studio](https://aistudio.google.com/app/apikey).
+
+---
+
+## 💻 Usage
+
+```bash
+utg-pkg --source path/to/your/code --output path/to/generated_tests
+```
+
+**Options:**
+- `--source`: Directory to scan Python files (default: `.`)
+- `--output`: Directory to write test files (default: `tests/`)
+
+**Example:**
+```bash
+utg-pkg --source src/ --output unit_tests/
+```
+
+---
+
+## 📁 Example Structure
+
+Before:
+```
+src/
+  calculator.py
+```
+
+After:
+```
+unit_tests/
+  calculator_test.py  # auto-generated test file
+```
+
+---
+
+## 🧠 Example Output
+
+```python
+def test_add_positive_numbers():
+    assert add(2, 3) == 5
+```
+
+---
+
+## 📝 License
+
+MIT © Gazal
+
+---
+
+## 🤖 Powered By
+
+- [Google Gemini API](https://aistudio.google.com/app/apikey/)
+- [Pytest](https://docs.pytest.org/en/latest/)
