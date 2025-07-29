@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+setup.py
+django_helloapp.egg-info/PKG-INFO
+django_helloapp.egg-info/SOURCES.txt
+django_helloapp.egg-info/dependency_links.txt
+django_helloapp.egg-info/requires.txt
+django_helloapp.egg-info/top_level.txt
+helloapp/__init__.py
+helloapp/admin.py
+helloapp/apps.py
+helloapp/urls.py
+helloapp/views.py
