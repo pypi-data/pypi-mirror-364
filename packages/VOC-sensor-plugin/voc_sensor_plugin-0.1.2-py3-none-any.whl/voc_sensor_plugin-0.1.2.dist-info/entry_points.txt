@@ -1,0 +1,2 @@
+[pioreactor.plugins]
+read_voc_sensor = voc_sensor_plugin.VOC_sensor:click_read_voc_sensor
