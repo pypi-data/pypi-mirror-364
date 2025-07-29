@@ -1,0 +1,28 @@
+[project]
+name = "agentmemory-py"
+version = "0.1.0"
+description = "Package for managing agent memory in AI applications"
+readme = "README.md"
+authors = [
+    { name = "Enrico Goerlitz", email = "rico.goerlitz@gmail.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "pymongo>=4.13.2",
+    "pytest>=8.4.1",
+    "redis>=6.2.0",
+    "requests>=2.32.4",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-ra -q"
+testpaths = ["src/tests"]
+pythonpath = ["src"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/agentmemory"]
