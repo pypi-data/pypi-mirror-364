@@ -1,0 +1,2 @@
+[console_scripts]
+inconnu-download = inconnu.model_installer:main

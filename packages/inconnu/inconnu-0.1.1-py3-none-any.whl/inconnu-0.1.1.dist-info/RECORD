@@ -1,0 +1,13 @@
+inconnu/__init__.py,sha256=FZgRj2vfQsd8H57_h5qoRIkOcEJbb8lgoqQrDW38LXc,7567
+inconnu/config.py,sha256=SFZjg0IpzOfac8RNmCnq9sjxqHmbhAkA1LfGHqfYiP8,129
+inconnu/exceptions.py,sha256=9qEqqwiRLvy5gDEPTiiTyyr_U5SQdzivBFPFx7HErG4,1547
+inconnu/model_installer.py,sha256=U8J9Qay6ioFCkcuC98XbcH8pS2w6i449MT4YfdsufHI,9651
+inconnu/nlp/entity_redactor.py,sha256=S6f1VCc7LcGlHEZ8bb24P8V3eWGJIz5CtYRUteLl9cw,8243
+inconnu/nlp/interfaces.py,sha256=B9FhChpPBg7nmFOJltWga5nWzMsnP9yj7SxfnBjJydg,495
+inconnu/nlp/patterns.py,sha256=VxwgetKRd22esnjeya86j4oNKGzcHXIiQ6VE1LAVNzE,5662
+inconnu/nlp/utils.py,sha256=700Tz-wR4JFYvnvuAvyu2x2YNwkOPtvQx007H-wS-7Y,2775
+inconnu-0.1.1.dist-info/METADATA,sha256=x7p2rhMnLWJhfzyh575m77fFWv4Hj3eRRaLxKPcXRws,17231
+inconnu-0.1.1.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+inconnu-0.1.1.dist-info/entry_points.txt,sha256=jBJr5LeX-XGEBh5iMQIJr5zdzqbyOUyw3rSgWZfQcDk,66
+inconnu-0.1.1.dist-info/licenses/LICENSE,sha256=LMGDpdSqFgydJ63Q0EjrcYxFvATmqE_bdNHrdsAEqNE,1089
+inconnu-0.1.1.dist-info/RECORD,,
