@@ -1,0 +1,13 @@
+{
+    "cSpell.words": [
+        "hynek",
+        "Kunz",
+        "mpiio",
+        "pypa",
+        "testpypi",
+        "unconcat"
+    ],
+    "files.exclude": {
+        "**/old_scripts": true
+    }
+}
