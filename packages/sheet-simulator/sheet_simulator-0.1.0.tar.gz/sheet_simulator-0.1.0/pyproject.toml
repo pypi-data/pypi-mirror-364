@@ -1,0 +1,20 @@
+[project]
+name = "sheet-simulator"
+version = "0.1.0"
+description = "A financial simulation engine integrated with Google Sheets"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+  {name = "David Corredor Montenegro", email = "dav.corre97@gmail.com"}
+]
+dependencies = [
+  "numpy",
+  "gspread",
+  "google-auth",
+  "google-api-python-client"
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"

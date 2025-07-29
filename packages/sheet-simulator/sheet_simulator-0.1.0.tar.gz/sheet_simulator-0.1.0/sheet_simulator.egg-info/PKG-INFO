@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: sheet-simulator
+Version: 0.1.0
+Summary: A financial simulation engine integrated with Google Sheets
+Author-email: David Corredor Montenegro <dav.corre97@gmail.com>
+License: MIT
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: gspread
+Requires-Dist: google-auth
+Requires-Dist: google-api-python-client
