@@ -1,0 +1,4 @@
+
+[develop]
+pre-commit
+go-task-bin
