@@ -1,0 +1,7 @@
+Metadata-Version: 2.4
+Name: datatypesoptimizer
+Version: 0.1.0
+Summary: A robost data type optimizer for pandas dataframe
+Author-email: RAGHAVVRAM JOHNSON <raghavvram.johnson@gmail.com>
+Requires-Python: >=3.12
+Requires-Dist: pandas>=2.3.1

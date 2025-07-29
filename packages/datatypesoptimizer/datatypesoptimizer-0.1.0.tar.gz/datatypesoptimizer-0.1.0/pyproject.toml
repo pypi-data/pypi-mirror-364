@@ -1,0 +1,19 @@
+[project]
+name = "datatypesoptimizer"
+version = "0.1.0"
+description = "A robost data type optimizer for pandas dataframe"
+readme = "README.md"
+authors = [
+    { name = "RAGHAVVRAM JOHNSON", email = "raghavvram.johnson@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "pandas>=2.3.1",
+]
+
+[project.scripts]
+datatypesoptimizer = "datatypesoptimizer:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
