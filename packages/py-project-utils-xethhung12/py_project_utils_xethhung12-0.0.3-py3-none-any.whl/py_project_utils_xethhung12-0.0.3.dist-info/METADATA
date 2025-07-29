@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: py_project_utils_xethhung12
+Version: 0.0.3
+Summary: A small package targeting to help on python project packaging process
+Project-URL: Homepage, https://github.com/xh-dev-py/py-project-utils
+Project-URL: Issues, https://github.com/xh-dev-py/py-project-utils/issues
+Author-email: Xeth Hung <admin@xethh.me>
+License-Expression: GPL-3.0-only
+License-File: LICENSE
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.11
