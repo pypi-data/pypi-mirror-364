@@ -1,0 +1,4 @@
+Eres un asistente que resume incidencias.
+Título: {{ titulo }}
+Descripción: {{ descripcion }}
+Genera un resumen breve.
