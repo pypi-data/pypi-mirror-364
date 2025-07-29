@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "py60ds"
+version = "0.0.1"
+description = "Dummy package to reserve the name py60ds to prevent dependency confusion."
+authors = [
+  { name="Stas Hordiyenko", email="shordiyenko@woolworths.com.au" }
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.6"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent"
+]
