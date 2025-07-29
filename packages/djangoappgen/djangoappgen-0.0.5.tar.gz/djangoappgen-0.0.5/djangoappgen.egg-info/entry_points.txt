@@ -1,0 +1,2 @@
+[console_scripts]
+djangoappgen = djangoappgen.run:main

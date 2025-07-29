@@ -1,0 +1,56 @@
+Metadata-Version: 2.4
+Name: djangoappgen
+Version: 0.0.5
+Summary: Un générateur automatique d’applications Django
+Author: Digital Dreamer
+Author-email: Digital Dreammer <digitaldreamer@gmail.com>
+License: MIT
+Keywords: django,codegen,starter,app generator
+Classifier: Programming Language :: Python :: 3
+Classifier: Framework :: Django
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+#  DjangoAppGen
+
+**DjangoAppGen** est un générateur automatique d’applications Django. Il vous permet de créer rapidement la structure d’une app Django complète, prête à l’emploi, avec tous les fichiers essentiels déjà configurés.
+
+---
+
+##  Fonctionnalités
+
+- Création rapide d'une application Django
+- Génération automatique des fichiers :
+  - `models.py`
+  - `views.py`
+  - `forms.py`
+  - `urls.py`
+  - `admin.py`
+  - `tests.py`
+-  Ajout automatique au `INSTALLED_APPS`
+- Interface en ligne de commande simple et rapide
+- Personnalisation possible de la structure
+
+---
+
+##  Installation
+
+Assurez-vous d’avoir Python ≥ 3.7 installé.
+
+```bash
+pip install djangoappgen
+
+## Utilisation
+
+Pour générer une nouvelle application Django, utilisez la commande suivante :
+
+```bash
+python -m djangoappgen.generator nom_de_votre_app
+
+Exemple:
+python -m djangoappgen.generator acceuil
+
