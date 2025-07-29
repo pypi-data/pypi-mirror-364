@@ -1,0 +1,3 @@
+[console_scripts]
+libertai=libertai_client.main:app
+
