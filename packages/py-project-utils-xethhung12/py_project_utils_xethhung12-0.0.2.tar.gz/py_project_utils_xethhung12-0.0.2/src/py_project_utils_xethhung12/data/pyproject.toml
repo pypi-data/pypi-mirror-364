@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+
+[project]
+name = "___project_name___"
+version = "0.0.1"
+authors = [
+  { name="Xeth Hung", email="admin@xethh.me" },
+]
+description = "A small package targeting to help on python project packaging process"
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "GPL-3.0-only"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/pypa/sampleproject"
+Issues = "https://github.com/pypa/sampleproject/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/___project_name___"]
+
+[project.scripts]
+py-project-built-cmd="___project_name___.cmd.run:main"
+
