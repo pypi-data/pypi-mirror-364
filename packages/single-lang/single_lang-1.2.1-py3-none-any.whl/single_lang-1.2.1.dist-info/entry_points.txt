@@ -1,0 +1,3 @@
+[console_scripts]
+single = single_lang.nucleus.main:run_from_command_line
+
