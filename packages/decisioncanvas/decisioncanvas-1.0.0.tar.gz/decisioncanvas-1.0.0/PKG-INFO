@@ -1,0 +1,29 @@
+Metadata-Version: 2.4
+Name: decisioncanvas
+Version: 1.0.0
+Summary: Easy decision boundary visualization for classifiers
+Home-page: https://github.com/KrunalWankhade9021/Decesion-Canvas
+Author: Krunal Wankhade, Parimal Kalpande
+Author-email: krunal.wankahde1810@gmail.com
+License: MIT
+Keywords: visualization,classifier,decision boundary,matplotlib,scikit-learn
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.7
+License-File: LICENSE
+Requires-Dist: numpy>=1.18.0
+Requires-Dist: scikit-learn>=0.24.0
+Requires-Dist: matplotlib>=3.2.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
