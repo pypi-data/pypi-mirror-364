@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: starsep_utils
+Version: 0.9.2
+Summary: starsep's utils. Mostly for osm/geo projects
+Author-Email: Filip Czaplicki <github@starsep.com>
+License: AGPLv3
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Classifier: Operating System :: OS Independent
+Project-URL: Homepage, https://github.com/starsep/starsep_utils
+Project-URL: Issues, https://github.com/starsep/starsep_utils/issues
+Requires-Python: >=3.9
+Requires-Dist: funcy>=2.0
+Requires-Dist: httpx>=0.27.0
+Description-Content-Type: text/markdown
+
+# starsep_utils
+Python utils package for my personal projects.
+Mostly OpenStreetMap/geo functions.
+
+Not suitable for general use.
