@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: wowool-lingware-build
+Version: 1.1.4.dev1
+Summary: Wowool Build Lingware System
+Home-page: https://www.wowool.com/
+Author: Wowool
+Author-email: info@wowool.com
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: author-email
+Dynamic: home-page
