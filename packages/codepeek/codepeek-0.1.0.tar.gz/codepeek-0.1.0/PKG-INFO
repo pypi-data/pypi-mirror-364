@@ -1,0 +1,41 @@
+Metadata-Version: 2.4
+Name: codepeek
+Version: 0.1.0
+Summary: A CLI tool that extracts and summarizes code from GitHub repositories.
+Author: Ahmed Abd Alzeez
+Author-email: Ahmed Abd Alzeez <Ahmedabdalziz.1886@gmail.com>
+License-Expression: MIT
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: GitPython
+Requires-Dist: requests
+Requires-Dist: tqdm
+Requires-Dist: rich
+Requires-Dist: openai
+Dynamic: author
+Dynamic: license-file
+Dynamic: requires-python
+
+# 🚀 CodePeek
+
+**CodePeek** is a lightweight CLI tool that extracts file summaries and code insights from any public GitHub repository.  
+It helps developers explore unfamiliar repositories faster by summarizing the purpose of each file using AI.
+
+---
+
+## 📦 Features
+
+- 🔍 Clone and scan any public GitHub repo.
+- 🧠 Automatically summarize each source code file.
+- 📄 Save the output to a clean and readable `.txt` report.
+- 🚀 Simple command-line usage.
+
+---
+
+## 🛠️ Installation
+
+You can install it directly from PyPI :
+
+```bash
+pip install codepeek

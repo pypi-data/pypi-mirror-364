@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "codepeek"
+version = "0.1.0"
+description = "A CLI tool that extracts and summarizes code from GitHub repositories."
+authors = [
+  { name = "Ahmed Abd Alzeez", email = "Ahmedabdalziz.1886@gmail.com" }
+]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+  "GitPython",
+  "requests",
+  "tqdm",
+  "rich",
+  "openai"
+]
+
+[project.scripts]
+codepeek = "codepeek.cli:main"
