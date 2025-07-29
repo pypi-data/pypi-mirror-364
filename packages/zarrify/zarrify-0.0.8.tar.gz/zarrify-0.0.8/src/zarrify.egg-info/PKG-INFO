@@ -1,0 +1,65 @@
+Metadata-Version: 2.4
+Name: zarrify
+Version: 0.0.8
+Summary: Convert scientific image formats (TIFF, MRC, N5) to OME-Zarr
+Author-email: Yurii Zubov <zubov452@gmail.com>
+License: MIT
+Keywords: zarr,ome-zarr,tiff,mrc,n5,scientific-imaging
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Scientific/Engineering :: Image Processing
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+Requires-Dist: click<9.0.0,>=8.1.8
+Requires-Dist: colorama<0.5.0,>=0.4.6
+Requires-Dist: dask<2025.0.0,>=2024.12.1
+Requires-Dist: dask-jobqueue==0.8.2
+Requires-Dist: imagecodecs<2025.0.0,>=2024.12.30
+Requires-Dist: mrcfile<2.0.0,>=1.5.3
+Requires-Dist: natsort<9.0.0,>=8.4.0
+Requires-Dist: numcodecs<0.16,>=0.13.0
+Requires-Dist: pydantic-zarr<0.5.0,>=0.4.0
+Requires-Dist: pint<1.0.0,>=0.20.0
+Requires-Dist: tifffile<2026.0.0,>=2025.1.10
+Requires-Dist: zarr==2.18.3
+Requires-Dist: bokeh>=3.1.0
+Provides-Extra: test
+Requires-Dist: pytest; extra == "test"
+Dynamic: license-file
+
+# zarrify
+
+Convert TIFF, MRC, and N5 files to OME-Zarr format.
+
+## Install
+
+```bash
+pip install zarrify
+```
+
+## Usage
+
+```bash
+zarrify --src input.tiff --dest output.zarr --cluster local
+```
+
+## Python API
+
+```python
+import zarrify
+from zarrify.utils.dask_utils import initialize_dask_client
+
+client = initialize_dask_client("local")
+zarrify.to_zarr("input.tiff", "output.zarr", client)
+```
+
+## Supported formats
+
+- TIFF stacks
+- 3D TIFF files
+- MRC files  
+- N5 containers
