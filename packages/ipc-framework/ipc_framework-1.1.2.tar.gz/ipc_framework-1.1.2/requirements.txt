@@ -1,0 +1,9 @@
+# Core dependencies for IPC Framework
+# No external dependencies required for basic functionality
+
+# Optional dependencies for examples
+psutil>=5.8.0  # For system monitoring example (optional)
+
+# Development dependencies (optional)
+pytest>=6.0.0  # For testing
+black>=21.0.0  # For code formatting 
