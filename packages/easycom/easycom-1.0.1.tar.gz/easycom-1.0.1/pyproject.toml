@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=42", "wheel", "build", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "easycom"
+dynamic = ["version"]
+description = "A simple library for asynchronous serial communication"
+readme = "README.md"
+license = { text = "MIT License" }
+authors = [
+    { name = "Acemetrics Technologies", email = "vishnu@acemetrics.com" }
+]
+keywords = ["serial", "communication", "arduino", "pico", "teensy", "embedded"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+dependencies = ["pyserial"]
+
+[project.urls]
+Documentation = "https://gitlab.com/acemetrics-technologies/easycom#README"
+Source = "https://gitlab.com/acemetrics-technologies/easycom"
+Tracker = "https://gitlab.com/acemetrics-technologies/easycom/-/issues"
+
+[tool.setuptools.package-data]
+"easycom" = ["py.typed", "devices.json"]  # Include devices.json
+
+[tool.setuptools_scm]
+version_scheme = "post-release"
+local_scheme = "node-and-date"

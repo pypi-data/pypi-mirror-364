@@ -1,0 +1,16 @@
+.gitlab-ci.yml
+CLAUDE.md
+LICENSE
+README.md
+pyproject.toml
+easycom/__init__.py
+easycom/device_config.py
+easycom/devices.py
+easycom/serial_device.py
+easycom/utils.py
+easycom.egg-info/PKG-INFO
+easycom.egg-info/SOURCES.txt
+easycom.egg-info/dependency_links.txt
+easycom.egg-info/requires.txt
+easycom.egg-info/top_level.txt
+examples/main.py

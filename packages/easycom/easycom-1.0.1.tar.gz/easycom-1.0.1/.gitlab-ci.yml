@@ -1,0 +1,51 @@
+stages:
+  - build
+  - test
+  - deploy-testpypi
+  - deploy-pypi
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.pip-cache"
+
+cache:
+  paths:
+    - .pip-cache/
+
+build:
+  stage: build
+  image: python:3.10
+  before_script:
+    - pip install --upgrade pip setuptools wheel build setuptools-scm
+  script:
+    - python -m build
+  artifacts:
+    paths:
+      - dist/
+
+test:
+  stage: test
+  image: python:3.10
+  script:
+    - pip install dist/*.whl
+    - python -c "from easycom import serial_device, utils, devices"
+    - python -c "from easycom.devices import Arduino, Pico"
+
+deploy-testpypi:
+  stage: deploy-testpypi
+  image: python:3.10
+  before_script:
+    - pip install --upgrade twine
+  script:
+    - TWINE_PASSWORD=$TWINE_PASSWORD_TESTPYPI twine upload --repository testpypi dist/* --verbose
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /-dev|-rc/'
+
+deploy-pypi:
+  stage: deploy-pypi
+  image: python:3.10
+  before_script:
+    - pip install --upgrade twine
+  script:
+    - TWINE_PASSWORD=$TWINE_PASSWORD_PYPI twine upload dist/* --verbose
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+$/'
