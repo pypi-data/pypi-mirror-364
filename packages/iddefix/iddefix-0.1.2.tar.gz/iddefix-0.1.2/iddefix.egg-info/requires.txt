@@ -1,0 +1,8 @@
+numpy<2.0
+scipy
+
+[all]
+numpy
+scipy
+pyfde
+pymoo
