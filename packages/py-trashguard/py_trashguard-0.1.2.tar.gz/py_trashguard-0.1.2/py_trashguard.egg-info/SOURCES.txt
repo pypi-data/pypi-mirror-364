@@ -1,0 +1,10 @@
+README.md
+pyproject.toml
+py_trashguard.egg-info/PKG-INFO
+py_trashguard.egg-info/SOURCES.txt
+py_trashguard.egg-info/dependency_links.txt
+py_trashguard.egg-info/entry_points.txt
+py_trashguard.egg-info/top_level.txt
+pytrashguard/__init__.py
+pytrashguard/cli.py
+pytrashguard/core.py

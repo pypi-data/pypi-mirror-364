@@ -1,0 +1,18 @@
+[project]
+name = "py-trashguard"
+version = "0.1.2"
+description = "Safe os.remove alternative with soft delete to .trash/ folder"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.7"
+readme = "README.md"
+license = "MIT"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Filesystems",
+]
+
+[project.scripts]
+py-trashguard = "pytrashguard.cli:main" 
