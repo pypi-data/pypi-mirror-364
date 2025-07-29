@@ -1,0 +1,17 @@
+README.md
+pyproject.toml
+setup.py
+mailopt.egg-info/PKG-INFO
+mailopt.egg-info/SOURCES.txt
+mailopt.egg-info/dependency_links.txt
+mailopt.egg-info/entry_points.txt
+mailopt.egg-info/not-zip-safe
+mailopt.egg-info/requires.txt
+mailopt.egg-info/top_level.txt
+sall/__init__.py
+sall/cli.py
+sall/utils.py
+sall/commands/__init__.py
+sall/commands/images.py
+tests/__init__.py
+tests/test_images.py

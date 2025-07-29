@@ -1,0 +1,778 @@
+# MailOpt
+
+[![CI](https://github.com/your-username/mailopt/workflows/CI/badge.svg)](https://github.com/your-username/mailopt/actions)
+[![Coverage](https://codecov.io/gh/your-username/mailopt/branch/master/graph/badge.svg)](https://codecov.io/gh/your-username/mailopt)
+[![PyPI](https://img.shields.io/pypi/v/mailopt.svg)](https://pypi.org/project/mailopt/)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
+**CLI Python pour automatiser et optimiser les workflows email/front-end**
+
+## Table des matières
+
+- [Motivation & Contexte](#motivation--contexte)
+- [Fonctionnalités clés](#fonctionnalités-clés)
+- [Installation](#installation)
+- [Usage rapide](#usage-rapide)
+- [Détail des commandes](#détail-des-commandes)
+- [Configuration](#configuration)
+- [Extensibilité & Plugins](#extensibilité--plugins)
+- [Développement & Tests](#développement--tests)
+- [Outils de développement](#outils-de-développement)
+- [CI/CD](#cicd)
+- [Workflow Git & Contribuer](#workflow-git--contribuer)
+- [Roadmap & Perspectives](#roadmap--perspectives)
+- [Licence](#licence)
+- [Contacts & Liens](#contacts--liens)
+
+## Motivation & Contexte
+
+### Pourquoi créer mailopt ?
+
+Le développement d'emails implique de nombreuses tâches répétitives et chronophages qui fragmentent le workflow des développeurs. `mailopt` naît du besoin d'unifier et d'automatiser ces processus pour permettre aux équipes de se concentrer sur la création de contenu de qualité.
+
+### Problèmes résolus
+
+- **Inlining CSS manuel** → Automatisation complète avec `mailopt inline`
+- **Validation d'assets** → Vérification automatique des images et liens
+- **Tests de compatibilité** → Intégration Litmus et captures d'écran
+- **Optimisation manuelle** → Minification et optimisation automatiques
+- **Workflow fragmenté** → Unification de tous les outils d'optimisation email
+
+## Fonctionnalités clés
+
+### Commandes cœur
+
+| Commande                              | Description                                               |
+| ------------------------------------- | --------------------------------------------------------- |
+| **`mailopt new <dir>`**               | Génère la structure de base d'un projet email/site        |
+| **`mailopt inline <dir>`**            | Inline CSS pour templates email-safe                      |
+| **`mailopt check-images <dir>`**      | Vérifie existence & casse des images référencées          |
+| **`mailopt embed-images <dir>`**      | Encode en Base64 / upload CDN et remplace balises `<img>` |
+| **`mailopt check-links <dir>`**       | Head-request et rapport sur les liens `<a>`               |
+| **`mailopt find-orphans <dir>`**      | Liste fichiers assets non utilisés                        |
+| **`mailopt lint-names <dir>`**        | Vérifie conventions de nommage                            |
+| **`mailopt unused-css <dir>`**        | Détecte sélecteurs CSS non utilisés                       |
+| **`mailopt minify <dir>`**            | Concatène & minifie CSS/JS selon manifest                 |
+| **`mailopt audit <dir>`**             | Audit d'accessibilité & rapport spam-score                |
+| **`mailopt snapshot <dir>`**          | Génère captures (desktop/mobile) via Playwright           |
+| **`mailopt merge-tags <csv> <tmpl>`** | Génère HTML personnalisés depuis CSV                      |
+| **`mailopt litmus <dir>`**            | Lance les tests email sur Litmus via l'API                |
+
+## Installation
+
+### Prérequis
+
+- Python ≥ 3.10
+- pip
+
+### Installation
+
+```bash
+# Cloner le repository
+git clone https://github.com/your-username/mailopt.git
+cd mailopt
+
+# Créer un environnement virtuel
+python -m venv venv
+
+# Activer l'environnement virtuel
+# Windows
+venv\Scripts\activate
+# macOS/Linux
+source venv/bin/activate
+
+# Installation avec toutes les dépendances
+pip install -r requirements.txt
+
+# Ou installation en mode développement
+pip install -r requirements-dev.txt
+pip install -e .
+
+# Ou depuis PyPI (quand publié)
+pip install mailopt
+```
+
+## Usage rapide
+
+### Exemples de base
+
+```bash
+# Créer un nouveau projet email
+mailopt new ./my-email
+
+# Inliner le CSS pour compatibilité email
+mailopt inline ./my-email
+
+# Vérifier les images avec correction automatique
+mailopt check-images ./my-email --fix
+```
+
+### Flags généraux
+
+```bash
+mailopt --help      # Aide générale
+mailopt --version   # Version du CLI
+mailopt <command> --help  # Aide pour une commande spécifique
+```
+
+## Détail des commandes
+
+### `mailopt check-images <dir> [--fix]`
+
+**Objectif :** Vérifie existence & casse des images référencées
+
+**Options :**
+
+- `--fix` : Corriger automatiquement les problèmes détectés
+- `--verbose` : Affichage détaillé
+- `--suggest-formats` : Suggérer des formats optimisés
+
+**Exemple :**
+
+```bash
+mailopt check-images ./email.html --fix --verbose
+```
+
+**Fonctionnalités :**
+
+- Détecte toutes les balises `<img src="...">` locales
+- Vérifie que les images existent dans `images/` ou `img/`
+- Corrige automatiquement les problèmes de casse
+- Crée une sauvegarde `.bak` lors des corrections
+- Ignore les URLs externes (http://, https://, //)
+
+## Configuration
+
+### Format de `mailopt.config.yaml`
+
+```yaml
+# mailopt.config.yaml
+defaults:
+  image_quality: 85
+  output_format: webp
+  preserve_metadata: false
+  email_clients: [outlook, gmail, apple-mail, thunderbird]
+
+commands:
+  check_images:
+    max_width: 1200
+    max_height: 800
+    allowed_formats: [jpg, png, webp]
+    check_case_sensitivity: true
+
+paths:
+  templates: ./templates/
+  assets: ./assets/
+  output: ./dist/
+  reports: ./reports/
+```
+
+## Extensibilité & Plugins
+
+### Architecture plugin via entry_points
+
+`mailopt` utilise un système de plugins basé sur les `entry_points` de Python pour charger automatiquement les commandes.
+
+### Ajouter sa propre commande
+
+1. **Créer un fichier de commande** dans `mailopt/commands/` :
+
+```python
+# mailopt/commands/my_command.py
+import click
+from mailopt import utils
+
+@click.command()
+@click.option('--name', default='world', help='Nom à saluer')
+def my_command(name):
+    """Ma commande personnalisée."""
+    click.echo(f"Bonjour, {name}!")
+    # Votre logique ici
+```
+
+2. **Enregistrer la commande** dans `setup.py` :
+
+```python
+# setup.py
+entry_points={
+    'console_scripts': [
+        'mailopt=mailopt.cli:main',
+    ],
+    'mailopt.commands': [
+        'my-command=mailopt.commands.my_command:my_command',
+    ],
+}
+```
+
+3. **Utiliser votre commande** :
+
+```bash
+mailopt my-command --name "Développeur"
+```
+
+## Développement & Tests
+
+### Structure du repo
+
+```
+mailopt/
+├── setup.py              # Metadata & entry_points
+├── pyproject.toml        # Build system
+├── requirements.txt      # Toutes les dépendances
+├── requirements-dev.txt  # Dépendances de développement
+├── README.md             # Documentation
+├── .gitignore            # Fichiers à ignorer par Git
+├── mailopt/              # Code source
+│   ├── __init__.py
+│   ├── cli.py            # Point d'entrée (click.group)
+│   ├── utils.py          # Fonctions utilitaires partagées
+│   └── commands/         # Sous-commandes
+│       ├── __init__.py
+│       └── images.py     # Exemple: check-images
+├── tests/                # Tests unitaires (pytest)
+│   └── test_images.py
+└── venv/                 # Environnement virtuel (ignoré par Git)
+```
+
+### Fichiers de dépendances
+
+- **`requirements.txt`** : Toutes les dépendances (core + dev)
+- **`requirements-dev.txt`** : Dépendances de développement uniquement
+- **`setup.py`** : Configuration du package avec entry points
+
+### Fichiers et dossiers ignorés
+
+Le projet utilise un `.gitignore` simple qui exclut :
+
+- **`*.egg-info/`** : Métadonnées générées par setuptools lors de l'installation
+- **`venv/`** : Environnement virtuel Python
+- **`__pycache__/`** : Cache Python compilé
+- **`.pytest_cache/`** : Cache des tests pytest
+- **`*.bak`** : Fichiers de sauvegarde créés par mailopt
+- **Fichiers IDE** : `.vscode/`, `.idea/`, etc.
+- **Fichiers système** : `.DS_Store`, `Thumbs.db`
+
+### Le dossier `mailopt.egg-info`
+
+Le dossier `mailopt.egg-info/` est **automatiquement généré** par setuptools lors de l'installation du package avec `pip install -e .`. Il contient :
+
+- **Métadonnées du package** : version, auteur, description
+- **Liste des fichiers** : fichiers inclus dans le package
+- **Entry points** : commandes CLI enregistrées
+- **Dépendances** : packages requis
+
+**Pourquoi l'ignorer ?**
+
+- Généré automatiquement, pas besoin de versionner
+- Spécifique à l'environnement d'installation
+- Peut causer des conflits entre développeurs
+- Reconstruit automatiquement lors de l'installation
+
+### Lancer les tests
+
+```bash
+# Tous les tests
+pytest tests/
+
+# Avec couverture
+pytest --cov=mailopt tests/
+
+# Tests spécifiques
+pytest tests/test_images.py -v
+
+# Tests avec marqueurs
+pytest -m "not slow"  # Exclure les tests lents
+pytest -m integration # Tests d'intégration uniquement
+```
+
+## Outils de développement
+
+### Formateurs de code
+
+#### **Black** - Formateur de code automatique
+
+```bash
+# Installer Black
+pip install black
+
+# Formater le code
+black mailopt/ tests/
+
+# Vérifier le formatage (sans modifier)
+black --check mailopt/ tests/
+
+# Configuration dans pyproject.toml
+[tool.black]
+line-length = 88
+target-version = ['py310']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+```
+
+#### **isort** - Organisation des imports
+
+```bash
+# Installer isort
+pip install isort
+
+# Organiser les imports
+isort mailopt/ tests/
+
+# Configuration dans pyproject.toml
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+```
+
+### Linters et analyseurs
+
+#### **Flake8** - Linter PEP8
+
+```bash
+# Installer Flake8
+pip install flake8
+
+# Linter le code
+flake8 mailopt/ tests/
+
+# Configuration dans .flake8
+[flake8]
+max-line-length = 88
+extend-ignore = E203, W503
+exclude = .git,__pycache__,build,dist,*.egg-info
+```
+
+#### **Pylint** - Analyseur statique avancé
+
+```bash
+# Installer Pylint
+pip install pylint
+
+# Analyser le code
+pylint mailopt/
+
+# Générer un rapport
+pylint mailopt/ --output-format=json > pylint-report.json
+
+# Configuration dans .pylintrc
+[MASTER]
+disable=
+    C0114, # missing-module-docstring
+    C0115, # missing-class-docstring
+    C0116  # missing-function-docstring
+```
+
+#### **MyPy** - Vérificateur de types statiques
+
+```bash
+# Installer MyPy
+pip install mypy
+
+# Vérifier les types
+mypy mailopt/ --ignore-missing-imports
+
+# Configuration dans pyproject.toml
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+```
+
+### Tests et couverture
+
+#### **Pytest** - Framework de tests
+
+```bash
+# Installer Pytest
+pip install pytest pytest-cov pytest-mock
+
+# Lancer les tests
+pytest tests/ -v
+
+# Avec couverture
+pytest --cov=mailopt --cov-report=html tests/
+
+# Tests en parallèle
+pytest -n auto tests/
+
+# Configuration dans pytest.ini
+[tool:pytest]
+testpaths = tests
+python_files = test_*.py
+python_classes = Test*
+python_functions = test_*
+addopts = -v --tb=short --strict-markers
+markers =
+    slow: marks tests as slow
+    integration: marks tests as integration tests
+```
+
+#### **Coverage.py** - Mesure de couverture
+
+```bash
+# Installer Coverage
+pip install coverage
+
+# Mesurer la couverture
+coverage run -m pytest tests/
+coverage report
+coverage html  # Génère un rapport HTML
+
+# Configuration dans .coveragerc
+[run]
+source = mailopt
+omit =
+    */tests/*
+    */venv/*
+    setup.py
+```
+
+### Outils de build et publication
+
+#### **Build** - Construction de packages
+
+```bash
+# Installer Build
+pip install build
+
+# Construire le package
+python -m build
+
+# Vérifier le package
+twine check dist/*
+```
+
+#### **Twine** - Publication sur PyPI
+
+```bash
+# Installer Twine
+pip install twine
+
+# Publier sur TestPyPI
+twine upload --repository testpypi dist/*
+
+# Publier sur PyPI
+twine upload dist/*
+```
+
+### Outils de sécurité
+
+#### **Bandit** - Détection de vulnérabilités
+
+```bash
+# Installer Bandit
+pip install bandit
+
+# Analyser la sécurité
+bandit -r mailopt/
+
+# Configuration dans .bandit
+[bandit]
+exclude_dirs = tests
+skips = B101, B601
+```
+
+#### **Safety** - Vérification des dépendances
+
+```bash
+# Installer Safety
+pip install safety
+
+# Vérifier les vulnérabilités (commande dépréciée)
+safety check
+
+# Vérifier avec la nouvelle commande (recommandé)
+# Note: Nécessite un compte Safety CLI (gratuit)
+safety scan
+
+# Première utilisation: Safety demandera de créer un compte
+# Suivez les instructions pour vous enregistrer
+```
+
+### Workflow complet de développement
+
+#### **Script de pré-commit**
+
+```bash
+#!/bin/bash
+# .git/hooks/pre-commit
+
+echo "🔍 Vérification du code..."
+
+# Formater le code
+black mailopt/ tests/
+isort mailopt/ tests/
+
+# Linter
+flake8 mailopt/ tests/
+pylint mailopt/ --score=8.0
+
+# Vérifier les types
+mypy mailopt/ --ignore-missing-imports
+
+# Tests rapides
+pytest tests/ -x --tb=short
+
+echo "✅ Pré-commit terminé avec succès!"
+```
+
+#### **Script de CI complet**
+
+```bash
+#!/bin/bash
+# scripts/ci.sh
+
+set -e
+
+echo "🚀 Démarrage du CI..."
+
+# Installer les dépendances
+pip install -e ".[dev,test]"
+
+# Formater et vérifier
+black --check mailopt/ tests/
+isort --check-only mailopt/ tests/
+
+# Linter
+flake8 mailopt/ tests/
+pylint mailopt/ --score=8.0
+
+# Vérifier les types
+mypy mailopt/ --ignore-missing-imports
+
+# Tests avec couverture
+pytest --cov=mailopt --cov-report=xml tests/
+
+# Sécurité
+bandit -r mailopt/
+safety check
+
+# Build
+python -m build
+twine check dist/*
+
+echo "✅ CI terminé avec succès!"
+```
+
+### Configuration des outils
+
+#### **pyproject.toml** - Configuration centralisée
+
+```toml
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 88
+target-version = ['py310']
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --tb=short"
+markers = [
+    "slow: marks tests as slow",
+    "integration: marks tests as integration tests",
+]
+```
+
+#### **.pre-commit-config.yaml** - Hooks automatiques
+
+```yaml
+repos:
+  - repo: https://github.com/psf/black
+    rev: 23.3.0
+    hooks:
+      - id: black
+        language_version: python3.10
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.0.0
+    hooks:
+      - id: flake8
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.3.0
+    hooks:
+      - id: mypy
+        additional_dependencies: [types-requests]
+```
+
+## CI/CD
+
+### Workflow GitHub Actions
+
+```yaml
+# .github/workflows/ci.yml
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.10, 3.11, 3.12]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          pip install -e .
+          pip install pytest pytest-cov flake8 pylint
+      - name: Run tests
+        run: pytest --cov=mailopt tests/
+      - name: Run linter
+        run: |
+          flake8 mailopt/ tests/
+          pylint mailopt/
+```
+
+### Pré-commit hook
+
+```bash
+#!/bin/bash
+# .git/hooks/pre-commit
+
+# Vérifier les noms de fichiers
+mailopt lint-names . --fix
+
+# Trouver les fichiers orphelins
+mailopt find-orphans ./assets --dry-run
+
+# Tests rapides
+pytest tests/ -x
+```
+
+## Workflow Git & Contribuer
+
+### Branche feature
+
+```bash
+# Créer une branche feature
+git checkout -b feat/amazing-feature
+
+# Commits atomiques
+git commit -m "feat: add amazing feature"
+git commit -m "test: add tests for amazing feature"
+git commit -m "docs: update documentation for amazing feature"
+```
+
+### Modèle de message de commit (Conventional Commits)
+
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+**Types :**
+
+- `feat` : Nouvelle fonctionnalité
+- `fix` : Correction de bug
+- `docs` : Documentation
+- `style` : Formatage
+- `refactor` : Refactoring
+- `test` : Tests
+- `chore` : Maintenance
+
+**Exemples :**
+
+```bash
+git commit -m "feat(inline): add CSS minification option"
+git commit -m "fix(check-images): handle case-sensitive file systems"
+git commit -m "docs: update installation instructions"
+```
+
+## Roadmap & Perspectives
+
+### Fonctionnalités à venir
+
+- **Intégration Litmus avancée** : Tests automatisés sur tous les clients email
+- **Merge-tags avancé** : Support de templates complexes et conditions
+- **API REST** : Interface web pour les équipes non-techniques
+- **Intégration CI/CD** : Plugins pour GitHub Actions, GitLab CI
+- **Support multi-langues** : Interface en français, anglais, espagnol
+- **Mode watch** : Surveillance en temps réel des fichiers
+- **Rapports avancés** : Graphiques et métriques détaillées
+
+### Appel à contributions
+
+Bien que le projet soit actuellement maintenu par un seul développeur, nous encourageons les contributions de la communauté email development. Les domaines prioritaires :
+
+- Tests de compatibilité email
+- Optimisation d'images
+- Accessibilité
+- Documentation
+- Intégrations tierces
+
+## Licence
+
+Ce projet est sous licence MIT - voir le fichier [LICENSE](LICENSE) pour les détails.
+
+**MIT License** - Licence permissive permettant :
+
+- Usage commercial
+- Modification
+- Distribution
+- Usage privé
+
+Avec protection de responsabilité pour les auteurs.
+
+## Contacts & Liens
+
+### Issues & Discussions
+
+- **Issues** : [GitHub Issues](https://github.com/your-username/mailopt/issues)
+- **Discussions** : [GitHub Discussions](https://github.com/your-username/mailopt/discussions)
+- **Wiki** : [Documentation détaillée](https://github.com/your-username/mailopt/wiki)
+
+### Mainteneurs
+
+- **Développeur principal** : [@your-username](https://github.com/your-username)
+
+### Liens utiles
+
+- **PyPI** : [pypi.org/project/mailopt](https://pypi.org/project/mailopt/)
+- **Documentation** : [mailopt.readthedocs.io](https://mailopt.readthedocs.io/)
+- **Changelog** : [CHANGELOG.md](CHANGELOG.md)
+
+---
+
+**Fait avec ❤️ pour la communauté email development**
