@@ -1,0 +1,429 @@
+Metadata-Version: 2.1
+Name: webclient-helper
+Version: 0.0.8
+Summary: Helpful WebClient class to interact with APIs on the web
+Home-page: https://github.com/kenjyco/webclient-helper
+Author: Ken
+Author-email: kenjyco@gmail.com
+License: MIT
+Download-URL: https://github.com/kenjyco/webclient-helper/tarball/v0.0.8
+Keywords: webclient,api,requests,soup,beautifulsoup,lxml,http,rest,helper,kenjyco
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Text Processing :: Markup :: HTML
+Classifier: Topic :: Text Processing :: Markup :: XML
+Classifier: Topic :: Utilities
+License-File: LICENSE.txt
+Requires-Dist: fs-helper
+Requires-Dist: input-helper
+Requires-Dist: requests
+Requires-Dist: urllib3
+Requires-Dist: xmljson
+Provides-Extra: bs4
+Requires-Dist: beautifulsoup4 ; extra == 'bs4'
+Requires-Dist: lxml ; extra == 'bs4'
+
+A conversational HTTP client library designed for human-centered API
+development, exploration, and debugging. The library is optimized for
+developers who value transparency, debugging capability, and workflow
+flexibility. It shines in scenarios involving API exploration,
+integration testing, and iterative development where understanding
+request/response patterns is crucial. Rather than hiding complexity
+behind abstractions, webclient-helper illuminates it through
+comprehensive debugging tools and direct access to underlying
+functionality.
+
+Create an instance of WebClient and use the HTTP methods (OPTIONS, HEAD,
+GET, POST, PUT, PATCH, DELETE) to interact with an API. Every HTTP
+method includes immediate debugger access through ``debug=True``.
+
+The library assumes developer competence, provides full access to
+underlying session objects, and provides complete history preservation
+to enable analysis of API interaction patterns.
+
+Install
+-------
+
+::
+
+   pip install webclient-helper
+
+Or, install with beautifulsoup4 and lxml (for HTML parsing support)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Install system requirements for ``lxml``
+
+::
+
+   sudo apt-get install -y libxml2 libxslt1.1 libxml2-dev libxslt1-dev
+
+or
+
+::
+
+   brew install libxml2
+
+Install with pip
+
+::
+
+   pip install webclient-helper[bs4]
+
+QuickStart
+----------
+
+Example with the GitHub API
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Here’s a minimal example showing the library’s core philosophy in
+action:
+
+   Note: Before using the GitHub API, generate a “personal access token”
+   at https://github.com/settings/tokens/new and save to your local
+   ``~/.bashrc`` or ``~/.zshrc`` file
+   (``export GITHUB_ACCESS_TOKEN="ghp_vx..."``).
+
+   Review https://docs.github.com/en/rest/reference for endpoints to
+   hit.
+
+.. code:: python
+
+   import webclient_helper as wh
+   from os import getenv
+
+   access_token = getenv('GITHUB_ACCESS_TOKEN')
+
+   client = wh.WebClient(
+       token=access_token,
+       token_type='token',
+       base_url='https://api.github.com'
+   )
+
+   # Simple request with automatic history tracking
+   repos = client.GET('/user/repos')
+   print(f"Found {len(repos.json())} repositories")
+
+   # Interactive debugging with full context preservation
+   response = client.GET('/user/repos', params={'per_page': 5}, debug=True)
+   # This drops into PDB with complete access to response, session, and request context
+
+   # Explore your entire API session interactively
+   client.history_explorer()  # Launches IPython with selectable response history
+
+This example demonstrates several key benefits: zero-boilerplate setup
+for common APIs, automatic request history preservation for pattern
+analysis, embedded debugging that doesn’t require separate tooling, and
+interactive exploration tools that help you understand API behavior
+through direct investigation.
+
+Example with custom login method on a subclass
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Here’s an example for creating test clients on your team’s internal
+platform:
+
+::
+
+   import webclient_helper as wh
+
+
+   class SomeClient(wh.WebClient):
+       def login(self):
+           headers = {'Content-Type': 'application/json'}
+           data = {'email': self._username, 'password': self._password}
+           response = self.session.post(
+               self._base_url + '/api/login',
+               headers=headers,
+               json=data
+           )
+           self._token = response.json().get('access_token')
+           self._token_type = 'Bearer'
+
+       def get_something(self, params=None, debug=False):
+           return self.GET(
+               '/api/something',
+               params=params,
+               debug=debug
+           )
+
+
+   some_client = SomeClient(
+       username='myuser',
+       password='mypass',
+       base_url='https://somewhere.com',
+   )
+
+   something1 = some_client.get_something(params={'x': 1, 'y': 5})
+   something2 = some_client.get_something(params={'x': 2, 'y': 10})
+
+API Overview
+------------
+
+WebClient Class
+~~~~~~~~~~~~~~~
+
+-  **``WebClient(username=None, password=None, token=None, token_type=None, base_url='', user_agent=None, content_type='application/json', extra_headers={})``**
+   - Main HTTP client for conversational API interactions
+
+   -  username: if specified, set auth on session (requires password)
+   -  password: if specified, set auth on session (requires username)
+   -  token: if specified, use this token in the “Authorization” header
+      (requires token_type)
+   -  token_type: if specified, use as part of the value in the
+      “Authorization” header
+   -  base_url: base url for service/API that a subclass would interact
+      with
+   -  user_agent: if specified, set “User-Agent” header
+   -  content_type: content type for requests (defaults to
+      ‘application/json’)
+   -  extra_headers: a dict of extra headers to set on the session
+   -  Returns: WebClient instance with session management and
+      authentication handling
+   -  Internal calls: ``self.set_session()``
+
+-  **``WebClient.GET(url, headers=None, params=None, debug=False, retry=False, **kwargs)``**
+   - Send a GET request with automatic history tracking
+
+   -  url: url/endpoint (automatically prepends base_url if url starts
+      with ‘/’)
+   -  headers: dict of headers to update on the session before making
+      request
+   -  params: a dict with query string vars and values
+   -  debug: if True, enter debugger before returning with full context
+      access
+   -  retry: if True and initial response is “401 Unauthorized”,
+      recreate session and retry
+   -  \**kwargs: passed to underlying session_method for complete
+      requests library access
+   -  Returns: requests.Response object
+   -  Internal calls: ``wh.session_method()``, ``self.set_session()``,
+      ``wh.get_summary_from_response()``
+
+-  **``WebClient.POST(url, headers=None, data=None, json=None, debug=False, retry=False, **kwargs)``**
+   - Send a POST request with data or JSON payload
+
+   -  url: url/endpoint (automatically prepends base_url if url starts
+      with ‘/’)
+   -  headers: dict of headers to update on the session before making
+      request
+   -  data: a dict to send in the body (non-JSON)
+   -  json: a dict to send in the body as JSON
+   -  debug: if True, enter debugger before returning with full context
+      access
+   -  retry: if True and initial response is “401 Unauthorized”,
+      recreate session and retry
+   -  \**kwargs: passed to underlying session_method for complete
+      requests library access
+   -  Returns: requests.Response object
+   -  Internal calls: ``wh.session_method()``, ``self.set_session()``,
+      ``wh.get_summary_from_response()``
+
+-  **``WebClient.PUT(url, headers=None, data=None, debug=False, retry=False, **kwargs)``**
+   - Send a PUT request for resource updates
+
+   -  url: url/endpoint (automatically prepends base_url if url starts
+      with ‘/’)
+   -  headers: dict of headers to update on the session before making
+      request
+   -  data: a dict to send in the body (non-JSON)
+   -  debug: if True, enter debugger before returning with full context
+      access
+   -  retry: if True and initial response is “401 Unauthorized”,
+      recreate session and retry
+   -  \**kwargs: passed to underlying session_method for complete
+      requests library access
+   -  Returns: requests.Response object
+   -  Internal calls: ``wh.session_method()``, ``self.set_session()``,
+      ``wh.get_summary_from_response()``
+
+-  **``WebClient.PATCH(url, headers=None, data=None, debug=False, retry=False, **kwargs)``**
+   - Send a PATCH request for partial resource updates
+
+   -  url: url/endpoint (automatically prepends base_url if url starts
+      with ‘/’)
+   -  headers: dict of headers to update on the session before making
+      request
+   -  data: a dict to send in the body (non-JSON)
+   -  debug: if True, enter debugger before returning with full context
+      access
+   -  retry: if True and initial response is “401 Unauthorized”,
+      recreate session and retry
+   -  \**kwargs: passed to underlying session_method for complete
+      requests library access
+   -  Returns: requests.Response object
+   -  Internal calls: ``wh.session_method()``, ``self.set_session()``,
+      ``wh.get_summary_from_response()``
+
+-  **``WebClient.DELETE(url, headers=None, debug=False, retry=False, **kwargs)``**
+   - Send a DELETE request for resource removal
+
+   -  url: url/endpoint (automatically prepends base_url if url starts
+      with ‘/’)
+   -  headers: dict of headers to update on the session before making
+      request
+   -  debug: if True, enter debugger before returning with full context
+      access
+   -  retry: if True and initial response is “401 Unauthorized”,
+      recreate session and retry
+   -  \**kwargs: passed to underlying session_method for complete
+      requests library access
+   -  Returns: requests.Response object
+   -  Internal calls: ``wh.session_method()``, ``self.set_session()``,
+      ``wh.get_summary_from_response()``
+
+-  **``WebClient.OPTIONS(url, headers=None, debug=False, retry=False, **kwargs)``**
+   - Send an OPTIONS request for capability discovery
+
+   -  url: url/endpoint (automatically prepends base_url if url starts
+      with ‘/’)
+   -  headers: dict of headers to update on the session before making
+      request
+   -  debug: if True, enter debugger before returning with full context
+      access
+   -  retry: if True and initial response is “401 Unauthorized”,
+      recreate session and retry
+   -  \**kwargs: passed to underlying session_method for complete
+      requests library access
+   -  Returns: requests.Response object
+   -  Internal calls: ``wh.session_method()``, ``self.set_session()``,
+      ``wh.get_summary_from_response()``
+
+-  **``WebClient.HEAD(url, headers=None, debug=False, retry=False, **kwargs)``**
+   - Send a HEAD request for metadata retrieval
+
+   -  url: url/endpoint (automatically prepends base_url if url starts
+      with ‘/’)
+   -  headers: dict of headers to update on the session before making
+      request
+   -  debug: if True, enter debugger before returning with full context
+      access
+   -  retry: if True and initial response is “401 Unauthorized”,
+      recreate session and retry
+   -  \**kwargs: passed to underlying session_method for complete
+      requests library access
+   -  Returns: requests.Response object
+   -  Internal calls: ``wh.session_method()``, ``self.set_session()``,
+      ``wh.get_summary_from_response()``
+
+-  **``WebClient.history_explorer(return_selections=False)``** -
+   Interactive exploration of request history
+
+   -  return_selections: if True, return the selections from history
+      instead of launching IPython
+   -  Returns: None by default, or selected history items if
+      return_selections=True
+   -  Internal calls: ``ih.make_selections()``, ``ih.start_ipython()``
+
+-  **``WebClient.set_session()``** - Create new session object and
+   invoke login method if defined
+
+   -  Returns: None (modifies self.session in place)
+   -  Internal calls: ``self.is_login_defined``,
+      ``wh.new_requests_session()``, ``self.login()``
+
+-  **``WebClient.is_login_defined``** (property) - Return True if a
+   login method is defined
+
+   -  Returns: Boolean indicating whether custom login method is
+      implemented
+   -  Internal calls: None
+
+Utility Functions
+~~~~~~~~~~~~~~~~~
+
+-  **``get_domain(url)``** - Extract domain from URL with www prefix
+   removal
+
+   -  url: URL string to extract domain from
+   -  Returns: Domain string with ‘www.’ prefix removed
+   -  Internal calls: None
+
+-  **``new_requests_session(username=None, password=None, user_agent=None, content_type=None, extra_headers={})``**
+   - Create new requests Session with authentication and headers
+
+   -  username: if specified, set auth on session (requires password)
+   -  password: if specified, set auth on session (requires username)
+   -  user_agent: if specified, set “User-Agent” header on session
+   -  content_type: if specified, set “Content-Type” header on session
+   -  extra_headers: a dict of extra_headers to set on the session
+   -  Returns: configured requests.Session object
+   -  Internal calls: None
+
+-  **``session_method(method, url, session=None, headers=None, debug=False, **kwargs)``**
+   - Core HTTP request function with debugging support
+
+   -  method: HTTP method (options, head, get, post, put, patch, delete)
+   -  url: url/endpoint to request
+   -  session: a session object (creates new one if None)
+   -  headers: dict of headers to update on the session before making
+      request
+   -  debug: if True, enter debugger before returning
+   -  \**kwargs: additional kwargs that requests.Session.request accepts
+
+      -  params: Dictionary or bytes to be sent in the query string for
+         the Request
+      -  data: Dictionary, list of tuples, bytes, or file-like object to
+         send in the body of the Request
+      -  json: json to send in the body of the Request
+      -  cookies: Dict or CookieJar object to send with the Request
+      -  files: Dictionary of ‘filename’: file-like-objects for
+         multipart encoding upload
+      -  auth: Auth tuple or callable to enable Basic/Digest/Custom HTTP
+         Auth
+      -  timeout: How long to wait for the server to send data before
+         giving up, as a float, or a (connect timeout, read timeout)
+         tuple
+      -  allow_redirects: Set to True by default
+      -  proxies: Dictionary mapping protocol or protocol and hostname
+         to the URL of the proxy
+      -  stream: whether to immediately download the response content.
+         Defaults to False
+      -  verify: Either a boolean, in which case it controls whether we
+         verify the server’s TLS certificate, or a string, in which case
+         it must be a path to a CA bundle to use. Defaults to True
+      -  cert: if String, path to ssl client cert file (.pem). If Tuple,
+         (‘cert’, ‘key’) pair
+
+   -  Returns: requests.Response object or None if request fails
+   -  Internal calls: ``new_requests_session()``,
+      ``get_summary_from_response()``
+
+-  **``get_summary_from_response(response)``** - Generate standardized
+   response summary string
+
+   -  response: requests.Response object to summarize
+   -  Returns: String with status code, method, URL, and elapsed time
+   -  Internal calls: None
+
+-  **``get_soup(url_file_or_string, xml=False, session=None, warn=True)``**
+   - Universal content parser for URLs, files, or strings
+
+   -  url_file_or_string: a string that is either a url to fetch, a file
+      to read, or a string containing HTML/XML content (may also be
+      bytes that are utf-8 encoded)
+   -  xml: if True, parse content as XML instead of HTML (requires lxml)
+   -  session: a session object for URL fetching
+   -  warn: if True, issue a warning if bs4 package is not installed
+   -  Returns: BeautifulSoup object or None if BeautifulSoup not
+      available
+   -  Internal calls: ``session_method()``
+
+-  **``download_file(url, localfile='', session=None)``** - Download
+   file with progressive backoff and stream support
+
+   -  url: URL string to download
+   -  localfile: local file path (auto-generated if empty)
+   -  session: a session object for downloading
+   -  Returns: None (downloads file to local filesystem)
+   -  Internal calls: ``session_method()``, ``new_requests_session()``
+
+
