@@ -1,0 +1,33 @@
+Metadata-Version: 2.4
+Name: pysaleryd
+Version: 7.2.0
+Summary: Python library for controlling Saleryd HRV system
+Home-page: https://github.com/bj00rn/pysaleryd/
+Author: Björn Dalfors
+Author-email: bj00rn@users.noreply.github.com
+License: MIT
+Project-URL: Documentation, https://bj00rn.github.io/pysaleryd/
+Project-URL: Source, https://github.com/pyscaffold/pyscaffold/
+Project-URL: Changelog, https://bj00rn.github.io/pysaleryd/changelog.html
+Project-URL: Tracker, https://bj00rn.github.io/pysaleryd/issues
+Project-URL: Download, https://pypi.org/project/pysaleryd/#files
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Requires-Python: >=3.11
+Description-Content-Type: text/x-rst; charset=UTF-8
+License-File: LICENSE.txt
+Requires-Dist: importlib-metadata; python_version < "3.11"
+Requires-Dist: websockets<15,>=14.1
+Provides-Extra: testing
+Requires-Dist: setuptools; extra == "testing"
+Requires-Dist: pytest; extra == "testing"
+Requires-Dist: pytest-cov; extra == "testing"
+Requires-Dist: pytest-asyncio; extra == "testing"
+Requires-Dist: pytest-mock; extra == "testing"
+Requires-Dist: pytest-timeout; extra == "testing"
+Requires-Dist: mock; extra == "testing"
+Requires-Dist: mypy; extra == "testing"
+Requires-Dist: pre-commit; extra == "testing"
+Requires-Dist: black==25.1.0; extra == "testing"
+Dynamic: license-file
