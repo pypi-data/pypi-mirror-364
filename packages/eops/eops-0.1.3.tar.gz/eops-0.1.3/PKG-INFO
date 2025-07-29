@@ -1,0 +1,22 @@
+Metadata-Version: 2.4
+Name: eops
+Version: 0.1.3
+Summary: A quantitative trading framework.
+Author-email: Your Name <you@example.com>
+Project-URL: Homepage, https://github.com/your-username/eops
+Project-URL: Bug Tracker, https://github.com/your-username/eops/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: typer[all]
+Requires-Dist: requests
+Requires-Dist: pandas
+Requires-Dist: quantstats
+Requires-Dist: IPython
+Requires-Dist: websockets
+Dynamic: license-file
+
+# eops
