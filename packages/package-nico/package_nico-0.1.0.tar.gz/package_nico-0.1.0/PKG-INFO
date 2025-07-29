@@ -1,0 +1,31 @@
+Metadata-Version: 2.4
+Name: package-nico
+Version: 0.1.0
+Summary: Outil pour générer automatiquement une application Django complète
+Author: Nicosidick
+Author-email: ton.email@example.com
+Classifier: Programming Language :: Python :: 3
+Classifier: Framework :: Django
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: Django>=4.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# package-nico
+
+Outil pour générer automatiquement une application Django complète avec fichiers essentiels.
+
+## Installation
+
+```bash
+pip install package-nico
+package-nico <nom_de_votre_app>

@@ -1,0 +1,10 @@
+README.md
+setup.py
+django-nico/__init__.py
+django-nico/main.py
+package_nico.egg-info/PKG-INFO
+package_nico.egg-info/SOURCES.txt
+package_nico.egg-info/dependency_links.txt
+package_nico.egg-info/entry_points.txt
+package_nico.egg-info/requires.txt
+package_nico.egg-info/top_level.txt
