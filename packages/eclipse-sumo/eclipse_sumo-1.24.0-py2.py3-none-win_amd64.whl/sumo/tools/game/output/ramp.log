@@ -1,0 +1,23 @@
+Loading net-file from 'C:\Users\delphi\testreports\sumoExtra\git\tools\game\ramp/ramp.net.xml' ... done (3ms).
+Loading additional-files from 'C:\Users\delphi\testreports\sumoExtra\git\tools\game\input_additional.add.xml' ... done (1ms).
+Loading route-files incrementally from 'C:\Users\delphi\testreports\sumoExtra\git\tools\game\ramp/ramp.rou.xml'
+Loading done.
+Simulation version 1.24.0 started with time: 0.00.
+Simulation ended at time: 400.00.
+Reason: The final simulation step has been reached.
+Performance:
+ Duration: 1.30s
+ Real time factor: 308.88
+ UPS: 182476.447876
+Vehicles:
+ Inserted: 560 (Loaded: 603)
+ Running: 182
+ Waiting: 43
+Statistics (avg of 560):
+ RouteLength: 1463.14
+ Speed: 20.17
+ Duration: 84.39
+ WaitingTime: 11.65
+ TimeLoss: 34.92
+ DepartDelay: 1.04
+ DepartDelayWaiting: 22.86
