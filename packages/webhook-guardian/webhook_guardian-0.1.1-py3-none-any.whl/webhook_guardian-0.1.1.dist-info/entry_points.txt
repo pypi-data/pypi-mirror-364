@@ -1,0 +1,2 @@
+[console_scripts]
+webhook-guardian = webhook_guardian.cli:main
