@@ -1,0 +1,3 @@
+recursive-include src/miding *.keras
+recursive-include src/miding/midi *.mid
+recursive-include src/miding example_seed.mid

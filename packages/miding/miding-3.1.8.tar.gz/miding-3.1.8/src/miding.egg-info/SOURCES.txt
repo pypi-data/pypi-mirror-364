@@ -1,0 +1,21 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+pyproject.toml
+src/miding/__init__.py
+src/miding/distribution.py
+src/miding/example_seed.mid
+src/miding/model_1751770203_best.keras
+src/miding/model_1751770954_best.keras
+src/miding/prediction.py
+src/miding/preparation1.py
+src/miding.egg-info/PKG-INFO
+src/miding.egg-info/SOURCES.txt
+src/miding.egg-info/dependency_links.txt
+src/miding.egg-info/entry_points.txt
+src/miding.egg-info/requires.txt
+src/miding.egg-info/top_level.txt
+src/miding/midi/Chopin 24 Prelueds-2.mid
+src/miding/midi/Chopin 24 Prelueds-3.mid
+src/miding/midi/Den ensamna furan.mid
+src/miding/midi/Ich sehe dich in tausend Bildern.mid
