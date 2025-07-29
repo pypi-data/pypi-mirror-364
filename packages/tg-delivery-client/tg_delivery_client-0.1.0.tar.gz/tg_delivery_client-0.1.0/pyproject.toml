@@ -1,0 +1,80 @@
+[project]
+name = "tg-delivery-client"
+version = "0.1.0"
+description = "AMQP publisher and a facade for sending commands to the Telegram delivery service."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "k3l3vr444" }]
+requires-python = ">=3.12"
+
+dependencies = [
+    "aiormq>=6.8.0",
+    "pamqp>=3.3.0",
+]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.ruff]
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+    "tmp",
+    "tests"
+]
+line-length = 120
+indent-width = 4
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = ["D", "RET504", "PGH003", "FBT001", "EM101", "TRY003", "PLR0913"]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401", "F403"]
+"tests/**/*.py" = ["S101", "S106", "D", "PLR2004", "PT003", "PT006", "ARG001"]
+"**/schemas.py" = ["N805"] # Only for pydantic
+"src/infrastructure/db/migrations/*.py" = ["INP001"]
+"src/infrastructure/db/migrations/env.py" = ["ANN001", "ANN201"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 5
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+strict = true
+exclude = '(^venv/|^\.venv/|^tmp/|^src/infrastructure/db/migrations/|tests)'
+[tool.coverage.report]
+exclude_lines = [
+  '^\s*\.\.\.',
+]
