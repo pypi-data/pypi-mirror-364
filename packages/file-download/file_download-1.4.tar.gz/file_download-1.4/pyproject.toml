@@ -1,0 +1,20 @@
+[project]
+name = "file_download"
+version = "1.4"
+description = "A simple tool to download files! usable with terminal and in scripts"
+authors = [
+    { name = "korn20123", email = "aaromzschauer@icloud.com" }
+]
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "requests>=2.32.4,<3.0.0",
+    "tqdm>=4.67.1,<5.0.0"
+]
+
+[project.scripts]
+download = "file_download.download:main"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
