@@ -1,0 +1,8 @@
+numpy
+scipy
+torch>=2.2
+MDAnalysis
+matplotlib
+
+[dev]
+pytest
