@@ -1,0 +1,61 @@
+<div class="row">
+    <!-- Left side: Run New Backtest -->
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header"><h4 class="card-title">Run New Backtest</h4></div>
+            <div class="card-body">
+                <form id="run-backtest-form"
+                      hx-post="/api/projects/{{ project.id }}/backtest"
+                      hx-target="#backtest-history"
+                      hx-swap="afterbegin"
+                      hx-indicator=".htmx-indicator">
+                    <div class="mb-3">
+                        <label class="form-label">Instance Name</label>
+                        <input type="text" class="form-control" name="name" value="backtest-{{ now_str }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Data File</label>
+                        <!-- 
+                          FIX: 
+                          1. hx-target="this" or hx-target="#data-file-select" makes the target explicit.
+                          2. Adding an ID for clarity.
+                          3. Changing the initial option to be more standards-compliant.
+                        -->
+                        <select id="data-file-select" class="form-select" name="data_path" required
+                                hx-get="/api/data/file-options"
+                                hx-trigger="load, dataFilesChanged from:body"
+                                hx-params="none" 
+                                hx-target="this"
+                                hx-swap="innerHTML">
+                            <option value="" disabled selected>Loading data files...</option>
+                        </select>
+                        <div class="form-text">
+                            Manage data files in the <a href="/data-center">Data Center</a>.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Initial Cash</label>
+                        <input type="number" class="form-control" name="initial_cash" value="10000" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">
+                        <span class="htmx-indicator spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Launch Backtest
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Right side: Backtest History -->
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header"><h4 class="card-title">Backtest History</h4></div>
+            <div id="backtest-history" 
+                 class="list-group list-group-flush"
+                 hx-get="/api/projects/{{ project.id }}/instances?mode=backtest"
+                 hx-trigger="load, backtestUpdated from:body"
+                 hx-swap="innerHTML">
+                 <!-- History items will be loaded here -->
+            </div>
+        </div>
+    </div>
+</div>

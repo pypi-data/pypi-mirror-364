@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block title %}API Management - Qpanel{% endblock %}
+{% block content %}
+<div x-data="{
+    apiEnabled: false,
+    newKey: null,
+    init() {
+        fetch('/api/panel-keys/status')
+            .then(res => res.json())
+            .then(data => this.apiEnabled = data.enabled);
+    },
+    toggleApi() {
+        fetch('/api/panel-keys/toggle', { method: 'POST' })
+            .then(res => res.json())
+            .then(data => this.apiEnabled = data.enabled);
+    },
+    createKey(event) {
+        const formData = new FormData(event.target);
+        fetch('/api/panel-keys', {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === 'success') {
+                this.newKey = data;
+                htmx.trigger('#panel-keys-list', 'panelKeyUpdated');
+                bootstrap.Modal.getInstance(document.getElementById('addPanelKeyModal')).hide();
+                event.target.reset();
+            } else {
+                alert('Error: ' + data.detail);
+            }
+        });
+    },
+    copyToClipboard() {
+        navigator.clipboard.writeText(this.newKey.full_key);
+        alert('Key copied to clipboard!');
+    }
+}">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>API Management</h1>
+    </div>
+    
+    <template x-if="newKey">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <h4 class="alert-heading">API Key Created Successfully!</h4>
+            <p>A new API key named <strong x-text="newKey.key_name"></strong> has been created. Please copy it now, you will not be able to see it again.</p>
+            <div class="input-group">
+                <input type="text" class="form-control" :value="newKey.full_key" readonly>
+                <button class="btn btn-outline-secondary" @click="copyToClipboard()"><i class="bi bi-clipboard"></i> Copy</button>
+            </div>
+            <button type="button" class="btn-close" @click="newKey = null" aria-label="Close"></button>
+        </div>
+    </template>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="card-title">Panel API Access</h5>
+                    <p class="card-subtitle text-muted">Allow external scripts and applications to control this panel via a RESTful API.</p>
+                </div>
+                <div class="form-check form-switch form-check-lg">
+                    <input class="form-check-input" type="checkbox" role="switch" id="apiToggleSwitch" 
+                           :checked="apiEnabled" @change="toggleApi()">
+                    <label class="form-check-label" for="apiToggleSwitch" x-text="apiEnabled ? 'Enabled' : 'Disabled'"></label>
+                </div>
+            </div>
+        </div>
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h3 class="card-title mb-0">API Keys</h3>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPanelKeyModal">
+                <i class="bi bi-plus-lg me-2"></i> Create New Key
+            </button>
+        </div>
+        <div id="panel-keys-list"
+             class="table-responsive"
+             hx-get="/api/panel-keys/list"
+             hx-trigger="load, panelKeyUpdated from:body"
+             hx-swap="innerHTML">
+            <div class="p-4 text-center text-muted"><span class="spinner-border spinner-border-sm"></span> Loading keys...</div>
+        </div>
+    </div>
+
+    <!-- Add Panel API Key Modal -->
+    <div class="modal fade" id="addPanelKeyModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form @submit.prevent="createKey($event)">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Create New Panel API Key</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-muted">Create a key for an external application to access the panel API.</p>
+                        <div class="mb-3">
+                            <label class="form-label">Key Name</label>
+                            <input type="text" class="form-control" name="name" placeholder="e.g., My CI/CD Script" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Create Key</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

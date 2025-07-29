@@ -1,0 +1,8 @@
+<div class="btn-group" role="group" aria-label="Tags filter" hx-target="#project-list" hx-swap="innerHTML">
+    <button type="button" class="btn btn-outline-primary active" 
+            hx-get="/api/projects/list?tags=">All</button>
+    {% for tag in tags %}
+    <button type="button" class="btn btn-outline-primary"
+            hx-get="/api/projects/list?tags={{ tag }}">{{ tag | capitalize }}</button>
+    {% endfor %}
+</div>

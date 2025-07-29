@@ -1,0 +1,226 @@
+/* Eops Panel - Refined Dark Theme */
+
+:root {
+    --eops-bg-dark: #101419; /* A very dark, slightly blue-tinted background */
+    --eops-bg-card: #181d24; /* Background for cards, modals, etc. */
+    --eops-border-color: rgba(255, 255, 255, 0.1); /* Subtle borders */
+    --eops-text-primary: #e6edf3; /* Main text color */
+    --eops-text-secondary: #7d8590; /* Muted text color */
+    --eops-accent-blue: #337dff; /* Primary action color */
+    --eops-accent-blue-hover: #4d90ff; /* Hover state for primary actions */
+    --eops-accent-green: #238636;
+    --eops-accent-red: #da3633;
+    --eops-font-sans: 'Inter', sans-serif;
+    --eops-font-mono: 'JetBrains Mono', monospace;
+    --eops-card-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Base & Typography --- */
+body {
+    background-color: var(--eops-bg-dark) !important;
+    color: var(--eops-text-primary) !important;
+    font-family: var(--eops-font-sans);
+    font-size: .9rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--eops-text-primary) !important;
+    font-weight: 600;
+}
+
+a {
+    color: var(--eops-accent-blue);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+a:hover {
+    color: var(--eops-accent-blue-hover);
+}
+
+code, pre {
+    font-family: var(--eops-font-mono);
+    background-color: rgba(110, 118, 129, 0.2) !important;
+    color: var(--eops-text-secondary);
+    padding: .2em .4em;
+    border-radius: 6px;
+}
+pre code {
+    padding: 0;
+    background-color: transparent !important;
+}
+
+/* --- Layout --- */
+.bg-dark-eops { background-color: var(--eops-bg-dark); }
+.bg-sidebar { background-color: var(--eops-bg-dark); border-right: 1px solid var(--eops-border-color); }
+main { min-height: calc(100vh - 57px); } /* Adjusted for navbar height */
+.shadow-sm { box-shadow: 0 1px 2px rgba(0,0,0,.1) !important; }
+.fs-sm { font-size: 0.85rem !important; }
+
+/* --- Navbar --- */
+.navbar {
+    position: sticky;
+    background-color: var(--eops-bg-dark);
+    border-bottom: 1px solid var(--eops-border-color);
+    transition: background-color 0.2s ease;
+}
+.navbar-brand {
+    position: sticky;
+    background-color: var(--eops-bg-dark);
+}
+
+/* --- Sidebar --- */
+.sidebar {
+    position: sticky; /* <-- 改动: 使用 sticky 定位 */
+    top: 57px; /* Height of the navbar */
+    height: calc(100vh - 57px);
+    padding: 1rem 0;
+    overflow-y: auto;
+}
+.sidebar .nav-link {
+    font-weight: 500;
+    color: var(--eops-text-secondary) !important;
+    border-left: 3px solid transparent;
+    padding: 0.75rem 1.5rem;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.sidebar .nav-link:hover {
+    color: var(--eops-text-primary) !important;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+.sidebar .nav-link.active {
+    color: var(--eops-text-primary) !important;
+    background-color: rgba(51, 125, 255, 0.1);
+    border-left-color: var(--eops-accent-blue);
+}
+.sidebar .nav-link i {
+    width: 24px;
+    text-align: center;
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+}
+.sidebar .nav-link:hover i {
+    transform: scale(1.1);
+}
+
+/* --- Component Overrides --- */
+.card, .modal-content, .list-group-item {
+    background-color: var(--eops-bg-card) !important;
+    border: 1px solid var(--eops-border-color) !important;
+    color: var(--eops-text-primary) !important;
+    box-shadow: none; /* Reset shadow */
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+    /* Optional: subtle hover effect for cards */
+    /* border-color: rgba(255, 255, 255, 0.15) !important; */
+}
+.card-header {
+    background-color: transparent !important;
+    border-bottom: 1px solid var(--eops-border-color) !important;
+}
+
+.list-group-flush > .list-group-item {
+    border-width: 0 0 1px;
+}
+
+.table {
+    --bs-table-bg: transparent;
+    --bs-table-striped-bg: rgba(255, 255, 255, 0.03);
+    --bs-table-color: var(--eops-text-primary);
+    --bs-table-border-color: var(--eops-border-color);
+    --bs-table-hover-bg: rgba(255, 255, 255, 0.05);
+    color: var(--eops-text-primary);
+    vertical-align: middle;
+}
+.table td, .table th {
+    color: var(--eops-text-primary) !important;
+    padding: 0.9rem 1rem;
+}
+.table tr { transition: background-color 0.2s ease-in-out; }
+.table th { color: var(--eops-text-secondary) !important; font-weight: 500; }
+.table td a { color: var(--eops-text-primary) !important; font-weight: 500; }
+.table td code { color: var(--eops-text-secondary); }
+
+.text-muted { color: var(--eops-text-secondary) !important; }
+
+/* Buttons */
+.btn {
+    font-weight: 600;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+}
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.btn-primary { background-color: var(--eops-accent-blue) !important; border-color: var(--eops-accent-blue) !important; }
+.btn-primary:hover { background-color: var(--eops-accent-blue-hover) !important; border-color: var(--eops-accent-blue-hover) !important; }
+.btn-success { background-color: var(--eops-accent-green) !important; border-color: var(--eops-accent-green) !important; }
+.btn-danger { background-color: var(--eops-accent-red) !important; border-color: var(--eops-accent-red) !important; }
+.btn-outline-primary {
+    color: var(--eops-accent-blue);
+    border-color: var(--eops-accent-blue);
+}
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: var(--eops-accent-blue);
+}
+
+/* Forms */
+.form-control, .form-select {
+    background-color: var(--eops-bg-dark) !important;
+    color: var(--eops-text-primary) !important;
+    border-color: var(--eops-border-color) !important;
+    border-radius: 6px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.form-control:focus, .form-select:focus {
+    background-color: var(--eops-bg-dark) !important;
+    color: var(--eops-text-primary) !important;
+    border-color: var(--eops-accent-blue) !important;
+    box-shadow: 0 0 0 .25rem rgba(51, 125, 255, .25) !important;
+}
+
+/* Modal */
+.modal-header, .modal-footer { border-color: var(--eops-border-color) !important; }
+.btn-close { filter: invert(0.8); }
+
+/* Tabs */
+.nav-tabs { border-bottom: 2px solid var(--eops-border-color) !important; }
+.nav-tabs .nav-link {
+    background-color: transparent !important;
+    border: none !important;
+    border-bottom: 2px solid transparent !important;
+    color: var(--eops-text-secondary) !important;
+    font-weight: 600;
+    margin-bottom: -2px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+.nav-tabs .nav-link:hover {
+    color: var(--eops-text-primary) !important;
+}
+.nav-tabs .nav-link.active {
+    color: var(--eops-text-primary) !important;
+    border-color: var(--eops-accent-blue) !important;
+}
+
+/* HTMX Indicators */
+.htmx-indicator {
+    display: none;
+}
+.htmx-request .htmx-indicator {
+    display: inline-block;
+}
+.htmx-request.htmx-indicator {
+    display: inline-block;
+}
+.htmx-request .htmx-non-indicator {
+    display: none;
+}
+
+
+/* Scrollbar */
+pre::-webkit-scrollbar, body::-webkit-scrollbar { width: 8px; }
+pre::-webkit-scrollbar-track, body::-webkit-scrollbar-track { background: var(--eops-bg-dark); }
+pre::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+pre::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover { background: #555; }

@@ -1,0 +1,6 @@
+<option value="">Select an instance to view logs...</option>
+{% for instance in instances %}
+<option value="{{ instance.id }}">
+    {{ instance.name }} ({{ instance.mode.capitalize() }} - {{ instance.status }})
+</option>
+{% endfor %}

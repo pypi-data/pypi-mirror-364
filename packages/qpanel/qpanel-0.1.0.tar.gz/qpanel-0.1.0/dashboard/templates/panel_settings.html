@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}Panel Settings - Qpanel{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Panel Settings</h1>
+</div>
+
+<!-- Tab Navigation -->
+<ul class="nav nav-tabs" id="settingsTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="panel-settings-tab" data-bs-toggle="tab" data-bs-target="#panel-settings-pane" type="button" role="tab" aria-selected="true">
+            <i class="bi bi-sliders me-2"></i> Panel Settings
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="security-settings-tab" data-bs-toggle="tab" data-bs-target="#security-settings-pane" type="button" role="tab" aria-selected="false">
+            <i class="bi bi-shield-lock me-2"></i> Security Settings
+        </button>
+    </li>
+    <!-- 整合后的新Tab -->
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="logging-tab" data-bs-toggle="tab" data-bs-target="#logging-pane" type="button" role="tab" aria-selected="false">
+             <i class="bi bi-card-list me-2"></i> Logging & Notifications
+        </button>
+    </li>
+</ul>
+
+<!-- Tab Content -->
+<div class="tab-content pt-4" id="settingsTabContent">
+    
+    <!-- 1. Panel Settings Pane (无变化) -->
+    <div class="tab-pane fade show active" id="panel-settings-pane" role="tabpanel" aria-labelledby="panel-settings-tab">
+        <!-- ... 内容保持不变, 和上次一样 ... -->
+        <div class="card" x-data='{ 
+            formData: {
+                panel_name: {{ settings.panel_name | tojson }},
+                safe_directory: {{ settings.safe_directory | tojson }}
+            },
+            feedback: "",
+            submitForm() {
+                this.feedback = "<div class=`alert alert-info`>Saving...</div>";
+                fetch("/api/panel/settings", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(this.formData)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        this.feedback = `<div class="alert alert-success">${data.message} Page will reload.</div>`;
+                        setTimeout(() => window.location.reload(), 1500);
+                    } else {
+                        this.feedback = `<div class="alert alert-danger">${data.detail || "An error occurred."}</div>`;
+                    }
+                })
+                .catch(err => {
+                    this.feedback = `<div class="alert alert-danger">Request failed: ${err}</div>`;
+                });
+            }
+        }'>
+            <div class="card-body">
+                <h5 class="card-title">General Settings</h5>
+                <p class="card-subtitle mb-4">Configure basic panel information and behavior.</p>
+                <div class="mb-3 row"><label class="col-sm-3 col-form-label">Panel Alias</label><div class="col-sm-9"><input type="text" class="form-control" x-model="formData.panel_name"><small class="form-text text-muted">A friendly name for your panel, displayed in the browser tab title.</small></div></div>
+                <div class="mb-3 row"><label class="col-sm-3 col-form-label">Safe Root Directory</label><div class="col-sm-9"><input type="text" class="form-control" x-model="formData.safe_directory"><small class="form-text text-muted">Restricts the file browser to this directory and its subdirectories. Requires restart to take full effect.</small></div></div>
+                <div class="mb-3 row"><label class="col-sm-3 col-form-label">Panel Port</label><div class="col-sm-9"><input type="text" class="form-control" value="8000" readonly disabled></div></div>
+                <div x-html="feedback" class="mt-3"></div>
+            </div>
+            <div class="card-footer text-end"><button class="btn btn-primary" @click="submitForm()">Save Settings</button></div>
+        </div>
+    </div>
+
+    <!-- 2. Security Settings Pane (无变化) -->
+    <div class="tab-pane fade" id="security-settings-pane" role="tabpanel" aria-labelledby="security-settings-tab">
+        <!-- ... 内容保持不变, 和上次一样 ... -->
+        <div class="card">
+            <div class="card-body"><h5 class="card-title">Password Management</h5><p class="card-subtitle mb-4">Manage the master password for the panel.</p><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#changePasswordModal"><i class="bi bi-key-fill me-2"></i>Change Master Password</button><div class="form-text text-danger mt-2"><strong>Warning:</strong> Changing the master password will clear all saved API keys, as they will no longer be decryptable.</div></div>
+        </div>
+    </div>
+
+    <!-- 3. Logging & Notifications Pane (新的整合面板) -->
+    <div class="tab-pane fade" id="logging-pane" role="tabpanel" aria-labelledby="logging-tab"
+         hx-get="/logging-and-notifications"
+         hx-trigger="load"
+         hx-swap="innerHTML">
+         <div class="p-5 text-center text-muted"><span class="spinner-border"></span> Loading module...</div>
+    </div>
+
+</div>
+
+<!-- Change Password Modal (无变化) -->
+<div class="modal fade" id="changePasswordModal" tabindex="-1">
+    <!-- ... 内容保持不变, 和上次一样 ... -->
+    <div class="modal-dialog"><div class="modal-content"><div x-data='{
+                formData: { current_password: "", new_password: "" },
+                confirm_password: "",
+                feedback: "",
+                submitForm() {
+                    if (this.formData.new_password !== this.confirm_password) {
+                        this.feedback = "<div class=`alert alert-danger`>New passwords do not match.</div>";
+                        return;
+                    }
+                    this.feedback = "<div class=`alert alert-info`>Updating...</div>";
+                    fetch("/api/panel/password", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(this.formData)
+                    })
+                    .then(res => {
+                        if (res.ok) return res.json();
+                        return res.json().then(err => Promise.reject(err));
+                    })
+                    .then(data => {
+                        this.feedback = `<div class="alert alert-success">${data.message} Please log out and log back in.</div>`;
+                        htmx.trigger("#message-logs-list", "load");
+                        setTimeout(() => bootstrap.Modal.getInstance(document.getElementById("changePasswordModal")).hide(), 2000);
+                    })
+                    .catch(err => {
+                        this.feedback = `<div class="alert alert-danger">${err.detail || "An error occurred."}</div>`;
+                    });
+                }
+            }'><div class="modal-header"><h5 class="modal-title">Change Master Password</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="alert alert-warning">This is a critical operation. All API keys will be deleted.</div><div class="mb-3"><label class="form-label">Current Master Password</label><input type="password" class="form-control" x-model="formData.current_password" required></div><div class="mb-3"><label class="form-label">New Master Password</label><input type="password" class="form-control" x-model="formData.new_password" required></div><div class="mb-3"><label class="form-label">Confirm New Password</label><input type="password" class="form-control" x-model="confirm_password" required></div><div x-html="feedback"></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button><button type="button" class="btn btn-danger" @click="submitForm()">Confirm Change</button></div></div></div></div>
+</div>
+{% endblock %}

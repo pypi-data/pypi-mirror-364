@@ -1,0 +1,20 @@
+<div class="card-body">
+    {% if error %}
+        <div class="alert alert-danger">
+            <h5 class="alert-title">Connection Failed</h5>
+            {{ error }}
+        </div>
+        <p class="text-muted">Ensure Docker is running and the socket is accessible, or configure a remote Docker host.</p>
+    {% else %}
+        <dl class="row">
+            <dt class="col-sm-4">Server Version</dt>
+            <dd class="col-sm-8">{{ info.ServerVersion }}</dd>
+            <dt class="col-sm-4">Containers</dt>
+            <dd class="col-sm-8">{{ info.Containers }} (Running: {{ info.ContainersRunning }})</dd>
+            <dt class="col-sm-4">Images</dt>
+            <dd class="col-sm-8">{{ info.Images }}</dd>
+            <dt class="col-sm-4">Operating System</dt>
+            <dd class="col-sm-8">{{ info.OperatingSystem }}</dd>
+        </dl>
+    {% endif %}
+</div>

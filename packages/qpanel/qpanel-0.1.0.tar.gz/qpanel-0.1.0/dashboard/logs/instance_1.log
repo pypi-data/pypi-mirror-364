@@ -1,0 +1,13 @@
+2025-07-20 19:57:38 - eops [inst:framework] - INFO - 🚀 Starting Eops runner via CLI...
+2025-07-20 19:57:38 - eops [inst:framework] - ERROR - 🔥 An application error occurred: No module named 'ema_cross_backtest'
+Traceback (most recent call last):
+  File "/Users/ops/Desktop/Eops/eops/cli.py", line 87, in main
+    config = load_config_from_file(config_file)
+  File "/Users/ops/Desktop/Eops/eops/utils/config_loader.py", line 28, in load_config_from_file
+    spec.loader.exec_module(config_module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/Users/ops/Desktop/dashboard/dashboard/temp_configs/inst_1_config.py", line 3, in <module>
+    from ema_cross_backtest import *
+ModuleNotFoundError: No module named 'ema_cross_backtest'

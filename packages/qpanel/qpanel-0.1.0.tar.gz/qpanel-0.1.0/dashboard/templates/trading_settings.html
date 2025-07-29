@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Trading Settings - Qpanel{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Trading Settings</h1>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addApiKeyModal">
+        <i class="bi bi-plus-lg me-2"></i> Add API Key
+    </button>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title mb-0">Saved API Keys</h3>
+    </div>
+    <div id="api-keys-list"
+         class="table-responsive"
+         hx-get="/api/keys/list"
+         hx-trigger="load, apiKeyUpdated from:body"
+         hx-swap="innerHTML">
+        <div class="p-4 text-center text-muted">
+            <span class="spinner-border spinner-border-sm"></span> Loading keys...
+        </div>
+    </div>
+</div>
+
+
+<!-- Add/Edit API Key Modal -->
+<div class="modal fade" id="addApiKeyModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="api-key-form"
+                  hx-post="/api/keys"
+                  hx-trigger="submit"
+                  hx-on::after-request="if(event.detail.successful) { bootstrap.Modal.getInstance(this.closest('.modal')).hide(); this.reset(); }">
+                
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New API Key</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="form-feedback" class="mb-3"></div>
+                    <div class="mb-3">
+                        <label class="form-label">Key Nickname</label>
+                        <input type="text" class="form-control" name="name" placeholder="e.g., My Binance Futures" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Exchange</label>
+                        <select class="form-select" name="exchange">
+                            <option value="binance">Binance</option>
+                            <option value="okx">OKX</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">API Key</label>
+                        <input type="password" class="form-control" name="api_key" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Secret Key <span class="text-muted">(Optional)</span></label>
+                        <input type="password" class="form-control" name="secret_key">
+                    </div>
+                     <div class="mb-3">
+                        <label class="form-label">Passphrase <span class="text-muted">(Optional, for OKX etc.)</span></label>
+                        <input type="password" class="form-control" name="passphrase">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-lg me-2"></i>Cancel</button>
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-save me-2"></i>Save Key</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

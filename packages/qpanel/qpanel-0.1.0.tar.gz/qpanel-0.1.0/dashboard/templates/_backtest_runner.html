@@ -1,0 +1,71 @@
+<div class="row g-4">
+    <!-- Left side: Backtest History -->
+    <div class="col-lg-5">
+        <div class="card h-100">
+            <div class="card-header"><h4 class="card-title mb-0">Backtest History</h4></div>
+            <div id="backtest-history"
+                 class="list-group list-group-flush"
+                 style="max-height: 70vh; overflow-y: auto;"
+                 hx-get="/api/projects/{{ project.id }}/instances?mode=backtest"
+                 hx-trigger="load, backtestUpdated from:body"
+                 hx-swap="innerHTML">
+                 <div class="p-4 text-center text-muted">
+                    <span class="spinner-border spinner-border-sm"></span> Loading history...
+                 </div>
+            </div>
+        </div>
+    </div>
+    <!-- Right side: Backtest Launcher -->
+    <div class="col-lg-7">
+        <div class="card">
+            <form id="run-backtest-form"
+                  hx-post="/api/projects/{{ project.id }}/backtest"
+                  hx-target="#backtest-history"
+                  hx-swap="afterbegin"
+                  hx-indicator="#backtest-spinner">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Run New Backtest</h4>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Instance Name</label>
+                            <input type="text" class="form-control" name="name" value="backtest-{{ now_str }}" required>
+                        </div>
+                         <div class="col-md-6 mb-3">
+                            <label class="form-label">Initial Cash</label>
+                            <input type="number" class="form-control" name="initial_cash" value="10000" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Data File</label>
+                        <div id="data-file-select-container">
+                            <select class="form-select" name="data_path" required>
+                                <option>Loading...</option>
+                            </select>
+                        </div>
+                        <div class="form-text">
+                            Manage data files in the <a href="/data-center">Data Center</a>.
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <h5 class="mb-3">Strategy Parameters</h5>
+                    <div id="backtest-params-form-container">
+                         <p class="text-center text-muted p-4">
+                            <span class="spinner-border spinner-border-sm"></span> Loading parameters...
+                         </p>
+                    </div>
+                </div>
+                <div class="card-footer text-end d-flex justify-content-between align-items-center">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="runBacktestInDockerCheck" name="run_in_docker" value="true">
+                        <label class="form-check-label" for="runBacktestInDockerCheck">Run in Docker</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <span id="backtest-spinner" class="spinner-border spinner-border-sm htmx-indicator me-2" role="status"></span>
+                        <i class="bi bi-play-fill htmx-non-indicator me-2"></i>
+                        Launch Backtest
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

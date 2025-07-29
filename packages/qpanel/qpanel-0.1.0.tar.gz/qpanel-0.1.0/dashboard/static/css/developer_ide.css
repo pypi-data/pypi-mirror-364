@@ -1,0 +1,32 @@
+.file-tree-item {
+    padding: 0.3rem 0.5rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.file-tree-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+.file-tree-item.is-active {
+    background-color: var(--eops-accent-blue);
+    color: #fff !important;
+}
+.file-tree-item.is-active code,
+.file-tree-item.is-active i,
+.file-tree-item.is-active span {
+    color: #fff !important;
+}
+
+/* --- NEW: CodeMirror Editor Styles --- */
+#editor-container {
+    flex-grow: 1;
+    overflow: hidden; /* Important for containing the editor scrollbars */
+    height: 100%;
+}
+
+.cm-editor {
+    height: 100%;
+}

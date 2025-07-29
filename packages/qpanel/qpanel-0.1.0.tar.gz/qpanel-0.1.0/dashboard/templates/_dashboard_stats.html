@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-md-4 mb-3 mb-md-0">
+        <div class="card text-center h-100">
+            <div class="card-body">
+                <h5 class="card-title">Running Strategies</h5>
+                <p class="card-text fs-1 fw-bold">{{ running_count }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">System Status</h5>
+                <div class="mb-2">
+                    <span>CPU Usage: <strong>{{ cpu_percent }}%</strong></span>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: {{ cpu_percent }}%;" aria-valuenow="{{ cpu_percent }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+                <div>
+                    <span>Memory Usage: <strong>{{ mem_used_gb }} GB / {{ mem_total_gb }} GB</strong></span>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: {{ mem_percent }}%;" aria-valuenow="{{ mem_percent }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

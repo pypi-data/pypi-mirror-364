@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+
+{% block title %}Developer IDE - Qpanel{% endblock %}
+
+{% block head_scripts %}
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/developer_ide.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/material-darker.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<!-- Main IDE Layout -->
+<div class="vh-100 d-flex flex-column" x-data x-init="$store.ide.init()">
+    <!-- Top Header -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="d-flex align-items-center">
+            <h1>Developer IDE</h1>
+            <template x-if="$store.ide.selectedProject">
+                <div class="ms-3 d-flex align-items-center">
+                    <span class="badge text-bg-secondary fs-6" x-text="$store.ide.selectedProject.name"></span>
+                    <button class="btn btn-sm btn-outline-secondary ms-2 py-0" @click="$store.ide.switchProject()" title="Switch Project">
+                        <i class="bi bi-arrow-left-right"></i>
+                    </button>
+                </div>
+            </template>
+        </div>
+        <div id="editor-status" class="text-muted fs-sm d-flex align-items-center">
+             <template x-if="$store.ide.currentFile.path">
+                <div class="d-flex align-items-center">
+                    <span><code class="text-white" x-text="$store.ide.getRelativePath($store.ide.currentFile.path)"></code></span>
+                    <span x-show="$store.ide.isDirty" class="badge bg-warning text-dark ms-2">Modified</span>
+                    <button class="btn btn-sm btn-primary ms-3" @click="$store.ide.saveFile()" :disabled="!$store.ide.isDirty">
+                        <i class="bi bi-save me-1"></i> Save
+                    </button>
+                </div>
+             </template>
+             <template x-if="$store.ide.selectedProject && !$store.ide.currentFile.path">
+                <span>Select a file to start editing.</span>
+             </template>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="row g-0 flex-grow-1">
+        <template x-if="!$store.ide.selectedProject">
+            <div class="col-12 d-flex align-items-center justify-content-center">
+                <div class="text-center">
+                    <template x-if="$store.ide.projectList === null">
+                        <div class="p-5"><span class="spinner-border"></span></div>
+                    </template>
+                    <template x-if="$store.ide.projectList && $store.ide.projectList.length > 0">
+                        <div class="card" style="width: 25rem;">
+                            <div class="card-body">
+                                <i class="bi bi-folder2-open" style="font-size: 2rem;"></i>
+                                <h5 class="card-title mt-2">Select a Project to Begin</h5>
+                                <p class="card-text text-muted">Choose a project from the list below to start editing its files.</p>
+                                <select class="form-select" @change="$store.ide.selectProject($event.target.value)">
+                                    <option value="" selected disabled>-- Select a project --</option>
+                                    <template x-for="project in $store.ide.projectList" :key="project.id">
+                                        <option :value="project.id" x-text="project.name"></option>
+                                    </template>
+                                </select>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </template>
+        
+        <template x-if="$store.ide.selectedProject">
+            <div class="d-flex flex-grow-1">
+                <!-- --- START OF REFACTORED FILE TREE --- -->
+                <div class="col-md-3 bg-sidebar border-end overflow-auto">
+                    <div id="file-tree-container" class="p-2">
+                        <template x-if="!$store.ide.fileTree">
+                            <div class="p-3 text-center text-muted">
+                                <span class="spinner-border spinner-border-sm"></span> Loading files...
+                            </div>
+                        </template>
+
+                        <template x-if="$store.ide.fileTree">
+                            <!-- This is the recursive template for the file tree -->
+                            <template x-for="node in [$store.ide.fileTree]" :key="node.path">
+                                <div x-data="fileTreeNode(node)">
+                                    <div @click="node.type === 'directory' ? open = !open : $store.ide.openFile(node.path)"
+                                         class="file-tree-item d-flex justify-content-between align-items-center"
+                                         :class="{ 'is-active': $store.ide.currentFile.path === node.path }">
+                                        
+                                        <span class="text-truncate">
+                                            <i class="bi me-2" :class="{
+                                                'bi-folder-fill text-warning': node.type === 'directory',
+                                                'bi-chevron-down': node.type === 'directory' && open,
+                                                'bi-chevron-right': node.type === 'directory' && !open,
+                                                'bi-file-earmark-text': node.type === 'file'
+                                            }"></i>
+                                            <span x-text="node.name"></span>
+                                        </span>
+                            
+                                        <template x-if="node.type === 'directory' && $store.ide.isTopLevelProject(node.path)">
+                                             <button @click.stop.prevent="$store.ide.showProjectModal(node)"
+                                                     class="btn btn-sm btn-outline-primary ms-2 py-0 px-1"
+                                                     title="Set as Eops Project">
+                                                 <i class="bi bi-box-arrow-in-right"></i>
+                                             </button>
+                                        </template>
+                                    </div>
+                                    
+                                    <div x-show="open" x-transition class="ms-3 ps-2 border-start border-secondary border-opacity-25">
+                                        <template x-for="childNode in node.children" :key="childNode.path">
+                                            <!-- Recursion happens here by re-instantiating the component -->
+                                            <div x-data="fileTreeNode(childNode)">
+                                                <div @click="node.type === 'directory' ? open = !open : $store.ide.openFile(node.path)"
+                                                    class="file-tree-item d-flex justify-content-between align-items-center"
+                                                    :class="{ 'is-active': $store.ide.currentFile.path === node.path }">
+                                                    
+                                                    <span class="text-truncate">
+                                                        <i class="bi me-2" :class="{
+                                                            'bi-folder-fill text-warning': node.type === 'directory',
+                                                            'bi-chevron-down': node.type === 'directory' && open,
+                                                            'bi-chevron-right': node.type === 'directory' && !open,
+                                                            'bi-file-earmark-text': node.type === 'file'
+                                                        }"></i>
+                                                        <span x-text="node.name"></span>
+                                                    </span>
+                                        
+                                                    <template x-if="node.type === 'directory' && $store.ide.isTopLevelProject(node.path)">
+                                                        <button @click.stop.prevent="$store.ide.showProjectModal(node)"
+                                                                class="btn btn-sm btn-outline-primary ms-2 py-0 px-1"
+                                                                title="Set as Eops Project">
+                                                            <i class="bi bi-box-arrow-in-right"></i>
+                                                        </button>
+                                                    </template>
+                                                </div>
+                                                <div x-show="open" x-transition class="ms-3 ps-2 border-start border-secondary border-opacity-25">
+                                                    <template x-for="childNode in node.children" :key="childNode.path">
+                                                         <!-- This is a nested recursion, it is intentionally duplicated for simplicity -->
+                                                         <div x-data="fileTreeNode(childNode)">
+                                                            <div @click="node.type === 'directory' ? open = !open : $store.ide.openFile(node.path)"
+                                                                class="file-tree-item d-flex justify-content-between align-items-center"
+                                                                :class="{ 'is-active': $store.ide.currentFile.path === node.path }">
+                                                                
+                                                                <span class="text-truncate">
+                                                                    <i class="bi me-2" :class="{
+                                                                        'bi-folder-fill text-warning': node.type === 'directory',
+                                                                        'bi-chevron-down': node.type === 'directory' && open,
+                                                                        'bi-chevron-right': node.type === 'directory' && !open,
+                                                                        'bi-file-earmark-text': node.type === 'file'
+                                                                    }"></i>
+                                                                    <span x-text="node.name"></span>
+                                                                </span>
+                                                            </div>
+                                                            <div x-show="open" x-transition class="ms-3 ps-2 border-start border-secondary border-opacity-25">
+                                                                <!-- Deeper levels could be handled by a more complex component, but this level of nesting is often sufficient -->
+                                                            </div>
+                                                        </div>
+                                                    </template>
+                                                </div>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                            </template>
+                        </template>
+                    </div>
+                </div>
+                <!-- --- END OF REFACTORED FILE TREE --- -->
+
+                <div class="col-md-9 d-flex flex-column">
+                    <textarea id="editor-textarea" style="display: none;"></textarea>
+                </div>
+            </div>
+        </template>
+    </div>
+
+    <!-- Modal for 'Set as Project' -->
+    <div class="modal fade" id="setProjectModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><h5 class="modal-title">Set as Eops Project</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                <template x-if="$store.ide.projectToCreate">
+                    <form @submit.prevent="$store.ide.createProject($event)">
+                        <div class="modal-body">
+                            <p>You are setting <strong x-text="$store.ide.projectToCreate.name"></strong> as a new project.</p>
+                            <div class="mb-3">
+                                <label class="form-label">Select Default Config File</label>
+                                <select name="config_path" class="form-select" required>
+                                    <option value="" disabled selected>Choose a config file...</option>
+                                    <template x-for="file in $store.ide.getConfigCandidates($store.ide.projectToCreate)">
+                                        <option :value="file.name" x-text="file.name"></option>
+                                    </template>
+                                </select>
+                            </div>
+                            <div id="project-creation-feedback"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Create Project</button>
+                        </div>
+                    </form>
+                </template>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block body_scripts %}
+<script>
+    window.ECHOPS_IDE_CONFIG = {
+        projectsDir: '{{ PROJ_DIR_STR | e }}'
+    };
+</script>
+<script src="{{ url_for('static', path='/js/developer_ide.js') }}"></script>
+{% endblock %}

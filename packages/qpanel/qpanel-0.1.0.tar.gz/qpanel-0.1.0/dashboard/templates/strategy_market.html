@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Strategy Market - Qpanel{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Strategy Market</h1>
+</div>
+<p class="text-muted">
+    Discover and clone example or community-provided strategies to get started quickly. Cloned projects will appear in your "Strategy Projects" page.
+</p>
+
+<div id="strategy-market-list"
+     hx-get="/api/market/list"
+     hx-trigger="load"
+     hx-swap="innerHTML">
+    <div class="card">
+        <div class="card-body text-center p-5">
+            <span class="spinner-border" role="status"></span>
+            <p class="mt-3 text-muted">Loading available strategies...</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

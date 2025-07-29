@@ -1,0 +1,33 @@
+<div class="table-responsive">
+    <table class="table table-vcenter card-table">
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Channel</th>
+                <th>Status</th>
+                <th>Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in logs %}
+            <tr>
+                <td class="text-muted">{{ log.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                <td>{{ log.channel_name }}</td>
+                <td>
+                    {% if log.status == 'success' %}
+                    <span class="badge text-bg-success">Success</span>
+                    {% else %}
+                    <span class="badge text-bg-danger" title="{{ log.details }}">Failed</span>
+                    {% endif %}
+                </td>
+                <td class="fs-sm">
+                    <pre class="m-0 p-0 bg-transparent border-0 text-white" style="white-space: pre-wrap; word-break: break-all;">{{ log.message }}</pre>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% if not logs %}
+<p class="text-muted text-center p-4">No notification logs found.</p>
+{% endif %}

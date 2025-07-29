@@ -1,0 +1,32 @@
+# pyproject.toml
+[tool.poetry]
+name = "qpanel"
+version = "0.1.0"
+description = "A web-based dashboard for managing and visualizing quantitative trading strategies."
+authors = ["opsdu520@gmail.com"]
+readme = "README.md"
+packages = [{include = "dashboard"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+eops = "0.1.3"
+fastapi = "^0.111.0"
+uvicorn = {extras = ["standard"], version = "^0.29.0"}
+jinja2 = "^3.1.4"
+python-multipart = "^0.0.9"
+sqlmodel = "^0.0.18"
+psutil = "^5.9.8"
+aiofiles = "^23.2.1"
+cryptography = "^40.0.0"
+pandas = "2.3.0"
+quantstats = "0.0.64"
+httpx = "^0.27.0"
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+docker = "^7.0.0" # <-- 新增
+
+[tool.poetry.scripts]
+panel = "dashboard.main:run_server"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

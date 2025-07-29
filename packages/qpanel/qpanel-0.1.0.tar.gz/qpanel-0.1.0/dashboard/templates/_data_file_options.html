@@ -1,0 +1,4 @@
+<option value="" disabled selected>Select a data file...</option>
+{% for file in files %}
+<option value="{{ file.path }}">{{ file.name }}</option>
+{% endfor %}

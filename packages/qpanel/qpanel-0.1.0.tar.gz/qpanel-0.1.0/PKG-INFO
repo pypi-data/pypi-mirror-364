@@ -1,0 +1,29 @@
+Metadata-Version: 2.3
+Name: qpanel
+Version: 0.1.0
+Summary: A web-based dashboard for managing and visualizing quantitative trading strategies.
+Author: opsdu520@gmail.com
+Requires-Python: >=3.9,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: aiofiles (>=23.2.1,<24.0.0)
+Requires-Dist: cryptography (>=40.0.0,<41.0.0)
+Requires-Dist: docker (>=7.0.0,<8.0.0)
+Requires-Dist: eops (==0.1.3)
+Requires-Dist: fastapi (>=0.111.0,<0.112.0)
+Requires-Dist: httpx (>=0.27.0,<0.28.0)
+Requires-Dist: jinja2 (>=3.1.4,<4.0.0)
+Requires-Dist: pandas (==2.3.0)
+Requires-Dist: passlib[bcrypt] (>=1.7.4,<2.0.0)
+Requires-Dist: psutil (>=5.9.8,<6.0.0)
+Requires-Dist: python-multipart (>=0.0.9,<0.0.10)
+Requires-Dist: quantstats (==0.0.64)
+Requires-Dist: sqlmodel (>=0.0.18,<0.0.19)
+Requires-Dist: uvicorn[standard] (>=0.29.0,<0.30.0)
+Description-Content-Type: text/markdown
+
+

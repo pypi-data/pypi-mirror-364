@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Home - Qpanel{% endblock %}
+{% block content %}
+<h1 class="mb-4">Dashboard</h1>
+
+<!-- This div will be updated by HTMX periodically -->
+<div id="dashboard-stats"
+     hx-get="/api/dashboard/stats"
+     hx-trigger="load, every 5s"
+     hx-swap="innerHTML">
+    <div class="row">
+        <div class="col-md-4"><div class="card text-center"><div class="card-body">
+            <h5 class="card-title">Running Strategies</h5>
+            <p class="card-text fs-1"><span class="spinner-border spinner-border-sm"></span></p>
+        </div></div></div>
+        <div class="col-md-8"><div class="card"><div class="card-body">
+            <h5 class="card-title">System Status</h5>
+            <p>CPU Usage: <span class="spinner-border spinner-border-sm"></span></p>
+            <p>Memory Usage: <span class="spinner-border spinner-border-sm"></span></p>
+        </div></div></div>
+    </div>
+</div>
+{% endblock %}
