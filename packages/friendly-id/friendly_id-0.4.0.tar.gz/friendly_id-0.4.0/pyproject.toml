@@ -1,0 +1,27 @@
+[project]
+name = "friendly-id"
+version = "0.4.0"
+description = "friendly-id is a Python library to generate really unique and url friendly IDs based on UUID and base62"
+readme = "README.md"
+authors = [
+    { name = "Junlin Zhou", email = "jameszhou2108@hotmail.com" }
+]
+license = { file = "LICENSE" }
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+keywords = ["uuid", "friendly-id"]
+requires-python = ">=3.9"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.2.0",
+    "ruff>=0.12.4",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
