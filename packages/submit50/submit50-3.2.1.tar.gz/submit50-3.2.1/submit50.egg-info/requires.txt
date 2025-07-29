@@ -1,0 +1,6 @@
+lib50<4,>=3
+packaging
+pytz
+requests>=2.19
+setuptools
+termcolor>=1.1
