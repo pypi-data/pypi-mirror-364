@@ -1,0 +1,207 @@
+Metadata-Version: 2.4
+Name: peft-singlora
+Version: 0.2.0
+Summary: SingLoRA: Single Low-Rank Adaptation for PEFT
+Author-email: bghira <bghira@users.github.com>
+Maintainer-email: bghira <bghira@users.github.com>
+License: BSD 2-Clause License
+        
+        Copyright (c) 2025, bagheera
+        
+        Redistribution and use in source and binary forms, with or without
+        modification, are permitted provided that the following conditions are met:
+        
+        1. Redistributions of source code must retain the above copyright notice, this
+           list of conditions and the following disclaimer.
+        
+        2. Redistributions in binary form must reproduce the above copyright notice,
+           this list of conditions and the following disclaimer in the documentation
+           and/or other materials provided with the distribution.
+        
+        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+        AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+        IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+        DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+        FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+        DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+        SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+        CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+        OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+        OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+        
+Project-URL: Homepage, https://github.com/bghira/PEFT-SingLoRA
+Project-URL: Documentation, https://github.com/bghira/PEFT-SingLoRA#readme
+Project-URL: Repository, https://github.com/bghira/PEFT-SingLoRA
+Project-URL: Issues, https://github.com/bghira/PEFT-SingLoRA/issues
+Keywords: peft,lora,singlora,fine-tuning,transformers,pytorch
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: torch>=1.13.0
+Requires-Dist: peft>=0.7.0
+Requires-Dist: transformers>=4.34.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0; extra == "dev"
+Requires-Dist: black>=23.0; extra == "dev"
+Requires-Dist: isort>=5.12; extra == "dev"
+Requires-Dist: flake8>=6.0; extra == "dev"
+Requires-Dist: mypy>=1.0; extra == "dev"
+Provides-Extra: examples
+Requires-Dist: datasets>=2.14.0; extra == "examples"
+Requires-Dist: accelerate>=0.21.0; extra == "examples"
+Requires-Dist: tqdm>=4.65.0; extra == "examples"
+Dynamic: license-file
+
+# PEFT-SingLoRA
+
+[![PyPI version](https://badge.fury.io/py/peft-singlora.svg)](https://badge.fury.io/py/peft-singlora)
+[![License](https://img.shields.io/badge/License-BSD_2--Clause-blue.svg)](https://opensource.org/licenses/BSD-2-Clause)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+
+SingLoRA (Single Low-Rank Adaptation) is an efficient alternative to traditional LoRA that uses a single low-rank matrix instead of two, reducing parameters while maintaining performance. This package provides a PEFT-compatible implementation of SingLoRA based on [kyegomez's implementation](https://github.com/kyegomez/SingLoRA).
+
+## Key Features
+
+- 🚀 **50% fewer parameters** than standard LoRA
+- 🔧 **Fully compatible with PEFT** ecosystem
+- 📊 **Mathematically equivalent** to standard LoRA
+- 🎯 **Easy integration** with existing PEFT workflows
+
+## Installation
+
+```bash
+pip install peft-singlora
+```
+
+## Quick Start
+
+Here is an extremely simplified training loop example to help understand when to update the global step:
+
+```python
+from transformers import AutoModelForCausalLM
+from peft import LoraConfig, get_peft_model
+from peft_singlora import setup_singlora, update_singlora_global_step
+
+# Load your model
+model = AutoModelForCausalLM.from_pretrained("your-model-name")
+
+# Setup SingLoRA (this registers it with PEFT)
+setup_singlora()
+
+# Configure LoRA as usual - it will use SingLoRA under the hood
+config = LoraConfig(
+    r=8,
+    lora_alpha=32,
+    target_modules=["q_proj", "v_proj"],
+    lora_dropout=0.1,
+)
+
+# Create PEFT model - will automatically use SingLoRA for linear layers
+peft_model = get_peft_model(model, config)
+
+# Training loop with proper step tracking
+gradient_accumulation_steps = 4
+global_step = 0
+
+for epoch in range(num_epochs):
+    for batch_idx, batch in enumerate(dataloader):
+        # Forward pass
+        outputs = peft_model(**batch)
+        loss = outputs.loss / gradient_accumulation_steps
+        
+        # Backward pass
+        loss.backward()
+        
+        # Update weights and global step every N batches
+        if (batch_idx + 1) % gradient_accumulation_steps == 0:
+            optimizer.step()
+            optimizer.zero_grad()
+            
+            # Update SingLoRA step counter after optimizer step
+            update_singlora_global_step(peft_model, global_step)
+            global_step += 1
+```
+
+## How It Works
+
+Traditional LoRA uses two matrices (A and B) for the low-rank decomposition:
+```
+W = W_0 + BA
+```
+
+SingLoRA uses a single matrix A with a symmetric decomposition:
+```
+W = W_0 + α/r * A @ A^T
+```
+
+This reduces trainable parameters from `2 * d * r` to `d * r` while maintaining the same expressive power.
+
+## Advanced Usage
+
+### Custom Configuration
+
+```python
+from peft_singlora import SingLoRAConfig
+
+config = SingLoRAConfig(
+    r=16,
+    lora_alpha=32,
+    target_modules=["q_proj", "v_proj", "k_proj"],
+    lora_dropout=0.1,
+    ramp_up_steps=1000,  # Gradually increase adaptation strength
+)
+```
+
+### Manual Integration
+
+```python
+import torch.nn as nn
+from peft_singlora import Linear as SingLoRALinear
+
+# Register custom module mapping
+custom_module_mapping = {nn.Linear: SingLoRALinear}
+config._register_custom_module(custom_module_mapping)
+```
+
+## Examples
+
+Check out the [examples/](https://github.com/bghira/PEFT-SingLoRA/tree/main/examples) directory for:
+- Basic usage with different model architectures
+- Fine-tuning examples with real datasets
+- Performance comparisons with standard LoRA
+
+## Citation
+
+If you use SingLoRA in your research, please cite:
+
+```bibtex
+@misc{bensaïd2025singloralowrankadaptation,
+      title={SingLoRA: Low Rank Adaptation Using a Single Matrix}, 
+      author={David Bensaïd and Noam Rotstein and Roy Velich and Daniel Bensaïd and Ron Kimmel},
+      year={2025},
+      eprint={2507.05566},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2507.05566}, 
+}
+```
+
+## Contributing
+
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+
+## License
+
+This project is licensed under the BSD 2-Clause License - see the [LICENSE](LICENSE) file for details.
