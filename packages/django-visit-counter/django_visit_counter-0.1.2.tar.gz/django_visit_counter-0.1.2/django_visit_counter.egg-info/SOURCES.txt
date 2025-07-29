@@ -1,0 +1,14 @@
+MANIFEST.in
+README.md
+setup.py
+django_visit_counter/__init__.py
+django_visit_counter/apps.py
+django_visit_counter/middleware.py
+django_visit_counter/urls.py
+django_visit_counter/views.py
+django_visit_counter.egg-info/PKG-INFO
+django_visit_counter.egg-info/SOURCES.txt
+django_visit_counter.egg-info/dependency_links.txt
+django_visit_counter.egg-info/requires.txt
+django_visit_counter.egg-info/top_level.txt
+django_visit_counter/templates/personalized.html
