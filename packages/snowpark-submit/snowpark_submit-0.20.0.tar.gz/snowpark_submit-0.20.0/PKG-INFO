@@ -1,0 +1,8 @@
+Metadata-Version: 2.4
+Name: snowpark-submit
+Version: 0.20.0
+Requires-Python: >=3.10,<3.13
+Requires-Dist: snowflake-snowpark-python>=1.32.0
+Requires-Dist: pyyaml<7.0.0,>=6.0.2
+Dynamic: requires-dist
+Dynamic: requires-python
