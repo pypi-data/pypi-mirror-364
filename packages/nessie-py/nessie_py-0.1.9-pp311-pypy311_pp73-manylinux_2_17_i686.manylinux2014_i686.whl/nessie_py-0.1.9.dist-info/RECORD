@@ -1,0 +1,11 @@
+nessie/__init__.py,sha256=9GLm-89ZbkdBrxPTRkGJOCs4j85DlBZm3FAM50lN6q0,75
+nessie/catalog.py,sha256=d778shmSAIVEg-Ixb_PaqrPy2Akg9L3vcmIs7QZWV0U,6250
+nessie/core_funcs.py,sha256=I73WsBf9wp1e2MamZi3aN2VK2D6_CH06nIzVZ-rtZbc,1342
+nessie/cosmology.py,sha256=Up78Z61Wv6BDOPezlPiI0kqG4-vMUEgNHtXGtdhXtQo,3279
+nessie/helper_funcs.py,sha256=MWNe19QNwafwGPf1oBM5dn7AmEVR_S9tfyNTNQTl6aQ,5531
+nessie_py-0.1.9.dist-info/METADATA,sha256=td-IPbg3ZflM4tlnjNkmFcCHmTuMGLDv2ADCMocTHjI,7640
+nessie_py-0.1.9.dist-info/WHEEL,sha256=8PlXGlyb6dJzQLwDlhC0VDlM1UAa48gV2jVVq1f0rQQ,132
+nessie_py-0.1.9.dist-info/licenses/LICENSE,sha256=u3xND5mD7PnqUMz_LT1IwPF7Xk5Jc5Uiq4fpzrVChio,1078
+nessie_py/__init__.py,sha256=qTutN3JN_e8Sv-qsvYtPSNsBiQLrYZbO4u3e42p4iWA,119
+nessie_py/nessie_py.pypy311-pp73-x86-linux-gnu.so,sha256=pTcrlXV9J8sJzccuSgVmBsZ8wsUrNsKV1di68OX2HGk,1086068
+nessie_py-0.1.9.dist-info/RECORD,,
