@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+src/nlpbasekit.egg-info/PKG-INFO
+src/nlpbasekit.egg-info/SOURCES.txt
+src/nlpbasekit.egg-info/dependency_links.txt
+src/nlpbasekit.egg-info/requires.txt
+src/nlpbasekit.egg-info/top_level.txt
+src/nlpkit/__init__.py
+src/nlpkit/app.py
+test/test_smoke.py
