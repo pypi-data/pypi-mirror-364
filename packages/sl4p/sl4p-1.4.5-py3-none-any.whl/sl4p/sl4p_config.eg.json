@@ -1,0 +1,13 @@
+{
+    "__configver__": "C4",
+
+    "LOG" : {
+        "use_console_print": true,
+        "logging_level": "DEBUG",
+        "logging_format": "basic",
+        "logfile_savedir": "C:/Workspace/sl4p_logs",
+        "logfile_name": "LOG.OMEGA_SIMPLE",
+        
+        "purge_window_hours": 0.1
+    }
+}
