@@ -1,0 +1,27 @@
+Metadata-Version: 2.4
+Name: appli-django
+Version: 0.2.5
+Summary: Créer rapidement une structure complète d'application Django.
+Author: Nicosidick
+License: MIT
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license
+Dynamic: requires-python
+Dynamic: summary
+
+# appli-django
+
+🚀 Génère rapidement une structure complète d'application Django avec :
+
+- `models/`, `views/`, `migrations/`
+- `urls.py`, `admin.py`, `apps.py`, `tests.py`
+
+## ✅ Installation
+
+```bash
+pip install appli-django
+appli-django <nom du app>
