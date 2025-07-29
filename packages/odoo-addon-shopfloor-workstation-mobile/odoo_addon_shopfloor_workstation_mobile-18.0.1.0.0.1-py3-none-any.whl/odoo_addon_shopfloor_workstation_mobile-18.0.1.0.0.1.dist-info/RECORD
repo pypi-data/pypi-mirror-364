@@ -1,0 +1,15 @@
+odoo/addons/shopfloor_workstation_mobile/README.rst,sha256=qj2StB_eOXjc0SiTJQxwxDamHMgnqAHXDTVufzKNs2k,3303
+odoo/addons/shopfloor_workstation_mobile/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+odoo/addons/shopfloor_workstation_mobile/__manifest__.py,sha256=7u56qwLtf4zlmUqsD1fipef98bzy3CSsOkPSy-95wCQ,586
+odoo/addons/shopfloor_workstation_mobile/i18n/es_AR.po,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+odoo/addons/shopfloor_workstation_mobile/i18n/it.po,sha256=70bJ8f0IgeWxthAa8dpCCJ2VujuUWH7uSpJBUnYo8GI,411
+odoo/addons/shopfloor_workstation_mobile/i18n/pt_BR.po,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+odoo/addons/shopfloor_workstation_mobile/i18n/shopfloor_workstation_mobile.pot,sha256=2nkV-O77dcHWhLBfGldb2hwKdpsp_Iq_PU5QMeyP-mo,341
+odoo/addons/shopfloor_workstation_mobile/static/description/icon.png,sha256=6xBPJauaFOF0KDHfHgQopSc28kKvxMaeoQFQWZtfZDo,9455
+odoo/addons/shopfloor_workstation_mobile/static/description/index.html,sha256=yJ3MUDVq5UN8H3LEmQLaL0dmcYZfNsCuXvpqGyapwIo,12691
+odoo/addons/shopfloor_workstation_mobile/static/src/settings/workstation.esm.js,sha256=kaXT_Rn3DTPmlcdCMYC9NU_RLV3Q6rxY7pVsl0c_C1o,4302
+odoo/addons/shopfloor_workstation_mobile/templates/assets.xml,sha256=FloY2om0qtz5L20pZwEwcR7Xzjorpvq76SCIiUFjJc8,682
+odoo_addon_shopfloor_workstation_mobile-18.0.1.0.0.1.dist-info/METADATA,sha256=i2PyKW8jo9FBzrTo2D8jhzp0t3YeoumsB6kyrFKKwMk,3998
+odoo_addon_shopfloor_workstation_mobile-18.0.1.0.0.1.dist-info/WHEEL,sha256=9fEMia4zL7ZuZbnCOrcYogUhmn4XFIVaJ8G4YGI31xc,81
+odoo_addon_shopfloor_workstation_mobile-18.0.1.0.0.1.dist-info/top_level.txt,sha256=QE6RBQ0QX5f4eFuUcGgU5Kbq1A_qJcDs-e_vpr6pmfU,4
+odoo_addon_shopfloor_workstation_mobile-18.0.1.0.0.1.dist-info/RECORD,,
