@@ -1,0 +1,12 @@
+structure_django/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+structure_django/admin.py,sha256=suMo4x8I3JBxAFBVIdE-5qnqZ6JAZV0FESABHOSc-vg,63
+structure_django/apps.py,sha256=5dT77WQuWIB1P5_E65wgoeiH16zItZE0imrf5-FdlGU,150
+structure_django/models.py,sha256=Vjc0p2XbAPgE6HyTF6vll98A4eDhA5AvaQqsc4kQ9AQ,57
+structure_django/tests.py,sha256=mrbGGRNg5jwbTJtWWa7zSKdDyeB4vmgZCRc2nk6VY-g,60
+structure_django/views.py,sha256=xc1IQHrsij7j33TUbo-_oewy3vs03pw_etpBWaMYJl0,63
+structure_django/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+structure_django-0.1.2.dist-info/METADATA,sha256=a9JqMstSBTvE4oHXrsD8n-gViNzK-TgF4d7XBj1JeG4,776
+structure_django-0.1.2.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+structure_django-0.1.2.dist-info/entry_points.txt,sha256=aK-GfY1Vb1-D21JafZ0R_dgKtSWez3WQrHJXLBqsFI0,66
+structure_django-0.1.2.dist-info/top_level.txt,sha256=uR0FNWpANxakCN8umWEkii5IpNpVn3mSIKlcDrmxwoE,17
+structure_django-0.1.2.dist-info/RECORD,,
