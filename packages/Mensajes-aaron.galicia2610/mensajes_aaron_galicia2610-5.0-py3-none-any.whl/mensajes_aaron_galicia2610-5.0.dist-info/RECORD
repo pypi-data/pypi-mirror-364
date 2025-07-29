@@ -1,0 +1,12 @@
+mensajes/__init__.py,sha256=-8H5W0Sre1mNWvNSdpdOYRdi5LSaVou3nOvKVscdAa8,37
+mensajes/adios/__init__.py,sha256=Vx5y-gnL_hUYdZJIb8pQLt6byGFyO6KjJms4xK9QLOQ,46
+mensajes/adios/despedidas.py,sha256=ewN2cfHOjv5i9sF6Mp3May5eh4DXSdDMDjkMDUwkrCM,191
+mensajes/hola/__init__.py,sha256=3XQIgStjjAkG5Gcap8VHMbJADF5ElVCicEE73WIHsr8,45
+mensajes/hola/saludos.py,sha256=EF8IDTMMkdEqCuaPqVe0X_DfWUkAeQCt0o5kN-2QmEg,535
+mensajes_aaron_galicia2610-5.0.dist-info/licenses/LICENSE,sha256=5RkrZXKJx2ai_G06RLsAtN1pSxHaMbggM8xXX0uedaY,1098
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/test_hola.py,sha256=o2wd4tm8tWpnOoBXdfo3dvOL6xxETc5hcJCsJQ6tQZM,297
+mensajes_aaron_galicia2610-5.0.dist-info/METADATA,sha256=eFv9QrDMlJyky7D0Dt2sKTjHLXiRq-FSURPlFrMaxKE,970
+mensajes_aaron_galicia2610-5.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+mensajes_aaron_galicia2610-5.0.dist-info/top_level.txt,sha256=gD40JdIxiaPRvMl4iCu3Edq1ctVrOdqjON-Ms9kPSQk,15
+mensajes_aaron_galicia2610-5.0.dist-info/RECORD,,
