@@ -1,0 +1,13 @@
+tensorflow_serving/__init__.py,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
+tensorflow_serving/config/__init__.py,sha256=sXLh7g3KC4QCFxcZGBTpG2scR7hmmBsMjq6LqRptkRg,22
+tensorflow_serving/config/file_system_storage_path_source_pb2.py,sha256=0-XVSoii9NidPPoLou-3AUeON4-TYSabb8t0LhK5hrg,3926
+tensorflow_serving/config/log_collector_config_pb2.py,sha256=AQVcb9qRAH20SgebQDJX8eE4-7PgEGa0FXrpn-tf7Fk,1592
+tensorflow_serving/config/logging_config_pb2.py,sha256=iyic4wPMmfQL4L3_MGeYoEdRA2PkORN-jUez46lPvpA,2520
+tensorflow_serving/config/model_server_config_pb2.py,sha256=SgX2olREDknTLF7qkGiV6WZTOCGg9yK56nzM7XjKBnw,4418
+tensorflow_serving/config/monitoring_config_pb2.py,sha256=dd8QAdkOWTUCWzo6EMxVTjQs_jY7__NAZ_lMOCysmcI,1785
+tensorflow_serving/config/platform_config_pb2.py,sha256=ueHUUe286BpNYceCt8zIBjpe8ec6Ep3tyPn-gnYz4wE,2382
+tensorflow_serving/config/ssl_config_pb2.py,sha256=VjP4sNfRDWQNecCRzx-lqOA3vxuVdd91SuBAzZOpfZQ,1603
+tensorflow_serving_config-0.0.1.dist-info/METADATA,sha256=jGeyVP1YLmjdCUDQ2qj7QmYfjcdkvsctoG2y-RNe7n4,834
+tensorflow_serving_config-0.0.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+tensorflow_serving_config-0.0.1.dist-info/top_level.txt,sha256=N0Xxf3D2Xr3sEGwDEFgTk5wAcltpqVPZaa_SD3yPxzw,19
+tensorflow_serving_config-0.0.1.dist-info/RECORD,,
