@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: django-helloapp
+Version: 0.1.0
+Summary: Une app Django de démo
+Home-page: UNKNOWN
+Author: Ton Nom
+Author-email: ton@email.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Framework :: Django
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: Django (>=3.2)
+
+# django-helloapp
+
+Une app Django simple avec une vue "hello world".
+
