@@ -1,0 +1,84 @@
+Metadata-Version: 2.4
+Name: ipe-client
+Version: 1.2.0
+Summary: A modern, asynchronous Python SDK for the IPE API.
+Author-email: Tejas Rajesh <tejasr@4gd.ai>
+License: MIT License
+        
+        Copyright (c) 2025 4Good.ai
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: Homepage, https://github.com/4gd-ai/4gd-image-processing-engine-SDK
+Project-URL: Bug Tracker, https://github.com/your-username/ipe-python-sdk/issues
+Keywords: ipe,api,sdk,async,client
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Framework :: AsyncIO
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: httpx>=0.23.0
+Dynamic: license-file
+
+# IPE Python Client
+
+A modern, asynchronous, and easy-to-use Python SDK for the IPE API.
+
+## Installation
+
+Install the package directly from PyPI:
+
+```bash
+pip install ipe-client
+```
+
+## Usage
+
+Here is a basic example of how to instantiate the client and check a job status. The client should be used in an `async` context.
+
+```python
+import asyncio
+import os
+from ipe_client import IPEClient
+
+async def main():
+    # Load configuration securely from environment variables
+    client = IIPSClient(
+        base_url=os.environ.get("IPE_BASE_URL"),
+        username=os.environ.get("IPE_USERNAME"),
+        password=os.environ.get("IPE_PASSWORD")
+    )
+
+    try:
+        job_ids = ["some-job-id-from-a-previous-submission"]
+        status = await client.check_iips_job_status(job_ids)
+        print(status)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    finally:
+        # It's important to close the client to release connections.
+        await client.close()
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
