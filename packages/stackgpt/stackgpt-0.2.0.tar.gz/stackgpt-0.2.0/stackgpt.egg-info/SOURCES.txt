@@ -1,0 +1,10 @@
+LICENSE
+README.md
+pyproject.toml
+setup.cfg
+stackgpt.egg-info/PKG-INFO
+stackgpt.egg-info/SOURCES.txt
+stackgpt.egg-info/dependency_links.txt
+stackgpt.egg-info/entry_points.txt
+stackgpt.egg-info/requires.txt
+stackgpt.egg-info/top_level.txt

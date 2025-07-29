@@ -1,0 +1,22 @@
+[project]
+name = "stackgpt"
+version = "0.2.0"
+description = "StackOverflow-style GPT assistant for your terminal"
+authors = [
+    { name = "Ayub Farxaan", email = "a.farxaan@programmer.net" }
+]
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "openai",
+    "click",
+    "python-dotenv",
+    "rich"
+]
+
+[project.scripts]
+stackgpt = "main:run_cli"
+
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta:__legacy__"
