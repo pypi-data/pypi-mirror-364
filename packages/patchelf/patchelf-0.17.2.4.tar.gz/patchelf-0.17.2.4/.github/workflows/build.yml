@@ -1,0 +1,194 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - main
+    tags:
+      - "*.*.*.*"
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - uses: pre-commit/action@v3.0.1
+
+
+  build_wheels:
+    name: Build ${{ matrix.arch }} wheels
+    needs: [lint]
+    runs-on: ${{ matrix.arch == 'universal2' && 'macos-14' || 'ubuntu-24.04' }}${{ startsWith(matrix.docker_arch, 'arm') && '-arm' || '' }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: "x86_64"
+            docker_arch: "amd64"
+            test_image: quay.io/pypa/manylinux1_x86_64
+          - arch: "i686"
+            docker_arch: "386"
+            test_image: quay.io/pypa/manylinux1_i686
+          - arch: "aarch64"
+            docker_arch: "arm64"
+            test_image: quay.io/pypa/manylinux2014_aarch64
+          - arch: "ppc64le"
+            docker_arch: "ppc64le"
+            test_image: quay.io/pypa/manylinux2014_ppc64le
+          - arch: "s390x"
+            docker_arch: "s390x"
+            test_image: quay.io/pypa/manylinux2014_s390x
+          - arch: "armv7l"
+            docker_arch: "arm/v7"
+            test_image: python:3.7-slim-stretch
+          - arch: "riscv64"
+            docker_arch: "riscv64"
+            test_image: quay.io/pypa/manylinux_2_39_riscv64
+          - arch: "universal2"
+            docker_arch: "na"
+            test_image: "na"
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # required for setuptools_scm to find tags
+          submodules: 'recursive'
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3.6.0
+        if: runner.os == 'Linux'
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3.11.1
+        if: runner.os == 'Linux'
+
+      - name: Build patchelf_build_${{ matrix.arch }} image
+        uses: docker/build-push-action@v6.18.0
+        if: runner.os == 'Linux'
+        with:
+          context: .
+          load: true
+          push: false
+          tags: patchelf_build_${{ matrix.arch }}:latest
+          platforms: linux/${{ matrix.docker_arch }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Install build dependencies
+        if: runner.os == 'macOS'
+        run: brew install autoconf automake
+
+      - name: Build wheels
+        uses: pypa/cibuildwheel@v3.0.1
+        env:
+          CIBW_ARCHS: "${{ matrix.arch }}"
+
+      - name: Test wheel on ${{ matrix.test_image }}
+        if: runner.os == 'Linux'
+        run: |
+          cat <<EOF > check.sh
+          set -e
+          set -x
+          if ! which pipx; then
+            python3 -m pip install pipx
+            export PATH=/root/.local/bin:\$PATH
+            pipx install auditwheel
+          fi
+          WHEEL=$(find ./wheelhouse -name 'patchelf-*.whl')
+          auditwheel show \${WHEEL}
+          pipx install -f \${WHEEL}
+          patchelf --version
+          EOF
+          docker run --platform linux/${{ matrix.arch == 'i686' && 'amd64' || matrix.docker_arch }} -v $(pwd):/gha ${{ matrix.test_image }} sh -ec "cd /gha && sh ./check.sh"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: "cibw-wheels-${{ matrix.arch }}"
+          path: ./wheelhouse/*.whl
+
+  build_sdist:
+    name: Build source distribution
+    needs: [lint]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # required for setuptools_scm to find tags
+          submodules: 'recursive'
+
+      - name: Build SDist
+        run: pipx run build --sdist
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cibw-sdist
+          path: dist/*.tar.gz
+
+  test_sdist:
+    name: Test SDist with python ${{ matrix.python }}
+    needs: [build_sdist]
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.7", "3.13"]
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        name: Install Python ${{ matrix.python }}
+        with:
+          python-version: ${{ matrix.python }}
+          allow-prereleases: true
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: cibw-sdist
+          path: sdist
+
+      - name: Install SDist
+        run: pip install $(ls sdist/*.tar.gz)[test]
+
+      - name: Test installed SDist
+        run: pip check && pytest ./tests
+
+  check_dist:
+    name: Check dist
+    needs: [build_wheels, build_sdist, test_sdist]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: cibw-*
+          path: dist
+          merge-multiple: true
+
+      - run: pipx run twine check --strict dist/*
+
+  upload_pypi:
+    name: Upload to PyPI
+    needs: [build_wheels, build_sdist, test_sdist, check_dist]
+    runs-on: ubuntu-24.04
+    if: github.event_name == 'push' && github.repository == 'mayeut/patchelf-pypi' && startsWith(github.ref, 'refs/tags/')
+    environment:
+      name: pypi
+      url: https://pypi.org/p/patchelf
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: cibw-*
+          path: dist
+          merge-multiple: true
+
+      - name: Upload to PyPI
+        uses: pypa/gh-action-pypi-publish@v1.12.4
