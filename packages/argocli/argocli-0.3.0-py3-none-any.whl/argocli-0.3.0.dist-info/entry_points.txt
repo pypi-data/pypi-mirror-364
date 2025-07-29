@@ -1,0 +1,2 @@
+[console_scripts]
+argocli = argocli.cli.main:main
