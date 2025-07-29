@@ -1,0 +1,4 @@
+torch>=2.0.0
+librosa
+transformers==4.49.0
+peft==0.16.0

@@ -1,0 +1,41 @@
+Metadata-Version: 2.4
+Name: whosper
+Version: 0.1.0
+Summary: A Whisper-based Automatic Speech Recognition package
+Home-page: https://github.com/sudoping01/whisper_asr
+Author: Seydou DIALLO
+Author-email: sudoping01@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENCE
+Requires-Dist: torch>=2.0.0
+Requires-Dist: librosa
+Requires-Dist: transformers==4.49.0
+Requires-Dist: peft==0.16.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+```bash
+  pip install git+https://github.com/sudoping01/whosper.git
+```
+
+```python
+from whosper import WhosperTranscriber
+
+# Initialize the transcriber
+transcriber = WhosperTranscriber(model_id = "CAYTU/whosper-large-v2") 
+
+# Transcribe an audio file
+result = transcriber.transcribe_audio("path/to/your/audio.wav")
+print(result)

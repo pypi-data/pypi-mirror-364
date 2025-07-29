@@ -1,0 +1,10 @@
+LICENCE
+README.md
+setup.py
+whosper/__init__.py
+whosper/transcription.py
+whosper.egg-info/PKG-INFO
+whosper.egg-info/SOURCES.txt
+whosper.egg-info/dependency_links.txt
+whosper.egg-info/requires.txt
+whosper.egg-info/top_level.txt
