@@ -1,0 +1,3 @@
+[console_scripts]
+file-ext-sorter=file_ext_sorter.main:main
+
