@@ -1,0 +1,43 @@
+# 📘 SmartEdu - Backend Learning Platform (Python OOP Project)
+
+## 🚀 Project Overview
+**SmartEdu** is a CLI-based backend system for training institutes to manage:
+- ✅ Student Registration  
+- ✅ Course Management  
+- ✅ Student Enrollments  
+- ✅ Grade Tracking  
+- ✅ Performance Reports  
+
+This project demonstrates Python **Object-Oriented Programming (OOP)** principles, along with file persistence, logging, validation, exception handling, and unit testing.
+
+## ⚙️ How to Run the Application
+1️⃣ Ensure you have **Python 3.x** installed.  
+2️⃣ Navigate to the `cli/` directory.  
+3️⃣ Run the main CLI menu:
+```bash
+python smartedu_mainmenu.py
+```
+
+---
+
+## 🧪 How to Run Unit Tests
+Navigate to the root directory and run:
+```bash
+python -m unittest discover -s tests
+```
+
+---
+
+## 📈 How to Generate Coverage Report (Optional)
+```bash
+coverage run -m unittest discover
+coverage html
+# Open htmlcov/index.html in browser
+```
+
+---
+
+## 📋 Sample CLI Output
+
+### 📄 Main Menu:
+...
