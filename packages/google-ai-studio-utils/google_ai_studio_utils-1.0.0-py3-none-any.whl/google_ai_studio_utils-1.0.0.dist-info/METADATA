@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: google-ai-studio-utils
+Version: 1.0.0
+Summary: 
+Home-page: https://github.com/tddschn/google-ai-studio-utils
+License: MIT
+Keywords: chatgpt
+Author: Teddy Xinyuan Chen
+Author-email: 45612704+tddschn@users.noreply.github.com
+Requires-Python: >=3.10,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Utilities
+Requires-Dist: markdown (>=3.6,<4.0)
+Requires-Dist: pyperclip (>=1.8.2,<2.0.0)
+Project-URL: Bug Tracker, https://github.com/tddschn/google-ai-studio-utils/issues
+Project-URL: Repository, https://github.com/tddschn/google-ai-studio-utils
+Description-Content-Type: text/markdown
+
+# google-ai-studio-utils
