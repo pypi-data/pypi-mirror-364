@@ -1,0 +1,36 @@
+Metadata-Version: 2.3
+Name: libtorrent-stubs
+Version: 0.0.1
+Summary: Type stubs for libtorrent
+Author: stabldev
+Author-email: stabldev <thestabldev@gmail.com>
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Python :: 3.14
+Classifier: Programming Language :: Python :: 3.15
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Typing :: Stubs Only
+Requires-Dist: libtorrent>=2.0.11
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+
+# libtorrent-stubs
+
+Type stubs for the [`libtorrent`](https://github.com/arvidn/libtorrent) Python bindings.
+Provides static type information for better IDE support and type checking (e.g., with `pyright` or `mypy`).
+
+## Installation
+
+```bash
+pip install libtorrent-stubs
+```
+
+## Requirements
+
+- Python 3.9+
+- `libtorrent` (>= 2.0.11)
