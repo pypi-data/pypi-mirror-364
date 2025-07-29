@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: text2kgh-prompts
+Version: 0.1.2
+Summary: Add your description here
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: llmada>=1.0.3
+Requires-Dist: toml==0.10.2
+
+uv pip install -e .
+
+uv run python src/text2kgh_prompts/postprocessors.py
