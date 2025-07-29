@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=77.0.3", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "document-folder-structure"
+version = "0.1.0"
+description = "Automatic Markdown Documentation and Project Directory Tree Generator"
+readme = "README.md"
+authors = [
+    { name = "sdkng44", email = "sdkng44@gmail.com" }
+]
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+dependencies = ["openpyxl"]
+requires-python = ">=3.6"
+keywords = [
+    "directory-tree", "markdown", "documentation-generation", 
+    "documentation-tool", "repository-management", 
+    "tree-structure", "project-management"
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Documentation"
+]
+
+[project.urls]
+Homepage = "https://github.com/sdkng44/document-folder-structure"
+Repository = "https://github.com/sdkng44/document-folder-structure"
+"Bug Tracker" = "https://github.com/sdkng44/document-folder-structure/issues"
+
+[project.scripts]
+document-folder-structure = "document_folder_structure.main:main"
