@@ -1,0 +1,2 @@
+[console_scripts]
+we = excel_breaker.excelBreaker:main

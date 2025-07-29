@@ -1,0 +1,70 @@
+Metadata-Version: 2.4
+Name: webengage-excel-breaker
+Version: 0.1.0
+Summary: Webengage internal tool to split Excel or CSV files multiple tabs into separate CSV files with streaming support
+Home-page: https://www.webengage.com/
+Author: Nipun Patel
+Author-email: nipunp27@gmail.com
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: openpyxl>=3.1.2
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# 📊 WebEngage Excel Breaker
+
+A lightweight CLI utility to **streamingly extract all sheets from Excel (`.xlsx`) or copy `.csv` files** into individual `.csv` files per sheet, without consuming much memory.
+
+Ideal for handling **large Excel files** that can crash typical pandas-based tools.
+
+---
+
+## 🚀 Features
+
+- ✅ Stream large `.xlsx` files (no RAM overload)
+- ✅ Export each sheet to a separate `.csv` file
+- ✅ Works with `.csv` files too (makes a copy)
+- ✅ CLI-friendly and fast
+- ✅ Cross-platform (macOS, Linux, Windows)
+
+---
+
+## Installation
+
+
+To install the package run:
+
+<pre style="font-size: 16px;">
+pip install webengage-excel-breaker
+</pre>
+
+---
+
+## Usage
+
+To initiate the separation process run the below command:
+
+<pre style="font-size: 16px;">
+we excel-break {/path/filename}
+</pre>
+<br>
+
+## Legal Notice
+
+This tool is an **internal property** of **WebEngage** and is strictly for **webengage internal purpose**. It is owned by **Nipun Patel (Copyright)** and any misuse, unauthorized distribution, or external sharing will lead to **legal consequences**.
+
+---
+
+© WebEngage. All rights reserved.
