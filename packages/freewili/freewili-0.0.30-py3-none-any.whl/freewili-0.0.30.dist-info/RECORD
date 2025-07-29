@@ -1,0 +1,17 @@
+freewili/__init__.py,sha256=8EVFtdbZ2eXonrT5qfXmBfVdtNYWP6ygbC6dyTwiXMU,40
+freewili/_version.py,sha256=54Pm-dIcEbQ-gJAWrGPjv0eMLYkYcrvRtBR5zyLiTvY,19
+freewili/cli.py,sha256=CSiKq3U_kisUjidrHpFxcFR9HDrK3wT3LjWmuFrF9N8,1308
+freewili/cli_convert.py,sha256=qn-nUxpx5LLOjQz7NI2ekDm6GJtvYHGXD5RpPbZT6yk,1185
+freewili/cli_serial.py,sha256=pu3R8lpRCmTHk-DwMwbwdTZRjxJ_ICaVXtI2pc35nFk,15092
+freewili/framing.py,sha256=vIqa09JEFwjum-PCR6eKpDCajsAAOwKD_Zwn33EBxnU,5795
+freewili/fw.py,sha256=vX6Ry1eEKMa5zEmtlsoRDmF_enJ5UlYSl1V2GK9DDY0,40154
+freewili/fw_serial.py,sha256=hGP0Bk2hZhSlf_Fw8ZKuWyAkxMNgffk_RNsL7Fzt85E,45668
+freewili/image.py,sha256=y9Wtyc06TB5M5Bgd-anK8eyZZxwYe31IfKtd229ugck,3004
+freewili/serialport.py,sha256=80Cj32tfxtPxrJ53PY5s-NKkOF9lkwrzGQEG4KSrOg4,16549
+freewili/types.py,sha256=N1Ck_561xIP1ARF4LkyYL8Wwxm2yaZGss70Wnx4RPR4,14175
+freewili/util/__init__.py,sha256=mJkaZzvYgBnxsBAGv8y_P1yzonHqWgw6VF2Zs4rmJEA,7
+freewili/util/fifo.py,sha256=HC_rph7U6GNNXvyv9owcq6R12I1xlSwq5K-0MjCgj5I,11512
+freewili-0.0.30.dist-info/METADATA,sha256=JO4vDa7mjdwgCDOVE4V-xEPZ_aa-QAFK4VU-r8k86bQ,1285
+freewili-0.0.30.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+freewili-0.0.30.dist-info/entry_points.txt,sha256=o_F97cx454X9axgMrQtEnXA91ExMz_18pjuEBGjSbRU,96
+freewili-0.0.30.dist-info/RECORD,,
