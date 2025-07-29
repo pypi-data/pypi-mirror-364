@@ -1,0 +1,34 @@
+Metadata-Version: 2.4
+Name: jsin
+Version: 0.0.5
+Summary: JSON schema inferer
+Project-URL: Homepage, https://github.com/mumingpo/jsin
+Project-URL: Issues, https://github.com/mumingpo/jsin/issues
+Author-email: mumingpo <mumingpo@gmail.com>
+License-Expression: MIT
+License-File: LICENSE
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+
+# jsin
+JSon Schema INferer
+
+## installation
+
+```shell
+python -m pip install --upgrade pip
+python -m pip install jsin
+```
+
+## usage
+
+```python
+from jsin import pydanticalize
+
+obj = httpx.get('resource_uri').json()
+
+with open('inferred_pydantic_model.py', 'wt', encoding='utf-8') as f:
+    f.write(pydanticalize(obj))
+```

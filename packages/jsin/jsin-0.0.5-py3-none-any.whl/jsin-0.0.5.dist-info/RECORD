@@ -1,0 +1,11 @@
+jsin/__init__.py,sha256=q4vU6J-acpFcj2XJyZ5Fqq5kxL43AyuWUzTuNkx0Cxs,67
+jsin/exceptions.py,sha256=slFXXzJlxAqBSpgrlJsVS_lriXYcFywL6ePQN-4fbj0,2231
+jsin/infer.py,sha256=YzEjoGS3pUoGigrGyy41Q18q0_xtbAGDJZisC_828es,3099
+jsin/inferer.py,sha256=kAB6usTdu8hXQqDxrrxoj9JUQ_Q7b3KGRdLFQmyRZLs,2137
+jsin/pydanticalize.py,sha256=2HNfC44N24MJw0PtcHTT5U_ffI8-LthroAnxsa5OhgQ,2715
+jsin/schematic_tree_nodes.py,sha256=ZFj0vyAA6T8k0bf2G4WL6bCGmQq_8P-z1BIM8XXY-sg,12155
+jsin/signature.py,sha256=1PljcBeVRPxPy8g27sBYBUq7a5fPLUEzxluugc_NVZM,4212
+jsin-0.0.5.dist-info/METADATA,sha256=XDu6eIhh6829U3s41NBwWOObJnr3saUDEYETaCsgrhQ,763
+jsin-0.0.5.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+jsin-0.0.5.dist-info/licenses/LICENSE,sha256=EWTiaIjOS9XGh0QVhg6na9AKx7Hr2Pyr5iBOXPnRtfY,1065
+jsin-0.0.5.dist-info/RECORD,,
