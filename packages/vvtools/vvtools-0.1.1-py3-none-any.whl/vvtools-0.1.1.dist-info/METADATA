@@ -1,0 +1,41 @@
+Metadata-Version: 2.4
+Name: vvtools
+Version: 0.1.1
+Summary: 파이썬 개인 유틸리티
+Home-page: https://github.com/splendidz/vvtools
+Author: Andy Cho
+Author-email: soohwancho@korea.ac.kr
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+Dynamic: summary
+
+# vvtools
+
+Andy Cho's Python Utility Collection
+
+## Overview
+
+`vvtools` is a collection of Python utility functions that Andy Cho frequently uses in his personal projects.
+
+## Modules
+
+- `vgeometry.py`: Utilities for geometry-related calculations
+- `vhelper.py`: Various general-purpose helper functions
+- `vloger.py`: Simple logging utilities
+
+## Installation
+
+```bash
+pip install vvtools
