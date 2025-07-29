@@ -1,0 +1,19 @@
+---
+display_name: VOC sensor 
+job_name: read_voc_sensor
+display: true 
+source: voc_sensor_plugin 
+description: Records VOC from PID 0-4 ppm sensors
+published_settings: 
+  - key: interval
+    unit: s
+    label: Time between VOC readings
+    type: numeric
+    display: true
+    description: The duration (s) between MOX readings. 
+  - key: VOC_sensor1
+    unit: ppm
+    label: Measuring from VOC Sensor 1
+    type: numeric
+    display: true
+    description: The most recent VOC reading from sensor 1.

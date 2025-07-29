@@ -1,0 +1,18 @@
+Metadata-Version: 2.4
+Name: VOC-sensor-plugin
+Version: 0.1.1
+Summary: Measure VOC Concentration in Algae Cultures
+Home-page: 
+Author: Dallan Schoenberger
+Author-email: dschoenb@andrew.cmu.edu
+Description-Content-Type: text/markdown
+Requires-Dist: adafruit-blinka
+Requires-Dist: adafruit-circuitpython-ads1x15
+Dynamic: author
+Dynamic: author-email
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: requires-dist
+Dynamic: summary
+
+This plugin is designed to track the VOC concentration of aglae cultures within pioreactors
