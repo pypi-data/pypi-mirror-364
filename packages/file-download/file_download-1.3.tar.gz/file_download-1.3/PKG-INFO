@@ -1,0 +1,21 @@
+Metadata-Version: 2.3
+Name: file-download
+Version: 1.3
+Summary: A simple tool to download files! usable with terminal and in scripts
+Author: korn20123
+Author-email: aaromzschauer@icloud.com
+Requires-Python: >=3.8
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: requests (>=2.32.4,<3.0.0)
+Requires-Dist: tqdm (>=4.67.1,<5.0.0)
+Description-Content-Type: text/markdown
+
+this is simple: simply type: download --url (your url here) -out (output here like readme.md)
+
+
