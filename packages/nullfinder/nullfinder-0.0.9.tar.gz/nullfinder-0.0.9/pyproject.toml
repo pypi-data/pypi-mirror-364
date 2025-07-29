@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nullfinder"
+version = "0.0.9"
+authors = [{ name = "Björn Welke" }]
+description = "A tool to find nulls in dataframes and visualize them."
+readme = "README.md"
+requires-python = ">=3.13"
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+]
+dependencies = [
+    "PySide6==6.9.0",
+    "pandas~=2.3.1",
+    "pyqtgraph~=0.13.2"
+]
+
+[project.gui-scripts]
+nullfinder = "nullfinder.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+nullfinder = ["assets/*"]
