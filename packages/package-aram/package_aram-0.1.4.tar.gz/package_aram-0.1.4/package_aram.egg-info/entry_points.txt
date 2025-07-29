@@ -1,0 +1,2 @@
+[console_scripts]
+generate-django-app = package_aram.cli:main
