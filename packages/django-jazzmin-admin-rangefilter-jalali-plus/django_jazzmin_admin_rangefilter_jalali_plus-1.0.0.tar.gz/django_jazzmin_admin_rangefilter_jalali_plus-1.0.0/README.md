@@ -1,0 +1,156 @@
+# Django Jazzmin Admin RangeFilter Jalali Plus
+
+> ✨ A complete Jalali range filter integration for Django Admin with Jazzmin + `django-jalali-date`
+
+---
+
+## 🌐 English (Informal)
+
+When you're building a Django app in Persian (Farsi), **date filtering** can be a real headache. Django by default stores and works with Gregorian (Miladi) dates. But for your users, you probably want to display **Jalali (Shamsi)** dates — with a **Persian datepicker**, too.
+
+The best package (in my opinion) for working with Jalali in Django is:
+
+📦 `django-jalali-date`
+
+But there was still a big problem:
+If you're using **Jazzmin Admin theme** and you want a **clean range filter** (between two dates) for a Jalali date field — it just didn’t work.
+
+Until now! 😉
+
+This package **fixes that problem**. Just install it and you'll get a beautiful, working Jalali range filter inside the Jazzmin-styled Django Admin panel.
+
+---
+
+### ✅ Features
+
+- Fully compatible with `django-jalali-date`
+- Works perfectly with Jazzmin theme
+- Clean Persian datepicker (no JS setup needed)
+- Supports inline date range filtering in the admin
+- Pure plug-and-play
+
+---
+
+### 🚀 Installation
+
+```bash
+pip install django-jalali-date
+pip install django-jazzmin
+pip install django-jazzmin-admin-rangefilter-jalali-plus
+```
+
+Add `'jalali_date'` and `'rangefilter2'` to `INSTALLED_APPS` **after** `'jazzmin'` and `'django.contrib.admin'`.
+
+Make sure your Django is localized to Persian (Farsi) and supports `fa-IR`.
+
+---
+
+### 🛠️ Usage
+
+```python
+# admin.py
+
+from rangefilter2.jalali_date_range_filter import JalaliDateRangeFilter
+
+@admin.register(MyModel)
+class MyModelAdmin(admin.ModelAdmin):
+    list_filter = [
+        ('date', JalaliDateRangeFilter),
+    ]
+```
+
+⚠️ Don’t forget to collect static files:
+
+```bash
+python manage.py collectstatic
+```
+
+Then just run your project:
+
+```bash
+python manage.py runserver
+```
+
+And enjoy your brand-new Jalali Date Range Filter in the Admin panel 😍
+
+---
+
+## 🇮🇷 فارسی
+
+وقتی از جنگو برای پروژه‌های فارسی استفاده می‌کنیم، یکی از چالش‌های جدی ما تاریخ هست.  
+تاریخ به‌صورت استاندارد در پایگاه داده **میلادی** ذخیره می‌شه، اما کاربرهای ما انتظار دارن **تاریخ شمسی (جلالی)** ببینن، اونم با **دیتاپیکر فارسی و شمسی**.
+
+محبوب‌ترین و بهترین پکیجی که تا امروز برای این کار هست، بی‌شک:
+
+📦 `django-jalali-date`
+
+اما یه مشکلی هست:
+
+وقتی از پنل ادمین **Jazzmin** استفاده می‌کنیم و می‌خوایم یه **فیلتر بازه‌ای (RangeFilter)** برای تاریخ شمسی داشته باشیم، معمولاً به مشکل می‌خوریم.
+
+🎉 این پکیج دقیقاً همون مشکلو حل می‌کنه!
+
+---
+
+### 📦 نصب پکیج‌ها
+
+```bash
+pip install django-jalali-date
+pip install django-jazzmin
+pip install django-jazzmin-admin-rangefilter-jalali-plus
+```
+
+در `settings.py` این‌ها رو در `INSTALLED_APPS` بیار:
+
+```python
+INSTALLED_APPS = [
+    'jazzmin',
+    'django.contrib.admin',
+    ...
+    'jalali_date',
+    'rangefilter2',
+]
+```
+
+---
+
+### 🧪 استفاده در ادمین
+
+```python
+# admin.py
+
+from rangefilter2.jalali_date_range_filter import JalaliDateRangeFilter
+
+@admin.register(MyModel)
+class MyModelAdmin(admin.ModelAdmin):
+    list_filter = [
+        ('date', JalaliDateRangeFilter),
+    ]
+```
+
+✅ حالا فقط کافیه دستور `collectstatic` بزنی:
+
+```bash
+python manage.py collectstatic
+```
+
+و بعد پروژه رو اجرا کن و لذت ببر از یه **فیلتر خطیِ شمسیِ بدون باگ** توی ادمین جنگو ❤️
+
+---
+
+## 🖼️ Screenshot
+
+screenshot:
+
+
+![Jalali Range Filter Screenshot](screenshots/admin-filter-screenshot.png)
+
+
+
+
+---
+
+## 📄 License
+
+MIT License. See `LICENSE` file.
+

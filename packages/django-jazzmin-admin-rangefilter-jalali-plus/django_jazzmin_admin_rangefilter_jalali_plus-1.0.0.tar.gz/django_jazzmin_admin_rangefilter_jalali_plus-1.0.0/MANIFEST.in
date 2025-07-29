@@ -1,0 +1,4 @@
+include README.md
+recursive-include rangefilter2/templates *
+recursive-include rangefilter2/static *
+recursive-include rangefilter2/locale *
