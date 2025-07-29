@@ -1,0 +1,13 @@
+{
+  "description": "Extended functionality for Jupyter kernel: LaTeX outputs, web-based images, graphs API",
+  "properties": [
+    { "name": "v", "value": "$kernelMavenVersion" }
+  ],
+  "link": "https://github.com/Kotlin/kotlin-jupyter",
+  "dependencies": [
+    "org.jetbrains.kotlinx:kotlin-jupyter-lib-ext:$v"
+  ],
+  "repositories": [
+    "https://redirector.kotlinlang.org/maven/bootstrap"
+  ]
+}
