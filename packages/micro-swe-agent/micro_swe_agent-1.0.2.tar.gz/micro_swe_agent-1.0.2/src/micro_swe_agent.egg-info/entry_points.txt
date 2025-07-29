@@ -1,0 +1,5 @@
+[console_scripts]
+micro = microsweagent.run.micro:app
+micro-e = microsweagent.run.micro_extra:main
+micro-extra = microsweagent.run.micro_extra:main
+micro-swe-agent = microsweagent.run.micro:app
