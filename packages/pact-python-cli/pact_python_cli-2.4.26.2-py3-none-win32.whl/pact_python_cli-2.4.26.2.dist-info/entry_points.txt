@@ -1,0 +1,9 @@
+[console_scripts]
+pact = pact_cli:_exec
+pact-broker = pact_cli:_exec
+pact-message = pact_cli:_exec
+pact-mock-service = pact_cli:_exec
+pact-plugin-cli = pact_cli:_exec
+pact-provider-verifier = pact_cli:_exec
+pact-stub-service = pact_cli:_exec
+pactflow = pact_cli:_exec
