@@ -1,0 +1,145 @@
+Metadata-Version: 2.4
+Name: torchmil
+Version: 1.0.0
+Summary: Deep Multiple Instance Learning library for Pytorch
+Author-email: Francisco Miguel Castro-Macías <francastro8b@gmail.com>
+License-Expression: Apache-2.0
+Project-URL: documentation, https://franblueee.github.io/torchmil/api/
+Project-URL: homepage, https://franblueee.github.io/torchmil/
+Project-URL: issues, https://github.com/Franblueee/torchmil/issues
+Project-URL: repository, https://github.com/Franblueee/torchmil
+Keywords: deep-learning,pytorch,multiple-instance-learning,multi-instance-learning,mil
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Science/Research
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: torch
+Requires-Dist: tensordict
+Requires-Dist: torchmetrics
+Requires-Dist: einops
+Requires-Dist: scipy
+Requires-Dist: tqdm
+Requires-Dist: numpy
+Provides-Extra: dev
+Requires-Dist: pre-commit; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
+Requires-Dist: toml-sort; extra == "dev"
+Provides-Extra: docs
+Requires-Dist: mkdocs; extra == "docs"
+Requires-Dist: mkdocs-material; extra == "docs"
+Requires-Dist: mknotebooks; extra == "docs"
+Requires-Dist: mkdocstrings; extra == "docs"
+Requires-Dist: mkdocstrings-python; extra == "docs"
+Requires-Dist: mkdocs-exclude; extra == "docs"
+Provides-Extra: tests
+Requires-Dist: torch; extra == "tests"
+Requires-Dist: tensordict; extra == "tests"
+Requires-Dist: torchmetrics; extra == "tests"
+Requires-Dist: einops; extra == "tests"
+Requires-Dist: scipy; extra == "tests"
+Requires-Dist: tqdm; extra == "tests"
+Requires-Dist: numpy; extra == "tests"
+Requires-Dist: pytest; extra == "tests"
+Requires-Dist: pytest-cov; extra == "tests"
+Requires-Dist: pandas; extra == "tests"
+Dynamic: license-file
+
+# torchmil
+
+
+
+<p align="center">
+    <a align="center">
+        <img align="middle" src="./imgs/torchmil_logo.png" width="700" />
+    </a>
+</p>
+
+<p align="middle">
+    <img src="https://img.shields.io/badge/license-Apache_2.0-blue" alt="License">
+    <a href="https://codecov.io/gh/franblueee/torchmil">
+    <img src="https://codecov.io/gh/franblueee/torchmil/branch/main/graph/badge.svg"/>
+    </a>
+    <a href="#"><img src="https://badgen.net/github/contributors/Franblueee/torchmil" alt="Contributors"></a>
+    <a href="#"><img src="https://badgen.net/github/release/Franblueee/torchmil" alt="Release"></a>
+
+</p>
+
+**torchmil** is a [PyTorch](https://pytorch.org/)-based library for deep Multiple Instance Learning (MIL).
+It provides a simple, flexible, and extensible framework for working with MIL models and data.
+
+It includes:
+
+- A collection of popular [MIL models](https://franblueee.github.io/torchmil/api/models/).
+- Different [PyTorch modules](https://franblueee.github.io/torchmil/api/nn/) frequently used in MIL models.
+- Handy tools to deal with [MIL data](https://franblueee.github.io/torchmil/api/data/).
+- A collection of popular [MIL datasets](https://franblueee.github.io/torchmil/api/datasets/).
+
+## Installation
+
+```bash
+pip install torchmil
+```
+
+## Quick start
+
+You can load a MIL dataset and train a MIL model in just a few lines of code:
+
+```python
+from torchmil.datasets import Camelyon16MIL
+from torchmil.models import ABMIL
+from torchmil.utils import Trainer
+from torchmil.data import collate_fn
+from torch.utils.data import DataLoader
+
+# Load the Camelyon16 dataset
+dataset = Camelyon16MIL(root='data', features='UNI')
+dataloader = DataLoader(dataset, batch_size=4, shuffle=True, collate_fn=collate_fn)
+
+# Instantiate the ABMIL model and optimizer
+model = ABMIL(in_shape=(2048,), criterion=torch.nn.BCEWithLogitsLoss()) # each model has its own criterion
+optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
+
+# Instantiate the Trainer
+trainer = Trainer(model, optimizer, device='cuda')
+
+# Train the model
+trainer.train(dataloader, epochs=10)
+
+# Save the model
+torch.save(model.state_dict(), 'model.pth')
+```
+
+## Next steps
+
+You can take a look at the [examples](https://franblueee.github.io/torchmil/examples/) to see how to use **torchmil** in practice.
+To see the full list of available models, datasets, and modules, check the [API reference](https://franblueee.github.io/torchmil/api/).
+
+## Contributing to torchmil
+
+We welcome contributions to **torchmil**! There several ways you can contribute:
+
+- Reporting bugs or issues you encounter while using the library, asking questions, or requesting new features: use the [Github issues](https://github.com/Franblueee/torchmil/issues).
+- Improving the documentation: if you find any part of the documentation unclear or incomplete, feel free to submit a pull request with improvements.
+- If you have a new model, dataset, or utility that you think would be useful for the community, please consider submitting a pull request to add it to the library.
+
+Take a look at [CONTRIBUTING.md](https://github.com/Franblueee/torchmil/blob/main/CONTRIBUTING.md) for more details on how to contribute.
+
+## Citation
+
+If you find this library useful, please consider citing it:
+
+```bibtex
+@misc{torchmil,
+  author = {Castro-Mac{\'\i}as, Francisco M and S{\'a}ez-Maldonado, Francisco Javier and Morales Alvarez, Pablo and Molina, Rafael},
+  title = {torchmil: A PyTorch-based library for deep Multiple Instance Learning},
+  year = {2025},
+  howpublished = {\url{https://franblueee.github.io/torchmil/}}
+}
+```
