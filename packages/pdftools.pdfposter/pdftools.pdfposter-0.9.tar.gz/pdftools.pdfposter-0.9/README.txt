@@ -1,0 +1,69 @@
+==========================
+pdfposter
+==========================
+
+-------------------------------------------------------------
+Scale and tile PDF images/pages to print on multiple pages.
+-------------------------------------------------------------
+
+:Author:    Hartmut Goebel <h.goebel@crazy-compilers.com>
+:Version:   Version 0.9
+:Copyright: 2008-2025 by Hartmut Goebel
+:License:   GNU Public License v3 or later (GPL-3.0-or-later)
+:Homepage:  https://pdfposter.readthedocs.io/
+
+``Pdfposter`` can be used to create a large poster by building it from
+multiple pages and/or printing it on large media. It expects as input a
+PDF file, normally printing on a single page. The output is again a
+PDF file, maybe containing multiple pages together building the
+poster.
+The input page will be scaled to obtain the desired size.
+
+This is much like ``poster`` does for Postscript files, but working
+with PDF. Since sometimes poster does not like your files converted
+from PDF. :-) Indeed ``pdfposter`` was inspired by ``poster``.
+
+.. important::
+
+   This is a transitional package.
+   Starting with version 0.9,
+   the package and the module have been renamed to just 'pdfposter'.
+   Please use the new package pdfposter__.
+
+   The package 'pdftools.pdfposter' will not receive any more updates.
+   Older versions will still be available at PyPI__, of course.
+
+__ https://pypi.org/project/pdfposter
+__ https://pypi.org/project/pdftools.pdfposter
+
+
+Why has this package been renamed?
+===================================
+
+When converting this from a script into a library back in 2008, the idea was
+to create a collection of tools all sharing the "pdftools" namespace and
+eventually sharing some commend code (e.g. definition of paper sizes).
+Anyhow, I never did this — even when creating more "pdftools.*" packages.
+And meanwhile there is a Python package called "pdftools".
+Thus I decided to rename this package to avoid conflicts with that very
+package (and as a side-effect to simplify my tooling).
+
+
+Migrating from `pdftools.pdfposter` to `pdfposter`
+==================================================
+
+Migrating from `pdftools.pdfposter` to `pdfposter` is easy:
+Simply replace `pdftools.pdfposter` by just `pdfposter` in your code.
+
+Here are some snippets that might help you::
+
+  sed -i 's/pdftools\.pdfposter/pdfposter/g' *.py setup.cfg *.toml
+  sed -i 's/from pdftools\.pdfposter import /from pdfposter import /g' *.py
+  sed -i 's/from pdftools import pdfposter/import pdfposter/g' *.py
+
+
+
+.. Emacs config:
+ Local Variables:
+ mode: rst
+ End:
