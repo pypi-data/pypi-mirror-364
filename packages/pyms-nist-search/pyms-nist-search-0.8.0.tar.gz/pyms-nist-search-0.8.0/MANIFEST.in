@@ -1,0 +1,16 @@
+include LICENSE
+include requirements.txt
+prune **/__pycache__
+include THIRD_PARTY_COPYRIGHT
+recursive-include src/pyms_nist_search *
+recursive-exclude MoNA_GCMS_Library *
+recursive-exclude src/pyms_nist_search *.so
+recursive-include src/pyms_nist_search/templates *
+recursive-include src/pyms_nist_search *.c
+recursive-include src/pyms_nist_search *.C
+recursive-include src/pyms_nist_search *.h
+recursive-include src/pyms_nist_search *.H
+recursive-include src/pyms_nist_search *.dll
+recursive-include src/pyms_nist_search *.lib
+recursive-include src/pyms_nist_search *.pyi
+include src/pyms_nist_search/py.typed
