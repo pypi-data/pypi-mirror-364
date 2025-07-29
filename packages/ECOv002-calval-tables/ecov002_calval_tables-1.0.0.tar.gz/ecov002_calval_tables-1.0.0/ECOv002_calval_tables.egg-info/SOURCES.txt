@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+ECOv002_calval_tables/ECOv002_calval_tables.py
+ECOv002_calval_tables/__init__.py
+ECOv002_calval_tables/combined_eco_flux_EC_filtered.csv
+ECOv002_calval_tables/metadata_ebc_filt.csv
+ECOv002_calval_tables.egg-info/PKG-INFO
+ECOv002_calval_tables.egg-info/SOURCES.txt
+ECOv002_calval_tables.egg-info/dependency_links.txt
+ECOv002_calval_tables.egg-info/requires.txt
+ECOv002_calval_tables.egg-info/top_level.txt
