@@ -1,0 +1,55 @@
+Metadata-Version: 2.4
+Name: easypath
+Version: 0.1.0
+Summary: Cross-platform file and folder utility functions in Python made simple.
+Home-page: https://github.com/aaravmaloo/easypath
+Author: Aarav Maloo
+Author-email: aaravmaloo06@gmail.com
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Environment :: Console
+Classifier: Topic :: Utilities
+Classifier: Topic :: System :: Filesystems
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+Dynamic: summary
+
+# <center> pathmagic
+## <center> PathLib simplified to its most.
+**pathmagic** is a lightweight Python utility module that simplifies common file and folder path operations using Python’s built-in `pathlib` library.
+
+## Why use pathmagic?
+
+Working with files and directories in Python can often involve repetitive and verbose code. `pathmagic` wraps the most frequently used operations into simple functions to help make your scripts cleaner, easier to read, and quicker to write.
+
+
+## Features
+
+- Create folders if they don’t exist
+- Delete folders or files
+- Check if a path exists
+- Read and write text files
+- Join paths easily across platforms
+- List files or directories
+- Get file names, extensions, and more
+
+
+
+
+## Installation
+
+This module has no external dependencies. You can simply copy it into your project or install it manually once published.
+
+```bash
+pip install pathmagic
