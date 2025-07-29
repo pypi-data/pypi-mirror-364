@@ -1,0 +1,64 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ratatoskr-py"
+version = "0.0.1"
+description = "Regressive decision-trees for space physics"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+  {name = "Aaron Hendry", email="aaronhendry@users.noreply.github.com"}
+]
+maintainers = [
+  {name = "Aaron Hendry", email = "aaronhendry@users.noreply.github.com"}
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering",
+]
+license = "MPL-2.0"
+dependencies = [
+  "typer"
+]
+
+[project.optional-dependencies]
+dev = [
+    "coverage",  # testing
+    "mypy",  # linting
+    "pytest",  # testing
+    "ruff"  # linting
+]
+
+[project.urls]
+
+homepage = "https://github.com/aaronhendry/ratatoskr"
+
+[tool.hatch.build.targets.wheel]
+packages = ["ratatoskr"]
+
+# Mypy
+# ----
+
+[tool.mypy]
+files = "."
+
+# Use strict defaults
+strict = true
+warn_unreachable = true
+warn_no_return = true
+
+[[tool.mypy.overrides]]
+# Don't require test functions to include types
+module = "tests.*"
+allow_untyped_defs = true
+disable_error_code = "attr-defined"
+

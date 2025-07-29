@@ -1,0 +1,31 @@
+Metadata-Version: 2.4
+Name: ratatoskr-py
+Version: 0.0.1
+Summary: Regressive decision-trees for space physics
+Project-URL: homepage, https://github.com/aaronhendry/ratatoskr
+Author-email: Aaron Hendry <aaronhendry@users.noreply.github.com>
+Maintainer-email: Aaron Hendry <aaronhendry@users.noreply.github.com>
+License-Expression: MPL-2.0
+License-File: LICENSE
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Scientific/Engineering
+Requires-Python: >=3.10
+Requires-Dist: typer
+Provides-Extra: dev
+Requires-Dist: coverage; extra == 'dev'
+Requires-Dist: mypy; extra == 'dev'
+Requires-Dist: pytest; extra == 'dev'
+Requires-Dist: ruff; extra == 'dev'
+Description-Content-Type: text/markdown
+
+# ratatoskr
+Regressive decision-trees for space physics
+
+This is a place-holder package for a work-in-progress
