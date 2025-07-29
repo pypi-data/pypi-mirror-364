@@ -1,0 +1,12 @@
+tap_canvas_blank/__init__.py,sha256=YrshjN8jAzEzoCsoEY0nq2jxtlE8MCaNgFPqe501xMA,172
+tap_canvas_blank/cli.py,sha256=JnlWbhZk6N2vplUktAM9L9rjvBcwZY2PGySdRGuOn2U,169
+tap_canvas_blank/client.py,sha256=Avy7mcSTGrGh0Ldpd-2aMrd7-ShiKK18by5BvccoqjE,2619
+tap_canvas_blank/streams.py,sha256=0E-c2ity1vv4EgMe2chNzaLsB_Ne8Ym5EpGR91ZqK-M,12766
+tap_canvas_blank/tap.py,sha256=aqXijk9y9KqjS2ebMz9TcCm0KmPm6fuAEM5rTYl7uAQ,1665
+tap_canvas_blank/tests/__init__.py,sha256=5YzDiG3cMwd_gvszR6jsF6CXCpyJefmmrTsOp4YiYZA,34
+tap_canvas_blank/tests/test_core.py,sha256=qMpHL8bILSah7KPr60vcMUuR3lltfefmOjXDNNHGtt0,681
+tap_canvas_blank/typing.py,sha256=ywn5CTvjq00A7HyUONHQpI4G8Y9AwoeTUn9FsCA7eYM,522
+tap_canvas_blank-0.0.3.dist-info/entry_points.txt,sha256=lDbSXm1NnAfiQXiko--_mNQiHYlO4ps9H7Yxo6oqh0Q,55
+tap_canvas_blank-0.0.3.dist-info/METADATA,sha256=VMcFXsIPLyto_h0rk-mRFpkNS_ZJdVUwIWiDOyRB5UA,745
+tap_canvas_blank-0.0.3.dist-info/WHEEL,sha256=Nq82e9rUAnEjt98J6MlVmMCZb-t9cYE2Ir1kpBmnWfs,88
+tap_canvas_blank-0.0.3.dist-info/RECORD,,
