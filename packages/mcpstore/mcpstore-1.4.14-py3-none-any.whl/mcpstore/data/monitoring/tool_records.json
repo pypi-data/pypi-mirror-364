@@ -1,0 +1,91 @@
+{
+  "executions": [
+    {
+      "id": "1753197447328_9742",
+      "tool_name": "get_current_weather",
+      "service_name": "mcpstore-demo-weather",
+      "params": {
+        "query": "测试工具记录功能"
+      },
+      "result": "测试工具记录功能当前天气：小雨，温度 -3°C，湿度 67%",
+      "error": null,
+      "response_time": 846.05,
+      "execution_time": "2025-07-22T23:17:27.328168",
+      "timestamp": 1753197447
+    },
+    {
+      "id": "1753198214600_7196",
+      "tool_name": "get_current_weather",
+      "service_name": "mcpstore-demo-weather",
+      "params": {
+        "query": "测试工具记录功能"
+      },
+      "result": "测试工具记录功能当前天气：阴天，温度 31°C，湿度 36%",
+      "error": null,
+      "response_time": 727.4,
+      "execution_time": "2025-07-22T23:30:14.600828",
+      "timestamp": 1753198214
+    },
+    {
+      "id": "1753198244460_4022",
+      "tool_name": "get_current_weather",
+      "service_name": "mcpstore-wiki",
+      "params": {
+        "query": "北京"
+      },
+      "result": "北京当前天气：阴天，温度 1°C，湿度 62%",
+      "error": null,
+      "response_time": 459.58,
+      "execution_time": "2025-07-22T23:30:44.460332",
+      "timestamp": 1753198244
+    },
+    {
+      "id": "1753198565147_2184",
+      "tool_name": "get_current_weather",
+      "service_name": "mcpstore-demo-weather",
+      "params": {
+        "query": "测试工具记录功能"
+      },
+      "result": "测试工具记录功能当前天气：雪天，温度 8°C，湿度 63%",
+      "error": null,
+      "response_time": 451.36,
+      "execution_time": "2025-07-22T23:36:05.147498",
+      "timestamp": 1753198565
+    },
+    {
+      "id": "1753198609884_3783",
+      "tool_name": "get_current_weather",
+      "service_name": "mcpstore-wiki",
+      "params": {
+        "query": "北京"
+      },
+      "result": "北京当前天气：多云，温度 2°C，湿度 38%",
+      "error": null,
+      "response_time": 453.61,
+      "execution_time": "2025-07-22T23:36:49.884572",
+      "timestamp": 1753198609
+    }
+  ],
+  "summary": {
+    "total_executions": 5,
+    "by_tool": {
+      "get_current_weather": {
+        "count": 5,
+        "total_response_time": 2938.0,
+        "avg_response_time": 587.6
+      }
+    },
+    "by_service": {
+      "mcpstore-demo-weather": {
+        "count": 3,
+        "total_response_time": 2024.81,
+        "avg_response_time": 674.94
+      },
+      "mcpstore-wiki": {
+        "count": 2,
+        "total_response_time": 913.19,
+        "avg_response_time": 456.6
+      }
+    }
+  }
+}

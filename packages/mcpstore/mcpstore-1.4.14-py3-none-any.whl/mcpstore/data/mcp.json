@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "mcpstore-demo-weather": {
+      "url": "http://mcpstore.wiki/mcp"
+    },
+    "context7": {
+      "url": "https://mcp.context7.com/mcp"
+    },
+    "mcpstore-wiki": {
+      "url": "http://mcpstore.wiki/mcp"
+    }
+  }
+}
