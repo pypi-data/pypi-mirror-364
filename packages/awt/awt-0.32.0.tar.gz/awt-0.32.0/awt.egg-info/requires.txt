@@ -1,0 +1,6 @@
+abiftool>=0.31.0
+dotenv
+Flask
+flask-caching
+PyYAML
+setuptools
