@@ -1,0 +1,13 @@
+requests>=2.26
+pandas[parquet]>=2.2
+openpyxl>=3.0
+xlsxwriter>=3.0
+
+[async]
+aiohttp>=3.8
+
+[dev]
+pre-commit
+pre-commit-hooks
+pytest
+ruff
