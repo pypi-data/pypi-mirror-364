@@ -1,0 +1,2 @@
+[console_scripts]
+ng3 = ng3.ng3_cmd:main
