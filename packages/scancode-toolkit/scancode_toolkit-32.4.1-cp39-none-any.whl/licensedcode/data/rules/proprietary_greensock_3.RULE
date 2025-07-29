@@ -1,0 +1,12 @@
+---
+license_expression: proprietary-license
+is_license_reference: yes
+relevance: 90
+ignorable_urls:
+    - http://greensock.com/standard-license
+is_deprecated: yes
+replaced_by:
+    - gsap-standard-no-charge-2025
+---
+
+http://greensock.com/standard-license
