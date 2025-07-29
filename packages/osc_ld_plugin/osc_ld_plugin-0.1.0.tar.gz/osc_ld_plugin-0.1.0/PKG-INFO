@@ -1,0 +1,42 @@
+Metadata-Version: 2.3
+Name: osc_ld_plugin
+Version: 0.1.0
+Summary: An osc plugin to analyze failed build logs using logdetective
+License: MIT
+Keywords: osc,build,logdetective,obs,plugin
+Author: Aazam Thakur
+Author-email: aazamthakur@gmail.com
+Requires-Python: >=3.13,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Dist: logdetective (>=1.7.0,<2.0.0)
+Requires-Dist: osc (>=1.17.0,<2.0.0)
+Project-URL: Homepage, https://github.com/openSUSE/logdetective-obs
+Project-URL: Repository, https://github.com/openSUSE/logdetective-obs
+Description-Content-Type: text/markdown
+
+# osc-ld-plugin
+
+This is an osc plugin that uses logdetective to analyze failed Open Build Service (OBS) builds or local build logs.
+
+## Usage
+
+To install the package run
+```
+pip install osc_ld_plugin
+```
+After installing this package, users must run
+```
+osc-ld-install
+```
+this is to install the osc plugin script in the ~/.osc-plugins directory
+
+### For analyzing local failed build
+```bash
+osc ld --local-log
+```
+
+### For analzying failed builds from OBS
+```bash
+osc ld --project openSUSE:Factory --package blender 
