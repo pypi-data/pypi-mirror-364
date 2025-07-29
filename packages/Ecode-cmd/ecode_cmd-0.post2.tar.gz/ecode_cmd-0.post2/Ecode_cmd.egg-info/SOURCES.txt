@@ -1,0 +1,11 @@
+README.md
+pyproject.toml
+setup.py
+Ecode/__main__.py
+Ecode/test.py
+Ecode_cmd.egg-info/PKG-INFO
+Ecode_cmd.egg-info/SOURCES.txt
+Ecode_cmd.egg-info/dependency_links.txt
+Ecode_cmd.egg-info/entry_points.txt
+Ecode_cmd.egg-info/requires.txt
+Ecode_cmd.egg-info/top_level.txt
