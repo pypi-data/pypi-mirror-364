@@ -1,0 +1,2 @@
+[console_scripts]
+formulaire_app = formulaire_app.cli:main
