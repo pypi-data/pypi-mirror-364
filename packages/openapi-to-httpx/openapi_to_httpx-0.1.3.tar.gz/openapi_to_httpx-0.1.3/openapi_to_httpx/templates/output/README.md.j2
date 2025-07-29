@@ -1,0 +1,72 @@
+# {{ api_title }} Client
+
+{{ api_description }}
+
+API Version: {{ api_version }}
+
+## Installation
+
+```bash
+pip install httpx pydantic
+```
+
+## Usage
+
+```python
+from {{ package_name }} import {{ client_name }}
+
+# Initialize the client
+client = {{ client_name }}(
+    base_url="https://api.example.com",
+    api_key="your-api-key"  # or bearer_token="your-token"
+)
+
+# Use the client
+with client:
+    # Make API calls
+    response = client.some_method()
+    print(response.data)
+```
+
+## Async Usage
+
+```python
+import asyncio
+from {{ package_name }} import {{ client_name }}
+
+async def main():
+    client = {{ client_name }}(
+        base_url="https://api.example.com",
+        api_key="your-api-key"
+    )
+    
+    async with client:
+        # Make async API calls
+        response = await client.some_method_async()
+        print(response.data)
+
+asyncio.run(main())
+```
+
+## Available Methods
+
+{% if methods %}
+{% for method in methods %}
+- `{{ method }}()`
+{% endfor %}
+{% else %}
+No methods generated.
+{% endif %}
+
+## Error Handling
+
+The client provides custom exceptions for common error cases:
+
+- `ApiError`: General API errors
+- `ValidationError`: Request validation errors
+- `AuthenticationError`: Authentication failures (401)
+- `NotFoundError`: Resource not found (404)
+
+## Generated with openapi-to-httpx
+
+This client was automatically generated from an OpenAPI specification.

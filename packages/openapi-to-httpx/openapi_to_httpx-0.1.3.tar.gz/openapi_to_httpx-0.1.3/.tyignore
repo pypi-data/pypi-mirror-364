@@ -1,0 +1,9 @@
+# Ignore generated and test output
+test_output/
+.venv/
+build/
+dist/
+__pycache__/
+
+# Ignore template file (has intentional type issues)
+openapi_to_httpx/templates/

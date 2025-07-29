@@ -1,0 +1,9 @@
+"""
+Auto-generated API client for {{ api_title }}.
+"""
+from .client import {{ client_name }}
+{% if model_names -%}
+from .models import {{ model_names | join(', ') }}
+{%- endif %}
+
+__all__ = ["{{ client_name }}"{% if model_names %}, {{ model_names | map('tojson') | join(', ') }}{% endif %}]

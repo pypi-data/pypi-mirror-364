@@ -1,0 +1,18 @@
+from __future__ import annotations
+
+from typing import Any, Dict, List, Literal, Optional, Union
+import enum
+from pydantic import BaseModel, Field
+{% if 'File' in imports_to_add %}
+from .base_client import File
+{% endif %}
+
+{% for model_name, model_code in models.items() %}
+
+{{ model_code }}
+{% endfor %}
+
+# Rebuild all models to resolve forward references
+{% for model_name in pydantic_models %}
+{{ model_name }}.model_rebuild()
+{% endfor %}
