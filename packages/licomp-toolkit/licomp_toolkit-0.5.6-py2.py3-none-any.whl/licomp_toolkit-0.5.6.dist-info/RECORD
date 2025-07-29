@@ -1,0 +1,16 @@
+licomp_toolkit/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+licomp_toolkit/__main__.py,sha256=i_49CVmpYsdKrgxwAoDC_00sqiFdfFdWCMR5lFJRwWw,9048
+licomp_toolkit/config.py,sha256=u5_MsDmSh6JoXFOEUaR8ywjOlzgN4ppb_61oAZjp5pA,989
+licomp_toolkit/expr_parser.py,sha256=3arUsY0fElGrYOJsxlxY3syeIY96-xcegFEOaFGr5TM,5186
+licomp_toolkit/format.py,sha256=3iB2eo0z1gEiVB_XmOgv-qvmomJGVBm2LywBf9YWk0Q,5731
+licomp_toolkit/lic_expr.py,sha256=KT9BYUuQmc0iU49avX7yiNs4IxCn0kPpdx7zqGc-ejg,12357
+licomp_toolkit/schema_checker.py,sha256=dnycRlN8mwHorPAsFw3khY3n83oImejcqk8kIsPePKI,2620
+licomp_toolkit/toolkit.py,sha256=3M5ZI_WudINPIDKByzO-gXW6KPuqhE4QfC-dg7ZgrRM,18007
+licomp_toolkit/utils.py,sha256=KuVPgbYS5J3kDYBTiAvyp1cIfQUyf_i4ls3aIAHMVWA,1771
+licomp_toolkit/data/reply_schema.json,sha256=lE4aUvBAZdLBQCdMiGkkqlQgkMAl0HTr_2UxXJwrNDo,10599
+licomp_toolkit-0.5.6.dist-info/GPL-3.0-or-later.txt,sha256=-5gWaMGKJ54oX8TYP7oeg2zITdTapzyWl9PP0tispuA,34674
+licomp_toolkit-0.5.6.dist-info/METADATA,sha256=l7zCvOQvm0gguxyW41uGpsA1qmTYF5P2lA8HgY6aB7I,4922
+licomp_toolkit-0.5.6.dist-info/WHEEL,sha256=-G_t0oGuE7UD0DrSpVZnq1hHMBV9DD2XkS5v7XpmTnk,110
+licomp_toolkit-0.5.6.dist-info/entry_points.txt,sha256=qoAj7Fewb1ExK5eMVKMucWy2lfUWKlInXMAZTzQca_Q,64
+licomp_toolkit-0.5.6.dist-info/top_level.txt,sha256=_mz0gPX6PtDPo5TiwK9hsTDtKj6xLut2rEH243vIl7Q,15
+licomp_toolkit-0.5.6.dist-info/RECORD,,
