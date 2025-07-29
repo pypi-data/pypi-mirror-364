@@ -1,0 +1,2 @@
+[console_scripts]
+cacao-password = cacao_password.cli:main
