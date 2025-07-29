@@ -1,0 +1,299 @@
+Metadata-Version: 2.4
+Name: analytics-ingest
+Version: 0.1.39
+Summary: Python client for ingesting signals, DTCs, network stats, and GPS data to a GraphQL backend
+Author-email: Haseeb Saif Ullah <hsaif@intrepidcs.com>
+License: MIT
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: requests>=2.31
+Requires-Dist: graphql-core>=3.2
+Requires-Dist: faker>=19.0
+Requires-Dist: pydantic>=2.5
+Requires-Dist: more-itertools>=9.1.0
+Provides-Extra: dev
+Requires-Dist: black>=23.3.0; extra == "dev"
+Requires-Dist: isort>=5.12.0; extra == "dev"
+Requires-Dist: pre-commit>=3.5.0; extra == "dev"
+Requires-Dist: pytest>=7.4.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.21.0; extra == "dev"
+Requires-Dist: mypy>=1.7.0; extra == "dev"
+
+Harry
+what_is_harry
+🥹 It’s fine, come to me.
+
+Harry — 30/06/2025, 7:46 PM
+If the case is to remain in one instance and no fancy caching.. then doable hai kaam
+Image
+Haseeb Saif — 30/06/2025, 7:46 PM
+Thk hai.
+Harry — 30/06/2025, 7:48 PM
+Semphores parha hai.. not sure use kar sakty with the calling.. cause hum directly call kartay abhi.. baaki agar hum isko as HTTP request bhejhay hai then semephores use kar sktay.. 
+
+basically aik way hai tou block or manage multi-request and doesn't make a queue.. 
+Haseeb Saif — 30/06/2025, 9:15 PM
+Yeh better nahi?
+Harry — 30/06/2025, 9:22 PM
+Better hai yeh b… but queue maintain nahi hoti ismay
+Haseeb Saif — 30/06/2025, 9:24 PM
+Batching kesay karain gay?
+Batch queue say bano andar data baijaty howay yeh use kar lo?
+Harry — 30/06/2025, 9:25 PM
+Batch k wapis annay ka wait kar sktay
+Queue na banaye agar
+Haseeb Saif — 30/06/2025, 9:26 PM
+Yes wohi kar letay. But check k kya better hai. Ask papa. Both cases
+Harry — 30/06/2025, 10:16 PM
+http://lustra.intrepidcs.corp/ics/wivi/issues/-/issues/1843
+http://lustra.intrepidcs.corp/ics/wivi/issues/-/issues/1844
+http://lustra.intrepidcs.corp/ics/wivi/issues/-/issues/1845
+http://lustra.intrepidcs.corp/ics/wivi/issues/-/issues/1846
+http://lustra.intrepidcs.corp/ics/wivi/issues/-/issues/1847
+Harry — 02/07/2025, 8:10 PM
+Update for now : 
+
+Revamp initialization of the library 
+Created Schema validator for it. 
+Seperate classes for creating configuration
+
+Currently working on test cases of init 
+
+Will complete test cases and library intialization testing with validation today! 
+
+==========================================
+1 hour break for gym 
+==========================================
+Haseeb Saif — 03/07/2025, 5:10 PM
+Yo
+Local pay graph chal raha teray pass?
+Harry — 03/07/2025, 5:10 PM
+Yes
+Haseeb Saif — 03/07/2025, 5:10 PM
+Latest?
+Harry — 03/07/2025, 5:10 PM
+Parso pull liya master ka
+So yes latest
+Haseeb Saif — 03/07/2025, 5:11 PM
+Networkstat k table main hai kuch locally?
+Harry — 03/07/2025, 5:11 PM
+Network stat ma nahi add kiya kuch..
+Haseeb Saif — 03/07/2025, 5:11 PM
+And device Version walay table main?
+Harry — 03/07/2025, 5:11 PM
+Signal or message or config ma hai
+Haseeb Saif — 03/07/2025, 5:11 PM
+query {
+  deviceVersion(input: {
+    configuration: {
+      vehicleId: 87, 
+    },
+    limit:1,
+    order: DESC
+  })  {
+    name
+    lastUpdateTime:time
+    value
+    vehicleId
+  }
+}
+Yeh qry chala k deakhni hai
+Harry — 03/07/2025, 5:11 PM
+Mere pass device version wgaira nahi chaltay
+Harry — 03/07/2025, 5:12 PM
+Ma locally data daal k dekh leta hun..
+Haseeb Saif — 03/07/2025, 5:12 PM
+Han data daaal k deakh zara
+Harry — 03/07/2025, 5:13 PM
+Okay
+Haseeb Saif — 03/07/2025, 5:13 PM
+2,2 entries kar lain
+means veh 87 ki 2,2
+Harry — 03/07/2025, 5:13 PM
+Okay
+Harry — 03/07/2025, 5:24 PM
+simple deviceVersion ki query nahi chalai 
+but with vehicle chalai hai
+Image
+simple dekhta abh
+Haseeb Saif — 03/07/2025, 5:25 PM
+Main awais sath edakh raha
+Tu lib pay kar
+Harry — 03/07/2025, 5:26 PM
+Image
+Okay
+Haseeb Saif — 03/07/2025, 5:28 PM
+join awais cube'
+???
+Haseeb Saif — 10/07/2025, 4:10 PM
+@Harry PRs main proper likh dena jesay Umer ny tasks main detail likhi hain k kya kar rahay
+Haseeb Saif — 10/07/2025, 4:27 PM
+???
+Harry — 10/07/2025, 5:02 PM
+join cube
+Haseeb Saif — Yesterday at 4:36 PM
+Can we use this as our Read.Me file?
+# Analytics Ingest Client
+
+A lightweight Python library to batch and push automotive telemetry data—such as signals, Diagnostic Trouble Codes (DTCs), GPS data, and network statistics—to a GraphQL backend.
+
+---
+Expand
+Readme.txt
+4 KB
+Check the examples before using it. Addsignal and addGPs etc examples.
+Harry — Yesterday at 4:47 PM
+Examples needs to be set for dtcs and signals
+as message info is not there
+
+other than that it's looking far better then existing one
+Haseeb Saif — Yesterday at 4:51 PM
+Amend and add.
+Harry — Yesterday at 4:52 PM
+Okay
+﻿
+Haseeb Saif
+haseebsaifullah
+# Analytics Ingest Client
+
+A lightweight Python library to batch and push automotive telemetry data—such as signals, Diagnostic Trouble Codes (DTCs), GPS data, and network statistics—to a GraphQL backend.
+
+---
+
+## 🔧 Features
+
+- Supports Python 3.11+
+- Clean, single-class interface: `IcsAnalytics`
+- In-memory caching for resolved IDs (message id or configuration)
+- Batching support (by interval, count, or signal limit)
+- Async-safe request queuing (only 1 request at a time)
+- Minimal dependency footprint
+- Easy to test and integrate
+- Supports signals, DTCs, GPS, and network stats ingestion
+
+---
+
+## 📦 Installation
+
+```bash
+pip install analytics-ingest
+```
+
+---
+
+## 🚀 Usage
+
+### Basic Example
+
+```python
+from analytics_ingest import IcsAnalytics
+
+client = IcsAnalytics(
+    device_id=123,
+    vehicle_id=456,
+    fleet_id=789,
+    org_id=1011,
+    graphql_endpoint="https://your-backend/graphql",
+    batch_size=100,
+    batch_interval_seconds=10,
+    max_signal_count=100
+)
+
+# Add signals (list of dicts)
+client.add_signal([
+    {"name": "rpm", "unit": "rpm", "data": [{"value": 3000, "timestamp": "2024-01-01T00:00:00Z"}]},
+    # ... more signals ...
+])
+
+# Add DTCs (list of dicts)
+client.add_dtc([
+    {"dtcId": "P0300", "status": "active", "description": "Random/Multiple Cylinder Misfire Detected", "data": []},
+    # ... more DTCs ...
+])
+
+# Add GPS data (dict)
+client.add_gps({
+    "latitude": 37.7749,
+    "longitude": -122.4194,
+    "timestamp": "2024-01-01T00:00:00Z"
+})
+
+# Add network stats (dict)
+client.add_network_stats({
+    "name": "CAN1",
+    "vehicleId": 456,
+    "uploadId": 1,
+    "totalMessages": 1000,
+    "matchedMessages": 950,
+    "unmatchedMessages": 50,
+    "errorMessages": 0,
+    "longMessageParts": 0,
+    "rate": 500.0
+})
+
+# Graceful shutdown (flushes any remaining data)
+client.close()
+```
+
+---
+
+## ⚙️ Configuration
+
+You can configure the client via constructor arguments or environment variables (e.g., `GRAPH_ENDPOINT`).
+
+- `device_id`, `vehicle_id`, `fleet_id`, `org_id`: Required identifiers
+- `graphql_endpoint`: URL to your GraphQL backend
+- `batch_size`: Number of items per batch (default: 100)
+- `batch_interval_seconds`: Max seconds between batch sends (default: 10)
+- `max_signal_count`: Max signals per batch (default: 100)
+
+---
+
+## 🛠️ Error Handling & Logging
+
+- Uses exceptions for invalid input or backend errors
+- Replaceable `print` statements with logging recommended for production
+- Retries failed batch sends on next interval
+
+---
+
+## 🧪 Testing
+
+Run all test cases:
+
+```
+PYTHONPATH=src python3 -m unittest discover -s tests -v
+```
+
+Build and upload package:
+
+```
+python3 -m build
+python -m twine upload dist/*
+```
+
+---
+
+## 💡 Improvements & Roadmap
+
+- Add more usage examples and API documentation
+- Integrate a logging framework
+- Increase test coverage and add integration tests
+- Allow dynamic runtime configuration
+- Expose a fully async API
+- Add metrics and monitoring hooks
+- Enforce linting and type checking in CI
+
+---
+
+## 🤝 Contributing
+
+Pull requests and issues are welcome! Please add tests for new features and follow PEP8 style guidelines.
+
+---
+
+## 📄 License
+
+MIT License
+Readme.txt
+4 KB
