@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Sondages</title>
+</head>
+<body>
+    <h1>Derniers sondages</h1>
+
+    <ul>
+    {% for question in latest_questions %}
+        <li>
+            <a href="{% url 'polls:detail' question.id %}">
+                {{ question.question_text }}
+            </a>
+        </li>
+    {% empty %}
+        <li>Aucun sondage disponible.</li>
+    {% endfor %}
+    </ul>
+
+</body>
+</html>

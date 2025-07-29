@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ question.question_text }}</title>
+</head>
+<body>
+    <h1>{{ question.question_text }}</h1>
+
+    <ul>
+    {% for choice in question.choices.all %}
+        <li>{{ choice.choice_text }} — {{ choice.votes }} votes</li>
+    {% empty %}
+        <li>Aucun choix disponible pour ce sondage.</li>
+    {% endfor %}
+    </ul>
+
+    <a href="{% url 'polls:index' %}">Retour à la liste</a>
+</body>
+</html>
