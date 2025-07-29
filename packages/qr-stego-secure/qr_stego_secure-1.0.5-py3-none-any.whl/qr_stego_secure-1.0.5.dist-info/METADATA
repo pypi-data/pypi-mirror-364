@@ -1,0 +1,59 @@
+Metadata-Version: 2.4
+Name: qr-stego-secure
+Version: 1.0.5
+Summary: Secure QR Steganography and Encryption Tool
+Author: Vishnu
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: cryptography>=42.0.0
+Requires-Dist: Pillow>=10.0.0
+Requires-Dist: qrcode[pil]>=7.4.2
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# QR Stego Secure
+
+This tool securely hides encrypted messages inside QR codes using AES encryption and LSB steganography. The visible QR contains a decoy message, while the real message is hidden inside the image.
+
+## 🚀 Features
+
+- 🔐 AES-256-CBC encryption using passphrase
+- 🖼️ LSB-based steganography to embed encrypted data in QR code images
+- 🪄 Automatically generated **decoy messages** for QR readability
+- ✅ Safe offline encryption/decryption
+- 🧹 Optionally wipe hidden data after decoding
+
+---
+## 🔧 Installation
+
+```bash
+pip install .
+```
+
+Install from PyPI:
+
+```bash
+pip install qr-stego-secure
+```
+## Usage
+
+### Encode a secret message:
+```
+qr-stego --encode --message "Secret123" --passphrase "myp@ss" --image "secret_qr.png"
+```
+
+### Decode a secret message:
+```
+qr-stego --decode --passphrase "myp@ss" --image "secret_qr.png"
+```
