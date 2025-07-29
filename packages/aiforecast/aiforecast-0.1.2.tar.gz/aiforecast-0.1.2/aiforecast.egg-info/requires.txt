@@ -1,0 +1,4 @@
+geopandas>=1.1.1
+openai>=1.97.0
+python-dotenv>=1.1.1
+setuptools>=80.9.0
