@@ -1,0 +1,6 @@
+[console_scripts]
+ipc-chat = ipc_framework.examples.chat_client:main
+ipc-demo = ipc_framework.demo:main
+ipc-file = ipc_framework.examples.file_client:main
+ipc-monitor = ipc_framework.examples.monitoring_client:main
+ipc-server = ipc_framework.examples.basic_server:main
