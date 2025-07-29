@@ -1,0 +1,110 @@
+Metadata-Version: 2.4
+Name: deeplabelnet
+Version: 0.1.16
+Summary: DeepLabelNet: Advanced Jupyter-like image annotation tool for Computer Vision Tasks
+Home-page: https://bitbucket.org/your-bitbucket-username/deeplabelnet
+Author: Dr H.S. Nagendraswamy, Maheshwari, Somanna M
+Author-email: hsnagendraswamy@gmail.com
+Maintainer: Somanna M
+Maintainer-email: somudotm@gmail.com
+License: GPL-3.0
+Project-URL: 👨‍🎓 Dr H.S. Nagendraswamy , https://uni-mysore.ac.in/english-version/content.php?id=246
+Project-URL: 💼 Maheshwari, https://www.linkedin.com/in/maheshwari-maheshwari-692770341/
+Project-URL: 💼 Somanna M , https://www.linkedin.com/in/somanna-m
+Project-URL: 🏛️ UoM -DoS in CS, https://uni-mysore.ac.in/
+Keywords: Image annotation,Django,Jupyter,Deep learning,Machine learning,Research tool,Academic software
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 3.0
+Classifier: Framework :: Django :: 4.0
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Scientific/Engineering :: Image Recognition
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Education :: Computer Aided Instruction (CAI)
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Topic :: Multimedia :: Graphics :: Graphics Conversion
+Classifier: Environment :: Web Environment
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: asgiref==3.8.1
+Requires-Dist: contourpy==1.3.2
+Requires-Dist: cycler==0.12.1
+Requires-Dist: Django==5.2.1
+Requires-Dist: django-crispy-forms==2.4
+Requires-Dist: djangorestframework==3.16.0
+Requires-Dist: filelock==3.18.0
+Requires-Dist: fonttools==4.58.0
+Requires-Dist: fsspec==2025.3.2
+Requires-Dist: gunicorn==23.0.0
+Requires-Dist: Jinja2==3.1.6
+Requires-Dist: kiwisolver==1.4.8
+Requires-Dist: MarkupSafe==3.0.2
+Requires-Dist: matplotlib==3.10.3
+Requires-Dist: mpmath==1.3.0
+Requires-Dist: networkx==3.4.2
+Requires-Dist: numpy==2.2.5
+Requires-Dist: opencv-python==4.11.0.86
+Requires-Dist: packaging==25.0
+Requires-Dist: pillow==10.4.0
+Requires-Dist: psycopg2-binary==2.9.10
+Requires-Dist: pyparsing==3.2.3
+Requires-Dist: python-dateutil==2.9.0.post0
+Requires-Dist: six==1.17.0
+Requires-Dist: sqlparse==0.5.3
+Requires-Dist: sympy==1.14.0
+Requires-Dist: torch==2.7.0
+Requires-Dist: torchvision==0.22.0
+Requires-Dist: typing_extensions==4.13.2
+Requires-Dist: tzdata==2025.2
+Requires-Dist: whitenoise==6.9.0
+Requires-Dist: ultralytics==8.3.149
+Requires-Dist: ultralytics-thop==2.0.14
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: maintainer
+Dynamic: maintainer-email
+Dynamic: project-url
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# DeepLabelNet
+
+**DeepLabelNet** is a Jupyter-like image annotation tool built with Django. It provides an intuitive web-based interface to manually draw, label, and manage bounding boxes on images — ideal for computer vision datasets, especially for object detection tasks such as traffic sign detection.
+
+![DeepLabelNet Interface](https://your-image-link-if-any)
+
+---
+
+## ✨ Features
+
+- 📂 Upload and organize datasets
+- 🖼️ Interactive image annotation with bounding boxes
+- 🔍 Zoom, pan, and draw tools
+- 💾 Export annotations in YOLO or COCO format
+- 🧠 Integration-ready with training pipelines (PyTorch, Ultralytics YOLO, etc.)
+- 🔐 User authentication and dashboard interface
+- ⚡ Built with Django, OpenCV, Torch, and Ultralytics
+
+---
+
+## 📦 Installation
+
+```bash
+pip install deeplabelnet
