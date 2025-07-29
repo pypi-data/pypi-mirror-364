@@ -1,0 +1,130 @@
+[build-system]
+requires = ["setuptools>=61", "setuptools-scm[toml]>=7"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "miniflux-summary-agent"
+dynamic = ["version"]
+description = "Summarize Miniflux articles with Ollama"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+authors = [
+    { name = "trly", email = "travis.lyons@gmail.com" }
+]
+keywords = ["rss", "miniflux", "ollama", "summarization", "ai", "news"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Text Processing :: Markup :: HTML",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "beautifulsoup4>=4.13.4",
+    "python-dotenv>=0.19.0",
+    "jinja2>=3.1.6",
+    "miniflux>=1.1.4",
+    "ollama>=0.5.1",
+    "playwright>=1.53.0",
+    "pydantic>=2.0.0",
+    "requests>=2.32.4",
+    "httpx>=0.28.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/trly/miniflux-summary-agent"
+Issues = "https://github.com/trly/miniflux-summary-agent/issues"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.4.1",
+    "pytest-asyncio>=1.1.0",
+    "pytest-cov>=6.0.0",
+    "ruff>=0.12.4",
+]
+
+[project.scripts]
+miniflux-summary = "miniflux_summary_agent.cli:cli_main"
+
+[tool.setuptools.packages.find]
+include = ["miniflux_summary_agent*"]
+exclude = ["tests*", "docs*", "examples*"]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-data]
+"miniflux_summary_agent" = ["templates/*.html"]
+
+[tool.pytest.ini_options]
+addopts = "--cov=. --cov-report=term-missing --cov-report=html --cov-report=xml"
+testpaths = [
+    "tests",
+]
+
+[tool.coverage.run]
+source = ["."]
+omit = [
+    ".venv/*",
+    "__pycache__/*",
+    "tests/*",
+    "*/.git/*",
+    ".pytest_cache/*",
+    "htmlcov/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+]
+show_missing = true
+
+[tool.ruff]
+target-version = "py310"
+line-length = 88
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort
+    "B",    # flake8-bugbear
+    "C4",   # flake8-comprehensions
+    "UP",   # pyupgrade
+    "SIM",  # flake8-simplify
+]
+ignore = [
+    "E501",  # line too long, handled by formatter
+    "B008",  # do not perform function calls in argument defaults
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["miniflux_summary_agent"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+
+[tool.setuptools_scm]
+version_scheme = "post-release"
+local_scheme = "no-local-version"
+

@@ -1,0 +1,2 @@
+[console_scripts]
+miniflux-summary = miniflux_summary_agent.cli:cli_main
