@@ -1,0 +1,8 @@
+Metadata-Version: 2.1
+Name: segmentation-sdk
+Version: 1.0.1
+Summary: A segmentation utilities SDK for ML pipelines
+Author: Saurav Kumar
+Author-email: Saurav.Kumar@cognizant.com
+Requires-Python: >=3.7
+License-File: LICENSE.lic

@@ -1,0 +1,12 @@
+LICENSE.lic
+README.md
+setup.py
+segmentation_sdk/__init__.py
+segmentation_sdk/data_utils.py
+segmentation_sdk/model_utils.py
+segmentation_sdk/utils.py
+segmentation_sdk/viz_utils.py
+segmentation_sdk.egg-info/PKG-INFO
+segmentation_sdk.egg-info/SOURCES.txt
+segmentation_sdk.egg-info/dependency_links.txt
+segmentation_sdk.egg-info/top_level.txt
