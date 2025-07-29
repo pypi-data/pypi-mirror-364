@@ -1,0 +1,10 @@
+README
+setup.py
+qpymenu/__init__.py
+qpymenu/__main__.py
+qpymenu/ansi.py
+qpymenu/qpymenu.py
+qpymenu.egg-info/PKG-INFO
+qpymenu.egg-info/SOURCES.txt
+qpymenu.egg-info/dependency_links.txt
+qpymenu.egg-info/top_level.txt
