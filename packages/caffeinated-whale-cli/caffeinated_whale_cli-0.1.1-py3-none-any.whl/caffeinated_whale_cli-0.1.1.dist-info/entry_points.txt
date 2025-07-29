@@ -1,0 +1,2 @@
+[console_scripts]
+caffeinated-whale-cli = caffeinated_whale_cli.main:cli
