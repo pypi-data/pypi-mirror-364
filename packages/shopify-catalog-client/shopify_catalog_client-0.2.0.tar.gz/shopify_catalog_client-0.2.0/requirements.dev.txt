@@ -1,0 +1,6 @@
+ariadne-codegen
+pytest-asyncio
+httpx
+respx
+python-dotenv
+hatch
