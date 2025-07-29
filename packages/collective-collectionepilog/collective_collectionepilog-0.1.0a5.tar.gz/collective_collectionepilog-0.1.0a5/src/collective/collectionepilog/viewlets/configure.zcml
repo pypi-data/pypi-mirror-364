@@ -1,0 +1,20 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="collective.collectionepilog">
+
+ <!-- -*- extra stuff goes here -*- -->
+
+  <browser:viewlet
+     name="collection-epilog"
+     for="plone.app.contenttypes.interfaces.ICollection"
+     manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+     layer="collective.collectionepilog.interfaces.IBrowserLayer"
+     class=".collection_epilog.CollectionEpilog"
+     template="collection-epilog.pt"
+     permission="zope2.View"
+     />
+
+
+</configure>

@@ -1,0 +1,113 @@
+Metadata-Version: 2.4
+Name: collective-collectionepilog
+Version: 0.1.0a5
+Summary: Provides a behavior for collections to add epilog RichText field under the collection results.
+Author-email: "Maik Derstappen - md@derico.de" <md@derico.de>
+Project-URL: Homepage, https://github.com/collective/collective.collectionepilog
+Project-URL: PyPI, https://pypi.org/project/collective.collectionepilog
+Project-URL: Source, https://github.com/collective/collective.collectionepilog
+Project-URL: Tracker, https://github.com/collective/collective.collectionepilog/issues
+Keywords: CMS,Plone,Python
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Plone
+Classifier: Framework :: Plone :: 6.1
+Classifier: Framework :: Plone :: Addon
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE.GPL
+License-File: LICENSE.md
+Requires-Dist: Products.CMFPlone
+Requires-Dist: plone.api
+Requires-Dist: plone.app.contenttypes
+Provides-Extra: test
+Requires-Dist: horse-with-no-namespace; extra == "test"
+Requires-Dist: plone.app.testing; extra == "test"
+Requires-Dist: plone.restapi[test]; extra == "test"
+Requires-Dist: pytest; extra == "test"
+Requires-Dist: pytest-cov; extra == "test"
+Requires-Dist: pytest-plone>=0.5.0; extra == "test"
+Dynamic: license-file
+
+# collective.collectionepilog
+
+Provides a behavior for collections to add epilog RichText field under the collection results.
+The content of the epilog will be added to the collection views via `collection-epilog` viewlet below the content.
+
+## Installation
+
+Install collective.collectionepilog with
+
+`pip`:
+
+```shell
+pip install collective.collectionepilog
+```
+
+or `uv`:
+
+```shell
+uv add collective.collectionepilog
+```
+
+## Contribute
+
+- [Issue tracker](https://github.com/collective/collective.collectionepilog/issues)
+- [Source code](https://github.com/collective/collective.collectionepilog/)
+
+### Prerequisites ✅
+
+-   An [operating system](https://6.docs.plone.org/install/create-project-cookieplone.html#prerequisites-for-installation) that runs all the requirements mentioned.
+-   [uv](https://6.docs.plone.org/install/create-project-cookieplone.html#uv)
+-   [Git](https://6.docs.plone.org/install/create-project-cookieplone.html#git)
+
+### Development 🔧
+
+1.  Clone this repository, then change your working directory.
+
+    ```shell
+    git clone git@github.com:collective/collective.collectionepilog
+    cd collective.collectionepilog
+    ```
+
+
+### Add features using `plonecli` or `bobtemplates.plone`
+
+This package provides markers as strings (`<!-- extra stuff goes here -->`) that are compatible with [`plonecli`](https://github.com/plone/plonecli) and [`bobtemplates.plone`](https://github.com/plone/bobtemplates.plone).
+These markers act as hooks to add all kinds of subtemplates, including behaviors, control panels, upgrade steps, or other subtemplates from `plonecli`.
+
+To run `plonecli` with configuration to target this package, run the following command.
+
+```shell
+plonecli add <template_name>
+```
+
+For example, you can add a content type to your package with the following command.
+
+```shell
+plonecli add content_type
+```
+
+You can add a behavior with the following command.
+
+```shell
+plonecli add behavior
+```
+
+```{seealso}
+You can check the list of available subtemplates in the [`bobtemplates.plone` `README.md` file](https://github.com/plone/bobtemplates.plone/?tab=readme-ov-file#provided-subtemplates).
+See also the documentation of [Mockup and Patternslib](https://6.docs.plone.org/classic-ui/mockup.html) for how to build the UI toolkit for Classic UI.
+```
+
+## License
+
+The project is licensed under GPLv2.
+
+## Credits and acknowledgements 🙏
+
+A special thanks to all contributors and supporters!
