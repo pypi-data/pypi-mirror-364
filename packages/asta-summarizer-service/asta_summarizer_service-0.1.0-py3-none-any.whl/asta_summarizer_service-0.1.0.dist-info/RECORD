@@ -1,0 +1,11 @@
+asta_summarizer_service-0.1.0.dist-info/licenses/LICENSE,sha256=aG6Kd_pt3W1lyqPYI2w1amZ9fel3x6kSC-znAOb3iTQ,1079
+summarizer/__init__.py,sha256=zTNAnajjZL4mI6sPeB3OktaKFqMAOCML2G_M7Y0Ik9s,171
+summarizer/service.py,sha256=Jq_IxNsxyy2arNTUzVwzvigrBkO9acPMK_9MfY3QGj8,3729
+summarizer/utils.py,sha256=QWisibgjiQYteEFDa6UHDxKfiETJtR_wjTl9FtkGTJY,248
+summarizer/models/SummarizationType.py,sha256=X2yo4FcE_Wc6Ax1IsNL-8u4Imyp8BvXmPO0tYVupVGk,113
+summarizer/prompts/main_prompt.txt,sha256=MIG6MFBsBKNGoPQQ2Dy9tZ-QHr3BeYX4QC9pqui7q5M,403
+summarizer/prompts/summary_type_prompts.py,sha256=X41sTwDb-qbe_-RC5veqmjf4KdHdjWR8nhg0_jDnoUs,400
+asta_summarizer_service-0.1.0.dist-info/METADATA,sha256=6TPPGNNp55pyIuySW44uDIUG7rihWiBIvSuTjm8RObU,5164
+asta_summarizer_service-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+asta_summarizer_service-0.1.0.dist-info/top_level.txt,sha256=HSrc3JWoX8BwBWyfn0V0i2PXkTDf1B9QCLrG2kjZnUg,11
+asta_summarizer_service-0.1.0.dist-info/RECORD,,
