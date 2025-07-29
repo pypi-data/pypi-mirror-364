@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: python3-log
+Version: 0.0.11
+Summary: used to print log for any app or platform
+Home-page: https://gitee.com/devops_dev/log
+Author: redrose2100
+Author-email: hitredrose@163.com
+Maintainer: redrose2100
+Maintainer-email: hitredrose@163.com
+License: MIT
+Project-URL: Documentation, https://gitee.com/devops_dev/log/README.md
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: System :: Logging
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: concurrent_log_handler
+
+# log
+
+
+## 安装
+```bash
+pip3 install python3-log
+```
+
+## 用法
+* 配置日志
+修改 [env.sh](env.sh), 然后执行如下命令使变量生效，若不执行此步骤，则默认会采用此文件中的值作为默认值
+```bash
+source env.sh 
+```
+
+
+```python
+from log import log
+
+log.info("info log")
+log.warning("warnning log")
+log.error("error log")
+```
+默认情况下，在Windows平台，日志文件存放在当前目录下，在linux平台，则按照 [env.sh](env.sh) 中配置的位置存放
+
