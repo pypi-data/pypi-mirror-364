@@ -1,0 +1,32 @@
+[project]
+name = "ctkmessagebox3"
+version = "3.0.3"
+description = "A repaired and improved version of CTkMessageBox package for CustomTkinter."
+authors = [
+    {name = "jacky wu",email = "jacky.wucheng@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/jackywu/ctkmessagebox"
+Issues = "https://github.com/jackywu/ctkmessagebox/issues"
+
+
+[tool.poetry.dependencies]
+customtkinter = "^5.2.2"
+pillow = "^11.3.0"
+
+[tool.poetry]
+packages = [{include = "ctkmessagebox3"}]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
