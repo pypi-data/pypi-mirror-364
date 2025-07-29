@@ -1,0 +1,88 @@
+Metadata-Version: 2.4
+Name: graphio
+Version: 0.15.0
+Summary: OGM and data loader for Neo4j.
+Author: Martin Preusse
+License-Expression: Apache-2.0
+Project-URL: Homepage, https://github.com/kaiserpreusse/graphio
+Project-URL: Documentation, https://graphio.readthedocs.io/
+Project-URL: Repository, https://github.com/kaiserpreusse/graphio
+Project-URL: Issues, https://github.com/kaiserpreusse/graphio/issues
+Keywords: NEO4J
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Intended Audience :: Developers
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: neo4j>=5.25.0
+Requires-Dist: pydantic<3
+Provides-Extra: docs
+Requires-Dist: mkdocs; extra == "docs"
+Requires-Dist: mkdocs-material; extra == "docs"
+Requires-Dist: mkdocstrings-python; extra == "docs"
+Requires-Dist: pymdown-extensions; extra == "docs"
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: hypothesis; extra == "dev"
+Requires-Dist: mkdocs-material; extra == "dev"
+Requires-Dist: mkdocstrings-python; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
+Dynamic: license-file
+
+# GraphIO
+
+[![Tests](https://github.com/kaiserpreusse/graphio/actions/workflows/test.yml/badge.svg)](https://github.com/kaiserpreusse/graphio/actions/workflows/test.yml)
+[![PyPI](https://img.shields.io/pypi/v/graphio)](https://pypi.org/project/graphio)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Neo4j](https://img.shields.io/badge/Neo4j-5-blue)](https://neo4j.com)
+[![Neo4j](https://img.shields.io/badge/Python-3.11%20%7C%203.12%20%7C%203.13-green)](https://python.com)
+[![Downloads](https://pepy.tech/badge/graphio)](https://pepy.tech/project/graphio)
+
+A Python library to bulk load data to Neo4j.
+
+## Documentation
+
+Docs available at: https://graphio.readthedocs.io
+
+## Install
+Install graphio from PyPI:
+
+```shell script
+pip install graphio
+```
+
+Install the latest build version from github:
+
+```shell script
+pip install git+https://github.com/kaiserpreusse/graphio.git
+```
+
+## Development
+You need Docker to run the test suite. First start the Neo4j instances to test against:
+
+```shell
+docker-compose -f test_neo4j_compose.yml up
+```
+
+Install dependencies:
+```shell
+pip install -r requirements.txt
+pip install -r test_requirements.txt
+```
+
+Then run the tests:
+
+```shell
+python -m pytest
+```
+
+All tests that use the `graph` fixture found in `tests/conftest.py` will run against all databases.
+
+## Feedback
+Please provide feedback, ideas and bug reports through GitHub issues.
+
+
