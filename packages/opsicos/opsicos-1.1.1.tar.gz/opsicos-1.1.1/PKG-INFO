@@ -1,0 +1,21 @@
+Metadata-Version: 2.4
+Name: opsicos
+Version: 1.1.1
+Summary: A professional Python SDK for the Opsicos AI Gateway.
+Author: Tawsif
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Dynamic: author
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Opsicos Python SDK
+
+Install this private SDK using pip and Git:
+
+```bash
+pip install "git+https://YOUR_GITHUB_USERNAME:YOUR_PERSONAL_ACCESS_TOKEN@github.com/1-Tawsif-1/opsicos-api.git#subdirectory=sdks/python"
