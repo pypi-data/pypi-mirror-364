@@ -1,0 +1,1 @@
+default_app_config = 'django_visit_counter.apps.DjangoVisitCounterConfig'
