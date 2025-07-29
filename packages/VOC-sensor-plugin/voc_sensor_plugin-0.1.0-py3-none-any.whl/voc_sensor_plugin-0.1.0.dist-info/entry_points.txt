@@ -1,0 +1,2 @@
+[pioreactor.plugins]
+VOC_sensor_plugin = VOC_sensor_plugin

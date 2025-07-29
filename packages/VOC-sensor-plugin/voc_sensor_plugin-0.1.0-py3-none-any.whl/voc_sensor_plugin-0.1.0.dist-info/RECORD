@@ -1,0 +1,9 @@
+VOC_sensor_plugin/VOC_sensor.py,sha256=hjtVa0feW4bv28XYer023A9OmpD6z6OhyNDTBGavUOI,3162
+VOC_sensor_plugin/__init__.py,sha256=ve2kRiwSnm4Mju86dgGvJ5TCor2jVSCCUyoPRHTU5-k,62
+VOC_sensor_plugin/additional_config.ini,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+VOC_sensor_plugin/ui/contrib/jobs/read_voc_sensor.yaml,sha256=4TE-5j7YHRzjCyT-mT4nZ6y8xWU5sRyE9jUrTW1OUAE,499
+voc_sensor_plugin-0.1.0.dist-info/METADATA,sha256=beMrQ8azcYbDVdVzFzBYbsrv8NtCT-S1dqDnz2ukVWI,553
+voc_sensor_plugin-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+voc_sensor_plugin-0.1.0.dist-info/entry_points.txt,sha256=_57u4IhbfNMGsYVnDRircDH2ImdPamhPCHYD73tOWRw,59
+voc_sensor_plugin-0.1.0.dist-info/top_level.txt,sha256=g5mdiZJkla505e02kC0-XrhrSb3eoA8gkAqWDM_7OaY,18
+voc_sensor_plugin-0.1.0.dist-info/RECORD,,

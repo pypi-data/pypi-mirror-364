@@ -1,0 +1,18 @@
+---
+display_name: VOC sensor 
+job_name: read_VOC_sensor
+display: true 
+source: VOC_sensor_plugin 
+description: Records VOC from PID 0-4 ppm sensors
+published_settings: 
+  - key: interval
+    unit: s
+    label: Time between VOC readings
+    type: numeric
+    display: true
+    description: The duration (s) between MOX readings. 
+  - key: VOC_sensor1
+    label: Measuring from VOC Sensor 1
+    type: boolean
+    display: true
+    description: Is ens160 sensor connected to port 0? 
