@@ -1,0 +1,2 @@
+[console_scripts]
+arxiv-bot = newsoc_arxiv_bot.arxiv_alert:main
