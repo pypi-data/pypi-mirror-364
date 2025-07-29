@@ -1,0 +1,30 @@
+Metadata-Version: 2.4
+Name: Python-FastUI-Widgets
+Version: 1.0.2
+Summary: FastUI on PySide6
+Author: NumBNN
+Author-email: NumBNN@outlook.com
+Keywords: pyside6 fastui widgets
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: PySide6>=6.4.2
+Requires-Dist: Python-FastUI-Window>=1.0.2
+Requires-Dist: darkdetect
+Provides-Extra: full
+Requires-Dist: scipy; extra == "full"
+Requires-Dist: pillow; extra == "full"
+Requires-Dist: colorthief; extra == "full"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: keywords
+Dynamic: license-file
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: summary
+
+测试自用
