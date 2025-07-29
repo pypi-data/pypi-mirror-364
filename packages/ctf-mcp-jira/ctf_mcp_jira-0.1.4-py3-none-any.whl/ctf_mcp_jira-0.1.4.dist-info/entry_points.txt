@@ -1,0 +1,3 @@
+[console_scripts]
+ctf-mcp-jira-client = mcp_jira.client.app:main
+ctf-mcp-jira-server = mcp_jira.server.app:main
