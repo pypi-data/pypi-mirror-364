@@ -1,0 +1,10 @@
+bdscore/__init__.py,sha256=Gr6kZvbO4FehNFyVH-fZspkMZ0e5XUJIrpJphg8QWCw,2919
+bdscore/services/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+bdscore/services/datamanagement.py,sha256=WSnvfLFqf6gMJZfufp-6RHMi81MV5oF5EPhzPWjIflk,3408
+bdscore/services/datapack.py,sha256=Tsf6pzwhlYAYyqkF7kyJApKAuLqIxgWXvLeNhXx349E,2667
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/lib.py,sha256=P1M2lGm2r15FwaylxGWDAEj7H9PWt0P4TnxVnmRa2ws,245
+bdscore-0.0.1b1.dist-info/METADATA,sha256=TJXjv2M_5Mn-vrVkPN3rs5jiaNbikvR1VR6ErB5hmAM,426
+bdscore-0.0.1b1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+bdscore-0.0.1b1.dist-info/top_level.txt,sha256=Dk9mpQKEe3V87TUtMFlQyNG2RLxSI16g65F4sRwcklQ,14
+bdscore-0.0.1b1.dist-info/RECORD,,
