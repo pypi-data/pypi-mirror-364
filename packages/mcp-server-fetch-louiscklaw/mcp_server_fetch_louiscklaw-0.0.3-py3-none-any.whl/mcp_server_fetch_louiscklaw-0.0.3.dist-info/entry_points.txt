@@ -1,0 +1,2 @@
+[console_scripts]
+mcp-server-fetch-louiscklaw = mcp_server_fetch_louiscklaw:main
