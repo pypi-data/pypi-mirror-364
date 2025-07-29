@@ -1,0 +1,79 @@
+from typing import Dict
+from typing import Optional
+
+from ddtrace.appsec._iast._logs import iast_error
+from ddtrace.settings.asm import config as asm_config
+
+from ..._constants import IAST_SPAN_TAGS
+from .. import oce
+from .._metrics import _set_metric_iast_executed_sink
+from .._metrics import increment_iast_span_metric
+from ..constants import VULN_INSECURE_COOKIE
+from ..constants import VULN_NO_HTTPONLY_COOKIE
+from ..constants import VULN_NO_SAMESITE_COOKIE
+from ..taint_sinks._base import VulnerabilityBase
+
+
+@oce.register
+class InsecureCookie(VulnerabilityBase):
+    vulnerability_type = VULN_INSECURE_COOKIE
+    scrub_evidence = False
+    skip_location = True
+
+
+@oce.register
+class NoHttpOnlyCookie(VulnerabilityBase):
+    vulnerability_type = VULN_NO_HTTPONLY_COOKIE
+    skip_location = True
+
+
+@oce.register
+class NoSameSite(VulnerabilityBase):
+    vulnerability_type = VULN_NO_SAMESITE_COOKIE
+    skip_location = True
+
+
+def asm_check_cookies(cookies: Optional[Dict[str, str]]) -> None:
+    if not cookies:
+        return
+    if asm_config._iast_enabled and asm_config.is_iast_request_enabled:
+        try:
+            for cookie_key, cookie_value in cookies.items():
+                lvalue = cookie_value.lower().replace(" ", "")
+                # If lvalue starts with ";" means that the cookie is empty, like ';httponly;path=/;samesite=strict'
+                if lvalue == "" or lvalue.startswith(";") or lvalue.startswith('""'):
+                    continue
+
+                if ";secure" not in lvalue:
+                    increment_iast_span_metric(
+                        IAST_SPAN_TAGS.TELEMETRY_EXECUTED_SINK, InsecureCookie.vulnerability_type
+                    )
+                    _set_metric_iast_executed_sink(InsecureCookie.vulnerability_type)
+                    InsecureCookie.report(evidence_value=cookie_key)
+
+                if ";httponly" not in lvalue:
+                    increment_iast_span_metric(
+                        IAST_SPAN_TAGS.TELEMETRY_EXECUTED_SINK, NoHttpOnlyCookie.vulnerability_type
+                    )
+                    _set_metric_iast_executed_sink(NoHttpOnlyCookie.vulnerability_type)
+                    NoHttpOnlyCookie.report(evidence_value=cookie_key)
+
+                if ";samesite=" in lvalue:
+                    ss_tokens = lvalue.split(";samesite=")
+                    if len(ss_tokens) <= 1:
+                        report_samesite = True
+                    else:
+                        ss_tokens[1] = ss_tokens[1].lower()
+                        if ss_tokens[1].startswith("strict") or ss_tokens[1].startswith("lax"):
+                            report_samesite = False
+                        else:
+                            report_samesite = True
+                else:
+                    report_samesite = True
+
+                if report_samesite:
+                    increment_iast_span_metric(IAST_SPAN_TAGS.TELEMETRY_EXECUTED_SINK, NoSameSite.vulnerability_type)
+                    _set_metric_iast_executed_sink(NoSameSite.vulnerability_type)
+                    NoSameSite.report(evidence_value=cookie_key)
+        except Exception as e:
+            iast_error(f"propagation::sink_point::Error in check stacktrace leak. {e}")
