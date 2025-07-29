@@ -1,0 +1,5 @@
+elasticsearch<10.0.0,>=9.0.0
+six
+
+[celery]
+celery>=5.5.3
