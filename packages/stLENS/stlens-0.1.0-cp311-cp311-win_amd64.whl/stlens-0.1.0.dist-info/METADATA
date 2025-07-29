@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: stLENS
+Version: 0.1.0
+Requires-Python: <3.12,>=3.9
+Requires-Dist: scanpy<=1.11.3
+Requires-Dist: pandas<=2.3.1
+Requires-Dist: scipy<=1.15.3
+Requires-Dist: numpy<=2.2.6
+Requires-Dist: tqdm==4.67.1
+Requires-Dist: zarr<=2.18.7
+Requires-Dist: matplotlib<=3.10.3
+Requires-Dist: dask<=2025.7.0
+Requires-Dist: seaborn==0.13.2
+
