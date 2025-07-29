@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=67", "setuptools_scm>=7", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+write_to = "wrds/_version.py"
+
+[project]
+name = "wrds"
+description = "Access WRDS data through PostgreSQL in Python."
+authors =  [
+    {name = "Alex Malek", email = "amalek@wharton.upenn.edu"},
+    {name = "Tim Allen", email = "tallen@wharton.upenn.edu"},
+]
+license = {text = "BSD-3-Clause"}
+readme = "README.md"
+requires-python = ">=3.8"
+keywords = ["wrds", "finance", "research", "crsp", "compustat"]
+classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "Intended Audience :: Financial and Insurance Industry",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "Topic :: Office/Business :: Financial",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "License :: OSI Approved :: BSD License",
+]
+dependencies = [
+    "packaging<=24.2",
+    "pandas>=2.2,<2.3",
+    "psycopg2-binary>=2.9,<2.10",
+    "sqlalchemy>=2,<2.1",
+]
+dynamic = ["version"]
+
+[project.urls]
+"Homepage" = "http://wrds-www.wharton.upenn.edu"
+"Repository" = "https://github.com/wharton/wrds"
+"Documentation" = "https://github.com/wharton/wrds/blob/master/README.md"

@@ -1,0 +1,17 @@
+.gitignore
+LICENSE.txt
+README.md
+pyproject.toml
+.github/workflows/publish.yml
+docs/Makefile
+docs/source/conf.py
+docs/source/index.rst
+wrds/__init__.py
+wrds/_version.py
+wrds/sql.py
+wrds/test.py
+wrds.egg-info/PKG-INFO
+wrds.egg-info/SOURCES.txt
+wrds.egg-info/dependency_links.txt
+wrds.egg-info/requires.txt
+wrds.egg-info/top_level.txt
