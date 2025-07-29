@@ -1,0 +1,12 @@
+sagikoza/__init__.py,sha256=TfZEbhO4sxfaudv6MwJs6G7Rnmw_ZI5hoAJ3DGBCH3M,942
+sagikoza/core.py,sha256=ugA1veevdgs1Zmlj-3JrxTYlLdIPaf-yEAZ2Qmoo7U8,15945
+sagikoza/parser/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+sagikoza/parser/pubs_basic_frame.py,sha256=ySKM6YWlXg5q9R6F3yfGjXFXV5VrFlRsMKeK2wjBETA,2616
+sagikoza/parser/pubs_dispatcher.py,sha256=MoiCwad4ApKLHdoNVtFei_3jxb4mZPF5Vm4DdFghlNo,1339
+sagikoza/parser/pubstype_detail.py,sha256=J99qCIONyGmnUJcx80wmdcHEbinCGCAJ6gEdlxQ25MU,5979
+sagikoza/parser/sel_pubs.py,sha256=ukAZxfbScncroe9B9P47TSiM5nISs5ym6d7wwoTCTA4,1614
+sagikoza-2.1.3.dist-info/licenses/LICENSE,sha256=TaZYx3c_UzbZPLc17Vcd-zRomP0Fs8RFNSS7DSsGgvE,12591
+sagikoza-2.1.3.dist-info/METADATA,sha256=M1fY54WvYCBLjWPRJ6l22YxbFk3caN27oqXQAl2_cK8,19575
+sagikoza-2.1.3.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+sagikoza-2.1.3.dist-info/top_level.txt,sha256=AfDJMwHsACT8STfMKbHttFWfBvtlmlXxefm5shNNSsQ,9
+sagikoza-2.1.3.dist-info/RECORD,,
