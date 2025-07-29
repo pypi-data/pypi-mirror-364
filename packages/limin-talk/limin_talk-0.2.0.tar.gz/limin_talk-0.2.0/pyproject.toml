@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "limin-talk"
+version = "0.2.0"
+description = "A Python library for letting two LLMs talk to each other."
+authors = [
+    { name = "Titanom Solutions", email = "infrastructure@titanom.com" },
+]
+readme = "README.md"
+dependencies = [
+    "limin>=0.8.0"
+]
+requires-python = ">=3.10"
+
+[tool.setuptools]
+packages = ["limin_talk"]
+
+[tool.setuptools.package-data]
+limin_talk = ["py.typed"]
+
+[tool.mypy]
+files = "limin_talk/"

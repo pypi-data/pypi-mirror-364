@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+limin_talk/__init__.py
+limin_talk/py.typed
+limin_talk.egg-info/PKG-INFO
+limin_talk.egg-info/SOURCES.txt
+limin_talk.egg-info/dependency_links.txt
+limin_talk.egg-info/requires.txt
+limin_talk.egg-info/top_level.txt
