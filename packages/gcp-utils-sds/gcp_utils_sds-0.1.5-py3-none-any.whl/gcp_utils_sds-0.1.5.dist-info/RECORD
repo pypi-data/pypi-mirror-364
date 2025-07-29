@@ -1,0 +1,9 @@
+gcp_utils_sds/__init__.py,sha256=DT8EB-zbH9qDnljgBFJq7boz_aC8refODftMXXQZzB4,135
+gcp_utils_sds/access_secrets.py,sha256=kCexDhw25kr44lnaPJkbrN1SOh_9yKEW6_HlpknKryc,988
+gcp_utils_sds/buckets.py,sha256=xdP42lDGy5dN9CpmUxbgMKzjVcUDKUqQJ-6zMmhnHCs,2080
+gcp_utils_sds/yoy.py,sha256=zuUtcvCWlr8b9tEZYAOMWvBNEf7fcxBvGzMon6MxWCk,4131
+gcp_utils_sds-0.1.5.dist-info/licenses/LICENSE,sha256=x9MWXdE3O4KfRwiwim4QYQuTD8IxRMeRZes2m4FJuZw,514
+gcp_utils_sds-0.1.5.dist-info/METADATA,sha256=qfJrp_BTS7Bs-og3Ow1oUDNbKqJ1tDtQdfMR3E22E0A,1686
+gcp_utils_sds-0.1.5.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+gcp_utils_sds-0.1.5.dist-info/top_level.txt,sha256=lk_LJ7du-dxDRF7Me-rTYRhMr1fKrD1rTwVeooMtd1E,14
+gcp_utils_sds-0.1.5.dist-info/RECORD,,
