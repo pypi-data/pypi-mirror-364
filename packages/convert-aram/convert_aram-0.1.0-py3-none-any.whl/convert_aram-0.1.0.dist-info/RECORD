@@ -1,0 +1,13 @@
+convert_aram/__init__.py,sha256=-pDGRRx3GB4SWw_D2U7gbBML9A3DST93MTsiChtN9iQ,40
+convert_aram/admin.py,sha256=suMo4x8I3JBxAFBVIdE-5qnqZ6JAZV0FESABHOSc-vg,63
+convert_aram/apps.py,sha256=7OGyYj4leRb9zunU5IspaJwvl4EUXiR9WHCrIV2papY,155
+convert_aram/cli.py,sha256=KrAnPtZRsPbd7YHnrJ7pH6sLamr-igo-ssqR8pQeJ88,567
+convert_aram/converter.py,sha256=bzTDN3xiT5qfR6Lh94iD20TJDxYVgXBmJ5MbqVlMvyU,339
+convert_aram/models.py,sha256=Vjc0p2XbAPgE6HyTF6vll98A4eDhA5AvaQqsc4kQ9AQ,57
+convert_aram/views.py,sha256=xc1IQHrsij7j33TUbo-_oewy3vs03pw_etpBWaMYJl0,63
+convert_aram/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+convert_aram-0.1.0.dist-info/METADATA,sha256=QMRlqrqZ2uezG2hceoBV_LMkzigxVJCzJaNamb7gnw4,961
+convert_aram-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+convert_aram-0.1.0.dist-info/entry_points.txt,sha256=2hAiBBm1wpla5VNSFpHHwQ1jatjtw8ljT61pTeOQuaA,59
+convert_aram-0.1.0.dist-info/top_level.txt,sha256=o7vIa5M8ti1Cwx4NUM6so-fKPnptM2cJ8M-UPZd6aH0,13
+convert_aram-0.1.0.dist-info/RECORD,,
