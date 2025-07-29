@@ -1,0 +1,70 @@
+Metadata-Version: 2.1
+Name: qt-echarts
+Version: 0.0.3
+Summary: pyqt-echarts 通过QWebEngine和pyecharts进行处理
+Home-page: https://pypi.org/project/qt-echarts/
+Author: SiberianHusky
+Author-email: 3088506834@qq.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: beautifulsoup4
+Requires-Dist: lxml
+Requires-Dist: pyecharts
+Requires-Dist: PyQt5
+Requires-Dist: PyQt5_sip
+Requires-Dist: PyQtWebEngine
+
+# QT-Echarts
+
+## 安装
+```bash
+pip install qt-echarts
+```
+
+## 例子
+
+```python
+
+import sys
+from pyecharts.charts import Tree
+from PyQt5.QtWidgets import QApplication
+from pyecharts import options as opts
+
+from qtecharts.charts_engine import ChartEngine
+
+if __name__ == '__main__':
+    data = [
+        {
+            "children": [
+                {"name": "B"},
+                {
+                    "children": [{"children": [{"name": "I"}], "name": "E"}, {"name": "F"}],
+                    "name": "C",
+                },
+                {
+                    "children": [
+                        {"children": [{"name": "J"}, {"name": "K"}], "name": "G"},
+                        {"name": "H"},
+                    ],
+                    "name": "D",
+                },
+            ],
+            "name": "A",
+        }
+    ]
+    tree = Tree()
+    tree.add("",data)
+    tree.set_global_opts(title_opts=opts.TitleOpts(title="Tree-基本示例"))
+    app = QApplication(sys.argv)
+
+    engine = ChartEngine(chart=tree)
+
+    engine.show()
+
+    sys.exit(app.exec_())
+
+
+```
