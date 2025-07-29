@@ -1,0 +1,40 @@
+start: roll_types ("," roll_types )*
+
+skew: "^" [ skew_operation ] (FLOAT | NUMBER)
+default_type: "<" WORD ">"
+
+roll_types: ([ skew ] | [ default_type ])* (check | count | dice_types | raw)
+check: ("c" | "check" ) [ ADVANTAGE ] "(" dice_roll (operation dice_roll)* ")"
+count: ("#" | "count") "(" dice_roll_r ")" comparison quantity
+dice_types: (dice_roll_t | dice_group) ("+" (dice_roll_t | dice_group))* 
+raw: ("r" | "raw") "(" dice_roll_r ")"
+
+dice_group: [ multiplier MULTIPLICATION ] "(" dice_roll (operation dice_roll)* ")" [ type ]
+dice_roll: quantity [ "d" sides [("!" | "reroll" ) reroll ] [("k" | "keep") best ] ]
+dice_roll_r: quantity "d" sides [("!" | "reroll" ) reroll ] [("k" | "keep") best ]
+dice_roll_t: dice_roll [ type ]
+
+type: "[" WORD "]"
+sides: NUMBER
+operation: OPERATION
+comparison: COMPARISON
+skew_operation: OPERATION
+quantity: NUMBER
+multiplier: NUMBER
+reroll: NUMBER
+best: [OPERATION] NUMBER
+
+OPERATION: "+" | "-"
+MULTIPLICATION: "x" | "*"
+ADVANTAGE: "adv" | "dis"
+CHECK: "c" | "check"
+COMPARISON: "=" | "==" | ">" | ">=" | "<" | "<=" | "!="
+WORD: ( LETTER | DIGIT ) (LETTER | DIGIT | "_")*
+
+%import common.LETTER -> LETTER
+%import common.DIGIT -> DIGIT
+%import common.INT -> NUMBER
+%import common.FLOAT -> FLOAT
+%import common.WS -> WS
+
+%ignore WS
