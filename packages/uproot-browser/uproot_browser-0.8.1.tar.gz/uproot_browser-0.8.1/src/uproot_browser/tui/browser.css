@@ -1,0 +1,135 @@
+Browser Widget {
+    scrollbar-color: $secondary-darken-1;
+    scrollbar-color-hover: $secondary-darken-3;
+    scrollbar-color-active: $secondary-darken-3;
+    scrollbar-background: $surface-darken-1;
+    scrollbar-background-hover: $surface-darken-1;
+    scrollbar-background-active: $surface-darken-1;
+    scrollbar-size: 1 1;
+}
+
+#left-view {
+    display: none;
+    overflow: auto;
+    width: 25%;
+    height: 100%;
+    dock: left;
+    padding-top: 1;
+}
+
+Tree > .tree--cursor {
+    text-style: bold;
+}
+
+Browser.-show-panel #left-view {
+    display: block;
+    max-width: 50%;
+}
+
+ContentSwitcher#main-view {
+    height: 100%;
+}
+
+#logo {
+    content-align: center middle;
+}
+
+#plot {
+    overflow: auto;
+    min-width: 100%;
+    padding-left: 1;
+    padding-right: 1;
+}
+
+#error{
+    overflow: auto;
+    min-width: 100%;
+}
+
+#empty {
+    content-align: center middle;
+}
+
+Info {
+    overflow: scroll;
+}
+
+Tools {
+    overflow: scroll;
+}
+
+CollapsibleTitle {
+   text-style: bold;
+}
+
+Footer > .footer--highlight {
+    background: $secondary-darken-2;
+}
+
+Footer > .footer--key {
+    text-style: bold;
+    background: $secondary-darken-3;
+}
+
+Footer > .footer--highlight-key {
+    background: $secondary-darken-2;
+    text-style: bold;
+}
+
+Footer {
+    background: $secondary-lighten-2;
+}
+
+HelpScreen {
+    align: center middle;
+}
+
+.dialog {
+    padding: 0 1;
+    width: 80%;
+    height: 90%;
+    border: thick $background 80%;
+    background: $surface;
+}
+
+#help-buttons {
+    align: right middle;
+    height: 3;
+    background: $surface-lighten-1;
+}
+
+
+HeaderCloseIcon {
+    dock: left;
+    border: none;
+    min-width: 3;
+}
+
+HeaderCloseIcon:hover {
+    background: $panel-lighten-2;
+}
+
+HeaderHelpIcon {
+    dock: right;
+    padding: 0 1;
+    border: none;
+    min-width: 4;
+    content-align: right middle;
+}
+
+HeaderHelpIcon:hover {
+    background: $panel-lighten-2;
+}
+
+HeaderTitle {
+    content-align: center middle;
+    width: 100%;
+}
+
+Header {
+    dock: top;
+    width: 100%;
+    background: $foreground 5%;
+    color: $text;
+    height: 1;
+}
