@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+src/SampicTCPController/HostMachineServer.py
+src/SampicTCPController/SampicTCPController.py
+src/SampicTCPController/__init__.py
+src/SampicTCPController.egg-info/PKG-INFO
+src/SampicTCPController.egg-info/SOURCES.txt
+src/SampicTCPController.egg-info/dependency_links.txt
+src/SampicTCPController.egg-info/requires.txt
+src/SampicTCPController.egg-info/top_level.txt

@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools >= 61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "SampicTCPController"
+version = "0.0.2"
+description = "A Python tool to control a Sampic data acquisition through the TCP protocol"
+readme = "README.md"
+authors = [
+    { name = "Laurent Forthomme", email = "laurent.forthomme@cern.ch" },
+]
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE"]
+classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Information Analysis"
+]
+keywords = ["sampic", "oscilloscope", "waveform"]
+dependencies = ["numpy"]
+requires-python = ">=3.1"
+
+[project.optional-dependencies]
+dev = ["black", "bumpver", "isort", "pip-tools", "pytest"]
+
+[project.urls]
+Homepage = "https://gitlab.cern.ch/h8ctb/SampicTCPController"
