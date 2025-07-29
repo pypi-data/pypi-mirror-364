@@ -1,0 +1,12 @@
+remoterunlib/__init__.py,sha256=4qzuA6VmsZBxebNJA5UN6Wc4b8UaXPrfECjFPLgOnlA,93
+remoterunlib/dashboard.py,sha256=aDfmTmZ5X6vveyVKyBAOYCbQPF72RsTqBJKHHr2TZvQ,37943
+remoterunlib/remoterunlib.py,sha256=XFhij15GSRvd0rIOxvgWjQzpVC7BTiWuASSpk20fSiM,44198
+remoterunlib/UI/index.html,sha256=DNLfGpKvbXS0KkBde154l2Uvcj8bibEkhl1A_0IbDhc,33277
+remoterunlib/UI/script.js,sha256=umz0kiHbIl8JOuLGcUaHV8HUPvEYseSijGAFXcp31I0,77872
+remoterunlib/UI/styles.css,sha256=DjugthVMDHWXWv43iNwSutrDBworv5CnSCKEUXQiYik,23411
+remoterunlib/utils.py,sha256=0CXH_LDRIkjIxrfQoA8A7_p-DQBPT73qZn2c6OA4TOw,871
+remoterunlib-0.5.2.dist-info/entry_points.txt,sha256=_uhnclEzOvDxzIHTS7gpcXTEyrI5ZBJIDXDOAGeOWNE,61
+remoterunlib-0.5.2.dist-info/LICENSE,sha256=Qqeq7p6Em3zER6rJftbo0bKrtidu3ckgwN1goVaqAvU,1091
+remoterunlib-0.5.2.dist-info/METADATA,sha256=Kw_252fylXx-T6Vb0PhWKZUiYSnuBSC2GlW32YAK3tQ,11198
+remoterunlib-0.5.2.dist-info/WHEEL,sha256=b4K_helf-jlQoXBBETfwnf4B04YC67LOev0jo4fX5m8,88
+remoterunlib-0.5.2.dist-info/RECORD,,
