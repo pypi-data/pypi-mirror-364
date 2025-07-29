@@ -1,0 +1,88 @@
+# 🤖 Revenium Universal Griptape Driver - Requirements
+# Complete dependency list for all functionality
+
+# ============================================================================
+# CORE DEPENDENCIES (Required for basic functionality)
+# ============================================================================
+
+# Griptape framework (the AI framework this integrates with)
+griptape>=1.0.0
+
+# Environment variable loading (used throughout the project)
+python-dotenv>=1.0.0
+
+# LiteLLM for Tier 2 provider support (100+ LLM providers)
+litellm>=1.40.0
+
+# ============================================================================
+# MIDDLEWARE DEPENDENCIES (Install as needed per provider)
+# ============================================================================
+# Note: Users should install only the middleware for providers they plan to use
+# All middleware packages are optional but recommended for usage metering
+
+# Tier 1 Provider Middleware (Direct Support)
+revenium-middleware-openai>=0.4.6     # For OpenAI (GPT models)
+revenium-middleware-anthropic>=0.2.22  # For Anthropic (Claude models)  
+revenium-middleware-ollama>=0.1.16     # For local Ollama models
+
+# Tier 2 Universal Middleware (100+ providers via LiteLLM)
+revenium-middleware-litellm>=0.1.24    # For Google/Gemini, Cohere, Azure OpenAI, Bedrock, etc.
+
+# Core Revenium middleware (may be included by provider-specific packages)
+revenium-middleware>=0.3.4
+
+# ============================================================================
+# TESTING DEPENDENCIES (For running the test suite)
+# ============================================================================
+
+# HTTP requests for Ollama connectivity testing
+requests>=2.31.0
+
+# ============================================================================
+# DEVELOPMENT DEPENDENCIES (Optional - for contributors)
+# ============================================================================
+
+# Testing framework
+pytest>=7.4.0
+
+# Code formatting
+black>=23.0.0
+
+# Linting
+flake8>=6.0.0
+
+# Type checking (optional)
+mypy>=1.5.0
+
+# ============================================================================
+# PROVIDER-SPECIFIC DEPENDENCIES (Automatically installed by Griptape)
+# ============================================================================
+# These are typically installed automatically when you install griptape
+# Listed here for reference - you usually don't need to install these manually
+
+# OpenAI (for Tier 1 OpenAI support)
+# openai>=1.0.0
+
+# Anthropic (for Tier 1 Anthropic support)  
+# anthropic>=0.25.0
+
+# Note: Ollama doesn't require additional packages as it runs locally
+
+# ============================================================================
+# INSTALLATION COMMANDS
+# ============================================================================
+
+# Minimal installation (just the universal driver):
+#   pip install griptape python-dotenv litellm
+
+# Full installation (all providers + testing):
+#   pip install -r requirements.txt
+
+# Provider-specific installation examples:
+#   pip install revenium-middleware-openai      # For OpenAI only
+#   pip install revenium-middleware-anthropic   # For Anthropic only
+#   pip install revenium-middleware-ollama      # For Ollama only  
+#   pip install revenium-middleware-litellm     # For 100+ other providers
+
+# Development installation:
+#   pip install -r requirements.txt 
