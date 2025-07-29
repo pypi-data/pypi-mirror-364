@@ -1,0 +1,35 @@
+Metadata-Version: 2.4
+Name: aplicacion_ventas_by_darwin
+Version: 0.1.0
+Summary: Paquete para gestionar ventas, precios, impuestos y descuentos
+Home-page: https://github.com/curso_python_camara/gestor/aplicacionventas
+Author: Darwin Camacho Herrera
+Author-email: darwinch7138@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: Licence
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+Dynamic: summary
+
+# Aplicacion de ventas
+
+Este paquete proporciona funcionalidades para gestionar ventas, incluyendo calculos de precios,
+impuestos y descuentos
+
+""Instalacion
+
+Puedes instalar el paquete usando:
+
+Â´Â´Â´bash
+pip intall . 
+"
