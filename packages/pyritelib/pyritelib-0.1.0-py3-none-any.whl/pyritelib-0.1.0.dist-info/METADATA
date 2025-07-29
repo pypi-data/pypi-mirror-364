@@ -1,0 +1,22 @@
+Metadata-Version: 2.4
+Name: pyritelib
+Version: 0.1.0
+Summary: Library of various utilities that I use in my programmes.
+Author-email: Ángel Moreno Prieto <angelmorenoprieto@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/angelmorenoprieto/pyrite
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# Pyrite
+Library of various utilities that I use in my programmes.
+
+# Current corpus
+- `each`: Function that creates an "each" container, whic is a container that applies any operation performed on it to each of its items.
+
+# Future corpus
+- `Registry`: Efficiently manage and track collections of same-type objects.
+
+
