@@ -1,0 +1,9 @@
+.mina/adapter_console.toml,sha256=Gy3gCeYQR4lXDSUSeoCFBPHsaLkzr2najBlNelDX7QE,957
+satori/adapters/console/__init__.py,sha256=Fa5m3xInenTRRQxsgQiEPYCDL0rSETguHSXtlQGVxQU,51
+satori/adapters/console/api.py,sha256=FEBS9D0_9m05R6teGlWN-eCcO7erYG3iYRUI7-29itU,6132
+satori/adapters/console/backend.py,sha256=oD-qZQ8RjeHGBYRzVwwWhmRVSNGS4sZyUzT-aoNpwhI,6060
+satori/adapters/console/main.py,sha256=tsDJ8w8N-cfLHmrsJ3-TVqNzYUz1VD1QSzRi4NmJt8w,2505
+satori_python_adapter_console-0.2.0.dist-info/METADATA,sha256=3hrnN3jYlU8wblBeifmriCR_bid_aEmPMeyc1xLrcd8,4722
+satori_python_adapter_console-0.2.0.dist-info/WHEEL,sha256=rSwsxJWe3vzyR5HCwjWXQruDgschpei4h_giTm0dJVE,90
+satori_python_adapter_console-0.2.0.dist-info/licenses/LICENSE,sha256=2EDswKd1M1648judap8BEEwp3Jz6IpfFP2wYVdU0Y2o,1069
+satori_python_adapter_console-0.2.0.dist-info/RECORD,,
