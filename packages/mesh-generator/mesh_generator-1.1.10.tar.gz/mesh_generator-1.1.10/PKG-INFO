@@ -1,0 +1,119 @@
+Metadata-Version: 2.1
+Name: mesh_generator
+Version: 1.1.10
+Summary: Python subroutines to create a 1D mesh in Python.
+Home-page: https://bitbucket.org/predsci/mesh_generator
+Author: Predictive Science Inc
+Author-email: oissan@predsci.com
+Keywords: Mesh Generation,Grid
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Scientific/Engineering :: Astronomy
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy>=1.15.2
+Requires-Dist: matplotlib>=3.0.0
+Requires-Dist: scipy>=1.1.0
+Requires-Dist: pyhdf>=0.9.10
+Requires-Dist: h5py>=2.8.0
+
+This is a collection of Python subroutines and examples that illustrate how to build a
+1D Mesh with custom mesh spacing. The meshes created in the package can be used for variety of applications, including
+physical simulation.
+
+## Installation
+    
+    pip install mesh-generator
+    
+## Dependencies
+    python >= 3.5.0 
+    numpy >= 1.15.2 
+    matplotlib >= 3.0.0 
+    scipy >= 1.1.0
+    h5py >= 2.8.0 
+    tk >= 8.6.0 
+    pyhdf >= 0.9.10
+
+## Usage
+This an example for creating a 1D theta mesh. Read the comments inside the python scripts for more details.
+
+- **Step 1** : Input mesh requirements. Make sure to specify:
+    
+    Mesh:
+    
+  - Set `lower_bnd` and `upper_bnd` limits of mesh.
+  
+  - Set `periodic`.
+  
+  - Set `DEFAULT_BG_REGION_RATIO` - Ratio in areas without ds constraint. (Optional)
+  
+  - Set `DEFAULT_FG_REGION_RATIO` - Ratio in areas with ds constraint. (Optional)
+  
+   Mesh segment:
+    
+  - Set `s0` and `s1` for segment domain limits.
+  
+  - Set `ds` to the resolution you want.
+  
+  - Set `var_ds_ratio` as segment maximum cell to cell mesh expansion ratio. (Optional)
+
+```python 
+from mesh_generator import Mesh
+from mesh_generator import MeshSegment
+from mesh_generator.bin.call_psi_mesh_tool import create_psi_mesh
+import numpy 
+
+# ratio in regions you do not care about. (Default is 1.06)
+MeshSegment.DEFAULT_BG_REGION_RATIO = 1.06 
+
+# ratio in regions you do care about. (Default is 1.03) 
+MeshSegment.DEFAULT_FG_REGION_RATIO = 1.03  
+
+# mesh boundaries and if periodic. 
+mesh = Mesh(lower_bnd=0.00, upper_bnd=numpy.pi, periodic=False) 
+
+# Mesh segment requirements:
+# s0 - segment begin, s1- segment end, ds- mesh spacing
+# (Optional) var_ds_ratio- the maximum ratio between each point in the mesh segment. 
+mesh.insert_mesh_segment(MeshSegment(s0=1.10, s1=1.40, ds=0.01, var_ds_ratio=1.05))
+mesh.insert_mesh_segment(MeshSegment(s0=1.30, s1=1.90, ds=0.02))
+mesh.insert_mesh_segment(MeshSegment(s0=0.40, s1=2.80, ds=0.04, var_ds_ratio=1.02))
+```  
+
+- **Step 2**: Get final mesh and write results.      
+        
+```python 
+input_mesh = mesh.json_dict()
+adjusted_mesh = mesh.resolve_mesh_segments().json_dict()
+legacy_mesh = mesh.build_legacy_mesh().json_dict()
+create_psi_mesh(adjusted_mesh, legacy_mesh, mesh_type="t", dir_name=os.getcwd(),
+     output_file_name="tmp_mesh_t.dat", mesh_res_file_name="mesh_res_t.dat",
+     save_plot=True, show_plot=True, save_plot_path=os.getcwd(), plot_file_name="t_mesh_spacing.png", 
+     input_mesh=input_mesh)
+```
+
+### Mesh Generator User Interface
+```python
+from mesh_generator import MeshGeneratorUI
+MeshGeneratorUI()
+```
+
+## License
+[Apache](http://www.apache.org/licenses/LICENSE-2.0)
+
+
+## Authors
+[Predictive Science Inc.](https://www.predsci.com/portal/home.php)
+
+- Opal Issan (oissan@predsci.com)
+- Cooper Downs (cdowns@predsci.com)
+
+
+
+
+
+
+
+
