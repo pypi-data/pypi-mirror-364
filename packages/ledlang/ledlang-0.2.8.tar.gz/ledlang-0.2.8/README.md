@@ -1,0 +1,52 @@
+# LEDLang
+[![Publish to PyPI](https://github.com/ElliNet13/ledlang/actions/workflows/deploy.yml/badge.svg)](https://github.com/ElliNet13/ledlang/actions/workflows/deploy.yml)
+![PyPI - Version](https://img.shields.io/pypi/v/ledlang)
+![GitHub License](https://img.shields.io/github/license/ElliNet13/ledlang)
+[![Run Pytest](https://github.com/ElliNet13/ledlang/actions/workflows/pytest.yml/badge.svg)](https://github.com/ElliNet13/ledlang/actions/workflows/pytest.yml)
+
+<br>
+LED Programming Language, mostly for controlling a Micro:bit but others can be used.
+[to-the-serial Micro:bit Makecode Helper](https://ellinet13.github.io/to-the-serial/)
+
+| Command  | What they do                    |
+|----------|---------------------------------|
+| PLOT     | Turn on a pixel on the screen   |
+| CLEAR    | Clear the screen                |
+
+# Problems
+| Item     | Problem                                                                                        |
+|----------|------------------------------------------------------------------------------------------------|
+| TEXT     | Only works if the height of your display is 5, you can get around this bug by using REALSIZE   |
+
+# Notes
+| Item         | Problem                                     |
+|--------------|---------------------------------------------|
+| REALSIZE     | Can lag since division is used every PLOT   |
+
+Commits between builds: - [bc78cca](https://github.com/ElliNet13/ledlang/commit/bc78ccaf8d5b90249c58e95025b78109d12ac67a): Remove exact match
+- [295d19b](https://github.com/ElliNet13/ledlang/commit/295d19bf103d62c978549eba3efca715aa672f3b): Tags should no be there
+- [a44b137](https://github.com/ElliNet13/ledlang/commit/a44b137490332bcfb1d63fa998e834fcf368b98c): Checkout everything
+- [f75f5ba](https://github.com/ElliNet13/ledlang/commit/f75f5ba8e24f7632f93019fb349c92e9172d2303): Pass token to filler
+- [b863c69](https://github.com/ElliNet13/ledlang/commit/b863c694875faf94d6db958e86c2895e07ed15a3): Fix f-string for job status
+- [e4e9dde](https://github.com/ElliNet13/ledlang/commit/e4e9dde3d4334aea3ac77446322f81d6db74f3f8): DO some more readme stuff
+- [d1c098b](https://github.com/ElliNet13/ledlang/commit/d1c098b473b833ba2591733c2604477ce7619712): Edit readme stuff
+- [c135d14](https://github.com/ElliNet13/ledlang/commit/c135d146fe94ff8eeef9e1b778c8f0ee95705f67): Revert project to commit 6ba410e
+- [4584f68](https://github.com/ElliNet13/ledlang/commit/4584f68c0ef30860622788212fae981513c95635): Fix name in deploy
+- [7b03c44](https://github.com/ElliNet13/ledlang/commit/7b03c44c525b0e02b6ce55c725c9b74173295c8f): Fix pytest
+- [220fa9e](https://github.com/ElliNet13/ledlang/commit/220fa9ef96837b14ae68ddbdeb23e9506c7353ac): Make pytest run on tags
+- [f9f3a03](https://github.com/ElliNet13/ledlang/commit/f9f3a03fa959d1ac7ac492b524bc1c6c8626282e): it too long before a new version so i dont know if there is anything new
+- [708ab65](https://github.com/ElliNet13/ledlang/commit/708ab657627b07a2726fe5b9f89fee26a329880e): Make it so the log list is diffrent for a release
+- [8709459](https://github.com/ElliNet13/ledlang/commit/87094599da88fc93e37c7f7104f29d8986fc1e71): Reorder fillers
+- [6ba410e](https://github.com/ElliNet13/ledlang/commit/6ba410e209aaf8eda34df95d77f85aa722d84c8f): Add more fillers
+- [08567cd](https://github.com/ElliNet13/ledlang/commit/08567cd719085e287fdc54d1a025ba3cbe697e1c): Add fillers
+- [a849002](https://github.com/ElliNet13/ledlang/commit/a84900215bac426523ff2be0086c9bb92d17f989): Add pytest
+- [d5a2cae](https://github.com/ElliNet13/ledlang/commit/d5a2cae9ffe2444c845c69a9bd92c47331637a7b): Give up fixing rotate
+- [5c75c7e](https://github.com/ElliNet13/ledlang/commit/5c75c7ee51aea806717af4551de067b93da257a2): Try to fix rotate
+- [308c24b](https://github.com/ElliNet13/ledlang/commit/308c24b2ca8118d12e2f2e26b224d2d193191b51): Set default for rotate_point
+- [3e0bff4](https://github.com/ElliNet13/ledlang/commit/3e0bff49a3394d221cc2cddcf48d49f2fc2862a3): Nevermind line was fine
+- [711bd97](https://github.com/ElliNet13/ledlang/commit/711bd975ddf2841bad55087d0d5c5d3fe16ba51d): Add tests, LINE IS BROKEN
+- [f87f73f](https://github.com/ElliNet13/ledlang/commit/f87f73f41a72c61488e8371c02b402d1b4b29f3c): Dev should always be slightly higher
+- [05e96f9](https://github.com/ElliNet13/ledlang/commit/05e96f97ed6bcaa753095951633fc4699b837287): Make sure snapshots don't have a extra .
+- [e021d99](https://github.com/ElliNet13/ledlang/commit/e021d996e652164b9302a5c1405642dd741ee594): Switch to pyproject.toml<br>
+[Github repo](https://github.com/ElliNet13/ledlang)<br>
+Test Status for this: ![Test Status Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2FElliNet13%2Fledlang%2Factions%2Fjobs%2F46524062192&query=status&logo=github&label=Test%20Status)
