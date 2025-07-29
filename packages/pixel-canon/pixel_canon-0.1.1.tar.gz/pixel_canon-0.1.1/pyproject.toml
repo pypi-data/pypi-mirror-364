@@ -1,0 +1,44 @@
+# Этот файл теперь в корне проекта
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pixel-canon"
+version = "0.1.1"
+authors = [
+  { name="GolonChenroppi", email="golonchenroppi@gmail.com" },
+]
+description = "The canon for pixel data topology. A cross-language specification to define the logical layout of images."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { file = "LICENSE" }
+keywords = ["image", "pixel", "layout", "numpy", "pytorch", "opencv", "computer-vision", "image-processing", "hwc", "chw"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Image Processing",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [] # Core has no dependencies
+
+[project.optional-dependencies]
+numpy = ["numpy"]
+# Задел на будущее
+# pytorch = ["torch"]
+# all = ["numpy", "torch"]
+
+[project.urls]
+"Homepage" = "https://github.com/GolonChenroppi/pixel-canon"
+"Documentation" = "https://github.com/GolonChenroppi/pixel-canon/blob/main/spec/v1.0.md"
+"Bug Tracker" = "https://github.com/GolonChenroppi/pixel-canon/issues"
+
+# --- Новая важная секция ---
+[tool.setuptools.packages.find]
+# Указываем setuptools, где искать исходный код пакета
+where = ["python"]
