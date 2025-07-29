@@ -1,0 +1,29 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "build-send-email"
+description = "Enhanced email CLI tool with multiple backend support"
+authors = [{name = "Anders Roxell", email = "anders.roxell@linaro.org"}]
+requires-python = ">=3.8"
+dynamic = ["version"]
+dependencies = [
+    "boto3",
+    "pyyaml",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-mock",
+]
+
+[project.scripts]
+build-send-email = "build_send_email.__main__:main"
+
+[tool.pytest.ini_options]
+testpaths = ["test"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"

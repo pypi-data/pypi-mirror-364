@@ -1,0 +1,38 @@
+# Example configuration file for build-send-email
+# Save as ~/.config/build-send-email/config.yaml, ~/.build-send-email.yaml, or .build-send-email.yaml
+
+# Default email settings
+from_addr: "sender@linaro.org"
+to_addrs: "recipient@linaro.org"
+
+# Default backend to use (ses, smtp, sendmail)
+backend: "smtp"
+
+# Retry settings
+retries: 3
+
+# AWS SES settings (when using ses backend)
+aws_region: "us-east-1"
+aws_profile: "default"  # Optional: use specific AWS profile
+
+# SMTP settings (when using smtp backend)
+smtp_server: "smtp.gmail.com"
+smtp_port: 587
+smtp_username: "your-username@gmail.com"
+smtp_password: "your-app-password"  # Use app password for Gmail
+smtp_tls: true
+
+# Sendmail settings (when using sendmail backend)
+sendmail_path: "/usr/sbin/sendmail"
+
+# You can also define multiple profiles for different use cases
+profiles:
+  work:
+    from_addr: "work@linaro.org"
+    backend: "ses"
+    aws_region: "us-west-2"
+
+  personal:
+    from_addr: "personal@gmail.com"
+    backend: "smtp"
+    smtp_server: "smtp.gmail.com"

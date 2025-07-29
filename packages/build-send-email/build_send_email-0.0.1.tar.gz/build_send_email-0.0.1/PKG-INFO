@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: build-send-email
+Version: 0.0.1
+Summary: Enhanced email CLI tool with multiple backend support
+Author-email: Anders Roxell <anders.roxell@linaro.org>
+Requires-Python: >=3.8
+Requires-Dist: boto3
+Requires-Dist: pyyaml
+Requires-Dist: pytest ; extra == "dev"
+Requires-Dist: pytest-mock ; extra == "dev"
+Provides-Extra: dev
