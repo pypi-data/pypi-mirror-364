@@ -1,0 +1,13 @@
+LICENSE
+README.md
+setup.py
+kemas/__init__.py
+kemas/cli.py
+kemas/gui.py
+kemas/icon.ico
+kemas.egg-info/PKG-INFO
+kemas.egg-info/SOURCES.txt
+kemas.egg-info/dependency_links.txt
+kemas.egg-info/entry_points.txt
+kemas.egg-info/requires.txt
+kemas.egg-info/top_level.txt
