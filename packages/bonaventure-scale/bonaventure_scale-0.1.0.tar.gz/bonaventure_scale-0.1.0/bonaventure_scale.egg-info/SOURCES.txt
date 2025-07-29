@@ -1,0 +1,10 @@
+LICENSE
+README.md
+setup.py
+bonaventure_scale/__init__.py
+bonaventure_scale/conversions.py
+bonaventure_scale.egg-info/PKG-INFO
+bonaventure_scale.egg-info/SOURCES.txt
+bonaventure_scale.egg-info/dependency_links.txt
+bonaventure_scale.egg-info/top_level.txt
+tests/test_conversions.py
