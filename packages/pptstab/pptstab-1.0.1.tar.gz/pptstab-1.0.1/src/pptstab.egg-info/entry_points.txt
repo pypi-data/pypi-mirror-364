@@ -1,0 +1,2 @@
+[console_scripts]
+pptstab = pptstab.python_script.pptstab:main
