@@ -1,0 +1,49 @@
+[project]
+name = "narrative"
+dynamic = ["version","classifiers"]
+description = "A small Python package for splitting text into dialogue and narrative."
+license = { text = "GPLv3" }
+readme = "README.md"
+requires-python = ">=3.9,<4.0"
+authors = [
+    { name = "David L. Day", email = "david@davidlday.com" }
+]
+dependencies = ["importlib-metadata>=5.1,<7.0"]
+
+[project.urls]
+homepage = "https://github.com/prosegrinder/python-narrative"
+repository = "https://github.com/prosegrinder/python-narrative"
+"Bug Tracker" = "https://github.com/prosegrinder/python-narrative/issues"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.commitizen]
+tag_format = "v$version"
+update_changelog_on_bump = true
+changelog_incremental = true
+bump_message = "bump: $current_version → $new_version"
+version_provider = "poetry"
+
+[tool.poetry]
+version = "1.2.1"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Text Processing :: Linguistic",
+]
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.17.0"
+bandit = "^1.8.6"
+pylint = "^3.3.7"
+pytest = "^8.4.1"
+black = "^25.1.0"
+
