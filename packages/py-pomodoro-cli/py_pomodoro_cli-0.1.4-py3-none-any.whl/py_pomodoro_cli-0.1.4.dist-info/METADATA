@@ -1,0 +1,93 @@
+Metadata-Version: 2.4
+Name: py-pomodoro-cli
+Version: 0.1.4
+Summary: A simple and beautiful Pomodoro CLI tool built with Typer and Rich.
+Author-email: Wayne Fagan <hello@waynefagan.dev>
+Project-URL: Homepage, https://gitlab.com/Wayne-F/py-pomodoro-cli
+Project-URL: Repository, https://gitlab.com/Wayne-F/py-pomodoro-cli
+Keywords: pomodoro,cli,typer,rich
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: typer>=0.12.3
+Requires-Dist: rich>=13.7.1
+
+# 🍅 py-pomodoro-cli
+
+A simple and beautiful Pomodoro CLI tool built with `typer` and `rich`. 🚀
+
+This little tool helps you stay focused and productive by using the Pomodoro Technique right from your terminal!
+
+## ✨ Features
+
+*   **Simple Interface**: Easy to use with a single command.
+*   **Customizable Intervals**: Set your own Pomodoro timer intervals.
+*   **Beautiful Output**: Uses the `rich` library for elegant progress bars and colorful text.
+
+## 📦 Installation
+
+You can install `py-pomodoro-cli` directly from PyPI:
+
+```bash
+pip install py-pomodoro-cli
+```
+
+## 🚀 Usage
+
+> **Note:** The `--interval` (or `-i`) flag is **required**. You must specify the Pomodoro interval in minutes.
+
+To start a Pomodoro session, run:
+
+```bash
+py-pomodoro-cli --interval 25
+```
+
+You can specify any interval in minutes:
+
+```bash
+# Start a 5-minute short break
+py-pomodoro-cli --interval 5
+
+# Start a 45-minute focus session
+py-pomodoro-cli --interval 45
+```
+
+Once the timer is complete, you'll get a friendly notification! 🎉
+
+---
+
+🌈 **Customize Your Experience with Themes!**
+
+Make your Pomodoro sessions even more fun by choosing a color theme that suits your mood! Use the `--theme` flag to select from a variety of beautiful options, like so:
+
+```bash
+py-pomodoro-cli --interval 5 --theme nord-frost
+```
+
+Available themes:
+- nord-frost
+- nord-polar-night
+- nord-aurora
+- tokyo-night
+- tokyo-city-night-drive
+- matrix
+- alien
+- akira
+- ghost-in-the-shell
+- sailor-moon
+- evangelion
+- dbz
+
+Try them all and find your favorite! ✨
+
+## 🤝 Contributing
+
+Contributions are welcome! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request.
+
+## 📝 License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
