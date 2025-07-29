@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "phydcm"
+version = "0.1.2"
+description = "A Python package for medical image analysis"
+readme = "README.md"
+license = "MIT"  # Using SPDX license expression
+authors = [
+    {name = "Your Name", email = "your.email@example.com"}
+]
+classifiers = [  # Fixed: Now properly formatted as an array
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Healthcare Industry", 
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+    # Removed "License :: OSI Approved :: MIT License" - conflicts with license field
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent"
+]
+requires-python = ">=3.8"
+dependencies = [
+    # Add your dependencies here
+    # Example: "numpy>=1.20.0",
+    # "tensorflow>=2.8.0",
+]
+
+[project.urls]  # Fixed: Now properly in pyproject.toml
+Documentation = "https://github.com/phydcm/phydcm/wiki"
+"Bug Tracker" = "https://github.com/phydcm/phydcm/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["phydcm*"]
+
+[tool.setuptools.package-data]
+phydcm = ["*.json", "*.keras"]

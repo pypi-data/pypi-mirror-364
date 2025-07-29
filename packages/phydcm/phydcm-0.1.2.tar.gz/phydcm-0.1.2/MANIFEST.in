@@ -1,0 +1,7 @@
+include README.md
+include LICENSE
+include pyproject.toml
+recursive-include phydcm *.py
+# Only include these if the directories and files actually exist:
+# recursive-include phydcm/outputs *.keras *.json
+# recursive-include phydcm/models *
