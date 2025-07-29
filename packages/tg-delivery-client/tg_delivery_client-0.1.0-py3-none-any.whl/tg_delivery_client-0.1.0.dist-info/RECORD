@@ -1,0 +1,13 @@
+__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tg_delivery_client/__init__.py,sha256=zmTgzP1WsqF3G8BXXi8tbUoCG8RuXJ8MwsRhjSJQMV4,425
+tg_delivery_client/amqp_publisher.py,sha256=Oebj_TzMAv10n9BVBGIenR34EEKXEQWvGImJmpJVvyY,5287
+tg_delivery_client/domain.py,sha256=k10X0wZf08Bew0MeIFBfnEyQzeKdG_WUmNlFGkAu2LU,321
+tg_delivery_client/facade.py,sha256=qfbP39q96u7easwxP17Rw4yWwFMWmJDk_UXWF2UDx4o,2819
+tg_delivery_client/options.py,sha256=QGSIUS5ryu5AMRr-Dlaa11QUnkX6KClugDymh4Mbc-8,564
+tg_delivery_client/ports.py,sha256=zniiD-oAcgJ-C1k9vcwGPPKYASqr34MsCuSb4HKamrE,219
+tg_delivery_client/retry.py,sha256=EnQVabdU7BY9zOnnVyv8eDMuEQwKRW5txPVwkdNaAr0,1914
+tg_delivery_client/serializers.py,sha256=izBnbj0j39EWn8jNCeTbr1eb6tvgtOvYeCVzFxdhyeg,994
+tg_delivery_client-0.1.0.dist-info/METADATA,sha256=IZ64Kn83K3RX7vH8Y7B7ucI3CZ1KwHQOw1Jtjtv2bss,5464
+tg_delivery_client-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+tg_delivery_client-0.1.0.dist-info/top_level.txt,sha256=g7CbVFtJyZ4HxCuTSxIKXm1vtBXZXBXRcKad-UDd5SQ,28
+tg_delivery_client-0.1.0.dist-info/RECORD,,
