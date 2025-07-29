@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: bomiot_example
+Version: 1.0.1
+Summary: Powerful Distributed Document Management Framework & Full-Stack Development Platform
+Home-page: https://github.com/Bomiot/Bomiot
+Keywords: Bomiot,bomiot
+Author: Bomiot
+Author-email: Singosgu@gmail.com
+Requires-Python: >=3.9,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Dist: bomiot (>=1.0.0)
+Project-URL: Repository, https://github.com/Bomiot/Bomiot
+Description-Content-Type: text/markdown
+
+##### Write down your readme here
