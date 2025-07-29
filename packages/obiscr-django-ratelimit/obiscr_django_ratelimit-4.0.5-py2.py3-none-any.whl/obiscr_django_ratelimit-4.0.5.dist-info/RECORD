@@ -1,0 +1,14 @@
+obiscr_django_ratelimit/__init__.py,sha256=fkh43KPxM915kwMYKjZWyM-0O1mN03uoBOU4wpTJ4Ew,161
+obiscr_django_ratelimit/apps.py,sha256=V_O4tfu-6hkvJ8EBC2IN1a3a6qQoUkZ4tBKO13Qi9VE,221
+obiscr_django_ratelimit/checks.py,sha256=UR7NXdkVeta2lVzJ5kE_CQu4Km91PTvmkYwNMialKu4,2255
+obiscr_django_ratelimit/core.py,sha256=77mAAY9O0OXvu7m_72I_6323f86mdbzVmtzVA6RLKg8,14106
+obiscr_django_ratelimit/decorators.py,sha256=VAtKhNgThOjIlcrEgbpINxBJms2ovGHvwJYF7mUFR4M,1151
+obiscr_django_ratelimit/exceptions.py,sha256=l_ewZCAfqhbqJoceE5vp8-RniQZdXXHkEXWpBCTStwk,100
+obiscr_django_ratelimit/middleware.py,sha256=5_pimG-Wi-NT56smnrNPHy38bLoINTzgxEPiSiAt8D4,554
+obiscr_django_ratelimit/models.py,sha256=xQmwT94xfUmX5fHkYQ92SKhWwDqVNuInbu5TzaSKil0,40
+obiscr_django_ratelimit/tests.py,sha256=bDDLBeXr2B-Hb0yT4D9g3-rpN6s98E11Dqn7wTveDaA,21709
+obiscr_django_ratelimit-4.0.5.dist-info/licenses/LICENSE,sha256=nf8I9mTAIyknOn2wAA14Zhn2t1SwjnziFnMyvS2gguw,552
+obiscr_django_ratelimit-4.0.5.dist-info/METADATA,sha256=tp8OSyoMHFyRceqdGkkmG7CTBcZUoia2d3oprQ3gtWI,2438
+obiscr_django_ratelimit-4.0.5.dist-info/WHEEL,sha256=JNWh1Fm1UdwIQV075glCn4MVuCRs0sotJIq-J6rbxCU,109
+obiscr_django_ratelimit-4.0.5.dist-info/top_level.txt,sha256=KXqBz9Qjuqiny6zo4RsC4a2YSlwNLVHlJV0DQLXlwgw,24
+obiscr_django_ratelimit-4.0.5.dist-info/RECORD,,
