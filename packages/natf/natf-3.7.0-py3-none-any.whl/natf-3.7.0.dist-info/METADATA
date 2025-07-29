@@ -1,0 +1,92 @@
+Metadata-Version: 2.4
+Name: natf
+Version: 3.7.0
+Summary: Nuclear Analysis toolkit for Fusion with coupling of MCNP and FISPACT
+Home-page: https://github.com/zxkjack123/NATF
+Author: Xiaokang Zhang
+Author-email: zxkjack123@163.com
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Environment :: Console
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: requires-python
+Dynamic: summary
+
+# NATF: Nuclear Analysis Toolkit Framework
+
+## Introduction
+NATF (Nuclear Analysis Toolkit for Fusion) is a computational framework developed for automating nuclear analysis workflows using MCNP and FISPACT-II. Key features include:
+
+- **Activation Analysis (CELL_ACT)**: Material activation calculations with pre-processing/post-processing automation<br> 
+- **Displacement Damage (CELL_DPA)**: DPA (Displacements Per Atom) predictions for radiation damage studies<br>
+- **Coolant Activation (COOLANT_ACT)**: Analysis of coolant systems' radioactive inventory<br>
+
+Supported code versions: MCNP5 (1.2-1.6), MCNP6 (6.1-6.2), FISPACT-II 3.0+. Source code available at [github.com/zxkjack123/NATF](https://github.com/zxkjack123/NATF).
+
+## Installation Guide
+
+### System Requirements
+- **OS**: Linux (Ubuntu 18.04+/CentOS 7+ recommended)
+- **Python**: 3.6+ (Recommended 3.10+)
+- **Prerequisites**: numpy, pandas, matplotlib, configparser
+
+### Installation Methods
+**1. PyPI Installation (Stable Releases):**
+```bash
+pip install natf --user  # Install as user package
+```
+Verify installation:
+```bash
+natf_run --version  # Expected output: NATF version: x.x.x
+```
+
+**2. Source Compilation (Development Version):**
+```bash
+git clone -b develop https://github.com/zxkjack123/NATF.git
+cd NATF
+python setup.py install --user  # Install in user space
+
+# Configure PATH (Linux)
+echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc
+```
+
+## Getting Started
+### Basic Configuration
+Create `config.ini`:
+```ini
+[general]
+aim = CELL_ACT_PRE        # Analysis objective
+work_dir = ./natf_run       # Working directory
+
+[mcnp]
+mcnp_input = mcnp.inp   # MCNP input file
+mcnp_ptrac = ptrac_file    # Particle track data
+
+[fispact]
+material_list = mat_list  # Material specifications
+irradiation = scenarios.txt  # Irradiation history
+```
+
+### Execute Analysis
+```bash
+# Run activation post-processing
+natf_run --input config.ini  # Load configuration
+```
+
+### Validate Installation
+Run test suite:
+```bash
+cd tests/
+./ci-run-tests.sh  # Execute verification tests
+```
