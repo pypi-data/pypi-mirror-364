@@ -1,0 +1,12 @@
+google_ai_studio_utils/config.py,sha256=Eci8rVuEHRlD0YZu-GhZrLjcSDbI-4dcBEedgqX-6HA,188
+google_ai_studio_utils/github_copilot_chat_conversation_json_to_html.py,sha256=s6NSnuSA-SzM7FLq5Kz6LpQInehco4NgY8VEWskkzAg,2844
+google_ai_studio_utils/google_ai_studio_conversation_csv_to_html.py,sha256=T6-jCx52J9dg-VF_Lxb1jIlfcTvIUKae6ojIZFd_gJg,3130
+google_ai_studio_utils/google_ai_studio_conversation_python_to_html.py,sha256=FOznxlSfCXHfOYG9i1x-6SsrcUMDf8gTeuN1bySeamI,4171
+google_ai_studio_utils/metadata_utils.py,sha256=J7V6zvrLisNZuMUGRQxjpzwfQV0YopVJ4g20b6NkUhM,3507
+google_ai_studio_utils/python_conversation_to_html.py,sha256=hbfOuvcINQ9vKC93-eNiuzx4l5LMBBpCuqvKhO--YlA,2995
+google_ai_studio_utils/templates/google-ai-studio-conversation.html,sha256=T9CWi4a6Kc43WA8jAAQy54CGhZXZpONlqLbSKQR24Pw,8081
+google_ai_studio_utils/utils.py,sha256=LRQ7PrpHi2s0VV32p_BGIBl84XE-OmOVVeRmPyRFPDg,15455
+google_ai_studio_utils-1.1.0.dist-info/METADATA,sha256=JWYdvDLL5OWMDrEAsFWpqfi971lAjvEZfQXsIMAdg14,917
+google_ai_studio_utils-1.1.0.dist-info/WHEEL,sha256=Nq82e9rUAnEjt98J6MlVmMCZb-t9cYE2Ir1kpBmnWfs,88
+google_ai_studio_utils-1.1.0.dist-info/entry_points.txt,sha256=OgSY2PauXwgIC9UZjb6TldDVdkOi7IOXQAYPPmIsSMw,184
+google_ai_studio_utils-1.1.0.dist-info/RECORD,,
