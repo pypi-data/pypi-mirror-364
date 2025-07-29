@@ -1,0 +1,18 @@
+Metadata-Version: 2.4
+Name: parallellib
+Version: 2025.7.22
+Summary:  Templates for parallel computing 
+Project-URL: Homepage, https://github.com/vaishakp/parallellib
+Project-URL: Bug Tracker, https://github.com/vaishakp/parallellib/issues
+Author-email: Vaishak Prasad <vaishakprasad@gmail.com>
+License-File: LICENSE
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.11
+Requires-Dist: mpi4py
+Requires-Dist: multiprocessing
+Requires-Dist: waveformtools
+Description-Content-Type: text/markdown
+
+# parallellib
