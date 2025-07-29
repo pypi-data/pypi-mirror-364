@@ -1,0 +1,9 @@
+numpy
+pandas
+pysam
+pyBigWig
+matplotlib
+descartes
+fonttools==4.49.0
+openpyxl
+shapely
