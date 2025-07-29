@@ -1,0 +1,87 @@
+# LEDLang
+[![Publish to PyPI](https://github.com/ElliNet13/ledlang/actions/workflows/deploy.yml/badge.svg)](https://github.com/ElliNet13/ledlang/actions/workflows/deploy.yml)
+![PyPI - Version](https://img.shields.io/pypi/v/ledlang)
+![GitHub License](https://img.shields.io/github/license/ElliNet13/ledlang)
+[![Run Pytest](https://github.com/ElliNet13/ledlang/actions/workflows/pytest.yml/badge.svg)](https://github.com/ElliNet13/ledlang/actions/workflows/pytest.yml)
+
+<br>
+LED Programming Language, mostly for controlling a Micro:bit but others can be used.
+
+[to-the-serial Micro:bit Makecode Helper](https://ellinet13.github.io/to-the-serial/)
+
+| Command  | What they do                    |
+|----------|---------------------------------|
+| PLOT     | Turn on a pixel on the screen   |
+| CLEAR    | Clear the screen                |
+
+# Problems
+| Item     | Problem                                                                                        |
+|----------|------------------------------------------------------------------------------------------------|
+| TEXT     | Only works if the height of your display is 5, you can get around this bug by using REALSIZE   |
+
+# Notes
+| Item         | Problem                                     |
+|--------------|---------------------------------------------|
+| REALSIZE     | Can lag since division is used every PLOT   |
+
+Commits between builds: - [41449a9](https://github.com/ElliNet13/ledlang/commit/41449a9c46da92fa65bfb5fec680fff4b75c59e2): Fix the test
+- [9ffdf03](https://github.com/ElliNet13/ledlang/commit/9ffdf03da7dba84771fb19a4058f439cda500640): Update fillReadme.py
+- [482fb1d](https://github.com/ElliNet13/ledlang/commit/482fb1d1c10d8b0e8c31b49d13ff9f16484ca1eb): Fix link
+- [bc78cca](https://github.com/ElliNet13/ledlang/commit/bc78ccaf8d5b90249c58e95025b78109d12ac67a): Remove exact match
+- [295d19b](https://github.com/ElliNet13/ledlang/commit/295d19bf103d62c978549eba3efca715aa672f3b): Tags should no be there
+- [a44b137](https://github.com/ElliNet13/ledlang/commit/a44b137490332bcfb1d63fa998e834fcf368b98c): Checkout everything
+- [f75f5ba](https://github.com/ElliNet13/ledlang/commit/f75f5ba8e24f7632f93019fb349c92e9172d2303): Pass token to filler
+- [b863c69](https://github.com/ElliNet13/ledlang/commit/b863c694875faf94d6db958e86c2895e07ed15a3): Fix f-string for job status
+- [e4e9dde](https://github.com/ElliNet13/ledlang/commit/e4e9dde3d4334aea3ac77446322f81d6db74f3f8): DO some more readme stuff
+- [d1c098b](https://github.com/ElliNet13/ledlang/commit/d1c098b473b833ba2591733c2604477ce7619712): Edit readme stuff
+- [c135d14](https://github.com/ElliNet13/ledlang/commit/c135d146fe94ff8eeef9e1b778c8f0ee95705f67): Revert project to commit 6ba410e
+- [4584f68](https://github.com/ElliNet13/ledlang/commit/4584f68c0ef30860622788212fae981513c95635): Fix name in deploy
+- [7b03c44](https://github.com/ElliNet13/ledlang/commit/7b03c44c525b0e02b6ce55c725c9b74173295c8f): Fix pytest
+- [220fa9e](https://github.com/ElliNet13/ledlang/commit/220fa9ef96837b14ae68ddbdeb23e9506c7353ac): Make pytest run on tags
+- [f9f3a03](https://github.com/ElliNet13/ledlang/commit/f9f3a03fa959d1ac7ac492b524bc1c6c8626282e): it too long before a new version so i dont know if there is anything new
+- [708ab65](https://github.com/ElliNet13/ledlang/commit/708ab657627b07a2726fe5b9f89fee26a329880e): Make it so the log list is diffrent for a release
+- [8709459](https://github.com/ElliNet13/ledlang/commit/87094599da88fc93e37c7f7104f29d8986fc1e71): Reorder fillers
+- [6ba410e](https://github.com/ElliNet13/ledlang/commit/6ba410e209aaf8eda34df95d77f85aa722d84c8f): Add more fillers
+- [08567cd](https://github.com/ElliNet13/ledlang/commit/08567cd719085e287fdc54d1a025ba3cbe697e1c): Add fillers
+- [a849002](https://github.com/ElliNet13/ledlang/commit/a84900215bac426523ff2be0086c9bb92d17f989): Add pytest
+- [d5a2cae](https://github.com/ElliNet13/ledlang/commit/d5a2cae9ffe2444c845c69a9bd92c47331637a7b): Give up fixing rotate
+- [5c75c7e](https://github.com/ElliNet13/ledlang/commit/5c75c7ee51aea806717af4551de067b93da257a2): Try to fix rotate
+- [308c24b](https://github.com/ElliNet13/ledlang/commit/308c24b2ca8118d12e2f2e26b224d2d193191b51): Set default for rotate_point
+- [3e0bff4](https://github.com/ElliNet13/ledlang/commit/3e0bff49a3394d221cc2cddcf48d49f2fc2862a3): Nevermind line was fine
+- [711bd97](https://github.com/ElliNet13/ledlang/commit/711bd975ddf2841bad55087d0d5c5d3fe16ba51d): Add tests, LINE IS BROKEN
+- [f87f73f](https://github.com/ElliNet13/ledlang/commit/f87f73f41a72c61488e8371c02b402d1b4b29f3c): Dev should always be slightly higher
+- [05e96f9](https://github.com/ElliNet13/ledlang/commit/05e96f97ed6bcaa753095951633fc4699b837287): Make sure snapshots don't have a extra .
+- [e021d99](https://github.com/ElliNet13/ledlang/commit/e021d996e652164b9302a5c1405642dd741ee594): Switch to pyproject.toml
+- [ef1c13b](https://github.com/ElliNet13/ledlang/commit/ef1c13b75dd5129cd1de45b01c1e1782ae3db11e): don't wait if you don't want it
+- [0b1cd47](https://github.com/ElliNet13/ledlang/commit/0b1cd478b8e56e554846c36d41d9ef9cdf66ad15): More testing and fix multi
+- [a78b935](https://github.com/ElliNet13/ledlang/commit/a78b9354bf43885ad610aba8a6ade0a8f5b0b753): Make LED Send default to tests and add multi display
+- [6e7095c](https://github.com/ElliNet13/ledlang/commit/6e7095c2b5240fdbc6e45196b0e027597ee00fec): Change c to command in send
+- [7750753](https://github.com/ElliNet13/ledlang/commit/77507533735d36be13c86cb732df789d7b2c7b72): Another one
+- [9e678bc](https://github.com/ElliNet13/ledlang/commit/9e678bc26c64e05a8aef1e4a8f806adb5cbbd798): Update core.py
+- [46a9d66](https://github.com/ElliNet13/ledlang/commit/46a9d66eef1f11dcb7f45c3d4d21d8be016b04bf): Another version since I cant test right now
+- [41de5db](https://github.com/ElliNet13/ledlang/commit/41de5db9abbb52347fb577c57fd810efe2fb4936): Upversion
+- [180a27d](https://github.com/ElliNet13/ledlang/commit/180a27db31e249f8f7f2129d15f6c142841704cd): Fix it being called c instead of command
+- [1e43477](https://github.com/ElliNet13/ledlang/commit/1e43477e00efd7655289c0d99be3a049e035792a): Github actions is weird
+- [2fdf7af](https://github.com/ElliNet13/ledlang/commit/2fdf7af877b93d4d0fc53b962674d7d621e2d2c6): Up version
+- [30700de](https://github.com/ElliNet13/ledlang/commit/30700de5ed6d279c23cdcbff980f9a95fc9018a9): Add workflow dispatch
+- [abb337a](https://github.com/ElliNet13/ledlang/commit/abb337af1d2481e6009aee52f63d21e5d9683e4c): Update README.md
+- [19838ca](https://github.com/ElliNet13/ledlang/commit/19838ca54b3640cf1d97932cb859fb121db74095): Dynamic sending wait
+- [804550a](https://github.com/ElliNet13/ledlang/commit/804550a486d6b85da35e9a3315cababd53efc7dc): Fixed built in tests, always test your code.
+- [8e25fd3](https://github.com/ElliNet13/ledlang/commit/8e25fd359c384797ccf712720a32f93fa7e06041): Put tests in package
+- [1b25f1f](https://github.com/ElliNet13/ledlang/commit/1b25f1f757f95049114c8ed7e177893a9c282bc2): Quick simple reset on INIT for real size
+- [fe72130](https://github.com/ElliNet13/ledlang/commit/fe721301aed5bb710c98afa8adbdd628f3fcddfb): Add REALSIZE
+- [975c8cc](https://github.com/ElliNet13/ledlang/commit/975c8cc71eebffa2286e2baf709e432f649abe64): Add size to testing
+- [56b1687](https://github.com/ElliNet13/ledlang/commit/56b168777e52b0bcebdea5b145dc045d6cf1be9f): Add badges
+- [5ca5792](https://github.com/ElliNet13/ledlang/commit/5ca5792fefe583f98091122a634d20d3ebb31ab9): i fixed text but i dont know how
+- [f8b802d](https://github.com/ElliNet13/ledlang/commit/f8b802d1a154afa45a3c0d4117440e0889cc46ee): Add a test and remove a debug string
+- [3259bdf](https://github.com/ElliNet13/ledlang/commit/3259bdf9d720128a7501c3b027d36d48df41165c): Fix TEXT
+- [bf1b995](https://github.com/ElliNet13/ledlang/commit/bf1b9954f2d8eaee0f0a8e7dcd2b9b07d91f1400): Add more CLI stuff
+- [19ffc4b](https://github.com/ElliNet13/ledlang/commit/19ffc4bac14f8610c463d6745464eeab7899e27f): Change to verison 0.1.1 for testing
+- [684abcb](https://github.com/ElliNet13/ledlang/commit/684abcb6f1c596b8ab1713d125d5e2bb9fedba71): Add link and stuff
+- [cbe76f7](https://github.com/ElliNet13/ledlang/commit/cbe76f7d5a1ead882eda17fcc8b55d8029e7d3a6): Add license to MIT
+- [c47279b](https://github.com/ElliNet13/ledlang/commit/c47279ba76f84384295a69baf4a25853b16ad97b): Add what commands need to do
+- [4fb3c2f](https://github.com/ElliNet13/ledlang/commit/4fb3c2f7908f698553d1351623ce790a4a5d9cd0): Create LICENSE
+- [5d8a13a](https://github.com/ElliNet13/ledlang/commit/5d8a13aa63f2b1a156d497f419ef130b7f9bfa4f): Add helper program
+- [24a8893](https://github.com/ElliNet13/ledlang/commit/24a889378a863d66801ee3dc2b96724f7ff66f77): first commit<br>
+[Github repo](https://github.com/ElliNet13/ledlang)<br>
+Test Status for this: [![Test Status Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2FElliNet13%2Fledlang%2Factions%2Fjobs%2F46527934352&query=status&logo=github&label=Test%20Status)](https://github.com/ElliNet13/ledlang/actions/runs/16460944839/job/46527934352)
