@@ -1,0 +1,152 @@
+Metadata-Version: 2.1
+Name: gcp-pubsub-dao
+Version: 0.4.0
+Summary: DAO for GCP PubSub service.
+Author: Raman Shakun
+Author-email: shakunroman@gmail.com
+Requires-Python: >=3.11,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: google-cloud-pubsub (>=2.19.0,<3.0.0)
+Description-Content-Type: text/markdown
+
+# GCP Pub/Sub DAO
+The library provides DAO classes for GCP pubsub publisher/subscriber.
+
+## Installation
+
+```python
+pip install gcp-pubsub-dao
+```
+
+## Usage
+
+- sync subscriber:
+```python
+from gcp_pubsub_dao import PubSubSubscriberDAO, Message
+
+dao = PubSubSubscriberDAO(project_id="prodect-dev", subscription_id="subscription")
+messages: Message = dao.get_messages(messages_count=2)
+
+for message in messages:
+    print(message.data)
+    
+dao.ack_messages(ack_ids=[message[0].ack_id])      
+dao.nack_messages(ack_ids=[message[1].ack_id])     
+
+dao.close()     # to clean up connections
+```
+- sync publisher:
+```python
+from gcp_pubsub_dao import PubSubPublisherDAO
+
+dao = PubSubPublisherDAO(project_id="prodect-dev")
+try:
+    dao.publish_message(topic_name="topic", payload=b"asdfsdf", attributes={"kitId": "AW12345678"})
+except Exception as ex:
+    print(ex)
+```
+- async subscriber:
+```python
+from gcp_pubsub_dao import AsyncPubSubSubscriberDAO, Message
+
+dao = AsyncPubSubSubscriberDAO(project_id="prodect-dev", subscription_id="subscription")
+messages: Message = await dao.get_messages(messages_count=2)
+
+for message in messages:
+    print(message.data)
+    
+await dao.ack_messages(ack_ids=[message[0].ack_id])      
+await dao.nack_messages(ack_ids=[message[1].ack_id])
+```
+- async publisher:
+```python
+from gcp_pubsub_dao import AsyncPubSubPublisherDAO
+
+dao = AsyncPubSubPublisherDAO(project_id="prodect-dev")
+try:
+    await dao.publish_message(topic_name="topic", payload=b"asdfsdf", attributes={"kitId": "AW12345678"})
+except Exception as ex:
+    print(ex)
+```
+- async worker pool
+
+```python
+import asyncio
+import sys
+
+sys.path.append("./")
+
+from gcp_pubsub_dao import AsyncPubSubSubscriberDAO
+from gcp_pubsub_dao.worker_pool import WorkerPool, WorkerTask, HandlerResult
+from gcp_pubsub_dao.entities import Message
+
+
+async def handler1(message: Message):
+    print(f"handler1: {message}")
+    await asyncio.sleep(2)
+    return HandlerResult(ack_id=message.ack_id, is_success=True)
+
+
+async def handler2(message: Message):
+    print(f"handler2: {message}")
+    await asyncio.sleep(5)
+    return HandlerResult(ack_id=message.ack_id, is_success=True)
+
+
+def heartbeat_func():
+    print("Heartbeat: Worker is alive")
+
+
+async def main():
+    tasks = [
+        WorkerTask(
+            subscriber_dao=AsyncPubSubSubscriberDAO(project_id="ash-dev-273120", subscription_id="http-sender-sub"),
+            handler=handler1,
+        ),
+        WorkerTask(
+            subscriber_dao=AsyncPubSubSubscriberDAO(project_id="ash-dev-273120", subscription_id="email-sender-sub"),
+            handler=handler2,
+        ),
+    ]
+    
+    # Create worker pool with heartbeat function
+    wp = WorkerPool(heartbeat_func=heartbeat_func)
+    
+    # Run in async mode (default) - all tasks run concurrently
+    await wp.run(tasks=tasks)
+    
+    # Or run in sync mode - tasks run one by one in order
+    # await wp.run(tasks=tasks, mode="sync")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+## Worker Pool Features
+
+The `WorkerPool` provides two execution modes:
+
+### Async Mode (default)
+- All tasks run concurrently using `asyncio.TaskGroup`
+- Tasks can execute in any order or simultaneously
+- Best for independent tasks that don't need to be processed in sequence
+
+### Sync Mode
+- Tasks run one by one in the order they are provided
+- Each task completes before the next one starts
+- Useful when tasks need to be processed in a specific sequence
+- Note: Message processing within each task is still asynchronous
+
+### Heartbeat Function
+- Optional callback function that gets called during worker execution
+- Useful for monitoring worker health and activity
+- Called before processing messages in each iteration
+- Can be used for logging, metrics, or health checks
+
+### WorkerTask Configuration
+- `subscriber_dao`: The async subscriber DAO instance
+- `handler`: Async function that processes messages and returns `HandlerResult`
+- `batch_size`: Number of messages to fetch per batch (default: 10)
+- `return_immediately`: Whether to return immediately if no messages (default: False)

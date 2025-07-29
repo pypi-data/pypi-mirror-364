@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "gcp-pubsub-dao"
+version = "0.4.0"
+description = "DAO for GCP PubSub service."
+authors = ["Raman Shakun <shakunroman@gmail.com>"]
+readme = "README.md"
+packages = [{include = "gcp_pubsub_dao"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+google-cloud-pubsub = "^2.19.0"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.0.284"
+pyright = "^1.1.321"
+isort = "^5.12.0"
+black = "^23.7.0"
+pytest = "^7.4.0"
+pytest-cov = "^4.1.0"
+pytest-asyncio = "^0.21.1"
+parameterized = "^0.9.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
+preview = true
+target-version = ['py311']
+
+[tool.pyright]
+include = ["gcp_pubsub_dao"]
+exclude = ["tests"]
+pythonVersion = "3.11"
+
+[tool.ruff]
+src = ["gcp_pubsub_dao"]
+line-length = 120
+select = [
+    "F", "E", "W", "C90", "I", "N", "S", "B", "A", "ISC", "T20", "Q", "PTH",
+    "COM", "C4", "PL", "RET", "SIM", "RUF", "ARG", "ICN", "DTZ", "UP",
+]
