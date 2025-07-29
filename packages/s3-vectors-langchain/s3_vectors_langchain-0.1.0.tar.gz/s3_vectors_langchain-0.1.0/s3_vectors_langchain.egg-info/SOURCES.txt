@@ -1,0 +1,10 @@
+README.md
+pyproject.toml
+setup.py
+s3-vector-langchain/S3VectorStore.py
+s3-vector-langchain/__init__.py
+s3_vectors_langchain.egg-info/PKG-INFO
+s3_vectors_langchain.egg-info/SOURCES.txt
+s3_vectors_langchain.egg-info/dependency_links.txt
+s3_vectors_langchain.egg-info/requires.txt
+s3_vectors_langchain.egg-info/top_level.txt
