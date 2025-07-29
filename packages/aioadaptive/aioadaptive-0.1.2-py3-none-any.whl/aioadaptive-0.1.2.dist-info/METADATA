@@ -1,0 +1,59 @@
+Metadata-Version: 2.4
+Name: aioadaptive
+Version: 0.1.2
+Summary: Add your description here
+Project-URL: Homepage, https://github.com/swrap/aioadaptive
+Project-URL: Documentation, https://github.com/swrap/aioadaptive#readme
+Project-URL: Source, https://github.com/swrap/aioadaptive
+Project-URL: Tracker, https://github.com/swrap/aioadaptive/issues
+Author-email: Jesse Saran <8915311+swrap@users.noreply.github.com>
+License-Expression: MIT
+License-File: LICENSE.txt
+Keywords: adaptive,aiohttp,asyncio,python
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.9
+Requires-Dist: anyio>=3.0.0
+Description-Content-Type: text/markdown
+
+# Aio Adaptive
+
+Project is based off of [Netflix Concurrency](https://github.com/Netflix/concurrency-limits), but for python!
+The initial setup allows for someone to configure the Vegas adaptive rate limit.
+
+See the examples below for how to leverage it.
+
+## Install
+
+TODO
+
+## Developer Setup
+
+1. Navigate to the Server Directory
+
+   ```bash
+   cd aioadaptive
+   ```
+
+2. Install Server Requirements
+
+   ```bash
+   uv venv .venv
+   source .venv/bin/activate
+   uv sync
+   ```
+
+3. Run tests
+
+   ```bash
+   pytest
+   ```
