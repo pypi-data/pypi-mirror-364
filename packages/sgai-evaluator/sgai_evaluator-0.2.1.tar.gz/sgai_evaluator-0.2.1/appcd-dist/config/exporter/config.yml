@@ -1,0 +1,5 @@
+db:
+  connectionString: host=${rds_endpoint} port=${rds_port} user=${rds_username} password=${rds_password} dbname=exporter sslmode=disable application_name=${HOSTNAME}
+  db_type: postgres
+iacgen:
+  host: http://iac-gen:9000

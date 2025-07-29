@@ -1,0 +1,98 @@
+name: Deploy to PROD EKS Cluster
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "installation/k8s/values/prod.cloud-prod.yaml"
+      - "installation/k8s/values/prod.customer-demo.yaml"
+  push:
+    branches:
+      - main
+    paths:
+      - "installation/k8s/values/prod.cloud-prod.yaml"
+      - "installation/k8s/values/prod.customer-demo.yaml"
+env:
+  AWS_REGION: "us-west-2"
+  AWS_ROLE_ARN: "arn:aws:iam::471112560114:role/cloud-github-oidc-auth-role"
+  CLUSTER: "cloud-eks"
+jobs:
+  demo_env_sync_check:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          sparse-checkout: |
+            ./installation/k8s/values/prod.cloud-prod.yaml
+            ./installation/k8s/values/prod.customer-demo.yaml
+            ./scripts/tag_compare.sh
+      - name: Update version in on prem ap
+        shell: bash
+        run: |
+          # install yq
+          wget -q https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/local/bin/yq && \
+          chmod +x /usr/local/bin/yq && \
+          yq --version
+          
+          ./scripts/tag_compare.sh \
+            ./installation/k8s/values/prod.cloud-prod.yaml \
+            ./installation/k8s/values/prod.customer-demo.yaml
+
+  deploy:
+    # only run on main branch
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: "prod-eks"
+    permissions:
+      id-token: write
+      packages: write
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Load .env file
+        id: load_dotenv
+        uses: falti/dotenv-action@v1.0.4
+        with:
+          export-variables: true
+      - name: Notify on Slack
+        id: slack
+        uses: slackapi/slack-github-action@v1.25.0
+        with:
+          payload: |
+            {
+              "from": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+              "reason": "Deploying to Cluster ${{ env.CLUSTER}} in ${{ env.AWS_REGION }}",
+              "appcd_versions": "${{ steps.load_dotenv.outputs.APPCD_VERSION }}",
+              "analyzer_versions": "${{ steps.load_dotenv.outputs.APPCD_ANALYZER }}",
+              "iacgen_versions": "${{ steps.load_dotenv.outputs.IACGEN_VERSION }}",
+              "ui_version": "${{ steps.load_dotenv.outputs.APPCDUI_VERSION }}",
+              "exporter_version": "${{ steps.load_dotenv.outputs.STACK_EXPORTER_VERSION }}"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.PROD_DEPLOYMENT_SLACK_WEBHOOK_URL }}
+      - uses: ./.github/actions/deploy-to-eks
+        name: Deploy to prod EKS
+        with:
+          cluster:  ${{ env.CLUSTER }}
+          region: ${{ env.AWS_REGION }}
+          ISSUE_REPORTER_SLACK_URL: ${{ secrets.ISSUE_REPORTER_SLACK_URL }}
+          role_to_assume: ${{ env.AWS_ROLE_ARN }}
+          namespace: "appcd-cloud-prod"
+          values_yaml: "./values/prod.cloud-prod.yaml"
+      - uses: ./.github/actions/deploy-to-eks
+        name: Deploy to stackgen demo
+        with:
+          cluster:  ${{ env.CLUSTER }}
+          region: ${{ env.AWS_REGION }}
+          ISSUE_REPORTER_SLACK_URL: ${{ secrets.ISSUE_REPORTER_SLACK_URL }}
+          role_to_assume: ${{ env.AWS_ROLE_ARN }}
+          namespace: "appcd-cloud-demo"
+          values_yaml: "./values/prod.customer-demo.yaml"

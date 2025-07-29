@@ -1,0 +1,29 @@
+server:
+  database:
+    MIGRATION_SOURCE: file:/app/resources/db/migration
+  scm:
+    localfile:
+      type: file
+      api: "/data/repos"
+    public_github:
+      type: github
+      token: ${GITHUB_TOKEN}
+      api: https://api.github.com/
+      oauth:
+        clientid: ${GITHUB_CLIENT_ID}
+        clientsecret: ${GITHUB_CLIENT_SECRET}
+        endpoint:
+          authURL: "https://github.com/login/oauth/authorize"
+          tokenURL: "https://github.com/login/oauth/access_token"
+        redirectURL: http://localhost:8001/appcd/api/v1/scm/public_github/callback
+    public_gitlab:
+      type: gitlab
+      token: ${GITLAB_TOKEN}
+    # public_bitbucket:
+    #   type: bitbucket
+    #   token: ${BITBUCKET_TOKEN}
+    #   api: https://bitbucket.org/
+    # public_gitea:
+    #   type: gitea
+    #   token: ${GITEA_TOKEN}
+    #   api: https://gitea.com/

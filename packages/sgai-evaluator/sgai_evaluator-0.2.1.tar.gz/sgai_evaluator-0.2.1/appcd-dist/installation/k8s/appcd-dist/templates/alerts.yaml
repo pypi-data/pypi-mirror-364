@@ -1,0 +1,114 @@
+{{- if .Values.support.alerts.enabled }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: slack-secret
+  namespace: {{ .Release.Namespace }}
+stringData:
+  apiURL: {{ .Values.support.alerts.slack.url | quote }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: zenduty-secret
+  namespace: {{ .Release.Namespace }}
+stringData:
+  apiURL: {{ .Values.support.alerts.zenduty.url | quote }}
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: slack-alerts
+  namespace: {{ .Release.Namespace }}
+  labels:
+    alertmanagerConfig: "slack-alerts"
+    maintainer: "stackgen"
+spec:
+  receivers:
+  - name: slack-and-zenduty-receiver
+    slackConfigs:
+    - apiURL:
+        name: slack-secret
+        key: apiURL
+      channel: {{ .Values.support.alerts.slack.channel }}
+      color: '{{`{{ if eq .Status "firing" }}danger{{ else }}good{{ end }}`}}'
+      title: '[{{`{{ .Status }}`}}{{`{{ if eq .Status "firing" }}:{{ .Alerts | len }}{{ end }}`}}] Monitoring Event Notification'
+      username: 'Alertmanager'
+      text: |
+        Status: {{` {{ .Status }} `}}
+        Alerts count: {{` {{ .Alerts | len }} `}}
+        Domain: {{ .Values.domain }}
+        Namespace: {{`{{ .CommonLabels.namespace }}`}}
+        Summary: {{`{{ range .Alerts }} `}}Alert: {{`{{ if .Annotations.summary }}{{ .Annotations.summary }}{{ else }}No summary{{ end }}`}}
+        Description: {{`{{ if .Annotations.description }}{{ .Annotations.description }}{{ else }}No description{{ end }}`}}
+        {{`{{ end }}`}}
+      footer: AlertManager | '{{`{{ .CommonLabels.namespace }}`}}'
+      fallback: 'Alert received: {{ .Status }}'
+
+    webhookConfigs:
+    - urlSecret:
+        name: zenduty-secret
+        key: apiURL
+
+  - name: "null"
+
+  route:
+    receiver: slack-and-zenduty-receiver
+    group_by:
+      - severity
+    groupWait: 60s
+    groupInterval: 60s
+    repeatInterval: 5m
+    routes:
+      - receiver: "null"
+        matchers:
+          - matchType: "=~"
+            name: alertname
+            value: "InfoInhibitor|Watchdog"
+
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: nginx-ingress-controller-alerts
+  namespace: {{ .Release.Namespace }}
+  labels:
+    release: kube-prometheus-stack
+    role: alert-rules
+spec:
+  groups:
+    - name: stackgen-ingress-alerts
+      rules:
+        - alert: HighRequestLatency
+          expr: histogram_quantile(0.95, sum(rate(nginx_ingress_controller_upstream_server_response_latency_ms_bucket[5m])) by (le)) > 500
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            description: High request latency (95th percentile) for controller_class
+            summary: Request latency is high
+        - alert: HighErrorRate
+          expr: sum(rate(nginx_ingress_controller_upstream_server_response_latency_ms_count{code=~"4.*"}[5m])) / sum(rate(nginx_ingress_controller_upstream_server_response_latency_ms_count[5m])) * 100 > 5
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            description: High error rate (4xx) for upstream
+            summary: Error rate is high
+        - alert: HighConnectionCount
+          expr: sum(nginx_ingress_nginx_connections_active) > 1000
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            description: High connection count for controller_class
+            summary: Connection count is high
+        - alert: HighRequestCount
+          expr: sum(rate(nginx_ingress_nginx_http_requests_total[5m])) > 100
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            description: High request count for controller_class
+            summary: Request count is high
+{{- end -}}

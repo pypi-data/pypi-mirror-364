@@ -1,0 +1,9 @@
+is_dev_cluster             = false
+load-balancer-ssl-cert-arn = "arn:aws:acm:us-west-2:471112560114:certificate/e139e7a4-2872-47c1-bf62-96563e1ae70f"
+region                     = "us-west-2"
+suffix                     = "cloud"
+use_spot_instances         = false
+alert_email                = "alerts-prod-ops-aaaamju5k3vxefjpxt2u5sllwy@stackgen.slack.com"
+instance_type              = "c7gd.4xlarge"
+read_only_role_name        = "AWSReservedSSO_ReadOnlyAccess_809f7a796c94ef10"
+flow_log_retention_days    = 90

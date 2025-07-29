@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: create-temporal-namespace
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: temporal
+          image: temporalio/admin-tools:1.22.4
+          command: ["sh", "-c"]
+          args: ["tctl namespace list | grep -i default || tctl --address temporal-frontend:7233 --namespace default namespace register"]

@@ -1,0 +1,136 @@
+{{- $name := .Values.image.tag | required ".Values.image.tag is required." -}}
+{{- $ns := .Release.Namespace -}}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "iac-gen.fullname" . }}
+  labels:
+    {{- include "iac-gen.labels" . | nindent 4 }}
+  annotations:
+    deploymentTime: {{ now | date "2006-01-02T15:04:05" }}
+    rollme: {{ randAlphaNum 5 | quote }}
+    reloader.stakater.com/auto: "true"
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "iac-gen.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        rollme: {{ randAlphaNum 5 | quote }}
+        {{- include "iac-gen.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "iac-gen.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          command: ["/bin/iac-gen"]
+          args:
+            - "server"
+            - "--db-path"
+            - "host=${rds_endpoint} port=${rds_port} user=${rds_username} password=${rds_password} dbname=iacgen sslmode=disable application_name=${HOSTNAME}"
+            - "--log-level"
+            - "debug"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+            - name: grpc
+              containerPort: {{ .Values.service.grpcPort }}
+              protocol: TCP
+          livenessProbe:
+            periodSeconds: 60
+            initialDelaySeconds: 45
+            timeoutSeconds: 180
+            successThreshold: 1
+            failureThreshold: 3
+            httpGet:
+              path: /health
+              port: http
+          readinessProbe: null
+          envFrom:
+            - configMapRef:
+                name: "stackgen-platform-configmap"
+            {{- range $key, $value := .Values.secrets }}
+            - secretRef:
+                name: {{ $value }}
+            {{- end }}
+          env:
+            - name: APPCD_DOMAIN
+              value: {{ .Values.domain }}
+            - name: APPCD_SERVER
+              value: "http://appcd:8080"
+            - name: TEMPORAL_NAMESPACE
+              value: {{ .Values.global.temporal.namespace | default .Release.Namespace }}
+            - name: TEMPORAL_HOSTPORT
+              value: {{ .Values.global.temporal.hostport }}
+            {{- if .Values.env }}
+            {{- toYaml .Values.env | nindent 12 }}
+            {{- end }}
+            {{- if .Values.storage.worm.enabled }}
+            - name: ARTIFACTS_DIR
+              value: "/out/data/artifacts"
+            {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            {{- if .Values.storage.worm.enabled }}
+            - name: persistent-storage
+              mountPath: /out/data
+            {{- end }}
+            {{- with .Values.volumeMounts }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+      volumes:
+        {{- with .Values.volumes }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+        {{- if .Values.storage.worm.enabled }}
+        - name: persistent-storage
+          persistentVolumeClaim:
+            claimName: {{ printf "storage-%s" $ns }}
+        {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+
+      {{- if .Values.enablePodAntiAffinity }}
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    {{- include "iac-gen.selectorLabels" . | nindent 20 }}
+                topologyKey: "kubernetes.io/hostname"
+      {{- else if .Values.affinity }}
+      affinity:
+        {{- toYaml .Values.affinity | nindent 8 }}
+      {{- end }}
+
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

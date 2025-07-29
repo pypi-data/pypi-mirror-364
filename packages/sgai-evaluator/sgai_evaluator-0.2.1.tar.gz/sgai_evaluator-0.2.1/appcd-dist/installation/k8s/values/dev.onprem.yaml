@@ -1,0 +1,181 @@
+domain: &domain onprem.dev.stackgen.com
+licenseKey: "dev-onprem"
+pullPolicy: &pullPolicy Always
+ops:
+  otel:
+    endpoint: &otelEndpoint vpce-088bcf07ec864637b-tswtnzdj.vpce-svc-0d9e82d0be819bad0.us-west-2.vpce.amazonaws.com:4317
+features:
+  analytics: false
+  moduleEditor: true
+stackgen-vault:
+  cloud_creds:
+    aws:
+      role_arn: arn:aws:iam::584974133937:role/stackgen-system
+      external_id: 94583
+  helm_service_account_f0ede016e49f5c6e877698f299c19067:
+    annotations:
+      eks.amazonaws.com/role-arn: arn:aws:iam::339712749745:role/stackgen-vault
+      eks.amazonaws.com/role-session-name: stackgen-vault
+      eks.amazonaws.com/sts-external-id: 94583
+      eks.amazonaws.com/sts-region: us-west-2
+  helm_workload_54a040c89d8252de9a426f2ad1f92af6:
+    image_tag: main
+    image_pull_policy: *pullPolicy
+  helm_ingress_338c921c23b152c68768988f70dcc932:
+    rules:
+      - host: *domain
+        http:
+          paths:
+          - path: /api/vault
+            pathType: Prefix
+exporter:
+  enabled: true
+  helm_workload_5a048be506c75a07b1aeec33d33e56e3:
+    image_tag: main
+    image_pull_policy: *pullPolicy
+    env:
+      OTEL_EXPORTER_OTLP_ENDPOINT: *otelEndpoint
+  helm_ingress_a0d9d3b950a15ef6aeb5d528f0ed1481:
+    rules:
+      - host: *domain
+        http:
+          paths:
+            - path: /exporter
+              pathType: Prefix
+appcd:
+  domain: *domain
+  image:
+    tag: main
+    pullPolicy: *pullPolicy
+  auth:
+    enable_group_sync: true
+    need_user_vetting: true
+  resources:
+    requests:
+      memory: 200Mi
+      cpu: 200m
+  rbac:
+    admin_emails:
+      - sean@stackgen.com
+      - cesar@stackgen.com
+      - ankit@stackgen.com
+      - gaurav@stackgen.com
+      - gabriel@stackgen.com
+      - appcd-e2e@appcd.com
+      - sean@appcd.com
+      - cesar@appcd.com
+      - ankit@appcd.com
+      - gaurav@appcd.com
+      - gabriel@appcd.com
+      - sks@stackgen.com
+      - cesar@stackgen.com
+      - kunal@stackgen.com
+      - vishwajeet@stackgen.com
+      - prashant@stackgen.com
+      - jigar@stackgen.com
+appcd-ui:
+  domain: *domain
+  image:
+    tag: main
+    pullPolicy: *pullPolicy
+  enableSentry: true
+  secrets:
+    - openai-secret
+  resources:
+    requests:
+      memory: 200Mi
+      cpu: 200m
+iac-gen:
+  domain: *domain
+  image:
+    tag: main
+    pullPolicy: *pullPolicy
+  resources:
+    requests:
+      memory: 200Mi
+      cpu: 200m
+infra-catalog-tracker:
+  helm_workload_29510bf8f3775740827eff66846105ef:
+    image_tag: main
+    image_pull_policy: *pullPolicy
+    env:
+      OTEL_EXPORTER_OTLP_ENDPOINT: *otelEndpoint
+  helm_ingress_4087a90c467557bfa43a956a232516a0:
+    rules:
+      - host: *domain
+        http:
+          paths:
+          - path: /infra-catalog-tracker
+            pathType: Prefix
+integrations:
+  enabled: true
+  helm_workload_1b5f1d019692549bb714785b7636f446:
+    image_tag: main
+    image_pull_policy: *pullPolicy
+    env:
+      OTEL_EXPORTER_OTLP_ENDPOINT: *otelEndpoint
+  helm_ingress_fed20208495e5e5c9c7adf36f31a3b8e:
+    rules:
+      - host: *domain
+        http:
+          paths:
+          - path: /integrations
+            pathType: Prefix
+  helm_ingress_fed20208495e5e5c9c7adf36f31a3b8e_swagger:
+    rules:
+      - host: *domain
+        http:
+          paths:
+          - path: /integrations/api/swagger
+            pathType: Prefix
+  helm_ingress_fed20208495e5e5c9c7adf36f31a3b8e_mcp:
+    rules:
+      - host: *domain
+        http:
+          paths:
+          - path: /api/mcp
+            pathType: Prefix
+deployment-manager:
+  helm_workload_eedf62a44e21519893dea9656ef6fc10:
+    image_tag: main
+    image_pull_policy: *pullPolicy
+  helm_ingress_58fbd417de1059fcbef3ce2fc0073ba6:
+    rules:
+      - host: *domain
+        http:
+          paths:
+          - path: /deployment-manager
+            pathType: Prefix
+cloudscanner:
+  enabled: true
+  helm_workload_b158349e5aa659f0816a83fce91a45ba:
+    image_tag: main
+
+stackgen-notification:
+  enabled: true
+  helm_workload_5e47e775fc5a5bfa964f549ee58e64c1:
+    image_tag: main
+    image_pull_policy: *pullPolicy
+    env_from_secret:
+    # - openai-secret
+    - appcd-secrets
+  helm_ingress_eed39ce263775ec4b63c7cb755fbccce:
+    rules:
+      - host: *domain
+        http:
+          paths:
+            - path: /notifications
+              pathType: Prefix
+community-infra-gen:
+  enabled: true
+  image:
+    tag: main
+    pullPolicy: *pullPolicy
+  ingress:
+    productHosts:
+      - host: *domain
+tf-module-service:
+  domain: *domain
+  image:
+    tag: main
+    pullPolicy: *pullPolicy

@@ -1,0 +1,362 @@
+mode: "daemonset" 
+
+presets:
+  logsCollection:
+    enabled: false 
+  hostMetrics:
+    enabled: true 
+  kubernetesAttributes:
+    enabled: true 
+  kubeletMetrics:
+    enabled: true 
+  kubernetesEvents:
+    enabled: true 
+
+configMap:
+  create: true
+config:
+  exporters:
+    debug:
+      verbosity: detailed 
+    otlp:
+      endpoint: "${otlp_endpoint}:4317" 
+      tls:
+        insecure: true 
+    otlphttp:
+      endpoint: "http://${otlp_endpoint}:4318" 
+
+  extensions:
+    health_check:
+      endpoint: $${env:MY_POD_IP}:13133
+    zpages: {}
+
+  processors:
+    batch: {}
+    resourcedetection:
+      detectors:
+        - env
+        - system
+      system:
+        hostname_sources:
+          - os
+      timeout: 5s
+      override: true
+    resource:
+      attributes:
+        - key: deployment.environment
+          action: insert
+          from_attribute: k8s.namespace.name
+        - key: service.name
+          action: upsert
+          from_attribute: k8s.deployment.name
+        - key: k8s.cluster.name
+          value: "${cluster_name}"
+          action: insert
+        - key: host.name
+          from_attribute: k8s.node.name
+          action: insert
+    k8sattributes:
+      extract:
+        metadata:
+          - k8s.namespace.name
+          - k8s.deployment.name
+          - k8s.statefulset.name
+          - k8s.daemonset.name
+          - k8s.cronjob.name
+          - k8s.job.name
+          - k8s.node.name
+          - k8s.pod.name
+          - k8s.pod.uid
+          - k8s.pod.start_time
+          - k8s.cluster.uid
+      passthrough: false
+      pod_association:
+        - sources:
+            - from: resource_attribute
+              name: k8s.pod.ip
+        - sources:
+            - from: resource_attribute
+              name: k8s.pod.uid
+        - sources:
+            - from: connection
+        - sources:
+            - from: resource_attribute
+              name: host.name
+    memory_limiter:
+      check_interval: 5s
+      limit_percentage: 80
+      spike_limit_percentage: 25
+
+  receivers:
+    filelog:
+      include:
+        - /var/log/pods/*/*/*.log
+      exclude:
+        - "/var/log/pods/*_otel-collector-*_*/*.log"
+        - "/var/log/pods/*_opentelemetry-collector-*_*/*.log"
+        - "/var/log/pods/open-telemetry_otel-collector-opentelemetry-collector-agent-*_*/*.log"
+        - "/var/log/pods/open-telemetry_otel-collector*/opentelemetry-collector/0.log"
+      include_file_name: false
+      include_file_path: true
+      operators:
+        - id: container-parser
+          type: container
+          max_log_size: 102400
+          output: detect_log_type
+        - type: router
+          id: detect_log_type
+          routes:
+            - expr: 'body matches "^\\{"'
+              output: json_parser
+            - expr: 'true'
+              output: regex_time_parser # Route raw logs to regex parser
+        - type: json_parser
+          id: json_parser
+          parse_from: body
+          parse_to: attributes
+          timestamp:
+            parse_from: attributes.time
+            layout: "%Y-%m-%dT%H:%M:%S.%3fZ"
+            layout_type: gotime
+          output: parse_severity
+        - type: severity_parser
+          id: parse_severity
+          parse_from: attributes.level
+          overwrite_text: true
+          output: move_message
+        - type: move
+          id: move_message
+          from: attributes.msg
+          to: body
+          if_exists: true
+          output: remove_time_field
+        - type: remove
+          id: remove_time_field
+          field: attributes.time
+          if_exists: true
+        - type: regex_parser
+          id: regex_time_parser
+          regex: "(?P<time>\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d*)?Z?)"
+          parse_from: body
+          parse_to: attributes
+          timestamp:
+            parse_from: attributes.time
+            layout: "%Y-%m-%dT%H:%M:%S.%LZ"
+            layout_type: gotime
+          output: raw_log
+        - type: add
+          id: raw_log
+          field: attributes.log_type
+          value: raw
+    hostmetrics:
+      collection_interval: 60s
+      root_path: /hostfs # Often needed in daemonsets
+      scrapers:
+        cpu: {}
+        disk: {}
+        load: {}
+        filesystem: {}
+        memory: {}
+        network: {}
+        paging: {}
+    jaeger:
+      protocols:
+        grpc:
+          endpoint: $${env:MY_POD_IP}:14250
+        thrift_compact:
+          endpoint: $${env:MY_POD_IP}:6831
+        thrift_http:
+          endpoint: $${env:MY_POD_IP}:14268
+    kubeletstats:
+      auth_type: serviceAccount
+      collection_interval: 20s
+      endpoint: $${env:K8S_NODE_IP}:10250
+      insecure_skip_verify: true # Change for production!
+      metric_groups:
+        - node
+        - pod
+        - container
+        - volume
+
+    otlp:
+      protocols:
+        grpc:
+          endpoint: $${env:MY_POD_IP}:4317
+        http:
+          endpoint: $${env:MY_POD_IP}:4318
+    zipkin:
+      endpoint: $${env:MY_POD_IP}:9411
+
+    prometheus:
+      config:
+        scrape_configs:
+          - job_name: "appcd-customer-metrics"
+            kubernetes_sd_configs:
+              - role: service
+            relabel_configs:
+              - source_labels: [__meta_kubernetes_namespace]
+                action: keep
+                regex: "appcd.*|customer.*"
+              - source_labels: [__meta_kubernetes_endpoint_port_name]
+                action: keep
+                regex: "metrics"
+              - source_labels: [__meta_kubernetes_service_label_app_kubernetes_io_instance]
+                action: keep
+                regex: "appcd"
+            metrics_path: /metrics
+            scrape_interval: 15s
+          - job_name: "nginx-ingress"
+            scrape_interval: 10s
+            metrics_path: /metrics
+            static_configs:
+              - targets:
+                  - "ingress-nginx-nginx-ingress-prometheus-service.ingress-nginx.svc.cluster.local:9113"
+
+  service:
+    extensions:
+      - health_check
+      - zpages
+    pipelines:
+      logs:
+        exporters:
+          - otlp
+        processors:
+          - k8sattributes
+          - resource
+          - batch
+        receivers:
+          - filelog
+          - otlp
+      metrics:
+        exporters:
+          - otlphttp
+          - otlp
+          - debug # Remove in production
+        processors:
+          - k8sattributes
+          - resource
+          - batch
+        receivers:
+          - otlp
+          - kubeletstats
+          - hostmetrics
+          - prometheus
+      traces:
+        exporters:
+          - otlphttp
+          - otlp
+        processors:
+          - k8sattributes
+          - resource
+          - batch
+        receivers:
+          - otlp
+          - jaeger
+          - zipkin
+      metrics/hostmetrics:
+        receivers:
+          - hostmetrics
+        processors:
+          - resourcedetection
+          - resource
+          - batch
+        exporters:
+          - otlp
+    telemetry:
+      metrics:
+        address: $${env:MY_POD_IP}:8888
+
+image:
+  repository: "ghcr.io/appcd-dev/otel/opentelemetry-collector-k8s"
+  pullPolicy: IfNotPresent
+  tag: "latest" # Or a specific version
+  digest: ""
+imagePullSecrets: 
+  - name: ${imagePullSecrets}
+
+serviceAccount:
+  create: true
+  name: "otel-collector"
+
+clusterRole:
+  create: true # This will be handled by presets
+  name: "otel-collector-role"
+  rules:
+    - apiGroups:
+        - ""
+      resources:
+        - pods
+        - nodes
+        - namespaces
+        - services
+        - endpoints
+      verbs:
+        - get
+        - list
+        - watch
+    - apiGroups:
+        - apps
+      resources:
+        - daemonsets
+        - deployments
+        - replicasets
+        - statefulsets
+      verbs:
+        - get
+        - list
+        - watch
+    - apiGroups:
+        - batch
+      resources:
+        - jobs
+        - cronjobs
+      verbs:
+        - get
+        - list
+        - watch
+    - apiGroups:
+        - ""
+      resources:
+        - events
+      verbs:
+        - list
+        - watch
+    - apiGroups:
+        - coordination.k8s.io
+      resources:
+        - leases
+      verbs:
+        - get
+        - list
+        - watch
+    - apiGroups:
+        - discovery.k8s.io
+      resources:
+        - endpointslices
+      verbs:
+        - get
+        - list
+        - watch
+  clusterRoleBinding:
+    annotations: {}
+    name: "otel-collector-role-binding"
+
+extraVolumes:
+  - name: varlogpods
+    hostPath:
+      path: /var/log/pods
+extraVolumeMounts:
+  - name: varlogpods
+    mountPath: /var/log/pods
+    readOnly: true
+
+resources:
+  limits:
+    cpu: 1000m 
+    memory: 2Gi
+  requests:
+    cpu: 500m
+    memory: 1Gi
+
+replicaCount: 1 
+revisionHistoryLimit: 10 

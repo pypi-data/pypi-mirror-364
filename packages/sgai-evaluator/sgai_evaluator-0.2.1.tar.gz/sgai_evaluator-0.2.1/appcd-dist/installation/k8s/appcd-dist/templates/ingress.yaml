@@ -1,0 +1,131 @@
+{{- $name := .Values.domain | required ".Values.domain is required." -}}
+
+
+{{- $fullName := include "appcd.fullname" . -}}
+{{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
+apiVersion: networking.k8s.io/v1
+{{- else if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
+apiVersion: networking.k8s.io/v1beta1
+{{- else -}}
+apiVersion: extensions/v1beta1
+{{- end }}
+kind: Ingress
+metadata:
+  name: {{ $fullName }}-master-ingress
+  labels:
+    {{- include "appcd.labels" . | nindent 4 }}
+  annotations:
+    nginx.org/proxy-connect-timeout: "30s"
+    nginx.org/proxy-read-timeout: "120s"
+    nginx.org/client-max-body-size: {{ .Values.nginx.client_max_body_size | default "10M" }}
+    nginx.org/proxy-buffer-size: 16k
+    nginx.org/proxy-buffers: 8 16k
+    nginx.org/mergeable-ingress-type: master
+    ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.org/server-tokens: "False"
+    nginx.org/server-snippets: |
+      add_header Strict-Transport-Security 'max-age=31536000; includeSubDomains; preload';
+      add_header Content-Security-Policy "default-src 'self' 'unsafe-inline' https: data:; base-uri 'self'; worker-src 'self' blob:;" always;
+
+      add_header X-XSS-Protection "1; mode=block";
+      add_header X-Frame-Options "SAMEORIGIN";
+      add_header X-Content-Type-Options nosniff;
+      add_header Referrer-Policy "strict-origin";
+      add_header Permissions-Policy "geolocation=(),midi=(),sync-xhr=(),microphone=(),camera=(),magnetometer=(),gyroscope=(),fullscreen=(self),payment=()";
+      add_header Cross-Origin-Opener-Policy "same-origin";
+      add_header Cross-Origin-Resource-Policy "same-origin";
+      client_max_body_size {{ .Values.nginx.client_max_body_size | default "10M" }};
+
+      location = /favicon.ico {
+        return 301 https://appcd.com/favicon.ico;
+      }
+      location = /mode.json {
+        return 200 '{"mode":"{{.Values.mode}}"}';
+      }
+
+      location = /path.json {
+        add_header Content-Type application/json;
+        return 200 '{
+          "auth":{"path":"/auth"},
+          "appcd": {"path": "/appcd"},
+          "iac-gen": {"path": "/iac-gen"},
+          "exporter": {"path": "/exporter"},
+          "vault": {"path": "/api/vault"},
+          "integrations": {"path": "/integrations"},
+          "llm": {"path": "/ai"},
+          "backstage-adapter":{"path":"/backstage-adapter"},
+          "deployment-manager":{"path":"/deployment-manager"},
+          "notifications":{"path":"/notifications"}
+        }';
+      }
+
+      location = /version.json {
+        return 200 '{
+          "appcd": "{{ .Values.appcd.image.tag }}",
+          "iac-gen": "{{ index .Values "iac-gen" "image" "tag" }}",
+          "ui": "{{ index .Values "appcd-ui" "image" "tag" }}",
+          "exporter": "{{ index .Values "exporter" "helm_workload_5a048be506c75a07b1aeec33d33e56e3" "image_tag" }}",
+          "vault": "{{ index .Values "stackgen-vault" "helm_workload_54a040c89d8252de9a426f2ad1f92af6" "image_tag" }}",
+          "integrations": "{{ index .Values "integrations" "helm_workload_1b5f1d019692549bb714785b7636f446" "image_tag" }}",
+          "backstage-adapter": "{{ index .Values "backstage-adapter" "helm_workload_1b5f1d019692549bb714785b7636f446" "image_tag" }}",
+          "infra-catalog-tracker": "{{ index .Values "infra-catalog-tracker" "helm_workload_29510bf8f3775740827eff66846105ef" "image_tag" }}",
+          "agent-intent-to-iac": "{{ index .Values "agent-intent-to-iac" "image" "tag" }}",
+          "agent-iac-filler": "{{ index .Values "agent-iac-filler" "image" "tag" }}",
+          "agent-iac-exporter": "{{ index .Values "agent-iac-exporter" "image" "tag" }}",
+          "agent-iac-explainer": "{{ index .Values "agent-iac-explainer" "image" "tag" }}",
+          "sgai-orchestration": "{{ index .Values "sgai-orchestration" "image" "tag" }}",
+          "deployment-manager": "{{ index .Values "deployment-manager" "helm_workload_eedf62a44e21519893dea9656ef6fc10" "image_tag" }}",
+          "notifications": "{{ index .Values "stackgen-notification" "helm_workload_5e47e775fc5a5bfa964f549ee58e64c1" "image_tag" }}",
+          "tf-module-service": "{{ index .Values "tf-module-service" "image" "tag" }}"
+        }';
+      }
+
+      location = /auth {
+        internal;
+        proxy_pass http://appcd.{{ .Release.Namespace }}:8080/api/v1/auth/me;
+        proxy_method HEAD;
+        proxy_pass_request_body off;
+        proxy_set_header X-Original-URI $request_uri;
+        proxy_set_header X-Original-Method $request_method;
+        proxy_buffer_size 16k;
+        proxy_buffers 8 16k;
+        proxy_busy_buffers_size 32k;
+      }
+
+      location = /amplitude {
+        proxy_pass https://api2.amplitude.com/2/httpapi;
+        proxy_pass_request_body on;
+
+        # Forward the original client IP to Amplitude
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+        # Preserve other important headers
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header User-Agent $http_user_agent;
+        proxy_set_header Accept-Language $http_accept_language;
+
+        # Don't buffer the request to ensure all data is sent immediately
+        proxy_buffering off;
+      }
+
+      location = /features.json {
+        return 200 '{
+          "notifications": {{ index .Values "stackgen-notification" "enabled" }},
+          "exporter": {{ .Values.exporter.enabled }},
+          "vault": {{ index .Values "stackgen-vault" "enabled" }},
+          "editableIac": {{ .Values.features.editableIac }},
+          "moduleEditor": {{ .Values.features.moduleEditor }},
+          "recentStarredModules": {{ .Values.features.recentStarredModules }},
+          "analytics": {{ .Values.features.analytics }},
+          "agent-intent-to-iac": {{ index .Values "agent-intent-to-iac" "enabled" }},
+          "agent-iac-exporter": {{ index .Values "agent-iac-exporter" "enabled" }},
+          "agent-iac-filler": "{{ index .Values "agent-iac-filler" "enabled" }}",
+          "agent-iac-explainer": {{ index .Values "agent-iac-explainer" "enabled" }},
+          "apm": {{ .Values.features.apm }},
+          "driftDetection": {{ .Values.features.driftDetection }}
+        }';
+      }
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: {{ .Values.domain | quote }}

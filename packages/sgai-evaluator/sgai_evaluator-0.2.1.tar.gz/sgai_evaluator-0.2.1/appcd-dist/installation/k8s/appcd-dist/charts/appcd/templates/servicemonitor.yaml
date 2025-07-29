@@ -1,0 +1,18 @@
+{{ if .Values.serviceMonitor.enabled -}}
+{{- $fullName := include "appcd.fullname" . -}}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: app-service-monitor
+  labels:
+    release: kube-prometheus-stack
+    app: {{ $fullName}}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: appcd
+  endpoints:
+    - port: metrics
+      path: /metrics
+      interval: 1m
+{{- end -}}

@@ -1,0 +1,30 @@
+{{- if .Values.helm_hpa_14480e4c3f6c520c87169814a87356e7.enabled }}
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ .Values.helm_hpa_14480e4c3f6c520c87169814a87356e7.name }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: {{ .Values.helm_hpa_14480e4c3f6c520c87169814a87356e7.workload_kind }}
+    name: {{ .Values.helm_hpa_14480e4c3f6c520c87169814a87356e7.workload_name }}
+  minReplicas: {{ .Values.helm_hpa_14480e4c3f6c520c87169814a87356e7.min_replicas }}
+  maxReplicas: {{ .Values.helm_hpa_14480e4c3f6c520c87169814a87356e7.max_replicas }}
+  metrics:
+    {{- if .Values.helm_hpa_14480e4c3f6c520c87169814a87356e7.target_cpu_utilization_percentage }}
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: {{ .Values.helm_hpa_14480e4c3f6c520c87169814a87356e7.target_cpu_utilization_percentage }}
+    {{- end }}
+    {{- if .Values.helm_hpa_14480e4c3f6c520c87169814a87356e7.target_memory_utilization_percentage }}
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: {{ .Values.helm_hpa_14480e4c3f6c520c87169814a87356e7.target_memory_utilization_percentage }}
+    {{- end }}
+{{- end }}

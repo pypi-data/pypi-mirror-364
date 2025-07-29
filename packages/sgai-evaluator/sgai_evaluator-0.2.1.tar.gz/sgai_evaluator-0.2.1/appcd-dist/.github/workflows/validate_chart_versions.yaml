@@ -1,0 +1,35 @@
+# trigger on PR to main branch and when file changes
+name: "Validate chart versions in onprem installations"
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - installation/k8s/appcd-dist/Chart.yaml
+      - installation/azure/cluster/variables.tf
+      - installation/on-prem/variables.tf
+      - installation/gke/modules/stackgen-installation/variables.tf
+jobs:
+  validate_chart_versions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Get Chart version
+        id: get_chart_version
+        uses: mikefarah/yq@v4
+        with:
+            cmd: yq '.version' installation/k8s/appcd-dist/Chart.yaml
+      - name: Validate chart versions in onprem installations
+        run: |
+            # Get the chart version from the Chart.yaml file
+            echo "Chart version: ${{ steps.get_chart_version.outputs.result }}"
+            # Check if the chart version is used in the onprem installations
+            REFERENCES=$(grep -o "${{ steps.get_chart_version.outputs.result }}" installation/azure/cluster/variables.tf installation/on-prem/variables.tf installation/gke/modules/stackgen-installation/variables.tf  | wc -l)
+            echo "Chart version is used in $REFERENCES onprem installations"
+            if [ $REFERENCES -ne 3 ]; then
+                echo "Chart version is not updated in the onprem installations"
+                exit 1
+            fi

@@ -1,0 +1,204 @@
+# NOTE: image_tag for each service in this file may not be the current version that is deployed
+domain: &domain unstable.dev.stackgen.com
+licenseKey: "dev-unstable"
+pullPolicy: &pullPolicy Always
+ops:
+  otel:
+    endpoint: &otelEndpoint vpce-088bcf07ec864637b-tswtnzdj.vpce-svc-0d9e82d0be819bad0.us-west-2.vpce.amazonaws.com:4317
+features:
+  analytics: false
+  editableIac: true
+  moduleEditor: true
+support:
+  alerts:
+    enabled: false
+stackgen-vault:
+  cloud_creds:
+    aws:
+      role_arn: arn:aws:iam::584974133937:role/stackgen-system
+      external_id: 94583
+  helm_service_account_f0ede016e49f5c6e877698f299c19067:
+    annotations:
+      eks.amazonaws.com/role-arn: arn:aws:iam::339712749745:role/stackgen-vault
+      eks.amazonaws.com/role-session-name: stackgen-vault
+      eks.amazonaws.com/sts-external-id: 94583
+      eks.amazonaws.com/sts-region: us-west-2
+  helm_workload_54a040c89d8252de9a426f2ad1f92af6:
+    image_tag: main
+    image_pull_policy: *pullPolicy
+  helm_ingress_338c921c23b152c68768988f70dcc932:
+    rules:
+      - host: *domain
+        http:
+          paths:
+          - path: /api/vault
+            pathType: Prefix
+exporter:
+  enabled: true
+  helm_workload_5a048be506c75a07b1aeec33d33e56e3:
+    image_tag: main
+    image_pull_policy: *pullPolicy
+    env:
+      OTEL_EXPORTER_OTLP_ENDPOINT: *otelEndpoint
+  helm_ingress_a0d9d3b950a15ef6aeb5d528f0ed1481:
+    rules:
+      - host: *domain
+        http:
+          paths:
+          - path: /exporter
+            pathType: Prefix
+appcd:
+  domain: *domain
+  rbac:
+    admin_emails:
+      - bot@stackgen.com
+      - appcd-e2e@appcd.com
+      - sean@appcd.com
+      - cesar@appcd.com
+      - ankit@appcd.com
+      - gaurav@appcd.com
+      - gabriel@appcd.com
+      - bhavya@stackgen.com
+      - shubham@appcd.com
+      - e2e@appcd.com
+      - kunal@stackgen.com
+      - prashant@stackgen.com
+  image:
+    tag: main
+    pullPolicy: *pullPolicy
+  resources:
+    requests:
+      memory: 128Mi
+      cpu: 100m
+    limits:
+      memory: 600Mi
+appcd-ui:
+  domain: *domain
+  image:
+    tag: main
+    pullPolicy: *pullPolicy
+  enableSentry: false
+  secrets:
+    - openai-secret
+  resources:
+    requests:
+      memory: 200Mi
+      cpu: 100m
+    limits:
+      memory: 500Mi
+iac-gen:
+  domain: *domain
+  image:
+    tag: main
+    pullPolicy: *pullPolicy
+  autoscaling:
+    maxReplicas: 5
+  resources:
+    requests:
+      memory: 128Mi
+      cpu: 200m
+    limits:
+      memory: 500Mi
+tf-module-service:
+  domain: *domain
+  image:
+    tag: main
+    pullPolicy: *pullPolicy
+integrations:
+  enabled: true
+  helm_workload_1b5f1d019692549bb714785b7636f446:
+    image_tag: main
+    image_pull_policy: *pullPolicy
+    env:
+      OTEL_EXPORTER_OTLP_ENDPOINT: *otelEndpoint
+  helm_ingress_fed20208495e5e5c9c7adf36f31a3b8e:
+    rules:
+      - host: *domain
+        http:
+          paths:
+          - path: /integrations
+            pathType: Prefix
+  helm_ingress_fed20208495e5e5c9c7adf36f31a3b8e_swagger:
+    rules:
+      - host: *domain
+        http:
+          paths:
+          - path: /integrations/api/swagger
+            pathType: Prefix
+  helm_ingress_fed20208495e5e5c9c7adf36f31a3b8e_mcp:
+    rules:
+      - host: *domain
+        http:
+          paths:
+          - path: /api/mcp
+            pathType: Prefix
+backstage-adapter:
+  enabled: true
+  helm_workload_1b5f1d019692549bb714785b7636f446:
+    image_tag: main
+    env:
+      STACKGEN_BASE_API_URL: https://unstable.dev.stackgen.com/integrations/api/
+      STACKGEN_APPSTACKS_URL: https://unstable.dev.stackgen.com/appstacks
+      OTEL_EXPORTER_OTLP_ENDPOINT: *otelEndpoint
+  helm_ingress_fed20208495e5e5c9c7adf36f31a3b8e:
+    rules:
+      - host: *domain
+        http:
+          paths:
+          - path: /backstage-adapter
+            pathType: Prefix
+infra-catalog-tracker:
+  helm_workload_29510bf8f3775740827eff66846105ef:
+    image_tag: main
+    image_pull_policy: *pullPolicy
+    env:
+      OTEL_EXPORTER_OTLP_ENDPOINT: *otelEndpoint
+  helm_ingress_4087a90c467557bfa43a956a232516a0:
+    rules:
+      - host: *domain
+        http:
+          paths:
+          - path: /infra-catalog-tracker
+            pathType: Prefix
+deployment-manager:
+  helm_workload_eedf62a44e21519893dea9656ef6fc10:
+    image_tag: main
+    image_pull_policy: *pullPolicy
+  helm_ingress_58fbd417de1059fcbef3ce2fc0073ba6:
+    rules:
+      - host: *domain
+        http:
+          paths:
+          - path: /deployment-manager
+            pathType: Prefix
+sgai-control:
+  enabled: false
+  image:
+    tag: main
+    pullPolicy: *pullPolicy
+  ingress:
+    enabled: true
+    hosts:
+      - host: *domain
+        paths:
+          - path: /api/healer
+            pathType: Prefix
+sgai-knowledge:
+  enabled: false
+  image:
+    pullPolicy: *pullPolicy
+    tag: main
+agent-iac-filler:
+  enabled: true
+agent-intent-to-iac:
+  enabled: true
+agent-iac-exporter:
+  enabled: true
+agent-iac-explainer:
+  enabled: true
+
+sgai-orchestration:
+  enabled: true
+  image:
+    tag: "main"
+  

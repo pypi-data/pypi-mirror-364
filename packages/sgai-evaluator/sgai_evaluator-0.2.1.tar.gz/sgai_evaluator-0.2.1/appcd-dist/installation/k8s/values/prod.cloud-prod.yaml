@@ -1,0 +1,127 @@
+domain: &domain cloud.stackgen.com
+licenseKey: "prod-cloud"
+pullPolicy: &pullPolicy Always
+ops:
+  otel:
+    endpoint: &otelEndpoint vpce-06b9dee9973feadb5-972tmknz.vpce-svc-0ab5918b2eff7ad51.us-west-2.vpce.amazonaws.com:4317
+exporter:
+  enabled: true
+  helm_workload_5a048be506c75a07b1aeec33d33e56e3:
+    image_tag: v0.9.6
+    env:
+      OTEL_EXPORTER_OTLP_ENDPOINT: *otelEndpoint
+  helm_ingress_a0d9d3b950a15ef6aeb5d528f0ed1481:
+    rules:
+      - host: *domain
+        http:
+          paths:
+            - path: /exporter
+              pathType: Prefix
+appcd:
+  domain: *domain
+  image:
+    tag: v2025.7.2
+  rbac:
+    admin_emails:
+      - cesar@stackgen.com
+      - bot@stackgen.com
+appcd-ui:
+  domain: *domain
+  image:
+    tag: v0.17.0
+  enableSentry: true
+  secrets:
+    - openai-secret
+iac-gen:
+  domain: *domain
+  image:
+    tag: v0.50.0
+stackgen-vault:
+  helm_workload_54a040c89d8252de9a426f2ad1f92af6:
+    image_tag: v0.5.0
+  helm_ingress_338c921c23b152c68768988f70dcc932:
+    rules:
+      - host: *domain
+        http:
+          paths:
+            - path: /api/vault
+              pathType: Prefix
+integrations:
+  enabled: true
+  helm_workload_1b5f1d019692549bb714785b7636f446:
+    image_tag: v0.11.0
+    env:
+      OTEL_EXPORTER_OTLP_ENDPOINT: *otelEndpoint
+  helm_ingress_fed20208495e5e5c9c7adf36f31a3b8e:
+    rules:
+      - host: *domain
+        http:
+          paths:
+            - path: /integrations
+              pathType: Prefix
+  helm_ingress_fed20208495e5e5c9c7adf36f31a3b8e_swagger:
+    rules:
+      - host: *domain
+        http:
+          paths:
+            - path: /integrations/api/swagger
+              pathType: Prefix
+  helm_ingress_fed20208495e5e5c9c7adf36f31a3b8e_mcp:
+    rules:
+      - host: *domain
+        http:
+          paths:
+            - path: /api/mcp
+              pathType: Prefix
+infra-catalog-tracker:
+  helm_workload_29510bf8f3775740827eff66846105ef:
+    image_tag: v0.3.0
+    env:
+      OTEL_EXPORTER_OTLP_ENDPOINT: *otelEndpoint
+  helm_ingress_4087a90c467557bfa43a956a232516a0:
+    rules:
+      - host: *domain
+        http:
+          paths:
+            - path: /infra-catalog-tracker
+              pathType: Prefix
+deployment-manager:
+  helm_workload_eedf62a44e21519893dea9656ef6fc10:
+    image_tag: v0.4.2
+  helm_ingress_58fbd417de1059fcbef3ce2fc0073ba6:
+    rules:
+      - host: *domain
+        http:
+          paths:
+            - path: /deployment-manager
+              pathType: Prefix
+community-infra-gen:
+  enabled: true
+  ingress:
+    productHosts:
+      - host: *domain
+    hosts:
+      - host: intent2infra.cloud.stackgen.com
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+  image:
+    tag: v0.1.0
+    pullPolicy: *pullPolicy
+sgai-knowledge:
+  image:
+    tag: ""
+sgai-control:
+  image:
+    tag: ""
+stackgen-notification:
+  helm_workload_5e47e775fc5a5bfa964f549ee58e64c1:
+    image_tag: main
+tf-module-service:
+  domain: *domain
+  image:
+    tag: "v0.2.0"
+    pullPolicy: *pullPolicy
+llm-gateway:
+  helm_workload_b13344e99afc5a7fab85743df9510563:
+    image_tag: v0.6.3

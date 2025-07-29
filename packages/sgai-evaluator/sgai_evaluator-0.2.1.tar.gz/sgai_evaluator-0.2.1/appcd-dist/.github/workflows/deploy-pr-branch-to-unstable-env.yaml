@@ -1,0 +1,66 @@
+# env specifically created to allow devs to deploy a pr branch and validate changes
+name: Deploy PR branch to unstable env
+
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: "Reason for deployment"
+        default: "Manual deployment"
+      appcd_image_tag:
+        description: "appcd image tag to deploy"
+        default: "main"
+      ui_image_tag:
+        description: "ui image tag to deploy"
+        default: "main"
+      iac_gen_image_tag:
+        description: "iac-gen image tag to deploy"
+        default: "main"
+      exporter_image_tag:
+        description: "exporter image tag to deploy"
+        default: "main"
+      integrations_image_tag:
+        description: "integrations image tag to deploy"
+        default: "main"
+      tf_module_service_image_tag:
+        description: "tf-module-service image tag to deploy"
+        default: "main"
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}/appcd
+  AWS_ROLE_ARN: "arn:aws:iam::339712749745:role/developer-github-oidc-auth-role"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy to dev Unstable
+    permissions:
+      id-token: write
+      packages: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        id: checkout
+        with:
+          fetch-depth: 1
+      - name: Update version in unstable values
+        uses: mikefarah/yq@master
+        with:
+          cmd: |
+            # Update values for helm chart
+            yq e -i '.appcd.image.tag = "${{ inputs.appcd_image_tag }}"' -i ./installation/k8s/values/dev.unstable.yaml;
+            yq e -i '.appcd-ui.image.tag = "${{ inputs.ui_image_tag }}"' -i ./installation/k8s/values/dev.unstable.yaml;
+            yq e -i '.iac-gen.image.tag = "${{ inputs.iac_gen_image_tag }}"' -i ./installation/k8s/values/dev.unstable.yaml;
+            yq e -i '.exporter.helm_workload_5a048be506c75a07b1aeec33d33e56e3.image_tag = "${{ inputs.exporter_image_tag }}"' -i ./installation/k8s/values/dev.unstable.yaml;
+            yq e -i '.integrations.helm_workload_1b5f1d019692549bb714785b7636f446.image_tag = "${{ inputs.integrations_image_tag }}"' -i ./installation/k8s/values/dev.unstable.yaml;
+            yq e -i '.tf-module-service.image.tag = "${{ inputs.tf_module_service_image_tag }}"' -i ./installation/k8s/values/dev.unstable.yaml;
+      - uses: ./.github/actions/deploy-to-eks
+        name: Deploy to main EKS
+        with:
+          cluster: "developer-eks"
+          ISSUE_REPORTER_SLACK_URL: ${{ secrets.ISSUE_REPORTER_SLACK_URL }}
+          region: "us-west-2"
+          role_to_assume: ${{ env.AWS_ROLE_ARN }}
+          namespace: "appcd-unstable"
+          values_yaml: "./values/dev.unstable.yaml"

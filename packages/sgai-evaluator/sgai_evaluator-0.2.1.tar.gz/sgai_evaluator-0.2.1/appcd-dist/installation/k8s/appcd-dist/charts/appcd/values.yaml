@@ -1,0 +1,164 @@
+# Default values for appcd.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: ghcr.io/appcd-dev/appcd-dist/appcd
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "main"
+
+imagePullSecrets:
+  - name: ghcr-pkg
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  # Automatically mount a ServiceAccount's API credentials?
+  automount: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+serviceMonitor:
+  enabled: true
+
+scm:
+  # If using a self hosted SCM provider, add auth_url and token_url
+  # scm:
+    # auth_url: "https://scm.acme.org/login/oauth_auth_url"
+    # token_url: "https://scm.acme.org/login/oauth_token_url"
+  gitlab: {}
+  github: {}
+  azure: {}
+
+auth:
+  enabled: true
+  enable_group_sync: false
+  need_user_vetting: false
+  # client_id: client_id for client created in SSO Oauth2 Provider. Defaults to ${appcd_client_id} injected through appcd-additional-secrets
+  # client_secret: client_secret for client created in SSO Oauth2 Provider. Defaults to ${appcd_client_secret} injected through appcd-additional-secrets
+  # scopes: scopes that are expected from the SSO Oauth2 provider. Set to openid,email,profile as required.
+
+rbac:
+  admin_emails: []
+
+podAnnotations: {}
+podLabels: {}
+
+podSecurityContext:
+  fsGroup: 2000
+
+securityContext:
+  runAsUser: 1001
+  runAsNonRoot: true
+  allowPrivilegeEscalation: false
+
+service:
+  type: ClusterIP
+  port: 8080
+  grpc_port: 8081
+
+domain: appcd.local
+mode: ci # deprecated
+
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    nginx.org/mergeable-ingress-type: minion
+    nginx.org/location-snippets: |
+      auth_request /auth;
+      auth_request_set $login $upstream_http_x_appcd_login;
+      proxy_set_header X-Appcd-Login $login;
+
+      auth_request_set $appcd_session $upstream_http_x_appcd_session;
+      proxy_set_header X-Appcd-Session $appcd_session;
+
+      auth_request_set $principal_name $upstream_http_x_stackgen_principal;
+      proxy_set_header X-Stackgen-Principal $principal_name;
+
+      auth_request_set $session_type $upstream_http_x_appcd_session_type;
+      proxy_set_header X-Appcd-Session-Type $session_type;
+
+      auth_request_set $appcd_org $upstream_http_x_appcd_org;
+      proxy_set_header X-Appcd-Org $appcd_org;
+
+      auth_request_set $appcd_scopes $upstream_http_x_appcd_scopes;
+      proxy_set_header X-Appcd-Scopes $appcd_scopes;
+
+      auth_request_set $stackgen_tenant $upstream_http_x_stackgen_tenant;
+      proxy_set_header X-Stackgen-Tenant $stackgen_tenant;
+
+      rewrite /appcd/(.*) /$1  break;
+  paths:
+    - path: /appcd
+      pathType: Prefix
+  tls: []
+
+resources:
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  limits:
+    memory: "3Gi"
+  requests:
+    cpu: 800m
+    memory: 1500Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 28
+  targetCPUUtilizationPercentage: 50
+  targetMemoryUtilizationPercentage: 90
+
+secrets: []
+
+storage:
+  worm:
+    enabled: true
+
+temporal:
+  hostport: "temporal-frontend.temporal.svc.cluster.local:7233"
+
+env:
+  - name: ARTIFACTS_DIR
+    value: "/data/artifacts"
+  - name: IACGEN_URL
+    value: "http://appcd-iac-gen:9000"
+  - name: LOGS_DIR
+    value: "/out/data/logs"
+  - name: CLOUD_STORAGE
+    value: "/out/data"
+
+# Additional volumes on the output Deployment definition.
+volumes:
+  - name: artifacts
+    emptyDir: {}
+  - name: appcdconfig
+    configMap:
+      name: appcd-configmap
+
+# Additional volumeMounts on the output Deployment definition.
+volumeMounts:
+  - name: artifacts
+    mountPath: /data/artifacts
+  - name: appcdconfig
+    mountPath: /config/config.yaml
+    subPath: appcd_config_file
+    readOnly: true
+
+nodeSelector: {}
+
+tolerations: []
+
+enablePodAntiAffinity: true

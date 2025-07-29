@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  sso:
+    image: dexidp/dex:latest
+    restart: always
+    environment:
+      - DEX_EXPAND_ENV=true
+      - APPCD_AUTH_ISSUER=http://localhost:8090/auth
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - APPCD_CLIENT_SECRET=${APPCD_CLIENT_SECRET}
+    ports:
+      - 8090:5556
+    volumes:
+      - ./config/dex/config.yaml:/etc/dex/config.docker.yaml
+      - ./tmp/dex/var/sqlite:/var/sqlite
