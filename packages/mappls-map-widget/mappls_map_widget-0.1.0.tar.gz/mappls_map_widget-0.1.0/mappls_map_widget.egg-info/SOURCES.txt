@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+setup.py
+mappls_map_widget/__init__.py
+mappls_map_widget/apps.py
+mappls_map_widget/widgets.py
+mappls_map_widget.egg-info/PKG-INFO
+mappls_map_widget.egg-info/SOURCES.txt
+mappls_map_widget.egg-info/dependency_links.txt
+mappls_map_widget.egg-info/requires.txt
+mappls_map_widget.egg-info/top_level.txt
+mappls_map_widget/templates/__init__.py
+mappls_map_widget/templates/mappls_pin_with_embed_widget.html
+tests/test_widgets.py
