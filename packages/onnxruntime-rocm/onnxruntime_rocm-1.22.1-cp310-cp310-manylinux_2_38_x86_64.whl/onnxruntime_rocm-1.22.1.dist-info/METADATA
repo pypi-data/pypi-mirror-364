@@ -1,0 +1,63 @@
+Metadata-Version: 2.4
+Name: onnxruntime-rocm
+Version: 1.22.1
+Summary: ONNX Runtime is a runtime accelerator for Machine Learning models
+Home-page: https://github.com/Looong01/onnxruntime-rocm-build
+Download-URL: https://github.com/Looong01/onnxruntime-rocm-build/tags
+Author: Microsoft Corporation; Loong
+Author-email: lizelongdd@hotmail.com
+License: MIT License
+Project-URL: Source Code, https://github.com/Looong01/onnxruntime-rocm-build
+Keywords: onnx machine learning
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: MacOS
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Python: >=3.10
+Requires-Dist: coloredlogs
+Requires-Dist: flatbuffers
+Requires-Dist: numpy>=1.21.6
+Requires-Dist: packaging
+Requires-Dist: protobuf
+Requires-Dist: sympy
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: download-url
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: project-url
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+ONNX Runtime
+============
+
+ONNX Runtime is a performance-focused scoring engine for Open Neural Network Exchange (ONNX) models.
+For more information on ONNX Runtime, please see `aka.ms/onnxruntime <https://aka.ms/onnxruntime/>`_ or the `Github project <https://github.com/microsoft/onnxruntime/>`_.
+
+
+Changes
+-------
+
+1.22.1
+^^^^^^
+
+Release Notes : https://github.com/Looong01/onnxruntime-rocm-build/tags/v1.22.1
