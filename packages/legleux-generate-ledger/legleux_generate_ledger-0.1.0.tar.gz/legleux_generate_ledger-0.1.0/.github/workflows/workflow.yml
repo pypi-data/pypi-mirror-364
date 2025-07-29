@@ -1,0 +1,57 @@
+name: Build and upload
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Environment'
+        required: false
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - release
+
+jobs:
+
+  build_package:
+    strategy:
+      matrix:
+        version: [11, 12, 13]
+
+    runs-on: ubuntu-latest
+    container: ghcr.io/astral-sh/uv:python3.${{ matrix.version }}-bookworm
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: build package
+        run: |
+          uv version --bump alpha
+          uv build
+      - name: save wheel
+        uses: actions/upload-artifact@v4
+        with:
+          name: package
+          path: dist/*
+  # pypi-publish:
+  #   name: Upload release to PyPI
+  #   needs: build_package
+  #   runs-on: ubuntu-latest
+  #   environment:
+  #     name: dev
+  #     url: https://test.pypi.org/p/generate-ledger
+  #   permissions:
+  #     id-token: write
+  #   steps:
+  #   - name: Get wheel
+  #     uses: actions/download-artifact@v4
+  #     with:
+  #       name: package
+  #       path: dist
+
+  #   - name: Publish package distributions to PyPI
+  #     uses: pypa/gh-action-pypi-publish@release/v1
+  #     with:
+  #       repository-url: https://test.pypi.org/legacy/
