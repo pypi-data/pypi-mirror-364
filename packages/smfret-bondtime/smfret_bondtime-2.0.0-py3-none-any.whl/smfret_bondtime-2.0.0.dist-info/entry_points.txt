@@ -1,0 +1,2 @@
+[gui_scripts]
+smfret-bondtime = smfret_bondtime.gui:run
