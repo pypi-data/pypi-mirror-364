@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: arxiv-explorer
+Version: 0.0.1
+Summary: Summarize arXiv
+License-Expression: MIT
+License-File: LICENSE
+Classifier: Development Status :: 1 - Planning
+Classifier: Environment :: Console
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.10
+Requires-Dist: arxiv
+Requires-Dist: beautifulsoup4
+Requires-Dist: openai
+Requires-Dist: pyyaml
+Requires-Dist: textual
+Provides-Extra: developer
+Requires-Dist: black; extra == 'developer'
+Requires-Dist: hatch; extra == 'developer'
+Requires-Dist: ruff; extra == 'developer'
+Description-Content-Type: text/markdown
+
+# arxiv-explorer
+Summarize arXiv

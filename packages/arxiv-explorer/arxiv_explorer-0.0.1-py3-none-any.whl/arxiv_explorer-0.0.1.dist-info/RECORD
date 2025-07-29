@@ -1,0 +1,14 @@
+LICENSE,sha256=di69GjINAE4rDTpmUaZiN8tJBkXUitXfttuYQocPW8g,1062
+pyproject.toml,sha256=idE1sJaRKH7AvY6uOlAIO6akp7ZzSeUFXMJD7yOAfnA,2790
+.github/README.md,sha256=yNOS_DrX37u0f9nPBrZuZpaEkk3pYNSJll2REulHeIA,33
+arxiv_explorer/__init__.py,sha256=nCuSJ8NFqlmgLFl7a9CPao0Qf0N9NEDE7REKxsAXHYA,284
+arxiv_explorer/entrypoint.py,sha256=Vfo3KeBjscxJ0qGGkDuBmP_Uw_hpWQ-B22P0M-MHSp4,2051
+arxiv_explorer/providers.py,sha256=IPa--s1DjDSPJkoNHMIoC4XGYJ5U4ytlpuP_Qm7LWrs,2063
+arxiv_explorer/tui/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+arxiv_explorer/tui/search.py,sha256=TrBYuRmhB0ZEf-V7jgeuXh0xM9mjL56es3lO9rzINVw,2456
+arxiv_explorer/tui/splash.py,sha256=QVTZc_rs-taCF9lTN4l_Z7WXE_136UE8P__OvOJdvzU,3034
+arxiv_explorer-0.0.1.dist-info/METADATA,sha256=mCHeR2iYC1H-6tRvmOoKapd_Zr1p5uXB8o3FSjAkYws,629
+arxiv_explorer-0.0.1.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+arxiv_explorer-0.0.1.dist-info/entry_points.txt,sha256=HtRi9dpH9AE0kOtPT8hq3PJW_rgQybnjw9zH658dVqE,66
+arxiv_explorer-0.0.1.dist-info/licenses/LICENSE,sha256=di69GjINAE4rDTpmUaZiN8tJBkXUitXfttuYQocPW8g,1062
+arxiv_explorer-0.0.1.dist-info/RECORD,,
