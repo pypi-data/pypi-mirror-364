@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(source:*)",
+      "Bash(python:*)",
+      "Bash(rm:*)",
+      "WebFetch(domain:openai.github.io)",
+      "WebFetch(domain:github.com)",
+      "Bash(pip install:*)",
+      "Bash(grep:*)",
+      "Bash(sed:*)",
+      "Bash(rg:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(ls:*)",
+      "Bash(uv sync:*)",
+      "Bash(uv pip:*)",
+      "Bash(uv run:*)",
+      "Bash(export:*)",
+      "Bash(cat:*)",
+      "Bash(ip route:*)",
+      "Bash(# WSL2からWindows側のIPを取得\nhostname -I)",
+      "Bash(# Windows側への別のアクセス方法を試す\nping -c 1 host.docker.internal 2>/dev/null || echo \"\"host.docker.internal not available\"\")",
+      "Bash(# localhostでテスト（WSL2では通常動作しない）\ntimeout 5 nc -zv 127.0.0.1 4317 2>/dev/null && echo \"\"localhost:4317 accessible\"\" || echo \"\"localhost:4317 not accessible\"\")",
+      "Bash(curl:*)",
+      "Bash(awk:*)",
+      "Bash(timeout:*)",
+      "Bash(mv:*)",
+      "Bash(.venv/bin/python:*)",
+      "Bash(echo:*)",
+      "Bash(git pull:*)",
+      "Bash(source .venv/bin/activate)",
+      "Bash(pip show:*)",
+      "Bash(OLLAMA_BASE_URL=\"\" python -c \"\nfrom refinire.core.llm import get_llm\n\n# Test provider detection from model names (without OLLAMA_BASE_URL)\nprint(''Testing provider detection without OLLAMA_BASE_URL:'')\n\nmodels_to_test = [\n    ''gpt-4o-mini'',\n    ''claude-sonnet-4'', \n    ''gemini-2.5-flash'',\n    ''llama3:8b''\n]\n\nfor model in models_to_test:\n    try:\n        llm = get_llm(model=model)\n        print(f''{model}: SUCCESS - {type(llm).__name__}'')\n    except Exception as e:\n        print(f''{model}: ERROR - {e}'')\n\")",
+      "Bash(OLLAMA_BASE_URL=\"\" python -c \"\nfrom refinire.core.model_parser import detect_provider_from_environment, parse_model_id\nfrom refinire.core.llm import get_llm\n\n# Test provider detection logic\nprint(''=== Provider Detection Test ==='')\n\nmodels_to_test = [\n    ''gpt-4o-mini'',\n    ''claude-sonnet-4'', \n    ''gemini-2.5-flash'',\n    ''llama3:8b''\n]\n\nprint(''Environment provider detection:'', detect_provider_from_environment())\nprint()\n\nfor model in models_to_test:\n    parsed_provider, model_name, model_tag = parse_model_id(model)\n    print(f''Model: {model}'')\n    print(f''  Parsed provider: {parsed_provider}'')\n    print(f''  Model name: {model_name}'')\n    print(f''  Tag: {model_tag}'')\n    \n    # Test model name pattern detection\n    if ''gpt'' in model_name or ''o3'' in model_name or ''o4'' in model_name:\n        candidate = ''openai''\n    elif ''gemini'' in model_name:\n        candidate = ''google''\n    elif ''claude'' in model_name:\n        candidate = ''anthropic''\n    else:\n        candidate = ''ollama''\n    print(f''  Pattern detection: {candidate}'')\n    print()\n\")",
+      "Bash(OLLAMA_BASE_URL=\"\" OPENROUTER_API_KEY=\"\" python -c \"\nfrom refinire.core.llm import get_llm\n\n# Test provider detection from model names (clean environment)\nprint(''Testing provider detection with clean environment:'')\n\nmodels_to_test = [\n    (''gpt-4o-mini'', ''OpenAI''),\n    (''claude-sonnet-4'', ''Anthropic''), \n    (''gemini-2.5-flash'', ''Google''),\n    (''llama3:8b'', ''Ollama'')\n]\n\nfor model, expected in models_to_test:\n    try:\n        llm = get_llm(model=model)\n        llm_type = type(llm).__name__\n        print(f''{model}: {llm_type} (Expected: {expected})'')\n    except Exception as e:\n        print(f''{model}: ERROR - {e}'')\n\")"
+    ],
+    "deny": []
+  }
+}
