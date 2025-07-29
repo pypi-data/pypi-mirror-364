@@ -1,0 +1,125 @@
+Metadata-Version: 2.4
+Name: dxpars
+Version: 0.0.1
+Summary: python docx parser
+Author-email: Stepan Martiugin <stepanmartiugin@gmail.com>
+License: MIT License
+        
+        Copyright (c) 2025 Stepan Martiugin
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: Homepage, https://github.com/stmyst/dxpars
+Project-URL: Bug Tracker, https://github.com/stmyst/dxpars/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# DXPARS
+
+A fast and simple Python library for analyzing and parsing Microsoft Word (DOCX) 
+files, written in pure Python. DXPARS provides an intuitive API for extracting text content, 
+working with formatting, tables, and converting documents to plain text or json.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python Version](https://img.shields.io/badge/python-3.9%2B-blue)](https://www.python.org/)
+
+## Key Features
+
+* **Zero Dependencies**: Written in pure Python with no external dependencies
+* **Format Support**: Extract and work with document formatting styles (headings, alignment, etc.)
+* **Table Handling**: Parse and extract data from complex table structures
+* **Text Conversion**: Easy conversion to plain text files
+* **Performance**: Fast parsing of large documents
+* **Simple API**: Intuitive interface for document manipulation
+
+## Installation 
+
+DXPARS requires Python 3.9 or higher. You can install it using pip:
+
+```bash
+pip install dxpars
+```
+
+Or install from source:
+
+```bash
+git clone https://github.com/stmyst/dxpars.git
+cd dxpars
+pip install .
+```
+
+## Usage
+
+### Basic Usage
+
+```python
+import json
+
+from dxpars.document import Document
+
+# Load a document
+document = Document('path/document.docx')
+
+# Get full document text
+print(document.text)
+
+# Save as plain text (filename is optional)
+document.to_txt(folder='path_to_folder', filename='doc.txt')
+
+# json serialization with formatting
+json.dumps(document.to_dict)
+```
+
+### Working with Formatting
+
+```python
+# Extract headings
+for paragraph in document.paragraphs:
+    if paragraph.pstyle is not None:
+        if 'Heading' in paragraph.pstyle:
+            print(f'Heading: {paragraph.text}')
+
+# Get formatted data
+for paragraph in document.paragraphs:
+    for run in paragraph.parts:
+        if run.bold:
+            print(f'Bold text: {run.text}')
+```
+
+### Working with Tables
+
+```python
+for table in document.tables:
+    # Display table structure
+    print(table.show)  
+    
+    # Get all table text
+    print(table.text)
+    
+    # Access cells by position
+    cell = table.parts[0].parts[0]
+    print(f'First cell: {cell.text}')
+```
+
+For more examples check out the [examples](https://github.com/stmyst/dxpars/tree/master/examples) directory.
