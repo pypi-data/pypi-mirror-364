@@ -1,0 +1,2 @@
+[karrio.plugins]
+sendcloud = karrio.plugins.sendcloud
