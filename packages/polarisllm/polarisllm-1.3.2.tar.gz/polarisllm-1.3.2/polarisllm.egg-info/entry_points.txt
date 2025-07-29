@@ -1,0 +1,5 @@
+[console_scripts]
+polaris-cli = polarisllm.cli:main
+polaris-llm = polarisllm.main:sync_main
+polaris-server = polarisllm.main:sync_main
+polarisllm = polarisllm.main:sync_main
