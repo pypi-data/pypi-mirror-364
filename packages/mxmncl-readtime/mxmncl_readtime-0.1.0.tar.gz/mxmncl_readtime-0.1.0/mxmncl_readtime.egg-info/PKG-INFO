@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: mxmncl-readtime
+Version: 0.1.0
+Summary: gives an estimate on how long a text takes to read
+Author: Maxime Nicolai
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: license
+Dynamic: license-file

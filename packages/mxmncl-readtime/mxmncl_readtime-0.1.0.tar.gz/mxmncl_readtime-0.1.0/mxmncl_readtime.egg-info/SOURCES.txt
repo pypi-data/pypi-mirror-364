@@ -1,0 +1,10 @@
+README.md
+license
+pyproject.toml
+mxmncl_readtime.egg-info/PKG-INFO
+mxmncl_readtime.egg-info/SOURCES.txt
+mxmncl_readtime.egg-info/dependency_links.txt
+mxmncl_readtime.egg-info/top_level.txt
+readtime/__init__.py
+readtime/core.py
+tests/test_core.py
