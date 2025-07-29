@@ -1,0 +1,26 @@
+Metadata-Version: 2.4
+Name: SampicTCPController
+Version: 0.1.0
+Summary: A Python tool to control a Sampic data acquisition through the TCP protocol
+Project-URL: Homepage, https://gitlab.cern.ch/h8ctb/SampicTCPController
+Author-email: Laurent Forthomme <laurent.forthomme@cern.ch>
+License-Expression: GPL-3.0-or-later
+License-File: LICENSE
+Keywords: oscilloscope,sampic,waveform
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Requires-Python: >=3.1
+Requires-Dist: numpy
+Provides-Extra: dev
+Requires-Dist: black; extra == 'dev'
+Requires-Dist: bumpver; extra == 'dev'
+Requires-Dist: isort; extra == 'dev'
+Requires-Dist: pip-tools; extra == 'dev'
+Requires-Dist: pytest; extra == 'dev'
+Description-Content-Type: text/markdown
+
+# TCP controller for Sampic modules
+
+This Python module introduces a TCP controller to launch, fetch stream, and stop the acquisition of a [Sampic](https://arxiv.org/abs/1503.04625) digitiser.
+It requires the LabView GUI to be started on the readout computer, with the TCP server enabled.

@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "SampicTCPController"
+dynamic = ["version"]
+description = "A Python tool to control a Sampic data acquisition through the TCP protocol"
+readme = "README.md"
+authors = [
+    { name = "Laurent Forthomme", email = "laurent.forthomme@cern.ch" },
+]
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE"]
+classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Information Analysis"
+]
+keywords = ["sampic", "oscilloscope", "waveform"]
+dependencies = ["numpy"]
+requires-python = ">=3.1"
+
+[project.optional-dependencies]
+dev = ["black", "bumpver", "isort", "pip-tools", "pytest"]
+
+[project.urls]
+Homepage = "https://gitlab.cern.ch/h8ctb/SampicTCPController"
+
+[tool.hatch.version]
+path = "src/SampicTCPController/__init__.py"

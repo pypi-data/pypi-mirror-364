@@ -1,0 +1,35 @@
+stages:
+  - build
+  - deploy
+
+build:
+  image: python:latest
+  stage: build
+  variables:
+    TWINE_USERNAME: gitlab-ci-token
+    TWINE_PASSWORD: $CI_JOB_TOKEN
+  script:
+    - pip install twine uv
+    - uv build --out-dir=dist
+    #- python -m twine upload --repository-url ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/pypi dist/*
+  artifacts:
+    paths:
+      - dist/
+
+pypi_release:
+  stage: deploy
+  image: python:latest
+  id_tokens:
+    PYPI_ID_TOKEN:
+      aud: pypi
+  #environment:
+  #  name: PyPI
+  #  url: https://pypi.org/project/${CI_PROJECT_NAME}
+  script:
+    - pip install twine
+    - python -m twine upload
+        --verbose
+        --repository-url https://upload.pypi.org/legacy/
+        --username=__token__
+        --password=${PYPI_ID_TOKEN}
+        dist/*.tar.gz
