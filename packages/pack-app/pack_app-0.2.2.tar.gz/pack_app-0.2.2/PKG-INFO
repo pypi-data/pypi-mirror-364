@@ -1,0 +1,46 @@
+Metadata-Version: 2.4
+Name: pack_app
+Version: 0.2.2
+Summary: Générateur de structure d'application Django
+Author: christellelou904
+Author-email: christellelou4@gmail.com
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: Framework :: Django
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: Django>=4.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# pack_app
+
+## Description du projet
+
+`pack_app` est un outil en ligne de commande permettant de générer rapidement des applications Django avec une structure modulaire et bien organisée, adaptée aux projets professionnels.
+
+## Fonctionnalités
+
+- Structure claire et professionnelle
+- Idéal pour le travail en équipe
+- Gain de temps considérable sur la mise en place d'une nouvelle app
+- Commande simple à utiliser
+
+## Installation
+
+Installez le package depuis PyPI :
+
+pip install pack-app
+```bash
+pip install startapp pack_app
