@@ -1,0 +1,69 @@
+name: CI tests
+on: [push, pull_request]
+jobs:
+  linter:
+    uses: ./.github/workflows/linter.yml
+  coverage:
+    uses: ./.github/workflows/coverage.yml
+  tests:
+    needs:
+      - linter
+      - coverage
+    strategy:
+      fail-fast: true
+      matrix:
+        python-version: [3.9, '3.10', pypy3.11, graalpy-24.2,
+                         3.11, 3.12, 3.13, 3.13t, 3.14, 3.14t]
+    runs-on: ubuntu-24.04
+    env:
+      PYTEST_ADDOPTS: --verbose
+      CFLAGS: -Wall -Wpedantic -Werror -std=c17
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          allow-prereleases: true
+      - run: bash scripts/cibw_before_all.sh
+      - run: pip install --upgrade pip
+      - run: pip --verbose install .[tests] -Csetup-args=-Dbuildtype=debug
+        env:
+          PKG_CONFIG_PATH: .local/lib/pkgconfig
+      - run: pytest
+        env:
+          LD_LIBRARY_PATH: .local/lib
+  os:
+    uses: ./.github/workflows/os.yml
+    needs:
+      - tests
+  windows:
+    needs:
+      - tests
+    runs-on: windows-2022
+    env:
+      PYTEST_ADDOPTS: --verbose
+      CFLAGS: -Wall -Wpedantic -Werror -std=c17
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          install: >-
+            git
+            gmp-devel
+            python-pip
+            mingw-w64-x86_64-meson
+            mingw-w64-x86_64-gcc
+      - run: |
+          python -m venv .test-venv
+          source .test-venv/bin/activate
+          python -m pip install --upgrade pip
+          pip --verbose install .[tests] -Csetup-args=-Dbuildtype=debug
+          pytest
