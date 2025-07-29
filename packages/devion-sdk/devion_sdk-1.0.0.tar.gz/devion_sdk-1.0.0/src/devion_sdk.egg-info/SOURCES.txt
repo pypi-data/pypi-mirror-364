@@ -1,0 +1,8 @@
+README.md
+pyproject.toml
+src/devion_sdk/py.typed
+src/devion_sdk.egg-info/PKG-INFO
+src/devion_sdk.egg-info/SOURCES.txt
+src/devion_sdk.egg-info/dependency_links.txt
+src/devion_sdk.egg-info/requires.txt
+src/devion_sdk.egg-info/top_level.txt
