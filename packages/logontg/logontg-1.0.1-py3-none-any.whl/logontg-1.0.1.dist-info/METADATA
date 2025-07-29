@@ -1,0 +1,273 @@
+Metadata-Version: 2.4
+Name: logontg
+Version: 1.0.1
+Summary: Python SDK for LogonTG - Simple logging with uptime monitoring
+Home-page: https://github.com/your-username/logontg
+Author: LogonTG Team
+Author-email: support@sruve.com
+Keywords: telegram,logging,notifications,uptime,monitoring,api
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests>=2.25.0
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0; extra == "dev"
+Requires-Dist: pytest-cov>=2.0; extra == "dev"
+Requires-Dist: black>=21.0; extra == "dev"
+Requires-Dist: flake8>=3.8; extra == "dev"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license-file
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# LogonTG Python SDK
+
+Simple logging client with uptime monitoring capabilities for LogonTG. Send logs directly to Telegram with smart error batching and LLM-powered analysis.
+
+## Features
+
+- 🚀 **Simple Logging** - Send logs to Telegram in one line
+- 📊 **Four Log Levels** - info, error, warning, debug
+- 🔍 **Uptime Monitoring** - Automatic error detection and batching (Pro only)
+- 🤖 **AI Analysis** - LLM-powered error analysis and insights (Pro only)
+- ⚡ **Lightweight** - Minimal dependencies, maximum performance
+
+## Installation
+
+```bash
+pip install logontg
+```
+
+## Quick Start
+
+```python
+from logontg import logontg
+
+# Initialize client
+logger = logontg(api_key="your-api-key")
+
+# Send logs
+await logger.log("Application started")
+await logger.error("Something went wrong!")
+await logger.warn("This is a warning")
+await logger.debug("Debug information")
+
+# Synchronous versions also available
+logger.log_sync("Application started")
+logger.error_sync("Database connection failed")
+```
+
+## Constructor Options
+
+```python
+logger = logontg(
+    api_key="your-api-key",          # Required: Your LogonTG API key
+    uptime=False,                    # Optional: Enable uptime monitoring (Pro only)
+    base_url="http://sruve.com/api", # Optional: API base URL
+    debug=True                       # Optional: Enable debug logging
+)
+```
+
+## Logging Methods
+
+### Async Methods (Recommended)
+```python
+await logger.log("Info message")     # Info level
+await logger.error("Error message")  # Error level  
+await logger.warn("Warning message") # Warning level
+await logger.debug("Debug message")  # Debug level
+```
+
+### Sync Methods
+```python
+logger.log_sync("Info message")     # Info level
+logger.error_sync("Error message")  # Error level
+logger.warn_sync("Warning message") # Warning level
+logger.debug_sync("Debug message")  # Debug level
+```
+
+## Uptime Monitoring (Pro Feature)
+
+Enable automatic error detection and AI-powered analysis:
+
+```python
+# Enable uptime monitoring
+logger = logontg(
+    api_key="your-api-key",
+    uptime=True  # Requires Pro subscription
+)
+
+# Errors are automatically detected and batched
+# LLM analysis is sent to Telegram when thresholds are met
+```
+
+### Uptime Features:
+- **Error Batching** - Groups similar errors over 2-minute windows
+- **Smart Thresholds** - Alerts after 3+ similar errors
+- **LLM Analysis** - AI-powered error insights and solutions
+- **Stack Trace Capture** - Detailed error context
+
+### Manual Control:
+```python
+# Enable/disable uptime monitoring at runtime
+logger.set_uptime_monitoring(True)
+logger.set_uptime_monitoring(False)
+```
+
+## Message Types
+
+All logging methods accept any data type:
+
+```python
+# Strings
+await logger.log("Simple string message")
+
+# Dictionaries
+await logger.error({
+    "error": "Database connection failed",
+    "host": "localhost",
+    "port": 5432,
+    "retry_count": 3
+})
+
+# Lists
+await logger.debug(["step1", "step2", "step3"])
+
+# Any JSON-serializable data
+await logger.warn({"users": [1, 2, 3], "active": True})
+```
+
+## Error Handling
+
+```python
+try:
+    await logger.log("Test message")
+except Exception as e:
+    if "Rate limit exceeded" in str(e):
+        print("Upgrade your plan for higher limits")
+    else:
+        print(f"Logging failed: {e}")
+```
+
+## Examples
+
+### Basic Application Logging
+```python
+from logontg import logontg
+
+logger = logontg("your-api-key")
+
+# Application lifecycle
+await logger.log("🚀 Application starting...")
+await logger.log("✅ Database connected")
+await logger.log("🌐 Server listening on port 8000")
+
+# Error scenarios  
+try:
+    # Some operation
+    result = risky_operation()
+    await logger.log(f"✅ Operation completed: {result}")
+except Exception as e:
+    await logger.error(f"❌ Operation failed: {str(e)}")
+```
+
+### Web Framework Integration
+```python
+from flask import Flask
+from logontg import logontg
+
+app = Flask(__name__)
+logger = logontg("your-api-key")
+
+@app.route("/api/users")
+def get_users():
+    logger.log_sync("📋 Fetching users list")
+    try:
+        users = fetch_users()
+        logger.log_sync(f"✅ Found {len(users)} users")
+        return {"users": users}
+    except Exception as e:
+        logger.error_sync(f"❌ Failed to fetch users: {str(e)}")
+        return {"error": "Internal server error"}, 500
+```
+
+### Monitoring with Context
+```python
+# Rich logging with context
+await logger.log({
+    "event": "user_registration",
+    "user_id": 12345,
+    "email": "user@example.com", 
+    "source": "web_form",
+    "timestamp": "2024-01-15T10:30:00Z"
+})
+
+# Performance monitoring
+import time
+start = time.time()
+# ... some operation ...
+duration = time.time() - start
+
+await logger.debug({
+    "operation": "database_query",
+    "duration_ms": duration * 1000,
+    "query": "SELECT * FROM users",
+    "rows_returned": 150
+})
+```
+
+## Environment Variables
+
+You can also set your API key via environment variable:
+
+```bash
+export LOGONTG_API_KEY="your-api-key"
+```
+
+```python
+import os
+from logontg import logontg
+
+logger = logontg(os.getenv("LOGONTG_API_KEY"))
+```
+
+## Requirements
+
+- Python 3.7+
+- requests library
+
+## License
+
+MIT License - see LICENSE file for details.
+
+## Support
+
+- 📧 Email: support@sruve.com
+- 🌐 Website: https://sruve.com
+- 📖 Documentation: https://sruve.com/docs
+
+## Contributing
+
+Contributions welcome! Please read our contributing guidelines and submit pull requests to our GitHub repository.
+
+---
+
+**LogonTG** - Simple, powerful logging for modern applications. 
