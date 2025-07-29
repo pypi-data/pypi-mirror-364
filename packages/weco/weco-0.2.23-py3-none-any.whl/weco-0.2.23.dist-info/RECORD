@@ -1,0 +1,14 @@
+weco/__init__.py,sha256=ClO0uT6GKOA0iSptvP0xbtdycf0VpoPTq37jHtvlhtw,303
+weco/api.py,sha256=hqAyMHGQhJr8BZTUo0jznfO0ossGU3ehEZZehPu6Mu8,11838
+weco/auth.py,sha256=6bDQv07sx7uxA9CrN3HqUdCHV6nqXO41PGCicquvB00,9919
+weco/chatbot.py,sha256=H6d5yK9MB3pqpE7XVh_HAi1YAmxKy0v_xdozVSlKPCc,36959
+weco/cli.py,sha256=Jy7kQEsNKdV7Wds9Z0DIWBeLpEVyssIiOBiQ4zCl3Lw,7862
+weco/optimizer.py,sha256=z86-js_rvLMv3J8zCqvtc1xJC0EA0WqrN9_BlmX2RK4,23259
+weco/panels.py,sha256=Cnro4Q65n7GGh0FBXuB_OGSxRVobd4k5lOuBViTQaaM,15591
+weco/utils.py,sha256=5Pbhv_5wbTRv93Ws7aJfIOtcxeeqNrDRT3bV6YFOdgM,6032
+weco-0.2.23.dist-info/licenses/LICENSE,sha256=p_GQqJBvuZgkLNboYKyH-5dhpTDlKs2wq2TVM55WrWE,1065
+weco-0.2.23.dist-info/METADATA,sha256=E_u4w-WaRzBVYrlEzraepi0y7E1Cc1zHOhBu4Cp01TI,15445
+weco-0.2.23.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+weco-0.2.23.dist-info/entry_points.txt,sha256=ixJ2uClALbCpBvnIR6BXMNck8SHAab8eVkM9pIUowcs,39
+weco-0.2.23.dist-info/top_level.txt,sha256=F0N7v6e2zBSlsorFv-arAq2yDxQbzX3KVO8GxYhPUeE,5
+weco-0.2.23.dist-info/RECORD,,
