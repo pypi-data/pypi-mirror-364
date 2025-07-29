@@ -1,0 +1,8 @@
+argcomplete>=3.6.2
+excel-list-transform>=0.8.2
+xmltodict>=0.14.2
+types-xmltodict>=0.14.0.20241009
+pip>=25.1.1
+setuptools>=80.9.0
+build>=1.2.2.post1
+wheel>=0.45.1
