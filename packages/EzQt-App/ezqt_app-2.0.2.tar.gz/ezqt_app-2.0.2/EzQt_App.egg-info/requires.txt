@@ -1,0 +1,9 @@
+PySide6==6.7.3
+PyYaml==6.0.2
+ruamel.yaml==0.18.6
+colorama==0.4.6
+
+[dev]
+pytest>=6.2.5
+pytest-cov>=3.0.0
+flake8>=4.0.1

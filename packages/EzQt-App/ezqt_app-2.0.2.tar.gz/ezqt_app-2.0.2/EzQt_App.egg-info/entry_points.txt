@@ -1,0 +1,2 @@
+[console_scripts]
+ezqt_init = ezqt_app.cli:main
