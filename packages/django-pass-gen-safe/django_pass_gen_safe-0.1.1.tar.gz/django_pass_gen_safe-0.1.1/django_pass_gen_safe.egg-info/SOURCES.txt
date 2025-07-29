@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+django_pass_gen_safe.egg-info/PKG-INFO
+django_pass_gen_safe.egg-info/SOURCES.txt
+django_pass_gen_safe.egg-info/dependency_links.txt
+django_pass_gen_safe.egg-info/requires.txt
+django_pass_gen_safe.egg-info/top_level.txt
+management/__init__.py
+management/add_to_safe.py
+management/generate_password.py
+management/list_safe.py
+management/commands/__init__.py
+management/commands/generate_password.py

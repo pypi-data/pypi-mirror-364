@@ -1,0 +1,20 @@
+Metadata-Version: 2.4
+Name: django-pass-gen-safe
+Version: 0.1.1
+Summary: Générateur de mots de passe et trousseau sécurisé pour Django
+Author: Momo
+Author-email: omomo9414@gmail.com
+Classifier: Framework :: Django
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: django>=4.0
+Requires-Dist: cryptography>=41.0.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description-content-type
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary

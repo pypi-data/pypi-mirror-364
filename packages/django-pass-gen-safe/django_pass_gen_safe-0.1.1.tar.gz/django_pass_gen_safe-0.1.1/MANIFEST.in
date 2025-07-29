@@ -1,0 +1,2 @@
+include django_pass_gen_safe/management/commands/*.py
+include django_pass_gen_safe/utils.py
