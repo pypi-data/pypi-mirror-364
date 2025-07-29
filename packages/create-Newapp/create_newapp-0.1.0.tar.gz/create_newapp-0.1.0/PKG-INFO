@@ -1,0 +1,34 @@
+Metadata-Version: 2.4
+Name: create-Newapp
+Version: 0.1.0
+Summary: Générateur d'application Django simple
+Author: Tieba
+Classifier: Programming Language :: Python :: 3
+Classifier: Framework :: Django
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: requires-python
+Dynamic: summary
+
+# Create Django App
+
+Un outil pour générer une application Django complète avec les fichiers nécessaires : `views.py`, `models.py`, `urls.py`, etc.
+
+## Installation
+
+```bash
+pip install create-Newapp
+```
+
+## Utilisation
+
+```bash
+create-django nom_de_mon_app
+```
+
+---
