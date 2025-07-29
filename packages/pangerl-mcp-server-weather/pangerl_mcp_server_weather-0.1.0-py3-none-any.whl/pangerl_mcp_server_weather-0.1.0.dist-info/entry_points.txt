@@ -1,0 +1,3 @@
+[console_scripts]
+pangerl-mcp-server-weather = pangerl_mcp_server_weather:main
+
