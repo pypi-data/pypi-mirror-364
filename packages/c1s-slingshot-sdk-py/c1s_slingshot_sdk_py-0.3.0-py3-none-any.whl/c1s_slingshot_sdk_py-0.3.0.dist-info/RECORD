@@ -1,0 +1,11 @@
+slingshot/__init__.py,sha256=upAYbG0pTZBXFmYLWUzQZzvYIlzaL1XnxYkKoV25IHU,147
+slingshot/__vers.py,sha256=NM8gvbmw4bpOlQtCpFM2aWEWHD9vAh3EeVugqeVhpng,173
+slingshot/client.py,sha256=rBMYwjTbSG2DUUtEuYyFK9x3JCV0aej-f6qlnTYY-pQ,3635
+slingshot/exceptions.py,sha256=9nLgwEs2iV9cKrhAiosIVeieQs2Cfqg8xvQH5bc7Cv0,390
+slingshot/types.py,sha256=JK7w6uvNPKOMO45lHQxkChPZ-xw0Q5Y0M2a8W3a7kjw,5753
+slingshot/api/__init__.py,sha256=kVBi6YQBpXjLj6wtpsE9Rfq6wZOwZVxygpC_Z_81OEQ,28
+slingshot/api/projects.py,sha256=o0XXpY6Jv-keDHLRTs_B5324UonOxL8nxV7fAzb53Bw,13792
+c1s_slingshot_sdk_py-0.3.0.dist-info/METADATA,sha256=pEQUbFNLfcjWyBcAlMJ79bUtsoizK4_NSdEqeuznr9o,4049
+c1s_slingshot_sdk_py-0.3.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+c1s_slingshot_sdk_py-0.3.0.dist-info/licenses/LICENSE,sha256=w4owwCDdPxXwprML6dX3DyYYvb62B9p8z9-r4eNk3sQ,47
+c1s_slingshot_sdk_py-0.3.0.dist-info/RECORD,,
