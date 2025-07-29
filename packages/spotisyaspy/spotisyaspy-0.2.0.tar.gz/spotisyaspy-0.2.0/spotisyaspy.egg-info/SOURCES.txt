@@ -1,0 +1,15 @@
+.bumpversion.cfg
+.gitignore
+LICENSE
+README.md
+pyproject.toml
+requirements-dev.txt
+spotisyaspy/__init__.py
+spotisyaspy/_version.py
+spotisyaspy/spotisyaspy.py
+spotisyaspy.egg-info/PKG-INFO
+spotisyaspy.egg-info/SOURCES.txt
+spotisyaspy.egg-info/dependency_links.txt
+spotisyaspy.egg-info/requires.txt
+spotisyaspy.egg-info/top_level.txt
+tests/test_spotisyaspy.py

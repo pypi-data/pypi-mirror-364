@@ -1,0 +1,20 @@
+# Byte-code files
+*.pyc
+__pycache__/
+
+# Package distributions
+dist/
+build/
+*.egg-info/
+.venv/
+venv/
+
+# Pytest cache
+.pytest_cache/
+
+# Operating System
+.DS_Store
+Thumbs.db
+
+# credentials
+client_credentials.txt

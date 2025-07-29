@@ -1,0 +1,15 @@
+# Testing framework
+pytest>=7.0.0
+pytest-mock
+
+# Build system components (needed for `python -m build` and `setuptools_scm`)
+setuptools>=61.0
+wheel
+setuptools_scm[git]>=7.0
+
+# Packaging and distribution tools
+build
+twine
+
+# Version bumping utility
+bump2version
