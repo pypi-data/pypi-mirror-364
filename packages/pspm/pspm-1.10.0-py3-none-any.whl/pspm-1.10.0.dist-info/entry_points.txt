@@ -1,0 +1,2 @@
+[console_scripts]
+spm = pspm.cli:app
