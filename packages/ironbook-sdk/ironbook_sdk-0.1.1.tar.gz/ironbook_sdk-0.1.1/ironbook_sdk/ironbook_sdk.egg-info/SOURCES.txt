@@ -1,0 +1,9 @@
+LICENSE
+README.md
+pyproject.toml
+ironbook_sdk/ironbook_sdk.egg-info/PKG-INFO
+ironbook_sdk/ironbook_sdk.egg-info/SOURCES.txt
+ironbook_sdk/ironbook_sdk.egg-info/dependency_links.txt
+ironbook_sdk/ironbook_sdk.egg-info/requires.txt
+ironbook_sdk/ironbook_sdk.egg-info/top_level.txt
+tests/test_client.py
