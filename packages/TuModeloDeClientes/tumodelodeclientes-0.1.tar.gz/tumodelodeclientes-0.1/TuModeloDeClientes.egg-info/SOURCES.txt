@@ -1,0 +1,7 @@
+setup.py
+TuModeloDeClientes.egg-info/PKG-INFO
+TuModeloDeClientes.egg-info/SOURCES.txt
+TuModeloDeClientes.egg-info/dependency_links.txt
+TuModeloDeClientes.egg-info/top_level.txt
+cliente_modelo/__init__.py
+cliente_modelo/cliente.py
