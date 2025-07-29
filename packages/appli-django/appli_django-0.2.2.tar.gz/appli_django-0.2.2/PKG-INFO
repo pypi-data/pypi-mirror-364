@@ -1,0 +1,40 @@
+Metadata-Version: 2.4
+Name: appli-django
+Version: 0.2.2
+Summary: Un outil CLI pour créer des apps Django automatiquement.
+Author: Nicosidick
+License: MIT
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENCE
+Dynamic: author
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-python
+Dynamic: summary
+
+# appli-django
+
+📦 **appli-django** est un outil en ligne de commande (CLI) qui permet de créer rapidement une structure d'application Django enrichie avec les fichiers utiles, y compris :
+
+- `views.py`
+- `urls.py`
+- `forms.py`
+- `serializers.py`
+- Et le dossier `migrations/` avec `__init__.py`
+
+---
+
+## 🚀 Installation
+
+### Depuis les sources (localement) :
+
+1. Clone ou copie ce dépôt.
+2. Place-toi dans le dossier du projet.
+3. Installe le package :
+
+```bash
+pip install appli-django
+appli-django <nom_de_ton_appli>
