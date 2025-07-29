@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+vidnavigator/__init__.py
+vidnavigator/client.py
+vidnavigator/exceptions.py
+vidnavigator/models.py
+vidnavigator.egg-info/PKG-INFO
+vidnavigator.egg-info/SOURCES.txt
+vidnavigator.egg-info/dependency_links.txt
+vidnavigator.egg-info/requires.txt
+vidnavigator.egg-info/top_level.txt
