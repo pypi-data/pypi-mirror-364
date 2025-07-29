@@ -1,0 +1,41 @@
+Metadata-Version: 2.4
+Name: pact-python-cli
+Version: 2.4.26.2
+Summary: Pact CLI bundle for Python
+Project-URL: Bug Tracker, https://github.com/pact-foundation/pact-python/issues
+Project-URL: Changelog, https://github.com/pact-foundation/pact-python/blob/main/pact-python-cli/CHANGELOG.md
+Project-URL: Documentation, https://docs.pact.io
+Project-URL: Homepage, https://pact.io
+Project-URL: Repository, https://github.com/pact-foundation/pact-python
+Author-email: Joshua Ellis <josh@jpellis.me>
+Maintainer-email: Joshua Ellis <josh@jpellis.me>
+License-Expression: MIT
+License-File: LICENSE
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Software Development :: Testing
+Requires-Python: >=3.9
+Provides-Extra: devel
+Requires-Dist: mypy==1.17.0; extra == 'devel'
+Requires-Dist: pytest-cov~=6.0; extra == 'devel'
+Requires-Dist: pytest-mock~=3.0; extra == 'devel'
+Requires-Dist: pytest~=8.0; extra == 'devel'
+Requires-Dist: ruff==0.12.4; extra == 'devel'
+Provides-Extra: devel-test
+Requires-Dist: pytest-cov~=6.0; extra == 'devel-test'
+Requires-Dist: pytest-mock~=3.0; extra == 'devel-test'
+Requires-Dist: pytest~=8.0; extra == 'devel-test'
+Provides-Extra: devel-types
+Requires-Dist: mypy==1.17.0; extra == 'devel-types'
