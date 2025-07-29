@@ -1,0 +1,12 @@
+semantext/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+semantext/main.py,sha256=I1jRgNmAT8SvZ9p6E4eIgdfA0Ybzo5E_aLVo2CfxeeQ,5529
+semantext/models/__init__.py,sha256=rtljMD2212kJEvIu76WckwE54dDVZXvqxT9RwEJmMtk,187
+semantext/models/chart_properties.py,sha256=5eUviJD_4XYKohfVVJynvMO71s5W-_sgkykD_xgQZJs,3996
+semantext/models/table.py,sha256=rAQrujuSe73qwHvnmUD-cZmjPmx0nUjcslEzf5GU3R0,2366
+semantext/utils/__init__.py,sha256=e4u_OAmHaBkxRG_R0LSCfKsplqlM9P4TxkOc358iH5s,191
+semantext/utils/general_types.py,sha256=WBY5mTtsx-qMyEXOo9nFjU3FMPultvb0ZGI1q8bLtB8,1040
+semantext/utils/sql_helper.py,sha256=Wt3-CA4ZCWYxBS7joECqZ59pDwAX7D2iyqJkDnnsUYw,256
+semantext-0.0.1.dist-info/METADATA,sha256=T0liy2dMZ3psaMV2gUx7Gg3l7Y3unJeYdBhmzWESpZ0,13412
+semantext-0.0.1.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+semantext-0.0.1.dist-info/licenses/LICENSE,sha256=xx0jnfkXJvxRnG63LTGOxlggYnIysveWIZ6H3PNdCrQ,11357
+semantext-0.0.1.dist-info/RECORD,,
