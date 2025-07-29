@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=64", "setuptools-scm>=8"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "villager"
+dynamic = ["version"]
+authors = [
+    { name = "stupidfish001", email = "shovel@hscsec.cn" }
+]
+description = "A dataset container for al-1s project."
+dependencies = [
+    "uvicorn==0.35.0",
+    "fastapi==0.116.1",
+    "fastmcp==2.10.5",
+    "mcp==1.11.0",
+    "tqdm",
+    "kink==0.8.1",
+    "langchain==0.3.26",
+    "langchain-core==0.3.69",
+    "langchain-openai==0.3.28",
+    "requests==2.32.4",
+    "typer",
+    "openai==1.97.0",
+    "pydantic==2.11.7",
+    "click==8.2.1"
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+]
+requires-python = ">=3.11"
+
+[tool.setuptools]
+packages = { find = { } }
+
+[tool.setuptools_scm]
+local_scheme = "no-local-version"
+
+[project.scripts]
+villager = "interfaces.boot:main"
