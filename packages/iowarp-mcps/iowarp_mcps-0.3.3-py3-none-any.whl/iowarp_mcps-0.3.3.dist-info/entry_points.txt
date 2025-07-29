@@ -1,0 +1,2 @@
+[console_scripts]
+iowarp-mcps = iowarp_mcps:cli

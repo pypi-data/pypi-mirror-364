@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=64.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hdf5-mcp"
+version = "0.1.0"
+description = "MCP server with HDF5 file Operations"
+requires-python = "==3.12.0"
+keywords = ["MCP", "JSON-RPC", "FastAPI", "HDF5"]
+license = "MIT"
+authors = [
+  { name = "shazzadul", email = "sislam6@hawk.iit.edu" },
+  { name ="Soham Sonar", email = "ssonar2@hawk.iit.edu"},
+  { name ="Aum Sathwara", email = "asathwara@hawk.iit.edu"}
+]
+readme = "README.md"
+dependencies = [
+  "numpy>=1.26.0,<3.0.0",
+  "fastapi>=0.95,<1.0",
+  "uvicorn[standard]>=0.20",
+  "pandas>=1.0",
+  "psutil>=5.9",
+  "mcp",
+  "python-dotenv>=1.0.1",
+  "google-genai>=0.1.0",
+  "fastmcp",
+  "h5py"
+]
+
+[project.scripts]
+hdf5-mcp = "mcp_server.server:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
