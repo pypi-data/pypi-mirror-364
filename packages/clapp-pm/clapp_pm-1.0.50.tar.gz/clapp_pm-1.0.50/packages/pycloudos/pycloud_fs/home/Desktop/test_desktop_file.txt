@@ -1,0 +1,11 @@
+Cloud Files Test Dosyası
+=========================
+
+Bu dosya basitleştirilmiş home yapısını test etmek için oluşturuldu.
+
+Masaüstü yolu: pycloud_fs/home/Desktop
+Cloud Files artık bu dosyayı görebilmeli.
+
+✅ Basitleştirilmiş yapı
+✅ Tek kullanıcı sistemi
+✅ Karmaşık klasör yapısı yok 
