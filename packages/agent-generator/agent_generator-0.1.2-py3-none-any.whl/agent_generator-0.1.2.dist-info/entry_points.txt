@@ -1,0 +1,2 @@
+[console_scripts]
+agent-generator = agent_generator.cli:_main
