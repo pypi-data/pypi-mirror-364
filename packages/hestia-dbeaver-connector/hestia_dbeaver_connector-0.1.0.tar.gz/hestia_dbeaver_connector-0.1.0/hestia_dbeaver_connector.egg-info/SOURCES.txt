@@ -1,0 +1,13 @@
+README.md
+setup.py
+hestia_dbeaver_connector/__init__.py
+hestia_dbeaver_connector/dbeaver_plugin.py
+hestia_dbeaver_connector.egg-info/PKG-INFO
+hestia_dbeaver_connector.egg-info/SOURCES.txt
+hestia_dbeaver_connector.egg-info/dependency_links.txt
+hestia_dbeaver_connector.egg-info/entry_points.txt
+hestia_dbeaver_connector.egg-info/not-zip-safe
+hestia_dbeaver_connector.egg-info/requires.txt
+hestia_dbeaver_connector.egg-info/top_level.txt
+tests/__init__.py
+tests/test_dbeaver_plugin.py
