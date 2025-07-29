@@ -1,0 +1,9 @@
+dask_iclx/__init__.py,sha256=EEzP1V0WTZIwsI1TW_nlwDRrs_Ts8EhOHNlJZiNJ3zo,309
+dask_iclx/cluster.py,sha256=4aAu1QYSsaDnE2x0NNer7VX3Cgo4bHAIYaf55KKmj88,10168
+dask_iclx/config.py,sha256=zdXVIjDe6NVoBCieXZtdAv4pvhd55zSG02eDZGehTNs,528
+dask_iclx/jobqueue-ic.yaml,sha256=y3o7H6sZws-fIzmgVYoMsw1vXdiy_4aO5py_I6Wiji4,834
+dask_iclx-0.5.1.dist-info/licenses/LICENSE.txt,sha256=1ITZtpco8-cYQJDVB3YB4EZ5EKBpHt5YQcAP51iU1r0,590
+dask_iclx-0.5.1.dist-info/METADATA,sha256=UeLJRYaT4QYS3ISYqUa0RHoHbPKjhJDpVtwFrpUQgRI,4162
+dask_iclx-0.5.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+dask_iclx-0.5.1.dist-info/top_level.txt,sha256=o7GQIPUWa9LquVxopSrbIiQNB_4zhDErp8PQ7sfL5N4,10
+dask_iclx-0.5.1.dist-info/RECORD,,
