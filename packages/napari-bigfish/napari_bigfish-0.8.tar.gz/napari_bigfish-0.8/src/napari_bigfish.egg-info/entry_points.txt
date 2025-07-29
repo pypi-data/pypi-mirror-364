@@ -1,0 +1,2 @@
+[napari.manifest]
+napari-bigfish = napari_bigfish:napari.yaml

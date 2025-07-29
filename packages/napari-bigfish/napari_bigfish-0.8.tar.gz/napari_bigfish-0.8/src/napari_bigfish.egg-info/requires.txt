@@ -1,0 +1,14 @@
+numpy
+magicgui
+qtpy
+pyperclip
+big-fish
+scikit-image
+
+[testing]
+tox
+pytest
+pytest-cov
+pytest-qt
+napari
+pyqt5
