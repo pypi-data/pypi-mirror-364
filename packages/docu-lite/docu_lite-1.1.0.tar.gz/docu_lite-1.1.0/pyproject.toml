@@ -1,0 +1,48 @@
+[project]
+name = "docu-lite"
+version = "1.1.0"
+license = "MIT"
+
+authors = [
+  { name="G1OJS", email="g1ojs@yahoo.com" },
+]
+description = "🧾 docu-lite: Ultra-light Zero-dependency HTML outline generator for Python."
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = []
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Topic :: Documentation",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: Software Development :: Version Control :: Git",
+    "Topic :: Utilities"
+]
+
+keywords = [
+    "documentation",
+    "docstring",
+    "python",
+    "html",
+    "code-outline",
+    "doc-generator",
+    "lightweight",
+    "static",
+    "cli",
+    "developer-tools"
+]
+
+[project.urls]
+Homepage = "https://github.com/G1OJS/docu-lite"
+Issues = "https://github.com/G1OJS/docu-lite/issues"
+
+[project.scripts]
+docu-lite = "doculite:main"
+
+[tool.setuptools]
+license-files = ["LICENSE"]
+
+
+
