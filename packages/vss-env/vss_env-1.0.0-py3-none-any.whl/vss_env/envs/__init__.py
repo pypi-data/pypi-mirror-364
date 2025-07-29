@@ -1,0 +1,1 @@
+from src.vss_env.envs.stricker import StrickerEnv
