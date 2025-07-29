@@ -1,0 +1,3 @@
+[workspace]
+members = ["coatl-core", "coatl"]
+resolver = "3"
