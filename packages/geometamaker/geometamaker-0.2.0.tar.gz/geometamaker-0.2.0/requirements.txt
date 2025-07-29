@@ -1,0 +1,15 @@
+# requirements.txt
+# --------------------
+# This file records the packages and requirements needed in order for
+# the library to work as expected. And to run tests.
+aiohttp
+click
+fsspec
+GDAL
+frictionless>=5.10.0
+numpy
+platformdirs
+Pydantic>=2.0
+pygeoprocessing>=2.4.5
+pyyaml
+requests

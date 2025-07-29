@@ -1,0 +1,22 @@
+# These are the requirements needed to build a conda
+# environment on ReadTheDocs.
+#
+# Note that python requirements are intentionally left vague.
+# We don't need the tests to pass, we only need to be able to
+# import the packages.
+name: env-readthedocs
+channels:
+    - conda-forge
+dependencies:
+    - python=3.10
+    - pip
+    - frictionless
+    - fsspec
+    - gdal>=3
+    - numpy
+    - pygeoprocessing>=2.4.2
+    - pyyaml
+    - sphinx_rtd_theme
+    - myst-parser
+    - pip:
+        - autodoc_pydantic
