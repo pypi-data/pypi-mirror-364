@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: mcp-benchmark
+Version: 0.0.1.dev0
+Summary: A benchmark for MCP.
+Home-page: https://github.com/xhluca/mcp-benchmark
+Author: Xing Han Lù
+Author-email: mcp-benchmark@googlegroups.com
+Description-Content-Type: text/markdown
+Requires-Dist: mcp[cli]
+Requires-Dist: httpx
+
+# MCP Benchmark
