@@ -1,0 +1,225 @@
+Metadata-Version: 2.4
+Name: transformers-attention-viz
+Version: 0.1.12
+Summary: Interactive attention visualization for multi-modal transformer models
+Home-page: https://github.com/sisird864/transformers-attention-viz
+Author: Sisir Doppalapudi
+Author-email: Your Name <your.email@example.com>
+License: MIT
+Project-URL: Homepage, https://github.com/YOUR_USERNAME/transformers-attention-viz
+Project-URL: Bug Tracker, https://github.com/YOUR_USERNAME/transformers-attention-viz/issues
+Project-URL: Documentation, https://transformers-attention-viz.readthedocs.io
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: torch>=1.9.0
+Requires-Dist: transformers>=4.30.0
+Requires-Dist: numpy>=1.19.0
+Requires-Dist: matplotlib>=3.3.0
+Requires-Dist: seaborn>=0.11.0
+Requires-Dist: gradio>=3.0.0
+Requires-Dist: pillow>=8.0.0
+Requires-Dist: pandas>=1.3.0
+Requires-Dist: scipy>=1.7.0
+Requires-Dist: tqdm>=4.62.0
+Requires-Dist: networkx>=2.6.0
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0; extra == "dev"
+Requires-Dist: pytest-cov>=2.0; extra == "dev"
+Requires-Dist: black>=22.0; extra == "dev"
+Requires-Dist: flake8>=4.0; extra == "dev"
+Requires-Dist: isort>=5.0; extra == "dev"
+Requires-Dist: mypy>=0.900; extra == "dev"
+Requires-Dist: sphinx>=4.0; extra == "dev"
+Requires-Dist: sphinx-rtd-theme>=1.0; extra == "dev"
+Requires-Dist: nbsphinx>=0.8.0; extra == "dev"
+Dynamic: author
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+
+# 🔍 Transformers Attention Viz
+
+Interactive attention visualization for multi-modal transformer models (CLIP, BLIP, Flamingo, etc.)
+![Transformers Attention Viz](https://raw.githubusercontent.com/sisird864/transformers-attention-viz/main/docs/images/hero_image.png)
+[![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Transformers](https://img.shields.io/badge/transformers-4.30+-orange.svg)](https://github.com/huggingface/transformers)
+
+## 🎯 Features
+
+- 📊 **Interactive Visualizations**: Explore attention patterns between text and images
+- 🔄 **Multi-Layer Support**: Visualize attention across all transformer layers
+- 🎨 **Customizable**: Multiple color schemes and visualization styles
+- 📸 **Export Ready**: Generate publication-quality figures
+- 🚀 **Easy Integration**: Works seamlessly with HuggingFace models
+
+## 🚀 Quick Start
+
+### Installation
+
+```bash
+pip install transformers-attention-viz
+```
+
+### Basic Usage
+
+```python
+from transformers import CLIPModel, CLIPProcessor
+from attention_viz import AttentionVisualizer
+
+# Load model
+model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
+processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
+
+# Create visualizer
+visualizer = AttentionVisualizer(model)
+
+# Visualize attention
+image = Image.open("cat.jpg")
+text = "a photo of a cat"
+
+viz = visualizer.visualize(
+    image=image,
+    text=text,
+    layer_index=-1  # Last layer
+)
+viz.show()
+```
+
+## 📸 Examples
+
+### Cross-Modal Attention Heatmap
+
+![Cross-modal attention example](https://raw.githubusercontent.com/sisird864/transformers-attention-viz/main/docs/images/cross_attention_example.png)
+
+### Layer-wise Attention Evolution
+
+![Cross-modal attention example](https://raw.githubusercontent.com/sisird864/transformers-attention-viz/main/docs/images/layer_evolution_example.png)
+
+### Interactive Dashboard
+
+![Cross-modal attention example](https://raw.githubusercontent.com/sisird864/transformers-attention-viz/main/docs/images/dashboard_example.png)
+
+## 🛠️ Advanced Usage
+
+### Visualizing Specific Layers and Heads
+
+```python
+# Visualize specific layers
+viz = visualizer.visualize(
+    image=image,
+    text=text,
+    layer_indices=[0, 6, 11],  # First, middle, and last layers
+    head_indices=[0, 4, 8]     # Specific attention heads
+)
+
+# Get attention statistics
+stats = visualizer.get_attention_stats(image, text)
+print(f"Attention entropy: {stats['entropy']}")
+print(f"Top attended tokens: {stats['top_tokens']}")
+```
+
+### Comparing Multiple Inputs
+
+```python
+# Compare attention patterns
+comparison = visualizer.compare_attention(
+    images=[image1, image2],
+    texts=["a cat", "a dog"],
+    layer_index=-1
+)
+comparison.save("attention_comparison.png")
+```
+
+### Interactive Dashboard
+
+```python
+from attention_viz import launch_dashboard
+
+# Launch interactive exploration tool
+launch_dashboard(model, processor)
+# Opens at http://localhost:7860
+```
+
+## 🔧 Supported Models
+
+- ✅ CLIP (all variants)
+- ✅ BLIP
+- ✅ BLIP-2
+- ✅ Flamingo (coming soon)
+- ✅ CoCa (coming soon)
+- ✅ Custom vision-language models
+
+## 📚 Documentation
+
+Full documentation available at <https://transformers-attention-viz.readthedocs.io>
+
+- [Installation Guide](docs/installation.md)
+- [API Reference](docs/api_reference.md)
+- [Tutorials](docs/tutorials.md)
+- [Contributing](CONTRIBUTING.md)
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+```bash
+# Clone the repo
+git clone https://github.com/YOUR_USERNAME/transformers-attention-viz.git
+cd transformers-attention-viz
+
+# Install in development mode
+pip install -e ".[dev]"
+
+# Run tests
+pytest tests/
+```
+
+## 📖 Citation
+
+If you use this tool in your research, please cite:
+
+```bibtex
+@software{transformers-attention-viz,
+  author = {Your Name},
+  title = {Transformers Attention Viz: Interactive Attention Visualization for Multi-Modal Transformers},
+  year = {2024},
+  url = {https://github.com/YOUR_USERNAME/transformers-attention-viz}
+}
+```
+
+## 📄 License
+
+MIT License - see <LICENSE> for details.
+
+## 🙏 Acknowledgments
+
+- HuggingFace team for the amazing Transformers library
+- OpenAI for CLIP
+- Salesforce Research for BLIP
+
+## 🛤️ Roadmap
+
+- [ ] Support for Flamingo models
+- [ ] 3D attention visualization
+- [ ] Attention pattern export to TensorBoard
+- [ ] Real-time video attention tracking
+- [ ] Attention-based model debugging tools
+
+## 🚧 Known Issues (v0.1.3)
+
+- Evolution and Flow visualizations may fail with certain text lengths
+- Working on fixes for v0.1.4
+- Heatmap visualization works reliably for all inputs
