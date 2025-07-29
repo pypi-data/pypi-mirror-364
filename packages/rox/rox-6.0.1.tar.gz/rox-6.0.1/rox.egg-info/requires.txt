@@ -1,0 +1,11 @@
+cryptography
+requests
+six
+sseclient-py
+backoff
+monotonic
+python-dateutil
+packaging
+
+[:python_version == "3.7"]
+futures
