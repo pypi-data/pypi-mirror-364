@@ -1,0 +1,40 @@
+[
+  {
+    "name": "cloud-finder",
+    "version": "1.0.0",
+    "language": "python",
+    "description": "MacOS Finder'a benzeyen modern dosya gezgini",
+    "entry": "main.py",
+    "dependencies": [],
+    "folder": "cloud-finder",
+    "repo_url": "https://github.com/mburakmmm/clapp-packages",
+    "subdir": "cloud-finder"
+  },
+  {
+    "name": "cloud-web-browser",
+    "version": "1.0.0",
+    "language": "python",
+    "description": "Modern ve hızlı web tarayıcı uygulaması. Python ve Flet framework'ü ile geliştirilmiştir. WebView teknolojisi ile gerçek web sayfalarını uygulama içinde görüntüler.",
+    "entry": "cloud_browser.py",
+    "dependencies": [
+      "flet>=0.21.0",
+      "flet-webview>=0.1.0",
+      "requests>=2.31.0",
+      "beautifulsoup4>=4.12.0"
+    ],
+    "folder": "cloud-web-browser",
+    "repo_url": "https://github.com/mburakmmm/clapp-packages",
+    "subdir": "cloud-web-browser"
+  },
+  {
+    "name": "test-app-2",
+    "version": "1.0.0",
+    "language": "python",
+    "description": "Basit bir Python Hello World uygulaması",
+    "entry": "main.py",
+    "dependencies": [],
+    "folder": "test-app-2",
+    "repo_url": "https://github.com/mburakmmm/clapp-packages",
+    "subdir": "test-app-2"
+  }
+]
