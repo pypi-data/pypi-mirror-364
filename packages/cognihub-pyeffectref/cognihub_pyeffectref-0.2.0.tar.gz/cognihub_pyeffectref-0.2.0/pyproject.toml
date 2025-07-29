@@ -1,0 +1,90 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cognihub-pyeffectref"
+version = "0.2.0"
+description = "A reactive programming library inspired by Vue 3's Composition API, featuring low-level (Ref/effect) and high-level (ReactiveDict/ReadOnlyView) interfaces"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [
+    {name = "hsz1273327", email = "hsz1273327@163.com"}
+]
+maintainers = [
+    {name = "hsz1273327", email = "hsz1273327@163.com"}
+]
+keywords = ["reactive", "vue", "effect", "ref", "cognihub", "reactivedict", "readonly", "async", "threading"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: User Interfaces",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+    "Typing :: Typed",
+]
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "mypy>=1.8.0",
+    "coverage>=7.3.0",
+    "build>=0.10.0",
+    "twine>=4.0.0",
+]
+test = [
+    "mypy>=1.8.0",
+    "coverage>=7.3.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/hsz1273327/cognihub_pyeffectref"
+Repository = "https://github.com/hsz1273327/cognihub_pyeffectref"
+Issues = "https://github.com/hsz1273327/cognihub_pyeffectref/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["cognihub_pyeffectref*"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+strict_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+show_error_codes = true
+
+[tool.coverage.run]
+source = ["cognihub_pyeffectref"]
+branch = true
+omit = [
+    "*/tests/*",
+    "*/test_*.py",
+    "*/__pycache__/*"
+]
+
+[tool.coverage.report]
+precision = 2
+show_missing = true
+skip_covered = false
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "@abstractmethod",
+]
