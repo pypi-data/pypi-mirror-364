@@ -1,0 +1,9 @@
+lcrpm-0.1.1.dist-info/licenses/LICENSE,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+modeling/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+modeling/nonparametric.py,sha256=gtiy2u0Bubv623tQLPrB8JZ-5XQarojGiJ3glPCEuUM,201
+modeling/parametric.py,sha256=n3kvrh7sD_qV99hFSfd6qVquQkhPCNosUE3vqBd3Nvw,194
+modeling/semiparametric.py,sha256=VT3WqEa16-uoIOQZJ8bMTOotEPahaS5HO0VN5BFMFUU,186
+lcrpm-0.1.1.dist-info/METADATA,sha256=Zzb9jlA2XZMElIQrf2IqKNQkwwPvlKm3ojxi2Gm8slQ,4806
+lcrpm-0.1.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+lcrpm-0.1.1.dist-info/top_level.txt,sha256=gFnfQLScyk0eij5zAPxvOlw7ah7GHa8R67gLCKUzgAo,9
+lcrpm-0.1.1.dist-info/RECORD,,
