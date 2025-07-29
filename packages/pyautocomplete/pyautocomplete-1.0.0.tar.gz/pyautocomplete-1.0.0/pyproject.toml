@@ -1,0 +1,12 @@
+[project]
+name = "pyautocomplete"
+version = "1.0.0"
+description = "Autocomplete written in python"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "coverage>=7.9.2",
+    "fastapi>=0.116.1",
+    "pytest>=8.4.1",
+    "pytest-timeout>=2.4.0",
+]
