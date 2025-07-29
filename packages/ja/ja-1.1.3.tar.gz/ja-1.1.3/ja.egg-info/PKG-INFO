@@ -1,0 +1,19 @@
+Metadata-Version: 2.4
+Name: ja
+Version: 1.1.3
+Summary: Frontend for Ninja focusing on a faster edit, compile, debug cycle
+Home-page: https://bixense.com/ja
+Download-URL: https://github.com/jhasse/ja/archive/v1.1.3.tar.gz
+Author: Jan Niklas Hasse
+Author-email: jhasse@bixense.com
+License-File: LICENSE.txt
+Requires-Dist: humanize
+Requires-Dist: click
+Requires-Dist: protobuf
+Dynamic: author
+Dynamic: author-email
+Dynamic: download-url
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary
