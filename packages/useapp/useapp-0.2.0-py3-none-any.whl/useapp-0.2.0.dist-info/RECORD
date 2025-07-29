@@ -1,0 +1,14 @@
+useapp/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+useapp/admin.py,sha256=ppXqljb_eXHNTg_7leuWGAOo4vKnVoQHR9NjApohISo,313
+useapp/apps.py,sha256=SZO8v05-ezIiHx9IRgaSFwkQWoj4g1kdL1RGM9ZMLuE,196
+useapp/models.py,sha256=KCaMPAB-BYUcZh8SJPHzbIefeHItui_8N9TfzD_JLJs,507
+useapp/signals.py,sha256=DJFx1YXM8WeOKNww09yl8Rhn8zWwZGVp1Fs4H_74y5g,406
+useapp/tests.py,sha256=mrbGGRNg5jwbTJtWWa7zSKdDyeB4vmgZCRc2nk6VY-g,60
+useapp/urls.py,sha256=EfetoJG36_jLCMeKPfW3R-iu92XB3KHXnGhxScnp8_I,312
+useapp/views.py,sha256=Uzxc8dE-hu5n7I4kXmPO_uDx5C8Zc2souN5N4ya4eS0,879
+useapp/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+useapp/template/notifications/list.html,sha256=MGKb2K3qEwoJO7zdafJD4R5QQ_e-cfo2VaNHHnz0JXY,837
+useapp-0.2.0.dist-info/METADATA,sha256=Z-J5Yg1FmKKT_gvssEcwskkuNV1IFwYd8TXFuRcojVY,543
+useapp-0.2.0.dist-info/WHEEL,sha256=G16H4A3IeoQmnOrYV4ueZGKSjhipXx8zc8nu9FGlvMA,92
+useapp-0.2.0.dist-info/top_level.txt,sha256=j_yyaqusso4ZyylP3rA-AWoAs_F0l5wTV6b5aZMYeIM,7
+useapp-0.2.0.dist-info/RECORD,,
