@@ -1,0 +1,10 @@
+MANIFEST.in
+README.md
+pyproject.toml
+setup.cfg
+custom_file_organizer/__init__.py
+custom_file_organizer/core.py
+custom_file_organizer.egg-info/PKG-INFO
+custom_file_organizer.egg-info/SOURCES.txt
+custom_file_organizer.egg-info/dependency_links.txt
+custom_file_organizer.egg-info/top_level.txt
