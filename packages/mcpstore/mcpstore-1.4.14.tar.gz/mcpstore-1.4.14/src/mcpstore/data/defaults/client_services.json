@@ -1,0 +1,23 @@
+{
+  "client_20250722233548_rm52b8": {
+    "mcpServers": {
+      "mcpstore-demo-weather": {
+        "url": "http://mcpstore.wiki/mcp"
+      }
+    }
+  },
+  "client_20250722233549_b6vr00": {
+    "mcpServers": {
+      "context7": {
+        "url": "https://mcp.context7.com/mcp"
+      }
+    }
+  },
+  "client_20250722233647_4tbzly": {
+    "mcpServers": {
+      "mcpstore-wiki": {
+        "url": "http://mcpstore.wiki/mcp"
+      }
+    }
+  }
+}
