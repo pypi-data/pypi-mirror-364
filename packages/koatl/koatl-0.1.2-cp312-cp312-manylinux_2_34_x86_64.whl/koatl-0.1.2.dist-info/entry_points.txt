@@ -1,0 +1,2 @@
+[console_scripts]
+coatl=coatl.__main__:main
