@@ -1,0 +1,104 @@
+[project]
+name = "agentune-simulate"
+version = "0.0.3"
+description = "Create a customer simulator (twin) based on a set of real conversations."
+authors = [
+    {name = "Agentune dev team", email = "agentune-dev@sparkbeyond.com"}
+]
+readme = "README.md"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.12,<4.0"
+keywords = ["agent simulator", "agent evaluation", "customer support", "sales agents", "conversational agents", "AI agents", "chatbot evaluation", "customer-service", "customer facing agents"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "License :: OSI Approved :: Apache Software License"
+]
+
+[project.urls]
+Repository = "https://github.com/SparkBeyond/agentune"
+Homepage = "https://github.com/SparkBeyond/agentune/tree/main/agentune_simulate"
+Documentation = "https://github.com/SparkBeyond/agentune/tree/main/agentune_simulate"
+
+[tool.poetry]
+packages = [{include = "agentune"}]
+
+[tool.poetry.dependencies]
+# Core dependencies
+attrs = "^25.3.0"
+cattrs = "^25.1.1"
+python-dotenv = "^1.1.0"
+
+# LLM Integration
+langchain = "^0.3.25"
+langchain-openai = "^0.3.21"
+langchain-community = "^0.3.21"
+pydantic = "^2.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.0"
+pytest-asyncio = "^1.0.0"
+mypy = "^1.15.0"
+ruff = "^0.11.11"
+types-attrs = "^19.1.0"
+
+[tool.poetry.group.streamlit.dependencies]
+streamlit = "^1.46.0"
+pandas = "^2.3.0"
+plotly = "^6.1.2"
+
+[tool.poetry.group.examples.dependencies]
+pandas = "^2.3.1"
+jupyter = "^1.1.0"
+notebook = "^7.4.0"
+langchain-chroma = "^0.2.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.ruff]                         # top-level
+target-version = "py312"            # align with project requirements
+line-length = 100                   # matches your guideline
+
+[tool.ruff.lint]
+# Linter configuration
+select = ["E", "F", "UP006", "UP007", "UP045", "UP035"]  # Add modern type hint rules
+ignore = ["E203", "E266", "E501"]  # Relax whitespace & long-line rules
+
+[tool.mypy]
+# Type checking configuration
+python_version = "3.12"
+show_error_codes = true
+check_untyped_defs = true
+warn_return_any = true
+warn_unreachable = true
+no_implicit_optional = true
+explicit_package_bases = true
+mypy_path = "."
+disable_error_code = [
+    "truthy-function", "redundant-cast", "var-annotated",
+    "override", "import-untyped", "import-not-found"
+]
+
+# Cache settings
+cache_dir = ".mypy_cache"
+incremental = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+markers = [
+    "integration: marks tests as integration tests (deselected by default)",
+]
+addopts = "-m 'not integration'"
