@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+setup.py
+demo_plot.egg-info/PKG-INFO
+demo_plot.egg-info/SOURCES.txt
+demo_plot.egg-info/dependency_links.txt
+demo_plot.egg-info/top_level.txt
+demo_plot_package/__init__.py
+demo_plot_package/plotter.py
