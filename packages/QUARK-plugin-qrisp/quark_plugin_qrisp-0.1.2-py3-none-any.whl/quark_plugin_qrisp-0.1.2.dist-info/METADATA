@@ -1,0 +1,30 @@
+Metadata-Version: 2.4
+Name: QUARK-plugin-qrisp
+Version: 0.1.2
+Author: Niklas Steinmann (Fraunhofer FOKUS)
+Author-email: Marvin Erdmann <marvin.erdmann@bmw.de>, Benjamin Decker <benjamin.decker@bmw.de>
+License-Expression: Apache-2.0
+Project-URL: Homepage, https://github.com/QUARK-framework/QUARK-plugin-qrisp
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+License-File: NOTICE
+Requires-Dist: qiskit>=2.1.0
+Requires-Dist: qiskit-aer>=0.17.1
+Requires-Dist: qiskit-ibm-runtime>=0.40.1
+Requires-Dist: qrisp>=0.7.7
+Requires-Dist: numba>=0.57.0
+Requires-Dist: quark-framework>=0.1.9
+Dynamic: license-file
+
+# QUARK-plugin-qrisp
+
+### Provided Modules:
+
+| Module                           | Upstream Interface                        | Downstream Interface                     |
+|----------------------------------|-------------------------------------------|------------------------------------------|
+| mis_qiro_mapping_qrisp           | quark.interface_types.graph               | quark.interface_types.other(QIROProblem) |
+| qiro_ibm_device_qrisp            | quark.interface_types.other(QIROProblem)  | None                                     |
+| qiro_statevector_simulator_qrisp | quark.interface_types.other(QIROProblem)  | None                                     |
