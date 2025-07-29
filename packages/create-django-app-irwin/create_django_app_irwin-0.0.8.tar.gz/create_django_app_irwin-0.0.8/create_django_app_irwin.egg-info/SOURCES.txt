@@ -1,0 +1,10 @@
+LICENSE
+README.md
+setup.py
+create_django_app_irwin/__init__.py
+create_django_app_irwin/cli.py
+create_django_app_irwin.egg-info/PKG-INFO
+create_django_app_irwin.egg-info/SOURCES.txt
+create_django_app_irwin.egg-info/dependency_links.txt
+create_django_app_irwin.egg-info/entry_points.txt
+create_django_app_irwin.egg-info/top_level.txt
