@@ -1,0 +1,33 @@
+# Example configuration for multiagent-debugger
+
+llm:
+  provider: "openai"
+  model: "gpt-4"
+  api_key: "your-api-key-here"
+  temperature: 0.1
+  additional_params: {}
+
+log_paths:
+  - "/path/to/your/logs/app.log"
+  - "/path/to/your/logs/error.log"
+
+# Path to source code directory or file for analysis
+code_path: "/path/to/your/source/code"  # Can be directory or specific file
+
+# Phoenix monitoring configuration
+phoenix:
+  enabled: true                                    # Enable/disable Phoenix monitoring
+  host: "localhost"                               # Phoenix host
+  port: 6006                                      # Phoenix port
+  endpoint: "http://localhost:6006/v1/traces"     # OTLP endpoint for traces
+  launch_phoenix: true                            # Launch Phoenix app locally
+  headers: {}                                     # Additional headers for OTLP
+
+verbose: false
+
+# Log analysis options
+analysis_mode: "frequent"   # Options: frequent, latest, all
+# Only scan logs from the last N hours (default: 24)
+time_window_hours: 24
+# Maximum number of log lines to analyze (for large logs)
+max_lines: 10000 
