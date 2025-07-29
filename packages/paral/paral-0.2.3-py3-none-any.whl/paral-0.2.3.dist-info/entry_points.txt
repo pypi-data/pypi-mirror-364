@@ -1,0 +1,3 @@
+[console_scripts]
+paral = parallel.cli:app
+prl = parallel.legacy:run
