@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+py_sandboxed.egg-info/PKG-INFO
+py_sandboxed.egg-info/SOURCES.txt
+py_sandboxed.egg-info/dependency_links.txt
+py_sandboxed.egg-info/top_level.txt
+py_sandboxer/__init__.py
+py_sandboxer/exceptions.py
+py_sandboxer/rules.py
+py_sandboxer/sandbox.py
+tests/test_sandbox.py

@@ -1,0 +1,14 @@
+[project]
+name = "py-sandboxed"
+version = "0.1.1"
+description = "Configurable Execution Sandboxing for Python."
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "BSD-1-Clause"}
+authors = [{name = "Ira Abbott", email = "ira@mycloud.blue"}]
+dependencies = [ ]
+
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
