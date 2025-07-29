@@ -1,0 +1,13 @@
+CITATION.cff
+LICENSE
+README.md
+pyproject.toml
+setup.py
+freqIG/__init__.py
+freqIG/freqIG.py
+freqIG.egg-info/PKG-INFO
+freqIG.egg-info/SOURCES.txt
+freqIG.egg-info/dependency_links.txt
+freqIG.egg-info/requires.txt
+freqIG.egg-info/top_level.txt
+tests/test_attribute.py
