@@ -1,0 +1,11 @@
+python_service_builder-1.3.0.dist-info/licenses/LICENSE,sha256=xx0jnfkXJvxRnG63LTGOxlggYnIysveWIZ6H3PNdCrQ,11357
+service_framework/__init__.py,sha256=vwLAbIwVviX1nAb9Kg3LMxIrFTbxKY2vPKijaL7n0aA,3630
+service_framework/__init_test.py,sha256=gz5cB0rYc37PkUT1s7ejp2qWSjBhMhAMllecWnvrYbU,3742
+service_framework/list_services.py,sha256=Nlj_ZB50aiLzjercaa-oVG-CVFbbBwhApbC2hw_9BEA,2714
+service_framework/service_builder.py,sha256=QE5yu-FM-vNrcMJJLXs0vhTKZ94ryE8Xgm7emJQOsj4,3314
+service_framework/services.py,sha256=A7y2qyyuiCvxGm55PuejDhUOxIwqT_tk-iVQs4tlWpg,52024
+service_framework/services_test.py,sha256=Gvl4tm87AHKTuy3nSNL-8cbquGb0lNTc_NNPaunTQTQ,1270
+python_service_builder-1.3.0.dist-info/METADATA,sha256=9okK-cMfPXRm0vr1J4mnHwITQJQEdIdLrnDf-NXhoQI,3927
+python_service_builder-1.3.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+python_service_builder-1.3.0.dist-info/top_level.txt,sha256=LE_aS5exMHtYEw6vhjv5wnbRsDbSZJAMlPGONsmpzWY,18
+python_service_builder-1.3.0.dist-info/RECORD,,
