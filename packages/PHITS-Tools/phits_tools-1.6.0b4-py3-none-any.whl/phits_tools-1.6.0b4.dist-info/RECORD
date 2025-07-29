@@ -1,0 +1,14 @@
+PHITS_tools/PHITS_tools.py,sha256=6JbvFz0VCB8O-SYcxXy4QR3lGW1pqOL977VOmp5INrA,460087
+PHITS_tools/__init__.py,sha256=d-16o59G1ElAYztky1D2cZm8C-ImD4XQt-Q_6ZG8UDw,866
+PHITS_tools/DCHAIN-Tools/dchain_tools.py,sha256=y63EdLzNKtnii8SHYTTtdgRyJtLkf5Mz_VXOJQlwjRQ,201147
+PHITS_tools/DCHAIN-Tools/readme.md,sha256=WjBlNBCpukaT4OlyalH2gI64o3ka700mt2d4v2F_jpw,2091
+PHITS_tools/MC_materials/Compiled_MC_materials.json,sha256=BGx-cEM1_MAxGvau-foWqlBltJ4bpw8GA7XfBCX2VBs,558399
+PHITS_tools/MC_materials/PNNL_materials_compendium.json,sha256=LQhH6ZII5bA1INGpCsKqGGSyE3jU7A2F7-_FH02MUtI,553997
+PHITS_tools/MC_materials/README.md,sha256=KS3kB9Rjl8HHaFegHy-Zsne99kfBnErO_jrQ2WbzdOQ,3785
+PHITS_tools/MC_materials/manage_mc_materials.py,sha256=7evnNHme12YSJpcVxx5ah9sN-TCvxGbuKsDDri_uPQM,68427
+PHITS_tools/MC_materials/materials_compendium.csv,sha256=h4PVRgp5xN5pRxAf-c8geboBw9nEm2keHh2G78PJ3U8,1084075
+phits_tools-1.6.0b4.dist-info/METADATA,sha256=IxbnufZRlXRB_MhKnkhVxly--aRaGnHt9CUhK9-_AYw,26367
+phits_tools-1.6.0b4.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+phits_tools-1.6.0b4.dist-info/entry_points.txt,sha256=NmbjeeIDiB0AMkcjzSFVp5anLMQy4Sx2U9SbVT5eUeQ,242
+phits_tools-1.6.0b4.dist-info/licenses/LICENSE,sha256=JoTeFzAOCkNGhvHsf4r2BFIHpLRXo_4EsrnOZV58XVA,17098
+phits_tools-1.6.0b4.dist-info/RECORD,,
