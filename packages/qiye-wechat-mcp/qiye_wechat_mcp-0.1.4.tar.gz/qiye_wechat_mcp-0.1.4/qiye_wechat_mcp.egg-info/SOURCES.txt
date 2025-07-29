@@ -1,0 +1,17 @@
+.env.example
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+qiye_wechat_mcp/__init__.py
+qiye_wechat_mcp/__main__.py
+qiye_wechat_mcp/server.py
+qiye_wechat_mcp.egg-info/PKG-INFO
+qiye_wechat_mcp.egg-info/SOURCES.txt
+qiye_wechat_mcp.egg-info/dependency_links.txt
+qiye_wechat_mcp.egg-info/entry_points.txt
+qiye_wechat_mcp.egg-info/not-zip-safe
+qiye_wechat_mcp.egg-info/requires.txt
+qiye_wechat_mcp.egg-info/top_level.txt
+tests/__init__.py
+tests/test_server.py
