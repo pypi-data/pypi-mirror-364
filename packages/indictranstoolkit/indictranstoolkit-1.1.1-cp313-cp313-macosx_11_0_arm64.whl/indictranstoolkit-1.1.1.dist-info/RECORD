@@ -1,0 +1,11 @@
+IndicTransToolkit/processor.cpython-313-darwin.so,sha256=MO5ox-igfx1Ftl1R9MiU-ss8nfLyw5p4NHwyiZJUt0g,206208
+IndicTransToolkit/collator.py,sha256=iKFRoCU9hKPGW4X9QIu9Skvdnad0RTX8flMk1XXHL-Q,3837
+IndicTransToolkit/__init__.py,sha256=f8Rfot4r2R_QwNusVrHyKdEt7jh-qaWJbwaQi8A2TAE,200
+IndicTransToolkit/processor.c,sha256=-JyJBV0mm-9Qw3t4g6sCFjbR7NdXN8lM2eDtw2BWtBE,781285
+IndicTransToolkit/processor.pyx,sha256=CSCmp7FlGkseN4BLbcy-d3nnQox20_Fi2F9MXkYRQBs,20182
+IndicTransToolkit/evaluator.py,sha256=-2AEgjA9lIA-SbXFfvf9EazrDZX5mf1zkX1_kDcMWFk,9444
+indictranstoolkit-1.1.1.dist-info/RECORD,,
+indictranstoolkit-1.1.1.dist-info/WHEEL,sha256=KreXLeNnYSLDPpk7qnNyKd0DQEhtY-je-mdlEpkBMmo,109
+indictranstoolkit-1.1.1.dist-info/top_level.txt,sha256=dmmueQLa9oP-1K2jUtneC-u91ZNCWnubgLUJZdGCZ_c,18
+indictranstoolkit-1.1.1.dist-info/METADATA,sha256=Ed8kRf-FCr7BD_ORTMdbLNolSdSBJDupeCbqi1kkkos,6103
+indictranstoolkit-1.1.1.dist-info/licenses/LICENSE,sha256=O-CgHf_D7aNx8VMqUBFjhNO1FpXb4wBoxnQZqgkjpxU,1062
