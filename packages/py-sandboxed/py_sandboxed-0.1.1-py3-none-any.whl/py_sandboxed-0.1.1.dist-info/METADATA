@@ -1,0 +1,24 @@
+Metadata-Version: 2.4
+Name: py-sandboxed
+Version: 0.1.1
+Summary: Configurable Execution Sandboxing for Python.
+Author-email: Ira Abbott <ira@mycloud.blue>
+License: BSD-1-Clause
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# py-sandboxed
+
+A lightweight sandboxing utility for evaluating and executing Python expressions under a simple ruleset.
+
+## Usage
+
+```python
+from py-sandboxed import sandbox_eval
+
+# use built-in presets
+result = sandbox_eval("math.sqrt(16)", config="math_only")
+print(result)  # 4
+```
