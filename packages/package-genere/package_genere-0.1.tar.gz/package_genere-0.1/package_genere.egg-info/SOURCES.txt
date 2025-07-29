@@ -1,0 +1,8 @@
+README.md
+pyproject.toml
+setup.py
+package_genere.egg-info/PKG-INFO
+package_genere.egg-info/SOURCES.txt
+package_genere.egg-info/dependency_links.txt
+package_genere.egg-info/entry_points.txt
+package_genere.egg-info/top_level.txt

@@ -1,0 +1,3 @@
+[console_scripts]
+django-appgen = django_appgen.cli:create_app
+
