@@ -1,0 +1,10 @@
+LICENSE
+README.md
+pyproject.toml
+setup.cfg
+split_command_line/__init__.py
+split_command_line/__main__.py
+split_command_line.egg-info/PKG-INFO
+split_command_line.egg-info/SOURCES.txt
+split_command_line.egg-info/dependency_links.txt
+split_command_line.egg-info/top_level.txt
