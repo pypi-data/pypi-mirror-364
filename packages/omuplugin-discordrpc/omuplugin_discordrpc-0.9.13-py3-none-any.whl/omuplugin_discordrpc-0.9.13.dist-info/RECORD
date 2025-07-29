@@ -1,0 +1,13 @@
+omuplugin_discordrpc/__init__.py,sha256=nzYzAaBdty6AKGVYuZFMJD5OWZG2pLLXiGgVtIS3W9c,229
+omuplugin_discordrpc/const.py,sha256=WZKWR-TbgFuuUSEWsn1Gj54Wbd4Q6O8zkz10ce_VanU,478
+omuplugin_discordrpc/permissions.py,sha256=fLe89pALzzmaDep6kkr-F5NvFfxU8anS5sGubo0mJPI,1518
+omuplugin_discordrpc/plugin.py,sha256=G_KBGHYI1eRUW5YjNwgwsjK8eZ2PzZr3xxGMaIEOXVc,13530
+omuplugin_discordrpc/types.py,sha256=bkBqFBYgHgleON8tNyRTiI9BDSEHUjUNZOdVPyH9avY,3114
+omuplugin_discordrpc/version.py,sha256=jWTPB2-MaTu-jqEnO6dJ6Z4BCImtyPnKQ7-s40kpO5E,108
+omuplugin_discordrpc/discordrpc/__init__.py,sha256=1cmwmCTmOhxHMRPoEKRmzh6_k9K4m0VwaAeE_yzVh7Q,57
+omuplugin_discordrpc/discordrpc/client.py,sha256=NoUx5UlKdGgBL72iA-utPSmwDqXKyrybo7E5gzqKL-8,12842
+omuplugin_discordrpc/discordrpc/payloads.py,sha256=MlI6idLiQ7FPIe0z92xhcKID2FXiNweJ-98nET3ezyk,11679
+omuplugin_discordrpc-0.9.13.dist-info/METADATA,sha256=ip7JFB9XUAyKAw8GAKmXFwFWVNJcw8GLc6IAES9IaV8,366
+omuplugin_discordrpc-0.9.13.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+omuplugin_discordrpc-0.9.13.dist-info/entry_points.txt,sha256=syl354Z0a3MdXetxQEFFkYjDZ8RdZc2i8ZDfTbK7CZQ,51
+omuplugin_discordrpc-0.9.13.dist-info/RECORD,,
