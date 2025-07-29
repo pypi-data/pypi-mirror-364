@@ -1,0 +1,2 @@
+[console_scripts]
+document-folder-structure = document_folder_structure.main:main
