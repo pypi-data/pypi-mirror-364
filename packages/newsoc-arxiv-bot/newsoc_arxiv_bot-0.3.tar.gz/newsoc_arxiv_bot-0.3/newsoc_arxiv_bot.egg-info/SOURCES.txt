@@ -1,0 +1,9 @@
+setup.py
+newsoc_arxiv_bot/__init__.py
+newsoc_arxiv_bot/arxiv_alert.py
+newsoc_arxiv_bot.egg-info/PKG-INFO
+newsoc_arxiv_bot.egg-info/SOURCES.txt
+newsoc_arxiv_bot.egg-info/dependency_links.txt
+newsoc_arxiv_bot.egg-info/entry_points.txt
+newsoc_arxiv_bot.egg-info/requires.txt
+newsoc_arxiv_bot.egg-info/top_level.txt
