@@ -1,0 +1,26 @@
+{% load rangefilter_compat  %}
+{% load static %}
+{% load i18n %}
+{% load jalali_tags %}
+
+<div class="form-inline pt-2">
+        {{ spec.form.as_p }}
+</div>
+
+<!-- By default, Datepicker using jQuery, you need to set your script after loading jQuery! -->
+{#	<!-- loading directly -->#}
+{#<link rel="stylesheet" href="{% static 'admin/jquery.ui.datepicker.jalali/themes/base/jquery-ui.min.css' %}">#}
+<script src="{% static 'admin/js/django_jalali.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'rangefilter2/jalalidatepicker.min.css' %}">
+
+{#<script src="#}
+{#https://cdn.jsdelivr.net/npm/jalalidatepicker@0.6.0/dist/jalalidatepicker.min.js#}
+{#"></script>#}
+{#<link href="#}
+{#https://cdn.jsdelivr.net/npm/jalalidatepicker@0.6.0/dist/jalalidatepicker.min.css#}
+{#" rel="stylesheet">#}
+
+{#	<!-- OR -->#}
+	<!-- loading by form (if used AdminJalaliDateWidget) -->
+{#		{{ form.media }}#}
+
