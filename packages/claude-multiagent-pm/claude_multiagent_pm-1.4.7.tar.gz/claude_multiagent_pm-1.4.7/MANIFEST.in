@@ -1,0 +1,37 @@
+# Include version and license files
+include VERSION
+include LICENSE
+include README.md
+include CHANGELOG.md
+
+# Include the entire framework directory as package data
+graft framework
+
+# Include all markdown files in claude_pm
+recursive-include claude_pm *.md
+
+# Include configuration files
+recursive-include claude_pm *.json *.yml *.yaml
+
+# Include the data directory with framework files
+recursive-include claude_pm/data *
+
+# Include type hints marker
+include claude_pm/py.typed
+
+# Exclude unwanted files
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude *.swp
+global-exclude .DS_Store
+global-exclude __pycache__
+prune tests
+prune docs
+prune examples
+prune ai-trackdown-project
+prune test_deployment
+prune scripts
+prune tasks
+prune .git
+prune .github
+prune .vscode

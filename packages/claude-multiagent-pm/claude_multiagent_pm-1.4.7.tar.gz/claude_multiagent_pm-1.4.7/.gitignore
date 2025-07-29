@@ -1,0 +1,347 @@
+############################################################
+# Claude Multiagent PM Framework .gitignore
+# Version 1.0.0 - Clean and organized for production
+############################################################
+
+#===========================================================
+# Environment Variables & Secrets
+#===========================================================
+.env
+.env.*
+*.env
+secrets/
+.secrets/
+*.secret
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+
+#===========================================================
+# Python
+#===========================================================
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+virtualenv/
+*.bak/
+
+# Testing & coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+coverage_html_report/
+test-results/
+test-reports/
+junit.xml
+test-*.xml
+
+# Type checkers
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Other Python tools
+.python-version
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+
+#===========================================================
+# Node.js
+#===========================================================
+# Dependencies & package managers
+node_modules/
+jspm_packages/
+.npm
+.yarn-integrity
+.pnp.*
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Build outputs
+coverage/
+*.lcov
+.nyc_output
+.grunt
+bower_components
+.lock-wscript
+build/Release
+typings/
+*.tsbuildinfo
+
+# Caches
+.cache
+.parcel-cache
+.eslintcache
+.stylelintcache
+.rpt2_cache/
+.rts2_cache_*/
+
+# Framework builds
+.next
+.nuxt
+.vuepress/dist
+.docusaurus
+.serverless/
+.fusebox/
+.dynamodb/
+
+# Other Node.js files
+*.pid
+*.seed
+*.pid.lock
+lib-cov
+.node_repl_history
+*.tgz
+.tern-port
+.vscode-test
+.yarn/
+
+#===========================================================
+# Logs & Temporary Files
+#===========================================================
+logs/
+*.log
+*.log.*
+logs-archive/
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
+*.orig
+cleanup_*.json
+cleanup_*.log
+
+#===========================================================
+# IDE & Editors
+#===========================================================
+.vscode/
+*.code-workspace
+.idea/
+*.iml
+*.iws
+*.ipr
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+.netrwhist
+tags
+\#*\#
+.\#*
+
+#===========================================================
+# Operating System Files
+#===========================================================
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.LSOverride
+Icon
+.DocumentRevisions-V100
+.fseventsd
+.TemporaryItems
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+.directory
+.Trash-*
+.nfs*
+
+#===========================================================
+# Framework Specific
+#===========================================================
+# Agent worktrees
+.worktrees/
+
+# AI tracking & memory
+.ai-trackdown
+.ai-trackdown-index
+.claude-pm/memory/*.json
+.claude-pm/memory/*.md
+memory_entries/*.json
+chroma_db/
+
+# Framework directories
+.claude-multiagent-pm-backup
+.claude-pm
+.mcp
+
+# Local configuration
+.claude-pm/config.local.yaml
+.claude-pm/config.local.json
+*.local.yaml
+*.local.json
+
+# Database files
+*.sqlite3
+*.sqlite
+*.db
+
+# Backups & archives
+_archive/
+archive/
+backups/
+sync/
+*.archive
+
+#===========================================================
+# Build Artifacts
+#===========================================================
+dist/
+build/
+out/
+target/
+bin/
+
+#===========================================================
+# Large Files & Archives
+#===========================================================
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+*.dmg
+*.iso
+
+# Exception: Allow release archives
+!releases/*.tar.gz
+
+#===========================================================
+# File Organization Rules
+#===========================================================
+# Prevent misplaced files in root
+/*REPORT*.md
+/*ANALYSIS*.md
+/*SUMMARY*.md
+/*VALIDATION*.md
+/*DEPLOYMENT*.md
+/*IMPLEMENTATION*.md
+/*WORKFLOW*.md
+/*TEST*.md
+/qa_*.json
+/*validation*.json
+/validation_report_*.json
+/test_*.py
+/*test*.py
+
+# npm version artifacts (prevent =X.X.X files in root)
+/=*.*.*
+/=*.*.0
+/=*.0.0
+
+# Coverage reports in root (already have coverage.xml above, but being explicit)
+/coverage.xml
+/coverage-*.xml
+/*.lcov
+
+# Prevent any markdown files in root except the 4 allowed
+/*.md
+!CLAUDE.md
+!README.md
+!CHANGELOG.md
+!RELEASE_NOTES.md
+
+# Build and deployment related files
+/BUILD_*.md
+/MANIFEST.in
+/build_config.py
+
+# Script files that might be accidentally created in root
+/check_*.py
+/migrate_*.py
+/test_*.py
+/validate_*.py
+/verify_*.py
+
+# Test project directories
+/test-project/
+/test_*/
+
+# Backup directories (be specific to root)
+/tests_backup_*/
+
+# PyPI packaging files in root
+/.npmignore
+/package-simple.json
+
+# Exception: Core project documentation
+!CLAUDE.md
+!README.md
+!CHANGELOG.md
+!RELEASE_NOTES.md
+
+############################################################
+# End of .gitignore
+############################################################

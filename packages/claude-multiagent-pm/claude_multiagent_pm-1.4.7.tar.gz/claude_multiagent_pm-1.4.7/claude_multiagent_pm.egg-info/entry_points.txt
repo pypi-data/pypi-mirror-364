@@ -1,0 +1,8 @@
+[console_scripts]
+aitrackdown = ai_trackdown_pytools.cli:main
+atd = ai_trackdown_pytools.cli:main
+claude-multiagent-pm = claude_pm.cli:main
+claude-multiagent-pm-health = claude_pm.scripts.health_monitor:main
+claude-multiagent-pm-service = claude_pm.scripts.service_manager:main
+claude-pm = claude_pm.cli:main
+cmpm = claude_pm.cli:main
