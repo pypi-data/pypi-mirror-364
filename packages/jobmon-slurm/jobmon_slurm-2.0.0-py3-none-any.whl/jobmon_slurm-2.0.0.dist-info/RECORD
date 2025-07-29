@@ -1,0 +1,8 @@
+jobmon_pkg/__init__.py,sha256=rGIeb3HlYZFIYpx-ShW89DD_ZeNaFuT8opVyJiQJBwk,302
+jobmon_pkg/cli.py,sha256=u2y-rbCVNdoBguFyWPb8VG3ex6K4Hk5nF8oOcWUoJrQ,1989
+jobmon_pkg/scripts/jobmon.sh,sha256=Jug2-tsANts8NidWdr_EHFras_wcHtLlWbQINOYiX3Q,25843
+jobmon_slurm-2.0.0.dist-info/METADATA,sha256=TQE0FClxGChwlr_BVTNtiIepC-4W7MMJwnitQWN0BuY,5743
+jobmon_slurm-2.0.0.dist-info/WHEEL,sha256=In9FTNxeP60KnTkGw7wk6mJPYd_dQSjEZmXdBdMCI-8,91
+jobmon_slurm-2.0.0.dist-info/entry_points.txt,sha256=m8o0fd3gkvmNztEWS0H3jBwzcTH2Ro9hareK-cguVsw,103
+jobmon_slurm-2.0.0.dist-info/top_level.txt,sha256=KbHEfW6CFm8JqZIJEEwK6OQKgcRaIstYNXvemodpYmU,11
+jobmon_slurm-2.0.0.dist-info/RECORD,,

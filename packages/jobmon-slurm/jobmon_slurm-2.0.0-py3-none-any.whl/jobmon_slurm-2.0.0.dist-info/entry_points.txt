@@ -1,0 +1,4 @@
+[console_scripts]
+jm = jobmon_pkg.cli:main
+jobmon = jobmon_pkg.cli:main
+jq = jobmon_pkg.cli:quiet_main
