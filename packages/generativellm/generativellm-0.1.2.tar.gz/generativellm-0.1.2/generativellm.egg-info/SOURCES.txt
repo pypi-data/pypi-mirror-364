@@ -1,0 +1,10 @@
+README.md
+pyproject.toml
+setup.cfg
+generativellm/__init__.py
+generativellm/chat.py
+generativellm.egg-info/PKG-INFO
+generativellm.egg-info/SOURCES.txt
+generativellm.egg-info/dependency_links.txt
+generativellm.egg-info/requires.txt
+generativellm.egg-info/top_level.txt
