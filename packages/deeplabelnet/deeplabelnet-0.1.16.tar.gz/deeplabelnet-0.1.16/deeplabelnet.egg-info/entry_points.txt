@@ -1,0 +1,2 @@
+[console_scripts]
+deeplabelnet = deeplabelnet_launcher.__main__:main

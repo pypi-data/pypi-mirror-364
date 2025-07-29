@@ -1,0 +1,10 @@
+include README.md
+include requirements.txt
+include LICENSE
+
+recursive-include deeplabelnet_launcher/templates *
+recursive-include deeplabelnet_launcher/static *
+recursive-include deeplabelnet_launcher/media *
+recursive-include deeplabelnet_launcher/migrations *
+
+global-exclude __pycache__ *.py[cod]
