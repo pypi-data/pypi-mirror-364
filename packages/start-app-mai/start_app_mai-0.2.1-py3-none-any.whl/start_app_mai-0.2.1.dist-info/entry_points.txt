@@ -1,0 +1,2 @@
+[console_scripts]
+start_app_mai = start_app_mai.cli:main
