@@ -1,0 +1,21 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+## [0.1.0] - 2024-01-XX
+
+### Added
+- Initial release of gh-safeapprove
+- Basic CLI interface with typer
+- GitHub CLI integration via subprocess
+- Pattern matching on PR diffs
+- Support for GitHub Enterprise
+- File and stdin input options
+- Dry-run mode for testing
+- Comprehensive test suite
+- Enterprise URL validation 
