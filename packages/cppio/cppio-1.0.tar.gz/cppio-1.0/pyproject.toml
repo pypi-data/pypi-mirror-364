@@ -1,0 +1,13 @@
+[project]
+name = "cppio"
+version = "1.0"
+authors = [
+    {name = "chenxi", email = "chenxi20141212@126.com"},
+]
+description = "iostream"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {file = "LICENSE"}
+[build-system]
+requires = ["setuptools>=46.4.0"]
+build-backend = "setuptools.build_meta"
