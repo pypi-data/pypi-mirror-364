@@ -1,0 +1,45 @@
+Metadata-Version: 2.4
+Name: webgme_bindings
+Version: 1.3.0
+Summary: Package containing webgme-bindings through zeromq
+Home-page: https://github.com/webgme/bindings
+Author: Patrik Meijer, Tamas Kecskes
+Author-email: webgme@vanderbilt.edu
+License: MIT
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pyzmq
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary
+
+## Python Bindings to WebGME
+
+This is the python package needed to use the webgme-apis in python.
+
+The python api is confirmed to work both with both `2.7.x` and `3.x`. The only third part dependency is
+[pyzmq](https://github.com/zeromq/pyzmq) which should work [down to 2.5](https://pyzmq.readthedocs.io/en/latest/pyversions.html).
+
+Note that in the Python API strings are documented as `str` even though in python `2.7` they technically are `unicode`.
+(PyZMQ has an explanation of the differences for the interested one [over here](https://pyzmq.readthedocs.io/en/latest/unicode.html).)
+
+[Click here for documentation on how to use bindings in webgme!](https://github.com/webgme/bindings)

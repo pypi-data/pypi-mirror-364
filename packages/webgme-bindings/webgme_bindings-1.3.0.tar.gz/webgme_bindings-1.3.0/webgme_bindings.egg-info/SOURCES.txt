@@ -1,0 +1,16 @@
+LICENSE
+README.md
+setup.py
+webgme_bindings/__init__.py
+webgme_bindings/core.py
+webgme_bindings/exceptions.py
+webgme_bindings/pluginbase.py
+webgme_bindings/project.py
+webgme_bindings/test.py
+webgme_bindings/util.py
+webgme_bindings/webgme.py
+webgme_bindings.egg-info/PKG-INFO
+webgme_bindings.egg-info/SOURCES.txt
+webgme_bindings.egg-info/dependency_links.txt
+webgme_bindings.egg-info/requires.txt
+webgme_bindings.egg-info/top_level.txt
