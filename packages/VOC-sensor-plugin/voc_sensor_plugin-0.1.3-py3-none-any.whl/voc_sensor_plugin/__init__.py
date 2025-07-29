@@ -1,0 +1,1 @@
+from voc_sensor_plugin.VOC_sensor import click_read_voc_sensor
