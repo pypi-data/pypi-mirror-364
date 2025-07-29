@@ -1,0 +1,3 @@
+[console_scripts]
+smart-stock-screener = main:main
+smart-stock-screener-http = main_http:main
