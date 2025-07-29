@@ -1,0 +1,12 @@
+molscraper/__init__.py,sha256=e4K8ONPZ8d26TFlC-RRxV-20YyKNzVPVOeaxtTOrSq0,593
+molscraper/cli.py,sha256=ZihKyTQuvKMfSRo1vcC-9asuQBpMlieZc7R4VMe0vDM,37610
+molscraper/scraper.py,sha256=zfWFF8BZ_wCXD4PYO4ZBiRF36uOd3jnC-YktOp96Wnc,73120
+molscraper/pyarmor_runtime_000000/__init__.py,sha256=XCoIGiIpkuBBD9I7NMRm6hOx2aZVlcFN-tM1Vh_NwW4,101
+molscraper/pyarmor_runtime_000000/pyarmor_runtime.so,sha256=NPUx_CTLisqWB8lm8Xmzx6iOVsPDggxGM1BC6iqsjUM,685040
+molscraper_tool-1.0.0.dist-info/licenses/LICENSE,sha256=riupbbAFujGjgX3pmuiqD-eVtSwxSb1tfj9cxNT1Z-I,1085
+pyarmor_runtime_000000/__init__.py,sha256=XCoIGiIpkuBBD9I7NMRm6hOx2aZVlcFN-tM1Vh_NwW4,101
+molscraper_tool-1.0.0.dist-info/METADATA,sha256=fKcrbdIhYGQFu0Q1y6A3YqAcdsmiX6kznHjYl4xtbnU,9088
+molscraper_tool-1.0.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+molscraper_tool-1.0.0.dist-info/entry_points.txt,sha256=SGkY2Gsph57XEB0euBZd4ardWWUmw9Nw93o9ZObyxsE,51
+molscraper_tool-1.0.0.dist-info/top_level.txt,sha256=kHDmRyMyaKkb8GCS0gbgzwAu-yCeckJsipj0JuhoFNI,34
+molscraper_tool-1.0.0.dist-info/RECORD,,
