@@ -1,0 +1,2 @@
+[console_scripts]
+ai-changelog-generator = changelog_generator.changelog_generator_enhanced:main
