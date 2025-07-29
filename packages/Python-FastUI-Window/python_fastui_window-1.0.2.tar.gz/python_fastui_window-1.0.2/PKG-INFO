@@ -1,0 +1,25 @@
+Metadata-Version: 2.4
+Name: Python-FastUI-Window
+Version: 1.0.2
+Summary: FastUI Frameless Window on PySide6
+Author: NumBNN
+Author-email: NumBNN@outlook.com
+Keywords: Num frameless
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pywin32; platform_system == "Windows"
+Requires-Dist: pyobjc; platform_system == "Darwin"
+Requires-Dist: PyCocoa; platform_system == "Darwin"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: keywords
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary
+
+啥都没有--自用
