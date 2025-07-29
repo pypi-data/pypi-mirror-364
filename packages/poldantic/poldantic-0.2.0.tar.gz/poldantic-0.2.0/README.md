@@ -1,0 +1,151 @@
+# 🧩 Poldantic
+
+Convert [Pydantic](https://docs.pydantic.dev/) models into [Polars](https://pola.rs) schemas — and back again.
+
+> Poldantic makes it easy to bridge the world of data validation (Pydantic) with blazing-fast dataframes (Polars). Useful for type-safe ETL pipelines, FastAPI integrations, and schema round-tripping.
+
+---
+
+## ✨ Features
+
+- 🔁 **Two-way conversion** between Pydantic models and Polars schema dicts
+- 🧠 Smart handling of nested structs, lists, and mixed types
+- 🛠 Configurable `Optional[...]` wrapping to reflect Polars' nullable-by-default nature
+- 🧪 100% test coverage including complex edge cases
+- 🧱 Minimal dependencies, ready for production
+
+---
+
+## 📦 Installation
+
+```bash
+pip install poldantic
+```
+
+> Make sure you also have:
+> ```bash
+> pip install pydantic polars
+> ```
+
+---
+
+## 🧪 Basic Usage
+
+### ✅ Convert a Pydantic model to a Polars schema
+
+```python
+from poldantic import to_polars_schema
+from pydantic import BaseModel
+from typing import List, Optional
+
+class Person(BaseModel):
+    name: str
+    tags: Optional[List[str]]
+
+schema = to_polars_schema(Person)
+print(schema)
+```
+
+**Output:**
+
+```python
+{'name': Utf8, 'tags': List[Utf8]}
+```
+
+---
+
+### ✅ Convert a Polars schema to a Pydantic model
+
+```python
+from poldantic import to_pydantic_model
+import polars as pl
+
+schema = {
+    "name": pl.Utf8,
+    "tags": pl.List(pl.Utf8),
+}
+
+Model = to_pydantic_model(schema)
+print(Model(name="Alice", tags=["x", "y"]))
+```
+
+**Output:**
+
+```python
+name='Alice' tags=['x', 'y']
+```
+
+---
+
+### 🧬 Nested Example
+
+```python
+class Address(BaseModel):
+    street: str
+    zip: int
+
+class Customer(BaseModel):
+    id: int
+    address: Address
+
+to_polars_schema(Customer)
+```
+
+**Output:**
+
+```python
+{
+  'id': Int64,
+  'address': Struct({'street': Utf8, 'zip': Int64})
+}
+```
+
+---
+
+## ⚙️ API
+
+```python
+to_polars_schema(model: Type[BaseModel]) -> dict[str, pl.DataType]
+```
+
+```python
+to_pydantic_model(
+    schema: dict[str, pl.DataType],
+    model_name: str = "PolarsModel",
+    force_optional: bool = True
+) -> Type[BaseModel]
+```
+
+---
+
+## 🧬 Supported Type Mappings
+
+| Pydantic Type           | Polars Type     |
+|-------------------------|-----------------|
+| `int`                  | `pl.Int64()`     |
+| `float`                | `pl.Float64()`   |
+| `str`                  | `pl.Utf8()`      |
+| `bool`                 | `pl.Boolean()`   |
+| `bytes`                | `pl.Binary()`    |
+| `datetime.date`        | `pl.Date()`      |
+| `datetime.datetime`    | `pl.Datetime()`  |
+| `datetime.time`        | `pl.Time()`      |
+| `List[T]`              | `pl.List(T)`     |
+| `Model` (nested)       | `pl.Struct(...)` |
+| Unknown/Mixed/Union    | `pl.Object()`    |
+
+---
+
+## ✅ Tests
+
+Run the full suite with:
+
+```bash
+pytest
+```
+
+---
+
+## 📚 License
+
+MIT License © 2025 Odos Matthews
