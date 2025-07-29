@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+README.md
+package.json
+setup.py
+dash_sortable_tree/DndTreeEditor.py
+dash_sortable_tree/__init__.py
+dash_sortable_tree/_imports_.py
+dash_sortable_tree/dash_sortable_tree.min.js
+dash_sortable_tree/dash_sortable_tree.min.js.map
+dash_sortable_tree/metadata.json
+dash_sortable_tree/package-info.json
+dash_sortable_tree.egg-info/PKG-INFO
+dash_sortable_tree.egg-info/SOURCES.txt
+dash_sortable_tree.egg-info/dependency_links.txt
+dash_sortable_tree.egg-info/top_level.txt
+tests/test_usage.py

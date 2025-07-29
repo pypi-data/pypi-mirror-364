@@ -1,0 +1,11 @@
+include dash_sortable_tree/dash_sortable_tree.min.js
+include dash_sortable_tree/dash_sortable_tree.min.js.map
+include dash_sortable_tree/async-*.js
+include dash_sortable_tree/async-*.js.map
+include dash_sortable_tree/*-shared.js
+include dash_sortable_tree/*-shared.js.map
+include dash_sortable_tree/metadata.json
+include dash_sortable_tree/package-info.json
+include README.md
+include LICENSE
+include package.json
