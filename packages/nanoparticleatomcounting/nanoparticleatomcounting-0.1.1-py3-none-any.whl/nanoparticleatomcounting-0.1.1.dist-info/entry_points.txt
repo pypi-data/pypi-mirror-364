@@ -1,0 +1,2 @@
+[console_scripts]
+nanoparticle-atom-count = nanoparticleatomcounting.atom_count:main
