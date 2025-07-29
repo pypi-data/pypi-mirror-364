@@ -1,0 +1,11 @@
+scipy
+numpy
+numba
+pandas
+matplotlib
+platformdirs
+PyQt5
+pyqtgraph
+SoundFile
+sounddevice
+thunderlab>=1.6.0
