@@ -1,0 +1,210 @@
+add_aspect: &add_aspect
+  warmups: 1
+  function_name: "iast_add_aspect"
+
+add_noaspect:
+  <<: *add_aspect
+  function_name: "add_noaspect"
+
+add_inplace_aspect: &add_inplace_aspect
+  warmups: 1
+  function_name: "iast_add_inplace_aspect"
+
+add_inplace_noaspect:
+  <<: *add_inplace_aspect
+  function_name: "add_inplace_noaspect"
+
+bytearray_aspect: &bytearray_aspect
+  warmups: 1
+  function_name: "iast_bytearray_aspect"
+
+bytearray_noaspect:
+  <<: *bytearray_aspect
+  function_name: "bytearray_noaspect"
+
+bytearray_extend_aspect: &bytearray_extend_aspect
+  warmups: 1
+  function_name: "iast_bytearray_extend_aspect"
+
+bytearray_extend_noaspect:
+  <<: *bytearray_extend_aspect
+  function_name: "bytearray_extend_noaspect"
+
+bytes_aspect: &bytes_aspect
+  warmups: 1
+  function_name: "iast_bytes_aspect"
+
+bytes_noaspect:
+  <<: *bytes_aspect
+  function_name: "bytes_noaspect"
+
+bytesio_aspect: &bytesio_aspect
+  warmups: 1
+  function_name: "iast_bytesio_aspect"
+
+bytesio_noaspect:
+  <<: *bytesio_aspect
+  function_name: "bytesio_noaspect"
+
+capitalize_aspect: &capitalize_aspect
+  warmups: 1
+  function_name: "iast_capitalize_aspect"
+
+capitalize_noaspect:
+  <<: *capitalize_aspect
+  function_name: "capitalize_noaspect"
+
+casefold_aspect: &casefold_aspect
+  warmups: 1
+  function_name: "iast_casefold_aspect"
+
+casefold_noaspect:
+  <<: *casefold_aspect
+  function_name: "casefold_noaspect"
+
+decode_aspect: &decode_aspect
+  warmups: 1
+  function_name: "iast_decode_aspect"
+
+decode_noaspect:
+  <<: *decode_aspect
+  function_name: "decode_noaspect"
+
+encode_aspect: &encode_aspect
+  warmups: 1
+  function_name: "iast_encode_aspect"
+
+encode_noaspect:
+  <<: *encode_aspect
+  function_name: "encode_noaspect"
+
+format_aspect: &format_aspect
+  warmups: 1
+  function_name: "iast_format_aspect"
+
+format_noaspect:
+  <<: *format_aspect
+  function_name: "format_noaspect"
+
+format_map_aspect: &format_map_aspect
+  warmups: 1
+  function_name: "iast_format_map_aspect"
+
+format_map_noaspect:
+  <<: *format_map_aspect
+  function_name: "format_map_noaspect"
+
+index_aspect: &index_aspect
+  warmups: 1
+  function_name: "iast_index_aspect"
+
+index_noaspect:
+  <<: *index_aspect
+  function_name: "index_noaspect"
+
+join_aspect: &join_aspect
+  warmups: 1
+  function_name: "iast_join_aspect"
+
+join_noaspect:
+  <<: *join_aspect
+  function_name: "join_noaspect"
+
+lower_aspect: &lower_aspect
+  warmups: 1
+  function_name: "iast_lower_aspect"
+
+lower_noaspect:
+  <<: *lower_aspect
+  function_name: "lower_noaspect"
+
+ljust_aspect: &ljust_aspect
+  warmups: 1
+  function_name: "iast_ljust_aspect"
+
+ljust_noaspect:
+  <<: *ljust_aspect
+  function_name: "ljust_noaspect"
+
+modulo_aspect: &modulo_aspect
+  warmups: 1
+  function_name: "iast_modulo_aspect"
+
+modulo_aspect_for_bytes:
+  <<: *modulo_aspect
+  function_name: "iast_modulo_aspect_for_bytes"
+
+modulo_aspect_for_bytes_bytearray:
+  <<: *modulo_aspect
+  function_name: "iast_modulo_aspect_for_bytes_bytearray"
+
+modulo_aspect_for_bytearray_bytearray:
+  <<: *modulo_aspect
+  function_name: "iast_modulo_aspect_for_bytearray_bytearray"
+
+modulo_noaspect:
+  <<: *modulo_aspect
+  function_name: "modulo_noaspect"
+
+replace_aspect: &replace_aspect
+  warmups: 1
+  function_name: "iast_replace_aspect"
+
+replace_noaspect:
+  <<: *replace_aspect
+  function_name: "replace_noaspect"
+
+repr_aspect: &repr_aspect
+  warmups: 1
+  function_name: "iast_repr_aspect"
+
+repr_noaspect:
+  <<: *repr_aspect
+  function_name: "repr_noaspect"
+slice_aspect: &slice_aspect
+  warmups: 1
+  function_name: "iast_slice_aspect"
+
+slice_noaspect:
+  <<: *slice_aspect
+  function_name: "slice_noaspect"
+
+stringio_aspect: &stringio_aspect
+  warmups: 1
+  function_name: "iast_stringio_aspect"
+
+stringio_noaspect:
+  <<: *stringio_aspect
+  function_name: "stringio_noaspect"
+
+swapcase_aspect: &swapcase_aspect
+  warmups: 1
+  function_name: "iast_swapcase_aspect"
+
+swapcase_noaspect:
+  <<: *swapcase_aspect
+  function_name: "swapcase_noaspect"
+
+title_aspect: &title_aspect
+  warmups: 1
+  function_name: "iast_title_aspect"
+
+title_noaspect:
+  <<: *title_aspect
+  function_name: "title_noaspect"
+
+translate_aspect: &translate_aspect
+  warmups: 1
+  function_name: "iast_translate_aspect"
+
+translate_noaspect:
+  <<: *translate_aspect
+  function_name: "translate_noaspect"
+
+upper_aspect: &upper_aspect
+  warmups: 1
+  function_name: "iast_upper_aspect"
+
+upper_noaspect:
+  <<: *upper_aspect
+  function_name: "upper_noaspect"
