@@ -1,0 +1,55 @@
+[project]
+name = "pncp"
+version = "0.1.1"
+description = "Ferramenta para facilitar pesquisas ao Portal Nacional de Contratações Públicas (PNCP)."
+readme = "README.md"
+authors = [
+    { name = "Otávio Barradas" }
+]
+requires-python = "~=3.12.0"
+dependencies = [
+    "httpx>=0.28.1",
+    "pydantic>=2.11.4",
+]
+license = "MIT"
+keywords = ["PNCP", "Python", "API", "Brazil", "public procurement"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "ipykernel>=6.29.5",
+    "pytest>=8.3.5",
+    "pytest-cov>=6.1.1",
+    "ruff>=0.11.10",
+    "taskipy>=1.14.1",
+]
+
+[tool.ruff]
+line-length = 100
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+    "-ra",
+    "-q",
+    "-p no:warnings",
+]
+testpaths = ["tests"]
+pythonpath = "src"
+
+[tool.taskipy.tasks]
+lint = 'ruff check'
+pre_format = 'ruff check --fix'
+format = 'ruff format'
+pre_test = 'task lint'
+test = 'pytest -s -x --cov=pncp -vv'
+post_test = 'coverage html'
