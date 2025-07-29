@@ -1,0 +1,13 @@
+---
+global:
+  data:
+    domain: global.local
+
+ios:
+  data:
+    nornir_nos: ios
+
+usa:
+  groups:
+    - ios
+    - global
