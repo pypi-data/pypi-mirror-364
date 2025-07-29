@@ -1,0 +1,138 @@
+[project]
+dynamic = [ "classifiers" ]
+name = "elemental-agents"
+description = "Multi-agent Framework for conversational collaborative AI agents for task automation."
+version = "0.1.6"
+license = "MIT"
+license-files = ["LICENSE.md"]
+requires-python = ">=3.12"
+authors = [
+    {name="Marcin Ziolkowski", email="mz@attoagents.io"}
+    ]
+maintainers = [
+    {name="Marcin Ziolkowski", email="mz@attoagents.io"}
+    ]
+readme = "README.md"
+keywords = ["python", "AI", "agents", "multi-agent", "conversational", "automation", "task", "collaborative", "framework"]
+
+[project.urls]
+homepage = "https://attoagents.io/elemental"
+issues = "https://github.com/AttoAgents/elemental/issues"
+documentation = "https://attoagents.io/elemental/documentation"
+repository = "https://github.com/AttoAgents/elemental.git"
+
+[tool.poetry]
+classifiers = [
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Human Machine Interfaces"
+]
+
+[build-system]
+requires = ["poetry"]
+
+[tool.poetry.dependencies]
+python = ">=3.12"
+loguru = ">=0.7.2"
+python-socketio = ">=5.12.1"
+pydantic-settings = ">=2.5.2"
+openai = ">=1.97.1"
+ollama = ">=0.5.1"
+pydantic = ">=2.11.7"
+google-api-python-client = ">=2.146.0"
+SQLAlchemy = ">=2.0.29"
+PyYAML = ">=6.0.1"
+pgvector = ">=0.4.1"
+Jinja2 = ">=3.1.6"
+beautifulsoup4 = ">=4.13.4"
+chromadb = ">=1.0.15"
+requests = ">=2.31.0"
+rich = ">=13.7.1"
+wikipedia-api = ">=0.7.1"
+python-docx = ">=1.1.2"
+docker = ">=7.1.0"
+click = ">=8.1.7"
+anthropic = ">=0.58.2"
+mcp = ">=1.12.1"
+aiohttp = ">=3.11.12"
+urllib3 = ">=2.3.0"
+markitdown = {version = ">=0.1.1", extras = ["pdf", "docx", "pptx", "xlsx"]}
+boto3 = ">=1.38.40"
+google-genai = ">=1.26.0"
+
+[poetry.group.dev.dependencies]
+pytest = ">=7.0"
+pytest-cov = ">=6.2.1"
+black = ">=23.0"
+pylint = ">=2.15"
+mypy = ">=1.1"
+flake8 = ">=6.0.0"
+isort = ">=5.10.0"
+
+[poetry.group.llama.dependencies]
+llama_cpp_python = "^0.3.1"
+
+[poetry.group.llama]
+optional = true
+
+
+[tool.black]
+line-length = 88
+target-version = ['py312']
+
+[tool.pylint]
+disable = [
+    "too-few-public-methods", 
+    "ungrouped-imports",
+    "unsupported-membership-test",
+    "inconsistent-return-statements",
+    "too-many-locals",
+    "too-many-branches",
+    "import-outside-toplevel",
+    "no-member",
+    "broad-exception-caught",
+]
+
+[tool.coverage.report]
+show_missing = true
+
+[tool.coverage.run]
+source = ["elemental"]
+
+[tool.mypy]
+ignore_missing_imports = true
+strict_optional = false
+disallow_untyped_defs = true
+plugins = ["sqlalchemy.ext.mypy.plugin"]
+show_error_codes = true
+strict = false
+
+[tool.isort]
+profile = "black"  
+line_length = 88
+known_first_party = ["elemental_agents"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-v",
+    "--tb=short",
+    "--strict-markers",
+    "--disable-warnings",
+    "--cov=elemental_agents",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+]
+asyncio_mode = "auto"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning"
+]
