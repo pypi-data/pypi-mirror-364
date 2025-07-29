@@ -1,0 +1,65 @@
+{
+  "$id": "https://git.iem.at/zmoelnig/sardinecake/-/blob/main/schema/sardineconfig.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "sardineconfig",
+  "description": "configuration required for interaction with a VM",
+  "type": "object",
+  "properties": {
+    "users": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/user"
+      }
+    },
+    "services": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/service"
+      }
+    }
+  },
+  "$defs": {
+    "user": {
+      "type": "object",
+      "required": [
+        "username",
+        "password"
+      ],
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "account name"
+        },
+        "password": {
+          "type": "string",
+          "description": "password for the account"
+        }
+      }
+    },
+    "service": {
+      "type": "object",
+      "required": [
+        "service",
+        "port",
+        "protocol"
+      ],
+      "properties": {
+        "service": {
+          "type": "string",
+          "description": "(IANA) service name"
+        },
+        "port": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 65535
+        },
+        "protocol": {
+          "enum": [
+            "tcp",
+            "udp"
+          ]
+        }
+      }
+    }
+  }
+}
