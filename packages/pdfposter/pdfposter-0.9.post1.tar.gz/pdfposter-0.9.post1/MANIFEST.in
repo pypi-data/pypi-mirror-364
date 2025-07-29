@@ -1,0 +1,11 @@
+graft docs
+prune docs/_build
+include CHANGES
+include COPYING
+include INSTALL
+include README.txt
+include pdfposter.rst
+exclude projectlogo.*
+exclude .gitignore .gitattributes
+global-exclude SConstruct SConscript
+global-exclude *~ .\#* \#*\#
