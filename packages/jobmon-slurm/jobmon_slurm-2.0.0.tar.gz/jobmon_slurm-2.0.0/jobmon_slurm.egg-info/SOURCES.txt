@@ -1,0 +1,13 @@
+MANIFEST.in
+README.md
+setup.py
+jobmon_pkg/__init__.py
+jobmon_pkg/cli.py
+jobmon_pkg/scripts/jobmon.sh
+jobmon_slurm.egg-info/PKG-INFO
+jobmon_slurm.egg-info/SOURCES.txt
+jobmon_slurm.egg-info/dependency_links.txt
+jobmon_slurm.egg-info/entry_points.txt
+jobmon_slurm.egg-info/requires.txt
+jobmon_slurm.egg-info/top_level.txt
+tests/test_cli.py

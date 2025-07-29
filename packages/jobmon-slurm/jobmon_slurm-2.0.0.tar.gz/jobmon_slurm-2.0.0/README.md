@@ -1,0 +1,138 @@
+# jobmon-slurm: Enhanced Universal SLURM Job Monitor
+
+[![PyPI version](https://badge.fury.io/py/jobmon-slurm.svg)](https://badge.fury.io/py/jobmon-slurm)
+[![Python 3.6+](https://img.shields.io/badge/python-3.6+-blue.svg)](https://www.python.org/downloads/)
+
+A robust, user-friendly SLURM job monitoring utility that handles job name truncation, detects job completion status, and provides intelligent feedback for HPC environments.
+
+## 🚀 Quick Start
+
+```bash
+# Install (no admin required)
+pip install --user jobmon-slurm
+
+# Monitor all your jobs
+jm
+
+# Monitor specific job pattern (handles SLURM truncation)
+jm dual_env_audit
+
+# Monitor specific job ID
+jm 41005547
+
+# Quiet mode
+jq pattern
+
+# Debug mode for troubleshooting
+jm -d pattern
+```
+
+## ✨ Features
+
+### Smart Pattern Matching
+- **Handles SLURM job name truncation automatically**
+- `jm dual_env_audit` works even when SLURM shows `dual_env`
+- Progressive fallback strategies (exact → shortened → partial)
+
+### Enhanced Job Completion Detection
+- **Uses `sacct` to check job history when queue is empty**
+- Detects quickly-completed jobs that finish before monitoring starts
+- Shows job exit codes and completion timestamps
+
+### Intelligent User Feedback
+- **🎯 COMPLETED**: Job finished successfully
+- **🛑 CANCELLED**: Job cancelled via `scancel`
+- **❌ FAILED**: Job failed during execution
+- **⏰ TIMEOUT**: Job exceeded time limit
+- **🔄 RUNNING**: Job currently executing
+
+### Better Monitoring Experience
+- **Real-time transitions**: Automatically moves from queue monitoring to output viewing
+- **Helpful suggestions**: When searches fail, provides actionable alternatives
+- **Debug mode**: `jm -d pattern` shows detailed search process
+
+## 📋 Usage Examples
+
+```bash
+# Basic monitoring
+jm                      # Monitor all your jobs
+jm foldx               # Monitor jobs matching "foldx"
+jm 41005547            # Monitor specific job ID
+
+# Enhanced features
+jm dual_env_audit      # Works despite SLURM name truncation
+jm -d pattern          # Debug mode shows search process
+jm -q pattern          # Quiet mode (less verbose)
+jq pattern             # Short alias for quiet mode
+
+# Advanced options
+jm -u username         # Monitor another user's jobs
+jm -i 5                # 5-second refresh interval
+```
+
+## 🔧 Installation Options
+
+### Option 1: pip (Recommended)
+```bash
+pip install --user jobmon-slurm
+```
+
+### Option 2: Development Install
+```bash
+git clone https://github.com/omonidat/jobmon-slurm.git
+cd jobmon-slurm
+pip install --user -e .
+```
+
+### Option 3: Direct Script Install
+```bash
+# Download and install manually
+wget https://raw.githubusercontent.com/omonidat/jobmon-slurm/main/install.sh
+bash install.sh
+```
+
+## 🏗️ Requirements
+
+- **SLURM environment** (uses `squeue`, `sacct`, `scancel`)
+- **Python 3.6+** (for package management only)
+- **Standard Unix utilities** (`bash`, `tail`, `grep`, etc.)
+
+## 🧪 Examples in Action
+
+### Cancelled Job Detection
+```bash
+$ jm my_job
+# Start monitoring...
+# User runs: scancel 41005547
+# Monitor output:
+==========================================
+🛑 JOB CANCELLED at Wed Jul 23 10:15:42 2025
+==========================================
+💡 This job was cancelled (likely via 'scancel' command)
+   If this was intentional, no further action needed
+   If accidental, you may want to resubmit the job
+```
+
+### Smart Pattern Matching
+```bash
+$ jm dual_environment_audit_script
+# Automatically tries:
+# 1. "dual_environment_audit_script" (exact)
+# 2. "dual_env" (SLURM truncated)
+# 3. "dual" (shorter pattern)
+# Shows which pattern worked in debug mode
+```
+
+## 🤝 Contributing
+
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+## 📄 License
+
+MIT License - see [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+- **Issues**: [GitHub Issues](https://github.com/omonidat/jobmon-slurm/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/omonidat/jobmon-slurm/discussions)
+- **Documentation**: [Full docs](https://github.com/omonidat/jobmon-slurm/wiki)

@@ -1,0 +1,6 @@
+
+[dev]
+wheel
+twine
+pytest
+black
