@@ -1,0 +1,118 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "psqlpy-sqlalchemy"
+version = "0.1.0a9"
+description = "SQLAlchemy dialect for psqlpy PostgreSQL driver"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "psqlpy-sqlalchemy contributors"}
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Database",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+keywords = ["postgresql", "psqlpy", "sqlalchemy", "database", "async"]
+requires-python = ">=3.8"
+dependencies = [
+    "sqlalchemy>=2.0.0",
+    "psqlpy>=0.11.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "greenlet>=1.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+    "sqlmodel>=0.0.8",
+    "pytest-cov",
+    "fastapi>=0.68.0",
+    "starlette>=0.14.0",
+    "fastapi-async-sqlalchemy>=0.3.0",
+]
+fastapi = [
+    "fastapi>=0.68.0",
+    "starlette>=0.14.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/h0rn3t/psqlpy-sqlalchemy"
+Repository = "https://github.com/h0rn3t/psqlpy-sqlalchemy"
+Issues = "https://github.com/h0rn3t/psqlpy-sqlalchemy/issues"
+
+[project.entry-points."sqlalchemy.dialects"]
+"postgresql.psqlpy" = "psqlpy_sqlalchemy.dialect:PsqlpyDialect"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["psqlpy_sqlalchemy*"]
+
+[tool.ruff]
+line-length = 79
+target-version = "py38"
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "UP", # pyupgrade
+]
+ignore = [
+    "E501", # line too long (handled by formatter)
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = false
+warn_unused_configs = true
+disallow_untyped_defs = false
+disallow_any_generics = false
+disallow_untyped_calls = false
+disallow_incomplete_defs = false
+check_untyped_defs = true
+disallow_untyped_decorators = false
+no_implicit_optional = false
+warn_redundant_casts = true
+warn_unused_ignores = false
+warn_no_return = true
+warn_unreachable = false
+strict_equality = false
+show_error_codes = true
+show_column_numbers = true
+
+# Per-module options
+[[tool.mypy.overrides]]
+module = "psqlpy.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "psqlpy_sqlalchemy.*"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+ignore_errors = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
