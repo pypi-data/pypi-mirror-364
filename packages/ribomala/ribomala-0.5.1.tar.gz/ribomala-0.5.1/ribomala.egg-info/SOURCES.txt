@@ -1,0 +1,15 @@
+LICENSE
+README.md
+pyproject.toml
+ribomala/__init__.py
+ribomala/analysis.py
+ribomala/index.py
+ribomala/main.py
+ribomala/qc.py
+ribomala.egg-info/PKG-INFO
+ribomala.egg-info/SOURCES.txt
+ribomala.egg-info/dependency_links.txt
+ribomala.egg-info/requires.txt
+ribomala.egg-info/top_level.txt
+tests/test_index.py
+tests/test_qc.py

@@ -1,0 +1,45 @@
+Metadata-Version: 2.4
+Name: ribomala
+Version: 0.5.1
+Summary: Ribomala is a python package to efficiently analyze ribosome profiling data.
+Author: Puneet Sharma
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/ps-puneetsharma/ribomala
+Project-URL: Documentation, https://ps-puneetsharma.github.io/ribomala/
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy>=2.2.5
+Requires-Dist: plotly>=6.0.1
+Requires-Dist: polars>=1.29.0
+Requires-Dist: pysam>=0.23.0
+Requires-Dist: pytest>=8.3.5
+Provides-Extra: docs
+Requires-Dist: mkdocs>=1.6.1; extra == "docs"
+Requires-Dist: mkdocs-material>=9.6.15; extra == "docs"
+Requires-Dist: mkdocstrings[python]>=0.29.1; extra == "docs"
+Dynamic: license-file
+
+# Ribomala
+Ribomala is a python package to efficiently analyze ribosome profiling data.
+
+# Features
+- Minimal set of, well maintained, dependencies.
+- Uses python polars for lightening fast data processing
+- OS agnostic
+- Provides ribosome reading frame and periodicity distribution.
+- Provides ribosome occupancy values for E-, P- and A-sites
+
+# Installation
+
+```bash
+
+pip install ribomala
+
+```
+
+# Documentation
+
+Documentation can be accessed [here](https://ps-puneetsharma.github.io/ribomala/). It will walk you through ribosome profiling data analysis from scratch.
