@@ -1,0 +1,13 @@
+datalad_publicneuro/__about__.py,sha256=miSsqPy2PFJ18TW9kocQJLcv4HFpkfQhcTzgAO-GTVE,22
+datalad_publicneuro/__init__.py,sha256=Xr8osrfCYFFIjyFDCfRwo1dmv5VTAO3QmuhRVebINMc,369
+datalad_publicneuro/annexremotes/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+datalad_publicneuro/annexremotes/uncurl_publicneuro.py,sha256=aX3MYJhMzAe2UVhttapiRZFvveNuZnrQVz0kDE4gV0U,531
+datalad_publicneuro/tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+datalad_publicneuro/url_operations/__init__.py,sha256=IYuMyHzPSVwdBawhmTFvIxV-iWn4hJ_B9jQKUTnQSmc,98
+datalad_publicneuro/url_operations/publicneuro.py,sha256=x18XL8uiyaU9m8VrlkfvfoNF5aWlqiEue2ntl8s57dg,11469
+datalad_publicneuro/url_operations/publicneuro_ca.pem,sha256=A34jSK-Ah_EJ0DVMDUElSFOEfDTAH4UOkYuwBKYDxM0,1318
+datalad_publicneuro-0.0.2.dist-info/METADATA,sha256=0PCu5JliYvI8Rze5oBHQSCwwwuuEW_LiH7ydlooNQRQ,3264
+datalad_publicneuro-0.0.2.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+datalad_publicneuro-0.0.2.dist-info/entry_points.txt,sha256=mwrfv4pW_5bS5izjfd_YfW_y5ZuQwek6vLrVdLlak3U,113
+datalad_publicneuro-0.0.2.dist-info/licenses/LICENSE,sha256=lmGB0Aq-4_Ay71v0ThT2gI0vqCz5hlzjB5359u9UPts,1300
+datalad_publicneuro-0.0.2.dist-info/RECORD,,

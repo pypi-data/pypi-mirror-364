@@ -1,0 +1,78 @@
+Metadata-Version: 2.4
+Name: datalad-publicneuro
+Version: 0.0.2
+Summary: A DataLad extension that simplifies access to PublicnEUro datasets
+Project-URL: Homepage, https://github.com/datalad/datalad-publicneuro
+Project-URL: Documentation, https://github.com/datalad/datalad-publicneuro#readme
+Project-URL: Issues, https://github.com/datalad/datalad-publicneuro/issues
+Project-URL: Source, https://github.com/datalad/datalad-publicneuro
+Project-URL: Changelog, https://github.com/datalad/datalad-publicneuro/blob/main/CHANGELOG.md
+Author-email: The DataLad Team and Contributors <team@datalad.org>
+License-Expression: MIT
+License-File: LICENSE
+Keywords: PublicnEUro,datalad,git,git-annex
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Version Control
+Classifier: Topic :: Software Development :: Version Control :: Git
+Requires-Python: >=3.9
+Requires-Dist: annexremote
+Requires-Dist: datalad
+Requires-Dist: datalad-next
+Requires-Dist: datasalad
+Description-Content-Type: text/markdown
+
+# DataLad PublicnEUro extension
+
+This repository contains a datalad extension that simplifies data download
+from PublicnEUro collections.
+
+
+# Installation
+
+Install the extension via pip (a virtual environment is recommended):
+
+```bash
+> pip install datalad-publicneuro
+```
+
+# Usage
+The extension provides the new git annex special remote `uncurl-publicneuro`. To use it, activate the special remote in your DataLad dataset:
+
+```bash
+git annex initremote uncurl-publicneuro type=external externaltype=uncurl-publicneuro encryption=none
+```
+
+The `uncurl-publicneuro` special remote handles URLs with the following structure (where `<dataset-id>` is the PublicnEUro ID of the dataset, e.g., `PN000001`, and `path` is the absolute path of a file within the dataset, e.g., `/README.txt`):
+
+```
+publicneuro+https://<dataset-id><path>
+```
+
+The following command adds a reference to a file in a PublicnEUro dataset and downloads the file content (here the file `/README.txt` of dataset `PN000001` is added with the local name `README.txt`):
+
+```bash
+> git annex addurl --file README.txt publicneuro+https://PN000001/README.txt
+```
+
+The command will prompt for credentials if no credential are available yet. After successful authentication, the file will be downloaded and added to the annex.
+Valid credentials will be stored in DataLad's credential store and automatically used for subsequent `addurl`-commands.
+
+
+# Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) if you are interested in internals or
+contributing to the project.
