@@ -1,0 +1,11 @@
+fastcore>=1.7.28
+httpx
+cryptography
+
+[dev]
+nbdev
+claudette
+fewsats
+twine
+python-dotenv
+streamlit
