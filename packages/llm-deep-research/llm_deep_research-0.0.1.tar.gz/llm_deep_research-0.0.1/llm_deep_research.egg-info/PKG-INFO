@@ -1,0 +1,74 @@
+Metadata-Version: 2.4
+Name: llm-deep-research
+Version: 0.0.1
+Summary: LLM plugin of various deep research implementations
+Author-email: nikkie <takuyafjp+develop@gmail.com>
+License-Expression: Apache-2.0
+Project-URL: Homepage, https://github.com/ftnext/llm-deep-research
+Project-URL: Changelog, https://github.com/ftnext/llm-deep-research/releases
+Project-URL: Issues, https://github.com/ftnext/llm-deep-research/issues
+Project-URL: CI, https://github.com/ftnext/llm-deep-research/actions
+Keywords: llm,deep research
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Text Processing :: Linguistic
+Classifier: Topic :: Utilities
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: genai-processors>=1.0.5
+Requires-Dist: llm
+Provides-Extra: test
+Requires-Dist: pytest; extra == "test"
+Dynamic: license-file
+
+# llm-deep-research
+
+[![PyPI](https://img.shields.io/pypi/v/llm-deep-research.svg)](https://pypi.org/project/llm-deep-research/)
+[![Changelog](https://img.shields.io/github/v/release/ftnext/llm-deep-research?include_prereleases&label=changelog)](https://github.com/ftnext/llm-deep-research/releases)
+[![Tests](https://github.com/ftnext/llm-deep-research/actions/workflows/test.yml/badge.svg)](https://github.com/ftnext/llm-deep-research/actions/workflows/test.yml)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/ftnext/llm-deep-research/blob/main/LICENSE)
+
+
+
+## Installation
+
+Install this plugin in the same environment as [LLM](https://llm.datasette.io/).
+```bash
+llm install llm-deep-research
+```
+## Usage
+
+### GenAI Processors' research
+
+https://github.com/google-gemini/genai-processors/tree/main/examples/research
+
+```
+export LLM_GEMINI_KEY=your_api_key_here
+
+llm -m genai-processors-research 'Research the best things about owning dalmatians!'
+```
+
+Also supports `--async`.
+
+## Development
+
+To set up this plugin locally, first checkout the code. Then create a new virtual environment:
+```bash
+cd llm-deep-research
+```
+Now create a new virtual environment and install the dependencies and test dependencies:
+```bash
+uv sync --extra test
+```
+To run the tests:
+```bash
+uv run pytest
+```

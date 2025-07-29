@@ -1,0 +1,11 @@
+LICENSE
+README.md
+llm_deep_research.py
+pyproject.toml
+llm_deep_research.egg-info/PKG-INFO
+llm_deep_research.egg-info/SOURCES.txt
+llm_deep_research.egg-info/dependency_links.txt
+llm_deep_research.egg-info/entry_points.txt
+llm_deep_research.egg-info/requires.txt
+llm_deep_research.egg-info/top_level.txt
+tests/test_deep_research.py
