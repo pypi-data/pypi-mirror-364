@@ -1,0 +1,4 @@
+python-ldap>=3.4.4
+case-insensitive-dictionary>=0.2.1
+ldap-filter>=0.2.0
+asn1>=3.1.0
