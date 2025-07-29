@@ -1,0 +1,2 @@
+[console_scripts]
+m4b-tools = m4b_tools.cli:main
