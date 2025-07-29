@@ -1,0 +1,15 @@
+simple_blast/__init__.py,sha256=GNwMLtfJUle4MWofiRauui9mJAWyMAr-6KQdcLeIAlo,344
+simple_blast/blast_command.py,sha256=yx6_qlH6WugOyIr0jpXE9BR80wcBrNygwRgdEvKnIiQ,4812
+simple_blast/blastdb.py,sha256=j661QVX-6Qy_8-tbwwDWZQDA6TvSHGBconWM6Q3wAmw,2202
+simple_blast/blastdb_cache.py,sha256=smapRaZdNrP_hrAH9GX3QjVDJJLe6Aue9ocpo8Bx8jA,7238
+simple_blast/blasting.py,sha256=xUN4McZvCjWdq6myMvmMHvIk5VVuodf9I-sGoswZhVo,17679
+simple_blast/convert.py,sha256=28FAAWu9Rj7_w8Wy9qxqkX-ei69FJIpI4g-5tILWB0s,2502
+simple_blast/fifo.py,sha256=iNArSIIoRcmmUrx3Ca9iKjoNw37pwEyv138WNY5yVVs,10682
+simple_blast/multiformat.py,sha256=SV5bb5luF761Qb_XZA3FqMuqT7kH-Uvyn1sQdWO7FHg,6476
+simple_blast/sam.py,sha256=snc6Bkh2FQldGv1w85hS7ahtKdvnBD4SWp1q7AWQ_s8,7275
+simple_blast/seqs.py,sha256=vuaDooOJnIm0kXe7GEhRp-vUNKP09vIet_xSvkkCspA,1128
+simple_blast-0.7.5.dist-info/licenses/LICENSE,sha256=0HR5AzHO9RgbSIiR7fTm-eZet9uSzdhsCBDfoSkTrC4,1068
+simple_blast-0.7.5.dist-info/METADATA,sha256=j4Zdq79uTkwo_YpM4_MI2fwNTralHqlGdselDrKMSXs,9124
+simple_blast-0.7.5.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+simple_blast-0.7.5.dist-info/top_level.txt,sha256=04R1NBDHdJzBYEisYYqDBFgkFDkSzkNexNexZg_oY3g,13
+simple_blast-0.7.5.dist-info/RECORD,,
