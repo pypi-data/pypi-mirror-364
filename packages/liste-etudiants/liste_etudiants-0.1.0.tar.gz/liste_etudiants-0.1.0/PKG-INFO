@@ -1,0 +1,24 @@
+Metadata-Version: 2.4
+Name: liste_etudiants
+Version: 0.1.0
+Summary: Package pour générer des noms d'étudiants aléatoires
+Home-page: https://github.com/tongithub/liste_etudiants
+Author: Monique
+Author-email: ton.email@example.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: Faker
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+un package qui genere le no, des etudiants

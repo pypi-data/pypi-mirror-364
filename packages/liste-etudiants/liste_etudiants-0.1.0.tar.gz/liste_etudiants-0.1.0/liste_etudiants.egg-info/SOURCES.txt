@@ -1,0 +1,12 @@
+README.md
+setup.py
+liste_etudiants/__init__.py
+liste_etudiants/cli.py
+liste_etudiants/etudiant.py
+liste_etudiants/generateur.py
+liste_etudiants.egg-info/PKG-INFO
+liste_etudiants.egg-info/SOURCES.txt
+liste_etudiants.egg-info/dependency_links.txt
+liste_etudiants.egg-info/entry_points.txt
+liste_etudiants.egg-info/requires.txt
+liste_etudiants.egg-info/top_level.txt
