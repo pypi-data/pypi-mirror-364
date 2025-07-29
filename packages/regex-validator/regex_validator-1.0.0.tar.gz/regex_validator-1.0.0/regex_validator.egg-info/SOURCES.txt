@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+setup.cfg
+regex_tester/__init__.py
+regex_tester/cli.py
+regex_tester/gui.py
+regex_validator.egg-info/PKG-INFO
+regex_validator.egg-info/SOURCES.txt
+regex_validator.egg-info/dependency_links.txt
+regex_validator.egg-info/entry_points.txt
+regex_validator.egg-info/top_level.txt
