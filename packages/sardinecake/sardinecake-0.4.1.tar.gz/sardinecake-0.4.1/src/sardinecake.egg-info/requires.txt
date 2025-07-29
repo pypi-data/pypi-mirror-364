@@ -1,0 +1,4 @@
+libvirt-python>=10
+python-jsonschema>=4
+python-magic>=0.4
+paramiko>=3

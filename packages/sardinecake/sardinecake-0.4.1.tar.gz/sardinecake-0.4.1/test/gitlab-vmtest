@@ -1,0 +1,90 @@
+#!/bin/sh
+
+: "${CI_JOB_ID:="test$(date +%s)"}"
+
+usage() {
+    cat >/dev/stderr <<EOF
+usage: $0 [ OPTIONS ] [<image>]
+
+       starts a VM based on the given image
+
+OPTIONS
+       -u        allow running as user
+       -c <conf> set IEMCI_CONFIGURATIONS to <conf>
+       -t <tag>  use the given tag for the image
+       -n        dry run
+EOF
+}
+
+image="registry.git.iem.at/devtools/sardinecake/windows"
+tag=""
+allow_user=false
+dry_run=false
+while getopts "huc:t:n" opt; do
+    case $opt in
+        h)
+            usage
+            exit 0
+            ;;
+        u)
+            allow_user=true
+            ;;
+        c)
+            export CUSTOM_ENV_IEMCI_CONFIGURATIONS="${OPTARG}"
+            export IEMCI_CONFIGURATIONS="${OPTARG}"
+            ;;
+        t)
+            tag="${OPTARG}"
+            ;;
+        n)
+            dry_run=true
+            ;;
+        *)
+            usage
+            exit 1
+            ;;
+    esac
+done
+shift $((OPTIND-1))
+
+if [  -n "$1" ]; then
+    image="$1"
+fi
+
+if [ -n "${tag}" ]; then
+    image="${image%:*}"
+fi
+: "${tag:=latest}"
+
+if [ "${image}" = "${image%:*}" ]; then
+    # no tag given
+    image="${image}:${tag}"
+fi
+
+: "${CI_JOB_IMAGE:=${image}}"
+
+
+export CI_JOB_ID
+export CI_JOB_IMAGE
+
+if [ "${dry_run}" = "true" ]; then
+    allow_user=true
+fi
+
+if [ "${USER}" != "root" ]; then
+    echo "this should be run as root" 1>&2
+    "${allow_user}" || exit 1
+fi
+
+
+executor=gitlab-sardinecake-executor
+test ! -x "./gitlab-sardinecake-executor" || executor="./gitlab-sardinecake-executor"
+
+echo "running ${CI_JOB_IMAGE} as ${CI_JOB_ID}"
+if "${dry_run}"; then
+    echo "CI_JOB_ID=${CI_JOB_ID} CI_JOB_IMAGE=${CI_JOB_IMAGE} ${IEMCI_CONFIGURATIONS:+IEMCI_CONFIGURATIONS=${IEMCI_CONFIGURATIONS}} ${executor} prepare -v"
+else
+    "${executor}" prepare -v
+fi
+
+#CUSTOM_ENV_CI_JOB_ID=666 CUSTOM_ENV_CI_JOB_IMAGE=registry.git.iem.at/devtools/sardinecake/windows:latest gitlab-sardinecake-executor prepare -v
