@@ -1,0 +1,10 @@
+pytensor
+numpy
+pymc
+
+[dev]
+pre-commit
+pytest
+pytest-cov
+versioneer
+scikit-learn
