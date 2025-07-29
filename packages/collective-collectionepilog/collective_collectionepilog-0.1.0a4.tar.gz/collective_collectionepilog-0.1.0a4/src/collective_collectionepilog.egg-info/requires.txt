@@ -1,0 +1,11 @@
+Products.CMFPlone
+plone.api
+plone.app.contenttypes
+
+[test]
+horse-with-no-namespace
+plone.app.testing
+plone.restapi[test]
+pytest
+pytest-cov
+pytest-plone>=0.5.0

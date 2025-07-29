@@ -1,0 +1,18 @@
+  include *.md
+  include *.yaml
+  include *.yml
+  include bobtemplate.cfg
+  include mx.ini
+  include *.lock
+  include .editorconfig
+  include .flake8
+  recursive-include news *.gitkeep
+  recursive-include src *.gitkeep
+  recursive-include src *.po
+  recursive-include src *.pot
+  recursive-include src *.pt
+  recursive-include src *.pyc
+  recursive-include src *.txt
+  recursive-include src *.xml
+  recursive-include src *.zcml
+  recursive-include tests *.py
