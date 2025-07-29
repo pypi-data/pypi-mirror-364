@@ -1,0 +1,291 @@
+IgnoredVulns = [
+    { id = "PYSEC-2021-878" },
+]
+
+[project]
+authors = [
+    { name = "sdn4z", email = "imsdn4z@gmail.com" },
+]
+requires-python = "<4,>=3.13"
+dependencies = [
+    "httpx<1.0.0,>=0.28.0",
+    "python-dotenv<2.0.0,>=1.1.1",
+    "click<9.0.0,>=8.1.7",
+    "stamina<26.0.0,>=25.1.0",
+    "pydantic-settings[dotenv]<3.0.0,>=2.9.1",
+    "tiktoken<1.0.0,>=0.9.0",
+    "tomlkit<1.0.0,>=0.13.3",
+    "ruff>=0.12.4",
+    "pydantic-ai-slim[google,openai]>=0.4.4",
+    "logfire>=3.25.0",
+]
+name = "lightman_ai"
+version = "0.17.0"
+description = "Cybersecurity news aggregator."
+readme = "README.md"
+
+[project.scripts]
+lightman-ai = "lightman_ai.cli:entry_point"
+
+[project.optional-dependencies]
+test = [
+    "pytest<9.0.0,>=8.0.0",
+    "pytest-cov<6.0.0,>=5.0.0",
+    "pytest-asyncio<1.0.0,>=0.26.0",
+]
+lint = [
+    "mypy<2.0.0,>=1.1.1",
+    "ruff<1.0.0,>=0.11.0",
+]
+local = [
+    "ipdb<1.0.0,>=0.13.13",
+    "pdbpp<1.0.0,>=0.11.6",
+    "pre-commit<4.0.0,>=3.2.2",
+    "commitizen<5.0.0,>=4.8.3",
+    "codespell<3.0.0,>=2.2.4",
+]
+
+[build-system]
+requires = [
+    "pdm-backend",
+]
+build-backend = "pdm.backend"
+
+[tool.pytest.ini_options]
+addopts = "    -s\n    --cov\n    --cov-report term-missing\n    --cov-report=xml:./tests/coverage.xml\n    --junitxml=./tests/junit.xml\n"
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "session"
+
+[tool.logfire]
+ignore_no_config = true
+
+[tool.ruff]
+target-version = "py312"
+line-length = 120
+src = [
+    "src",
+    "tests",
+]
+
+[tool.ruff.lint]
+select = [
+    "B",
+    "C",
+    "E",
+    "W",
+    "F",
+    "I",
+    "B",
+    "D",
+    "I",
+    "C4",
+    "SIM",
+    "N",
+    "TRY",
+    "UP",
+    "PT",
+    "TCH",
+    "PL",
+    "G",
+    "TID",
+]
+ignore = [
+    "E501",
+    "D1",
+    "TRY003",
+    "PLR0913",
+    "B008",
+    "D206",
+    "W191",
+    "D203",
+    "D211",
+    "D212",
+    "UP031",
+    "PLR2004",
+]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.lint.pydocstyle]
+convention = "pep257"
+
+[tool.ruff.lint.isort]
+known-third-party = [
+    "lightman_ai",
+    "tests",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = [
+    "ANN",
+    "S",
+]
+
+[tool.ruff.lint.flake8-tidy-imports.banned-api."dateutil.tz"]
+msg = "Use `zoneinfo` instead."
+
+[tool.ruff.lint.flake8-tidy-imports.banned-api.pytz]
+msg = "Use `zoneinfo` instead."
+
+[tool.mypy]
+python_version = "3.13"
+mypy_path = "src"
+strict = true
+pretty = true
+warn_unused_ignores = true
+enable_error_code = [
+    "explicit-override",
+]
+
+[tool.coverage.run]
+omit = [
+    "tests/*",
+    "eval/*",
+]
+
+[tool.coverage.report]
+fail_under = 95
+exclude_lines = [
+    "if TYPE_CHECKING:",
+    "pragma: no cover",
+    "raise NotImplementedError",
+]
+
+[tool.commitizen]
+version_files = [
+    "pyproject.toml:^version",
+]
+name = "cz_customize"
+version = "0.17.0"
+tag_format = "v$version"
+
+[tool.commitizen.customize]
+message_template = "{{prefix}}{% if scope %}({{scope}}){% endif %}: {{subject}}{% if body %}\n\n{{body}}{% endif %}{% if is_breaking_change %}\n\nBREAKING CHANGE: {{footer}}{% else %}\n\n{{footer}}{% endif %}"
+bump_pattern = "^(BREAKING[\\-\\ ]CHANGE|feat|fix|refactor|perf|ci|docs|style|test|chore|revert|build)(\\(.+\\))?(!)?"
+change_type_order = [
+    "BREAKING CHANGE",
+    "Feat",
+    "Fix",
+    "Refactor",
+    "Perf",
+    "CI",
+    "Docs",
+    "Technical",
+    "Tests",
+]
+bump_message = "bump: version $current_version → $new_version"
+schema = "<type>(<scope>): <subject>\n<BLANK LINE>\n<body>\n<BLANK LINE>\n(BREAKING CHANGE: )<footer>"
+schema_pattern = "(?s)(build|ci|docs|feat|fix|perf|refactor|style|test|chore|revert|bump)(\\(\\S+\\))?!?:( [^\\n\\r]+)((\\n\\n.*)|(\\s*))?$"
+commit_parser = "^(?P<change_type>feat|fix|refactor|perf|BREAKING CHANGE|ci|docs|style|test|chore|revert|build)(?:\\((?P<scope>[^()\\r\\n]*)\\)|\\()?(?P<breaking>!)?:\\s(?P<message>.*)?"
+version_parser = "(?P<version>([0-9]+)\\.([0-9]+)\\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?(?:\\+[0-9A-Za-z-]+)?(\\w+)?)"
+changelog_pattern = "^(BREAKING[\\-\\ ]CHANGE|feat|fix|refactor|perf|ci|docs|style|test|chore|revert|build)(\\(.+\\))?(!)?"
+
+[tool.commitizen.customize.bump_map]
+"^.+!$" = "MAJOR"
+"^BREAKING[\\-\\ ]CHANGE" = "MAJOR"
+"^feat" = "MINOR"
+"^fix" = "PATCH"
+"^refactor" = "PATCH"
+"^perf" = "PATCH"
+"^ci" = "PATCH"
+"^docs" = "PATCH"
+"^style" = "PATCH"
+"^test" = "PATCH"
+"^chore" = "PATCH"
+"^revert" = "PATCH"
+"^build" = "PATCH"
+
+[tool.commitizen.customize.change_type_map]
+feat = "Feat"
+fix = "Fix"
+refactor = "Refactor"
+perf = "Perf"
+ci = "CI"
+docs = "Docs"
+style = "Technical"
+test = "Tests"
+chore = "Technical"
+revert = "Fix"
+build = "Technical"
+
+[[tool.commitizen.customize.questions]]
+type = "list"
+name = "prefix"
+message = "Select the type of change you are committing"
+
+[[tool.commitizen.customize.questions.choices]]
+value = "fix"
+name = "fix: A bug fix. Correlates with PATCH in SemVer"
+key = "x"
+
+[[tool.commitizen.customize.questions.choices]]
+value = "feat"
+name = "feat: A new feature. Correlates with MINOR in SemVer"
+key = "f"
+
+[[tool.commitizen.customize.questions.choices]]
+value = "docs"
+name = "docs: Documentation only changes"
+key = "d"
+
+[[tool.commitizen.customize.questions.choices]]
+value = "style"
+name = "style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)"
+key = "s"
+
+[[tool.commitizen.customize.questions.choices]]
+value = "refactor"
+name = "refactor: A code change that neither fixes a bug nor adds a feature"
+key = "r"
+
+[[tool.commitizen.customize.questions.choices]]
+value = "perf"
+name = "perf: A code change that improves performance"
+key = "p"
+
+[[tool.commitizen.customize.questions.choices]]
+value = "test"
+name = "test: Adding missing or correcting existing tests"
+key = "t"
+
+[[tool.commitizen.customize.questions.choices]]
+value = "build"
+name = "build: Changes that affect the build system or external dependencies (example scopes: pip, docker, npm)"
+key = "b"
+
+[[tool.commitizen.customize.questions.choices]]
+value = "ci"
+name = "ci: Changes to our CI configuration files and scripts (example scopes: GitLabCI)"
+key = "c"
+
+[[tool.commitizen.customize.questions]]
+type = "input"
+name = "scope"
+message = "What is the scope of this change? ((story number, class or file name): (press [enter] to skip)\n"
+
+[[tool.commitizen.customize.questions]]
+type = "input"
+name = "subject"
+message = "Write a short and imperative summary of the code changes: (lower case and no period)\n"
+
+[[tool.commitizen.customize.questions]]
+type = "input"
+name = "body"
+message = "Provide additional contextual information about the code changes: (press [enter] to skip)\n"
+
+[[tool.commitizen.customize.questions]]
+type = "confirm"
+message = "Is this a BREAKING CHANGE? Correlates with MAJOR in SemVer"
+name = "is_breaking_change"
+default = false
+
+[[tool.commitizen.customize.questions]]
+type = "input"
+name = "footer"
+message = "Footer. Information about Breaking Changes and reference issues that this commit closes: (press [enter] to skip)\n"
+
+[tool.cruft]
+skip = [
+    "pyproject.toml",
+]
