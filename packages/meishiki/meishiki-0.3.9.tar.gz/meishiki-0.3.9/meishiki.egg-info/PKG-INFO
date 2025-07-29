@@ -1,0 +1,99 @@
+Metadata-Version: 2.4
+Name: meishiki
+Version: 0.3.9
+Summary: Calculation of Four Pillars of Destiny
+Home-page: 
+Author: tk42
+Author-email: nsplat+pip@gmail.com
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: jinja2>=2.11.2
+Requires-Dist: pyyaml>=5.3.1
+Requires-Dist: python-box>=5.2.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Meishiki
+
+[![Python test](https://github.com/tk42/meishiki/actions/workflows/test.yml/badge.svg)](https://github.com/tk42/meishiki/actions/workflows/test.yml) ![Python 3.7](https://img.shields.io/badge/python-3.7-00af00.svg) [![PyPI](https://img.shields.io/pypi/v/meishiki)](https://pypi.org/project/meishiki/) ![License: MIT](https://img.shields.io/badge/license-MIT-a000ff.svg) ![CodeStyle: black](https://img.shields.io/badge/code%20style-black-000000.svg)
+
+## Requirement
+
+- Python >= 3.7
+- jinja2
+- pyyaml
+- python-box
+
+## Quickstart
+
+```bash
+$ pip install meishiki
+```
+
+Then,
+
+```bash
+$ python3 ./generate_html.py YYYY-MM-DD HH:MM SEX
+```
+
+SEX should be specified when male = 0, female = 1
+
+## How to run MCP server
+
+This library is supported MCP server.
+
+```bash
+$ python3 -m venv .venv
+$ source .venv/bin/activate
+$ pip install meishiki fastmcp
+$ python3 ./mcp_server.py
+```
+
+and add the following to your ClaudeDesktop config file:
+
+```json
+{
+  "mcpServers": {
+    "meishiki": {
+      "name": "Meishiki Server",
+      "command": "{local repository}/meishiki/.venv/bin/python3",
+      "args": ["-u", "{local repository}/meishiki/mcp_server.py"],
+      "transport": "stdio"
+    }
+  }
+}
+```
+
+## Run tests
+
+### Test all
+
+```bash
+$ pip install -e .
+$ pytest --cov=meishiki ./tests
+```
+
+### Test specific
+
+```bash
+pytest -s tests/output/test_html.py::test_output_html_basic
+```
+
+## 節入り
+
+- [2026 年](https://eco.mtk.nao.ac.jp/koyomi/yoko/2026/rekiyou262.html)
+
+## TODO
+
+- [ ] 逆引きテーブル作成
+
+## Thanks
+
+@hajime-f/meishiki
