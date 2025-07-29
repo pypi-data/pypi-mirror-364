@@ -1,0 +1,22 @@
+[project]
+name = "whitedot"
+version = "1.7.0"
+description = "Whitedot is a cryptocurrency designed to be democratized through nodes, a semi-centralized server that cannot tamper with the system, and cryptography."
+authors = [
+    {name = "SeafoodStudios"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "requests (>=2.32.4,<3.0.0)",
+    "cryptography (>=45.0.5,<46.0.0)",
+    "send2trash (>=1.8.3,<2.0.0)"
+]
+
+[tool.poetry.scripts]
+whitedot = "whitedot.cli:main"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
