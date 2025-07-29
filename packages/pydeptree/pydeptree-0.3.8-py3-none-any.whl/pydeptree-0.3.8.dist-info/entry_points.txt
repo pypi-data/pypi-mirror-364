@@ -1,0 +1,4 @@
+[console_scripts]
+pydeptree = pydeptree.cli:cli
+pydeptree-advanced = pydeptree.cli_advanced:cli
+pydeptree-enhanced = pydeptree.cli_enhanced:cli
