@@ -1,0 +1,8 @@
+{
+    "name": "cloud-calc",
+    "version": "1.0.0",
+    "language": "python",
+    "entry": "main.py",
+    "description": "Modern ve profesyonel hesap makinesi uygulaması",
+    "dependencies": []
+} 
