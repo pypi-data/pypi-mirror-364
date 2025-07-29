@@ -1,0 +1,15 @@
+Magical_Cipher_Disk/__init__.py,sha256=0X8l0-b1FeABAqh08ABVPe_wy1DQDjJEGV1lZg32OAQ,220
+Magical_Cipher_Disk/cipher.py,sha256=CrwJLT3T1MdJOP5xYYoAnfXC0JWYq--l5xzqmS1E9aA,11166
+Magical_Cipher_Disk/cipher_io.py,sha256=7yDnW0TvuzBn1pJuyhhcbLJfZP5L2xI8-pfN3oJAmLw,5444
+Magical_Cipher_Disk/disk.py,sha256=XELxuA6hZSwLHUiWDV9LEo_Ox4wYKDMPuw8cryDPqL0,5498
+Magical_Cipher_Disk/stones_holder.py,sha256=wZzABJR3cluogAozDiX52N633jjGd-AhV9Xb4d7Eiks,7889
+Magical_Cipher_Disk/stones/__init__.py,sha256=ABC4NmEUrLEpS_ECJOXY5Tml6h0gOCO4c7wPuH8WMqk,129
+Magical_Cipher_Disk/stones/base.py,sha256=fPrGknV_5cHiqbSTmow9FBE80jzcmoHMJXOPs4CqtuI,1942
+Magical_Cipher_Disk/stones/blue.py,sha256=VYT7eYeEfpCsaO_KSXyMjTcbc5qwJKyg-PXH88b2fCM,635
+Magical_Cipher_Disk/stones/red_green.py,sha256=0GtN18O4mYmOQj11PYyFtve_3--R-KD3Zx-N6bNZsfE,740
+Magical_Cipher_Disk/stones/yellow.py,sha256=5BA0RZCYoJ7l3n0bT1mQIajwlfmot36pJLw9f68SfHQ,623
+magical_cipher_disk-2.0.1.dist-info/licenses/LICENSE,sha256=vYuxgcwfuPK1WpBtB5WRQRe_JeKBC6oud85mvhuxxWs,1105
+magical_cipher_disk-2.0.1.dist-info/METADATA,sha256=fj3maWMFJ8lhfZzrrEzzk6rQYb7_GHr5Gp3rX0ytwOA,9859
+magical_cipher_disk-2.0.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+magical_cipher_disk-2.0.1.dist-info/top_level.txt,sha256=PajYAHr_HIH4wWQZdLEDS-k8LnYJM83dFnB_lQQo_oc,20
+magical_cipher_disk-2.0.1.dist-info/RECORD,,
