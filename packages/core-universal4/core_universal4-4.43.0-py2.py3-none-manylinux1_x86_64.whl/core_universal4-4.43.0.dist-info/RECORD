@@ -1,0 +1,11 @@
+applitools/__init__.py,sha256=ED6jHcYiuYpr_0vjGz0zx2lrrmJT9sDJCzIljoDfmlM,65
+applitools/core_universal/__init__.py,sha256=D_DYZLTipVuDfdjMvrASPNE6Xzc_6KbOPuj_zoTLHMU,714
+applitools/core_universal/__main__.py,sha256=cx9LZOEPp_-VxVrIT-LVZh2JSiwHANjflVYkAAVAsXk,210
+applitools/core_universal/instance.py,sha256=G71QQzISrOevjDa6IEfOW7oYJiL0ywiKwtf5dMjkIZs,263
+applitools/core_universal/server.py,sha256=Ns_cQslSaFGNGYvGzHekiib1KRFHAUYqKDDwkmCH1Zg,1849
+applitools/core_universal/bin/core,sha256=8KKnxsthlGJ0FMac-RjrPtGBoCP4Fz6vvRZsSN3yTQY,113379904
+core_universal4-4.43.0.dist-info/LICENSE,sha256=BDCdBp0jsd8YdhkGmoXEMSOVCarxR6n2x55oNN2BBAA,15088
+core_universal4-4.43.0.dist-info/METADATA,sha256=aUuWwq_MQVVcpb0-r6Kt_r5r2LINCKTaW39y7Mszdi4,1703
+core_universal4-4.43.0.dist-info/WHEEL,sha256=OqHKzVppe-dJP5tDCmTLTvo4kLQiFtwqCmFY9V9fMsQ,137
+core_universal4-4.43.0.dist-info/top_level.txt,sha256=5jig8U7TAvEHIZT_r46UImIndsZ1-NqX5iWR7H9YZwc,11
+core_universal4-4.43.0.dist-info/RECORD,,
