@@ -1,0 +1,3 @@
+[console_scripts]
+eops = eops.cli:main_app
+eops-worker = eops.worker:app
