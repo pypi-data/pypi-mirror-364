@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fortinet_wrapper"
+version = "0.2.1"
+description = "Fortinet Wrapper is a Python wrapper for the FortiOS API."
+readme = "README.md"
+authors = [
+  { name="HBNet Networks", email="dev@hbnet.tech" }
+]
+license = { text = "GPL-3.0-or-later" }
+requires-python = ">=3.10"
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/HNBetNetworks/fortinet-wrapper"
+Repository = "https://github.com/HNBetNetworks/fortinet-wrapper"
+Issues = "https://github.com/HNBetNetworks/fortinet-wrapper/issues"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["fortinet_wrapper"]
+
+
+[tool.setuptools.package-data]
+fortinet_wrapper = ["py.typed"]
+
+[tool.setuptools.exclude-package-data]
+fortinet_wrapper = ["*.conf", "*.bak"]
+
+[tool.ruff]
+line-length = 88
+lint.select = [
+  "E",
+  "F",
+  "W",
+  "C",
+  "D",
+  "B",
+  "I",
+  "FBT"
+]
+exclude = [
+  "__init__.py",
+  "API/"
+]
+lint.extend-ignore = [
+  "D107",  # Missing docstring in __init__
+  "D400",  # First line should end with period
+  "D415",  # First line should end with a period (redundant with D400 in some tools)
+  "D212",  # Multi-line docstring should start with a summary line
+  "D212",
+  "W291"
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
