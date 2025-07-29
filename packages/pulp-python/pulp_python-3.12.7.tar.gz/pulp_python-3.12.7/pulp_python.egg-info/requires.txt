@@ -1,0 +1,5 @@
+pulpcore<3.70.0,>=3.49.0
+pkginfo<1.13.0,>=1.12.0
+bandersnatch<6.2,>=6.1
+pypi-simple<1.0.0,>=0.9.0
+azure-storage-blob<12.26.0
