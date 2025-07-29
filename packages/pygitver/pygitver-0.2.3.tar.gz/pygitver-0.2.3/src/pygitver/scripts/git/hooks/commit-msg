@@ -1,0 +1,8 @@
+#!/bin/sh
+# pygitver - commit-msg git hook
+
+set -e
+
+COMMIT_MSG=$1
+COMMIT_LINT_DOCKER="panpuchkov/pygitver"
+docker run --rm -v $(pwd):/app -w /app ${COMMIT_LINT_DOCKER} --check-commit-message "$(cat ${COMMIT_MSG})"
