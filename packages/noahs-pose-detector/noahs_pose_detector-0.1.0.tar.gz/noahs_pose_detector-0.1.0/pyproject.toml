@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "noahs_pose_detector"  # Must be unique on PyPI!
+version = "0.1.0"
+description = "A collection of tools related to pose detection in images"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+  { name = "Noah Jones", email = "jonesnoah45010@gmail.com" }
+]
+dependencies = [
+  "mediapipe",
+  "noahs_google_drive_downloader",
+  "opencv-python",
+  "numpy",
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+  "License :: OSI Approved :: MIT License",
+  "Intended Audience :: Developers",
+  "Environment :: Console",
+  "Topic :: Software Development :: Libraries :: Python Modules"
+]
+
+[project.urls]
+"GitHub" = "https://github.com/jonesnoah45010/noahs_pose_detector"
