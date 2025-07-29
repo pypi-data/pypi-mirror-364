@@ -1,0 +1,16 @@
+package_aram/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+package_aram/admin.py,sha256=suMo4x8I3JBxAFBVIdE-5qnqZ6JAZV0FESABHOSc-vg,63
+package_aram/apps.py,sha256=6SQGsYjFSrThBbkV-a6yu58DMNxPEUOvn4rnDmgiKKs,156
+package_aram/cli.py,sha256=eErNTQGtoZjHKq89H-nktQpV8J2jcpitFvFpWkFiom4,1741
+package_aram/tests.py,sha256=mrbGGRNg5jwbTJtWWa7zSKdDyeB4vmgZCRc2nk6VY-g,60
+package_aram/urls.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+package_aram/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+package_aram/models/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+package_aram/models/models.py,sha256=Vjc0p2XbAPgE6HyTF6vll98A4eDhA5AvaQqsc4kQ9AQ,57
+package_aram/views/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+package_aram/views/views.py,sha256=xc1IQHrsij7j33TUbo-_oewy3vs03pw_etpBWaMYJl0,63
+package_aram-0.1.4.dist-info/METADATA,sha256=IXyfHOQoPU_o9trtiIbNluop7ccP0fcTuX14bD8OJWQ,1309
+package_aram-0.1.4.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+package_aram-0.1.4.dist-info/entry_points.txt,sha256=qpR67Ho83ORxtCZyo1WJX5aAUvoVGvbb_6HXP0aJHMI,62
+package_aram-0.1.4.dist-info/top_level.txt,sha256=QjvUgwVMlu8CXivKiUBIfYhc1ce3IYT2_VaTH_cy740,13
+package_aram-0.1.4.dist-info/RECORD,,
