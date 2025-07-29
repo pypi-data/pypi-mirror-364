@@ -1,0 +1,27 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+LogicTreeETC.egg-info/PKG-INFO
+LogicTreeETC.egg-info/SOURCES.txt
+LogicTreeETC.egg-info/dependency_links.txt
+LogicTreeETC.egg-info/requires.txt
+LogicTreeETC.egg-info/top_level.txt
+docs/conf.py
+examples/anatomical_diagram-nephron-Example.py
+examples/decision_tree-NTA-Example.py
+examples/example_arrows.py
+examples/information_flow-calculus-Example.py
+examples/plotting-blackbody_radiation-Example.py
+logictree/__init__.py
+logictree/arrow_etc.py
+logictree/logicbox.py
+logictree/logictree.py
+logictree/vector_detector.py
+logictree/fonts/Leelawadee.ttf
+logictree/fonts/Times New Roman Italic.ttf
+logictree/fonts/Times New Roman Regular.ttf
+tests/test_arrow_etc.py
+tests/test_logic_box.py
+tests/test_logic_tree.py
+tests/test_vector_detector.py
