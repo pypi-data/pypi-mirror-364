@@ -1,0 +1,24 @@
+[project]
+name = "linkmerce"
+version = "0.1.1"
+description = "E-commerce API integration management"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "aiohttp>=3.12.14",
+    "asyncio>=3.4.3",
+    "bs4>=0.0.2",
+    "lxml>=6.0.0",
+    "openpyxl>=3.1.5",
+    "pandas>=2.3.1",
+    "requests>=2.32.4",
+    "xlrd>=2.0.2",
+]
+
+[build-system]
+requires = ["uv_build>=0.8.0,<0.9.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "linkmerce"
+module-root = "src"
