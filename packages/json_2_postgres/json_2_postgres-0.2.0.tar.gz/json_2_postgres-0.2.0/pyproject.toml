@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "json_2_postgres"
+version = "0.2.0"
+description = "Набор утилит для конвертации таблиц postges в json формат и обратно"
+authors = ["Denis Maslennikov <ktotom7@yandex.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+psycopg2 = "^2.9.10"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.0"
+pytest-cov = "^6.1.1"
+ruff = "^0.11.13"
+black = "^25.1.0"
+
+[tool.black]
+line-length = 120
+
+[tool.pytest.ini_options]
+addopts = "-vvv"
+python_files = "test_*.py"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
