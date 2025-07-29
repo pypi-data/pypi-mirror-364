@@ -1,0 +1,2 @@
+[console_scripts]
+jupyter-kernel-mcp = jupyter_kernel_mcp:main
