@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=61.0", "tomli>=2.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vlm_robot_agent"
+version = "0.2.4"
+description = "Agente robótico basado en VLM que navega e interactúa con personas según objetivos visuales"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+keywords = ["robotics", "vlm", "openai", "navigation", "interaction"]
+authors = [
+    { name = "Edison Bejarano", email = "edison.bejarano@upc.edu" }
+]
+dependencies = [
+    "openai==1.78.1",
+    "opencv-python==4.11.0.86",
+    "pyyaml",
+    "python-dotenv>=0.9.1,<0.11",
+    # Alineado con vlm-inference
+    "pillow==9.0.1",
+    # Alineado con mediapipe
+    "protobuf>=4.25.3,<5",
+    # Alineado con jaxlib/jax y chromadb
+    "numpy>=1.26",
+    "scipy>=1.12",
+    "sounddevice==0.5.2",
+    "TTS==0.22.0",
+    # Versión compatible de Whisper en PyPI
+    "openai-whisper==20240930"
+]
+
+[project.urls]
+Homepage   = "https://github.com/EjbejaranosAI/vlm_robot_agent"
+Repository = "https://github.com/EjbejaranosAI/vlm_robot_agent"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = [
+    "vlm_robot_agent*",
+    "vlm_agent*",
+    "vlm_inference*"
+]
+
+[tool.setuptools.package-data]
+"vlm_robot_agent.prompts" = ["*.json"]
+"vlm_agent.prompts"       = ["*.json"]
+"vlm_inference.prompts"   = ["*.json"]
