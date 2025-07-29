@@ -1,0 +1,87 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+
+name = "ctd-tools"
+version = "0.2.0"
+description = "Read, convert, and plot oceanographic sensor data from moored instruments."
+readme = "README.md"
+requires-python = ">=3.7"
+license = "AGPL-3.0-only"
+
+authors = [
+  { name = "Eleanor Frajka-Williams" },
+  { name = "Isabelle Schmitz" },
+  { name = "Yves Sorge" }
+]
+
+maintainers = [
+  { name = "Yves Sorge", email = "yves.sorge@uni-hamburg.de" }
+]
+
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+  "Topic :: Scientific/Engineering :: Oceanography",
+  "Intended Audience :: Science/Research",
+  "Intended Audience :: Developers",
+  "Natural Language :: English"
+]
+
+keywords = [
+  "ctd",
+  "oceanography",
+  "cnv",
+  "seabird",
+  "rbr",
+  "aquadopp",
+  "microcat",
+  "sensors",
+  "moorings",
+  "data",
+  "netcdf",
+  "cf",
+  "conventions",
+  "tools",
+  "plotting",
+  "adcp",
+  "netcdf"
+]
+
+dependencies = [
+  "pycnv",
+  "pandas",
+  "xarray",
+  "numpy",
+  "scipy",
+  "pylablib",
+  "matplotlib",
+  "netcdf4",
+  "gsw",
+  "pyrsktools",
+  "setuptools"
+]
+
+[project.optional-dependencies]
+dev = [
+  "build",
+  "twine",
+  "sphinx",
+  "nbsphinx",
+  "myst-parser",
+  "sphinx_rtd_theme",
+  "pytest"
+]
+
+[project.urls]
+Homepage    = "https://ifmeo-hamburg.github.io/ctd-tools/"
+Source_Code = "https://github.com/ifmeo-hamburg/ctd-tools"
+Download    = "https://pypi.org/project/ctd-tools/"
+
+[project.scripts]
+ctd-tools = "ctd_tools.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
