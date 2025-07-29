@@ -1,0 +1,35 @@
+[project]
+name = "cz-extended-conventional"
+description = "An extended format of Commitizen's builtin cz_conventional_commit format."
+authors = []
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.12,<4"
+dependencies = [
+    "commitizen (>=4.8.2,<5.0.0)"
+]
+
+[project.entry-points."commitizen.plugin"]
+cz_extended_conventional = "cz_extended_conventional:ExtendedConventionalCz"
+
+[tool.poetry]
+packages = [{include = "cz_extended_conventional.py", from = "src" }]
+version = "0.1.0rc4"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^4.2.0"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.4.0"
+
+[tool.commitizen]
+major_version_zero = true
+name = "cz_extended_conventional"
+tag_format = "v$version"
+update_changelog_on_bump = true
+version_provider = "poetry"
+version_scheme = "pep440"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
