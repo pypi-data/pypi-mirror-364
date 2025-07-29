@@ -1,0 +1,10 @@
+remote_detector/__init__.py,sha256=P6PH3l7fy5t1OWdcXmQlxIPx-A6KH00qwtSk1yhMJXA,22
+remote_detector/cli.py,sha256=y79nVMSYN9vsLG6pGBaKqM6KNEnDFSfV0tuhObZchCg,3833
+remote_detector/detector.py,sha256=fX-2lthXzlQy3ck-IK7OL5wRI7nNZ6AykHDvR_fUFDA,5597
+remote_detector/erp.py,sha256=v19i8lMpC7ENAiR7-ALKkn_iSKw1J-w5yiC_7QydPRQ,3009
+remote_detector/logger.py,sha256=sVTok24ZXczu9cwJMyn_qyELNQrsZojI6Z9gBIL2IHM,2585
+remote_detector-0.1.1.dist-info/METADATA,sha256=E_eZjEoZ3fsS6JdROeFEZksPtTLcAp0GFJOCYkKjA0U,2911
+remote_detector-0.1.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+remote_detector-0.1.1.dist-info/entry_points.txt,sha256=fsvTdTAh4TPdV3EAndO3Fa3M9vTkDju3i093-JGg9vE,60
+remote_detector-0.1.1.dist-info/top_level.txt,sha256=rYSSyrwkotXdXJZkpOJUWz_Yb-W6b2PiE4oyFwGzkI4,16
+remote_detector-0.1.1.dist-info/RECORD,,
