@@ -1,0 +1,3 @@
+[console_scripts]
+mcp-stock-screener = src.main:main
+mcp-stock-screener-http = src.main_http:main
