@@ -1,0 +1,7 @@
+polars_io/__init__.py,sha256=Y_0EB_ESKpFe-T1OzK2zBmsFHiJsJChVHEAAZbcm5LY,180
+polars_io/common.py,sha256=q5sLfOcgcuQ6u9cStRmemJ34kZI-VMylEpQfKfX5Y3M,1991
+polars_io/sas.py,sha256=yi4BfFDshE9uYl-hoJO2U4DPYz6aAfJDZzejuwHinJA,1014
+polars_io/stata.py,sha256=1YOynWY6bHlRNAn1ZsAuY3rqRJjanizho1FZxJrNb1s,810
+polars_io-0.1.0.dist-info/METADATA,sha256=0SWWaenaK8_hKqxivjfTcfKnDi4dvmhWtxUzGepI9n0,268
+polars_io-0.1.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+polars_io-0.1.0.dist-info/RECORD,,
