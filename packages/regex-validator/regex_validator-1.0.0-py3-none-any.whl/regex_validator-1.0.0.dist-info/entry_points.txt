@@ -1,0 +1,3 @@
+[console_scripts]
+regex-validator = regex_tester.cli:main
+regex-validator-gui = regex_tester.gui:run_gui
