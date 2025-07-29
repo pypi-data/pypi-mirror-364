@@ -1,0 +1,7 @@
+opentelemetry/instrumentation/openai_agents/__init__.py,sha256=AwvIhJWAGqH8qnQwMXI4-Fr_yNBsofRV2lpIw1QOlkM,22117
+opentelemetry/instrumentation/openai_agents/utils.py,sha256=x0038iTqQPkdZaEXIElh1cJjvWkM1MuJFHDEDZ1siGo,934
+opentelemetry/instrumentation/openai_agents/version.py,sha256=m-TLkBqca7Iz6rwa-yBQFukoUDMU-_mCNzUinwcPSbU,23
+opentelemetry_instrumentation_openai_agents-0.43.1.dist-info/METADATA,sha256=jnCLDbKAWhg4qR8j_6M63j6Xzx8E0qgOa3fEDHaPG0g,2305
+opentelemetry_instrumentation_openai_agents-0.43.1.dist-info/WHEEL,sha256=b4K_helf-jlQoXBBETfwnf4B04YC67LOev0jo4fX5m8,88
+opentelemetry_instrumentation_openai_agents-0.43.1.dist-info/entry_points.txt,sha256=rrbaysEkVTYnyE2OgTpEPqv7oAMMuUoaPBl1uT7hNQw,113
+opentelemetry_instrumentation_openai_agents-0.43.1.dist-info/RECORD,,
