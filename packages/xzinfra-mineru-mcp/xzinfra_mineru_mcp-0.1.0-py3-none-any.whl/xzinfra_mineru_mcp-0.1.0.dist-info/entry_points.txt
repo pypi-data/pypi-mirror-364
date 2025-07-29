@@ -1,0 +1,2 @@
+[console_scripts]
+xzinfra-mineru-mcp = xzinfra_mineru_mcp.cli:main
