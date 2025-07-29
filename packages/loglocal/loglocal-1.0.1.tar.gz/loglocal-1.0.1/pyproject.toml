@@ -1,0 +1,22 @@
+[project]
+name = "loglocal"
+version = "1.0.1"
+description = "A Python library for local logging with advanced features"
+readme = "README.md"
+authors = [
+    { name = "Mahamudul Hasan", email = "919.hasan@gmail.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "loguru>=0.7.3",
+    "pydantic>=2.11.7",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "hatchling>=1.27.0",
+]
