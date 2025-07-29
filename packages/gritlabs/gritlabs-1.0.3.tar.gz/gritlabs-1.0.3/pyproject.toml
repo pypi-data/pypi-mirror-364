@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gritlabs"
+version = "1.0.3"
+description = "Grit Labs umbrella CLI"
+readme = "README.md"
+requires-python = ">=3.7"
+authors = [{name = "Grit Labs"}]
+license = { file = "LICENSE" }
+keywords = ["prompt", "traceability", "audit", "workflow", "gritlabs"]
+dependencies = [
+    "tzdata>=2024.1",
+    "backports.zoneinfo; python_version < '3.9'"
+]
+
+[project.urls]
+Homepage = "https://github.com/bynbb/gritlabs"
+Repository = "https://github.com/bynbb/gritlabs"
+
+[tool.setuptools]
+packages = ["gritlabs"]
+
+[tool.setuptools.package-data]
+"gritlabs" = ["data/*.xml", "templates/*.md"]
+
+[project.scripts]
+gritlabs = "gritlabs.cli:main"
+
+[tool.black]
+line-length = 88
+
+[tool.ruff]
+line-length = 88

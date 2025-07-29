@@ -1,0 +1,4 @@
+tzdata>=2024.1
+
+[:python_version < "3.9"]
+backports.zoneinfo

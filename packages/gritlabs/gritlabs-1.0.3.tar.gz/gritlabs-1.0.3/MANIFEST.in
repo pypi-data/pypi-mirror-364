@@ -1,0 +1,13 @@
+include README.md
+include LICENSE
+include pyproject.toml
+
+recursive-include gritlabs *.py
+include gritlabs/data/*.xml
+include gritlabs/templates/*.md
+
+prune npm
+prune nuget
+prune prompts
+prune scripts
+prune tests
