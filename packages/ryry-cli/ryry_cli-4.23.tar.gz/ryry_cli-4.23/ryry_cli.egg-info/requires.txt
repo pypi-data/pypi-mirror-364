@@ -1,0 +1,15 @@
+requests
+uuid
+Image
+pillow
+psutil
+pynvml
+requests_toolbelt
+fake_useragent
+gputil
+urlparser
+urllib3
+portalocker
+
+[with_mecord]
+mecord-cli>=0.7.405
