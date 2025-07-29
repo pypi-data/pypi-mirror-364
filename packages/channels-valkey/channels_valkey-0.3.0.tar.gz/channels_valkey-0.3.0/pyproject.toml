@@ -1,0 +1,54 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+exclude = [
+    "tests/"
+]
+
+[project]
+name = "channels-valkey"
+version = "0.3.0"
+description = "Valkey-backed ASGI channel layer implementation"
+readme = "README.rst"
+requires-python = ">=3.9"
+dependencies = [
+    "asgiref>=3.9.1",
+    "channels>=4.2.2",
+    "msgpack>=1.1.0",
+    "valkey>=6.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/django-utils/channels-valkey"
+Source = "https://github.com/django-utils/channels-valkey"
+Issues = "https://github.com/django-utils/channels-valkey/issues"
+
+[project.optional-dependencies]
+cryptography = [
+    "cryptography>=43.0.1",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "async-timeout>=5.0.1",
+    "coverage>=7.6.2",
+    "pre-commit>=4.2.0",
+    "pytest>=8.4.1",
+    "pytest-asyncio>=1.1.0",
+    "ruff>=0.12.4",
+    "tox>=4.21.2",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+addopts = "-p no:django"
+testpaths = "tests"
+asyncio_default_fixture_loop_scope = "session"
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["E402", "F401", "F403"]
+
+[tool.coverage.run]
+parallel = true

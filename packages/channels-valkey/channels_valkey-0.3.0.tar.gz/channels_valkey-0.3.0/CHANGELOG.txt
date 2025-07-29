@@ -1,0 +1,426 @@
+0.3.0
+-----
+
+* Updated Channels dependency to at least v4.2.2.
+* Updated asgiref dependency to at least v3.9.1.
+* Fixed compatibility with latest versions of pytest-asyncio.
+* Renamed internal methods in core channel layer for compatibility with
+  Channels v4.2.1+
+* Dropped testing against legacy Channels v3 branch.
+
+* Updated testing against latest valkey-py versions.
+* drop black in favor of `ruff format`
+
+0.2.0
+-----
+
+* allow registering serializers
+* add json serializer
+
+
+0.1.0
+-----
+
+* package forked from channels_redis and switched to work as a valkey backend
+
+channels_redis:
+
+4.2.0 (2024-01-12)
+------------------
+
+* Dropped support for end-of-life Python 3.7.
+
+* Added support for Python 3.11 and 3.12.
+
+* Upped the minimum version of redis-py to 4.6.
+
+* Added CI testing against redis-py versions 4.6, 5, and the development branch.
+
+* Added CI testing against Channels versions 3, 4, and the development branch.
+
+4.1.0 (2023-03-28)
+------------------
+
+* Adjusted the way Redis connections are handled:
+
+  * Connection handling is now shared between the two, core and pub-sub, layers.
+
+  * Both layers now ensure that connections are closed when an event loop shuts down.
+
+    In particular, redis-py 4.x requires that connections are manually closed.
+    In 4.0 that wasn't done by the core layer, which led to warnings for people
+    using `async_to_sync()`, without closing connections when updating from
+    3.x.
+
+* Updated the minimum redis-py version to 4.5.3 because of a security release there.
+  Note that this is not a security issue in channels-redis: installing an
+  earlier version will still use the latest redis-py, but by bumping the
+  dependency we make sure you'll get redis-py too, when you install the update
+  here.
+
+4.0.0 (2022-10-07)
+------------------
+
+Version 4.0.0 migrates the underlying Redis library from ``aioredis`` to ``redis-py``.
+(``aioredis`` was retired and moved into ``redis-py``, which will host the ongoing development.)
+
+Version 4.0.0 should be compatible with existing Channels 3 projects, as well as Channels 4
+projects.
+
+* Migrated from ``aioredis`` to ``redis-py``. Specifying hosts as tuples is no longer supported.
+  If hosts are specified as dicts, only the ``address`` key will be taken into account, i.e.
+  a `password`` must be specified inline in the address.
+
+* Added support for passing kwargs to sentinel connections.
+
+* Updated dependencies and obsolete code.
+
+3.4.1 (2022-07-12)
+------------------
+
+* Fixed RuntimeError when checking for stale connections.
+
+
+3.4.0 (2022-03-10)
+------------------
+
+* Dropped support for Python 3.6, which is now end-of-life, and added CI
+  testing for Python 3.10. (#301).
+
+* Added serialize and deserialize hooks to RedisPubSubChannelLayer (#281).
+
+* Fixed iscoroutine check for pubsub proxied methods (#297).
+
+* Fix workers support when using Redis PubSub layer (#298)
+
+
+3.3.1 (2021-09-30)
+------------------
+
+Two bugfixes for the PubSub channel layer:
+
+* Scoped the channel layer per-event loop, in case multiple loops are in play
+  (#262).
+
+* Ensured consistent hashing PubSub was maintained across processes, or process
+  restarts (#274).
+
+
+3.3.0 (2021-07-01)
+------------------
+
+Two important new features:
+
+* You can now connect using `Redis Sentinel
+  <https://redis.io/topics/sentinel>`. Thanks to @qeternity.
+
+* There's a new ``RedisPubSubChannelLayer`` that uses Redis Pub/Sub to
+  propagate messages, rather than managing channels and groups directly within
+  the layer. For many use-cases this should be simpler, more robust, and more
+  performant.
+
+  Note though, the new ``RedisPubSubChannelLayer`` layer does not provide all
+  the options of the existing layer, including ``expiry``, ``capacity``, and
+  others. Please assess whether it's appropriate for your needs, particularly
+  if you have an existing deployment.
+
+  The ``RedisPubSubChannelLayer`` is currently marked as *Beta*. Please report
+  any issues, and be prepared that there may be breaking changes whilst it
+  matures.
+
+  The ``RedisPubSubChannelLayer`` accepts ``on_disconnect`` and
+  ``on_reconnect`` config options, providing callbacks to handle the relevant
+  connection events to the Redis instance.
+
+  Thanks to Ryan Henning @acu192.
+
+For both features see the README for more details.
+
+
+3.2.0 (2020-10-29)
+------------------
+
+* Adjusted dependency specifiers to allow updating to the latest versions of
+  ``asgiref`` and Channels.
+
+
+3.1.0 (2020-09-06)
+------------------
+
+* Ensured per-channel queues are bounded in size to avoid a slow memory leak if
+  consumers stop reading.
+
+  Queues are bound to the channel layer's configured ``capacity``. You may
+  adjust this to a suitably high value if you were relying on the previously
+  unbounded behaviour.
+
+
+3.0.1 (2020-07-15)
+------------------
+
+* Fixed error in Lua script introduced in 3.0.0.
+
+
+3.0.0 (2020-07-03)
+------------------
+
+* Redis >= 5.0 is now required.
+
+* Updated msgpack requirement to `~=1.0`.
+
+* Ensured channel names are unique using UUIDs.
+
+* Ensured messages are expired even when channel is in constant activity.
+
+* Optimized Redis script caching.
+
+* Reduced group_send failure logging level to reduce log noise.
+
+* Removed trailing `:` from default channel layer `prefix` to avoid double
+  `::` in group keys. (You can restore the old default specifying
+  `prefix="asgi:"` if necessary.)
+
+
+2.4.2 (2020-02-19)
+------------------
+
+* Fixed a bug where ``ConnectionPool.pop()`` might return an invalid
+  connection.
+
+* Added logging for a group_send over capacity failure.
+
+
+2.4.1 (2019-10-23)
+------------------
+
+* Fixed compatibility with Python 3.8.
+
+
+2.4.0 (2019-04-14)
+------------------
+
+* Updated ASGI and Channels dependencies for ASGI v3.
+
+
+2.3.3 (2019-01-10)
+------------------
+
+* Bumped msgpack to 0.6
+
+* Enforced Python 3.6 and up because 3.5 is too unreliable.
+
+
+2.3.2 (2018-11-27)
+------------------
+
+* Fix memory leaks with receive_buffer
+
+* Prevent double-locking problems with cancelled tasks
+
+
+2.3.1 (2018-10-17)
+------------------
+
+* Fix issue with leaking of connections and instability introduced in 2.3.0
+
+
+2.3.0 (2018-08-16)
+------------------
+
+* Messages to the same process (with the same prefix) are now bundled together
+  in a single message for efficiency.
+
+* Connections to Redis are now kept in a connection pool with significantly
+  improved performance as a result. This change required lists to be changed
+  from oldest-first to newest-first, so immediately after any upgrade,
+  existing messages in Redis will be drained in reverse order until your
+  expiry time (normally 60 seconds) has passed. After this, behaviour will
+  be normal again.
+
+
+2.2.1 (2018-05-17)
+------------------
+
+* Fixed a bug in group_send where it would not work if channel_capacity was set
+
+
+2.2.0 (2018-05-13)
+------------------
+
+* The group_send method now uses Lua to massively increase the speed of sending
+  to large groups.
+
+
+2.1.1 (2018-03-21)
+------------------
+
+* Fixed bug where receiving messages would hang after a while or at high
+  concurrency levels.
+
+* Fixed bug where the default host values were invalid.
+
+
+2.1.0 (2018-02-21)
+------------------
+
+* Internals have been reworked to remove connection pooling and sharing. All
+  operations will now open a fresh Redis connection, but the backend will no
+  longer leak connections or Futures if used in multiple successive event loops
+  (e.g. via multiple calls to sync_to_async)
+
+
+2.0.3 (2018-02-14)
+------------------
+
+* Don't allow connection pools from other event loops to be re-used (fixes
+  various RuntimeErrors seen previously)
+
+* channel_capacity is compiled in the constructor and now works again
+
+
+2.0.2 (2018-02-04)
+------------------
+
+* Capacity enforcement was off by one; it's now correct
+
+* group_send no longer errors with the wrong ChannelFull exception
+
+
+2.0.1 (2018-02-02)
+------------------
+
+* Dependency fix in packaging so asgiref is set to ~=2.1, not ~=2.0.0
+
+
+2.0.0 (2018-02-01)
+------------------
+
+* Rewrite and rename to channels_redis to be based on asyncio and the
+  Channels 2 channel layer specification.
+
+
+1.4.2 (2017-06-20)
+------------------
+
+* receive() no longer blocks indefinitely, just for a while.
+
+* Built-in lua scripts have their SHA pre-set to avoid a guaranteed cache miss
+  on their first usage.
+
+
+1.4.1 (2017-06-15)
+------------------
+
+* A keyspace leak has been fixed where message body keys were not deleted after
+  receive, and instead left to expire.
+
+
+1.4.0 (2017-05-18)
+------------------
+
+* Sharded mode support is now more robust with send/receive deterministically
+  moving around the shard ring rather than picking random connections. This
+  means there is no longer a slight chance of messages being missed when there
+  are not significantly more readers on a channel than shards. Tests have
+  also been updated so they run fully on sharded mode thanks to this.
+
+* Sentinel support has been considerably improved, with connection caching
+  (via sentinal_refresh_interval), and automatic service discovery.
+
+* The Twisted backend now picks up the Redis password if one is configured.
+
+
+1.3.0 (2017-04-07)
+------------------
+
+* Change format of connection arguments to be a single dict called
+  ``connection_kwargs`` rather than individual options, as they change by
+  connection type. You will need to change your settings if you have any of
+  socket_connect_timeout, socket_timeout, socket_keepalive or
+  socket_keepalive_options set to move them into a ``connection_kwargs`` dict.
+
+1.2.1 (2017-04-02)
+------------------
+
+* Error with sending to multi-process channels with the same message fixed
+
+1.2.0 (2017-04-01)
+------------------
+
+* Process-specific channel behaviour changed to match new spec
+* Redis Sentinel channel layer added
+
+1.1.0 (2017-03-18)
+------------------
+
+* Support for the ASGI statistics extension
+* Distribution of items over multiple servers using consistent hashing is improved
+* Handles timeout exceptions in newer redis-py library versions correctly
+* Support for configuring the socket_connect_timeout, socket_timeout, socket_keepalive and socket_keepalive_options
+  options that are passed to redis-py.
+
+1.0.0 (2016-11-05)
+------------------
+
+* Renamed "receive_many" to "receive"
+* Improved (more explicit) error handling for Redis errors/old versions
+* Bad hosts (string not lost) configuration now errors explicitly
+
+0.14.1 (2016-08-24)
+-------------------
+
+* Removed unused reverse channels-to-groups mapping keys as they were not
+  cleaned up proactively and quickly filled up databases.
+
+0.14.0 (2016-07-16)
+-------------------
+
+* Implemented group_channels method.
+
+0.13.0 (2016-06-09)
+-------------------
+
+* Added local-and-remote backend option (uses asgi_ipc)
+
+0.12.0 (2016-05-25)
+-------------------
+
+* Added symmetric encryption for messages and at-rest data with key rotation.
+
+0.11.0 (2016-05-07)
+-------------------
+
+* Implement backpressure with per-channel and default capacities.
+
+0.10.0 (2016-03-27)
+-------------------
+
+* Group expiry code re-added and fixed.
+
+0.9.1 (2016-03-23)
+------------------
+
+* Remove old group expiry code that was killing groups after 60 seconds.
+
+0.9.0 (2016-03-21)
+------------------
+
+* Connections now pooled per backend shard
+* Random portion of channel names now 12 characters
+* Implements new ASGI single-response-channel pattern spec
+
+0.8.3 (2016-02-28)
+------------------
+
+* Nonblocking receive_many now uses Lua script rather than for loop.
+
+0.8.2 (2016-02-22)
+------------------
+
+* Nonblocking receive_many now works, but is inefficient
+* Python 3 fixes
+
+0.8.1 (2016-02-22)
+------------------
+
+* Fixed packaging issues

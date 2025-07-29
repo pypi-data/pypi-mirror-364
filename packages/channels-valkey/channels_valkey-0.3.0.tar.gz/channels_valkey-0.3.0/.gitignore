@@ -1,0 +1,14 @@
+*.egg-info
+dist/
+build/
+.cache
+*.pyc
+/.tox
+.DS_Store
+.pytest_cache
+.vscode
+.idea
+uv.lock
+.python-version
+*.sh
+*.rdb

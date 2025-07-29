@@ -1,0 +1,69 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  tests:
+    name: Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version:
+          - "3.9"
+          - "3.10"
+          - "3.11"
+          - "3.12"
+          - "3.13"
+    services:
+      valkey:
+        image: valkey/valkey
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "valkey-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      sentinel:
+        image: bitnami/valkey-sentinel
+        ports:
+          - 26379:26379
+        options: >-
+          --health-cmd "valkey-cli -p 26379 ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        env:
+          VALKEY_SENTINEL_QUORUM: "1"
+          VALKEY_SENTINEL_PASSWORD: channels_valkey
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Install dependencies
+        run: | 
+          uv sync --all-extras --dev
+          uv tool install tox --with tox-uv
+
+      - name: Run tox targets for ${{ matrix.python-version }}
+        run: |
+          ENV_PREFIX=$(tr -C -d "0-9" <<< "${{ matrix.python-version }}")
+          TOXENV=$(tox --listenvs | grep "^py$ENV_PREFIX" | tr '\n' ',') tox
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/ruff-action@v3
