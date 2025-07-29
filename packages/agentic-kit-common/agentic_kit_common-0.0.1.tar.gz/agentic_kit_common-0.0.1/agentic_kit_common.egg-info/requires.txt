@@ -1,0 +1,8 @@
+minio
+urllib3
+pydantic
+requests
+langchain_core
+langgraph
+langchain_community
+langchain_experimental
