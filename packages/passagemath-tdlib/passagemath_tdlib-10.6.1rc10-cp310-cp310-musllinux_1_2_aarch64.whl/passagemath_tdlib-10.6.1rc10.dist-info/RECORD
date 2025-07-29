@@ -1,0 +1,11 @@
+passagemath_tdlib.libs/libgcc_s-2d945d6c.so.1,sha256=vOxWA-IrCq2Ge0JIF0xBvQacJ_y9aXiQaq9SbOFJ2cw,201673
+passagemath_tdlib.libs/libstdc++-85f2cd6d.so.6.0.33,sha256=cx82rYRx6hPLMqIfyMnsCfijsOVT6OAkj5C5nemlNvE,3650097
+sage/all__sagemath_tdlib.py,sha256=zag9UqFlkcjkiBCrkeLRFIXjnemsqnpTNJFfqQMezKE,64
+sage/graphs/all__sagemath_tdlib.py,sha256=xwEAp-3HSleZKAjcgudzEBoWekMyMSx7mY9lzHCETcU,44
+sage/graphs/graph_decompositions/all__sagemath_tdlib.py,sha256=xwEAp-3HSleZKAjcgudzEBoWekMyMSx7mY9lzHCETcU,44
+sage/graphs/graph_decompositions/tdlib.cpython-310-aarch64-linux-gnu.so,sha256=0V9aiomuK90j-s1sVMgDfbnOgu-rssGI66kLvnyoc6Y,5729049
+sage/graphs/graph_decompositions/tdlib.pyx,sha256=O11Mem19-4WuyNAfnL_9ZLuWv_CKiO7SLyDlI94DQDo,5381
+passagemath_tdlib-10.6.1rc10.dist-info/METADATA,sha256=ulncu767X0xbqSAPJR3gbmiCg3aLmNvXTjUs-QDQs10,4214
+passagemath_tdlib-10.6.1rc10.dist-info/WHEEL,sha256=qvx19vD_zYvGQFVzkH0wrT4tVIal9wOVogYGQfy9ymw,113
+passagemath_tdlib-10.6.1rc10.dist-info/top_level.txt,sha256=Kmzulf9WsphADFQuqgvdy5mvTLDj_V2zkFHU2s3UXos,6
+passagemath_tdlib-10.6.1rc10.dist-info/RECORD,,
