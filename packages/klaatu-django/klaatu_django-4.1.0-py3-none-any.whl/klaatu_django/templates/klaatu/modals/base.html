@@ -1,0 +1,38 @@
+{% load klaatu %}
+{% comment %}
+The required_params and optional_params could already be available in context,
+in which they will be injected as data attributes on the modal element.
+They can also be filled in some other way, like via openModalOnLoad() which
+takes them from GET params.
+{% endcomment %}
+
+<div class="modal {{ modal.classes }} {% block classes %}{% endblock classes %}" id="{{ modal.id }}" role="dialog"
+  data-required-params="{{ modal.required_params }}"
+  data-optional-params="{{ modal.optional_params }}"
+  {% for param in modal.all_params %} data-{{ param }}="{% map_to_context param %}"{% endfor %}
+  tabindex="-1">
+  <div
+    class="modal-dialog {% if modal.scrollable %}modal-dialog-scrollable{% endif %} {% if modal.large %}modal-lg{% endif %} {% if modal.center %}modal-dialog-centered{% endif %}">
+    {% block outer %}
+    <div class="modal-content">
+      {% block content %}
+      {% block header %}
+      <div class="modal-header">
+        <h5 class="modal-title">{% block title %}{% endblock title %}</h5>
+        <button type="button" data-bs-dismiss="modal" class="btn-close modal-header-button"></button>
+      </div>
+      {% endblock header %}
+      <div class="modal-body">
+        <div class="alerts">
+          {% block alerts %}{% endblock alerts %}
+        </div>
+        {% block body %}{% endblock body %}
+      </div>
+      {% if modal.footer %}
+      <div class="modal-footer">{% block footer %}{% endblock footer %}</div>
+      {% endif %}
+      {% endblock content %}
+    </div>
+    {% endblock outer %}
+  </div>
+</div>
