@@ -1,0 +1,11 @@
+collection_fc/__init__.py,sha256=pV2cBXrEqkBbu_eQMh5qKMsMMXFTfngacGTMqUZKpDU,38
+collection_fc/__main__.py,sha256=3Mr49sxzRb8aT-4bdWoZ5g_YHN8xt0PmBthgBCmkYp0,64
+collection_fc/bucket.py,sha256=8G327VXIGTXAgr0-u0FFtAHdVzR5MhAvyzuaUTlNuQY,427
+collection_fc/cli.py,sha256=0RksjgOLQIvZRTpRKlAaUZPhZeSjqjd_6ikRgiocmVE,919
+collection_fc/flexible.py,sha256=E3C4ztk-FD_w888L1dm_2VWH6sjEPGCr75vKEMtsH7w,3437
+collection_fc/simple.py,sha256=I6XStS-90fN34EDvHXBkAfNlzbcbb9jzJNa5Lt_HaWQ,3988
+collection_fc-0.1.0.dist-info/licenses/LICENSE,sha256=2dRgPk7U4a_YEC4u_mDHyVD96kiYdnoo0JyMe3seRlQ,1095
+collection_fc-0.1.0.dist-info/METADATA,sha256=Utze5Wc72IlqOqKftrRRWdM7EBYKkeoSFB4DQSQqJi0,2558
+collection_fc-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+collection_fc-0.1.0.dist-info/top_level.txt,sha256=N6lUJif_3QDTSUucTPVR4KQj0FdDxnmHbo3ppzMx84w,14
+collection_fc-0.1.0.dist-info/RECORD,,
