@@ -1,0 +1,15 @@
+Metadata-Version: 2.4
+Name: py60ds
+Version: 0.0.1
+Summary: Dummy package to reserve the name py60ds to prevent dependency confusion.
+Author-email: Stas Hordiyenko <shordiyenko@woolworths.com.au>
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# py60ds
+
+This is a dummy placeholder package to reserve the `py60ds` name on PyPI.
