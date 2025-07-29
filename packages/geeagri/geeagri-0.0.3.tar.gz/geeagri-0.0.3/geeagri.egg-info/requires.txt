@@ -1,0 +1,8 @@
+earthengine-api
+geemap
+
+[all]
+geeagri[extra]
+
+[extra]
+pandas
