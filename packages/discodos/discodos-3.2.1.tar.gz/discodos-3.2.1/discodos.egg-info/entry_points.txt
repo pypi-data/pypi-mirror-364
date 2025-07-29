@@ -1,0 +1,3 @@
+[console_scripts]
+discosync = discodos.cmd.sync:main
+dsc = discodos.cmd23:main_cmd

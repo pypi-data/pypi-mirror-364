@@ -1,0 +1,10 @@
+Click
+tabulate
+PyYaml
+click-option-group
+dropbox
+musicbrainzngs
+rich
+textual
+python3-discogs-client>=2.8
+webdavclient3
