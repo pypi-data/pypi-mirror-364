@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(chmod:*)",
+      "Bash(xxd:*)",
+      "Bash(sed:*)",
+      "Bash(python3:*)",
+      "Bash(uv run:*)",
+      "Bash(uv pip install:*)",
+      "Bash(python test:*)",
+      "Bash(python:*)",
+      "Bash(pip install:*)",
+      "Bash(mkdir:*)",
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(rg:*)",
+      "Bash(grep:*)",
+      "Bash(rm:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(source:*)",
+      "Bash(pip search:*)",
+      "Bash(pip show:*)",
+      "Bash(timeout:*)",
+      "Bash(twine check:*)"
+    ],
+    "deny": []
+  }
+}
