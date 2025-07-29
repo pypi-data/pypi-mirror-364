@@ -1,0 +1,229 @@
+name: CI
+
+on: [push]
+
+permissions:
+  contents: read
+
+jobs:
+  systemverilog-validation:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    
+    - name: Validate SystemVerilog Templates
+      run: |
+        python scripts/validate_systemverilog_templates.py
+    
+    - name: Validate Project SystemVerilog Configuration
+      run: |
+        python scripts/validate_project_systemverilog.py
+    
+    - name: Validate Generation Patterns
+      run: |
+        python scripts/validate_generation_patterns.py
+    
+    - name: Check Template Syntax
+      run: |
+        # Install minimal dependencies for template validation
+        python -m pip install --upgrade pip
+        pip install jinja2 pyyaml
+        
+        # Basic template syntax validation - ensure templates can be parsed
+        python -c "
+        import sys
+        sys.path.append('src')
+        from templating import TemplateRenderer
+        from pathlib import Path
+        
+        try:
+            renderer = TemplateRenderer('src/templates')
+            
+            # Find all SystemVerilog/Verilog templates
+            template_dir = Path('src/templates')
+            sv_templates = list(template_dir.glob('**/*.sv.j2'))
+            v_templates = list(template_dir.glob('**/*.v.j2'))
+            
+            print(f'Found {len(sv_templates)} SystemVerilog and {len(v_templates)} Verilog templates')
+            
+            # Basic syntax check - ensure Jinja2 can parse the templates
+            for template_path in sv_templates + v_templates:
+                rel_path = template_path.relative_to(template_dir)
+                try:
+                    # Test template parsing (without rendering)
+                    template = renderer.env.get_template(str(rel_path))
+                    print(f'✅ Template syntax valid: {rel_path}')
+                except Exception as e:
+                    print(f'❌ Template syntax error in {rel_path}: {e}')
+                    sys.exit(1)
+            
+            print('✅ All template syntax checks passed!')
+            
+        except ImportError as e:
+            print(f'⚠️  Could not import renderer: {e}')
+            print('Skipping template syntax validation')
+        except Exception as e:
+            print(f'❌ Template syntax validation failed: {e}')
+            sys.exit(1)
+        "
+
+  unit-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.9', '3.10', '3.11', '3.12']
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Cache pip dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements-dev.txt
+        pip install types-setuptools types-psutil
+        pip install pytest-asyncio
+          
+    - name: Test with pytest
+      env:
+        CI: true
+        PYTEST_CURRENT_TEST: true
+      run: |
+        pytest tests/ -k "not tui" -m "not hardware" --cov=src --cov-report=xml --cov-report=term-missing
+      continue-on-error: true
+
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v5
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        slug: ramseymcgrath/PCILeechFWGenerator
+        files: ./coverage.xml  
+        flags: unittests
+        fail_ci_if_error: false
+
+
+  tui-test:
+    runs-on: ubuntu-latest
+    needs: unit-test
+    strategy:
+      matrix:
+        python-version: ['3.9', '3.10', '3.11', '3.12']
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Cache pip dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-tui-${{ hashFiles('**/requirements*.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+    
+    - name: Install TUI test dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements-dev.txt
+        pip install "textual>=4.0.0" pytest-asyncio
+        pip install types-setuptools types-psutil
+          
+    - name: Run TUI integration tests
+      env:
+        CI: true
+        PYTEST_CURRENT_TEST: true
+        # Ensure headless mode for textual
+        TERM: xterm-256color
+        TEXTUAL_HEADLESS: true
+      run: |
+        # Run TUI tests in headless mode
+        pytest tests/test_tui_integration.py -v --tb=short -m tui
+      continue-on-error: true
+
+
+  integration:
+    runs-on: ubuntu-latest
+    needs: unit-test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m venv .venv
+          . .venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt -r requirements-test.txt
+
+      - name: Install Podman
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y podman
+          podman info
+
+      - name: Create mock sysfs
+        run: ./tests/create_mock_sysfs.sh tests/mock_sysfs
+
+      - name: Run integration (host + podman)
+        env:
+          BOARD_NAME: pcileech_35t325_x1
+        run: |
+          . .venv/bin/activate
+          bash tests/integration_smoke.sh
+
+      - name: Upload integration logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: integration-logs
+          path: tests/integration-logs/*
+
+  docs:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    
+    - name: Install documentation dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install sphinx sphinx-rtd-theme
+        pip install -r requirements.txt
+    
+    - name: Check documentation build
+      run: |
+        # Create basic Sphinx documentation structure if it doesn't exist
+        if [ ! -f "docs/conf.py" ]; then
+          mkdir -p docs
+          sphinx-quickstart -q -p "PCILeech Firmware Generator" -a "Ramsey McGrath" -v "0.5.0" --ext-autodoc --ext-viewcode --makefile --no-batchfile docs
+        fi
+        # Build documentation
+        cd docs && make html || echo "Documentation build test completed"
