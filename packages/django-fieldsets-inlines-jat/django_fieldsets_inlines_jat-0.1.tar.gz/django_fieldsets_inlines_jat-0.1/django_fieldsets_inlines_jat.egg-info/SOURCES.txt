@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+django_fieldsets_inlines_jat.egg-info/PKG-INFO
+django_fieldsets_inlines_jat.egg-info/SOURCES.txt
+django_fieldsets_inlines_jat.egg-info/dependency_links.txt
+django_fieldsets_inlines_jat.egg-info/top_level.txt
+fieldsets_with_inlines/__init__.py
+fieldsets_with_inlines/mixins.py
+fieldsets_with_inlines/templates/fieldsets_with_inlines/change_form.html
+fieldsets_with_inlines/templates/fieldsets_with_inlines/fieldset.html
