@@ -1,0 +1,49 @@
+[project]
+name = "nshsnap"
+version = "0.15.0-beta0"
+description = ""
+authors = [{ name = "Nima Shoghi", email = "nimashoghi@gmail.com" }]
+requires-python = ">=3.9,<4.0"
+readme = "README.md"
+
+dependencies = ["nshconfig", "uuid7"]
+
+[project.optional-dependencies]
+extra = []
+
+[project.urls]
+homepage = "https://github.com/nimashoghi/nshsnap"
+
+[project.scripts]
+nshsnap = "nshsnap.cli:main"
+
+[tool.poetry.group.dev.dependencies]
+basedpyright = "*"
+ruff = "*"
+ipykernel = "*"
+ipywidgets = "*"
+nox = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.basedpyright]
+typeCheckingMode = "standard"
+deprecateTypingAliases = true
+strictListInference = true
+strictDictionaryInference = true
+strictSetInference = true
+reportPrivateImportUsage = "none"
+reportMatchNotExhaustive = "warning"
+reportOverlappingOverload = "warning"
+reportUnnecessaryTypeIgnoreComment = "warning"
+reportImplicitOverride = "warning"
+reportIncompatibleMethodOverride = "information"
+
+[tool.ruff.lint]
+select = ["FA102", "FA100"]
+ignore = ["F722", "F821", "E731", "E741"]
+
+[tool.ruff.lint.isort]
+required-imports = ["from __future__ import annotations"]
