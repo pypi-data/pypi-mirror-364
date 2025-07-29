@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: parsalibrary
+Version: 0.1
+Summary: A simple library management system
+Author: Parsa Roohafzaei
+Author-email: parsaroohafzaei@gmail.com
+Keywords: library,books,management
+Dynamic: author
+Dynamic: author-email
+Dynamic: keywords
+Dynamic: summary

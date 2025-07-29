@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+setup.py
+library/__init__.py
+library/library.py
+parsalibrary.egg-info/PKG-INFO
+parsalibrary.egg-info/SOURCES.txt
+parsalibrary.egg-info/dependency_links.txt
+parsalibrary.egg-info/top_level.txt
