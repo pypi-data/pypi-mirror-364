@@ -1,0 +1,9 @@
+LICENCE
+MANIFEST.in
+README.md
+setup.py
+appli_django.egg-info/PKG-INFO
+appli_django.egg-info/SOURCES.txt
+appli_django.egg-info/dependency_links.txt
+appli_django.egg-info/entry_points.txt
+appli_django.egg-info/top_level.txt

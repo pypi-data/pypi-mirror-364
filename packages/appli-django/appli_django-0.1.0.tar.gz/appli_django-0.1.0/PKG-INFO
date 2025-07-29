@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: appli-django
+Version: 0.1.0
+Summary: Un outil CLI pour créer des applications Django automatiquement.
+Author: Nicosidick
+License: MIT
+Requires-Python: >=3.6
+License-File: LICENCE
+Dynamic: author
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-python
+Dynamic: summary
