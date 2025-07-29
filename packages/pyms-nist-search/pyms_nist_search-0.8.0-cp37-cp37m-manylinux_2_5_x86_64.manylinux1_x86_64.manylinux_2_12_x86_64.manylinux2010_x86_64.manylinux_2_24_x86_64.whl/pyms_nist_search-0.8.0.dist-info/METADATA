@@ -1,0 +1,388 @@
+Metadata-Version: 2.1
+Name: pyms-nist-search
+Version: 0.8.0
+Summary: PyMassSpec extension for searching mass spectra using NIST's Mass Spectrum Search Engine.
+Home-page: https://github.com/domdfcoding/pynist
+Author: Dominic Davis-Foster
+Author-email: Dominic Davis-Foster <dominic@davis-foster.co.uk>
+License: GNU LESSER GENERAL PUBLIC LICENSE
+                               Version 3, 29 June 2007
+        
+         Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+         Everyone is permitted to copy and distribute verbatim copies
+         of this license document, but changing it is not allowed.
+        
+        
+          This version of the GNU Lesser General Public License incorporates
+        the terms and conditions of version 3 of the GNU General Public
+        License, supplemented by the additional permissions listed below.
+        
+          0. Additional Definitions.
+        
+          As used herein, "this License" refers to version 3 of the GNU Lesser
+        General Public License, and the "GNU GPL" refers to version 3 of the GNU
+        General Public License.
+        
+          "The Library" refers to a covered work governed by this License,
+        other than an Application or a Combined Work as defined below.
+        
+          An "Application" is any work that makes use of an interface provided
+        by the Library, but which is not otherwise based on the Library.
+        Defining a subclass of a class defined by the Library is deemed a mode
+        of using an interface provided by the Library.
+        
+          A "Combined Work" is a work produced by combining or linking an
+        Application with the Library.  The particular version of the Library
+        with which the Combined Work was made is also called the "Linked
+        Version".
+        
+          The "Minimal Corresponding Source" for a Combined Work means the
+        Corresponding Source for the Combined Work, excluding any source code
+        for portions of the Combined Work that, considered in isolation, are
+        based on the Application, and not on the Linked Version.
+        
+          The "Corresponding Application Code" for a Combined Work means the
+        object code and/or source code for the Application, including any data
+        and utility programs needed for reproducing the Combined Work from the
+        Application, but excluding the System Libraries of the Combined Work.
+        
+          1. Exception to Section 3 of the GNU GPL.
+        
+          You may convey a covered work under sections 3 and 4 of this License
+        without being bound by section 3 of the GNU GPL.
+        
+          2. Conveying Modified Versions.
+        
+          If you modify a copy of the Library, and, in your modifications, a
+        facility refers to a function or data to be supplied by an Application
+        that uses the facility (other than as an argument passed when the
+        facility is invoked), then you may convey a copy of the modified
+        version:
+        
+           a) under this License, provided that you make a good faith effort to
+           ensure that, in the event an Application does not supply the
+           function or data, the facility still operates, and performs
+           whatever part of its purpose remains meaningful, or
+        
+           b) under the GNU GPL, with none of the additional permissions of
+           this License applicable to that copy.
+        
+          3. Object Code Incorporating Material from Library Header Files.
+        
+          The object code form of an Application may incorporate material from
+        a header file that is part of the Library.  You may convey such object
+        code under terms of your choice, provided that, if the incorporated
+        material is not limited to numerical parameters, data structure
+        layouts and accessors, or small macros, inline functions and templates
+        (ten or fewer lines in length), you do both of the following:
+        
+           a) Give prominent notice with each copy of the object code that the
+           Library is used in it and that the Library and its use are
+           covered by this License.
+        
+           b) Accompany the object code with a copy of the GNU GPL and this license
+           document.
+        
+          4. Combined Works.
+        
+          You may convey a Combined Work under terms of your choice that,
+        taken together, effectively do not restrict modification of the
+        portions of the Library contained in the Combined Work and reverse
+        engineering for debugging such modifications, if you also do each of
+        the following:
+        
+           a) Give prominent notice with each copy of the Combined Work that
+           the Library is used in it and that the Library and its use are
+           covered by this License.
+        
+           b) Accompany the Combined Work with a copy of the GNU GPL and this license
+           document.
+        
+           c) For a Combined Work that displays copyright notices during
+           execution, include the copyright notice for the Library among
+           these notices, as well as a reference directing the user to the
+           copies of the GNU GPL and this license document.
+        
+           d) Do one of the following:
+        
+               0) Convey the Minimal Corresponding Source under the terms of this
+               License, and the Corresponding Application Code in a form
+               suitable for, and under terms that permit, the user to
+               recombine or relink the Application with a modified version of
+               the Linked Version to produce a modified Combined Work, in the
+               manner specified by section 6 of the GNU GPL for conveying
+               Corresponding Source.
+        
+               1) Use a suitable shared library mechanism for linking with the
+               Library.  A suitable mechanism is one that (a) uses at run time
+               a copy of the Library already present on the user's computer
+               system, and (b) will operate properly with a modified version
+               of the Library that is interface-compatible with the Linked
+               Version.
+        
+           e) Provide Installation Information, but only if you would otherwise
+           be required to provide such information under section 6 of the
+           GNU GPL, and only to the extent that such information is
+           necessary to install and execute a modified version of the
+           Combined Work produced by recombining or relinking the
+           Application with a modified version of the Linked Version. (If
+           you use option 4d0, the Installation Information must accompany
+           the Minimal Corresponding Source and Corresponding Application
+           Code. If you use option 4d1, you must provide the Installation
+           Information in the manner specified by section 6 of the GNU GPL
+           for conveying Corresponding Source.)
+        
+          5. Combined Libraries.
+        
+          You may place library facilities that are a work based on the
+        Library side by side in a single library together with other library
+        facilities that are not Applications and are not covered by this
+        License, and convey such a combined library under terms of your
+        choice, if you do both of the following:
+        
+           a) Accompany the combined library with a copy of the same work based
+           on the Library, uncombined with any other library facilities,
+           conveyed under the terms of this License.
+        
+           b) Give prominent notice with the combined library that part of it
+           is a work based on the Library, and explaining where to find the
+           accompanying uncombined form of the same work.
+        
+          6. Revised Versions of the GNU Lesser General Public License.
+        
+          The Free Software Foundation may publish revised and/or new versions
+        of the GNU Lesser General Public License from time to time. Such new
+        versions will be similar in spirit to the present version, but may
+        differ in detail to address new problems or concerns.
+        
+          Each version is given a distinguishing version number. If the
+        Library as you received it specifies that a certain numbered version
+        of the GNU Lesser General Public License "or any later version"
+        applies to it, you have the option of following the terms and
+        conditions either of that published version or of any later version
+        published by the Free Software Foundation. If the Library as you
+        received it does not specify a version number of the GNU Lesser
+        General Public License, you may choose any version of the GNU Lesser
+        General Public License ever published by the Free Software Foundation.
+        
+          If the Library as you received it specifies that a proxy can decide
+        whether future versions of the GNU Lesser General Public License shall
+        apply, that proxy's public statement of acceptance of any version is
+        permanent authorization for you to choose that version for the
+        Library.
+        
+Project-URL: Homepage, https://github.com/domdfcoding/pynist
+Project-URL: Issue Tracker, https://github.com/domdfcoding/pynist/issues
+Project-URL: Source Code, https://github.com/domdfcoding/pynist
+Project-URL: Documentation, https://pynist.readthedocs.io/en/latest
+Platform: Windows
+Platform: macOS
+Platform: Linux
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: Microsoft :: Windows :: Windows 7
+Classifier: Operating System :: Microsoft :: Windows :: Windows 8.1
+Classifier: Operating System :: Microsoft :: Windows :: Windows 10
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: C
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Scientific/Engineering :: Chemistry
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
+Classifier: Typing :: Typed
+Requires-Python: >=3.7
+Description-Content-Type: text/x-rst
+License-File: LICENSE
+Requires-Dist: chemistry-tools >=0.2.5
+Requires-Dist: docker >=4.2.0
+Requires-Dist: domdf-python-tools >=3.3.0
+Requires-Dist: jinja2 >=2.11.3
+Requires-Dist: pymassspec >=2.2.20
+Requires-Dist: requests >=2.22.0
+Requires-Dist: sdjson >=0.2.6
+Requires-Dist: numpy >=1.19.1 ; platform_system != "Windows"
+Requires-Dist: numpy !=1.19.4,>=1.19.3 ; platform_system == "Windows"
+Requires-Dist: cftime <=1.3.0 ; python_version == "3.6" and platform_system == "Windows"
+
+========================
+PyMassSpec NIST Search
+========================
+
+.. start short_desc
+
+**PyMassSpec extension for searching mass spectra using NIST's Mass Spectrum Search Engine.**
+
+.. end short_desc
+
+.. image:: https://img.shields.io/appveyor/build/domdfcoding/pyms-nist-search/master?logo=appveyor
+	:target: https://ci.appveyor.com/project/domdfcoding/pyms-nist-search/branch/master
+	:alt: AppVeyor Windows Build Status
+
+.. start shields
+
+.. list-table::
+	:stub-columns: 1
+	:widths: 10 90
+
+	* - Docs
+	  - |docs| |docs_check|
+	* - Tests
+	  - |actions_linux| |actions_windows| |coveralls|
+	* - PyPI
+	  - |pypi-version| |supported-versions| |supported-implementations| |wheel|
+	* - Activity
+	  - |commits-latest| |commits-since| |maintained| |pypi-downloads|
+	* - QA
+	  - |codefactor| |actions_flake8| |actions_mypy|
+	* - Other
+	  - |license| |language| |requires|
+
+.. |docs| image:: https://img.shields.io/readthedocs/pynist/latest?logo=read-the-docs
+	:target: https://pynist.readthedocs.io/en/latest
+	:alt: Documentation Build Status
+
+.. |docs_check| image:: https://github.com/domdfcoding/pynist/workflows/Docs%20Check/badge.svg
+	:target: https://github.com/domdfcoding/pynist/actions?query=workflow%3A%22Docs+Check%22
+	:alt: Docs Check Status
+
+.. |actions_linux| image:: https://github.com/domdfcoding/pynist/workflows/Linux/badge.svg
+	:target: https://github.com/domdfcoding/pynist/actions?query=workflow%3A%22Linux%22
+	:alt: Linux Test Status
+
+.. |actions_windows| image:: https://github.com/domdfcoding/pynist/workflows/Windows/badge.svg
+	:target: https://github.com/domdfcoding/pynist/actions?query=workflow%3A%22Windows%22
+	:alt: Windows Test Status
+
+.. |actions_flake8| image:: https://github.com/domdfcoding/pynist/workflows/Flake8/badge.svg
+	:target: https://github.com/domdfcoding/pynist/actions?query=workflow%3A%22Flake8%22
+	:alt: Flake8 Status
+
+.. |actions_mypy| image:: https://github.com/domdfcoding/pynist/workflows/mypy/badge.svg
+	:target: https://github.com/domdfcoding/pynist/actions?query=workflow%3A%22mypy%22
+	:alt: mypy status
+
+.. |requires| image:: https://dependency-dash.repo-helper.uk/github/domdfcoding/pynist/badge.svg
+	:target: https://dependency-dash.repo-helper.uk/github/domdfcoding/pynist/
+	:alt: Requirements Status
+
+.. |coveralls| image:: https://img.shields.io/coveralls/github/domdfcoding/pynist/master?logo=coveralls
+	:target: https://coveralls.io/github/domdfcoding/pynist?branch=master
+	:alt: Coverage
+
+.. |codefactor| image:: https://img.shields.io/codefactor/grade/github/domdfcoding/pynist?logo=codefactor
+	:target: https://www.codefactor.io/repository/github/domdfcoding/pynist
+	:alt: CodeFactor Grade
+
+.. |pypi-version| image:: https://img.shields.io/pypi/v/pyms-nist-search
+	:target: https://pypi.org/project/pyms-nist-search/
+	:alt: PyPI - Package Version
+
+.. |supported-versions| image:: https://img.shields.io/pypi/pyversions/pyms-nist-search?logo=python&logoColor=white
+	:target: https://pypi.org/project/pyms-nist-search/
+	:alt: PyPI - Supported Python Versions
+
+.. |supported-implementations| image:: https://img.shields.io/pypi/implementation/pyms-nist-search
+	:target: https://pypi.org/project/pyms-nist-search/
+	:alt: PyPI - Supported Implementations
+
+.. |wheel| image:: https://img.shields.io/pypi/wheel/pyms-nist-search
+	:target: https://pypi.org/project/pyms-nist-search/
+	:alt: PyPI - Wheel
+
+.. |license| image:: https://img.shields.io/github/license/domdfcoding/pynist
+	:target: https://github.com/domdfcoding/pynist/blob/master/LICENSE
+	:alt: License
+
+.. |language| image:: https://img.shields.io/github/languages/top/domdfcoding/pynist
+	:alt: GitHub top language
+
+.. |commits-since| image:: https://img.shields.io/github/commits-since/domdfcoding/pynist/v0.8.0
+	:target: https://github.com/domdfcoding/pynist/pulse
+	:alt: GitHub commits since tagged version
+
+.. |commits-latest| image:: https://img.shields.io/github/last-commit/domdfcoding/pynist
+	:target: https://github.com/domdfcoding/pynist/commit/master
+	:alt: GitHub last commit
+
+.. |maintained| image:: https://img.shields.io/maintenance/yes/2025
+	:alt: Maintenance
+
+.. |pypi-downloads| image:: https://img.shields.io/pypi/dm/pyms-nist-search
+	:target: https://pypi.org/project/pyms-nist-search/
+	:alt: PyPI - Downloads
+
+.. end shields
+
+
+PyMassSpec extension for searching mass spectra using NIST's Spectrum Search Engine
+
+PyMassSpec NIST Search is Free Software licensed under the `GNU Lesser General Public License Version 3 <https://www.gnu.org/licenses/lgpl-3.0.en.html>`_
+
+A copy of the MassBank of North America database, in JSON, MSP and NIST Library formats, is included for the purposes of these tests.
+This library was created on 22 April 2020 using the "parse_mona_json.py" script and Lib2Nist.
+Licensed under the CC BY 4.0 License.
+For a list of contributors, see the file ``MoNA_GCMS_Library/AUTHORS``
+
+.. TODO: add links.
+
+Installation
+--------------
+
+.. begin installation
+.. end installation
+
+
+Usage
+--------
+
+You will need to supply your own copy of the NIST Mass Spectral library to use this software.
+
+The main class in this library is the ``Engine`` class. This class performs the actual searching. Start by initialising the search engine as follows:
+
+.. code-block:: python
+
+	search = pyms_nist_search.Engine(
+			FULL_PATH_TO_MAIN_LIBRARY,
+			pyms_nist_search.NISTMS_MAIN_LIB,
+			FULL_PATH_TO_WORK_DIR,
+			)
+
+Where ``FULL_PATH_TO_MAIN_LIBRARY`` is the path to the location of your mass spectral library, and ``FULL_PATH_TO_WORK_DIR`` is the path to the working directory to be used by the search engine.
+
+A ``MassSpectrum`` object can then be searched as follows:
+
+.. code-block:: python
+
+	search.full_search_with_ref_data(mass_spec)
+
+This will return a list of tuples consisting of ``SearchResult`` and ``ReferenceData`` objects for the possible identities of the mass spectrum.
+
+A list of just the ``SearchResult`` objects can be obtained with this method:
+
+.. code-block:: python
+
+	hit_list = search.full_search(mass_spec)
+
+For each of these hits, the reference data can be obtained as follows:
+
+.. code-block:: python
+
+	for hit in hit_list:
+		ref_data = search.get_reference_data(hit.spec_loc)
+
+
+TODO
+-----
+
+1. Write comprehensive tests using pytest
