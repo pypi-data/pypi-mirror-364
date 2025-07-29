@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: translation_helper
+Version: 0.1.0
+Summary: An app to help manage i18n locales
+Author-email: Ndrolp <ndro.lozano@gmail.com>
+License: MIT
+Description-Content-Type: text/markdown
+Requires-Dist: customtkinter
+Requires-Dist: darkdetect
+Requires-Dist: packaging

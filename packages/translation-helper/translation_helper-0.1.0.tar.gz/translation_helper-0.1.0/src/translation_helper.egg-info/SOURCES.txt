@@ -1,0 +1,17 @@
+pyproject.toml
+src/translation_helper/__init__.py
+src/translation_helper/main.py
+src/translation_helper/theme.json
+src/translation_helper.egg-info/PKG-INFO
+src/translation_helper.egg-info/SOURCES.txt
+src/translation_helper.egg-info/dependency_links.txt
+src/translation_helper.egg-info/entry_points.txt
+src/translation_helper.egg-info/requires.txt
+src/translation_helper.egg-info/top_level.txt
+src/translation_helper/components/CreateKeyWindow.py
+src/translation_helper/components/KeysFrame.py
+src/translation_helper/components/LoadButton.py
+src/translation_helper/components/ValuesFrame.py
+src/translation_helper/components/__init__.py
+src/translation_helper/data/TranslationManager.py
+src/translation_helper/data/__init__.py
