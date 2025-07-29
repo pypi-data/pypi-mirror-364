@@ -1,0 +1,3 @@
+[console_scripts]
+agent-orchestrator = agent_orchestrator.cli.main:main
+agent_orchestrator = agent_orchestrator.cli.main:main
