@@ -1,0 +1,16 @@
+mpl_panel_builder/__init__.py,sha256=VH5bMwr3qDgdKM3wNmnL-VQXhoG1cxY6jluuOaC98VQ,455
+mpl_panel_builder/config.py,sha256=fMuCIkjPZJmIxtoQvA1dlTP1k306eAgUUF3kXkdRFv0,6137
+mpl_panel_builder/panel.py,sha256=YKQJkNsF7zvPvcuaMsNQBq3h3ed4j7hWmC6r618gdZA,5669
+mpl_panel_builder/py.typed,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+mpl_panel_builder/features/__init__.py,sha256=q4EbDypeG86AcigmGymG70U2JQQkdsnHghpNdmXfIs4,352
+mpl_panel_builder/features/annotation.py,sha256=_Hu-w73BPiXoCVDrbIVMaA-iraNMY1GnpZ79HkA6GwE,2706
+mpl_panel_builder/features/colorbar.py,sha256=_AMhJVq8YAsjujvVohalu69JkSShh-d8VPvZV0uiI-8,5014
+mpl_panel_builder/features/gridlines.py,sha256=RwtLZmMG8prrxXFGMDZaqUG9qf4oYpKiiJxT9ZJ3HvI,1402
+mpl_panel_builder/features/scalebar.py,sha256=o_5zw-FnQIRvPuYH01TIUEIzehAMLUkFIyjUIoVk4Ug,4527
+mpl_panel_builder/helpers/__init__.py,sha256=F1_dGjDonUpFUeb_1TBgyl619aWI_kYc38pe0NKSFDk,804
+mpl_panel_builder/helpers/examples.py,sha256=JIs0J2S3ieHQYvDGrQaW03Bpwj5U6nlTf1Al3_aAZ5M,2975
+mpl_panel_builder/helpers/mpl.py,sha256=RHjY6CoVvrDGHWVwWOWWuSYh8mHIPeWx7VAT1RiUF-s,9564
+mpl_panel_builder-0.6.0.dist-info/METADATA,sha256=znlMFwiuAwQ7AFgIx031_JbfECzgT7sS6bZftRy9Kkw,9938
+mpl_panel_builder-0.6.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+mpl_panel_builder-0.6.0.dist-info/licenses/LICENSE,sha256=YspVdYqFdqp4q7vt7d8vMm9OaewbncyQgYsCcrYlJ3A,1093
+mpl_panel_builder-0.6.0.dist-info/RECORD,,
