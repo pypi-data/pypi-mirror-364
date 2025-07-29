@@ -1,0 +1,27 @@
+Metadata-Version: 2.4
+Name: netkiller-chart
+Version: 0.0.1
+Summary: Netkiller Chart
+Author-email: Neo <netkiller@msn.com>
+License-Expression: MIT
+Project-URL: Homepage, https://www.netkiller.cn
+Project-URL: Issues, https://github.com/netkiller/netkiller-chart/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# netkiller-chart
+
+https://www.netkiller.cn
+
+## Gantt 甘特图
+
+![数据图表](doc/gantt.svg)
+
+## Mindmap 思维导图
+
+![数据图表](doc/mindmap.svg)
+

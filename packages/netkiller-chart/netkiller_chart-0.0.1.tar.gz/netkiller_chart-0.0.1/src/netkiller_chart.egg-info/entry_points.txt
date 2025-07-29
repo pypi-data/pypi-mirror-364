@@ -1,0 +1,3 @@
+[console_scripts]
+gantt = scripts.gantt:main
+mindmap = scripts.mindmap:main
