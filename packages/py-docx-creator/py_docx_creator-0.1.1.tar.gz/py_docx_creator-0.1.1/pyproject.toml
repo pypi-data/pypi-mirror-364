@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "py_docx_creator"
+version = "0.1.1"
+description = "Пакет для работы с .docx файлами"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Nikolay", email = "kola8911764@gmail.com"}
+]
+requires-python = ">=3.12"
+dependencies = [
+    "python-docx"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/HitsukaRgb/DocxPAPI/"
