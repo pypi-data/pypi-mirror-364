@@ -1,0 +1,9 @@
+django_navtag/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_navtag/models.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_navtag/templatetags/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_navtag/templatetags/navtag.py,sha256=-cUOzHyMl9NEw9c8JeTini927qJZ52NKYkUFW5gTCCc,12632
+django_navtag-3.3.dist-info/licenses/LICENSE,sha256=awoH0nVZl04NhMjk_dkUemhdOGQgtkvPXpBTXoykg7w,1057
+django_navtag-3.3.dist-info/METADATA,sha256=Ji3XgmjdeUgeP_Sa255vnWcbTIBt6qYoKHMha4pcZw0,8635
+django_navtag-3.3.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+django_navtag-3.3.dist-info/top_level.txt,sha256=CBsgjC4FA6cb561qTwMAItRImbvtdMKfBVW-WxVdTgY,14
+django_navtag-3.3.dist-info/RECORD,,
