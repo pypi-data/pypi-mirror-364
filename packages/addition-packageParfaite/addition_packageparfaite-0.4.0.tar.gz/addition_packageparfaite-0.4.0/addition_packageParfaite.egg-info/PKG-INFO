@@ -1,0 +1,40 @@
+Metadata-Version: 2.4
+Name: addition_packageParfaite
+Version: 0.4.0
+Summary: Un petit package Django qui dit Bonjour
+Author: ParfaiteSekongo
+Author-email: p88971582@gmail.com
+License: MIT
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 4.0
+Classifier: Framework :: Django :: 5.0
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Internet :: WWW/HTTP
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: django>=4.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary
+
+# addition
+
+Un petit package Python pour additionner deux nombres.
+
+## Utilisation
+
+```python
+from addition import add
+
+resultat = add(5, 7)
+print(resultat)  # 12
