@@ -1,0 +1,13 @@
+dshake/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+dshake/cli.py,sha256=45JnAKUdV7YMx5CLmmzSgH53Vut75me1WEWH6a-vQ_I,1604
+dshake/data_model.py,sha256=-pe7KSiAHne6oA4shdKCUQ8BZjQiJl6uBpRtbj2UEHM,885
+dshake/dependency.py,sha256=aP98ZJ5vL4zWEhBvkjmMgSqcblIAkikuKgwwXdrwk9c,3766
+dshake/module_import.py,sha256=AmfioKttPfJxZx4w6J5I6QaDsrgNgiIU6O6lZzyH7eM,5166
+dshake/package.py,sha256=nkiayfvH9N4IVqzJpddHl0rZ1-pyv4K-fHPznAceWHI,4680
+dshake/utils.py,sha256=bdXh1RLG6hORa7g7p-yyaDyCMiVAVAe6DVdPY27kTtI,137
+dshake-0.1.0.dist-info/licenses/LICENSE,sha256=DPwulyDOkoXOURT8plXdqnKJVoinq7KbORPpuwm0z0A,1068
+dshake-0.1.0.dist-info/METADATA,sha256=9FA3ioCMNDJSqParCPiz24gtFAoh7Pxhf4ZyV0FEdNM,4455
+dshake-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+dshake-0.1.0.dist-info/entry_points.txt,sha256=Le2Or9InTipBCGQdLh1Z7NU9ElijjqrUZUPRT54qYfU,43
+dshake-0.1.0.dist-info/top_level.txt,sha256=CyeFv9OzYsv0eMXfnW8F-_vXooWFvvxdrSQZVN2aaLE,7
+dshake-0.1.0.dist-info/RECORD,,
