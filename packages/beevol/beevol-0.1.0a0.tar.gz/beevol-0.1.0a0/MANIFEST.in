@@ -1,0 +1,7 @@
+recursive-include beevol *.py
+include beevol/config.yml
+include pyproject.toml
+include MANIFEST.in
+include README.md
+exclude *.ipynb
+exclude tests/*

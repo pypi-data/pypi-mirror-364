@@ -1,0 +1,13 @@
+MANIFEST.in
+README.md
+pyproject.toml
+beevol/__init__.py
+beevol/cli.py
+beevol/config.yml
+beevol/hive.py
+beevol/swarm.py
+beevol.egg-info/PKG-INFO
+beevol.egg-info/SOURCES.txt
+beevol.egg-info/dependency_links.txt
+beevol.egg-info/requires.txt
+beevol.egg-info/top_level.txt

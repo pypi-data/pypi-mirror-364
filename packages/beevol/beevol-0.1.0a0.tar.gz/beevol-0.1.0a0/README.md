@@ -1,0 +1,201 @@
+# BEE – Bifurcated Extremal Entropy
+
+BEE extracts local structure around extrema in time series.  
+For every detected peak and trough it computes:
+
+- **PE** – Permutation Entropy (local randomness)
+- **H_RS**, **H_DFA**, **H_VT**, **H_SP** – Hurst exponents via Range/Standard deviation, Detrended Fluctuation Analysis, Variance–Time, and Spectral methods
+
+Per-method modifiers are supported:
+
+- `.z(w)` – apply rolling Z-score to the smoothed series before that Hurst method (default window `w = 100` if omitted)
+- `.perst()` – apply a persistence transform to the Hurst output - absolute value of (2H − 1)
+
+All metrics are bifurcated: evaluated separately on upward (peak) and downward (trough) regimes and then interpolated to continuous traces.
+
+---
+
+## Install
+
+```bash
+pip install beevol         
+# or from source
+pip install .
+````
+
+Requires Python ≥ 3.8.
+
+---
+
+## Pipeline (Conceptual Overview)
+
+Let $x_t$ denote the raw series:
+
+1. **Savitzky–Golay smoothing (mandatory)**
+   The raw series is smoothed with a Savitzky–Golay filter (window `sg_window`, polynomial order `polyorder`). This smoothed series is the basis for all subsequent computations.
+
+2. **Extrema detection**
+   Peaks and troughs are detected on the smoothed series using a prominence threshold. Two index sets result: peaks (upward extrema) and troughs (downward extrema).
+
+3. **Permutation Entropy (PE)**
+   At each extremum, PE is computed using an embedding dimension (`m`) and a delay (`delay`). PE quantifies local ordinal complexity.
+
+4. **Per-method preprocessing for Hurst bases**
+   Each Hurst base method (RS, DFA, VT, SP) may specify `.z(w)`.
+   If present, a rolling Z-score (window `w`) is applied to the **smoothed** series before computing that method. If omitted, the smoothed series is used directly.
+
+5. **Hurst computation at each extremum**
+   For each Hurst base method, a trailing window (`hurst_window_h_*`) ending at the extremum is selected and the base method is applied to that segment.
+
+6. **Optional persistence transform**
+   If `.perst()` is attached, the resulting Hurst value is transformed to `|2H − 1|`, emphasizing deviation from pure randomness.
+
+7. **Bifurcation and interpolation**
+   Values at peaks populate the “max” stream; values at troughs populate the “min” stream. Each stream is linearly interpolated over time, producing continuous traces. Their difference (max − min) indicates directional divergence.
+
+---
+
+## Rationale for Bifurcation
+
+Time series often exhibit asymmetric behavior in rising versus falling phases (e.g., explosive growth vs. corrective decay). Partitioning metrics by direction allows:
+
+* Quantification of asymmetry in complexity and memory.
+* Identification of regime shifts via divergence between up and down traces.
+* Targeted transformations (persistence, Z-scoring) applied only where specified.
+
+---
+
+## Quick Start (CLI)
+
+**Show defaults**
+
+```bash
+python -m beevol.cli --show-defaults
+```
+
+**Run on a CSV with two columns**
+
+```bash
+python -m beevol.cli --data_source data.csv --target-columns colA colB
+```
+
+**Specify Hurst methods with modifiers**
+
+```bash
+python -m beevol.cli \
+  --run-hurst H_RS.perst() H_DFA.perst().z() H_VT H_SP.z(50)
+```
+
+* `H_RS.perst()` applies persistence to RS output.
+* `H_DFA.perst().z()` applies a Z-score (default window 100) to the smoothed series before DFA, then persistence to the DFA result.
+* `H_SP.z(50)` applies spectral Hurst on a Z-scored (window 50) smoothed series.
+
+**Suppress plots and printing**
+
+```bash
+python -m beevol.cli --output dfs
+```
+
+---
+
+## Python API
+
+```python
+from beevol.swarm import sting
+
+cfg = dict(
+    data_source="TEST",                 # or "path/to.csv"
+    target_columns=["value"],           # if CSV
+    run_hurst=["H_RS", "H_DFA.z(200).perst()", "H_SP"],
+    run_PE=True,
+    output=[],                          # e.g. ["plots", "dfs"]
+    return_figs=False,
+    verbose=False
+)
+
+full, pe_df, he_df = sting(**cfg)
+```
+
+* `full`: wide DataFrame with interpolated traces (e.g., `col__max_PE`, `col__min_PE`, `col__max_H_RS`, …).
+* `pe_df`, `he_df`: long tables with one row per extremum and a `target` column.
+
+---
+
+## Hurst Spec Grammar
+
+```
+BASE[.perst()][.z()][.z(W)]
+BASE ∈ {H_RS, H_DFA, H_VT, H_SP}
+```
+
+* `.z()` without an argument uses `hurst_z_window` (default 100).
+* Modifiers can appear in any order; `.z()` affects the input, `.perst()` affects the output.
+
+```python
+from beevol.hive import parse_hurst_spec
+parse_hurst_spec("H_DFA.perst().z(50)")
+# returns ("H_DFA", {"perst": True, "z": True, "z_window": 50})
+```
+
+---
+
+## Configuration Keys (YAML or dict)
+
+| Key                       | Type       | Meaning                                             | Default     |
+| ------------------------- | ---------- | --------------------------------------------------- | ----------- |
+| `data_source`             | str        | `"TEST"` or path to CSV                             | `"TEST"`    |
+| `target_columns`          | list\[str] | CSV columns to process                              | `["value"]` |
+| `sg_window`, `polyorder`  | int        | Savitzky–Golay parameters                           | `7`, `2`    |
+| `prominence`, `tolerance` | float, int | Extrema detection threshold and alignment tolerance | `0.5`, `5`  |
+| `entropy_window`          | int        | PE rolling window                                   | `20`        |
+| `hurst_window_h_*`        | int        | Window per Hurst base (RS, DFA, VT, SP)             | `20` each   |
+| `run_PE`                  | bool       | Toggle PE                                           | `True`      |
+| `run_hurst`               | list\[str] | Hurst specs with modifiers                          | see default |
+| `hurst_z_window`          | int        | Default Z window when `.z()` has no argument        | `100`       |
+| `verbose`                 | bool       | Print alignment and informative output              | `True`      |
+| `output`                  | list\[str] | Any of `plots`, `extrema_accuracy`, `dfs`, `all`    | `[]`        |
+| `return_figs`             | bool       | Return Matplotlib figures                           | `False`     |
+
+Synthetic generator parameters (`N`, `phi1`, `phi2`, `sigma1`, `sigma2`, `T`, `drift`, `scale`, `seed`) are also configurable.
+
+---
+
+## Outputs
+
+* **full\_wide**: interpolated/rolled columns per target and direction (e.g., `target__max_H_RS`, `target__min_H_RS`).
+* **pe\_long / he\_long**: per-extremum tables (`idx`, `value`, metrics, `target`).
+
+Optional plots include PE up/down traces and their difference, and analogous plots for each Hurst base.
+
+---
+
+## Tests and Their Purpose
+
+The bundled test suite (`tests/test_all.py`) verifies:
+
+| Test block                             | Purpose                                              |
+| -------------------------------------- | ---------------------------------------------------- |
+| Permutation entropy on constants/noise | Confirms PE → 0 for constants and >0 for noise       |
+| Hurst estimators on white noise        | Ensures H ≈ 0.5 bounds (0.3–0.7) for all bases       |
+| Synthetic generator variance           | Confirms generated AR process has nontrivial spread  |
+| Extrema routines                       | Validates peak/trough detection and tolerance logic  |
+| End-to-end feature computation         | Checks PE + Hurst extraction at extrema (new API)    |
+| CLI defaults and CSV failure modes     | Confirms CLI behavior and error handling             |
+| Multi-column processing                | Ensures bifurcation and column naming across targets |
+
+The persistence transform is bounded in \[0, 1] by construction (absolute value of 2H − 1). White-noise checks ensure estimators do not produce spurious persistence.
+
+---
+
+## Citation
+
+Woltman, N. (2025). *Bifurcated Extremal Entropy*.
+GitHub / PyPI: `beevol`
+
+---
+
+## License
+
+MIT
+
+```

@@ -1,0 +1,53 @@
+# ------------------------------
+# beevol configuration template
+# ------------------------------
+
+# 1) DATA
+# Use TEST for synthetic, or a CSV path.
+data_source: TEST              # or: path/to/your.csv
+target_columns: ["value"]      # used only if data_source is a CSV
+
+# 2) Synthetic generator (ignored if you provide a CSV)
+N: 1000
+phi1: 0.3
+phi2: 0.9
+sigma1: 0.3
+sigma2: 1.5
+T: 200
+drift: 0.0
+scale: 1.0
+seed: 42
+
+# 3a) Savitzky–Golay (these always run on the raw series)
+sg_window: 7
+polyorder: 2
+
+# 3b) Extrema Detection (these always run on the raw series)
+prominence: 0.5
+tolerance: 5
+
+# 4) Rolling windows
+entropy_window: 20               
+hurst_window_h_rs: 20
+hurst_window_h_dfa: 20
+hurst_window_h_vt: 20
+hurst_window_h_sp: 20
+
+# 5) Permutation entropy params
+m: 3
+delay: 1
+
+run_PE: true
+run_hurst:
+  - H_RS
+  - H_DFA
+  - H_VT
+  - H_SP
+
+# Default rolling window for `.z()` if user omits value
+hurst_z_window: 100
+
+# 7) Misc
+verbose: true
+output: []          
+return_figs: false
