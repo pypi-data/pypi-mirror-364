@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+vscode_essentials/__init__.py
+vscode_essentials.egg-info/PKG-INFO
+vscode_essentials.egg-info/SOURCES.txt
+vscode_essentials.egg-info/dependency_links.txt
+vscode_essentials.egg-info/top_level.txt
+vscode_essentials/__pycache__/__init__.cpython-311.pyc
+vscode_essentials/vsix/.gitkeep
+vscode_essentials/vsix/Continue.continue-1.1.66@linux-x64.vsix
+vscode_essentials/vsix/ms-python.python-2025.4.0.vsix

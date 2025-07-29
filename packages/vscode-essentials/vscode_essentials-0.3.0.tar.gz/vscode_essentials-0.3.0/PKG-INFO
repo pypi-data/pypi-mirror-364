@@ -1,0 +1,74 @@
+Metadata-Version: 2.4
+Name: vscode-essentials
+Version: 0.3.0
+Summary: Essential utilities for VS Code development
+Author-email: SAI <me@steveimm.id>
+License: MIT
+Project-URL: Homepage, https://github.com/yourusername/vscode-essentials
+Project-URL: Repository, https://github.com/yourusername/vscode-essentials
+Project-URL: Issues, https://github.com/yourusername/vscode-essentials/issues
+Keywords: vscode,development,utilities
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# vscode-essentials
+
+Essential utilities for VS Code development.
+
+## Installation
+
+```bash
+pip install vscode-essentials
+```
+
+## Usage
+
+```python
+from vscode_essentials import hello_world
+
+print(hello_world())
+```
+
+## Development
+
+To install in development mode:
+
+```bash
+pip install -e .
+```
+
+## Building and Publishing
+
+1. Install build tools:
+   ```bash
+   pip install build twine
+   ```
+
+2. Build the package:
+   ```bash
+   python -m build
+   ```
+
+3. Upload to PyPI (test first):
+   ```bash
+   # Test PyPI first
+   twine upload --repository testpypi dist/*
+   
+   # Then to real PyPI
+   twine upload dist/*
+   ```
+
+## License
+
+MIT License - see LICENSE file for details.

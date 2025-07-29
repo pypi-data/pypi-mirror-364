@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vscode-essentials"
+version = "0.3.0"
+description = "Essential utilities for VS Code development"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "SAI", email = "me@steveimm.id"}
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+keywords = ["vscode", "development", "utilities"]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/vscode-essentials"
+Repository = "https://github.com/yourusername/vscode-essentials"
+Issues = "https://github.com/yourusername/vscode-essentials/issues"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["vscode_essentials*"]
+
+[tool.setuptools.package-data]
+"vscode_essentials" = ["vsix/*.vsix"]
+
+[tool.bumpver]
+current_version = "0.3.0"
+version_pattern = "MAJOR.MINOR.PATCH"
+commit_message  = "Bump version {old_version} -> {new_version}"
+commit          = false
+tag             = false
+push            = false
+
+[tool.bumpver.file_patterns]
+"pyproject.toml" = ['current_version = "{version}"', 'version = "{version}"']
+"vscode_essentials/__init__.py" = ["{version}"]
