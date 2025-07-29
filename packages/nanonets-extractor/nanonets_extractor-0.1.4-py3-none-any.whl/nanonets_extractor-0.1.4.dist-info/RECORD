@@ -1,0 +1,16 @@
+nanonets_extractor/__init__.py,sha256=npKpJHtNLQFP9bYFWyJJ2zlExy0d5t8bPYfA5SCx1tI,573
+nanonets_extractor/cli.py,sha256=T0ptbkezBpL_OeGOwW1W1WqirBwBDMHBPUdGCsETTY4,8220
+nanonets_extractor/exceptions.py,sha256=NgRUTFxFT2ioeB8zNSYPj6x2q-_d07LGkdLK0sADj1A,589
+nanonets_extractor/extractor.py,sha256=ZHTLRrq-UUkf7B23R5KZRI7mIQta31NvKhD9OPtvRe0,8015
+nanonets_extractor/utils.py,sha256=yRoS8K2X7OI9c2VEN054GHxRMIJDC0mEerdBtIx3Z6E,3804
+nanonets_extractor/processors/__init__.py,sha256=3mMFaz3kmm4TabBGq7o2V52-GY_Ngyrg1bC9wkUIDWc,491
+nanonets_extractor/processors/base_processor.py,sha256=TDceu8F4Wo79V48Ww0q9mITWL1KjGUm01gWl9qM-7GQ,1824
+nanonets_extractor/processors/cloud_processor.py,sha256=gbcG-l_jrAgV-H3xdkd3zgyn0xZ7iHEo7GkswMUd7is,5300
+nanonets_extractor/processors/cpu_processor.py,sha256=TkZYycunBdd70YS3svuApXTHxeL6la0IMVC6f-8s-mE,11620
+nanonets_extractor/processors/gpu_processor.py,sha256=Z8ropS71zJl2gUJl8Hq2fZkDfaooDz0Diy9wtuzzbgE,14711
+nanonets_extractor-0.1.4.dist-info/licenses/LICENSE,sha256=unqbdXXh-APdg_3nlhR0umxtjF7sTDT86xlRU2mutZA,1065
+nanonets_extractor-0.1.4.dist-info/METADATA,sha256=zCs0dwgKs1vKZ-mdtlIgi0G1voQRr8cXqhcGfNb-feE,8265
+nanonets_extractor-0.1.4.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+nanonets_extractor-0.1.4.dist-info/entry_points.txt,sha256=vCJPZHWri_UfIifhjii9_POFE2V_07Wt81CdhosEcNE,67
+nanonets_extractor-0.1.4.dist-info/top_level.txt,sha256=FYorlkPD_9kZgTqSIgLdMJ_2ffztrt98m2qt8OG01cE,19
+nanonets_extractor-0.1.4.dist-info/RECORD,,
