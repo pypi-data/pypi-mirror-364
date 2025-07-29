@@ -1,0 +1,17 @@
+numpack/__init__.py,sha256=R6AQ1KBZXvnrpF6Bk8jKv3C9IcJJViMqBPRlfOQ6RZ8,13281
+numpack/msgpack_compatible_format.py,sha256=GlsBaQuQ3gdKEQs0Qnfh5zmRG3zHcq4yO7GAXy-WfDI,18365
+numpack/unified_numpack.py,sha256=bugVQ-JZliwvjq2dniYquxjLn04YvytBFfjuahOOxU0,35349
+numpack/windows_handle_manager.py,sha256=H_AgIbJZ4tB_H0qwMKk9JQLK0FWEf42ksaNjGjQCpek,15619
+numpack/tests/__init__.py,sha256=cgaKTkYoxOFb6Il8lEuzgWhK2rQXD1vEfnuxXPs9Rzk,32
+numpack/tests/benchmark.py,sha256=XMJvY8vYxzB8OPxd0NhVcss1YkjEuB_spOxd34dDhbA,35921
+numpack/tests/comprehensive_benchmark.py,sha256=atfHxxdGXJdN8kKcIwtTaZJy9yTTHp-SeNRlABmLGZQ,40576
+numpack/tests/conftest.py,sha256=iJ9g5wMFxIhGzX7P_sGyXYe18r-tVOEgZLfGvUAE6Is,1783
+numpack/tests/test_advanced_api.py,sha256=66k_N025hrOtHMpufk1Naobqph5JRHRZ4r0VMjz_mzk,19880
+numpack/tests/test_lazy_array_advanced.py,sha256=4pUPxHy3eSKgGyhz0vdJI22ydOWko6p2lh7D_OyXU7o,15341
+numpack/tests/test_numpack.py,sha256=NV8JiXSfBqu_ZpoGW9PoyPE2XsnP02lazwT0vMHt71c,14794
+numpack/tests/windows_cleanup_helper.py,sha256=vjP8FqBSDqM9UuHGkILtF5ZXB9JwVANjs5ttS0l8_uU,2995
+numpack-0.2.1.dist-info/licenses/LICENSE,sha256=HrhfyXIkWY2tGFK11kg7vPCqhgh5DcxleloqdhrpyMY,11558
+numpack-0.2.1.dist-info/METADATA,sha256=kDwo1SnTByow9BmGEl00vFIsyooZi4pMpSy9nB8SX4A,28652
+numpack-0.2.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+numpack-0.2.1.dist-info/top_level.txt,sha256=4yM9O_SbeqCiouatnFZmtO6IirVrV4LWYjmiLsuhNZg,8
+numpack-0.2.1.dist-info/RECORD,,
