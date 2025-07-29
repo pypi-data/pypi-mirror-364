@@ -1,0 +1,30 @@
+{
+    "dimensions": [
+        {
+            "table": "dim_snif",
+            "column_name": "medina",
+            "label": "Branch ID",
+            "hierarchy": true
+        }
+    ],
+    "metrics": [
+        {
+            "table": "sales_fact",
+            "column_name": "amount",
+            "expression": "avg"
+        },
+        {
+            "table": "sales_fact",
+            "column_name": "price",
+            "expression": "sum"
+        }
+    ],
+    "filters": [
+        {
+            "table_name": "sales_fact",
+            "column_name": "taarich",
+            "value": "2023-01-01",
+            "operation": "eq"
+        }
+    ]
+}

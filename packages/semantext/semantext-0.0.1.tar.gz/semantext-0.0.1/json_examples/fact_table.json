@@ -1,0 +1,52 @@
+{
+    "columns": [
+        {
+            "data_type": "INTEGER",
+            "description": "heshbonit",
+            "name": "sale_id"
+        },
+        {
+            "data_type": "TIMESTAMP",
+            "description": "The date and time of the sale.",
+            "name": "taarich"
+        },
+        {
+            "data_type": "STRING",
+            "description": "The unique identifier for the product sold.",
+            "name": "makat"
+        },
+        {
+            "data_type": "INTEGER",
+            "description": "The amount of the sale.",
+            "name": "amount"
+        },
+        {
+            "data_type": "FLOAT",
+            "description": "The price of the product sold.",
+            "name": "price"
+        },
+        {
+            "data_type": "INTEGER",
+            "description": "The branch where the sale occurred.",
+            "name": "snif_id"
+        }
+    ],
+    "description": "This table is the sales fact table.",
+    "dimensions": [
+        {
+            "dim_key": "makat",
+            "fact_dim_key": "makat",
+            "join_type": "inner",
+            "name": "dim_makat",
+            "table_name": "dim_makat"
+        },
+        {
+            "dim_key": "snif_id",
+            "fact_dim_key": "snif_id",
+            "join_type": "inner",
+            "name": "dim_snif",
+            "table_name": "dim_snif"
+        }
+    ],
+    "name": "sales_fact"
+}
