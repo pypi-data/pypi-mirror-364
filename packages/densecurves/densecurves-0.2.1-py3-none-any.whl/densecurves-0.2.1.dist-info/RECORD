@@ -1,0 +1,10 @@
+densecurves/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+densecurves/_plot.py,sha256=lqGoWoJ304XfGFNmmaBVHl91hY055BmCIqngiiJltEM,367
+densecurves/binary.py,sha256=Kun0MOh0my_awUzqDB-rBscVDUQQc0gdlOuQU1gWuX0,809
+densecurves/gray.py,sha256=EqCVc5qYo6IegZ7d3MhbmzUF-0u8ubwx58ym_heU7Gk,414
+densecurves/hilbert.py,sha256=alTRhajbb4UiQzO3mOV0pHBMrCeb4__a0ZBiQwaQKF0,3046
+densecurves/lebesgue.py,sha256=shncBlEl5AJ9CoKOpMXjitMCuVBvokH1id1e6qjW9Hw,1610
+densecurves/linear.py,sha256=5I-_FIx8VD0vaEs3CqBRQbSX6wad8fjBH1WJNW2JbCs,485
+densecurves-0.2.1.dist-info/METADATA,sha256=XhoiYlBmzU1RKXA3Uvv8Ca_bZXeCnGCOvDa5nvK0Xps,1958
+densecurves-0.2.1.dist-info/WHEEL,sha256=IYZQI976HJqqOpQU6PHkJ8fb3tMNBFjg-Cn-pwAbaFM,88
+densecurves-0.2.1.dist-info/RECORD,,
