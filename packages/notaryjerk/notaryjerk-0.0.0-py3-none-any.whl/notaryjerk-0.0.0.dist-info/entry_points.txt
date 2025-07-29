@@ -1,0 +1,2 @@
+[console_scripts]
+notaryjerk = notaryjerk.__main__:_main
