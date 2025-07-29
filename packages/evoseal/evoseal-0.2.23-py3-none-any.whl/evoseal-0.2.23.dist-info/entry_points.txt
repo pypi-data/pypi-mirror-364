@@ -1,0 +1,5 @@
+[console_scripts]
+evoseal = evoseal.cli.main:app
+
+[typer]
+evoseal = evoseal.cli.main:app
