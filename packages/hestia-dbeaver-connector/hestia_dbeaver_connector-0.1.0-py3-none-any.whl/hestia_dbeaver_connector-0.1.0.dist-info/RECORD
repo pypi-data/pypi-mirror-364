@@ -1,0 +1,9 @@
+hestia_dbeaver_connector/__init__.py,sha256=L67MBWWIbNDyWb7ZMgwBxLd_q5_rpA-1zKER42_hZ5o,309
+hestia_dbeaver_connector/dbeaver_plugin.py,sha256=JD548u28oJFPmxszx0Cd9fElAJc83vNFMId3nVgOuPk,15353
+tests/__init__.py,sha256=nFvKHzKdtZAunrzHfgQ9WnmLitxcLP6Jc4RcJAvflw4,58
+tests/test_dbeaver_plugin.py,sha256=2QFJw0kU2nOMwV72efTsKjvPfEwEg_qtKQqmyvIO9rU,5812
+hestia_dbeaver_connector-0.1.0.dist-info/METADATA,sha256=KQo18wr__Xtf_nYZbmZdwML35DSS9Cff2Hn7oDBcmeE,6028
+hestia_dbeaver_connector-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+hestia_dbeaver_connector-0.1.0.dist-info/entry_points.txt,sha256=HGX8Ovjvd4gt1HKuYrcctbpfmhJw8Afin9PH8KhcKmc,73
+hestia_dbeaver_connector-0.1.0.dist-info/top_level.txt,sha256=ULblDiy6XqoyJPp93LPISJ6eD0GbENyCkQBtYpPVWJI,31
+hestia_dbeaver_connector-0.1.0.dist-info/RECORD,,

@@ -1,0 +1,2 @@
+[hestia.plugins]
+dbeaver = hestia_dbeaver_connector:register_with_hestia

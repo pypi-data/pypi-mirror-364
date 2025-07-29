@@ -1,0 +1,217 @@
+Metadata-Version: 2.4
+Name: hestia-dbeaver-connector
+Version: 0.1.0
+Summary: DBeaver integration plugin for Hestia data platform
+Home-page: https://github.com/hestia/dbeaver-connector
+Author: Hestia Development Team
+Author-email: dev@hestia.com
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: PyQt5>=5.15.0
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0; extra == "dev"
+Requires-Dist: pytest-qt>=4.0; extra == "dev"
+Requires-Dist: black>=21.0; extra == "dev"
+Requires-Dist: flake8>=3.8; extra == "dev"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Hestia DBeaver Connector
+
+A plugin for the Hestia data platform that provides seamless integration with DBeaver database management tool.
+
+## Features
+
+- **Automatic DBeaver Detection**: Finds DBeaver installation across Windows, macOS, and Linux
+- **Database Connection Management**: Configure and manage multiple database connections
+- **Hestia Integration**: Export and import data between Hestia and DBeaver
+- **Cross-Platform Support**: Works on Windows, macOS, and Linux
+- **Secure Configuration**: Stores credentials and settings securely
+
+## Installation
+
+### Prerequisites
+
+- Python 3.7 or higher
+- PyQt5
+- DBeaver installed on your system
+
+### Install the Plugin
+
+```bash
+pip install hestia-dbeaver-connector
+```
+
+### Development Installation
+
+```bash
+git clone https://github.com/hestia/dbeaver-connector.git
+cd dbeaver-connector
+pip install -e .
+```
+
+## Usage
+
+### Integration with Hestia
+
+The plugin integrates automatically with Hestia's setup wizard. When you run Hestia:
+
+1. **Setup Wizard**: Choose "DBeaver" from the available integrations
+2. **Configuration**: The plugin will detect your DBeaver installation
+3. **Database Setup**: Configure your database connections
+4. **Testing**: Verify the connection works properly
+
+### Manual Configuration
+
+You can also configure the plugin manually:
+
+```python
+from hestia_dbeaver_connector import register_with_hestia
+
+# Launch the configuration dialog
+result = register_with_hestia()
+if result:
+    print("Configuration saved successfully!")
+```
+
+### Configuration Options
+
+The plugin provides several configuration options:
+
+#### Basic Configuration
+- **DBeaver Path**: Automatic detection or manual selection
+- **Connection Testing**: Verify DBeaver installation and connectivity
+
+#### Database Connections
+- **Multiple Databases**: Configure connections to PostgreSQL, MySQL, SQLite, etc.
+- **Connection Management**: Add, edit, and remove database connections
+- **Connection Testing**: Test each connection before saving
+
+#### Advanced Settings
+- **Auto-Detection**: Automatically detect DBeaver on startup
+- **Auto-Connect**: Automatically connect to known databases
+- **Export/Import**: Enable data exchange with Hestia
+
+## Supported Databases
+
+The plugin supports all databases that DBeaver supports:
+
+- **PostgreSQL**
+- **MySQL/MariaDB**
+- **SQLite**
+- **Oracle**
+- **SQL Server**
+- **MongoDB**
+- **And many more...**
+
+## Configuration Storage
+
+The plugin stores configuration in:
+
+- **Windows**: `%APPDATA%\hestia\plugins\dbeaver\dbeaver_config.json`
+- **macOS/Linux**: `~/.config/hestia/plugins/dbeaver/dbeaver_config.json`
+
+## Development
+
+### Project Structure
+
+```
+hestia_dbeaver_package/
+├── hestia_dbeaver_connector/
+│   ├── __init__.py
+│   └── dbeaver_plugin.py
+├── setup.py
+├── README.md
+└── tests/
+```
+
+### Running Tests
+
+```bash
+pip install -e .[dev]
+pytest tests/
+```
+
+### Building for Distribution
+
+```bash
+python setup.py sdist bdist_wheel
+```
+
+## Troubleshooting
+
+### DBeaver Not Found
+
+If the plugin cannot find DBeaver:
+
+1. **Verify Installation**: Make sure DBeaver is installed
+2. **Manual Path**: Use the "Browse" button to locate the executable
+3. **Common Locations**:
+   - Windows: `C:\Program Files\DBeaver\dbeaver.exe`
+   - macOS: `/Applications/DBeaver.app/Contents/MacOS/dbeaver`
+   - Linux: `/usr/bin/dbeaver`
+
+### Connection Issues
+
+If database connections fail:
+
+1. **Check Credentials**: Verify username, password, and database name
+2. **Network Access**: Ensure the database server is accessible
+3. **Firewall**: Check if firewall is blocking the connection
+4. **DBeaver Test**: Try connecting directly in DBeaver first
+
+### Plugin Not Loading
+
+If Hestia doesn't detect the plugin:
+
+1. **Verify Installation**: `pip list | grep hestia-dbeaver-connector`
+2. **Check Python Path**: Ensure the package is in your Python environment
+3. **Restart Hestia**: Restart the Hestia application
+4. **Manual Import**: Try importing the package manually
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests for new functionality
+5. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Support
+
+For support and questions:
+
+- **Issues**: Create an issue on GitHub
+- **Documentation**: Check the Hestia documentation
+- **Community**: Join the Hestia community forum
+
+## Changelog
+
+### Version 0.1.0
+- Initial release
+- Basic DBeaver integration
+- Configuration dialog
+- Cross-platform support
+- Automatic DBeaver detection 
