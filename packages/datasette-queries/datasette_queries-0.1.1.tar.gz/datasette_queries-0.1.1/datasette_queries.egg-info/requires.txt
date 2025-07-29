@@ -1,0 +1,6 @@
+datasette>=1.0a16
+sqlite-migrate
+
+[test]
+pytest
+pytest-asyncio
