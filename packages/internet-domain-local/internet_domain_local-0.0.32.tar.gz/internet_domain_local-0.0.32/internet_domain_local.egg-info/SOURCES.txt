@@ -1,0 +1,11 @@
+README.md
+pyproject.toml
+setup.py
+internet_domain_local.egg-info/PKG-INFO
+internet_domain_local.egg-info/SOURCES.txt
+internet_domain_local.egg-info/dependency_links.txt
+internet_domain_local.egg-info/requires.txt
+internet_domain_local.egg-info/top_level.txt
+internet_domain_local/src/__init__.py
+internet_domain_local/src/internet_domain_local.py
+internet_domain_local/src/internet_domain_local_constants.py
