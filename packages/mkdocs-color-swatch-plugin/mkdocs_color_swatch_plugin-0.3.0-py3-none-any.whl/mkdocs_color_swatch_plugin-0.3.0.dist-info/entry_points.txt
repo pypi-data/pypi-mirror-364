@@ -1,0 +1,3 @@
+[mkdocs.plugins]
+color-swatch=mkdocs_color_swatch_plugin.plugin:ColorSwatchPlugin
+
