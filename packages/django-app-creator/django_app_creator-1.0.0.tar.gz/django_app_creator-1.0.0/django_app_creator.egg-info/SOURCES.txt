@@ -1,0 +1,12 @@
+README.md
+setup.py
+app_creator/__init__.py
+app_creator/cli.py
+django_app_creator.egg-info/PKG-INFO
+django_app_creator.egg-info/SOURCES.txt
+django_app_creator.egg-info/dependency_links.txt
+django_app_creator.egg-info/entry_points.txt
+django_app_creator.egg-info/top_level.txt
+migrations/__init__.py
+models/__init__.py
+views/__init__.py
