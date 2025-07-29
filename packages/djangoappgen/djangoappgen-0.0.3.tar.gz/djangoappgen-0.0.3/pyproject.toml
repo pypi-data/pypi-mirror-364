@@ -1,0 +1,24 @@
+[project]
+name = "djangoappgen"
+version = "0.0.3"
+description = "Un générateur automatique d’applications Django"
+readme = "README.md"
+requires-python = ">=3.7"
+license = {text = "MIT"}
+authors = [
+  {name = "Digital Dreammer", email = "digitaldreamer@gmail.com"},
+]
+keywords = ["django", "codegen", "starter", "app generator"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Framework :: Django",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.scripts]
+djangoappgen = "djangoappgen.run:main"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
