@@ -1,0 +1,16 @@
+depth_anything_v2/dinov2.py,sha256=0i340NpEyFJevtiY_Zwzs6z82pGahNV3zCoIv9PVCsE,15178
+depth_anything_v2/dinov2_layers/__init__.py,sha256=48KMe3dRZbaEQADrafRNEE1sOAOsfaXVn2rD7PtG2dg,382
+depth_anything_v2/dinov2_layers/attention.py,sha256=DSQQzouLRJmmsM2rk5rivOq4lx79hmDZmbDzCI8oy_c,2343
+depth_anything_v2/dinov2_layers/block.py,sha256=CTJm6ggITHzOe43dd57PqqEwVXNfqop9aLWSTzhbOVs,9332
+depth_anything_v2/dinov2_layers/drop_path.py,sha256=lJEAqsTZwZydZTGdvTYohsXUanLXWGuk_VAOnx1RVww,1160
+depth_anything_v2/dinov2_layers/layer_scale.py,sha256=NWgXtdE5BzcSjLzAOlMz_TBgtzvq5Hh3IoLMuFHQ74U,823
+depth_anything_v2/dinov2_layers/mlp.py,sha256=wYxbPwIUCFl6Rzu3EAcOw_s7OfWi5C6IroPO1CWmCLU,1272
+depth_anything_v2/dinov2_layers/patch_embed.py,sha256=s_guGZJsnPtj8QE2rKXopyO94a1i2uHQT5DUBflDm68,2832
+depth_anything_v2/dinov2_layers/swiglu_ffn.py,sha256=34HZkBJAIU7cGDHOG3dVjc1iJ7KaLwAPxfVG31XS0Jo,1859
+depth_anything_v2/dpt.py,sha256=fMmim0HTHhYo5ci4cF4lrpW8ZJD3edu2lSl84jQVZvU,7391
+depth_anything_v2/util/blocks.py,sha256=NRqiS4r0vvkj6-O-1eXoUDsI45vwbuBF1kRKSFogNqg,3987
+depth_anything_v2/util/transform.py,sha256=qX3x27aHRXpAw4f9w0gu3ufdxcFCx9JzXKYjWoriiF8,6075
+depth_anything_v2-0.1.0.dist-info/LICENSE,sha256=xx0jnfkXJvxRnG63LTGOxlggYnIysveWIZ6H3PNdCrQ,11357
+depth_anything_v2-0.1.0.dist-info/METADATA,sha256=3clMG3WIH2PAWz-I3kuSzUcvCHLz00lriz17N01Utj4,10480
+depth_anything_v2-0.1.0.dist-info/WHEEL,sha256=fGIA9gx4Qxk2KDKeNJCbOEwSrmLtjWCwzBz351GyrPQ,88
+depth_anything_v2-0.1.0.dist-info/RECORD,,
