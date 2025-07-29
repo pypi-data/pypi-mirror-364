@@ -1,0 +1,2 @@
+[console_scripts]
+tap-heap = tap_heap:main
