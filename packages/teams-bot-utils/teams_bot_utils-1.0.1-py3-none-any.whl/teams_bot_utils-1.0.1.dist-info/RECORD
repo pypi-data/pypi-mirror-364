@@ -1,0 +1,15 @@
+teams_bot_utils/__init__.py,sha256=c5sOA7CNn0IHxteRQRTJKi-j6C4kBYNVm0aXoXmeaTc,1597
+teams_bot_utils/activity/__init__.py,sha256=LO_q62MRDzNlBht3Ewqrg56N70T75w1CVhQ_YKS3rII,186
+teams_bot_utils/activity/extensions.py,sha256=JVbVGuI7jt28qbZNnD3JlC0tO0gxTumvqubnoSJP1DQ,3106
+teams_bot_utils/image/__init__.py,sha256=0MuZt7CzAvrn8vclNGIxtLAmc93hQ5iKd4FBWM_mzOo,286
+teams_bot_utils/image/processing.py,sha256=H4XRxJwBgkKibvxbYvtoLEmRV1B6FZWKSWijom1fT7I,4109
+teams_bot_utils/telemetry/__init__.py,sha256=gZJXejJsM6iwlzb23TYVCdRh-H7UkKAKXATPqnOX1xM,114
+teams_bot_utils/telemetry/mixpanel_telemetry.py,sha256=zcV2iCd0MqBfTQICMVu-glZCEjgSqFnzLCEjBgi7GWE,11036
+teams_bot_utils/utils/__init__.py,sha256=y1V2Lsd9YiOYS4JQN5RNvPdaNqt71T-vkiIuuTMbonQ,247
+teams_bot_utils/utils/connection_pool.py,sha256=E8UJQ2K7gPQ_IyaqoimMdaQ-VERKSm5u0KDezyz8y0k,2156
+teams_bot_utils/utils/http_client.py,sha256=96VwtUka7zN4CDQkcANLdUkXziVXe7S4-rROC0PqdgI,6232
+teams_bot_utils-1.0.1.dist-info/licenses/LICENSE,sha256=h5-lYyUL1F2LQOlbZhpt0rJY1WMWLgsiqp6pQYwgAhs,1071
+teams_bot_utils-1.0.1.dist-info/METADATA,sha256=AJvuUSZWrBRchqxo_Ks_2ayKJ6I7ZPrD-MOwH17QeeI,14145
+teams_bot_utils-1.0.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+teams_bot_utils-1.0.1.dist-info/top_level.txt,sha256=m3etPosn44QolVvgwCNeAt6o0NgmByxYdPhLcwQ22bY,16
+teams_bot_utils-1.0.1.dist-info/RECORD,,
