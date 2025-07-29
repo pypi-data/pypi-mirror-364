@@ -1,0 +1,3 @@
+[console_scripts]
+external-issue-checker=external_issue_checker.cli:app
+
