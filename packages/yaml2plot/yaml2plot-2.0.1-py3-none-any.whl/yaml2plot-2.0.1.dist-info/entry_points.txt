@@ -1,0 +1,2 @@
+[console_scripts]
+y2p = yaml2plot.cli:cli
