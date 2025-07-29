@@ -1,0 +1,11 @@
+include README.md
+include LICENSE
+include pyproject.toml
+recursive-include * *.py
+recursive-include * *.proto
+global-exclude __pycache__
+global-exclude *.py[co]
+global-exclude .DS_Store
+global-exclude *.egg-info
+global-exclude build
+global-exclude dist
