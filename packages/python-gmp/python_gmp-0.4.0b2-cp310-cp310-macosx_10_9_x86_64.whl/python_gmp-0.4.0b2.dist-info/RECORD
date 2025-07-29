@@ -1,0 +1,7 @@
+libzz.dylib,sha256=PCljKLvPLnqTD_SWZ7vgFnnxA44ntxx6rrrCIOMwFu0,73904
+gmp.cpython-310-darwin.so,sha256=3tOoXpvebzDZuJnr42o26yXwcHp9wYEotpw-TiZyJng,97824
+python_gmp-0.4.0b2.dist-info/RECORD,,
+python_gmp-0.4.0b2.dist-info/WHEEL,sha256=ejHdjukjA3mUvrrofub6XnUmRe0UhbB-FXqwq2LflB8,123
+python_gmp-0.4.0b2.dist-info/METADATA,sha256=GWyNcpK450IdXZf5HEHz4Oqa8gX_-fR__AzYhG2Kl0k,5151
+python_gmp-0.4.0b2.dist-info/licenses/LICENSE,sha256=0HHetIH5sD-VSYWBay1IgLx4QArlVBLZT-iPcdcVTkY,1080
+python_gmp../python-gmp.libs/libgmp.10.dylib,sha256=5eP4MT3eA2OvImuAwmTEWAa9HpbxdzuWhLb9MO-YTbA,653312
