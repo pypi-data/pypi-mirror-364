@@ -1,0 +1,12 @@
+coral8/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+coral8/cli.py,sha256=TdTewKGKShsjXwaTcVdARDMrQpuY0kp_dWDeVXoaJW0,3226
+coral8/core.py,sha256=an6gMS6l1VJNoyuWCkJ17255bdvqFeVxZPNveivOiyQ,3414
+coral8/deployer.py,sha256=Qpc6Kfn0RTW0WJdI6xGAnHrmXyTCdkVjFIP-dgCrusA,2213
+coral8/exporter.py,sha256=dzKpvea7QdyCk88nyak1b4oO4FTMcGKZ0NHCBed80HE,3340
+coral8/injector.py,sha256=TdWibVZWZKxR-L5_XQzLHn3rIFvs1a-pHxMwYVOHcZQ,338
+coral8/loader.py,sha256=ywqSzNN_b5lIgKVm9LCCYXHQrIZdl070R8HCTG9nGso,652
+coral8-0.5.1.dist-info/METADATA,sha256=QUBKDzLhq5scN5bJBGwp2CjdJNheOOQhb1zXrEYPjt0,2488
+coral8-0.5.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+coral8-0.5.1.dist-info/entry_points.txt,sha256=w2UJh4-2RdDLJ7uF9glPn103ZpGJ1bdTm3jpC6Jao1o,42
+coral8-0.5.1.dist-info/top_level.txt,sha256=W8-FutRDxnaW9IvcCS2JpppdQjpzm9FmRl_7PrLhHBo,7
+coral8-0.5.1.dist-info/RECORD,,
