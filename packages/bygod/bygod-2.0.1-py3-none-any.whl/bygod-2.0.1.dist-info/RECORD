@@ -1,0 +1,14 @@
+bible_downloader.py,sha256=LJw4q7VdtBGbj047p1Swov4VDldI7tK7nJYoTW-JX6k,38037
+common/__init__.py,sha256=pOCIfMuyZXD0tfKP34qQ_x6D8WMXGdRi4C3Iaxu91qo,34
+common/download.py,sha256=vm_tBY_A63EBmi1jz1Siwyd-t5tIb9o9cRFpvFBOAUg,25241
+utils/__init__.py,sha256=iQ6XIiAbgI4vIvlxWbHTb5F2S7Kg8O9VhcsWc7Dxm7U,45
+utils/chapters.py,sha256=5bRfVI_wjtrHu2Ji9g2guJ28UP7bJXoeRLz03IygwGs,7005
+utils/formatting.py,sha256=nW8CdWImjMRPkjjfrLHAg_N5Qh-Z3748V-e1qWM29ow,3508
+utils/logging.py,sha256=FCTqj2b9RoclU8fTlrWWY5Sp35Odc4_YYTrmZNKIToo,1607
+utils/validation.py,sha256=VmgS4PbPzJ15yirHagg5Z8NO4mheQKe583oSJHSCDk4,1956
+bygod-2.0.1.dist-info/LICENSE,sha256=b9eCBS3jVmttPW1HrwsQZAQQjAC3C0YV0j5FFSegfEE,1086
+bygod-2.0.1.dist-info/METADATA,sha256=4faDKcpdXlXySFyIWM19qevHq9MtGCIaLVXW11S-fsM,10842
+bygod-2.0.1.dist-info/WHEEL,sha256=iAkIy5fosb7FzIOwONchHf19Qu7_1wCWyFNR5gu9nU0,91
+bygod-2.0.1.dist-info/entry_points.txt,sha256=d6xD04FknUhDJ8AQCuY8I7g7iF4Q2nPTKK7o0j1tFEI,48
+bygod-2.0.1.dist-info/top_level.txt,sha256=nuA9lja6ASOgf4MJ6o9Aw1-TbbMqdWw_7OCNztm6hiI,30
+bygod-2.0.1.dist-info/RECORD,,
