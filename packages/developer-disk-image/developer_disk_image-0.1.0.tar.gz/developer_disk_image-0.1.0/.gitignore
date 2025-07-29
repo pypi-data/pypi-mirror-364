@@ -1,0 +1,7 @@
+.DS_Store
+.idea
+__pycache__
+build
+*.egg-info
+developer_disk_image/_version.py
+dist
