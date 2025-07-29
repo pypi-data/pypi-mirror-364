@@ -1,0 +1,6 @@
+[console_scripts]
+doc-convert = cli:main
+ocr-convert = cli_ocr:main
+
+[gui_scripts]
+ocr-document-converter = universal_document_converter_ocr:main
