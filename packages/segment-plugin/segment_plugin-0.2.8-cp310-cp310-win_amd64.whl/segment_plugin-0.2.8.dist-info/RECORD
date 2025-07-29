@@ -1,0 +1,11 @@
+segment_plugin-0.2.8.dist-info/METADATA,sha256=HkH9iGjc6ewSeK8Gbqu0njSFkaDeEwT1NOxHUaFnK1I,3104
+segment_plugin-0.2.8.dist-info/WHEEL,sha256=QKV4Sl7MSpV78xozy9-tp6UITYpirrRleZnt0vKJJXI,96
+segment_plugin-0.2.8.dist-info/licenses/LICENSE,sha256=yJhODfi2nxkf7J1Sq8PaMwYiE8wRDBVPZHhIH-Sk41g,1066
+segment_plugin/__init__.py,sha256=BiMs7XCr6pi7hIExPi25IRb0j4lhI2akDzzRNn4sWEI,1454
+segment_plugin/_internal.cp310-win_amd64.pyd,sha256=4e024WvlxFtp_AAcKWCSL6iCEiq6b_JZAQxLm12L1bs,16964096
+segment_plugin/funcs.py,sha256=Cx3qapecULJiadvevb9NPRjx4SyjO4Aax9f-tNGnOVQ,1823
+segment_plugin/pandas/__init__.py,sha256=Gqe3gUpX1Y4iDyFJSxSfE0NyRQ8YBfsbgLt4J5L0eCk,648
+segment_plugin/segment.py,sha256=lfPac--WjhIHAxtgXfRkWWX1OVvDhH72KmkSY9TmRmo,21160
+segment_plugin/segment_pd.py,sha256=AmxnEKQVHz5ICfC5qV8ZCTvvrYr8Bmiy0kVLBVB32MM,8901
+segment_plugin/typing.py,sha256=Ightof7s8xx6u8oU_CN-xrE84BkTpOXspGWF7afywvk,426
+segment_plugin-0.2.8.dist-info/RECORD,,
