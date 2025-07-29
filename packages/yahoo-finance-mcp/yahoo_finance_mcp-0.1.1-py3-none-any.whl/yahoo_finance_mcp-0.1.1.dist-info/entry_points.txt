@@ -1,0 +1,2 @@
+[console_scripts]
+yahoo-finance-mcp = server:main
