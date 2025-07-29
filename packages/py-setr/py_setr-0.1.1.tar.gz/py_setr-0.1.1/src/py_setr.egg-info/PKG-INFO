@@ -1,0 +1,75 @@
+Metadata-Version: 2.4
+Name: py-setr
+Version: 0.1.1
+Summary: Synergistic Emission Tomographic Reconstruction toolkit for multimodal PET/SPECT/CT imaging
+Author-email: Sam Porter <sam.porter.18@ucl.ac.uk>
+Maintainer-email: Sam Porter <sam.porter.18@ucl.ac.uk>
+License: MIT
+Project-URL: Homepage, https://github.com/samdporter/setr
+Project-URL: Documentation, https://setr.readthedocs.io
+Project-URL: Repository, https://github.com/samdporter/setr
+Project-URL: Bug Tracker, https://github.com/samdporter/setr/issues
+Project-URL: Changelog, https://github.com/samdporter/setr/blob/main/CHANGELOG.md
+Keywords: PET,SPECT,nuclear-medicine,tomographic-reconstruction,multimodal-imaging,sirf,cil
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering :: Medical Science Apps.
+Classifier: Topic :: Scientific/Engineering :: Image Processing
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: torch>=2.0.0
+Requires-Dist: numba>=0.58.0
+Requires-Dist: numpy>=1.21.0
+Requires-Dist: matplotlib>=3.5.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0.0; extra == "dev"
+Requires-Dist: jupyter>=1.0.0; extra == "dev"
+Requires-Dist: ipykernel>=6.0.0; extra == "dev"
+Provides-Extra: docs
+Requires-Dist: sphinx>=5.0.0; extra == "docs"
+Requires-Dist: sphinx-rtd-theme>=1.0.0; extra == "docs"
+Provides-Extra: test
+Requires-Dist: pytest>=7.0.0; extra == "test"
+Requires-Dist: pytest-cov>=4.0.0; extra == "test"
+Dynamic: license-file
+
+# SETR
+## Synergistic Emission Tomographic Reconstruction
+
+Tools for nuclear medicine image reconstruction combining PET/SPECT with CT anatomical information.
+
+## Contents
+
+- **Vectorial Total Variation** regularization
+- **GPU-accelerated gradients and Jacobians**
+- **Python wrapper for STIR Kernel EM**
+- **Numba-optimized kernel operators**
+- **Extended CIL functionality:**
+  - Preconditioners
+  - Callbacks  
+  - Step size rules
+- **SIRF data loading utilities**
+
+## Installation
+
+```bash
+# Install dependencies via conda / pip or from source
+- SIRF
+- CIL
+
+# Install SETR
+pip install py-setr
+```
+
+## Note
+In order to use the partitioner with SPECT, you will need to build stir with
+https://github.com/samdporter/STIR/tree/SPECT_subsets
