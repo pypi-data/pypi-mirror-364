@@ -1,0 +1,2 @@
+[console_scripts]
+truffle-ai-domain-checker-mcp = main:main
