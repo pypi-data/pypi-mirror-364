@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=69.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "django-form-util"
+version = "0.2"
+description = "Une app Django avec un formulaire de bienvenue simple"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["django>=4.2"]
+authors = [
+  {name = "Prince Axel", email = "axelvianney49@gmail.com"},
+]
+license = {text = "MIT"}
+
+[project.urls]
+Homepage = "https://github.com/pr1nceaxel/django-welcome-form"

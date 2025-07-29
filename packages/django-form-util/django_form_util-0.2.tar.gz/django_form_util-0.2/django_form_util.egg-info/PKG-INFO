@@ -1,0 +1,27 @@
+Metadata-Version: 2.4
+Name: django-form-util
+Version: 0.2
+Summary: Une app Django avec un formulaire de bienvenue simple
+Author-email: Prince Axel <axelvianney49@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/pr1nceaxel/django-welcome-form
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: django>=4.2
+Dynamic: license-file
+
+#   Étape d'installation du package
+
+# form-util
+
+Une app Django avec un formulaire de bienvenue simple
+
+## Installation
+
+```bash
+pip install form-util
+
+#   Utilisation
+
+form-util mon_de_app
