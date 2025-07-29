@@ -1,0 +1,3 @@
+[console_scripts]
+cli = swebenchv2.cli:main
+swebenchv2 = swebenchv2.cli:main
