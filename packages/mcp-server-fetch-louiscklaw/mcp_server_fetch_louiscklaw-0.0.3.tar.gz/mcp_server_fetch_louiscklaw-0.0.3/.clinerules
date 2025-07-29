@@ -1,0 +1,84 @@
+# .clinerules for modelcontextprotocol-servers/src/fetch
+
+## Project Overview
+
+This directory contains the fetch component of the Model Context Protocol (MCP) servers. It is responsible for handling data retrieval operations and adheres to MCP guidelines for integration and development.
+
+## Core Development Principles
+
+- **Code Quality Standards**:
+  - Follow PEP 8 for code style.
+  - Use type hints for better code clarity and IDE support.
+  - Maintain at least 80% test coverage.
+  - Adhere to Python's official style guide, including indentation (4 spaces), line length (max 88 characters), and import organization.
+
+- **Development Methodology**:
+  - Use Test-Driven Development (TDD) for all new functionality.
+  - Implement tests first, then code, followed by refactoring.
+  - Aim for high test coverage, ensuring all business logic is tested.
+  - Follow a structured approach: plan in PLAN MODE for complex tasks, then implement in ACT MODE.
+
+## Tool Usage Guidelines
+
+- **MCP Servers**:
+  - Leverage available MCP servers for advanced operations.
+  - Use `use_mcp_tool` and `access_mcp_resource` for interactions.
+  - Prefer MCP tools for data retrieval and integration tasks.
+- **File Operations**:
+  - Use `read_file`, `write_to_file`, and `replace_in_file` for file handling.
+  - Ensure file paths are relative to the current working directory.
+  - For targeted edits, use `replace_in_file` with exact SEARCH/REPLACE blocks.
+- **Command Execution**:
+- Use `execute_command` sparingly; prefer built-in tools.
+- Set `requires_approval` to true for potentially impactful operations like installing/uninstalling packages, deleting/overwriting files, system configuration changes, network operations, or any commands that could have unintended side effects.
+
+## Development Workflow
+
+- **Branching and Committing**:
+  - Use conventional commit messages.
+  - Branch naming: feat/description, fix/description, etc.
+  - Run linters and formatters after changes.
+- **Testing and Validation**:
+  - Implement unit tests using pytest.
+  - Use MCP servers for integration testing.
+  - Validate changes against project conventions.
+
+## Code Modification Rules
+
+- **Formatting and Style**:
+  - Indentation: 4 spaces.
+  - Line length: Maximum 88 characters.
+  - Imports: Standard library first, then third-party, then local.
+- **Error Handling and Documentation**:
+  - Use try/except blocks for error handling.
+  - Document code with docstrings.
+  - Include type hints for parameters and return values.
+
+## MCP Integration
+
+- **Server Usage**:
+  - Integrate with MCP servers for reliable data fetching.
+  - Ensure tool calls follow required parameters and approval settings.
+- **Best Practices**:
+  - Use MCP servers to handle complex operations.
+  - Monitor results and handle failures gracefully.
+
+## Testing Requirements
+
+- **Unit Testing**:
+  - Write tests for new functions and logic.
+  - Parametrize tests to cover edge cases.
+- **Integration Testing**:
+  - Use MCP servers and APIs for testing interactions.
+  - Ensure tests are in the tests/ directory.
+
+## Build and Development
+
+- **Dependencies**:
+  - Use uv or pip to manage dependencies.
+  - Pin versions for reproducibility.
+- **Automation**:
+  - Set up pre-commit hooks for linting and formatting.
+  - Run checks with scripts.
+
+# End of .clinerules
