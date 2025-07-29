@@ -1,0 +1,13 @@
+LICENSE
+README.md
+setup.py
+pinguin/__init__.py
+pinguin/cli.py
+pinguin/gui.py
+pinguin/roy.ico
+pinguin2.egg-info/PKG-INFO
+pinguin2.egg-info/SOURCES.txt
+pinguin2.egg-info/dependency_links.txt
+pinguin2.egg-info/entry_points.txt
+pinguin2.egg-info/requires.txt
+pinguin2.egg-info/top_level.txt
