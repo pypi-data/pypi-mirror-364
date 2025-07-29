@@ -1,0 +1,12 @@
+libgen/__init__.py,sha256=zmTtGIAugjJBX1JbxQUcMF4MNO7Uz0wYXOjX-6C2_f8,594
+libgen/cli.py,sha256=UwJ8H1bsFu9wVgFc2DfrNmNJPc-PLs_zxXxmqu_Rrz4,6830
+libgen/client.py,sha256=yEM57aiZQnLtHozrsNgl5QYrLtM-6_ydU0L_HnFC9JI,14910
+libgen/errors.py,sha256=Oz1S90Q36BPfgaoUsDpaAi5RK3oy_sz9vjSNdzVMDBI,1258
+libgen/libgen_types.py,sha256=iVgETPVr00_SEcLlSnVlFpFjvtaRWpZaJB-XzItMyy8,2042
+libgen/models.py,sha256=8HN5cf_ic76b_yyV3zowqrKD9ifLbM2OSiDIcHrcT_Q,747
+libgen/parser.py,sha256=NGWA9BSMdInw5Mx0yUUonxvIZFCSAxCTZQkNJDBXJAI,2934
+libgen_api_modern-1.0.0.dist-info/LICENSE,sha256=VMZIJAV4GK8mxf-QpprmowleRbaZ7Ru_eVXRipePJxw,1069
+libgen_api_modern-1.0.0.dist-info/METADATA,sha256=6OuehyudJij9bLRlHNdhXmf5aVqYwOGhy8lc56UAEkc,4405
+libgen_api_modern-1.0.0.dist-info/WHEEL,sha256=Nq82e9rUAnEjt98J6MlVmMCZb-t9cYE2Ir1kpBmnWfs,88
+libgen_api_modern-1.0.0.dist-info/entry_points.txt,sha256=xw6gDgYP8P9tIon6RfP-l7T7h58cywOqoT5Ws39mCOo,42
+libgen_api_modern-1.0.0.dist-info/RECORD,,
