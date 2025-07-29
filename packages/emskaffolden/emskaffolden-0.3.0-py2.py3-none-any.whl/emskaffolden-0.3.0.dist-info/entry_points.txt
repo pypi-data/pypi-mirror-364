@@ -1,0 +1,3 @@
+[console_scripts]
+emsk = emskaffolden.__main__:main
+emskaffolden = emskaffolden.__main__:main
