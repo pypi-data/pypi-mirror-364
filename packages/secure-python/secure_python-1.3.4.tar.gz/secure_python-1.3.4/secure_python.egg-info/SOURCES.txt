@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+secure_python/__init__.py
+secure_python/secure_python.py
+secure_python.egg-info/PKG-INFO
+secure_python.egg-info/SOURCES.txt
+secure_python.egg-info/dependency_links.txt
+secure_python.egg-info/requires.txt
+secure_python.egg-info/top_level.txt
+secure_python/secure/__init__.py
+secure_python/secure/data/__init__.py
