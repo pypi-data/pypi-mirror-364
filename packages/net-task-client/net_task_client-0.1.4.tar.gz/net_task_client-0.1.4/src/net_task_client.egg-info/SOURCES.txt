@@ -1,0 +1,13 @@
+LICENSE
+README.md
+pyproject.toml
+src/net_task_client/__init__.py
+src/net_task_client/config.yml
+src/net_task_client/defaults.yml
+src/net_task_client/groups.yml
+src/net_task_client/hosts.yml
+src/net_task_client.egg-info/PKG-INFO
+src/net_task_client.egg-info/SOURCES.txt
+src/net_task_client.egg-info/dependency_links.txt
+src/net_task_client.egg-info/requires.txt
+src/net_task_client.egg-info/top_level.txt

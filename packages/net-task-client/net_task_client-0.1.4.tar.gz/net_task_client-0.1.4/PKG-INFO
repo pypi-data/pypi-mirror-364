@@ -1,0 +1,45 @@
+Metadata-Version: 2.4
+Name: net_task_client
+Version: 0.1.4
+Summary: A nornir net task project
+Author-email: Larry Zhu <larry.lan.zhu@gmail.com>
+License-Expression: MIT
+Project-URL: Repository, https://github.com/myusernamehasbeentaken/net-task-client
+Keywords: network,task,client
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: nornir>=3.5.0
+Requires-Dist: nornir_netmiko>=1.0.1
+Requires-Dist: nornir_utils>=0.2.0
+Dynamic: license-file
+
+# net-task-client
+
+net_task_client is a network task client using nornair to run tasks on multiple devices.
+
+## To Install
+
+```
+py -m pip install net-task-client
+Please create the following files to run the client.
+Example config, hosts, groups, defaults are included with the git package.
+
+~/
+├── defaults.yml
+├── groups.yml
+├── hosts.yml
+├── config.yml
+
+```
+
+## Usage
+Please make sure you update the inventory file hosts.yml with your settings.
+```
+import net_task_client
+client = net_task_client.TaskHandler()
+output = client.run('show version')
+client.print_output(output)
+```
