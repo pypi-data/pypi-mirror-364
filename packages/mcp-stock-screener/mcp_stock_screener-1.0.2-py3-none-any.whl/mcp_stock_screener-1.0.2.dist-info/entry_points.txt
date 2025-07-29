@@ -1,0 +1,3 @@
+[console_scripts]
+mcp-stock-screener = main:main
+mcp-stock-screener-http = main_http:main
