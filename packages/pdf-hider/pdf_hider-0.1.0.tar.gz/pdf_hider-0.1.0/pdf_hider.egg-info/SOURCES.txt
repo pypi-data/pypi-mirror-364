@@ -1,0 +1,10 @@
+README.md
+setup.py
+pdf_hider/__init__.py
+pdf_hider/main.py
+pdf_hider.egg-info/PKG-INFO
+pdf_hider.egg-info/SOURCES.txt
+pdf_hider.egg-info/dependency_links.txt
+pdf_hider.egg-info/entry_points.txt
+pdf_hider.egg-info/requires.txt
+pdf_hider.egg-info/top_level.txt

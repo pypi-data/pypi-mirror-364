@@ -1,0 +1,76 @@
+# PDF 隐藏文本工具
+
+这个工具可以在 PDF 文件中嵌入透明的隐藏文本，而不会改变其可见内容。这对于添加元数据、水印，或者根据您最初的意图，通过嵌入关键词来影响基于 AI 的文档处理可能很有用。
+
+隐藏文本以完全透明（alpha=0）的方式呈现，使其对人眼不可见，但仍可被文本提取工具和算法解析。
+
+## 功能
+
+- 向现有 PDF 页面添加完全透明的文本。
+- 保留 PDF 的原始可见内容。
+- 支持通过命令行参数指定输入 PDF、输出 PDF 和隐藏文本。
+
+## 要求
+
+- Python 3.6+
+- `PyPDF2`
+- `reportlab`
+
+## 安装
+
+您可以通过 `pip` 直接从项目目录安装此工具：
+
+1.  **克隆仓库（或下载文件）：**
+
+    ```bash
+    git clone [https://github.com/yoofa/pdf-hidden-text-tool.git](https://github.com/yoofa/pdf-hidden-text-tool.git)
+    cd pdf-hidden-text-tool
+    ```
+
+2.  **安装包：**
+    ```bash
+    pip install .
+    ```
+
+## 使用方法
+
+安装后，您可以在终端中使用 `pdf-hider` 命令：
+
+```bash
+pdf-hider --input <输入PDF路径> --output <输出PDF路径> --text "<您的隐藏文本>"
+```
+
+参数：
+
+- --input 或 -i：(必填) 输入 PDF 文件的路径。
+
+- --output 或 -o：(必填) 带有隐藏文本的新 PDF 文件的保存路径。
+
+- --text 或 -t：(必填) 要隐藏在 PDF 中的文本字符串。
+
+示例：
+
+```bash
+pdf-hider -i 我的简历.pdf -o 带有关键词的简历.pdf -t "高素质，卓越领导力，创新解决方案，顶尖表现者。"
+```
+
+## 如何验证隐藏文本
+
+- 使用PyPDF2：
+
+```python
+from PyPDF2 import PdfReader
+
+reader = PdfReader("output_with_hidden_text.pdf")
+for page in reader.pages:
+print(page.extract_text())
+
+```
+
+- 使用 pdfminer.six (更强大的文本提取工具，需要安装 pip install pdfminer.six)：
+
+```bash
+pdf2txt.py output_with_hidden_text.pdf
+```
+
+你应该会在输出中看到你隐藏的字符串。
