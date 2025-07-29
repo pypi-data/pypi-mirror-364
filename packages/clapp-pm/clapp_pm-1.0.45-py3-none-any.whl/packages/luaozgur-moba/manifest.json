@@ -1,0 +1,8 @@
+{
+    "name": "luaozgur-moba",
+    "version": "1.0.0",
+    "language": "lua",
+    "entry": "main.lua",
+    "description": "League of Legends benzeri MOBA oyunu",
+    "dependencies": ["love2d"]
+} 
