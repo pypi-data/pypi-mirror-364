@@ -1,0 +1,4 @@
+[console_scripts]
+polaris = src.cli:main
+polaris-server = main:main
+polarisllm = main:main
