@@ -1,0 +1,6 @@
+contexttimer
+numpy
+
+[compression]
+blosc2
+pyzfp
