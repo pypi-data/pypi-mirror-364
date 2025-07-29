@@ -1,0 +1,6 @@
+[aiida.schedulers]
+hyperqueue=aiida_hyperqueue.scheduler:HyperQueueScheduler
+
+[console_scripts]
+aiida-hq=aiida_hyperqueue.cli:cmd_root
+
