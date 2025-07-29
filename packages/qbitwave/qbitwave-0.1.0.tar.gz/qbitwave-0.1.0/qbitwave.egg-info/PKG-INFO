@@ -1,0 +1,55 @@
+Metadata-Version: 2.4
+Name: qbitwave
+Version: 0.1.0
+Summary: Discrete emergent wavefunction
+Author-email: Juha Meskanen <juha@meskanen.com>
+Maintainer-email: Juha Meskanen <juha@meskanen.com>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/juhakm/qbitwave
+Project-URL: Bug Reports, https://github.com/juhakm/qbitwave
+Project-URL: Funding, https://meskanen.com
+Project-URL: Say Thanks!, http://meskanen.com
+Project-URL: Source, https://github.com/juhakm/qbitwave
+Keywords: physics,quantum
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy>=1.24
+Requires-Dist: matplotlib>=3.7
+Requires-Dist: scipy>=1.10
+Provides-Extra: dev
+Requires-Dist: check-manifest; extra == "dev"
+Requires-Dist: types-pyz; extra == "dev"
+Dynamic: license-file
+
+# Bitwave
+
+**A minimal informational model of quantum emergence.**
+
+`Bitwave` is a Python library for simulating quantum-like wavefunctions as emergent properties of binary strings. It unifies bitstrings, amplitudes, and entropy into a single foundational object.
+
+## Key Concepts
+
+- **Bit = Geometry**: Each bit encodes structure.
+- **Bitstring = Universe State**: A single bitstring describes a possible quantum universe.
+- **Bitwave = Wavefunction**: A discrete quantum object derived purely from bits.
+
+## Features
+
+- Convert any bitstring into a complex amplitude vector
+- Extract |ψ|² and phase 
+- Measure entropy and emergent resolution
+
+
+## Example
+
+```python
+from bitwave import Bitwave
+
+bw = Bitwave("1101010111001001")
+amplitudes = bw.get_amplitudes()
+entropy = bw.entropy()
