@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyeitaa"
+version = "0.1.0"
+description = "Elegant, modern and asynchronous Eitaa MTProto API framework in Python for users."
+readme = "README.md"
+authors = [
+    { name="MSDanesh", email="msdanesh48@gmail.com" }
+]
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+dependencies = [
+    "aiohttp",
+    "base36",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries"
+]
+keywords = [
+    "eitaa",
+    "chat",
+    "messenger",
+    "mtproto",
+    "api",
+    "client",
+    "library",
+    "python",
+]
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+    ".git/",
+    ".github/",
+    ".gitignore"
+]
+
+[project.urls]
+Homepage = "https://github.com/MSDanesh/pyeitaa"
+Repository = "https://github.com/MSDanesh/pyeitaa"
+Issues = "https://github.com/MSDanesh/pyeitaa/issues"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["pyeitaa*"]
