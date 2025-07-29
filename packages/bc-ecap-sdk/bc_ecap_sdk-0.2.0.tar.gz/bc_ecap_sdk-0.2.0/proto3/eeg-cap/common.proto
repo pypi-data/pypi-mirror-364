@@ -1,0 +1,113 @@
+syntax = "proto3";
+
+package tech.brainco.eeg_cap;
+
+import public "wrappers.proto";
+
+enum ConfigRespError {
+  CONFIG_ERR_SUCCESS   = 0;
+  CONFIG_ERR_HARDWARE  = 1;  // 硬件错误
+  CONFIG_ERR_PARAMETER = 2;  // 参数错误
+  CONFIG_ERR_UNKNOWN   = 3;  // 未知错误
+}
+
+/* APP配置设备信息内容 */
+message DeviceInfoConfig {
+  string model = 1;
+  string sn = 2;
+  bytes mac = 3;
+}
+
+message DeviceInfo {
+  string model       = 1;   // 设备model name，最大长度32
+  string sn          = 2;   // 设备SN信息，最大长度32
+  bytes mac          = 3;   // 设备MAC地址 （暂未使用）
+  string hw_version  = 4;   // 硬件版本，最大长度32
+  string fw_version  = 5;   // 固件版本，最大长度32
+}
+
+message HardwareInfo {
+  uint32 bat_level = 1;   // 电池电量， 0-100
+}
+
+enum WiFiSecurity {
+  SECURITY_NONE  = 0;
+  SECURITY_OPEN  = 1;          // 无加密
+  SECURITY_WPA2_MIXED_PSK = 2; // WPA2 混合加密方式，包括TKIP和AES
+}
+
+message WPAConfig {
+  WiFiSecurity security = 1; // 加密类型
+  string ssid = 2;           // SSID， 最大长度为32
+  string password = 3;       // 密码， 最小长度8，最大长度32。当security类型为NONE时，密码为空。
+}
+
+message WiFiConfig {
+  UInt32Value band_40mhz = 1; // 有效参数为 0: 20MHz 带宽； 1: 40MHz 带宽
+  WPAConfig wpa_config   = 2; // WPA 配置
+}
+
+enum WiFiStatus {
+  NONE = 0;         // 无配对状态
+  IDLE = 1;         // 空闲状态
+  CONNECTING = 2;   // 连接中
+  CONN_SUCCESS = 3; // 连接成功
+  CONN_FAIL = 4;    // 连接失败
+}
+
+message XYZ {
+	float x = 1;
+	float y = 2;
+	float z = 3;
+}
+
+message IMUCalibrationConfig {
+	XYZ acc = 1;             // Accel校准配置
+	XYZ gyro = 2;            // Gyro校准配置
+  XYZ mag_hard_iron = 3;   // Mag校准配置硬磁校准参数
+  XYZ mag_soft_iron_a = 4; // Mag校准配置软磁校准参数a
+  XYZ mag_soft_iron_b = 5; // Mag校准配置软磁校准参数b
+  XYZ mag_soft_iron_c = 6; // Mag校准配置软磁校准参数c
+}
+
+// APP发起OTA
+// 固件进入OTA模式后，开始请求文件
+// APP和固件交互传输升级包
+// 固件接收完成后,自动重启
+// 重启后，会擦写Flash
+// 操作Flash完成后，新固件运行，上报OTA完成状态。
+message OtaConfig {
+  enum CMD {
+    NONE = 0;
+    OTA_START = 1; // 前台传输MCU升级文件
+    OTA_REBOOT = 2; // 重启升级MCU
+  }
+
+  CMD cmd = 1;
+  OTAData ota_data = 2;
+
+  // START 命令，带新固件信息
+  uint32 file_size = 3;
+  string file_md5 = 4;    // OTA 文件md5值，长度为32
+  string file_sha256 = 5; // OTA 文件sha256值，长度为64
+}
+
+message OtaConfigResp {
+  enum State {
+    NONE = 0;
+    DOWNLOADING = 1;        // entry为true，返回状态为Downloading
+    DOWNLOAD_FINISHED = 2;  // 接收到最后一包数据，返回FINISHED
+    REBOOTING = 3;          // 如果收到reboot，返回该状态后，再重启
+    REBOOTED = 4;           // 重新运行会发送该状态
+    ABORT = 5;              // 设备端状态异常，终止本次OTA
+  }
+  State state = 1; // 如果没有错误，恢复空OtaConfigResp
+  uint32 offset = 2; // 镜像的offset
+}
+
+// APP发送OTA文件数据
+message OTAData {
+  uint32 offset = 1;
+  bytes data = 2;  
+  bool finished = 3;   //结束标志
+}

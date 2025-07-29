@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package tech.brainco.eeg_cap;
+
+import "common.proto";
+
+message BleApp {
+  uint32 msg_id = 1;                // 消息ID
+  ConfigRespError error = 2;        // 消息错误代码
+  DeviceInfo device_info = 3;       // 设备信息
+  WiFiConfig wifi_config = 4;       // WiFi配置信息
+  WiFiStatus wifi_status = 5;       // WiFi连接状态
+  OtaConfigResp ota_resp    = 6;    // OTA 升级配置
+}

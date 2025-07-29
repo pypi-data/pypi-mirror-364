@@ -1,0 +1,25 @@
+{
+  "name": "electron-tests",
+  "version": "0.1.0",
+  "description": "Electron acceptance test suite for Neon",
+  "main": "main.js",
+  "author": "The Neon Community",
+  "license": "MIT",
+  "scripts": {
+    "install22": "cargo-cp-artifact -nc index.node -- cargo build --message-format=json-render-diagnostics",
+    "start": "electron .",
+    "test": "playwright test"
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "devDependencies": {
+    "cargo-cp-artifact": "^0.1.9",
+    "electron": "^27.1.3",
+    "playwright": "^1.40.1"
+  },
+  "electronDownload": {
+    "mirror": "https://npmmirror.com/mirrors/electron/"
+  },
+  "dependencies": {
+    "chart.js": "^4.5.0"
+  }
+}

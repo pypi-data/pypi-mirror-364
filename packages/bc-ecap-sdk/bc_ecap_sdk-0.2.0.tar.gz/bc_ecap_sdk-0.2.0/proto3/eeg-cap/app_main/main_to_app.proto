@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package tech.brainco.eeg_cap;
+
+import "app_main_common.proto";
+import "common.proto";
+
+message EEGData {
+	message EEGSample {
+		uint32 timestamp = 1;
+		bytes data = 2;
+	}
+
+	EEGSample sample_1 = 1;
+	EEGSample sample_2 = 2;
+	EEGSample sample_3 = 3;
+	EEGSample sample_4 = 4;
+	EEGLeadOffChip lead_off_chip = 5; // lead-off模式时，确定当前活动芯片
+	EEGSampleRate freq = 6;
+	EEGSignalGain gain = 7;
+}
+
+message IMUData {
+	message IMUValue {
+		float cord_x = 2;
+		float cord_y = 3;
+		float cord_z = 4;
+		IMUDataType type = 5;
+	}
+
+	uint32 timestamp = 1;
+	IMUValue accel = 2;
+	IMUValue gyro = 3;
+	IMUValue mag = 4;
+	float acc_coefficient = 5;  // 单位转换系数，转换后带单位g，
+	float gyro_coefficient = 6; // 单位转换系数，转换后带单位dps(degree-per-second), 
+	float mag_coefficient = 7;  // 单位转换系数，换转后带单位gauss 
+	IMUSampleRate freq = 8;
+}
+
+message IMUAcqResponse
+{
+	IMUConfig config = 1;
+	IMUData data = 2;
+}
+
+message EEGAcqResponse
+{
+	EEGConfig config = 1;
+	EEGData data = 2;
+	EEGLeadOffConfig lead_off = 3;
+	EEGMode mode = 4;
+}
+
+message MainApp {
+	uint32 msg_id = 1;
+	ConfigRespError err = 2;    // 消息错误代码
+	EEGAcqResponse eeg = 3;     // EEG 相关消息
+	IMUAcqResponse imu = 4;     // IMU 相关消息
+	OtaConfigResp ota_resp = 5; // OTA 升级配置
+	DeviceInfo device_info = 6; // 设备信息
+	HardwareInfo hw_info = 7;   // 设备状态，电池电量等
+}

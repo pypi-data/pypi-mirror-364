@@ -1,0 +1,58 @@
+name: Build and Publish Python Wheels
+
+on:
+  push:
+    branches:
+      - python_release
+
+env:
+  MATURIN_USERNAME: ${{ secrets.MATURIN_USERNAME }}
+  MATURIN_PASSWORD: ${{ secrets.MATURIN_PASSWORD }}
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        # os: [ubuntu-20.04, windows-latest] # macos-latest
+        include:
+          # - os: ubuntu-22.04
+          #   python-version: "3.8"
+          #   target: aarch64-unknown-linux-gnu
+          #   arch: arm64
+          # - os: ubuntu-22.04
+          #   python-version: "3.8"
+          #   target: x86_64-unknown-linux-gnu
+          #   arch: x86_64
+          - os: windows-latest
+            python-version: "3.8"
+            target: x86_64-pc-windows-msvc
+            arch: x86_64
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # pip install patchelf
+      - name: Install dependencies on Ubuntu
+        if: matrix.os == 'ubuntu-22.04' || matrix.os == 'ubuntu-20.04'
+        run: |
+          sudo apt-get install -y libssl-dev protobuf-compiler libdbus-1-dev pkg-config
+
+      - name: Install dependencies on macOS
+        if: matrix.os == 'macos-latest'
+        run: |
+          brew install protobuf
+
+      - name: Install dependencies on Windows
+        if: matrix.os == 'windows-latest'
+        run: |
+          choco install protoc
+
+      - name: Publish to PyPI
+        run: |
+          pip install maturin cffi
+          maturin publish --no-default-features --features "python eeg-cap ble"

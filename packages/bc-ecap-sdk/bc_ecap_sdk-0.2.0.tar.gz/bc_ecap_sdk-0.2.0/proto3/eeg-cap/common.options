@@ -1,0 +1,18 @@
+* mangle_names:M_STRIP_PACKAGE
+
+DeviceInfoConfig.model max_length:32
+DeviceInfoConfig.sn max_length:32
+DeviceInfoConfig.mac max_size:6
+
+DeviceInfo.model max_length:32
+DeviceInfo.sn max_length:32
+DeviceInfo.mac max_size:6
+DeviceInfo.hw_version max_length:32
+DeviceInfo.fw_version max_length:32
+
+WPAConfig.ssid max_length:32
+WPAConfig.password max_length:32
+
+OtaConfig.file_md5 max_length:32
+OtaConfig.file_sha256 max_length:64
+OTAData.data max_size:512

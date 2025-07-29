@@ -1,0 +1,20 @@
+{
+  "name": "bc_ecap_sdk",
+  "collaborators": [
+    "BrainCo"
+  ],
+  "description": "BrainCo FW proto message SDK",
+  "version": "0.1.4",
+  "license": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BrainCoTech/bc_ecap_sdk"
+  },
+  "files": [
+    "bc_ecap_sdk_bg.wasm",
+    "bc_ecap_sdk.js",
+    "bc_ecap_sdk.d.ts"
+  ],
+  "main": "bc_ecap_sdk.js",
+  "types": "bc_ecap_sdk.d.ts"
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package tech.brainco.eeg_cap;
+
+import "common.proto";
+
+message AppBle {
+  uint32  msg_id = 1;               // 消息 ID
+  DeviceInfoConfig device_info = 3; // 设置设备信息
+  WiFiConfig wifi_config = 4;       // 设置WiFi配置
+  OtaConfig ota_cfg = 5;            // OTA 升级数据, 无需设置 MsgType
+  BoolValue device_info_req = 6;    // 获取设备信息
+  BoolValue wifi_config_req = 7;    // 获取WiFi配置
+  BoolValue wifi_status_req = 8;    // 获取WiFi状态
+}

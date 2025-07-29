@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "os": "^0.1.2"
+  },
+  "scripts": {
+    "download-mac-node": "curl -o ../pkg/mac.node https://app.brainco.cn/universal/eeg-32ch/dist/v0.2.0/mac.node",
+    "prepare": "./download-node.sh"
+  }
+}

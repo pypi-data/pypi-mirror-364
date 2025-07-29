@@ -1,0 +1,116 @@
+syntax = "proto3";
+
+package tech.brainco.eeg_cap;
+
+import public "common.proto";
+
+// 	EEG ADS1299 channels:
+// 		+-----------+-----------+-----------+-----------+
+// 		| ADS1299_0 | ADS1299_1 | ADS1299_3 | ADS1299_4 |
+// 		+-----------+-----------+-----------+-----------+
+// 		|0         7|8        15|16       23|24       31|
+//      +-----------+-----------+-----------+-----------+
+enum EEGSampleRate
+{
+	EEG_SR_NONE = 0; // 设备默认值是EEG_SR_250Hz
+	EEG_SR_250Hz = 1;
+	EEG_SR_500Hz = 2;
+	EEG_SR_1000Hz = 3;
+	EEG_SR_2000Hz = 4;
+}
+
+enum EEGSignalGain
+{
+	EEG_GAIN_NONE = 0; // 设备默认值是EEG_GAIN_6
+	EEG_GAIN_1 = 1;  // 原始信号
+	EEG_GAIN_2 = 2;  // 原始信号放大2倍
+	EEG_GAIN_4 = 3;  // 原始信号放大4倍
+	EEG_GAIN_6 = 4;  // 原始信号放大6倍
+	EEG_GAIN_8 = 5;  // 原始信号放大8倍
+	EEG_GAIN_12 = 6; // 原始信号放大12倍
+	EEG_GAIN_24 = 7; // 原始信号放大24倍
+}
+
+message EEGConfig
+{
+	enum SignalSource
+	{
+		SIGNAL_NONE = 0; // 设备默认值是NORMAL
+		NORMAL = 1;      // 用户EEG输入信号
+		SHORTED = 2;     // INxP, INxN短接， 用于测量偏置或噪声
+		MVDD = 3;        // 供电检测
+		TEST_SIGNAL = 4; // 内部测试信号，为1Hz的方波
+	}
+
+	EEGSampleRate freq = 1;
+	EEGSignalGain gain = 2;
+	SignalSource source = 3;
+}
+
+enum EEGMode
+{
+	EEG_MODE_NONE = 0;     // 设备默认值是EEG_MODE_NORMAL
+	EEG_MODE_NORMAL = 1;   // EEG信号采集
+	EEG_MODE_LEAD_OFF = 2; // Lead-off阻抗检测
+}
+
+// 设备EEG lead-off检测说明：
+//  1. EEG功能基于4个处于daisy-chain模式的ADS1299芯片，每个芯片包含8个EEG通道，共32个EEG通道
+//  2. lead-off功能一次只能检测1个芯片，所以4个ADS1299芯片需要分别做4次lead-off检测
+enum EEGLeadOffChip
+{
+	CHIP_NONE = 0;
+	CHIP_1 = 1;
+	CHIP_2 = 2;
+	CHIP_3 = 3;
+	CHIP_4 = 4;
+}
+
+message EEGLeadOffConfig {
+	enum Frequency {
+		FREQ_NONE = 0; // 设备默认值是31.2Hz
+		DC = 1;        // 直流lead-off检测
+		AC_7P8HZ = 2;  // 交流lead-off检测， 频率7.8Hz
+		AC_31P2HZ = 3; // 交流lead-off检测， 频率31.2Hz
+		AC_Fdr_4 = 4;  // 交流lead-off检测， 频率f_dr/4, f_dr为EEG采样率
+	}
+
+	enum Current {
+		CUR_NONE = 0; // 设备默认值是6nA
+		CUR_6nA = 1;  // lead-off电流源输出为6nA
+		CUR_24nA = 2; // lead-off电流源输出为24nA
+		CUR_6uA = 3;  // lead-off电流源输出为6uA
+		CUR_24uA = 4; // lead-off电流源输出为24uA
+	}
+
+	EEGLeadOffChip chip = 1; // lead-off检测芯片
+	Frequency ac_freq = 2;   // lead-off检测频率
+	Current current = 3;     // lead-off检测电流
+	EEGSampleRate freq = 4;  // 采样率，默认为EEG_SR_250Hz
+	EEGSignalGain gain = 5;  // 增益， 默认为EEG_GAIN_1
+}
+
+enum IMUSampleRate
+{
+	IMU_SR_NONE = 0; // 设备默认值是IMU_SR_50Hz
+	IMU_SR_50Hz = 1;
+	IMU_SR_100Hz = 2;
+}
+
+enum IMUDataType {
+	IMU_TYPE_NONE    = 0; // 设备默认值是RAW_DATA
+	RAW_DATA         = 1; // 原始数据
+	CALIBRATED_DATA  = 2; // 校准后的数据
+}
+
+message IMUConfig
+{
+	IMUSampleRate freq = 1;
+	IMUDataType acc_type = 2;      // Accel数据类型
+	IMUDataType gyro_type = 3;     // Gyro数据类型
+	IMUDataType mag_type = 4;      // Mag数据类型
+	IMUCalibrationConfig correction = 5; // 校准配置
+	float acc_coefficient = 6;     // Accel系数，转换后带单位g
+	float gyro_coefficient = 7;    // Gyro系数，转换后带单位dps
+	float mag_coefficient = 8;     // Mag系数，转换后带单位gauss
+}
