@@ -1,0 +1,8 @@
+Metadata-Version: 2.4
+Name: qpace_suite
+Version: 0.0.1
+Requires-Dist: qpace>=0.2.1
+Summary: 📊 Best TA Suite for qPACE - The Quant SDK for Python and Javascript.
+Keywords: 
+Project-URL: Homepage, https://qpace.dev
+Project-URL: Repository, https://github.com/nersent/qpace
