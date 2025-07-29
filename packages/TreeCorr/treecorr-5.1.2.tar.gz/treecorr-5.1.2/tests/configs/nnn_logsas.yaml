@@ -1,0 +1,23 @@
+
+file_name: data/nnn_data_logsas.dat
+rand_file_name: data/nnn_rand_logsas.dat
+
+x_col: 1
+y_col: 2
+x_units: arcmin
+y_units: arcmin
+
+verbose: 1
+
+bin_type: LogSAS
+min_sep: 11.
+max_sep: 13.
+nbins: 2
+sep_units: arcmin
+min_phi: 0.8
+max_phi: 2.3
+nphi_bins: 15
+max_n: 100
+
+nnn_statistic: simple
+nnn_file_name: output/nnn_logsas.out
