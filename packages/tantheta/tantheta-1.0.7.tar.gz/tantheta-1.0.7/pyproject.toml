@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tantheta"
+version = "1.0.7"
+description = "Mathematics-powered Python library for symbolic computation, calculus, and mathematical problem solving"
+readme = "README.md"
+authors = [{ name = "Ayush Parwal", email = "ayushparwal777@gmail.com" }]
+license = "MIT"
+requires-python = ">=3.9"
+dependencies = ["sympy>=1.12"]
+keywords = [
+    "symbolic math", "algebra", "calculus", "trigonometry", "math toolkit",
+    "math solver", "sympy", "mathematics", "cli tool", "math automation",
+     "math library", "python math", "differentiation", "integration"
+]
+classifiers = [
+    
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    
+]
+
+[project.urls]
+Source = "https://github.com/Ayushparwal/tantheta"
