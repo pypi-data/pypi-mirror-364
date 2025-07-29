@@ -1,0 +1,15 @@
+LICENSE
+README.md
+pyproject.toml
+setup.cfg
+tests/test_batching.py
+tests/test_integrators.py
+tests/test_interpolation.py
+torch_magnus/__init__.py
+torch_magnus/solvers.py
+torch_magnus/utils.py
+torch_magnus.egg-info/PKG-INFO
+torch_magnus.egg-info/SOURCES.txt
+torch_magnus.egg-info/dependency_links.txt
+torch_magnus.egg-info/requires.txt
+torch_magnus.egg-info/top_level.txt
