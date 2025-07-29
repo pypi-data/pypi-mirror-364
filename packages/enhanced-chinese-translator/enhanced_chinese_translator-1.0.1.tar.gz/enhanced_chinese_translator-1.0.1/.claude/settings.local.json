@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(cp:*)",
+      "Bash(python:*)",
+      "Bash(source:*)",
+      "Bash(pip install:*)",
+      "Bash(. venv/bin/activate)",
+      "Bash(venv/bin/python setup.py:*)",
+      "Bash(TWINE_USERNAME=__token__ TWINE_PASSWORD=pypi-AgEIcHlwaS5vcmcCJGM1OTBmY2ZjLTUzOGYtNGFjMS1hNzA3LTY4NTk4Njk1ZmYyNQACKlszLCJkZjBkMTU2MS05OWNkLTQ5ODMtYjdlNi1kNDhjYWRjZjY2MTgiXQAABiBmgrDtFZm8XtiDVYGcWxaSIV3AKXiMk7xauYbEH8YD3A venv/bin/twine upload dist/*)",
+      "Bash(TWINE_USERNAME=__token__ TWINE_PASSWORD=\"pypi-AgEIcHlwaS5vcmcCJGM1OTBmY2ZjLTUzOGYtNGFjMS1hNzA3LTY4NTk4Njk1ZmYyNQACKlszLCJkZjBkMTU2MS05OWNkLTQ5ODMtYjdlNi1kNDhjYWRjZjY2MTgiXQAABiBmgrDtFZm8XtiDVYGcWxaSIV3AKXiMk7xauYbEH8YD3A\" venv/bin/twine upload dist/enhanced_chinese_translator-1.0.0.tar.gz dist/enhanced_chinese_translator-1.0.0-py3-none-any.whl)",
+      "Bash(ls:*)",
+      "Bash(rm:*)",
+      "Bash(pip3 install:*)"
+    ],
+    "deny": []
+  }
+}

@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "enhanced-chinese-translator"
+version = "1.0.1"
+description = "High-performance Chinese to English translation tool with multi-threading and batch processing"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Enhanced Chinese Translator Team", email = "support@enhanced-translator.com"}
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Software Development :: Internationalization",
+    "Topic :: Text Processing :: Linguistic",
+    "Topic :: Utilities",
+]
+requires-python = ">=3.7"
+dependencies = [
+    "requests>=2.25.0",
+]
+keywords = ["chinese", "translation", "english", "batch", "multi-threading", "concurrent", "api", "google", "baidu"]
+
+[project.urls]
+Homepage = "https://github.com/jasonlau233/enhanced_chinese_translator"
+"Bug Reports" = "https://github.com/jasonlau233/enhanced_chinese_translator/issues"
+"Source" = "https://github.com/jasonlau233/enhanced_chinese_translator"
+"Documentation" = "https://github.com/jasonlau233/enhanced_chinese_translator/wiki"
+
+[project.scripts]
+enhanced-chinese-translator = "enhanced_chinese_translator.translator:main"
+ect = "enhanced_chinese_translator.translator:main"
+
+[tool.setuptools]
+packages = ["enhanced_chinese_translator"]
+
+[tool.setuptools.package-data]
+enhanced_chinese_translator = ["*.py"]

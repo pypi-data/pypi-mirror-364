@@ -1,0 +1,3 @@
+[console_scripts]
+ect = enhanced_chinese_translator.translator:main
+enhanced-chinese-translator = enhanced_chinese_translator.translator:main
