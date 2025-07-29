@@ -1,0 +1,13 @@
+lib50/__init__.py,sha256=z3lMBOiwbzOPAynSn3EYKIDTXcZdUF943AvbsSknpaM,524
+lib50/_api.py,sha256=M92asWZ3RvJLh4vL4JihOvXknXMTb4xahVS7sHYFVZc,38872
+lib50/_errors.py,sha256=YkVqQ01bpAczW8Ijy_NmUsNRtfUSZ7Tp7gNSpZ02ERM,3192
+lib50/authentication.py,sha256=_l--aTNyiN2vC8L3UUC6cA1Q2_bMrcmyATikXhZhN5Y,14102
+lib50/config.py,sha256=FWdlUXZovprWR73erzJ0FLJjwH1ttKVHqkd2z_ifUq0,11722
+lib50/crypto.py,sha256=mHTJlnnxsbIziLAiw2Cg4m-6H2CZpuOfSusiYy0zTYQ,3882
+lib50/locale/es/LC_MESSAGES/lib50.mo,sha256=wWUbcB1eDV8odk4ST14kms1Mi6ma2tQCkxhqKZNRDrQ,4524
+lib50/locale/es/LC_MESSAGES/lib50.po,sha256=7XgecSXS4kKU5xo-2dquLpB_003qONwSPO6aLHeI5SQ,7116
+lib50-3.0.15.dist-info/licenses/LICENSE,sha256=OXLcl0T2SZ8Pmy2_dmlvKuetivmyPd5m1q-Gyd-zaYY,35149
+lib50-3.0.15.dist-info/METADATA,sha256=u-DeetTPa_ovHy7WBCmwOvFtuk9LboTxdnbdelBLuoQ,1208
+lib50-3.0.15.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+lib50-3.0.15.dist-info/top_level.txt,sha256=HKUp476Z-sTZ9QBsXIEx9w1dsD-R61pGFVYKjazyywY,6
+lib50-3.0.15.dist-info/RECORD,,
