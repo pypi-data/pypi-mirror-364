@@ -1,0 +1,2 @@
+[console_scripts]
+qiye-wechat-mcp = qiye_wechat_mcp.server:main
