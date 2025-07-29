@@ -1,0 +1,16 @@
+gill/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+gill/aliases.py,sha256=_se1_ZGPMCMpDtoWKRglm0QXMabL8SsekkXTzOdX688,1452
+gill/cli.py,sha256=JODzp8XtiyrmN8FJLL9M1xczoySrakY0Q5Tk-WHJ0TM,5497
+gill/gill_chat.py,sha256=akYLrYqpnp8JIzSJe4mvLHceZ4w7_5HmtTxAhN9R15w,3676
+gill/gill_config.py,sha256=l8xkjy7t_lcrWz7GeITtOml1Co6uNqzhu1jI-iZV_2s,4494
+gill/gill_init.py,sha256=-II0U7wDa_4tBSuFIZeGDie36JC6vfd9fT4D3egZZPo,4010
+gill/gill_sysprompt.py,sha256=lKcFFo7pcUNceft-AmPc64rzL_TR4D-2EJPjAxnXO8w,2048
+gill/help.py,sha256=qPMrFNH0ZnI7IgdSF4d5lvSnF5yvcZN0PPrsHgRonNY,3031
+gill/llm_api.py,sha256=tpMkJMBs1qpCY3tLLONhmZrlzHKV_7Mc8gu_Ff06FG8,1584
+gill/prompt_parser.py,sha256=iDIcuykmU0i-HOofvqEbLTfTg73DVa1zs9GF52qB_BE,8218
+gillmore-0.1.0.dist-info/licenses/LICENSE,sha256=WYmcYJG1QFgu1hfo7qrEkZ3Jhcz8NUWe6XUraZvlIFs,10172
+gillmore-0.1.0.dist-info/METADATA,sha256=Rms1UyqUAAivMRRXnaKsRyxjHvCa0e3y3_hJuRVKePc,656
+gillmore-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+gillmore-0.1.0.dist-info/entry_points.txt,sha256=VPwlCaDR0xoZWsB1Y0mBUmeOMxLx1IJukBgvPJzAp04,39
+gillmore-0.1.0.dist-info/top_level.txt,sha256=R_lE1oOi_bo-RIclr0uaPjgGNswMXoglMfCZkGwMcME,5
+gillmore-0.1.0.dist-info/RECORD,,
