@@ -1,0 +1,10 @@
+ngff_zarr_mcp/__about__.py,sha256=LBK46heutvn3KmsCrKIYu8RQikbfnjZaj2xFrXaeCzQ,22
+ngff_zarr_mcp/__init__.py,sha256=bRiGudUr42YYsZ0tOGryLFtR30s_VPMTEcOR0VXDJ3Q,156
+ngff_zarr_mcp/models.py,sha256=a-Y3lwY9vgWASuMFl5HxoUWctnWoewWNLySr7CT6yr0,6388
+ngff_zarr_mcp/server.py,sha256=8T_WG3PMkY6tloMwjgIrRu13NCP7NpsvXI8ZVqfQXAY,9816
+ngff_zarr_mcp/tools.py,sha256=uzUdDri9eS8WJ7HmqDpMgVg9vUz9r9UzHUwUg9Sjy_Q,18300
+ngff_zarr_mcp/utils.py,sha256=LaSpO7zksLEwygHc4iW-PuGAzKO46yE922V8KMnsyKw,16004
+ngff_zarr_mcp-0.5.0.dist-info/METADATA,sha256=RTHhCX7OhNWoWKp7bGztMuhfc244WzqJDCs6AdzdVFg,19922
+ngff_zarr_mcp-0.5.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+ngff_zarr_mcp-0.5.0.dist-info/entry_points.txt,sha256=d1o_lVSfuwB4skBLJm2uejhTFXwDOkSowmNJd0a32Ck,60
+ngff_zarr_mcp-0.5.0.dist-info/RECORD,,
