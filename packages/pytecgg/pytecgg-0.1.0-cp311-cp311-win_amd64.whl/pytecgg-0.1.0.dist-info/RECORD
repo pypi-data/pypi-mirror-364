@@ -1,0 +1,14 @@
+pytecgg-0.1.0.dist-info/METADATA,sha256=7wpYhgKeNfz0WhU1_64PjPPsxhISkByKdURmtX6iNQI,4270
+pytecgg-0.1.0.dist-info/WHEEL,sha256=auo2gA2SV-bvS4ssY6DIG7dtu3SpmB5FcBkwIwO6YZk,96
+pytecgg/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+pytecgg/parsing/__init__.py,sha256=fTWbpwtmBvI3M_rdauH2WuDPp8FSnnQSjTe5Uol0Ujw,104
+pytecgg/phase/__init__.py,sha256=0vunUoEPACKKtY41TRnOhUBHpbU5LG1JaqqHVnx13cE,634
+pytecgg/phase/gflc.py,sha256=oLje8JrHRI5Ug0Uw0l_G8go5SoLbuSiEopdrYGxVVx4,3742
+pytecgg/phase/ipp.py,sha256=NTGOB1w2aXAtwB_Dgu_avMVT7VVhVg74e5kaGTYaiqk,3332
+pytecgg/pytecgg.cp311-win_amd64.pyd,sha256=vNM_Rmakwa6VvLYS_fEbtVBAbdQ6tPlDZnXV4rBl9M8,54553600
+pytecgg/satellites/__init__.py,sha256=jW_Yj8dbHikxWhatFpgzJeEWxU1DwxpfPwj7wQZJpTg,5578
+pytecgg/satellites/ephemeris.py,sha256=NHKRDOp9ld5it82_kdNG7uE7lrQDjKHUY9H9MNG0aVE,3283
+pytecgg/satellites/glonass.py,sha256=iGLY3c303W9W61MhlUV4qlFbNof2QZw8VdPVcfwQjEw,4911
+pytecgg/satellites/kepler.py,sha256=Ch1UMD_7n1qrGc1PIA3v_Zd-aMdZmNOUulkF4lZA3i0,671
+pytecgg/satellites/positions.py,sha256=zqO-sJSSf7Lpqw1KeOvtKasAWG1SQAXC8ExFChkFeVM,7008
+pytecgg-0.1.0.dist-info/RECORD,,
