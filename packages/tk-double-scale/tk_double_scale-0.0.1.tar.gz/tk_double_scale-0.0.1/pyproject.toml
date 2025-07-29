@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling >= 1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "tk_double_scale"
+version = "0.0.1"
+authors = [
+  { name="Yannick Pradayrol", email="pradayrol.yannick@gmail.com" },
+]
+description = "A tkinter widget"
+readme = "README.md"
+requires-python = ">=3.13.3"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "GPL-3.0-only"
+license-files = ["LICEN[CS]E*"]
+dependencies = [
+    "pillow >= 11.3.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/yannprada/tk_double_scale"
+Issues = "https://github.com/yannprada/tk_double_scale/issues"
