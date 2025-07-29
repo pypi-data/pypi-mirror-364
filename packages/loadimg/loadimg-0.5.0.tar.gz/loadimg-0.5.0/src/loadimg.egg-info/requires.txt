@@ -1,0 +1,11 @@
+
+[testing]
+setuptools
+wheel
+typing
+pillow
+numpy
+requests
+ruff
+pytest
+tqdm
