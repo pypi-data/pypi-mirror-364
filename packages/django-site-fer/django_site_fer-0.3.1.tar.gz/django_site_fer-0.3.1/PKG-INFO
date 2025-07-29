@@ -1,0 +1,40 @@
+Metadata-Version: 2.4
+Name: django_site_fer
+Version: 0.3.1
+Summary: A reusable Django app with a dynamic responsive movie website template
+Home-page: https://github.com/tonpseudo/django_site
+Author: soro F M 
+Author-email: soferelaha@gmail.com
+License: MIT
+Classifier: Framework :: Django
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: Django>=3.2
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary
+
+# django_site
+
+A reusable Django app to generate a dynamic and responsive movie website template.
+
+## Installation
+
+```bash
+pip install django_site_fer
+
+django_site_fer generate myproject
+cd myproject
+python manage.py runserver
+
+##conseil## 
+# si le server ne se lance pas , tu dois corriger le champ name dans le fichier apps.py de ton application ,tu veras forcement comme suit ,name = 'django_site' change le en ,name = 'django_site_fer' 
