@@ -1,0 +1,14 @@
+include README.md
+include LICENSE
+include requirements.txt
+include CHANGELOG.md
+recursive-include teams_bot_utils *.py
+recursive-exclude * __pycache__
+recursive-exclude * *.pyc
+recursive-exclude * *.pyo
+recursive-exclude * *.orig
+recursive-exclude * *.rej
+exclude .gitignore
+exclude .pre-commit-config.yaml
+exclude pytest.ini
+exclude tox.ini
