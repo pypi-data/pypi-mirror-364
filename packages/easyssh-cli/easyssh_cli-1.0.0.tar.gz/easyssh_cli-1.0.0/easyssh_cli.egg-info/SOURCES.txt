@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+README.md
+easyssh.py
+pyproject.toml
+requirements.txt
+setup.py
+easyssh_cli.egg-info/PKG-INFO
+easyssh_cli.egg-info/SOURCES.txt
+easyssh_cli.egg-info/dependency_links.txt
+easyssh_cli.egg-info/entry_points.txt
+easyssh_cli.egg-info/requires.txt
+easyssh_cli.egg-info/top_level.txt
