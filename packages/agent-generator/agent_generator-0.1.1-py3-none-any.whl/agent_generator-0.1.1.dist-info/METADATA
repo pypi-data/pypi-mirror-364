@@ -1,0 +1,278 @@
+Metadata-Version: 2.4
+Name: agent-generator
+Version: 0.1.1
+Summary: Turn plain‑English requirements into fully‑configured multi‑agent AI teams (CrewAI, LangGraph, ReAct, WatsonX Orchestrate).
+Project-URL: Homepage, https://github.com/ruslanmv/agent-generator
+Project-URL: Repository, https://github.com/ruslanmv/agent-generator
+Project-URL: Issues, https://github.com/ruslanmv/agent-generator/issues
+Author-email: "Ruslan M. V." <contact@ruslanmv.com>
+License: Copyright 2025 ruslanmv.com
+        
+        Licensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at
+        
+            http://www.apache.org/licenses/LICENSE-2.0
+        
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+License-File: LICENSE
+Keywords: LLM,crew-ai,langchain,multi-agent,orchestrate,watsonx-ai
+Classifier: Development Status :: 3 - Alpha
+Classifier: Framework :: FastAPI
+Classifier: Framework :: Flask
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Topic :: Utilities
+Requires-Python: >=3.9
+Requires-Dist: fastapi>=0.110
+Requires-Dist: jinja2>=3.1
+Requires-Dist: pydantic-settings>=2.10
+Requires-Dist: pydantic>=2.6
+Requires-Dist: python-dotenv>=1.0
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: requests>=2.31
+Requires-Dist: rich>=13.7
+Requires-Dist: structlog>=23.2
+Requires-Dist: typer>=0.12
+Requires-Dist: uvicorn>=0.29
+Provides-Extra: dev
+Requires-Dist: black>=24.4; extra == 'dev'
+Requires-Dist: isort>=5.0; extra == 'dev'
+Requires-Dist: mkdocs-material>=9.5; extra == 'dev'
+Requires-Dist: mkdocs>=1.6; extra == 'dev'
+Requires-Dist: mypy>=1.10; extra == 'dev'
+Requires-Dist: pre-commit>=3.7; extra == 'dev'
+Requires-Dist: pytest-xdist>=3.5; extra == 'dev'
+Requires-Dist: pytest>=8.2; extra == 'dev'
+Requires-Dist: ruff>=0.4; extra == 'dev'
+Provides-Extra: openai
+Requires-Dist: openai>=1.30; extra == 'openai'
+Requires-Dist: tiktoken>=0.3.0; extra == 'openai'
+Provides-Extra: web
+Requires-Dist: flask>=3.0; extra == 'web'
+Requires-Dist: gunicorn>=21.2; extra == 'web'
+Requires-Dist: jinja2>=3.1; extra == 'web'
+Description-Content-Type: text/markdown
+
+# 🔧 agent‑generator
+
+*From one plain‑English sentence to a production‑ready multi‑agent workflow.*
+
+[![PyPI Version](https://img.shields.io/pypi/v/agent-generator.svg)](https://pypi.org/project/agent-generator/)
+[![Python 3.9+](https://img.shields.io/pypi/pyversions/agent-generator.svg)](https://pypi.org/project/agent-generator/)
+[![CI Status](https://github.com/ruslanmv/agent-generator/actions/workflows/ci.yml/badge.svg)](https://github.com/ruslanmv/agent-generator/actions/workflows/ci.yml)
+[![Documentation](https://img.shields.io/static/v1?label=docs&message=mkdocs&color=blue&logo=mkdocs)](https://ruslanmv.github.io/agent-generator/)
+[![License Apache-2.0](https://img.shields.io/badge/license-Apache%202.0-blue)](https://github.com/ruslanmv/agent-generator/blob/master/LICENSE)
+
+
+---
+
+## ✨ Why agent‑generator?
+
+Designing multi‑agent systems is powerful yet verbose—boilerplate, framework quirks, deployment plumbing.  
+`agent‑generator` turns intent (“*I need an AI team that …*”) into runnable artefacts:
+
+| Output                             | Where it runs                             |
+|------------------------------------|-------------------------------------------|
+| **Python scripts** for CrewAI, CrewAI Flow, LangGraph, ReAct | Any Python 3.9+ environment |
+| **YAML skill** for WatsonX Orchestrate | IBM WatsonX Orchestrate |
+| **FastAPI MCP server** (wrapper)    | MCP Gateway / Kubernetes |
+| **JSON spec + Mermaid/DOT**         | Docs, audits, architecture diagrams |
+
+---
+
+## 🚀 Features
+
+| Category            | Details                                                                                       |
+|---------------------|------------------------------------------------------------------------------------------------|
+| **Multi‑framework** | WatsonX Orchestrate · CrewAI · CrewAI Flow · LangGraph · ReAct                                  |
+| **Provider‑agnostic** | IBM WatsonX *(default)* · OpenAI *(extra)*                                                   |
+| **MCP integration** | Python outputs include a FastAPI `/invoke` endpoint ready for MCP Gateway registration         |
+| **Web UI (Flask)**  | Form‑based generator with live diagram preview & code download                                 |
+| **Cost estimator**  | Token counts & USD approximation before you run the prompt                                    |
+| **Pluggable**       | Add providers / frameworks via a single subclass & registry                                    |
+| **Typed models**    | Pydantic schemas for Agents · Tasks · Workflow                                                 |
+| **CI / CD**         | Ruff · Mypy · Pytest in GitHub Actions + automatic PyPI publish                                |
+| **Docker‑ready**    | Alpine image with Gunicorn server                                                              |
+
+---
+
+## 📦 Installation
+
+```bash
+# Core (WatsonX only)
+pip install agent-generator
+
+# + OpenAI provider
+pip install "agent-generator[openai]"
+
+# + Flask Web UI and dev tools
+pip install "agent-generator[dev,web]"
+````
+
+*Requires Python ≥ 3.9.*
+
+---
+
+## ⚡ Quick Start
+
+### 1 Export WatsonX credentials (or put them in .env)
+
+```bash
+export WATSONX_API_KEY=...
+export WATSONX_PROJECT_ID=...
+export WATSONX_URL=https://us-south.ml.cloud.ibm.com
+export AGENTGEN_PROVIDER=watsonx                   
+````
+
+---
+
+### 2 Generate a **WatsonX Orchestrate YAML** skill
+
+```bash
+agent-generator \
+  "I need a research assistant that summarises papers" \
+  --framework watsonx_orchestrate \
+```
+![](assets/2025-07-22-00-50-38.png)
+
+or
+
+```bash
+agent-generator \
+  "I need a research assistant that summarises papers" \
+  --framework watsonx_orchestrate \
+  --output research_assistant.yaml
+```
+You will get
+
+```bash
+✓ Written to research_assistant.yaml
+```
+
+*Import the resulting `research_assistant.yaml` via:*
+
+```bash
+orchestrate agents import -f research_assistant.yaml
+```
+
+---
+
+### 3 Generate a **CrewAI Python** skill with MCP wrapper
+```bash
+agent-generator \
+  "I need a research assistant that summarises papers" \
+  --framework crewai  
+```
+![](assets/2025-07-22-00-59-33.png)
+
+or
+
+```bash
+agent-generator \
+  "I need a research assistant that summarises papers" \
+  --framework crewai --mcp \
+  --output research_team.py
+```
+
+```bash
+✓ Written to research_team.py
+```
+
+#### 4 Run the Python skill locally
+
+```bash
+python research_team.py          # one‑off execution
+python research_team.py serve    # FastAPI /invoke on :8080
+```
+
+---
+
+## 🖥 CLI Reference
+
+```text
+agent-generator [OPTIONS] "requirement sentence"
+```
+
+| Option / Flag        | Default          | Description                                                      |
+| -------------------- | ---------------- | ---------------------------------------------------------------- |
+| `-f, --framework` \* | —                | watsonx\_orchestrate · crewai · crewai\_flow · langgraph · react |
+| `-p, --provider`     | watsonx          | watsonx (default) \| openai                                      |
+| `--model`            | provider default | Override LLM model                                               |
+| `--mcp / --no-mcp`   | off              | Append FastAPI MCP wrapper (Python only)                         |
+| `-o, --output PATH`  | stdout           | Write artefact to file                                           |
+| `--dry-run`          |                  | Build spec & code skeleton, no LLM calls                         |
+| `--show-cost`        |                  | Print token usage + USD estimate                                 |
+
+*See the full [Usage guide](./docs/usage.md) for examples.*
+
+---
+
+## 🌐 Web UI
+
+```bash
+FLASK_APP=agent_generator.web FLASK_ENV=development flask run
+```
+
+
+
+Navigate to **[http://localhost:5000](http://localhost:5000)** → fill the form → generate → download code/YAML.
+
+![](assets/2025-07-22-01-24-31.png)
+
+Deployed via Docker:
+
+```bash
+docker build -t agent-genenerator .
+docker run -e WATSONX_API_KEY=... -p 8000:8000 agent-genenerator
+```
+![](assets/2025-07-22-01-26-31.png)
+---
+
+## 🛠 Extending
+
+* **New provider** → subclass `BaseProvider`, register in `providers/__init__.py`.
+* **New framework** → subclass `BaseFrameworkGenerator`, register in `frameworks/__init__.py`.
+  The MCP wrapper is added automatically for any Python output.
+
+---
+
+## 🧑‍💻 Development
+
+```bash
+git clone https://github.com/ruslanmv/agent-generator.git
+cd agent-generator
+pip install -e ".[dev,web,openai]"
+pre-commit install
+make lint test
+mkdocs serve        # live docs
+```
+
+## Documentation
+
+[https://ruslanmv.com/agent-generator/](https://ruslanmv.com/agent-generator/)
+
+
+---
+
+## 🗺️ Roadmap
+
+* Azure OpenAI provider
+* MCP Gateway dashboard helper
+* VS Code “Generate agent” command
+* Real‑time collaborative flow editor
+
+---
+
+## 📄 License
+
+**Apache License, Version 2.0** © 2025 Ruslan M. V. – contributions are welcome, PRs + issues encouraged!
