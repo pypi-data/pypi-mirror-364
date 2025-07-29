@@ -1,0 +1,13 @@
+swugenerator/__about__.py,sha256=d4x2lA2y0HssXFQ44XBVKdxB15OT6bGgSlAxpjudsw0,535
+swugenerator/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+swugenerator/artifact.py,sha256=Vz2I8E9aIv3GiUyO2jq9SrbVLDS24k9QbHKswEjX-QM,1533
+swugenerator/generator.py,sha256=Ntm9MfC5DRoTpjsEjsjmzJngg3dHfJeq1RR6ChvHYp4,11859
+swugenerator/main.py,sha256=LPEAtgcsXPLlljiL095CcUS1P8rDYYMEEgHi-TIagCI,11305
+swugenerator/swu_file.py,sha256=yapKKwbEVA-pDjCN_VDq3cTfFvayhhiATHyu4mksJw8,3813
+swugenerator/swu_sign.py,sha256=E8Yd8_XTgSeoSTPszRAHmV2h5UuSL70w6-oQwaqU58Y,3484
+swugenerator-0.5.dist-info/licenses/LICENSE,sha256=OXLcl0T2SZ8Pmy2_dmlvKuetivmyPd5m1q-Gyd-zaYY,35149
+swugenerator-0.5.dist-info/METADATA,sha256=ZouFcBzVmU9wG5bX1fM00_PxHWdujiEwZ0YnTPCvGos,43557
+swugenerator-0.5.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+swugenerator-0.5.dist-info/entry_points.txt,sha256=QVM_EZi5UR-2IRs2luRs4oILEpgmOudAMCLUEYSfMHg,56
+swugenerator-0.5.dist-info/top_level.txt,sha256=88mCqNHTjbeqMoTIsB46lFD8yc9Q4NN5caYf1lEyeSM,13
+swugenerator-0.5.dist-info/RECORD,,
