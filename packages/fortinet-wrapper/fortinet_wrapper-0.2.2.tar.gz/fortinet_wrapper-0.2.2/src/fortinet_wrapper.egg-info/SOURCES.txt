@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+setup.py
+src/fortinet_wrapper/__init__.py
+src/fortinet_wrapper/config.py
+src/fortinet_wrapper/fortios.py
+src/fortinet_wrapper/fortiswitch.py
+src/fortinet_wrapper/testing.py
+src/fortinet_wrapper.egg-info/PKG-INFO
+src/fortinet_wrapper.egg-info/SOURCES.txt
+src/fortinet_wrapper.egg-info/dependency_links.txt
+src/fortinet_wrapper.egg-info/top_level.txt
