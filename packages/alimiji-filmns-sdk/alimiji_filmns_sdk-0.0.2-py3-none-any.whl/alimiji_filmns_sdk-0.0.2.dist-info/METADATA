@@ -1,0 +1,22 @@
+Metadata-Version: 2.4
+Name: alimiji_filmns_sdk
+Version: 0.0.2
+Summary: SDK Python pour accéder à l’API MovieLens (Data Analysts/Data Scientists friendly)
+Author: [Ali MIJIYAWA]
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: fastapi>=0.116.1
+Requires-Dist: fastapi-cli>=0.0.8
+Requires-Dist: fastapi-cloud-cli>=0.1.4
+Requires-Dist: httpx>=0.28.1
+Requires-Dist: backoff>=2.2.1
+Requires-Dist: pydantic>=2.11.7
+Requires-Dist: pydantic-extra-types>=2.10.5
+Requires-Dist: pydantic-settings>=2.10.1
+Requires-Dist: pydantic_core>=2.33.2
+Requires-Dist: pandas>=2.2.3
+Requires-Dist: numpy>=2.2.4
