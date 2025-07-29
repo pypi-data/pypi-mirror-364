@@ -1,0 +1,134 @@
+Metadata-Version: 2.4
+Name: tnsaai-client
+Version: 1.0.1
+Summary: A powerful, OpenAI-compatible Python SDK for TNSA NGen3 Pro and Lite Models
+Home-page: https://www.tnsaai.com
+Author: TNSA AI
+Author-email: TNSA AI <info@tnsaai.com>
+License: MIT
+Project-URL: Homepage, https://www.tnsaai.com
+Project-URL: Documentation, https://docs.tnsaai.com
+Project-URL: Repository, https://github.com/tnsaai/tnsaai-python
+Project-URL: Bug Tracker, https://github.com/tnsaai/tnsaai-python/issues
+Keywords: ai,api,tnsa,ngen3,llm,chat,completion
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: requests>=2.25.0
+Requires-Dist: aiohttp>=3.8.0
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: typing-extensions>=4.0.0
+Dynamic: author
+Dynamic: home-page
+Dynamic: requires-python
+
+# TNSAAI Python Client
+
+A powerful, OpenAI-compatible Python SDK for TNSA NGen3 Pro and Lite Models.
+
+## Installation
+
+```bash
+pip install tnsaai-client
+```
+
+## Quick Start
+
+```python
+from tnsaai import TNSA
+
+# Initialize the client
+client = TNSA(api_key="your-api-key", base_url="https://api.tnsaai.com")
+
+# Create a chat completion
+response = client.chat.create(
+    model="NGen3.9-Pro",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+print(response.choices[0].message.content)
+```
+
+## Streaming
+
+```python
+stream = client.chat.create(
+    model="NGen3.9-Lite",
+    messages=[{"role": "user", "content": "Tell me a story"}],
+    stream=True
+)
+
+for chunk in stream:
+    if chunk.content:
+        print(chunk.content, end="")
+```
+
+## Async Usage
+
+```python
+import asyncio
+from tnsaai import AsyncTNSA
+
+async def main():
+    async with AsyncTNSA(api_key="your-api-key") as client:
+        response = await client.chat.create(
+            model="NGen3.9-Pro",
+            messages=[{"role": "user", "content": "Hello!"}]
+        )
+        print(response.choices[0].message.content)
+
+asyncio.run(main())
+```
+
+## Available Models
+
+- **NGen3.9-Pro** - High-performance model for complex tasks
+- **NGen3.9-Lite** - Fast, efficient model for general use
+- **Farmvaidya-Bot** - Agricultural domain-specific model
+
+## Configuration
+
+Set your API key as an environment variable:
+
+```bash
+export TNSA_API_KEY="your-api-key"
+export TNSA_BASE_URL="https://api.tnsaai.com"
+```
+
+Or pass it directly:
+
+```python
+client = TNSA(
+    api_key="your-api-key",
+    base_url="https://api.tnsaai.com"
+)
+```
+
+## Features
+
+- ✅ OpenAI-compatible API
+- ✅ Synchronous and asynchronous clients
+- ✅ Streaming responses
+- ✅ Comprehensive error handling
+- ✅ Automatic retries with exponential backoff
+- ✅ Usage tracking and cost estimation
+- ✅ Conversation management
+- ✅ Type hints and IDE support
+
+## Support
+
+- Email: info@tnsaai.com
+- Documentation: https://docs.tnsaai.com
+- Issues: https://github.com/tnsaai/tnsaai-python/issues
