@@ -1,0 +1,236 @@
+Metadata-Version: 2.4
+Name: repo-to-md
+Version: 0.1.1
+Summary: Fetch git and GitHub repos as markdown for LLM and AI Agents context
+Project-URL: Homepage, https://github.com/vduseev/repo-to-md
+Project-URL: Repository, https://github.com/vduseev/repo-to-md
+Project-URL: Issues, https://github.com/vduseev/repo-to-md/issues
+Author-email: vduseev <vagiz@duseev.com>
+Maintainer-email: vduseev <vagiz@duseev.com>
+License-Expression: Apache-2.0
+License-File: LICENSE
+Keywords: ai,claude,context,fetch,git,llm,markdown,read,repo,repository,text
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Python :: 3.14
+Classifier: Programming Language :: Python :: 3.15
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.10
+Requires-Dist: pathspec>=0.12.1
+Requires-Dist: requests>=2.32.4
+Description-Content-Type: text/markdown
+
+# repo-to-md
+
+<p>
+  <a href="https://pypi.org/project/repo-to-md/"><img src="https://img.shields.io/pypi/v/repo-to-md.svg" alt="PyPI version" /></a>
+  <a href="https://pypi.org/project/repo-to-md/"><img src="https://img.shields.io/pypi/pyversions/repo-to-md.svg" alt="Python versions" /></a>
+</p>
+
+Turn any repointo a single **Markdown** file with directory tree and file contents.
+
+```shell
+# Print entire repo from GitHub into stdout as a Markdown file
+$ repo-to-md octocat/Hello-World
+
+# Print current directory as Markdown (source parameter is optional)
+$ repo-to-md
+```
+
+Result:
+
+<pre>
+Project and branch: octocat/Hello-World
+
+Directory structure:
+.
+├── README.md
+├── src
+│   └── main.py
+├── tests
+│   └── test_main.py
+└── .gitignore
+
+```python  # src/main.py
+print("Hello, world!")
+```
+
+```python  # tests/test_main.py
+assert main.hello() == "Hello, world!"
+```
+
+```python  # .gitignore
+*.pyc
+```
+</pre>
+
+## Features
+
+* Remote or local:
+  * Short GitHub repo: `owner/repo`
+  * Full GitHub URL: `https://github.com/owner/repo`
+  * SSH URL: `git@github.com:owner/repo.git`
+  * Local path: `/local/path/repo`
+* Specify files:
+  * Include (`-i`) any number of paths or globs like `src/`, `tests/*`, `README.md`.
+  * Exclude with (`-e`).
+  * Patterns with `./` prefix are automatically normalized (e.g., `./src/` becomes `src/`).
+* Choose branch:
+  * Default: `main`
+  * Specify with `--branch` or `-b`.
+* Skips binary blobs, media, archives, and dozens of lock files automatically.
+* Excludes `.git` and understands `.gitignore` automatically.
+
+## Installation
+
+The project is distributed on PyPI, so any modern Python installer will work.  
+If you already use the excellent [`uv`](https://github.com/astral-sh/uv) tool, a
+single command is enough:
+
+To run `repo-to-md` one time, without installing it, use `uvx`:
+
+```bash
+# Run one time using uvx
+uvx repo-to-md github/repo > repo.md
+```
+
+Or install it globally:
+
+```bash
+# Install
+uv tool install repo-to-md
+# Run it
+repo-to-md github/repo > repo.md
+```
+
+Of course, you can also use `pip` if you prefer.
+
+```bash
+# Install
+pip install repo-to-md
+# Run it
+repo-to-md github/repo > repo.md
+```
+
+### Supported platforms
+
+* macOS, Linux, Windows
+* Python ≥ 3.10 (see badge above)
+
+## Usage
+
+Entire GitHub repo into a single `hello-world.md` file.
+
+```bash
+repo-to-md octocat/Hello-World > hello-world.md
+```
+
+Local repo but only files inside the `src/` folder.
+
+```bash
+repo-to-md ~/Projects/myapp -i src/ > myapp_src.md
+```
+
+Print contents of just the `pyproject.toml` file alone:
+
+```bash
+repo-to-md . -i pyproject.toml
+```
+
+Current directory with patterns (source parameter is optional):
+
+```bash
+# These are equivalent
+repo-to-md -i src/ -e "*.lock"
+repo-to-md . -i src/ -e "*.lock"
+repo-to-md . -i ./src/ -e "*.lock"  # ./ prefix is automatically stripped
+```
+
+The first positional argument is either a GitHub repo or a local path (defaults to current directory).  
+Selectively include or exclude files/directories with `-i/--include` and `-e/--exclude`.
+
+## Copy to clipboard
+
+* **macOS**: `repo-to-md . | pbcopy` *(paste with ⌘<kbd>V</kbd>)*
+* **Linux / X11**: `repo-to-md . | xclip -selection clipboard`
+* **Windows / PowerShell**: `repo-to-md . | clip`
+
+Replace `.` with any path or GitHub repo, and feel free to include `src/` or similar after it.
+
+## With Claude Code
+
+Best way to use it inside Claude Code is to ask it to dump the repo into
+a Markdown file and then work with that file.
+
+```shell
+Bash(repo-to-md github/repo > repo.md)
+```
+
+Alternatively, you can just output the entire repo into current context:
+
+```shell
+Bash(repo-to-md github/repo)
+```
+
+You can even invoke it without `Bash` and Claude will understand you.
+
+```shell
+repo-to-md github/repo
+```
+
+### Custom Claude Code Slash Command
+
+For even better integration, you can add a custom slash command to your Claude Code setup. Copy the `fetch-repo.md` file from this repository to your `.claude/commands/` directory:
+
+```bash
+# Copy the slash command file
+cp fetch-repo.md ~/.claude/commands/
+
+# Or for project-specific commands
+cp fetch-repo.md .claude/commands/
+```
+
+Then use it in Claude Code:
+
+```
+/fetch-repo owner/repo
+/fetch-repo owner/repo --branch develop
+/fetch-repo owner/repo --include "src/" --exclude "*.lock"
+/fetch-repo /path/to/local/repo --output analysis.md
+```
+
+This command provides a streamlined way to fetch and analyze repository contents with proper context and follow-up suggestions.
+
+### CLAUDE.md Instructions
+
+To make Claude Code automatically use `repo-to-md` for repository analysis instead of built-in tools, add this instruction to your project's `CLAUDE.md` file:
+
+```markdown
+# Repository Analysis Instructions
+
+When I ask you to analyze, examine, or understand how a specific repository implements a feature or pattern, use the `repo-to-md` command instead of web search or file system tools like `ls` and `grep`.
+
+## Usage Examples:
+- "How does facebook/react implement hooks?" → Use: `repo-to-md facebook/react --include "packages/react/src/ReactHooks*"`
+- "Show me how tailwindcss handles configuration" → Use: `repo-to-md tailwindlabs/tailwindcss --include "src/config*"`
+- "Analyze the testing setup in this repo" → Use: `repo-to-md owner/repo --include "test*" --include "*.test.*"`
+
+## Output Options:
+1. **For reference/analysis**: Output directly to context using `repo-to-md owner/repo [options]`
+2. **For extensive analysis**: Save to file using `repo-to-md owner/repo [options] --output analysis.md`
+
+Use the most specific include/exclude patterns possible to focus on relevant code sections and avoid overwhelming the context with unnecessary files.
+```
+
+This instruction helps Claude Code understand when and how to use `repo-to-md` for repository analysis tasks, making it more efficient than generic web searches or file system exploration.
+
+## Contributing & License
+
+Issues and pull requests are welcome.  Licensed under the [Apache-2.0](https://spdx.org/licenses/Apache-2.0.html).

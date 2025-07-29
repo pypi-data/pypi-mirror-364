@@ -1,0 +1,2 @@
+[console_scripts]
+repo-to-md = repo_to_md.cli:run
