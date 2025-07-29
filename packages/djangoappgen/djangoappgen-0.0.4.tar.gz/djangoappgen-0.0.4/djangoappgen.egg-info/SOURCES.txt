@@ -1,0 +1,13 @@
+LICENSE
+README.md
+pyproject.toml
+setup.cfg
+djangoappgen/__init__.py
+djangoappgen/cli.py
+djangoappgen/generator.py
+djangoappgen/run.py
+djangoappgen.egg-info/PKG-INFO
+djangoappgen.egg-info/SOURCES.txt
+djangoappgen.egg-info/dependency_links.txt
+djangoappgen.egg-info/entry_points.txt
+djangoappgen.egg-info/top_level.txt
