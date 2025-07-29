@@ -1,0 +1,30 @@
+Metadata-Version: 2.4
+Name: simulation-mpc-core
+Version: 0.2.4
+Home-page: 
+Author: imby
+Author-email: 
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: logging
+Requires-Dist: pyomo
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: typing
+Requires-Dist: matplotlib
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: requires-dist
+
+# My Library
+
+This is a simple Python library that does something cool!
+
+## Installation
+
+```bash
+pip install simulation-mpc-core
