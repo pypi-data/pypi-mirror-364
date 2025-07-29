@@ -1,0 +1,70 @@
+Metadata-Version: 2.4
+Name: llm_page_load
+Version: 0.1.7
+Summary: A tool to find page load LLM comprehensive
+Home-page: https://github.com/your-username/llm_page_load
+Author: Jianing Liu
+Author-email: 1158638435@qq.com
+License: MIT
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: arrow==1.3.0
+Requires-Dist: beautifulsoup4==4.13.4
+Requires-Dist: boto3==1.38.21
+Requires-Dist: fastapi==0.116.1
+Requires-Dist: Flask==3.1.1
+Requires-Dist: flask_cors==6.0.1
+Requires-Dist: flask_limiter==3.12
+Requires-Dist: flask_socketio==5.5.1
+Requires-Dist: httpx==0.28.1
+Requires-Dist: imagehash==4.3.2
+Requires-Dist: imageio==2.37.0
+Requires-Dist: jieba==0.42.1
+Requires-Dist: kms_client_sdk==0.4.0
+Requires-Dist: kms_sdk==1.0.3
+Requires-Dist: langchain==0.3.26
+Requires-Dist: llmcore_sdk==0.2.37
+Requires-Dist: lxml==6.0.0
+Requires-Dist: matplotlib==3.10.3
+Requires-Dist: moviepy==2.2.1
+Requires-Dist: mssapi_mt==1.5.3rc3
+Requires-Dist: numba==0.61.2
+Requires-Dist: numpy==2.2.6
+Requires-Dist: openai==1.97.0
+Requires-Dist: opencv_contrib_python==4.10.0.84
+Requires-Dist: opencv_python==4.11.0.86
+Requires-Dist: opencv_python_headless==4.11.0.86
+Requires-Dist: openpyxl==3.1.5
+Requires-Dist: optuna==4.4.0
+Requires-Dist: paddleocr==3.1.0
+Requires-Dist: pandas==2.3.1
+Requires-Dist: Pillow==11.3.0
+Requires-Dist: piqa==1.3.2
+Requires-Dist: pydantic==2.11.7
+Requires-Dist: pydantic_settings==2.10.1
+Requires-Dist: python-socketio==5.13.0
+Requires-Dist: python_cat==0.0.11
+Requires-Dist: pytorch_crf==0.7.2
+Requires-Dist: PyYAML==6.0.2
+Requires-Dist: rembg==2.0.65
+Requires-Dist: scipy==1.16.0
+Requires-Dist: seaborn==0.13.2
+Requires-Dist: scikit-image==0.25.2
+Requires-Dist: scikit_learn==1.7.1
+Requires-Dist: tiktoken==0.9.0
+Requires-Dist: torch==2.7.0
+Requires-Dist: tqdm==4.67.1
+Requires-Dist: uvicorn==0.35.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+Method:
+from llm_page_load import find_page_load_comprehensive
+start_frame,end_frame = find_page_load_comprehensive(your_frames_dir,fps)
