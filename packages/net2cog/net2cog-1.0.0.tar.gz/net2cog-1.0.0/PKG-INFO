@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: net2cog
+Version: 1.0.0
+Summary: NetCDF to COG Conversion Service
+Home-page: https://github.com/podaac/net2cog
+License: Apache-2.0
+Author: podaac
+Author-email: podaac@jpl.nasa.gov
+Requires-Python: >=3.10,<4.0
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Provides-Extra: harmony
+Requires-Dist: boto3 (>=1.28.3,<2.0.0)
+Requires-Dist: harmony-service-lib (>=2.4.0,<3.0.0) ; extra == "harmony"
+Requires-Dist: netcdf4 (>=1.6.4,<2.0.0)
+Requires-Dist: numpy (>=2.0.1,<3.0.0)
+Requires-Dist: rasterio (>=1.4.3,<2.0.0)
+Requires-Dist: requests (>=2.31.0,<3.0.0)
+Requires-Dist: rio-cogeo (>=5.3.3,<6.0.0)
+Requires-Dist: rioxarray (>=0.17.0,<0.18.0)
+Requires-Dist: xarray (>=2025.3.0,<2026.0.0)
+Project-URL: Repository, https://github.com/podaac/net2cog
+Description-Content-Type: text/markdown
+
+# Netcdf Converter
+
+Conversion service for netcdf4 files to cloud optimized geotiff.
