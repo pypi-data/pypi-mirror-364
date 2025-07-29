@@ -1,0 +1,10 @@
+cpy/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+cpy/ccrypt/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+cpy/ccrypt/cli.py,sha256=PRNWJtFhXTts527VjAvtuJvbRT-_T34Q_Ifj7Ce5524,678
+cpy/ccrypt/decrypt.py,sha256=r85cGDgiAKDKJ1Y1niZIal8Y1Owqo2yOdEH2o0SX4Ec,2777
+cpy/ccrypt/encrypt.py,sha256=32A73JhVcT-2WgUpqCfc9n9fFnbpliCXZmwURm2ejjo,3357
+cpy-0.0.8.dist-info/METADATA,sha256=LgQz5dNe0jOUJ6rWO0lY9dGUi2pK69W-WhCLxseWaxc,602
+cpy-0.0.8.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+cpy-0.0.8.dist-info/entry_points.txt,sha256=jVpQ5wBbs2T2x-pFaLkeaNjcUoNmbHshUTGB5s7JeSE,47
+cpy-0.0.8.dist-info/top_level.txt,sha256=3NQQjegaKFjwkLaBJagpHiEu8v7O7qpYOiyeVZlmyyg,4
+cpy-0.0.8.dist-info/RECORD,,
