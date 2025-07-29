@@ -1,0 +1,15 @@
+attrs<21,>=18
+intervaltree<4,>=3
+lib50<4,>=2
+numpy<2,>=1.15
+pygments<3,>=2.2
+jinja2<4,>=3
+termcolor<2,>=1.1.0
+tqdm<5,>=4.32
+importlib
+
+[develop]
+sphinx
+sphinx_rtd_theme
+sphinx-autobuild
+line_profiler
