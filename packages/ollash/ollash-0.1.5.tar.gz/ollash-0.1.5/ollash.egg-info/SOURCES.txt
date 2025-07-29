@@ -1,0 +1,15 @@
+README.md
+setup.py
+ollash/__init__.py
+ollash/__main__.py
+ollash/ollama_nl2bash.py
+ollash/progress.py
+ollash/utils.py
+ollash.egg-info/PKG-INFO
+ollash.egg-info/SOURCES.txt
+ollash.egg-info/dependency_links.txt
+ollash.egg-info/entry_points.txt
+ollash.egg-info/top_level.txt
+tests/__init__.py
+tests/test_ollama.py
+tests/test_utils.py
