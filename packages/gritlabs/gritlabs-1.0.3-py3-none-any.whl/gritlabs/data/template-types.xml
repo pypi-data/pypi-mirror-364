@@ -1,0 +1,26 @@
+<!--
+  template-types.xml
+
+  Defines the allowed Grit Labs template types.
+  
+  Each <type> entry includes:
+    - id (required): unique identifier for template type.
+    - agent-scope (optional): specifies agent interaction, "none" indicates human-only.
+
+  Entries in this file determine template validity.
+  New template types must be explicitly added here to be recognized by the system.
+-->
+
+<template-types>
+  <type id="feature">Feature-level requirement or enhancement</type>
+  <type id="manual" agent-scope="none">Human-only tasks outside system visibility</type>
+  <type id="fix">Bugfix or corrective work</type>
+  <type id="spec">Technical or interface specification</type>
+  <type id="scenario">Narrative behavioral case or test</type>
+  <type id="article">Architectural explanation or rationale</type>
+  <type id="terminology">Domain vocabulary or glossary</type>
+  <type id="config">Repository-level or system configuration</type>
+  <type id="agents">Codex prompt agents and constraints</type>
+  <type id="roadmap">Read-only milestone or planning overview</type>
+  <type id="project-plan">Time-based execution task map</type>
+</template-types>

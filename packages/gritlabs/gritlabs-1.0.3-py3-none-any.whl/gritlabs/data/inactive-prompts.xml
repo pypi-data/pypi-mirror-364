@@ -1,0 +1,28 @@
+<!--
+  inactive-prompts.xml
+
+  Lists prompts that are excluded from validation and reporting
+  but remain in the repository for historical traceability.
+
+  Typical use cases:
+    - Deprecated or superseded prompts
+    - Prompts withdrawn for non-technical reasons
+    - Legacy artifacts no longer relevant to automation
+
+  Schema:
+    <prompt>
+      - trace_id (required): the prompt’s unique identifier
+      - reason (required): short explanation for exclusion
+-->
+
+<inactive-prompts>
+
+  <!-- Deprecated or superseded prompt examples -->
+  <!--
+  <prompt trace_id="20250719T093012+0000" reason="Deprecated spec"/>
+  <prompt trace_id="20250717T210044+0000" reason="Replaced by PR #203"/>
+  <prompt trace_id="20250701T150000+0000" reason="Withdrawn by team lead"/>
+  -->
+
+</inactive-prompts>
+

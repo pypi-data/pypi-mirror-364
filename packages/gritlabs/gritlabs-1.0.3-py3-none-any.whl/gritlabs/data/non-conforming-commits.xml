@@ -1,0 +1,40 @@
+<!-- 
+  non-conforming-commits.xml
+
+  This file explicitly lists Git commits that should bypass Trace ID validation.
+  Typical scenarios for use include:
+    - Legacy commits made before Grit Labs adoption.
+    - Emergency commits merged without standard traceability.
+    - Infrastructure changes not tied to feature or fix artifacts.
+
+  Schema:
+    <commit>
+      - hash (required): Git commit hash (full or abbreviated)
+      - author (optional): Author username or email
+      - date (optional): Commit date in YYYY-MM-DD format
+      - reason (required): Explanation of why this commit bypasses validation
+-->
+
+<non-conforming-commits>
+
+  <!-- Example: Emergency hotfix merged directly into main -->
+  <!--
+  <commit 
+    hash="e5a1f43b6cd6723e8a5c9b5b27e7d8e123456789"
+    author="jane.doe"
+    date="2025-07-01"
+    reason="Emergency hotfix committed directly without Trace ID"
+  />
+  -->
+
+  <!-- Example: Historical commit preceding Grit Labs usage -->
+  <!--
+  <commit 
+    hash="f2b4c67a8edc912a3b5f6d7c89a4b1234567890a"
+    author="john.smith"
+    date="2025-07-10"
+    reason="Historical commit prior to adoption of Trace ID standard"
+  />
+  -->
+
+</non-conforming-commits>

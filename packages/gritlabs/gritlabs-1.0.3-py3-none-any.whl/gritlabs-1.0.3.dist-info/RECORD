@@ -1,0 +1,16 @@
+gritlabs/__init__.py,sha256=bHn14f64I0bEuG-TedPLhMmYMMC4plRoDxxsGpqXmZY,91
+gritlabs/cli.py,sha256=1qEOYahrkCHusu3AL_a5Dtq6FiZ3SmX9MqWiL9ebKHw,8471
+gritlabs/data/inactive-prompts.xml,sha256=MEMH3u4YTj27EBqTC1oRSk7ULeV_ZmFErpJhljuAbQ4,823
+gritlabs/data/non-conforming-commits.xml,sha256=GcUTPN5_zirQ_tkHIEas0beZrJenWXVDgyEVZKCPzZI,1225
+gritlabs/data/template-types.xml,sha256=vkI2MTEnxnxz5bNZq-5gFLLo8iQYdS5_bHl5tJQVx3k,1179
+gritlabs/templates/feature-template.md,sha256=LshGi5cmBItcrSImN_m1lph-bmMa3ztthk8_H5d6xko,1188
+gritlabs/templates/fix-template.md,sha256=q8nsCRXHTWwsv_V87K3UxKPUHwxoIuku0o02x-gLfeg,1877
+gritlabs/templates/manual-template.md,sha256=rBh78cs9V5xF4sbYLhI6p-AN6lUunMPuuRwTYALGtxQ,1823
+gritlabs/templates/project-plan-template.md,sha256=pocfXMaH32Z9XHVVLoMMCSuqJrQ6mZsKvxYv2RUc4ms,2064
+gritlabs/templates/spec-template.md,sha256=9f29WIMF8aRubCPBQO2NTVxoqog1iujyrQUSczPepHk,1617
+gritlabs-1.0.3.dist-info/licenses/LICENSE,sha256=bx5iLIKjgAdYQ7sISn7DsfHRKkoCUm1154sJJKhgqnU,35184
+gritlabs-1.0.3.dist-info/METADATA,sha256=s62bsGudaD3dWvX5MfglXJ9-UMtSN35kVF9JGLiy0CM,50450
+gritlabs-1.0.3.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+gritlabs-1.0.3.dist-info/entry_points.txt,sha256=_n6t0l7adAhXhrSUimYzAG7zrf0S7pRADhCeHFoX7VY,47
+gritlabs-1.0.3.dist-info/top_level.txt,sha256=qczGFHt_QB7nzp1OCkUOz57oaD53b37U5S24ViKSoQY,9
+gritlabs-1.0.3.dist-info/RECORD,,
