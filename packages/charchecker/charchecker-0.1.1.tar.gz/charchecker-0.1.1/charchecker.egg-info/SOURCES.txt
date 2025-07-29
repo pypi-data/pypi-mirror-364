@@ -1,0 +1,8 @@
+README.md
+setup.py
+charchecker/__init__.py
+charchecker/checker.py
+charchecker.egg-info/PKG-INFO
+charchecker.egg-info/SOURCES.txt
+charchecker.egg-info/dependency_links.txt
+charchecker.egg-info/top_level.txt

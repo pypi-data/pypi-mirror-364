@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: charchecker
+Version: 0.1.1
+Summary: A simple character checker package
+Home-page: https://github.com/ton_repo/charchecker
+Author: David GBONGUÉ
+Author-email: davidmade92@gmail.com
+Classifier: Programming Language :: Python :: 3
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: home-page
+Dynamic: summary
