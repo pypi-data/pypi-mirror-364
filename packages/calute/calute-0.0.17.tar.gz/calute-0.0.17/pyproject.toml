@@ -1,0 +1,111 @@
+[project]
+name = "calute"
+version = "0.0.17"
+description = "Agents for intelligence and coordination"
+authors = [{ name = "Erfan Zare Chavoshi", email = "Erfanzare810@gmail.com" }]
+license = { text = "Apache-2.0" }
+readme = "README.md"
+requires-python = ">=3.10,<3.14"
+keywords = ["calute", "Agents"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+    "pydantic>=2.9.2,<3.0.0",
+    "openai>=1.72.0",
+    "numpy",
+    "pillow~=11.2.1",
+    "google-generativeai>=0.8.0,<0.9.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/erfanzar/Calute"
+Repository = "https://github.com/erfanzar/Calute"
+Documentation = "https://erfanzar.github.io/Calute"
+
+[project.optional-dependencies]
+dev = ["pytest>=8.3.3", "ruff>=0.7.0", "black>=24.8.0", "mypy>=1.12.0"]
+tools = ["ddgs==9.4.1"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["calute"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"calute/py.typed" = "calute/py.typed"
+
+[tool.black]
+line-length = 121
+target-version = ["py310"]
+preview = true
+
+[tool.ruff]
+line-length = 121
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["A", "B", "E", "F", "I", "NPY", "RUF", "UP", "W"]
+ignore = ["F722", "B008", "UP015", "A005"]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["E402", "F401"]
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
+exclude = ["calute/"]
+
+[tool.basedpyright]
+# Disabled diagnostic rules to reduce type-checking noise
+reportAssignmentType = "none"
+reportUnknownVariableType = "none"
+reportPrivateUsage = "none"
+reportOptionalCall = "none"
+reportUnknownMemberType = "none"
+reportGeneralTypeIssues = "none"
+reportArgumentType = "none"
+enableTypeIgnoreComments = true
+reportMissingTypeArgument = "none"
+reportUnknownParameterType = "none"
+reportAny = "none"
+reportCallIssue = "none"
+reportUnknownArgumentType = "none"
+reportRedeclaration = "none"
+reportIgnoreCommentWithoutRule = "none"
+reportUnnecessaryIsInstance = "none"
+reportUnusedCallResult = "none"
+reportUnknownLambdaType = "none"
+reportUnannotatedClassAttribute = "none"
+reportImplicitStringConcatenation = "none"
+reportMissingParameterType = "none"
+reportImplicitOverride = "none"
+reportImplicitAbstractClass = "none"
+reportExplicitAny = "none"
+reportIncompatibleMethodOverride = "none"
+reportIndexIssue = "none"
+reportAttributeAccessIssue = "none"
+reportUnreachable = "none"
+reportOptionalMemberAccess = "none"
+reportOperatorIssue = "none"
+reportUninitializedInstanceVariable = "none"
+reportIncompatibleVariableOverride = "none"
+
+[tool.uv.build-backend]
+module-name = "calute"
+module-root = "."
+
+[tool.setuptools]
+package-dir = { "" = "." }
+
+[tool.setuptools.packages.find]
+where = ["."]
