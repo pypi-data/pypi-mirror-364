@@ -1,0 +1,22 @@
+[project]
+name = "qblox-scheduler"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Thomas Middelburg", email = "tmiddelburg@qblox.com" }
+]
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+qblox-scheduler = "qblox_scheduler:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "twine>=6.1.0",
+]
