@@ -1,0 +1,12 @@
+segment_plugin-0.2.8.dist-info/METADATA,sha256=SYTlUGw_asCA3IKBTI3gEDpq1zIOh3VwhmemUpSNTds,2973
+segment_plugin-0.2.8.dist-info/WHEEL,sha256=FgEMjVtEQPruyUoCOmhzDGgOUxbC0LR60hNX6FcYzlQ,114
+segment_plugin-0.2.8.dist-info/licenses/LICENSE,sha256=cVnvq3k8-8Ono5i6oCy6k7E5QKMZlF-iHlV_DwAVjvU,1060
+segment_plugin.libs/libgcc_s-1e52349c.so.1,sha256=Ani0u_W_tB8ESsFePO4D2mn2lrgWLhyFdw6RETxBTYM,437537
+segment_plugin/__init__.py,sha256=sXJsfeUIGum59oyKW2Jq6rtSL13FHRCQVBIBNAYrllM,1402
+segment_plugin/_internal.pypy310-pp73-x86_64-linux-gnu.so,sha256=pKcFol6-RWjm7Wf-r70TlUtzOQ0JnnMeWRW3pgRMZoA,19634881
+segment_plugin/funcs.py,sha256=JmWuCo_8FRSMs-yQGsx74-YBQzkLJCWC7RSOd2B853A,1770
+segment_plugin/pandas/__init__.py,sha256=BWMIEE0KT8nmrUHV2gmuijLBE7cKjgoQmprLYBjg4Fc,629
+segment_plugin/segment.py,sha256=1sWAqix4m_g9YxwqiuiMKM1oaRkN9l_h2jSPe5BCqGI,20641
+segment_plugin/segment_pd.py,sha256=klVkJA8HyeQPfXI6pbWOwbvvueHr0ijkrWCsFvQv-Io,8690
+segment_plugin/typing.py,sha256=fB4PnbRz4yJiDx4OYUI7tEPeBCoGmTJdXjIBDG3iVOo,413
+segment_plugin-0.2.8.dist-info/RECORD,,
