@@ -1,0 +1,12 @@
+fastlbp_imbg/__init__.py,sha256=ZTvlSkh4QweP62laC4rcLDJpD0xOXXqC12JIOYOXtzc,874
+fastlbp_imbg/_lbp.cpython-312-x86_64-linux-gnu.so,sha256=u6BvLsaK_MCeo0OvTTVBWBzxGxNGkkDwfSXnWsSmdQU,348424
+fastlbp_imbg/common.py,sha256=nUUiTCKNm8PNljEnXznrlMFMlaXKdTyZK_Z9-UM7tkk,48
+fastlbp_imbg/fastlbp.py,sha256=vW1iarAql3qtNcPFVQbmrGB_vi4pDBC5EEiTEtfNpmc,40831
+fastlbp_imbg/lbp.py,sha256=7aBDJtC0fs7Iak9mjiI-vKj6vHN5bpJrIZuUvVSicX8,8756
+fastlbp_imbg/utils.py,sha256=GhDYPBUETkkENci6FuLyFwF9AYmvBoplF5jWrkAqFcM,15128
+fastlbp_imbg/workers.py,sha256=UYdkHjklcneCEbi0g028qLSQWn6YMKaMUG9XBNK3OSg,28649
+fastlbp-0.2.3.dev0.dist-info/METADATA,sha256=684XlHh8To97w8I2UuUkioAujRXK2kFW_7NJt6Yv1P8,3633
+fastlbp-0.2.3.dev0.dist-info/WHEEL,sha256=aSgG0F4rGPZtV0iTEIfy6dtHq6g67Lze3uLfk0vWn88,151
+fastlbp-0.2.3.dev0.dist-info/top_level.txt,sha256=fF-M6b3rhf5EQletutvhK8-LdwO_cIdtApUNO0FG4QA,13
+fastlbp-0.2.3.dev0.dist-info/RECORD,,
+fastlbp-0.2.3.dev0.dist-info/licenses/LICENSE,sha256=OXLcl0T2SZ8Pmy2_dmlvKuetivmyPd5m1q-Gyd-zaYY,35149
