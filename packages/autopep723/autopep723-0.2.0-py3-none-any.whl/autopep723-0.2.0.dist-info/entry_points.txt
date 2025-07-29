@@ -1,0 +1,3 @@
+[console_scripts]
+autopep723 = autopep723:main
+
