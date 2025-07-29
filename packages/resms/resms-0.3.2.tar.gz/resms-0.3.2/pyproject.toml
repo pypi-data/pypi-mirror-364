@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "resms"
+dynamic = ["version"]
+description = 'Python SDK for ReSMS, a simple and powerful SMS API.'
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "louanbel", email = "louanbelicaud63@gmail.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+]
+dependencies = ["requests>=2.32.4"]
+
+[project.urls]
+Documentation = "https://github.com/resms/resms-python#readme"
+Issues = "https://github.com/resms/resms-python/issues"
+Source = "https://github.com/resms/resms-python"
+
+[project.optional-dependencies]
+dev = ["ruff", "mypy", "types-requests"]
+
+[tool.hatch.version]
+source = "vcs"
+raw-options = { local_scheme = "no-local-version" }
+
+[tool.hatch.build.targets.sdist]
+include = ["resms", "README.md", "LICENSE.txt"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["resms"]
