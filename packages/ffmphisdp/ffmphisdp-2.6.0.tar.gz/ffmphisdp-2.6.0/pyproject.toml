@@ -1,0 +1,65 @@
+[project]
+name = "ffmphisdp"
+version = "2.6.0"
+authors = [
+  {name="Jimmy Huguet", email="jimmy.huguet@skillcorner.com"},
+]
+readme = "README.md"
+requires-python = ">=3.9,<3.14"
+dependencies = [
+    "ffmpeg-python>=0.2.0",
+    "numpy>=1.18.5,<2; python_version<'3.12'",
+    "numpy>=1.26.4; python_version~='3.12'",
+    "numpy>=2; python_version>='3.13'",
+    "av>=12",
+    "tqdm>=4.66.4",
+]
+external-dependencies = [
+    "pkg:generic/ffmpeg",
+]
+
+[tool.uv]
+dev-dependencies = [
+  "pytest>=8.2.0",
+  "parameterized>=0.9.0",
+  "coverage>=7.5.1",
+  "ruff>=0.4.4",
+  "poethepoet>=0.28.0",
+  "pre-commit",
+]
+package = true
+
+[build-system]
+requires = ["hatchling", "hatch-external-dependencies"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.hooks.external-dependencies]
+
+[[tool.poe.tasks.test]]
+help = "Run tests"
+shell = 'uv run pytest tests'
+
+[tool.poe.tasks.lock]
+help = "Lock file"
+shell = "uv lock"
+
+[tool.ruff.lint.flake8-bugbear]
+extend-immutable-calls = ["typer.Argument", "typer.Option"]
+
+[tool.ruff]
+fix = true
+line-length = 120
+target-version = "py38"
+
+[tool.ruff.lint]
+select = ["B", "E", "F", "I001", "Q", "SIM", "UP", "W"]
+
+[tool.ruff.lint.flake8-quotes]
+inline-quotes = "single"
+
+[tool.ruff.format]
+quote-style = "single"
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+force-wrap-aliases = true

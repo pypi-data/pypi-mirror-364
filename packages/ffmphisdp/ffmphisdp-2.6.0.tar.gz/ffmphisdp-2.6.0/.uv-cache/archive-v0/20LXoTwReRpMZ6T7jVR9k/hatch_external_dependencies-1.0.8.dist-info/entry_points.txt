@@ -1,0 +1,2 @@
+[hatch]
+external-dependencies = hatch_external_dependencies.hooks

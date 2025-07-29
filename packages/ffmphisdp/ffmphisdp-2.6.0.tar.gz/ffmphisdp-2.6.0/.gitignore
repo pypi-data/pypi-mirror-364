@@ -1,0 +1,16 @@
+**/__pycache__/
+*.egg-info
+*.pyc
+.idea
+venv/
+dist/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.tox/
+tags
+.coverage
+coverage-report.xml
+report-test.xml
+.python-version
+local_test
