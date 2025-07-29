@@ -1,0 +1,2 @@
+[console_scripts]
+django-creator = django_creator.cli:main
