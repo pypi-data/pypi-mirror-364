@@ -1,0 +1,16 @@
+MANIFEST.in
+README.md
+setup.py
+structure_aram/__init__.py
+structure_aram/admin.py
+structure_aram/apps.py
+structure_aram/models.py
+structure_aram/tests.py
+structure_aram/views.py
+structure_aram.egg-info/PKG-INFO
+structure_aram.egg-info/SOURCES.txt
+structure_aram.egg-info/dependency_links.txt
+structure_aram.egg-info/entry_points.txt
+structure_aram.egg-info/requires.txt
+structure_aram.egg-info/top_level.txt
+structure_aram/migrations/__init__.py
