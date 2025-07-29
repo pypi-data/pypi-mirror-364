@@ -1,0 +1,106 @@
+Metadata-Version: 2.4
+Name: smartrun
+Version: 0.2.0
+Summary: Run any Python script with automatic environment setup, fast package resolution via uv, and reproducible lockfile generation
+Project-URL: Repository, https://github.com/SermetPekin/smartrun
+Author-email: Sermet Pekin <Sermet.Pekin@gmail.com>
+License: BSD 3-Clause License
+        
+        Copyright (c) 2025, Sermet Pekin
+        
+        Redistribution and use in source and binary forms, with or without
+        modification, are permitted provided that the following conditions are met:
+        
+        1. Redistributions of source code must retain the above copyright notice, this
+           list of conditions and the following disclaimer.
+        
+        2. Redistributions in binary form must reproduce the above copyright notice,
+           this list of conditions and the following disclaimer in the documentation
+           and/or other materials provided with the distribution.
+        
+        3. Neither the name of the copyright holder nor the names of its
+           contributors may be used to endorse or promote products derived from
+           this software without specific prior written permission.
+        
+        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+        AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+        IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+        DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+        FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+        DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+        SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+        CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+        OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+        OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+License-File: LICENSE
+Classifier: License :: OSI Approved :: BSD License
+Requires-Python: >=3.10
+Requires-Dist: ipykernel>=6.30.0
+Requires-Dist: nbconvert>=7.0.0
+Requires-Dist: nbformat>=5.10.4
+Requires-Dist: rich>=14.0.0
+Requires-Dist: uv>=0.7.21
+Description-Content-Type: text/markdown
+
+[![Python package](https://github.com/SermetPekin/smartrun-pro/actions/workflows/python-package.yml/badge.svg?1)](https://github.com/SermetPekin/smartrun-pro/actions/workflows/python-package.yml?1)
+# smartrun
+*Run any Python script in a clean, disposable virtual environment — automatically.*
+
+
+# smartrun 🚀
+
+**Run Python and Jupyter files with zero setup, zero pollution. Just run it.**
+
+`smartrun` scans your script or notebook, detects the required third-party packages, creates (or reuses) an isolated environment, installs what’s missing — and runs your code.
+
+✅ No more `ModuleNotFoundError`  
+✅ No more cluttered global `site-packages`  
+✅ Just clean, reproducible execution — every time
+
+## Features
+
+- 🧪 Supports both `.py` and `.ipynb` files
+- 🔍 Automatically detects and resolves imports
+- 🛠️ Uses `venv` or fast `uv` environments (if available)
+- 📦 Installs only what's needed, only when needed
+- 💡 Reuses environments smartly to save time
+
+---
+## Installation
+```bash
+pip install smartrun
+```
+> **Requires Python 3.10+**
+---
+
+## Usage
+
+```bash
+smartrun your_script.py
+## Notebook
+```bash
+smartrun your_notebook.ipynb
+
+```
+
+If the dependency isn’t installed yet, `smartrun` will fetch it automatically.
+
+## Why smartrun?
+
+Because setup should never block you from running great code.
+Whether you're experimenting, prototyping, or sharing — smartrun ensures your script runs smoothly, without dependency drama.
+
+
+## Contributing
+
+
+Contributions are welcome! 🧑‍💻
+
+If you’ve got ideas, bug fixes, or improvements — feel free to open an issue or a pull request. Let’s make smartrun even smarter together.
+
+
+## License
+
+BSD 3‑Clause — see `LICENSE` for details.  
+
+---
