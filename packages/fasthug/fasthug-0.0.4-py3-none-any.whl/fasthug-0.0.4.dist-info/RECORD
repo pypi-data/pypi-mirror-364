@@ -1,0 +1,14 @@
+fasthug/__init__.py,sha256=yU3oz4AU9Ig2pRy86LnrG3NOBii9DneYkL3c5MokyqI,144
+fasthug/__main__.py,sha256=1sQ0UIzEqf7yHrXaVbTU8WI7L_C6Kk4SU9Zzc3i8yxI,1908
+fasthug/bench.py,sha256=R7klBrHKUboCvFGNYKnnRLSvpADsogUf-fFZEw-DR9A,4061
+fasthug/fasthug.py,sha256=Qw6RPmx5hGUas9F2ZrA2cRPqF18-W7ki94jAYdQhyzk,15377
+fasthug-0.0.4.dist-info/licenses/LICENSE,sha256=tBPmbLPSgCx_8cAGNNk4mEn2QK_nzR8YUERxEGT8-vM,1066
+tests/test_basic.py,sha256=IJR0SIBoUKTq-2K81QCzGpAhDOaDXSMC_XXV0MlW1Ow,1870
+tests/test_bench.py,sha256=XWu-NUjj5mqLZloV4w24bqBxPUS1TXJHnIqivxDoGn8,756
+tests/test_quantization.py,sha256=Mw1qlg65-S188MFgJVgBhbYMpcp3B-DjQJMvQeW1Wpk,3657
+utils/app.py,sha256=74-dTEbDdl7bx-a1RcFOLZ68RWmtdGTMt7QFMXusfAE,4636
+fasthug-0.0.4.dist-info/METADATA,sha256=h3vBWMUq1Je30PlUkDkPmTEUFzCPHZLAwC8IADhiv9g,16493
+fasthug-0.0.4.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+fasthug-0.0.4.dist-info/entry_points.txt,sha256=YSRxCbgImaKD9owXG9Q8piXQJg1wmleDOf620Ds7ZmE,115
+fasthug-0.0.4.dist-info/top_level.txt,sha256=_pcnOeGhAgDnP0MR5sP2aPFPEuL_g797LdtIx4yFyIg,20
+fasthug-0.0.4.dist-info/RECORD,,
