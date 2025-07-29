@@ -1,0 +1,146 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install UV
+      uses: astral-sh/setup-uv@v4
+      with:
+        version: "latest"
+        enable-cache: true
+
+    - name: Install Rye
+      uses: eifinger/setup-rye@v4
+      with:
+        enable-cache: true
+
+    - name: Install dependencies
+      run: uv sync --group dev
+
+    - name: Get version
+      id: version
+      run: |
+        VERSION=$(uv run python -c "from folder2md4llms.__version__ import __version__; print(__version__)")
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        echo "Package version: $VERSION"
+
+    - name: Run tests
+      run: uv run pytest -x --tb=short
+
+    - name: Build package
+      run: |
+        echo "::group::Building package"
+        rye build
+        echo "::endgroup::"
+
+        echo "::group::Validate package"
+        uv pip install twine
+        uv run python -m twine check dist/*
+        echo "::endgroup::"
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: dist-packages
+        path: dist/
+        retention-days: 30
+
+  test-pypi:
+    runs-on: ubuntu-latest
+    needs: build
+    environment: test-pypi
+
+    steps:
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: dist-packages
+        path: dist/
+
+    - name: Publish to TestPyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        repository-url: https://test.pypi.org/legacy/
+        password: ${{ secrets.TESTPYPI_TOKEN }}
+
+    - name: Test installation from TestPyPI
+      run: |
+        sleep 60
+        python -m pip install --upgrade pip
+        python -m pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ folder2md4llms==${{ needs.build.outputs.version }}
+        folder2md --version
+        echo "# Test" > test.md
+        folder2md . --output test_output.md
+        test -f test_output.md
+
+  pypi:
+    runs-on: ubuntu-latest
+    needs: [build, test-pypi]
+    environment: pypi
+    if: github.ref_type == 'tag'
+
+    steps:
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: dist-packages
+        path: dist/
+
+    - name: Publish to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        password: ${{ secrets.PYPI_TOKEN }}
+
+    - name: Test installation from PyPI
+      run: |
+        sleep 120
+        python -m pip install --upgrade pip
+        python -m pip install folder2md4llms==${{ needs.build.outputs.version }}
+        folder2md --version
+        echo "# Test" > test.md
+        folder2md . --output test_output.md
+        test -f test_output.md
+
+  update-submodules:
+    runs-on: ubuntu-latest
+    needs: [build, pypi]
+    if: github.ref_type == 'tag' && success()
+
+    steps:
+    - name: Trigger submodule updates
+      run: |
+        curl -X POST \
+          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/HenriquesLab/homebrew-folder2md4llms/dispatches \
+          -d '{"event_type":"new_release","client_payload":{"version":"${{ needs.build.outputs.version }}","tag":"v${{ needs.build.outputs.version }}"}}'
+
+        curl -X POST \
+          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/HenriquesLab/scoop-folder2md4llms/dispatches \
+          -d '{"event_type":"new_release","client_payload":{"version":"${{ needs.build.outputs.version }}","tag":"v${{ needs.build.outputs.version }}"}}'

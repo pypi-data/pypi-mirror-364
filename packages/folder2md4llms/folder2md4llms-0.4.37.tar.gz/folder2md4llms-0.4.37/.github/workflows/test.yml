@@ -1,0 +1,246 @@
+name: Test
+
+on:
+  push:
+    branches: [main, dev]
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - 'pyproject.toml'
+      - 'uv.lock'
+      - '.github/workflows/test.yml'
+  pull_request:
+    branches: [main, dev]
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - 'pyproject.toml'
+      - 'uv.lock'
+      - '.github/workflows/test.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ['3.11', '3.12', '3.13']
+        exclude:
+          - os: macos-latest
+            python-version: '3.12'
+          - os: windows-latest
+            python-version: '3.12'
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install UV
+      uses: astral-sh/setup-uv@v4
+      with:
+        version: "latest"
+        enable-cache: true
+
+    - name: Install dependencies
+      run: uv sync --group dev
+
+    - name: Run tests
+      run: uv run pytest tests/ --cov=folder2md4llms --cov-report=xml --cov-report=term-missing -n auto --maxfail=10 --tb=short -v
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v4
+      if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'
+      with:
+        file: ./coverage.xml
+        fail_ci_if_error: false
+        token: ${{ secrets.CODECOV_TOKEN }}
+
+  test-optional-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install UV
+      uses: astral-sh/setup-uv@v4
+      with:
+        version: "latest"
+        enable-cache: true
+
+    - name: Install dependencies with all extras
+      run: uv sync --group dev --all-extras
+
+    - name: Test with optional dependencies
+      run: |
+        uv run pytest tests/test_converters.py -v || true
+        uv run pytest tests/test_processor.py -v
+
+  integration-test:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install UV
+      uses: astral-sh/setup-uv@v4
+      with:
+        version: "latest"
+        enable-cache: true
+
+    - name: Install package
+      run: uv sync --group dev --extra tiktoken
+
+    - name: Test CLI functionality
+      run: |
+        echo "::group::Testing CLI help"
+        uv run folder2md --help
+        echo "::endgroup::"
+
+        echo "::group::Testing CLI version"
+        uv run folder2md --version
+        echo "::endgroup::"
+
+        echo "::group::Testing ignore file generation"
+        uv run folder2md --init-ignore --force
+        test -f .folder2md_ignore
+        echo "::endgroup::"
+
+        echo "::group::Testing basic functionality"
+        mkdir -p test_project/src
+        echo "print('Hello World')" > test_project/src/main.py
+        echo "# Test Project" > test_project/README.md
+        cd test_project
+        uv run folder2md . --output test_output.md
+        test -f test_output.md
+        grep -q "Hello World" test_output.md
+        grep -q "Test Project" test_output.md
+        echo "::endgroup::"
+
+    - name: Cleanup
+      if: always()
+      run: |
+        rm -rf test_project .folder2md_ignore || true
+
+  build-test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ['3.11', '3.13']
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install UV
+      uses: astral-sh/setup-uv@v4
+      with:
+        version: "latest"
+        enable-cache: true
+
+    - name: Install Rye
+      uses: eifinger/setup-rye@v4
+      with:
+        enable-cache: true
+
+    - name: Install dependencies
+      run: uv sync --group dev
+
+    - name: Build package
+      run: |
+        echo "::group::Building package"
+        rye build
+        echo "::endgroup::"
+
+    - name: Show package contents (Unix)
+      if: runner.os != 'Windows'
+      run: |
+        echo "::group::Package contents"
+        ls -la dist/
+        echo "::endgroup::"
+
+    - name: Show package contents (Windows)
+      if: runner.os == 'Windows'
+      run: |
+        echo "::group::Package contents"
+        Get-ChildItem -Path dist/ -Force
+        echo "::endgroup::"
+      shell: pwsh
+
+    - name: Test wheel installation (Unix)
+      if: runner.os != 'Windows'
+      run: |
+        WHEEL_NAME=$(ls dist/*.whl | head -1 | xargs basename)
+        uv pip install --system "dist/$WHEEL_NAME"
+
+        folder2md --help
+        folder2md --version
+
+        mkdir -p test_dir
+        echo "# Test" > test_dir/README.md
+        folder2md test_dir --output test_output.md
+        test -f test_output.md
+        grep -q "Test" test_output.md
+
+    - name: Test wheel installation (Windows)
+      if: runner.os == 'Windows'
+      run: |
+        $WHEEL_NAME = (Get-ChildItem dist/*.whl | Select-Object -First 1).Name
+        uv pip install --system "dist/$WHEEL_NAME"
+
+        folder2md --help
+        folder2md --version
+
+        New-Item -ItemType Directory -Path "test_dir" -Force
+        Set-Content -Path "test_dir/README.md" -Value "# Test"
+        folder2md test_dir --output test_output.md
+        if (-not (Test-Path "test_output.md")) { exit 1 }
+        if (-not (Select-String -Path "test_output.md" -Pattern "Test" -Quiet)) { exit 1 }
+      shell: pwsh
+
+    - name: Cleanup (Unix)
+      if: always() && runner.os != 'Windows'
+      run: |
+        rm -rf test_dir test_output.md dist/ || true
+
+    - name: Cleanup (Windows)
+      if: always() && runner.os == 'Windows'
+      run: |
+        Remove-Item -Path test_dir, test_output.md, dist -Recurse -Force -ErrorAction SilentlyContinue
+      shell: pwsh
