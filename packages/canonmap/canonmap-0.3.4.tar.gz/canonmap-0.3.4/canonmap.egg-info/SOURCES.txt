@@ -1,0 +1,11 @@
+MANIFEST.in
+NOTICE.txt
+README.md
+setup.py
+canonmap/__init__.py
+canonmap/core.py
+canonmap.egg-info/PKG-INFO
+canonmap.egg-info/SOURCES.txt
+canonmap.egg-info/dependency_links.txt
+canonmap.egg-info/requires.txt
+canonmap.egg-info/top_level.txt
