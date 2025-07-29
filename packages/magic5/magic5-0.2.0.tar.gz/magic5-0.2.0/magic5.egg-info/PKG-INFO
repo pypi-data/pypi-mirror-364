@@ -1,0 +1,24 @@
+Metadata-Version: 2.4
+Name: magic5
+Version: 0.2.0
+Summary: Utility package importing numpy as np, pandas as pd, matplotlib.pyplot as plt, seaborn as sns, and scikit-learn with common aliases
+Home-page: https://github.com/FreyFly/magic5
+Author: Francesco Scolz
+Author-email: francesco.scolz@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: matplotlib
+Requires-Dist: seaborn
+Requires-Dist: scikit-learn
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
