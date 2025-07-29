@@ -1,0 +1,82 @@
+Metadata-Version: 2.4
+Name: pixel-canon
+Version: 0.1.1
+Summary: The canon for pixel data topology. A cross-language specification to define the logical layout of images.
+Author-email: GolonChenroppi <golonchenroppi@gmail.com>
+License: MIT License
+        
+        Copyright (c) 2025 GolonChenroppi
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: Homepage, https://github.com/GolonChenroppi/pixel-canon
+Project-URL: Documentation, https://github.com/GolonChenroppi/pixel-canon/blob/main/spec/v1.0.md
+Project-URL: Bug Tracker, https://github.com/GolonChenroppi/pixel-canon/issues
+Keywords: image,pixel,layout,numpy,pytorch,opencv,computer-vision,image-processing,hwc,chw
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Image Processing
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Provides-Extra: numpy
+Requires-Dist: numpy; extra == "numpy"
+Dynamic: license-file
+
+<div align="center">
+  <a href="./README.md"><strong>English</strong></a> | <a href="./README.ru.md">Русский</a>
+</div>
+<hr>
+
+# Pixel-Canon
+
+> The canon for pixel data topology. A cross-language specification to define the logical layout of images (axis order, orientation, and memory order).
+
+`Pixel-Canon` is a cross-language project aimed at solving a common and frustrating problem in computer vision, image processing, and machine learning: the ambiguity of image data layouts. When you receive an N-dimensional array, what do the axes mean? Is it `(Height, Width, Channels)` or `(Channels, Height, Width)`? Does the Y-axis point up or down? Are the data stored in C-style (row-major) or Fortran-style (column-major) order?
+
+This project provides a simple, declarative specification and a set of tools to describe this information explicitly, eliminating guesswork and making data pipelines more robust and reliable.
+
+## Core Concepts
+
+The specification is built on a few core components:
+
+*   **`ImageAxis`**: The name of an axis (e.g., `WIDTH`, `HEIGHT`, `CHANNELS`).
+*   **`AxisDirection`**: The orientation of an axis (e.g., `UP`, `DOWN`, `LEFT`, `RIGHT`).
+*   **`MemoryOrder`**: The physical layout in memory (`ROW_MAJOR` or `COLUMN_MAJOR`).
+*   **`ChannelFormat`**: The semantic order of channels (`RGB`, `BGR`, `RGBA`).
+*   **`ImageLayout`**: A composite object that combines all of the above to provide a complete, unambiguous description.
+
+## The Specification
+
+The formal specification, which all language-specific implementations must adhere to, can be found here:
+*   **[Specification v1.0](./spec/v1.0.md)**
+
+## Implementations
+
+*   **[Python](./python/)** (In Progress)
+*   *Other languages to be added.*
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.

@@ -1,0 +1,14 @@
+pixel_canon/__init__.py,sha256=-WVAwL7iif6dvvp5dSzqOMT-fovVS9VVKLdShDcubp0,557
+pixel_canon/common.py,sha256=XwrnxKHwVxTyY9ojmDM2zCGw81Gx5Bt7rYPcP9PiLvM,2293
+pixel_canon/core.py,sha256=d9IkYCm4ohvJaN4kbhqB6S5pzjJ3dVHLmCcSCRIayo4,3206
+pixel_canon/utils.py,sha256=UEYQyWhWpE7HINl2BDRt4NMHodilOSjxZM_mRYGSpx4,2328
+pixel_canon/backends/__init__.py,sha256=-Rws3VFNM0s8aJxX83DkUxiD14_mJmZfM5PO224Hq8I,319
+pixel_canon/backends/numpy_backend.py,sha256=-pnH4s8MDXiYpuWlkhnu63IbqliSBz9LJHJ3jJth93E,4356
+pixel_canon-0.1.1.dist-info/licenses/LICENSE,sha256=DJKc63mQyGVsxR9dfDxY0x78EJ5G5KBTn5ESiOfGRmE,1092
+tests/test_core.py,sha256=kAh3Z_S43z-4qh96vCHM95Dgt1-65kmotDKEmEySHe8,1892
+tests/test_numpy_backend.py,sha256=oWxOfQChFOWADjkbz-TfY8PHhVqzz1NXdICs7FZmpnQ,6100
+tests/test_utils.py,sha256=oKOqVEzYkhB0qkbV7_CmyKnIfMTmxaEsy-pPJ61IOBs,4074
+pixel_canon-0.1.1.dist-info/METADATA,sha256=DCA9yAWQRe1dc4j6GBK9rkckrb9UogMZqT6U56D52gU,4321
+pixel_canon-0.1.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+pixel_canon-0.1.1.dist-info/top_level.txt,sha256=Q4dXPXwyOZX69QB-GpmaAB8U00qIfdVJKRw0a59sBtQ,18
+pixel_canon-0.1.1.dist-info/RECORD,,
