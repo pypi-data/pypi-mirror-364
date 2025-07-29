@@ -1,0 +1,3 @@
+[console_scripts]
+portfinder=portfinder.cli:run
+
