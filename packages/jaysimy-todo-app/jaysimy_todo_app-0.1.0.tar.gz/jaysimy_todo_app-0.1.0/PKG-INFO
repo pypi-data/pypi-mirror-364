@@ -1,0 +1,71 @@
+Metadata-Version: 2.4
+Name: jaysimy-todo_app
+Version: 0.1.0
+Summary: Une application Django simple de gestion de tâches (To-Do List).
+Author: jay-simy
+Author-email: simyjeanpaul@gmail.com
+License: MIT
+Classifier: Framework :: Django
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: Django>=3.2
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Application To-Do List Django
+
+## Description
+
+Cette application Django permet de gérer une liste simple de tâches.  
+Elle propose une interface web pour afficher la liste des tâches, ainsi qu’un panneau d’administration Django pour gérer les tâches (ajout, modification, suppression).
+
+---
+
+## Prérequis
+
+- Python 3.8 ou supérieur  
+- Django 3.x ou 4.x  
+- Un environnement virtuel recommandé (venv, virtualenv, etc.)  
+- Base de données SQLite (par défaut)
+
+---
+
+## Installation
+
+1. **Cloner le projet**  
+```bash
+git clone <URL_DU_PROJET>
+cd <NOM_DU_DOSSIER>
+
+Installer les dépendances
+
+pip install -r requirements.txt
+ 
+ Créer un superutilisateur (pour accéder à l’admin Django)
+
+python manage.py createsuperuser
+
+Utilisation
+
+    Accéder à la liste des tâches :
+    http://127.0.0.1:8000/taches/
+
+    Accéder à l’administration Django :
+    http://127.0.0.1:8000/admin
+    Se connecter avec le superutilisateur créé pour gérer les tâches.

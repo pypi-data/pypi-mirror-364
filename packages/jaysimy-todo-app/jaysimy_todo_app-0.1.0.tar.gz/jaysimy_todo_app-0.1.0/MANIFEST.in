@@ -1,0 +1,2 @@
+include README.md
+recursive-include todo_app/templates *
