@@ -1,0 +1,76 @@
+Metadata-Version: 2.4
+Name: pySWATPlus
+Version: 1.0.0
+Summary: Running and calibrating default or custom SWAT+ projects with Python
+Author-email: Joan Saló <joansalograu@gmail.com>
+License-Expression: GPL-3.0-or-later
+Project-URL: Homepage, https://github.com/swat-model/pySWATPlus
+Project-URL: Documentation, https://swat-model.github.io/pySWATPlus/
+Keywords: SWAT+,simulation,hydrology,watershed
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Hydrology
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: pandas
+Requires-Dist: typing-extensions
+
+# pySWATPlus
+
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14889320.svg)](https://doi.org/10.5281/zenodo.14889320)
+[![flake8](https://github.com/swat-model/pySWATPlus/actions/workflows/linting.yml/badge.svg)](https://github.com/swat-model/pySWATPlus/actions/workflows/linting.yml)
+[![pytest](https://github.com/swat-model/pySWATPlus/actions/workflows/testing.yml/badge.svg)](https://github.com/swat-model/pySWATPlus/actions/workflows/testing.yml)
+
+
+
+## 📦 About
+
+`pySWATPlus` is an open-source Python package developed and maintained by [ICRA](https://icra.cat/).
+It provides a programmatic interface to the SWAT+ model, allowing users to run simulations, modify input files, and streamline custom experimentation through the model’s `TxtInOut` folder. 
+
+---
+
+## 📥 Install pySWATPlus
+
+To install, run the following command with Python 3.10 or later:
+
+````py
+pip install pySWATPlus
+````
+
+---
+
+## 📚 Documentation
+
+For detailed documentation, tutorials, and examples, visit the **[pySWATPlus documentation](https://swat-model.github.io/pySWATPlus/)**. The documentation includes:
+
+- **[Getting Started](https://swat-model.github.io/pySWATPlus/examples/basic_examples/)**: A beginner-friendly guide to setting up and running your first SWAT+ project.
+- **[API Reference](https://swat-model.github.io/pySWATPlus/api/txtinoutreader/)**: Comprehensive documentation of all functions, input arguments, and usage examples.
+  - **[TxtinoutReader](https://swat-model.github.io/pySWATPlus/api/txtinoutreader/)**: Work with SWAT+ input and output files.
+  - **[FileReader](https://swat-model.github.io/pySWATPlus/api/filereader/)**: Read and manipulate SWAT+ files.
+---
+
+
+## 📖 Citation
+To cite pySWATPlus, use:
+
+```tex
+@misc{Salo_Llorente_2023,
+  author    = {Saló, Joan and Llorente, Oliu},
+  title     = {{pySWATPlus: A Python Interface for SWAT+ Model Calibration and Analysis}},
+  year      = {2023},
+  month     = dec,
+  publisher = {Zenodo},
+  version   = {1.0.0},
+  doi       = {10.5281/zenodo.14889320},
+  url       = {https://doi.org/10.5281/zenodo.14889320}
+}
+```
