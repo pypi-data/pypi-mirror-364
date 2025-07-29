@@ -1,0 +1,10 @@
+[build-system]
+requires = [
+  "setuptools>=42",
+  "wheel",
+  "scikit-build",
+  "ninja",
+  "cmake",
+  "pathlib",
+  "numpy>=1.23.0,<2"
+]

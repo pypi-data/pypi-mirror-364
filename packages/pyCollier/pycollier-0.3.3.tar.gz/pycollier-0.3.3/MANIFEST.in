@@ -1,0 +1,13 @@
+include CMakeLists.txt
+include LICENSE
+include README.md
+include makedoc.py
+include pyCollier/__info__.py
+include pyCollier/__init__.py
+include pyCollier/frontend.py
+include pyproject.toml
+include setup.py
+include src/pyCollier.f90
+include tests/__init__.py
+include tests/test_Collier.py
+exclude _skbuild
