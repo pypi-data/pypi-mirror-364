@@ -1,0 +1,54 @@
+[project]
+name = "external-issue-checker"
+readme = "README.md"
+version = "0.1.0"
+description = "Lists commits in a Git repository that refer to external issues and reports their status."
+authors = [{ name = "Matthieu Viry", email = "matthieu.viry@cnrs.fr" }]
+license = { text = "MIT" }
+packages = [{ include = "external_issue_checker", from = "src" }]
+dynamic = ["dependencies", "readme", "requires-python"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+keywords = [
+    "git",
+    "issue-tracker",
+    "external-issues",
+    "commit-checker",
+    "issue-status",
+]
+
+[project.scripts]
+external-issue-checker = "external_issue_checker.cli:app"
+
+[project.urls]
+homepage = "https://github.com/mthh/external-issue-checker"
+repository = "https://github.com/mthh/external-issue-checker"
+"Bug Tracker" = "https://github.com/mthh/external-issue-checker"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+gitpython = "^3.1"
+typer = {extras = ["all"], version = "^0.16"}
+httpx = "^0.28"
+rich = "^14.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2"
+pre-commit = "^4.2"
+black = "^25.1"
+flake8 = "^7.2"
+mypy = "^1.16"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
