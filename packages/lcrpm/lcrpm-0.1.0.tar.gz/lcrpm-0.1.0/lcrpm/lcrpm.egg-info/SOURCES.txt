@@ -1,0 +1,13 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+lcrpm/lcrpm.egg-info/PKG-INFO
+lcrpm/lcrpm.egg-info/SOURCES.txt
+lcrpm/lcrpm.egg-info/dependency_links.txt
+lcrpm/lcrpm.egg-info/requires.txt
+lcrpm/lcrpm.egg-info/top_level.txt
+lcrpm/modeling/__init__.py
+lcrpm/modeling/nonparametric.py
+lcrpm/modeling/parametric.py
+lcrpm/modeling/semiparametric.py

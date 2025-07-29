@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lcrpm"
+version = "0.1.0"
+description = "Lung cancer risk profiling using time-to-event modeling (LCRPM)"
+authors = [{ name = "Yusuf Brima", email = "yusuf.brima@scai.fraunhofer.de" }]
+readme = "README.md"
+license = "MIT AND (Apache-2.0 OR BSD-2-Clause)"
+dependencies = [
+    "pandas",
+    "sqlalchemy",
+    "psycopg2",
+    "python-dotenv",
+    "numpy"
+]
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent"
+]
+
+[tool.setuptools.packages.find]
+where = ["lcrpm"]
