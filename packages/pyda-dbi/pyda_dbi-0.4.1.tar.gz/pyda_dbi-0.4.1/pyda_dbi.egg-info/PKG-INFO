@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: pyda-dbi
+Version: 0.4.1
+Author: Andrew Haberlandt
+Author-email: your.email@example.com
+Requires-Python: >=3.0
+License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: license-file
+Dynamic: requires-python
