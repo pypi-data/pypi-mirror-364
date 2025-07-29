@@ -1,0 +1,2 @@
+[console_scripts]
+melodie-app-django-creator-smart = app_creator.core:main

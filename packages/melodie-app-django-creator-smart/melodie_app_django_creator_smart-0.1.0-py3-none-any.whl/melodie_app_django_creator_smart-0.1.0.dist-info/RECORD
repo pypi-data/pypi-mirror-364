@@ -1,0 +1,15 @@
+app_creator/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+app_creator/__main__.py,sha256=j8g6A34OH2hFX16jvKPZKfUF46tjPMNzI6g2RPgkNCo,62
+app_creator/core.py,sha256=AjEAWlaofoJgCyZpBi2Q7Y2EDBB1Bq-8V4RaGjV7OYc,969
+melodie_app_django_creator_smart-0.1.0.dist-info/licenses/LICENSE,sha256=q7KJbcPCqUAvkBuI1QNc8Kg9XPfBfnNkLN9WKwudO8U,11
+myapp/__init__.py,sha256=yRkJdZ549zqnxgRtYP2hP8EM5D2hDK3p5KCblTbrUAU,24
+myapp/admin.py,sha256=niRWIXiDdzi9oC1J1wIsyY-Pt592DGwqysGOPAHIGBo,21
+myapp/apps.py,sha256=Hc3wNauUHrbZAobELdMn6H8fWfPz3lOLAEwdb7wtqwo,20
+myapp/models.py,sha256=2Qts6Ch6z4XgYTw5pP1sUQr5GhyozTtu0NX1pxOadTQ,22
+myapp/urls.py,sha256=mORjDr2tZreeBpPWVHpQolOV6xuE3e4YR-paUN-l4mc,20
+myapp/views.py,sha256=rJy4etsCeJUgKfzHL1v75xP385W6Nb0Lq0bSbixsCO8,21
+melodie_app_django_creator_smart-0.1.0.dist-info/METADATA,sha256=-3A4jf-b4GYY5bAcoZfhJECAcBHEJ4byOpIKt_bLAc4,292
+melodie_app_django_creator_smart-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+melodie_app_django_creator_smart-0.1.0.dist-info/entry_points.txt,sha256=shiKb3ChknuGDJIzp28q8OLRgO0aW4Ui7dk7_YyVxkE,75
+melodie_app_django_creator_smart-0.1.0.dist-info/top_level.txt,sha256=tJPH0m317PKdyZfDiiRLVKkp-_d2ZLPdU2IHGJiln8s,18
+melodie_app_django_creator_smart-0.1.0.dist-info/RECORD,,
