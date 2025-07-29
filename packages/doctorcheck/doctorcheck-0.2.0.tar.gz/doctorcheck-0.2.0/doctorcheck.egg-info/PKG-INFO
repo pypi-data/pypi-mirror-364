@@ -1,0 +1,30 @@
+Metadata-Version: 2.4
+Name: doctorcheck
+Version: 0.2.0
+Summary: A reusable Django app for health check logic.
+Author: Keita
+Author-email: ton@email.com
+License: MIT
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 3.2
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: django>=3.2
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# DoctorCheck
+
+A reusable Django app for health logic (views, templates, URLs, etc).
+
