@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pixel-canon"
+version = "0.1.0"
+authors = [
+  { name="GolonChenroppi", email="golonchenroppi@gmail.com" },
+]
+description = "The canon for pixel data topology. A cross-language specification to define the logical layout of images."
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Image Processing",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [] # Core has no dependencies
+
+[project.optional-dependencies]
+numpy = ["numpy"]
+# Задел на будущее
+# pytorch = ["torch"]
+# all = ["numpy", "torch"]
+
+[project.urls]
+"Homepage" = "https://github.com/GolonChenroppi/pixel-canon"
+"Bug Tracker" = "https://github.com/GolonChenroppi/pixel-canon/issues"
