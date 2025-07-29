@@ -1,0 +1,16 @@
+LICENSE
+NOTICE
+README.md
+pyproject.toml
+aurora_dsql_sqlalchemy/__init__.py
+aurora_dsql_sqlalchemy/base.py
+aurora_dsql_sqlalchemy/psycopg.py
+aurora_dsql_sqlalchemy/psycopg2.py
+aurora_dsql_sqlalchemy.egg-info/PKG-INFO
+aurora_dsql_sqlalchemy.egg-info/SOURCES.txt
+aurora_dsql_sqlalchemy.egg-info/dependency_links.txt
+aurora_dsql_sqlalchemy.egg-info/entry_points.txt
+aurora_dsql_sqlalchemy.egg-info/requires.txt
+aurora_dsql_sqlalchemy.egg-info/top_level.txt
+test/test_compiler.py
+test/test_suite.py
