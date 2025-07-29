@@ -1,0 +1,10 @@
+vaskify/__init__.py,sha256=jQGkvxshsM4pmRqM8vjQCmlA_Cue-P--7q1UiCPf87A,126
+vaskify/__main__.py,sha256=Ti5gv9PYUrhWzc7EeLE1jiZK9x2JwH-T4YewNoKpQ08,209
+vaskify/createdata.py,sha256=LLaLJMVyfgF5nMl1VYl6ElsUwF35P8OkGY-XGm-mi1k,2533
+vaskify/detect.py,sha256=8HDgcWYRBqBfvdkdvMQ3JSE9gOKHMOanoZMA9bj0cmA,17502
+vaskify/py.typed,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+ssb_vaskify-0.0.4.dist-info/LICENSE,sha256=np3IfD5m0ZUofn_kVzDZqliozuiO6wrktw3LRPjyEiI,1073
+ssb_vaskify-0.0.4.dist-info/METADATA,sha256=xAlHjgl9N1LsHh1ZI4i71WSk1eAO-pwbUhWL6hsgnhg,3944
+ssb_vaskify-0.0.4.dist-info/WHEEL,sha256=b4K_helf-jlQoXBBETfwnf4B04YC67LOev0jo4fX5m8,88
+ssb_vaskify-0.0.4.dist-info/entry_points.txt,sha256=8CsNC7kW_DAHeMZwFKGXEWS4Jxki7gJC2POigXNXm78,53
+ssb_vaskify-0.0.4.dist-info/RECORD,,
