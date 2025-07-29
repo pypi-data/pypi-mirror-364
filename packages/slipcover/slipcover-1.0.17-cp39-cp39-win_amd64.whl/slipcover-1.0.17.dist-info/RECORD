@@ -1,0 +1,17 @@
+slipcover/__init__.py,sha256=huZq30L9x9wreeXsg-JeQl9bBzaruE1hXQhaJFvUDjM,207
+slipcover/__main__.py,sha256=-AmqahzFGydlJFg4dJ0hg7-P7V3IzIDEJQIgMXwZ4bI,10300
+slipcover/branch.py,sha256=RIRPlsnbJ-1e3CnMel-3wSd8cNOLsGMk9J23b1d5UuE,7892
+slipcover/bytecode.py,sha256=Vsjzv3qnAvZmz_7cqpATrKzIEddAuBv0JeLPLlzyxO8,24116
+slipcover/fuzz.py,sha256=FV4Rzm8lSiMKCADF0jbv_5tnEoq6zSpbpkzKBMb79Sw,451
+slipcover/importer.py,sha256=W3bvajPeBcw0izUu59SuKWUPFN-Wi1GNGvaoaPDXm2M,10171
+slipcover/probe.cp39-win_amd64.pyd,sha256=kZdadsIPI5L3WlkMNnr7U9A02Am9te-GZ3Ge_DXsHt8,107008
+slipcover/schemas.py,sha256=L5F1OMmSAAgBYAq4kZqA1iIEPbn-spR_zAbuN2h0Op8,913
+slipcover/slipcover.py,sha256=9xcJPSm_KR7Q_GCUrYXOOLZve5rYLTI3nN88p-OzEbg,27451
+slipcover/version.py,sha256=UN0_bss9oNKfz-0pZafrQpf2NvaVbHTTkDV2Sa6ELrk,100
+slipcover/xmlreport.py,sha256=040qh29KWR-PdkwcDboTYBjie3o5PsyGclDhMEaKrfo,12264
+slipcover-1.0.17.dist-info/licenses/LICENSE,sha256=Pd-b5cKP4n2tFDpdx27qJSIq0d1ok0oEcGTlbtL6QMU,11560
+slipcover-1.0.17.dist-info/METADATA,sha256=XJ7tDWopBSYFEvDEg68EtA-icC9a6CRTNlsxXypLdnY,9889
+slipcover-1.0.17.dist-info/WHEEL,sha256=XkFE14KmFh7mutkkb-qn_ueuH2lwfT8rLdfc5xpQ7wE,99
+slipcover-1.0.17.dist-info/entry_points.txt,sha256=Uq7HmxJP-vwlb1gl7wQ4LWL9-nJG2bmu08NQ5REqP78,54
+slipcover-1.0.17.dist-info/top_level.txt,sha256=5VXLPH9Pwp6leK8l70xKGMYUOtHuCaL-XVui6MGDwlY,10
+slipcover-1.0.17.dist-info/RECORD,,
