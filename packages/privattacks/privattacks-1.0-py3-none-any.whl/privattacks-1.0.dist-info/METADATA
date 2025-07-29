@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: privattacks
+Version: 1.0
+Summary: Privattacks is a Python package for evaluating privacy risks in tabular datasets. It provides tools to quantify re-identification and attribute inference vulnerabilities based on combinations of quasi-identifiers an adversary knows about a target. The package supports both high-level and granular analysis, including per-record vulnerability distributions, multiprocessing for efficiency, and flexible input handling via pandas DataFrames and other sources.
+Home-page: https://github.com/ramongonze/privattacks
+Author: Ramon Gonçalves Gonze
+Author-email: ramongonze@gmail.com
+Requires-Python: >=3.9
+License-File: LICENSE
+Requires-Dist: pandas>=2.2.3
+Requires-Dist: numpy>=2.0.2
+Requires-Dist: tqdm>=4.65.0
+Requires-Dist: pyreadr>=0.5.2
+Requires-Dist: sphinx
+Requires-Dist: sphinx-autodoc-typehints
+Requires-Dist: sphinx_rtd_theme
+Dynamic: author
+Dynamic: author-email
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
