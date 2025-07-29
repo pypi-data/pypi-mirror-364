@@ -1,0 +1,9 @@
+k8stools/__init__.py,sha256=7xEl5_BUoExieS3wcjPEC6HyGCnvI-K289DMYxdNhjY,2323
+k8stools/k8s_tools.py,sha256=RvGX2NAitSaJLeZz76LHNqZaqQoMNycfR0HThSQHHJM,26304
+k8stools/mcp_client.py,sha256=zppydZwen6wFIUY52kDKAq7l7mZ-ns0Z65VEMs9Davg,3150
+k8stools/mcp_server.py,sha256=4_triT-uXx-sYOmJFLtr8G30fpnjOkg06MGfzWgR9D8,2294
+k8stools-0.1.2.dist-info/METADATA,sha256=yjofxCqR5WfKML2pft6uA_tlmrNnco18XJ6GG3ycm7s,21612
+k8stools-0.1.2.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+k8stools-0.1.2.dist-info/entry_points.txt,sha256=kZ86F1J9csHgxYhgfpq6aUFScl63IJwRLbFGsjRkua4,102
+k8stools-0.1.2.dist-info/licenses/LICENSE,sha256=xx0jnfkXJvxRnG63LTGOxlggYnIysveWIZ6H3PNdCrQ,11357
+k8stools-0.1.2.dist-info/RECORD,,

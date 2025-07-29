@@ -1,0 +1,3 @@
+[console_scripts]
+k8s-mcp-client = k8stools.mcp_client:main
+k8s-mcp-server = k8stools.mcp_server:main
