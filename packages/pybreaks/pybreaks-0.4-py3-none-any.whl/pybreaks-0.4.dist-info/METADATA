@@ -1,0 +1,90 @@
+Metadata-Version: 2.4
+Name: pybreaks
+Version: 0.4
+Summary: Temporal break correction as used in the ESA CCI SM processor
+Author-email: TU Wien <wolfgang.preimesberger@geo.tuwien.ac.at>
+License: mit
+Project-URL: Homepage, https://github.com/TUW-GEO/pybreaks/
+Project-URL: Documentation, https://pybreaks.readthedocs.io/en/latest/
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
+License-File: LICENSE.txt
+License-File: AUTHORS.rst
+Requires-Dist: importlib-metadata; python_version < "3.8"
+Requires-Dist: numpy
+Requires-Dist: netCDF4
+Requires-Dist: scipy
+Requires-Dist: pandas
+Requires-Dist: pyproj
+Requires-Dist: pykdtree
+Requires-Dist: scikit-learn
+Requires-Dist: statsmodels
+Requires-Dist: datetime
+Requires-Dist: matplotlib
+Requires-Dist: seaborn
+Requires-Dist: smecv_grid
+Requires-Dist: pytesmo
+Requires-Dist: more_itertools
+Requires-Dist: lmoments3
+Provides-Extra: testing
+Requires-Dist: pytest-cov; extra == "testing"
+Requires-Dist: coverage; extra == "testing"
+Requires-Dist: pytest; extra == "testing"
+Provides-Extra: building
+Requires-Dist: setuptools>=46.1.0; extra == "building"
+Requires-Dist: setuptools_scm[toml]>=5; extra == "building"
+Requires-Dist: wheel; extra == "building"
+Requires-Dist: packaging; extra == "building"
+Requires-Dist: build; extra == "building"
+Requires-Dist: twine; extra == "building"
+Provides-Extra: docs
+Requires-Dist: sphinx<7,>=3.2.1; extra == "docs"
+Requires-Dist: sphinx_rtd_theme; extra == "docs"
+Requires-Dist: mock; extra == "docs"
+Requires-Dist: pillow; extra == "docs"
+Requires-Dist: recommonmark; extra == "docs"
+Requires-Dist: readthedocs-sphinx-ext; extra == "docs"
+Requires-Dist: myst_parser; extra == "docs"
+Requires-Dist: nbsphinx; extra == "docs"
+Dynamic: license-file
+
+========
+pybreaks
+========
+
+.. image:: https://github.com/TUW-GEO/pybreaks/workflows/Automated%20Tests/badge.svg?branch=master
+   :target: https://github.com/TUW-GEO/pybreaks/actions
+
+Detection and correction of structural breaks in (climate) time series.
+
+Description
+===========
+
+This package currently includes methods to test for inhomogeneities in satellite soil moisture measurements.
+In also contains implementations for correcting detected breaks, currently there are three methods:
+
+- Linear Model Pair matching
+- Higher Order Moment adjustment (see also https://doi.org/10.1175/JCLI3855.1)
+- Quantile Category Matching (see also https://doi.org/10.1175/2010JAMC2376.1)
+
+The main modules in the package are:
+
+- ``TsRelBreakTest`` : Implements relative statistical tests between two subperiods to detect a break between them.
+- ``RegressPairFit``, ``HigherOrderMoments``, ``QuantileCatMatch`` : Classes that implement the correction methods.
+- ``TsRelBreakAdjust`` : Combines the detection and correction methods to correct a break between two subperiods.
+- ``TsRelMultiBreak`` : Iterates over multiples breaks in a time series to correct them.
+  
+Documentation
+==============
+
+Methods in this package are described in
+
+   "W. Preimesberger, T. Scanlon, C. -H. Su, A. Gruber and W. Dorigo, "Homogenization of Structural Breaks in the Global ESA CCI Soil Moisture Multisatellite Climate Data Record," in IEEE Transactions on Geoscience and Remote Sensing, vol. 59, no. 4, pp. 2845-2862, April 2021, doi: 10.1109/TGRS.2020.3012896."
+
+Note
+====
+
+This project has been set up using PyScaffold 2.5.9. For details and usage
+information on PyScaffold see http://pyscaffold.readthedocs.org/.
