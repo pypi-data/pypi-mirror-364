@@ -1,0 +1,12 @@
+README.md
+pyproject.toml
+bookspointer.egg-info/PKG-INFO
+bookspointer.egg-info/SOURCES.txt
+bookspointer.egg-info/dependency_links.txt
+bookspointer.egg-info/requires.txt
+bookspointer.egg-info/top_level.txt
+bookspointer/bookspointer/__init__.py
+bookspointer/bookspointer/api.py
+bookspointer/bookspointer/scraper.py
+bookspointer/bookspointer/server.py
+bookspointer/bookspointer/sheet.py

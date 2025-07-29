@@ -1,0 +1,55 @@
+Metadata-Version: 2.4
+Name: bookspointer
+Version: 0.1.4
+Summary: A package for scraping and serving book data.
+Author-email: Samir Das <samircd4@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/samircd4
+Project-URL: Repository, https://github.com/samircd4/bookspointer
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Requires-Dist: selectolax
+Requires-Dist: rich
+Requires-Dist: python-dotenv
+Requires-Dist: gspread
+Requires-Dist: google-auth
+Requires-Dist: google-auth-oauthlib
+
+# bookspointer
+
+A package for scraping and serving book data.
+
+## Installation
+
+```bash
+pip install bookspointer
+```
+
+## Usage
+
+Import and use the modules in your Python code:
+
+```python
+from bookspointer import scraper, server, api
+# Example usage:
+# scraper.some_function()
+# server.start_server()
+```
+
+## Features
+
+- Scrape book data
+- Serve book data via API
+
+## Project Links
+
+- [Homepage](https://github.com/samircd4)
+- [Repository](https://github.com/samircd4/bookspointer)
+
+## License
+
+MIT
