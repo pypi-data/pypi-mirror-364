@@ -1,0 +1,12 @@
+{
+  "template": "https://github.com/mkoeppe/sage",
+  "commit": "efb7f3c3571532dfac58d5fab2326a45e1fc1370",
+  "checkout": "sagemath-environment-cookiecutter",
+  "context": {
+    "cookiecutter": {
+      "project_name": "cysignals",
+      "_template": "https://github.com/mkoeppe/sage"
+    }
+  },
+  "directory": "pkgs/sage-project-cookiecutter/sage_project_cookiecutter/sagemath-upstream-package-template"
+}

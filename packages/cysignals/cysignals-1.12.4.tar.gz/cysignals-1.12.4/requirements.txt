@@ -1,0 +1,8 @@
+meson-python
+build
+wheel
+Cython
+Sphinx
+flake8
+tomli
+pytest>=8.0.0
