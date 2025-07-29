@@ -1,0 +1,22 @@
+[PYG-393, PYG-406] 🐛 Retrieved identifier bug (#498)
+
+# Description
+
+**Reviewer** This is a ~60 line change with ~250 lines of tests. The
+remaining part is generated code.
+
+This bug was caused by issues in the `QueryUnpacker`. See comments in
+the code for more information.
+
+## Bump
+
+- [x] Patch
+- [ ] Minor
+- [ ] Skip
+
+## Changelog
+### Fixed
+
+- In the generated SDK, calling the `.retrieve(...,
+retrieve_connections="identifier")` no longer returns the edge IDs for
+NodeIDs.
