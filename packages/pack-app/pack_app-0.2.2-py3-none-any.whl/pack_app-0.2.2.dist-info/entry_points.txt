@@ -1,0 +1,2 @@
+[console_scripts]
+pack_app = pack_app.cli:main
