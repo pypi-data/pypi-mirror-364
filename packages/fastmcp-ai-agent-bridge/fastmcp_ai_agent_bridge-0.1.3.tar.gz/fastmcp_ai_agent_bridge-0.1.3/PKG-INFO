@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: fastmcp-ai-agent-bridge
+Version: 0.1.3
+Summary: Bridge for AI Agents to leverage FastMCP
+Requires-Python: >=3.13
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: fastmcp>=2.4.5
+Dynamic: license-file
+
+# fastmcp-agent-bridge
