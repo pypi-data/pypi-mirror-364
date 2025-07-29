@@ -1,0 +1,15 @@
+umnet_db/__init__.py,sha256=zCCxwDUmtJy0hR-p2WVPa2yzkEzm8OYoEUA0HlwNXQ4,3075
+umnet_db/cli/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+umnet_db/cli/activity_query.py,sha256=ZxrGD9bSs5sfdwfkvww1SdmdDkcTPVYwepj5zu3JLF8,2434
+umnet_db/cli/db_delete.py,sha256=Ltbq9_TONwm-uhp_aCHqQhGIQPxbKUkeKJPNNus5P98,1639
+umnet_db/cli/db_init.py,sha256=B4HkE1V51-rGOdV302gh-1LKfhgXac8GuejuD0ukmfY,1349
+umnet_db/cli/table_query.py,sha256=Mpm786N6bou1BzbkWVCTeA5aZ6XwhhIt4dc3-UabBbM,5740
+umnet_db/cli/utils.py,sha256=MPvH3R6MvdWwQNjyKkSCZWSLnPzUZlcpV3iRuXx0O1I,3159
+umnet_db/errors.py,sha256=hf9ndMxqyCmo_E1AMc6GEu53k-kGoYz6z-es3WWbyUA,383
+umnet_db/models.py,sha256=IQQqEhg_vLqW07inTmof0X5ucXwloa0L2ifSccJxw4I,9834
+umnet_db/queries.py,sha256=1pj_Ygdjd6gmugSHXAO6ACgLtSuTM5GiC45Qz5bN5TY,3025
+umnet_db/utils.py,sha256=qR5S0__Tmq5fJkvQmK-9mrM8dI921i1lgcEONQMQ-9U,2684
+umnet_db-0.5.0.dist-info/METADATA,sha256=TqVhOiRb7SvTaizWGEXA_daUoCQwf5kKqDpofkP-gbs,5587
+umnet_db-0.5.0.dist-info/WHEEL,sha256=fGIA9gx4Qxk2KDKeNJCbOEwSrmLtjWCwzBz351GyrPQ,88
+umnet_db-0.5.0.dist-info/entry_points.txt,sha256=NsSm_WtPraHG1GkRmHMacE--MpofPsfkYH1VqOqbbjI,192
+umnet_db-0.5.0.dist-info/RECORD,,
