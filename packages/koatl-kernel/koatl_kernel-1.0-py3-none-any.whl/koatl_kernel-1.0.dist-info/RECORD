@@ -1,0 +1,9 @@
+koatl_kernel/__init__.py,sha256=UExFJlql-GaXbZylbX9bcf6hozWdH7-la6Crnv5T1rQ,53
+koatl_kernel/__main__.py,sha256=Q-DPRlqVbPu7jTMdW8xF2hJ3ru0qwnprBkgms24r93c,125
+koatl_kernel/kernel.py,sha256=kY82m6yIvskAtaXvpTxyVA8YlssuCP-6DcWJIbBqiqM,2044
+koatl_kernel/shell.py,sha256=El4FptNOyif4C2bAA6BRG75x9565VzL1o5IVGQhZC4M,2041
+koatl_kernel-1.0.data/data/share/jupyter/kernels/koatl/kernel.json,sha256=cMUN6NE5zw-LgpNduCuCjPp13s7HA_mQIO7I4a3L9ZY,143
+koatl_kernel-1.0.dist-info/METADATA,sha256=ep0pc23Vqwrbqox8HykLOMhTglZJ3HAqAazoBOXqOKE,1837
+koatl_kernel-1.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+koatl_kernel-1.0.dist-info/licenses/LICENSE,sha256=98FpSHN3oUJddIcJ1-Pm1i4MykTIY5pHUSOoQblE_2k,1068
+koatl_kernel-1.0.dist-info/RECORD,,
