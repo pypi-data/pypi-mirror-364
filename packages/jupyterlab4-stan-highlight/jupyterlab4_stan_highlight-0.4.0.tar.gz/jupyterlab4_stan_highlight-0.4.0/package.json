@@ -1,0 +1,56 @@
+{
+  "name": "jupyterlab-stan-highlight",
+  "version": "0.4.0",
+  "description": "Jupyterlab extension to highlight Stan syntax",
+  "author": "Oonishi Takato",
+  "main": "lib/plugin.js",
+  "keywords": [
+    "jupyter",
+    "jupyterlab",
+    "jupyterlab-extension"
+  ],
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/earth06/jupyterlab-stan-highlight.git",
+    "type": "git"
+  },
+  "jupyterlab": {
+    "extension": true,
+    "outputDir": "jupyterlab4_stan_highlight/labextension"
+  },
+  "scripts": {
+    "build": "jlpm build:lib && jlpm build:labextension:dev",
+    "build:prod": "jlpm clean && jlpm build:lib:prod && jlpm build:labextension",
+    "build:labextension": "jupyter labextension build .",
+    "build:labextension:dev": "jupyter labextension build --development True .",
+    "build:lib": "tsc --sourceMap",
+    "build:lib:prod": "tsc",
+    "clean": "jlpm clean:lib",
+    "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
+    "clean:lintcache": "rimraf .eslintcache .stylelintcache",
+    "clean:labextension": "rimraf jupyterlab4_stan_highlight/labextension jupyterlab4_stan_highlight/_version.py",
+    "clean:all": "jlpm clean:lib && jlpm clean:labextension && jlpm clean:lintcache",
+    "install:extension": "jlpm build",
+    "develop": "jupyter labextension develop . --overwrite",
+    "prepare": "jlpm run clean && jlpm run build:prod",
+    "watch": "run-p watch:src watch:labextension",
+    "watch:src": "tsc -w --sourceMap",
+    "watch:labextension": "jupyter labextension watch ."
+  },
+  "dependencies": {
+    "@codemirror/language": "^6.0.0",
+    "@jupyterlab/application": "^4.0.0",
+    "@jupyterlab/cells": "^4.0.0",
+    "@jupyterlab/codemirror": "^4.0.0",
+    "@jupyterlab/notebook": "^4.0.0"
+  },
+  "devDependencies": {
+    "@jupyterlab/builder": "^4.0.0",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^5.0.5",
+    "typescript": "~5.0.2"
+  },
+  "resolutions": {
+    "@types/react": "^18.0.26"
+  }
+}
