@@ -1,0 +1,14 @@
+README.md
+pyproject.toml
+src/gnuplot_style/__init__.py
+src/gnuplot_style/api.py
+src/gnuplot_style/constants.py
+src/gnuplot_style/core.py
+src/gnuplot_style/gnuplot.mplstyle
+src/gnuplot_style.egg-info/PKG-INFO
+src/gnuplot_style.egg-info/SOURCES.txt
+src/gnuplot_style.egg-info/dependency_links.txt
+src/gnuplot_style.egg-info/requires.txt
+src/gnuplot_style.egg-info/top_level.txt
+tests/test_gnuplot_style.py
+tests/test_reference_gnuplot_style.py
