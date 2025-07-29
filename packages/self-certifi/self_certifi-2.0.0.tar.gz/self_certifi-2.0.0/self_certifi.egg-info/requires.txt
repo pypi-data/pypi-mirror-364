@@ -1,0 +1,10 @@
+certifi
+
+[release]
+bump-my-version
+
+[tests]
+pytest
+pytest-cov
+tox
+ruff
