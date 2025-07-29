@@ -1,0 +1,5 @@
+cobs
+device-communication
+libscrc
+protobuf==6.*
+pyserial
