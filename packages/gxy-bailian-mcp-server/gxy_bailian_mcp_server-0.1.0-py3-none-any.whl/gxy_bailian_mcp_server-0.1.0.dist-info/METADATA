@@ -1,0 +1,14 @@
+Metadata-Version: 2.3
+Name: gxy-bailian-mcp-server
+Version: 0.1.0
+Summary: Add your description here
+Author: liuzg
+Author-email: liuzg <731394253@qq.com>
+Requires-Dist: bs4>=0.0.2
+Requires-Dist: dashscope>=1.23.9
+Requires-Dist: dotenv>=0.9.9
+Requires-Dist: httpx>=0.28.1
+Requires-Dist: mcp[cli]>=1.12.1
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+
