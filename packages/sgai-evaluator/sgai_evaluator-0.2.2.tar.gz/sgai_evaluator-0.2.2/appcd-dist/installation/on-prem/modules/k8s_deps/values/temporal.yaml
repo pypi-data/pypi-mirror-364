@@ -1,0 +1,301 @@
+debug: false
+imagePullSecrets:
+  - name: ${image_pull_secret}
+
+# Custom Service account management
+serviceAccount:
+  # Whether to create service account or not
+  create: false
+
+server:
+  enabled: true
+  sidecarContainers: {}
+  dynamicConfig:
+    frontend.keepAliveMaxConnectionAge:
+    - value: "5m"
+      constraints: {}
+  image:
+    repository: ${image_registry}temporalio/server
+
+  # Global default settings (can be overridden per service)
+  replicaCount: 2
+  metrics:
+    # Annotate pods directly with Prometheus annotations.
+    # Use this if you installed Prometheus from a Helm chart.
+    annotations:
+      enabled: true
+    # Additional tags to be added to Prometheus metrics
+    tags: {}
+    # Enable Prometheus ServiceMonitor
+    # Use this if you installed the Prometheus Operator (https://github.com/coreos/prometheus-operator).
+    serviceMonitor:
+      enabled: ${enable_ops}
+      interval: 30s
+      additionalLabels:
+        release: kube-prometheus-stack
+      
+    prometheus:
+      timerType: histogram
+  podAnnotations:
+    reloader.stakater.com/auto: "true"
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+  securityContext:
+    fsGroup: 1000
+    runAsUser: 1000
+
+  config:
+    logLevel: "info"
+
+    # IMPORTANT: This value cannot be changed, once it's set.
+    numHistoryShards: 512
+    persistence:
+      defaultStore: default
+      additionalStores: {}
+
+      default:
+        driver: "sql"
+        sql:
+          database: "temporal"
+          driver: "postgres12"
+          maxConnLifetime: "1h"
+          existingSecret: temporal-default-store
+          host: ${postgres_host}
+          maxConns: 20
+          port: ${postgres_port}
+          sslmode: "require"
+          user: ${postgres_user}
+          tls:
+            enableHostVerification: false
+
+      visibility:
+        driver: "sql"
+        sql:
+          driver: "postgres12"
+          database: "temporalvisibility"
+          existingSecret: temporal-visibility-store
+          host: ${postgres_host}
+          maxConnLifetime: "1h"
+          maxConns: 20
+          port: ${postgres_port}
+          user: ${postgres_user}
+          tls:
+            enableHostVerification: false
+  frontend:
+    service:
+      annotations: {}
+      type: ClusterIP
+      port: 7233
+    metrics:
+      annotations:
+        enabled: true
+      serviceMonitor: {}
+      # enabled: false
+      prometheus: {}
+      # timerType: histogram
+    podAnnotations:
+      reloader.stakater.com/auto: "true"
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 100m
+        memory: 128Mi
+
+
+  history:
+    service:
+      # type: ClusterIP
+      port: 7234
+    metrics:
+      annotations:
+        enabled: true
+      serviceMonitor: {}
+      # enabled: false
+      prometheus: {}
+      # timerType: histogram
+    podAnnotations:
+      reloader.stakater.com/auto: "true"
+    resources:
+      requests:
+        cpu: 100m
+        memory: 512Mi
+      limits:
+        cpu: 100m
+        memory: 512Mi
+
+  matching:
+    service:
+      # type: ClusterIP
+      port: 7235
+    metrics:
+      annotations:
+        enabled: false
+      serviceMonitor: {}
+      # enabled: false
+      prometheus: {}
+      # timerType: histogram
+    podAnnotations:
+      reloader.stakater.com/auto: "true"
+    resources:
+      limits:
+        cpu: 100m
+        memory: 512Mi
+      requests:
+        cpu: 100m
+        memory: 512Mi
+
+  worker:
+    service:
+      # type: ClusterIP
+      port: 7239
+    metrics:
+      annotations:
+        enabled: true
+      serviceMonitor: {}
+      # enabled: false
+      prometheus: {}
+      # timerType: histogram
+    podAnnotations:
+      reloader.stakater.com/auto: "true"
+    podLabels: {}
+    resources:
+      limits:
+        cpu: 100m
+        memory: 512Mi
+      requests:
+        cpu: 100m
+        memory: 512Mi
+
+admintools:
+  enabled: true
+  image:
+    repository: ${image_registry}temporalio/admin-tools
+  service:
+    type: ClusterIP
+    port: 22
+    annotations: {}
+  podAnnotations:
+    reloader.stakater.com/auto: "true"
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+web:
+  enabled: true
+  additionalEnv:
+    - name: TEMPORAL_UI_PUBLIC_PATH
+      value: /internal/workload
+  config:
+    # server/config.yml file content
+    auth:
+      enabled: false
+    routing:
+      default_to_namespace: ${namespace}
+      issue_report_link: "https://stackgen.com/#support"
+
+  replicaCount: 2
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+  image:
+    repository: ${image_registry}temporalio/ui
+
+  service:
+    # set type to NodePort if access to web needs access from outside the cluster
+    # for more info see https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
+    type: ClusterIP
+    port: 8080
+    annotations: {}
+    # loadBalancerIP:
+
+  ingress:
+    enabled: true
+    className: nginx
+    annotations:
+      nginx.org/mergeable-ingress-type: minion
+      nginx.org/location-snippets: |
+        rewrite /internal/workload/(.*) /$1  break;
+    hosts:
+      - ${domain}/internal/workload
+
+  podAnnotations:
+    reloader.stakater.com/auto: "true"
+schema:
+  setup:
+    enabled: true
+    backoffLimit: 100
+  update:
+    enabled: true
+    backoffLimit: 100
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+elasticsearch:
+  enabled: false
+prometheus:
+  enabled: false
+
+grafana:
+  enabled: false
+  datasources:
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+        - name: TemporalMetrics
+          type: prometheus
+          url: http://{{ .Release.Name }}-prometheus-server
+          access: proxy
+          isDefault: true
+  dashboards:
+    default:
+      server-general-github:
+        url: https://raw.githubusercontent.com/temporalio/dashboards/helm/server/server-general.json
+        datasource: TemporalMetrics
+      sdk-general-github:
+        url: https://raw.githubusercontent.com/temporalio/dashboards/helm/sdk/sdk-general.json
+        datasource: TemporalMetrics
+      misc-advanced-visibility-specific-github:
+        url: https://raw.githubusercontent.com/temporalio/dashboards/helm/misc/advanced-visibility-specific.json
+        datasource: TemporalMetrics
+      misc-clustermonitoring-kubernetes-github:
+        url: https://raw.githubusercontent.com/temporalio/dashboards/helm/misc/clustermonitoring-kubernetes.json
+        datasource: TemporalMetrics
+      misc-frontend-service-specific-github:
+        url: https://raw.githubusercontent.com/temporalio/dashboards/helm/misc/frontend-service-specific.json
+        datasource: TemporalMetrics
+      misc-history-service-specific-github:
+        url: https://raw.githubusercontent.com/temporalio/dashboards/helm/misc/history-service-specific.json
+        datasource: TemporalMetrics
+      misc-matching-service-specific-github:
+        url: https://raw.githubusercontent.com/temporalio/dashboards/helm/misc/matching-service-specific.json
+        datasource: TemporalMetrics
+      misc-worker-service-specific-github:
+        url: https://raw.githubusercontent.com/temporalio/dashboards/helm/misc/worker-service-specific.json
+        datasource: TemporalMetrics
+
+cassandra:
+  enabled: false
+
+mysql:
+  enabled: false

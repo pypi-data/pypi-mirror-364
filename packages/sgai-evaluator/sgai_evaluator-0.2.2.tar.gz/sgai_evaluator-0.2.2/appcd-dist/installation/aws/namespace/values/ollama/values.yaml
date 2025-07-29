@@ -1,0 +1,28 @@
+autoscaling:
+  enabled: true
+  maxReplicas: 3
+  minReplicas: 1
+  targetCPUUtilizationPercentage: 80
+extraEnv:
+  - name: OLLAMA_DEBUG
+    value: "1"
+  - name: OLLAMA_NUM_PARALLEL
+    value: "2"
+  - name: OLLAMA_MAX_LOADED_MODELS
+    value: "3"
+resources:
+  limits:
+    cpu: 8
+    memory: 4Gi
+  requests:
+    cpu: 3
+    memory: 3Gi
+    ephemeral-storage: "8Gi"
+persistentVolume:
+  enabled: false
+# runtimeClassName: nvidia
+ollama:
+  gpu:
+    enabled: ${enable_gpu}
+  models:
+    - llama3:8b

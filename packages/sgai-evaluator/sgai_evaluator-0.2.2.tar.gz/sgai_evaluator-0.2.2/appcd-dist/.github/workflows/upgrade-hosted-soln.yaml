@@ -1,0 +1,94 @@
+name: 'Upgrade hosted solution'
+on:
+  workflow_call:
+    inputs:
+      CUSTOMER_NAME:
+        description: 'Customer Name'
+        required: true
+        type: string
+      AWS_REGION:
+        description: 'AWS Region'
+        required: true
+        type: string
+        default: 'us-west-2'
+  workflow_dispatch:
+    inputs:
+      AWS_REGION:
+        description: 'AWS Region'
+        required: true
+        default: 'us-west-2'
+      CUSTOMER_NAME:
+        description: 'Customer Name'
+        type: choice
+        required: true
+        options:
+          - nba
+          - autodesk
+          - splunk
+jobs:
+  upgrade:
+    runs-on: ubuntu-22.04
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          audience: sts.amazonaws.com
+          aws-region: ${{ inputs.AWS_REGION }}
+          role-to-assume: arn:aws:iam::471112560114:role/customer-${{ inputs.CUSTOMER_NAME }}-stackgen-cicd-auth-role
+      - id: download_customer_appcd
+        run: |
+          aws secretsmanager get-secret-value --secret-id /stackgen/customer-${{ inputs.CUSTOMER_NAME }} --region ${{ inputs.AWS_REGION }} --output text --query SecretString > appcd-values.yaml
+      - uses: azure/setup-helm@v4.0.0
+        id: install_helm
+      - uses: azure/setup-kubectl@v4
+        id: install_kubectl
+      - id: download_latest_images
+        run: |
+          curl -u stackgen:user -o images.yaml https://releases.stackgen.com/appcd-dist/images/latest.yaml
+          curl -u stackgen:user -o appcd.tgz https://releases.stackgen.com/appcd-dist/charts/latest.tgz
+          aws eks describe-cluster --name customer-${{ inputs.CUSTOMER_NAME }}-eks --query "cluster.resourcesVpcConfig.publicAccessCidrs" --output text > ips.txt
+          RUNNERIP=$(curl --silent http://checkip.amazonaws.com)
+          echo "runner IP is: $RUNNERIP"
+          aws --version
+          aws eks update-cluster-config --name customer-${{ inputs.CUSTOMER_NAME }}-eks --resources-vpc-config publicAccessCidrs=$RUNNERIP/32 &> update.json
+          sleep 60
+      - name: Upgrade Stackgen
+        run: |
+          aws eks update-kubeconfig --name customer-${{ inputs.CUSTOMER_NAME }}-eks --region=${{ inputs.AWS_REGION }}
+
+          # delete any failed jobs
+          kubectl delete jobs -n customer-${{ inputs.CUSTOMER_NAME }} --field-selector status.successful=1
+
+          helm history appcd -n customer-${{ inputs.CUSTOMER_NAME }}
+          helm upgrade --debug --wait --timeout 5m \
+            --install appcd appcd.tgz \
+            --namespace customer-${{ inputs.CUSTOMER_NAME }} \
+            --values ./appcd-values.yaml \
+            --values ./images.yaml
+
+          kubectl get pods -n customer-${{ inputs.CUSTOMER_NAME }}
+          helm history appcd -n customer-${{ inputs.CUSTOMER_NAME }}
+      - name: Revert to Original Kubernetes API Whitelist
+        if: always()
+        run: |
+            aws eks update-cluster-config --name customer-${{ inputs.CUSTOMER_NAME }}-eks --resources-vpc-config publicAccessCidrs=$(cat ips.txt)
+      - name: Notify on failure
+        if: failure()
+        uses: slackapi/slack-github-action@v1.25.0
+        with:
+          payload: |
+            {
+              "message": "${{ github.event_name }} failed to deploy to some environment",
+              "reason": "Failed to deploy to ${{ inputs.CUSTOMER_NAME}} cluster in ${{ inputs.AWS_REGION }}",
+              "link": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+              "first_aid": "Get access to cluster and run `kubectl get pods -n customer-${{ inputs.CUSTOMER_NAME }}`"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.ISSUE_REPORTER_SLACK_URL }}

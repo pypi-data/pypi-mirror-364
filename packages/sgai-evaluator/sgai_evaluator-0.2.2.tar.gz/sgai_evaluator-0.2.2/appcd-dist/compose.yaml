@@ -1,0 +1,120 @@
+services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - 8001:8001
+    volumes:
+      - ./config/ui/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - postgresql
+      - iac-gen
+      - exporter
+      - appcd
+      - appcd-ui
+    networks:
+      - appcd-network
+  postgresql:
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_MULTIPLE_DATABASES: "appcd,appcd:iacgen,iacgen:exporter,exporter"
+    image: postgres:15-alpine
+    networks:
+      - appcd-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U appcd -p 5432"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+    ports:
+      - 5432:5432
+    volumes:
+      - /var/lib/postgresql/data
+      - ./config/postgres:/docker-entrypoint-initdb.d/
+  appcd:
+    image: ghcr.io/appcd-dev/appcd:${APPCD_VERSION}
+    volumes:
+      - ./out/data:/out/data
+      - ./config/appcd-cloud:/config
+      - ./data/repos:/data/repos
+      - ./logs:/tmp/logs
+      # - /var/run/docker.sock:/var/run/docker.sock
+    command:
+      - "server"
+      - "--db-type"
+      - "postgres"
+      - "--db-dsn"
+      - "postgres://appcd:appcd@postgresql:5432/appcd?sslmode=disable"
+      - "--config"
+      - "/config/config.yaml"
+      # - "--log"
+      # - "2"
+    ports:
+      - 8080:8080
+      - 9090:9090
+    networks:
+      - appcd-network
+    depends_on:
+      postgresql:
+        condition: service_healthy
+    working_dir: /out/data
+    environment:
+      # - MOUNT_POINT=$PWD
+      - TMPDIR=/out/data
+      - ANALYZER_IMAGE=ghcr.io/appcd-dev/appcd-analyzer:${APPCD_ANALYZER}
+      - IAC_GENERATOR_IMAGE=ghcr.io/appcd-dev/iac-gen:${IACGEN_VERSION}
+      - IACGEN_URL=http://iac-gen:9000
+    env_file:
+      - ./.secrets
+  appcd-ui:
+    image: ghcr.io/appcd-dev/appcd-ui:${APPCDUI_VERSION}
+    environment:
+      - NEXT_PUBLIC_ENABLE_SENTRY=false
+    volumes:
+      - ./out/data:/data
+    networks:
+      - appcd-network
+    depends_on:
+      - appcd
+      - iac-gen
+      - exporter
+  iac-gen:
+    image: ghcr.io/appcd-dev/iac-gen:${IACGEN_VERSION}
+    ports:
+      - 9000:9000
+    command:
+      - "server"
+      - "--db-path"
+      - "postgres://iacgen:iacgen@postgresql:5432/iacgen?sslmode=disable"
+    networks:
+      - appcd-network
+    depends_on:
+      postgresql:
+        condition: service_healthy
+    volumes:
+      - ./out/data/.appcd/appstacks:/data
+      - ./out/iac:/data/iac/
+    environment:
+      - APPCD_SERVER=http://appcd:8080
+  exporter:
+    image: ghcr.io/appcd-dev/stack-exporter:${STACK_EXPORTER_VERSION}
+    ports:
+      - 9003:9003
+    networks:
+      - appcd-network
+    depends_on:
+      postgresql:
+        condition: service_healthy
+      iac-gen:
+        condition: service_started
+    volumes:
+      - ./config/exporter:/data
+    environment:
+      - rds_endpoint=postgresql
+      - rds_port=5432
+      - rds_username=exporter
+      - rds_password=exporter
+networks:
+  appcd-network:
+    driver: bridge
+    name: appcd-network

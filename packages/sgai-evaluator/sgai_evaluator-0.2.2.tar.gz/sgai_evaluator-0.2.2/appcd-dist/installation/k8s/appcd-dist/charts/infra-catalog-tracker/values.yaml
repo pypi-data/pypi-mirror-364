@@ -1,0 +1,65 @@
+helm_hpa_14480e4c3f6c520c87169814a87356e7:
+    enabled: true
+    max_replicas: 2
+    min_replicas: 1
+    name: infra-catalog-tracker
+    target_cpu_utilization_percentage: 50
+    target_memory_utilization_percentage: 50
+    workload_kind: Deployment
+    workload_name: infra-catalog-tracker
+helm_ingress_4087a90c467557bfa43a956a232516a0:
+    annotations:
+        kubernetes.io/ingress.allow-http: "false"
+    class_name: nginx
+    default_backend_name: infra-catalog-tracker
+    default_backend_port: 8085
+    enabled: true
+    labels:
+        service: infra-catalog-tracker
+    name: ""
+    rules: []
+    tls: ""
+helm_service_50c719449119547c9c7e4e04b961fc79:
+    name: infra-catalog-tracker
+    port: 8085
+    protocol: TCP
+    selector_labels:
+        service: infra-catalog-tracker
+    target_port: 8085
+    type: ClusterIP
+helm_service_account_6b130394fb9a5db3a9c730cb9f9ce27f:
+    annotations: {}
+    automount: false
+    labels: {}
+    name: infra-catalog-tracker
+helm_workload_29510bf8f3775740827eff66846105ef:
+    env: {}
+    env_from_config:
+        - stackgen-platform-configmap
+    env_from_secret:
+        - appcd-secrets
+    args:
+        - "--config"
+        - "/app/conf/config.json"
+        - "--debug"
+    image: ghcr.io/appcd-dev/infra-catalog-tracker
+    image_pull_policy: Always
+    image_pull_secret: ghcr-pkg
+    image_tag: init
+    kind: Deployment
+    labels:
+        service: infra-catalog-tracker
+    name: infra-catalog-tracker
+    port: 8085
+    protocol: TCP
+    replicas: 1
+    service_account: infra-catalog-tracker
+    volume_mounts:
+        - mountPath: /app/conf/config.json
+          name: infra-catalog-tracker-config
+          readOnly: true
+          subPath: config.json
+    volumes:
+        - configmap: infra-catalog-tracker-config
+          name: infra-catalog-tracker-config
+          secret: ""

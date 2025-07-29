@@ -1,0 +1,179 @@
+name: Bump appCD component
+on:
+  workflow_dispatch:
+    inputs:
+      service:
+        type: choice
+        description: Which service to bump
+        required: true
+        options:
+          - appcd
+          - appcd-ui
+          - iac-gen
+          - appcd-analyzer
+          - env-manager
+          - appcd-vira
+          - stack-exporter
+          - stackgen-vault
+          - integrations
+          - backstage-adapter
+          - infra-catalog-tracker
+          - deployment-manager
+          - tf-module-service
+          - stackgen-notifications
+          - sgai-knowledge
+          - sgai-control
+          - community-infra-gen
+          - stackgen-subagents
+          - sgai-orchestration
+      version:
+        type: string
+        description: Version to bump to
+        required: true
+jobs:
+  get_chart_version:
+    name: "Get Chart Version"
+    runs-on: ubuntu-22.04
+    outputs:
+      chart_version: ${{ steps.get_chart_version.outputs.chart_version }}
+    steps:
+      - name: Get Chart Version
+        id: get_chart_version
+        run: |
+          TAG=${{ inputs.version }}
+          echo "chart_version=${TAG#v}" >> $GITHUB_OUTPUT
+          echo "chart_version=${TAG#v}" >> $GITHUB_ENV
+  bump:
+    name: Bump ${{ inputs.service }} to ${{ inputs.version }}
+    runs-on: ubuntu-22.04
+    needs:
+      - get_chart_version
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    outputs:
+      pull_request_url: ${{ steps.create_pr.outputs.pull-request-url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Update sgai-knowledge
+        if: inputs.service == 'sgai-knowledge'
+        run: |
+          sed -i 's/SGAI_KNOWLEDGE=.*/SGAI_KNOWLEDGE=${{ inputs.version }}/' ./.env
+      - name: Update sgai-control
+        if: inputs.service == 'sgai-control'
+        run: |
+          sed -i 's/SGAI_CONTROL=.*/SGAI_CONTROL=${{ inputs.version }}/' ./.env
+      - name: Update stackgen-notifications
+        if: inputs.service == 'stackgen-notifications'
+        run: |
+          sed -i 's/STACKGEN_NOTIFICATIONS=.*/STACKGEN_NOTIFICATIONS=${{ inputs.version }}/' ./.env
+      - name: Update stackgen-subagents
+        if: inputs.service == 'stackgen-subagents'
+        run: |
+          sed -i 's/STACKGEN_SUBAGENTS_VERSION=.*/STACKGEN_SUBAGENTS_VERSION=${{ inputs.version }}/' ./.env
+      - name: Update sgai-orchestration
+        if: inputs.service == 'sgai-orchestration'
+        run: |
+          sed -i 's/SGAI_ORCHESTRATION=.*/SGAI_ORCHESTRATION=${{ inputs.version }}/' ./.env
+      - name: Update env-manager info
+        if: inputs.service == 'env-manager'
+        run: |
+          sed -i 's/ENVMANAGER_VERSION=.*/ENVMANAGER_VERSION=${{ inputs.version }}/' ./.env
+      - name: Update infra- gen
+        if: inputs.service == 'community-infra-gen'
+        run: |
+          sed -i 's/COMMUNITY_INFRA_GEN_VERSION=.*/COMMUNITY_INFRA_GEN_VERSION=${{ inputs.version }}/' ./.env
+      - name: Update stackgen-vault
+        if: inputs.service == 'stackgen-vault'
+        run: |
+          sed -i 's/STACKGEN_VAULT_VERSION=.*/STACKGEN_VAULT_VERSION=${{ inputs.version }}/' ./.env
+      - name: Update stack-exporter
+        if: inputs.service == 'stack-exporter'
+        run: |
+          sed -i 's/STACK_EXPORTER_VERSION=.*/STACK_EXPORTER_VERSION=${{ inputs.version }}/' ./.env
+      - name: Update iac-gen info
+        if: inputs.service == 'iac-gen'
+        run: |
+          sed -i 's/IACGEN_VERSION=.*/IACGEN_VERSION=${{ inputs.version }}/' ./.env
+      - name: Update appcd info
+        if: inputs.service == 'appcd'
+        run: |
+          sed -i 's/APPCD_VERSION=.*/APPCD_VERSION=${{ inputs.version }}/' ./.env
+      - name: Update appcd analyzer
+        if: inputs.service == 'appcd-analyzer'
+        run: |
+          sed -i 's/APPCD_ANALYZER=.*/APPCD_ANALYZER=${{ inputs.version }}/' ./.env
+      - name: Update appcd ui
+        if: inputs.service == 'appcd-ui'
+        run: |
+          sed -i 's/APPCDUI_VERSION=.*/APPCDUI_VERSION=${{ inputs.version }}/' ./.env
+      - name: Update appcd vira
+        if: inputs.service == 'appcd-vira'
+        run: |
+          sed -i 's/APPCDVIRA_VERSION=.*/APPCDVIRA_VERSION=${{ inputs.version }}/' ./.env
+      - name: Update integrations
+        if: inputs.service == 'integrations'
+        run: |
+          sed -i 's/INTEGRATIONS_VERSION=.*/INTEGRATIONS_VERSION=${{ inputs.version }}/' ./.env
+      - name: Update backstage-adapter
+        if: inputs.service == 'backstage-adapter'
+        run: |
+          sed -i 's/BACKSTAGE_ADAPTER_VERSION=.*/BACKSTAGE_ADAPTER_VERSION=${{ inputs.version }}/' ./.env
+      - name: Update infra-catalog-tracker
+        if: inputs.service == 'infra-catalog-tracker'
+        run: |
+          sed -i 's/INFRA_CATALOG_TRACKER_VERSION=.*/INFRA_CATALOG_TRACKER_VERSION=${{ inputs.version }}/' ./.env
+      - name: Update deployment-manager
+        if: inputs.service == 'deployment-manager'
+        run: |
+          sed -i 's/DEPLOYMENT_MANAGER_VERSION=.*/DEPLOYMENT_MANAGER_VERSION=${{ inputs.version }}/' ./.env
+      - name: Update tf-module-service
+        if: inputs.service == 'tf-module-service'
+        run: |
+          sed -i 's/TF_MODULE_SERVICE_VERSION=.*/TF_MODULE_SERVICE_VERSION=${{ inputs.version }}/' ./.env
+      - name: Create Pull Request
+        id: create_pr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.ORG_REPO_ACCESS }}
+          commit-message: ${{inputs.service}} to ${{inputs.version}}
+          title: "[Bump] ${{inputs.service}} to ${{inputs.version}}"
+          body: |
+            - Bumping ${{inputs.service}} to ${{inputs.version}}
+            - Pull Request Generated from ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            - Release info: https://github.com/appcd-dev/${{inputs.service}}/releases/tag/${{inputs.version}}
+          labels: automated pr
+          delete-branch: true
+          branch: feature/bump-${{inputs.service}}-${{inputs.version}}
+      - name: Failure
+        if: failure()
+        uses: slackapi/slack-github-action@v2
+        with:
+          webhook-type: webhook-trigger
+          payload: |
+            {
+              "message": "${{ github.event_name }} failed to bump ${{ inputs.service }} to ${{ inputs.version }}",
+              "reason": "Failed to bump ${{ inputs.service }} to ${{ inputs.version }}",
+              "link": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+              "first_aid": "The tokens could not be setup properly in this github action. Please check the logs for more details."
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.ISSUE_REPORTER_SLACK_URL }}
+      - name: Announce on slack
+        id: slack
+        uses: slackapi/slack-github-action@v2
+        with:
+          webhook-type: webhook-trigger
+          payload: |
+            {
+              "version": "${{ inputs.version }}",
+              "service": "${{ inputs.service }}",
+              "pr_link": "${{ steps.create_pr.outputs.pull-request-url }}",
+              "release_info": "https://github.com/appcd-dev/${{inputs.service}}/releases/tag/${{inputs.version}}"
+            }
+        env:
+          SLACK_WEBHOOK_URL: "https://hooks.slack.com/triggers/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"

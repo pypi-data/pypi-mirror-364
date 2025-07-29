@@ -1,0 +1,4 @@
+1. Get the application URL by running these commands:
+  https://{{ .Values.domain }}
+2. To get workload information: Please visit the following URL:
+  https://{{ .Values.domain }}/internal/workload

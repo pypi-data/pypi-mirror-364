@@ -1,0 +1,663 @@
+name: Assemble Distribution
+on:
+  pull_request:
+    paths:
+      - ".env"
+      - "Dockerfile"
+      - "config/**"
+      - "compose.yaml"
+      - ".github/workflows/assemble-dist.yaml"
+      - ".github/actions/test/**"
+    branches:
+      - main
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}/appcd
+  BUCKET: "appcd-public-releases"
+  AWS_REGION: "us-east-2"
+  AWS_ROLE_ARN: "arn:aws:iam::584974133937:role/GitHubActionsRole"
+
+jobs:
+  metadata:
+    runs-on: ubuntu-latest
+    name: Get metadata info
+    outputs:
+      version: ${{ steps.meta.outputs.version }}
+      tags: ${{ steps.meta.outputs.tags }}
+      labels: ${{ steps.meta.outputs.labels }}
+    steps:
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          flavor: |
+            latest=false
+  create_zip:
+    name: Create stackgen Zip
+    runs-on: ubuntu-latest
+    outputs:
+      dist_version: ${{ needs.metadata.outputs.version }}
+    permissions:
+      contents: write
+      packages: read
+    needs:
+      - metadata
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Create zip file
+        run: |
+          mkdir -p ./data/repos
+          sed -i 's/image: ghcr.io\/appcd-dev\/appcd:${APPCD_VERSION}/image: ghcr.io\/appcd-dev\/appcd-dist\/appcd:${{ needs.metadata.outputs.version }}/' compose.yaml
+          zip -r stackgen-Compose-${{ needs.metadata.outputs.version }}.zip ./setup.sh ./compose.yaml ./config .env
+      - name: Upload zip artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: stackgen-Compose
+          path: stackgen-Compose-${{ needs.metadata.outputs.version }}.zip
+          retention-days: 45
+          if-no-files-found: error
+  build_dist_image:
+    name: Create Stackgen Docker image
+    runs-on: ${{ matrix.runner }}
+    permissions:
+      contents: read
+      packages: write
+    strategy:
+      matrix:
+        include:
+          - runner: ubuntu-latest
+            platform: linux/amd64
+            tag-suffix: amd
+          - runner: arm-runner
+            platform: linux/arm64/v8
+            tag-suffix: arm
+    needs:
+      - metadata
+      - create_zip
+    outputs:
+      image_version: ${{ needs.metadata.outputs.version }}
+      zip_version: ${{ needs.create_zip.outputs.dist_version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Load .env file
+        id: load_dotenv
+        uses: falti/dotenv-action@v1.0.4
+        with:
+          export-variables: true
+      - name: Docker Build and push
+        id: docker_build
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: ${{ github.event_name == 'push' && ( startsWith(github.ref, 'refs/tags/v')) || github.event_name == 'pull_request' }}
+          tags: ${{ needs.metadata.outputs.tags }}-${{ matrix.tag-suffix }}
+          labels: ${{ needs.metadata.outputs.labels }}
+          platforms: ${{ matrix.platform }}
+          build-args: |-
+            APPCD_VERSION=${{ steps.load_dotenv.outputs.APPCD_VERSION }}
+            APPCD_ANALYZER=${{ steps.load_dotenv.outputs.APPCD_ANALYZER }}
+  create_manifest:
+    name: Create manifest
+    runs-on: ubuntu-latest
+    needs: 
+      - build_dist_image
+      - metadata
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create manifest
+        run: |
+          docker buildx imagetools create \
+            -t ${{ needs.metadata.outputs.tags }} \
+            ${{ needs.metadata.outputs.tags }}-amd \
+            ${{ needs.metadata.outputs.tags }}-arm
+  test:
+    name: Run E2E tests
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+    needs: 
+      - create_manifest
+      - create_zip
+    if: ${{ github.event_name == 'pull_request' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          sparse-checkout: .github/actions/test
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Download zip artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: stackgen-Compose
+      - name: Extract artifacts
+        id: run_appcd
+        run: |
+          # create temp directory
+          mkdir temp_for_zip_extract
+          unzip -o stackgen-Compose-${{ needs.create_zip.outputs.dist_version }}.zip -d temp_for_zip_extract
+      - name: Setup docker compose
+        id: setup_docker_compose
+        working-directory: temp_for_zip_extract
+        run: |
+          ## Setup the docker compose
+          touch .secrets
+          mkdir -p out/data/.appcd/appstacks out/iac db data logs
+      - name: start containers
+        id: start_containers
+        working-directory: temp_for_zip_extract
+        run: |
+          docker images
+          cat compose.yaml
+          ## Start docker compose
+          APPCD_UID=${UID} APPCD_GID=${GID} docker compose up -d
+
+          ## Wait for stackgen to be ready (getting logs)
+          docker compose logs --tail 100
+      - name: Wait for stackgen to be ready
+        id: wait_for_appcd
+        run: |
+          for i in {1..5}; do
+            if curl -s http://localhost:8001/health | grep -q "OK"; then
+              echo "stackgen is ready"
+              exit 0
+            fi
+            echo "stackgen is not ready yet"
+            sleep 3
+          done
+          echo "stackgen is not ready after 5 retries"
+          exit 1
+      - name: Run E2E tests
+        id: e2e_test
+        uses: ./.github/actions/test
+        with:
+          token: ${{ secrets.E2E_TEST_PAT }}
+          stackgen_endpoint: http://localhost:8001
+          e2e_branch: "main"
+      - name: containers down
+        if: always()
+        working-directory: temp_for_zip_extract
+        run: |
+          docker compose logs --no-color > logs/appcd.log
+          docker compose down
+          ls *
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stackgen-Logs
+          path: temp_for_zip_extract/logs
+          retention-days: 7
+          if-no-files-found: error
+  update_on_prem_helm_chart:
+    name: Update On Prem Helm Chart
+    if: ${{ startsWith(github.ref, 'refs/tags/v') }} || ${{ github.ref == 'refs/heads/main' }}
+    needs:
+      - build_dist_image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Checkout code
+        id: checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Load .env file
+        id: load_dotenv
+        uses: falti/dotenv-action@v1.0.4
+        with:
+          export-variables: true
+      - name: Install Helm
+        uses: azure/setup-helm@v3
+      - name: Update version in on prem ap
+        uses: mikefarah/yq@master
+        with:
+          cmd: |
+            yq e -i '.appVersion = "${{ github.ref_name }}"' -i ./installation/k8s/appcd-dist/Chart.yaml;
+      - name: Set min image version in charts
+        uses: mikefarah/yq@master
+        with:
+          cmd: |
+            # default min version in the helm chart
+            yq e -i '.appcd.image.tag = "${{ github.ref_name }}"' -i installation/k8s/appcd-dist/values.yaml;
+            yq e -i '.appcd-ui.image.tag = "${{ steps.load_dotenv.outputs.APPCDUI_VERSION }}"' -i installation/k8s/appcd-dist/values.yaml;
+            yq e -i '.iac-gen.image.tag = "${{ steps.load_dotenv.outputs.IACGEN_VERSION }}"' -i installation/k8s/appcd-dist/values.yaml;
+            yq e -i '.exporter.helm_workload_5a048be506c75a07b1aeec33d33e56e3.image_tag = "${{ steps.load_dotenv.outputs.STACK_EXPORTER_VERSION }}"' -i installation/k8s/appcd-dist/values.yaml;
+            yq e -i '.stackgen-vault.helm_workload_54a040c89d8252de9a426f2ad1f92af6.image_tag = "${{ steps.load_dotenv.outputs.STACKGEN_VAULT_VERSION }}"' -i installation/k8s/appcd-dist/values.yaml;
+            yq e -i '.sgai-knowledge.image.tag = "${{ steps.load_dotenv.outputs.SGAI_KNOWLEDGE_VERSION }}"' -i ./installation/k8s/appcd-dist/values.yaml;
+            yq e -i '.sgai-control.image.tag = "${{ steps.load_dotenv.outputs.SGAI_CONTROL_VERSION }}"' -i ./installation/k8s/appcd-dist/values.yaml;
+            yq e -i '.sgai-orchestration.image.tag = "${{ steps.load_dotenv.outputs.SGAI_ORCHESTRATION_VERSION }}"' -i ./installation/k8s/appcd-dist/values.yaml;
+            # set onprem values
+            yq e -i '.appcd.image.tag = "${{ github.ref_name }}"' -i ./installation/on-prem/values/images.yaml;
+            yq e -i '.appcd-ui.image.tag = "${{ steps.load_dotenv.outputs.APPCDUI_VERSION }}"' -i ./installation/on-prem/values/images.yaml;
+            yq e -i '.iac-gen.image.tag = "${{ steps.load_dotenv.outputs.IACGEN_VERSION }}"' -i ./installation/on-prem/values/images.yaml;
+            yq e -i '.exporter.helm_workload_5a048be506c75a07b1aeec33d33e56e3.image_tag = "${{ steps.load_dotenv.outputs.STACK_EXPORTER_VERSION }}"' -i ./installation/on-prem/values/images.yaml;
+            yq e -i '.stackgen-vault.helm_workload_54a040c89d8252de9a426f2ad1f92af6.image_tag = "${{ steps.load_dotenv.outputs.STACKGEN_VAULT_VERSION }}"' -i ./installation/on-prem/values/images.yaml;
+            yq e -i '.deployment-manager.helm_workload_eedf62a44e21519893dea9656ef6fc10.image_tag = "${{ steps.load_dotenv.outputs.DEPLOYMENT_MANAGER_VERSION }}"' -i ./installation/on-prem/values/images.yaml;
+            yq e -i '.integrations.helm_workload_1b5f1d019692549bb714785b7636f446.image_tag = "${{ steps.load_dotenv.outputs.INTEGRATIONS_VERSION }}"' -i ./installation/on-prem/values/images.yaml;
+            yq e -i '.tf-module-service.image.tag = "${{ steps.load_dotenv.outputs.TF_MODULE_SERVICE_VERSION }}"' -i ./installation/on-prem/values/images.yaml;
+            yq e -i '.stackgen-notification.helm_workload_5e47e775fc5a5bfa964f549ee58e64c1.image_tag = "${{ steps.load_dotenv.outputs.STACKGEN_NOTIFICATIONS }}"' -i ./installation/on-prem/values/images.yaml;
+            yq e -i '.sgai-knowledge.image.tag = "${{ steps.load_dotenv.outputs.SGAI_KNOWLEDGE_VERSION }}"' -i ./installation/on-prem/values/images.yaml;
+            yq e -i '.sgai-control.image.tag = "${{ steps.load_dotenv.outputs.SGAI_CONTROL_VERSION }}"' -i ./installation/on-prem/values/images.yaml;
+            yq e -i '.sgai-orchestration.image.tag = "${{ steps.load_dotenv.outputs.SGAI_ORCHESTRATION_VERSION }}"' -i ./installation/on-prem/values/images.yaml;
+      - name: helm package
+        working-directory: ./installation/k8s
+        run: |
+          helm dependency update appcd-dist
+          helm package --destination ../on-prem appcd-dist
+          cp -r ../on-prem/appcd-dist-*.tgz ../azure/cluster/
+          cp -r ../on-prem/appcd-dist-*.tgz ../gke/
+      - name: Upload images.yaml
+        uses: actions/upload-artifact@v4
+        with:
+          name: appCD-imagesYaml
+          path: ./installation/on-prem/values/images.yaml
+          retention-days: 10
+          if-no-files-found: error
+      - name: Upload helm chart
+        uses: actions/upload-artifact@v4
+        with:
+          name: appCD-OnPremHelmChart
+          path: ./installation/on-prem/appcd-dist-*.tgz
+          retention-days: 10
+          if-no-files-found: error
+      - name: create on-prem zip
+        working-directory: ./installation/on-prem
+        run: |
+          make package/${{ needs.build_dist_image.outputs.zip_version }}
+      - name: create azure on-prem zip
+        working-directory: ./installation/azure/cluster
+        run: |
+          make package/${{ needs.build_dist_image.outputs.zip_version }}
+      - name: create gke on-prem zip
+        working-directory: ./installation/gke
+        run: |
+          make package/${{ needs.build_dist_image.outputs.zip_version }}
+      - name: Upload zip artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: stackgen-Azure-Enterprise
+          path: ./installation/azure/cluster/stackgen-azure-enterprise-${{ needs.build_dist_image.outputs.zip_version }}.zip
+          retention-days: 45
+          if-no-files-found: error
+      - name: Upload zip artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: stackgen-GCP-Enterprise
+          path: ./installation/gke/stackgen-gcp-enterprise-${{ needs.build_dist_image.outputs.zip_version }}.zip
+          retention-days: 45
+          if-no-files-found: error
+      - name: Upload zip artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: stackgen-AWS-enterprise
+          path: ./installation/on-prem/stackgen-AWS-enterprise-${{ needs.build_dist_image.outputs.zip_version }}.zip
+          retention-days: 45
+          if-no-files-found: error
+  create_release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    needs:
+      - create_zip
+      - metadata
+      - build_dist_image
+      - update_on_prem_helm_chart
+    if: ${{ startsWith(github.ref, 'refs/tags/v') }}
+    permissions:
+      packages: read
+      contents: write
+      id-token: write
+    steps:
+      - name: Checkout code
+        id: checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Load .env file
+        id: load_dotenv
+        uses: falti/dotenv-action@v1.0.4
+        with:
+          export-variables: true
+      - name: download images.yaml
+        uses: actions/download-artifact@v4
+        with:
+          name: appCD-imagesYaml
+          path: .
+      - name: downlod azure artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: stackgen-Azure-Enterprise
+          path: .
+      - name: downlod gcp artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: stackgen-GCP-Enterprise
+          path: .
+      - name: downlod aws artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: stackgen-AWS-enterprise
+          path: .
+      - name: downlod compose artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: stackgen-Compose
+          path: .
+      - name: Download appCD-OnPremHelmChart
+        uses: actions/download-artifact@v4
+        with:
+          name: appCD-OnPremHelmChart
+          path: .
+      - name: Download stackgen-AWS-enterprise
+        uses: actions/download-artifact@v4
+        with:
+          name: stackgen-AWS-enterprise
+          path: .
+      - name: release
+        uses: ncipollo/release-action@v1
+        id: create_release
+        with:
+          artifacts: "appCD-**.zip"
+          name: ${{ github.ref_name }}
+          generateReleaseNotes: true
+          body: |
+            ## Customer Release notes
+            - AWS zip: https://releases.stackgen.com/appcd-dist/aws-enterprise/stackgen-AWS-enterprise-${{ needs.build_dist_image.outputs.zip_version }}.zip
+            - Azure zip: https://releases.stackgen.com/appcd-dist/azure-enterprise/stackgen-azure-enterprise-${{ needs.build_dist_image.outputs.zip_version }}.zip
+            - GCP zip: https://releases.stackgen.com/appcd-dist/gcp-enterprise/stackgen-gcp-enterprise-${{ needs.build_dist_image.outputs.zip_version }}.zip
+            - compose: https://releases.stackgen.com/appcd-dist/compose/stackgen-Compose-${{ needs.metadata.outputs.version }}.zip
+            - images.yaml: https://releases.stackgen.com/appcd-dist/images/latest.yaml
+
+            ## Release info
+
+            - Version: ${{ github.ref_name }}
+            - Docker image: ghcr.io/appcd-dev/appcd-dist/appcd:${{ needs.build_dist_image.outputs.image_version }}
+            - Pipeline: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+            | Service | Version | Release link |
+            | ------- | ------- | --- |
+            | appCD | ${{ steps.load_dotenv.outputs.APPCD_VERSION }} | https://github.com/appcd-dev/appcd/releases/tag/${{ steps.load_dotenv.outputs.APPCD_VERSION }} |
+            | appCD-UI | ${{ steps.load_dotenv.outputs.APPCDUI_VERSION }} | https://github.com/appcd-dev/appcd-ui/releases/tag/${{ steps.load_dotenv.outputs.APPCDUI_VERSION }} |
+            | IAC-Gen | ${{ steps.load_dotenv.outputs.IACGEN_VERSION }} | https://github.com/appcd-dev/iac-gen/releases/tag/${{ steps.load_dotenv.outputs.IACGEN_VERSION }} |
+            | Analyzer | ${{ steps.load_dotenv.outputs.APPCD_ANALYZER }} | https://github.com/appcd-dev/appcd-analyzer/releases/tag/${{ steps.load_dotenv.outputs.APPCD_ANALYZER }} |
+            | Stack-Exporter | ${{ steps.load_dotenv.outputs.STACK_EXPORTER_VERSION }} | https://github.com/appcd-dev/stack-exporter/releases/tag/${{ steps.load_dotenv.outputs.STACK_EXPORTER_VERSION }} |
+            | Stackgen-Vault | ${{ steps.load_dotenv.outputs.STACKGEN_VAULT_VERSION }} | https://github.com/appcd-dev/stackgen-vault/releases/tag/${{ steps.load_dotenv.outputs.STACKGEN_VAULT_VERSION }} |
+            | Integrations | ${{ steps.load_dotenv.outputs.INTEGRATIONS_VERSION }} | https://github.com/appcd-dev/integrations/releases/tag/${{ steps.load_dotenv.outputs.INTEGRATIONS_VERSION }} |
+            | TF-Module-Service | ${{ steps.load_dotenv.outputs.TF_MODULE_SERVICE_VERSION }} | https://github.com/appcd-dev/tf-module-service/releases/tag/${{ steps.load_dotenv.outputs.TF_MODULE_SERVICE_VERSION }} |
+            | Infra-Catalog-Tracker | ${{ steps.load_dotenv.outputs.INFRA_CATALOG_TRACKER_VERSION }} | https://github.com/appcd-dev/infra-catalog-tracker/releases/tag/${{ steps.load_dotenv.outputs.INFRA_CATALOG_TRACKER_VERSION }} |
+            | Deployment-Manager | ${{ steps.load_dotenv.outputs.DEPLOYMENT_MANAGER_VERSION }} | https://github.com/appcd-dev/deployment-manager/releases/tag/${{ steps.load_dotenv.outputs.DEPLOYMENT_MANAGER_VERSION }} |
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          audience: sts.amazonaws.com
+          aws-region: ${{ env.AWS_REGION }}
+          role-to-assume: ${{ env.AWS_ROLE_ARN }}
+      - name: Deploy to Main S3 Bucket
+        run: |
+          echo "Deploying to S3 bucket: ${{ env.BUCKET }} the stackgen-Compose-${{ needs.metadata.outputs.version }}.zip file"
+          aws s3 cp stackgen-Compose-${{ needs.metadata.outputs.version }}.zip s3://${{ env.BUCKET }}/appcd-dist/compose/
+          aws s3 cp s3://${{ env.BUCKET }}/appcd-dist/compose/stackgen-Compose-${{ needs.metadata.outputs.version }}.zip s3://${{ env.BUCKET }}/appcd-dist/compose/stackgen-latest.zip
+          echo "Deploying to helm chart to S3 bucket: ${{ env.BUCKET }}"
+          aws s3 cp appcd-*.tgz s3://${{ env.BUCKET }}/appcd-dist/charts/
+          aws s3 cp appcd-*.tgz s3://${{ env.BUCKET }}/appcd-dist/charts/latest.tgz
+          echo "Updating chart index.yaml"
+          aws s3 cp s3://${{ env.BUCKET }}/charts/index.yaml index.yaml
+          helm repo index --merge index.yaml --url https://appcd-public-releases.s3.us-east-2.amazonaws.com/appcd-dist/charts/ .
+          aws s3 cp index.yaml s3://${{ env.BUCKET }}/charts/index.yaml
+          aws s3 cp images.yaml s3://${{ env.BUCKET }}/appcd-dist/images/latest.yaml
+          aws s3 cp images.yaml s3://${{ env.BUCKET }}/appcd-dist/images/${{ needs.metadata.outputs.version }}.yaml
+          echo "Copying stackgen-enterprise artifacts to S3 bucket: ${{ env.BUCKET }}"
+          aws s3 cp stackgen-AWS-enterprise-*.zip s3://${{ env.BUCKET }}/appcd-dist/aws-enterprise/
+          aws s3 cp stackgen-AWS-enterprise-*.zip s3://${{ env.BUCKET }}/appcd-dist/aws-enterprise/latest.zip
+          aws s3 cp stackgen-azure-enterprise-*.zip s3://${{ env.BUCKET }}/appcd-dist/azure-enterprise/latest.zip
+          aws s3 cp stackgen-azure-enterprise-*.zip s3://${{ env.BUCKET }}/appcd-dist/azure-enterprise/
+          aws s3 cp stackgen-gcp-enterprise-*.zip s3://${{ env.BUCKET }}/appcd-dist/gcp-enterprise/latest.zip
+          aws s3 cp stackgen-gcp-enterprise-*.zip s3://${{ env.BUCKET }}/appcd-dist/gcp-enterprise/
+  PR_to_update_prod_chart:
+    name: Create PR to update prod chart
+    needs:
+      - build_dist_image
+      - metadata
+    runs-on: ubuntu-latest
+    if: ${{ startsWith(github.ref, 'refs/tags/v') }}
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    outputs:
+      pull-request-number: ${{ steps.create_pr.outputs.pull-request-number }}
+    steps:
+      - name: Checkout code
+        id: checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Load .env file
+        id: load_dotenv
+        uses: falti/dotenv-action@v1.0.4
+        with:
+          export-variables: true
+      - name: Update version in prod values
+        uses: mikefarah/yq@master
+        with:
+          cmd: |
+            # Update the version in the helm chart prod values
+            yq e -i '.appcd.image.tag = "${{ needs.metadata.outputs.version }}"' -i ./installation/on-prem/values/images.yaml;
+            yq e -i '.appcd-ui.image.tag = "${{ steps.load_dotenv.outputs.APPCDUI_VERSION }}"' -i ./installation/on-prem/values/images.yaml;
+            yq e -i '.iac-gen.image.tag = "${{ steps.load_dotenv.outputs.IACGEN_VERSION }}"' -i ./installation/on-prem/values/images.yaml;
+            yq e -i '.exporter.helm_workload_5a048be506c75a07b1aeec33d33e56e3.image_tag = "${{ steps.load_dotenv.outputs.STACK_EXPORTER_VERSION }}"' -i ./installation/on-prem/values/images.yaml;
+            yq e -i '.stackgen-vault.helm_workload_54a040c89d8252de9a426f2ad1f92af6.image_tag = "${{ steps.load_dotenv.outputs.STACKGEN_VAULT_VERSION }}"' -i ./installation/on-prem/values/images.yaml;
+            yq e -i '.integrations.helm_workload_1b5f1d019692549bb714785b7636f446.image_tag = "${{ steps.load_dotenv.outputs.INTEGRATIONS_VERSION }}"' -i ./installation/on-prem/values/images.yaml;
+            yq e -i '.tf-module-service.image.tag = "${{ steps.load_dotenv.outputs.TF_MODULE_SERVICE_VERSION }}"' -i ./installation/on-prem/values/images.yaml;
+            yq e -i '.infra-catalog-tracker.helm_workload_29510bf8f3775740827eff66846105ef.image_tag = "${{ steps.load_dotenv.outputs.INFRA_CATALOG_TRACKER_VERSION }}"' -i ./installation/on-prem/values/images.yaml;
+            yq e -i '.deployment-manager.helm_workload_eedf62a44e21519893dea9656ef6fc10.image_tag = "${{ steps.load_dotenv.outputs.DEPLOYMENT_MANAGER_VERSION }}"' -i ./installation/on-prem/values/images.yaml;
+            yq e -i '.stackgen-notification.helm_workload_5e47e775fc5a5bfa964f549ee58e64c1.image_tag = "${{ steps.load_dotenv.outputs.STACKGEN_NOTIFICATIONS }}"' -i ./installation/on-prem/values/images.yaml;
+            yq e -i '.sgai-knowledge.image.tag = "${{ steps.load_dotenv.outputs.SGAI_KNOWLEDGE_VERSION }}"' -i ./installation/on-prem/values/images.yaml;
+            yq e -i '.sgai-control.image.tag = "${{ steps.load_dotenv.outputs.SGAI_CONTROL_VERSION }}"' -i ./installation/on-prem/values/images.yaml;
+            yq e -i '.sgai-orchestration.image.tag = "${{ steps.load_dotenv.outputs.SGAI_ORCHESTRATION_VERSION }}"' -i ./installation/on-prem/values/images.yaml;
+
+            # Update values for helm chart
+            yq e -i '.appcd.image.tag = "${{ needs.metadata.outputs.version }}"' -i ./installation/k8s/values/prod.cloud-prod.yaml;
+            yq e -i '.appcd-ui.image.tag = "${{ steps.load_dotenv.outputs.APPCDUI_VERSION }}"' -i ./installation/k8s/values/prod.cloud-prod.yaml;
+            yq e -i '.iac-gen.image.tag = "${{ steps.load_dotenv.outputs.IACGEN_VERSION }}"' -i ./installation/k8s/values/prod.cloud-prod.yaml;
+            yq e -i '.exporter.helm_workload_5a048be506c75a07b1aeec33d33e56e3.image_tag = "${{ steps.load_dotenv.outputs.STACK_EXPORTER_VERSION }}"' -i ./installation/k8s/values/prod.cloud-prod.yaml;
+            yq e -i '.stackgen-vault.helm_workload_54a040c89d8252de9a426f2ad1f92af6.image_tag = "${{ steps.load_dotenv.outputs.STACKGEN_VAULT_VERSION }}"' -i ./installation/k8s/values/prod.cloud-prod.yaml;
+            yq e -i '.integrations.helm_workload_1b5f1d019692549bb714785b7636f446.image_tag = "${{ steps.load_dotenv.outputs.INTEGRATIONS_VERSION }}"' -i ./installation/k8s/values/prod.cloud-prod.yaml;
+            yq e -i '.tf-module-service.image.tag = "${{ steps.load_dotenv.outputs.TF_MODULE_SERVICE_VERSION }}"' -i ./installation/k8s/values/prod.cloud-prod.yaml;
+            yq e -i '.infra-catalog-tracker.helm_workload_29510bf8f3775740827eff66846105ef.image_tag = "${{ steps.load_dotenv.outputs.INFRA_CATALOG_TRACKER_VERSION }}"' -i ./installation/k8s/values/prod.cloud-prod.yaml;
+            yq e -i '.deployment-manager.helm_workload_eedf62a44e21519893dea9656ef6fc10.image_tag = "${{ steps.load_dotenv.outputs.DEPLOYMENT_MANAGER_VERSION }}"' -i ./installation/k8s/values/prod.cloud-prod.yaml;
+            yq e -i '.sgai-knowledge.image.tag = "${{ steps.load_dotenv.outputs.SGAI_KNOWLEDGE_VERSION }}"' -i ./installation/k8s/values/prod.cloud-prod.yaml;
+            yq e -i '.sgai-control.image.tag = "${{ steps.load_dotenv.outputs.SGAI_CONTROL_VERSION }}"' -i ./installation/k8s/values/prod.cloud-prod.yaml;
+            yq e -i '.stackgen-notification.helm_workload_5e47e775fc5a5bfa964f549ee58e64c1.image_tag = "${{ steps.load_dotenv.outputs.STACKGEN_NOTIFICATIONS }}"' -i ./installation/k8s/values/prod.cloud-prod.yaml;
+            yq e -i '.community-infra-gen.image.tag = "${{ steps.load_dotenv.outputs.COMMUNITY_INFRA_GEN_VERSION }}"' -i ./installation/k8s/values/prod.cloud-prod.yaml;
+            yq e -i '.sgai-orchestration.image.tag = "${{ steps.load_dotenv.outputs.SGAI_ORCHESTRATION_VERSION }}"' -i ./installation/k8s/values/prod.cloud-prod.yaml;
+
+
+            # Update the stage helm values
+            yq e -i '.appcd.image.tag = "${{ needs.metadata.outputs.version }}"' -i ./installation/k8s/values/dev.stage.yaml
+            yq e -i '.appcd-ui.image.tag = "${{ steps.load_dotenv.outputs.APPCDUI_VERSION }}"' -i ./installation/k8s/values/dev.stage.yaml
+            yq e -i '.iac-gen.image.tag = "${{ steps.load_dotenv.outputs.IACGEN_VERSION }}"' -i ./installation/k8s/values/dev.stage.yaml
+            yq e -i '.exporter.helm_workload_5a048be506c75a07b1aeec33d33e56e3.image_tag = "${{ steps.load_dotenv.outputs.STACK_EXPORTER_VERSION }}"' -i ./installation/k8s/values/dev.stage.yaml;
+            yq e -i '.stackgen-vault.helm_workload_54a040c89d8252de9a426f2ad1f92af6.image_tag = "${{ steps.load_dotenv.outputs.STACKGEN_VAULT_VERSION }}"' -i ./installation/k8s/values/dev.stage.yaml;
+            yq e -i '.integrations.helm_workload_1b5f1d019692549bb714785b7636f446.image_tag = "${{ steps.load_dotenv.outputs.INTEGRATIONS_VERSION }}"' -i ./installation/k8s/values/dev.stage.yaml;
+            yq e -i '.tf-module-service.image.tag = "${{ steps.load_dotenv.outputs.TF_MODULE_SERVICE_VERSION }}"' -i ./installation/k8s/values/dev.stage.yaml;
+            yq e -i '.infra-catalog-tracker.helm_workload_29510bf8f3775740827eff66846105ef.image_tag = "${{ steps.load_dotenv.outputs.INFRA_CATALOG_TRACKER_VERSION }}"' -i ./installation/k8s/values/dev.stage.yaml;
+            yq e -i '.deployment-manager.helm_workload_eedf62a44e21519893dea9656ef6fc10.image_tag = "${{ steps.load_dotenv.outputs.DEPLOYMENT_MANAGER_VERSION }}"' -i ./installation/k8s/values/dev.stage.yaml;
+            yq e -i '.stackgen-notification.helm_workload_5e47e775fc5a5bfa964f549ee58e64c1.image_tag = "${{ steps.load_dotenv.outputs.STACKGEN_NOTIFICATIONS }}"' -i ./installation/k8s/values/dev.stage.yaml;
+            yq e -i '.sgai-knowledge.image.tag = "${{ steps.load_dotenv.outputs.SGAI_KNOWLEDGE_VERSION }}"' -i ./installation/k8s/values/dev.stage.yaml;
+            yq e -i '.sgai-control.image.tag = "${{ steps.load_dotenv.outputs.SGAI_CONTROL_VERSION }}"' -i ./installation/k8s/values/dev.stage.yaml;
+            yq e -i '.sgai-orchestration.image.tag = "${{ steps.load_dotenv.outputs.SGAI_ORCHESTRATION_VERSION }}"' -i ./installation/k8s/values/dev.stage.yaml;
+      - name: Create Pull Request
+        id: create_pr
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: Locking production images to ${{ needs.metadata.outputs.version }}
+          title: "[PROD] Locking production images to ${{ needs.metadata.outputs.version }}"
+          base: main
+          body: |
+            - Pull Request Generated from ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            - This will update the production servers.
+            - Check with someone from @appcd-dev/prod-on-call on when to merge.
+          labels: automated pr
+          delete-branch: true
+          branch: feature/image-helm-${{github.ref_name}}
+
+  deploy_to_stage:
+    name: Change yaml files to deploy to staging
+    needs:
+      - PR_to_update_prod_chart
+      - create_manifest
+    runs-on: ubuntu-latest
+    if: ${{ startsWith(github.ref, 'refs/tags/v') }}
+    permissions:
+      contents: write
+      issues: write
+      id-token: write
+      pull-requests: write
+    steps:
+      - name: Checkout code
+        id: checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Load .env file
+        id: load_dotenv
+        uses: falti/dotenv-action@v1.0.4
+        with:
+          export-variables: true
+      - name: Update version in Stage values
+        uses: mikefarah/yq@master
+        with:
+          cmd: |
+            # Update the version in the helm chart stage values
+            yq e -i '.appcd.image.tag = "${{ github.ref_name }}"' -i ./installation/k8s/values/dev.stage.yaml
+            yq e -i '.appcd-ui.image.tag = "${{ steps.load_dotenv.outputs.APPCDUI_VERSION }}"' -i ./installation/k8s/values/dev.stage.yaml
+            yq e -i '.iac-gen.image.tag = "${{ steps.load_dotenv.outputs.IACGEN_VERSION }}"' -i ./installation/k8s/values/dev.stage.yaml
+            yq e -i '.exporter.helm_workload_5a048be506c75a07b1aeec33d33e56e3.image_tag = "${{ steps.load_dotenv.outputs.STACK_EXPORTER_VERSION }}"' -i ./installation/k8s/values/dev.stage.yaml
+            yq e -i '.stackgen-vault.helm_workload_54a040c89d8252de9a426f2ad1f92af6.image_tag = "${{ steps.load_dotenv.outputs.STACKGEN_VAULT_VERSION }}"' -i ./installation/k8s/values/dev.stage.yaml
+            yq e -i '.integrations.helm_workload_1b5f1d019692549bb714785b7636f446.image_tag = "${{ steps.load_dotenv.outputs.INTEGRATIONS_VERSION }}"' -i ./installation/k8s/values/dev.stage.yaml
+            yq e -i '.tf-module-service.image.tag = "${{ steps.load_dotenv.outputs.TF_MODULE_SERVICE_VERSION }}"' -i ./installation/k8s/values/dev.stage.yaml;
+            yq e -i '.infra-catalog-tracker.helm_workload_29510bf8f3775740827eff66846105ef.image_tag = "${{ steps.load_dotenv.outputs.INFRA_CATALOG_TRACKER_VERSION }}"' -i ./installation/k8s/values/dev.stage.yaml
+            yq e -i '.deployment-manager.helm_workload_eedf62a44e21519893dea9656ef6fc10.image_tag = "${{ steps.load_dotenv.outputs.DEPLOYMENT_MANAGER_VERSION }}"' -i ./installation/k8s/values/dev.stage.yaml
+            yq e -i '.sgai-knowledge.image.tag = "${{ steps.load_dotenv.outputs.SGAI_KNOWLEDGE_VERSION }}"' -i ./installation/k8s/values/dev.stage.yaml
+            yq e -i '.sgai-control.image.tag = "${{ steps.load_dotenv.outputs.SGAI_CONTROL_VERSION }}"' -i ./installation/k8s/values/dev.stage.yaml
+            yq e -i '.sgai-orchestration.image.tag = "${{ steps.load_dotenv.outputs.SGAI_ORCHESTRATION_VERSION }}"' -i ./installation/k8s/values/dev.stage.yaml
+      - uses: ./.github/actions/deploy-to-eks
+        name: Deploy to stage EKS
+        with:
+          cluster: "developer-eks"
+          ISSUE_REPORTER_SLACK_URL: ${{ secrets.ISSUE_REPORTER_SLACK_URL }}
+          region: "us-west-2"
+          role_to_assume: "arn:aws:iam::339712749745:role/developer-github-oidc-auth-role"
+          namespace: "appcd-stage"
+          values_yaml: "./values/dev.stage.yaml"
+      - name: Run E2E tests against stage
+        env:
+          GH_TOKEN: ${{ secrets.E2E_TEST_PAT }}
+        run: |
+          gh workflow run \
+            --repo "appcd-dev/appcd-e2e" \
+            --ref "main" \
+            "CI" \
+            -f STACKGEN_URL=http://stage.dev.stackgen.com/ \
+            -f REPORT_STATUS_PR=${{ needs.PR_to_update_prod_chart.outputs.pull-request-number }}
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            - Recommendation: Wait for the stability report of stage environment before merging this one
+          pr_number: ${{ needs.PR_to_update_prod_chart.outputs.pull-request-number }}
+          reactions: rocket
+
+  process_customer_deployments:
+    name: Update image tags for customer deployments
+    needs:
+      - build_dist_image
+      - metadata
+    permissions:
+      contents: write
+      issues: write
+      id-token: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    if: ${{ startsWith(github.ref, 'refs/tags/v') }}
+    steps:
+      - name: Checkout code
+        id: checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Load .env file
+        id: load_dotenv
+        uses: falti/dotenv-action@v1.0.4
+        with:
+          export-variables: true
+      - name: Update version in prod values
+        uses: mikefarah/yq@master
+        with:
+          cmd: |
+            # Update values for customer helm chart
+            find ./installation/k8s/values/prod.customer-*.yaml -exec yq e -i '.appcd.image.tag = "${{ needs.metadata.outputs.version }}"' -i {} \;
+            find ./installation/k8s/values/prod.customer-*.yaml -exec yq e -i '.appcd-ui.image.tag = "${{ steps.load_dotenv.outputs.APPCDUI_VERSION }}"' -i {} \;
+            find ./installation/k8s/values/prod.customer-*.yaml -exec yq e -i '.iac-gen.image.tag = "${{ steps.load_dotenv.outputs.IACGEN_VERSION }}"' -i {} \;
+            find ./installation/k8s/values/prod.customer-*.yaml -exec yq e -i '.integrations.helm_workload_1b5f1d019692549bb714785b7636f446.image_tag = "${{ steps.load_dotenv.outputs.INTEGRATIONS_VERSION }}"' -i {} \;
+            find ./installation/k8s/values/prod.customer-*.yaml -exec yq e -i '.tf-module-service.image.tag = "${{ steps.load_dotenv.outputs.TF_MODULE_SERVICE_VERSION }}"' -i {} \;
+            find ./installation/k8s/values/prod.customer-*.yaml -exec yq e -i '.exporter.helm_workload_5a048be506c75a07b1aeec33d33e56e3.image_tag = "${{ steps.load_dotenv.outputs.STACK_EXPORTER_VERSION }}"' -i {} \;
+            find ./installation/k8s/values/prod.customer-*.yaml -exec yq e -i '.stackgen-vault.helm_workload_54a040c89d8252de9a426f2ad1f92af6.image_tag = "${{ steps.load_dotenv.outputs.STACKGEN_VAULT_VERSION }}"' -i {} \;
+            find ./installation/k8s/values/prod.customer-*.yaml -exec yq e -i '.infra-catalog-tracker.helm_workload_29510bf8f3775740827eff66846105ef.image_tag = "${{ steps.load_dotenv.outputs.INFRA_CATALOG_TRACKER_VERSION }}"' -i {} \;
+            find ./installation/k8s/values/prod.customer-*.yaml -exec yq e -i '.deployment-manager.helm_workload_eedf62a44e21519893dea9656ef6fc10.image_tag = "${{ steps.load_dotenv.outputs.DEPLOYMENT_MANAGER_VERSION }}"' -i {} \;
+            find ./installation/k8s/values/prod.customer-*.yaml -exec yq e -i '.sgai-knowledge.image.tag = "${{ steps.load_dotenv.outputs.SGAI_KNOWLEDGE_VERSION }}"' -i {} \;
+            find ./installation/k8s/values/prod.customer-*.yaml -exec yq e -i '.sgai-control.image.tag = "${{ steps.load_dotenv.outputs.SGAI_CONTROL_VERSION }}"' -i {} \;
+            find ./installation/k8s/values/prod.customer-*.yaml -exec yq e -i '.sgai-orchestration.image.tag = "${{ steps.load_dotenv.outputs.SGAI_ORCHESTRATION_VERSION }}"' -i {} \;
+            # Update the community infra-gen image tag only in demo environment
+            find ./installation/k8s/values/prod.customer-demo.yaml -exec yq e -i '.community-infra-gen.image.tag = "${{ steps.load_dotenv.outputs.COMMUNITY_INFRA_GEN_VERSION }}"' -i {} \;
+      - name: Create Pull Request
+        id: create_pr
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: Locking Customer images to ${{ needs.metadata.outputs.version }}
+          title: "[Customer] Locking Customer images for ${{ needs.metadata.outputs.version }}"
+          base: main
+          body: |
+            - Pull Request Generated from ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            - This will update the hosted customer installation.
+            - Check with someone from @appcd-dev/prod-on-call on when to merge.
+          labels: automated pr
+          delete-branch: true
+          branch: customer/image-helm-${{github.ref_name}}

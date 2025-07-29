@@ -1,0 +1,45 @@
+name: Log Grepper
+
+on:
+  workflow_dispatch:
+    inputs:
+      request_id:
+        description: 'Request ID to send in the API request'
+        required: true
+        type: string
+      days:
+        description: 'Time range (e.g., 7d, 1d, 5m)'
+        required: true
+        type: string
+
+jobs:
+  run_api_request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Display Inputs
+        run: |
+          echo "Request ID: ${{ inputs.request_id }}"
+          echo "Days: ${{ inputs.days }}"
+
+      - name: Run API Request
+        id: api_request
+        run: |
+          set -e
+          echo "Making API request..."
+          RESPONSE=$(curl -s -X POST "https://gtstkhi8ee.execute-api.us-west-2.amazonaws.com/dev/log-grepper-handler" \
+            -H "Content-Type: application/json" \
+            -H "x-api-key: ${{ secrets.GATEWAY_API_KEY }}" \
+            -d "{\"request_id\": \"${{ inputs.request_id }}\", \"days\": \"${{ inputs.days }}\"}")
+
+          echo "$RESPONSE" | jq . > logs.json
+          echo "API response saved to logs.json"
+
+      - name: Store API Response as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-response
+          path: logs.json
+          retention-days: 1

@@ -1,0 +1,20 @@
+{{- $fullName := include "tf-module-service.fullname" . -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    {{- include "tf-module-service.labels" . | nindent 4 }}
+  name: {{ $fullName }}-configmap
+data:
+  config.yaml: |
+    dbConfig:
+      dbUsername: '${rds_username}'
+      dbPassword: '${rds_password}'
+      dbHost: '${rds_endpoint}'
+      dbPort: '${rds_port}'
+      dbName: tf_module_service
+      migrationPath: "db/migration/postgres/"
+    server:
+      port: "8084"
+    providerSchemaPath: "/data/{{ .Release.Namespace }}/tf-module-service/providers"
+    iacgenBaseUrl: "http://appcd-iac-gen:9000"

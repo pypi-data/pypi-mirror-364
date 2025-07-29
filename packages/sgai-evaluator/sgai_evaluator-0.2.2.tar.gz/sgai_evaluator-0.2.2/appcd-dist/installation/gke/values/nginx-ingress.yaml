@@ -1,0 +1,6 @@
+controller:
+  replicaCount: 2
+  enableSnippets: true
+  annotations:
+    networking.gke.io/managed-certificates: stackgen-cert
+    kubernetes.io/ingress.class: nginx

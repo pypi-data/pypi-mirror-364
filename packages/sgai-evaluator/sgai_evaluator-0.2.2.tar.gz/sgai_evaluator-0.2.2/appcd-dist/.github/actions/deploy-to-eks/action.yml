@@ -1,0 +1,86 @@
+name: Deploy to k8s
+description: "Deploy to k8s"
+inputs:
+  role_to_assume:
+    description: "Role to assume"
+    required: true
+  ISSUE_REPORTER_SLACK_URL:
+    description: "Slack webhook URL"
+  region:
+    description: "AWS Region"
+    required: true
+  cluster:
+    description: "Cluster"
+    required: true
+  namespace:
+    description: "Namespace"
+    required: true
+  values_yaml:
+    description: "Values yaml"
+    required: true
+  update_accessibility:
+    description: "Update accessibility for the runner IP"
+    required: false
+    default: "false"
+runs:
+  using: composite
+  steps:
+    - uses: azure/setup-kubectl@v4
+      id: install
+    - name: Set up AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        audience: sts.amazonaws.com
+        aws-region: ${{ inputs.region }}
+        role-to-assume: ${{ inputs.role_to_assume }}
+    - uses: azure/setup-helm@v4.0.0
+      id: install_helm
+    - name: Change EKS accessible CIDR
+      if: ${{ inputs.update_accessibility == 'true' }}
+      shell: bash
+      id: update_accessibility
+      run: |
+        aws eks describe-cluster --name ${{ inputs.cluster }} --query "cluster.resourcesVpcConfig.publicAccessCidrs" --output text > ips.txt
+        RUNNERIP=$(curl --silent http://checkip.amazonaws.com)
+        echo "runner IP is: $RUNNERIP"
+        aws --version
+        aws eks update-cluster-config --name ${{ inputs.cluster }} --resources-vpc-config publicAccessCidrs=$RUNNERIP/32 &> update.json
+        sleep 60
+    - name: Update KubeConfig
+      shell: bash
+      run: |
+        aws eks update-kubeconfig --name ${{ inputs.cluster }} --region=${{ inputs.region }}
+    - name: build the chart first
+      shell: bash
+      working-directory: ./installation/k8s
+      run: |
+        helm dependency update appcd-dist
+        helm upgrade --install --debug --wait --timeout 5m \
+          --values ${{ inputs.values_yaml }} \
+          -n ${{ inputs.namespace }} \
+          appcd appcd-dist
+        helm history appcd -n ${{ inputs.namespace }}
+    - name: Revert to Original Kubernetes API Whitelist
+      shell: bash
+      if: always() # Ensure this runs even if previous steps fail
+      run: |
+        if [ -f ips.txt ]; then
+          echo "Reverting to original Kubernetes API allowList..." 
+          aws eks update-cluster-config --name ${{ inputs.cluster }} --resources-vpc-config publicAccessCidrs=$(cat ips.txt)
+        else
+          echo "ips.txt not found, skipping revert to original Kubernetes API allowList."
+        fi
+    - name: Notify on failure
+      if: failure() && inputs.ISSUE_REPORTER_SLACK_URL != ''
+      uses: slackapi/slack-github-action@v1.25.0
+      with:
+        payload: |
+          {
+            "message": "${{ github.event_name }} failed to deploy to some environment",
+            "reason": "Failed to deploy to ${{ inputs.namespace }} namespace in ${{ inputs.cluster }} in ${{ inputs.region }}",
+            "link": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+            "first_aid": "Get access to cluster and run `kubectl get pods -n ${{ inputs.namespace }}`"
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ inputs.ISSUE_REPORTER_SLACK_URL }}
+  

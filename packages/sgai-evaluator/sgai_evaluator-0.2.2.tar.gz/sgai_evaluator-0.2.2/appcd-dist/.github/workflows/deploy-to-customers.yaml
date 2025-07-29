@@ -1,0 +1,154 @@
+name: Deploy to Customer namespaces
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "installation/k8s/values/prod.customer-*.yaml"
+      - ".github/workflows/deploy-to-customers.yaml"
+      - ".github/workflows/upgrade-hosted-soln.yaml"
+env:
+  AWS_REGION: "us-west-2"
+  AWS_ROLE_ARN: "arn:aws:iam::471112560114:role/cloud-github-oidc-auth-role"
+  CLUSTER: "cloud-eks"
+jobs:
+  nba:
+    uses: ./.github/workflows/upgrade-hosted-soln.yaml
+    with:
+      CUSTOMER_NAME: "nba"
+      AWS_REGION: "us-west-2"
+    secrets: inherit
+    name: NBA
+  amazon:
+      uses: ./.github/workflows/upgrade-hosted-soln.yaml
+      with:
+        CUSTOMER_NAME: "amazon"
+        AWS_REGION: "us-west-2"
+      name: Amazon
+  autodesk:
+      uses: ./.github/workflows/upgrade-hosted-soln.yaml
+      with:
+        CUSTOMER_NAME: "autodesk"
+        AWS_REGION: "us-west-2"
+      name: Autodesk
+  talkdesk:
+      uses: ./.github/workflows/upgrade-hosted-soln.yaml
+      with:
+        CUSTOMER_NAME: "talkdesk"
+        AWS_REGION: "us-west-2"
+      name: talkdesk
+  splunk:
+      uses: ./.github/workflows/upgrade-hosted-soln.yaml
+      with:
+        CUSTOMER_NAME: "splunk"
+        AWS_REGION: "us-west-2"
+      name: splunk
+  deploy_part_2:
+    runs-on: ubuntu-latest
+    environment: "prod-eks"
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: ./.github/actions/deploy-to-eks
+        name: Yulu
+        with:
+          cluster: ${{ env.CLUSTER }}
+          ISSUE_REPORTER_SLACK_URL: ${{ secrets.ISSUE_REPORTER_SLACK_URL }}
+          region: ${{ env.AWS_REGION }}
+          role_to_assume: ${{ env.AWS_ROLE_ARN }}
+          namespace: "appcd-customer-yulu"
+          values_yaml: "./values/prod.customer-yulu.yaml"
+      - uses: ./.github/actions/deploy-to-eks
+        name: pocketfm
+        with:
+          cluster: ${{ env.CLUSTER }}
+          region: ${{ env.AWS_REGION }}
+          ISSUE_REPORTER_SLACK_URL: ${{ secrets.ISSUE_REPORTER_SLACK_URL }}
+          role_to_assume: ${{ env.AWS_ROLE_ARN }}
+          namespace: "appcd-customer-pocketfm"
+          values_yaml: "./values/prod.customer-pocketfm.yaml"
+      - uses: ./.github/actions/deploy-to-eks
+        name: getmyparking
+        with:
+          cluster: ${{ env.CLUSTER }}
+          region: ${{ env.AWS_REGION }}
+          ISSUE_REPORTER_SLACK_URL: ${{ secrets.ISSUE_REPORTER_SLACK_URL }}
+          role_to_assume: ${{ env.AWS_ROLE_ARN }}
+          namespace: "appcd-customer-getmyparking"
+          values_yaml: "./values/prod.customer-getmyparking.yaml"
+      - uses: ./.github/actions/deploy-to-eks
+        name: Prokopto
+        with:
+          cluster: "${{ env.CLUSTER }}"
+          region: ${{ env.AWS_REGION }}
+          ISSUE_REPORTER_SLACK_URL: ${{ secrets.ISSUE_REPORTER_SLACK_URL }}
+          role_to_assume: ${{ env.AWS_ROLE_ARN }}
+          namespace: "appcd-customer-prokopto"
+          values_yaml: "./values/prod.customer-prokopto.yaml"
+  deploy_part_1:
+    runs-on: ubuntu-latest
+    environment: "prod-eks"
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: ./.github/actions/deploy-to-eks
+        name: Inmobi
+        with:
+          cluster: "${{ env.CLUSTER }}"
+          region: ${{ env.AWS_REGION }}
+          ISSUE_REPORTER_SLACK_URL: ${{ secrets.ISSUE_REPORTER_SLACK_URL }}
+          role_to_assume: ${{ env.AWS_ROLE_ARN }}
+          namespace: "appcd-customer-inmobi"
+          values_yaml: "./values/prod.customer-inmobi.yaml"
+      - uses: ./.github/actions/deploy-to-eks
+        name: innovaccer
+        with:
+          cluster: ${{ env.CLUSTER }}
+          region: ${{ env.AWS_REGION }}
+          ISSUE_REPORTER_SLACK_URL: ${{ secrets.ISSUE_REPORTER_SLACK_URL }}
+          role_to_assume: ${{ env.AWS_ROLE_ARN }}
+          namespace: "appcd-customer-innovaccer"
+          values_yaml: "./values/prod.customer-innovaccer.yaml"
+      - uses: ./.github/actions/deploy-to-eks
+        name: bancolombia
+        with:
+          cluster: ${{ env.CLUSTER }}
+          region: ${{ env.AWS_REGION }}
+          ISSUE_REPORTER_SLACK_URL: ${{ secrets.ISSUE_REPORTER_SLACK_URL }}
+          role_to_assume: ${{ env.AWS_ROLE_ARN }}
+          namespace: "appcd-customer-bancolombia"
+          values_yaml: "./values/prod.customer-bancolombia.yaml"
+  workshop:
+    needs:
+      - "amazon"
+    runs-on: ubuntu-latest
+    environment: "prod-eks"
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: ./.github/actions/deploy-to-eks
+        name: workshop
+        with:
+          cluster: customer-amazon-eks
+          region: "us-west-2"
+          ISSUE_REPORTER_SLACK_URL: ${{ secrets.ISSUE_REPORTER_SLACK_URL }}
+          role_to_assume: "arn:aws:iam::471112560114:role/customer-amazon-stackgen-cicd-auth-role"
+          namespace: "appcd-customer-workshop"
+          values_yaml: "./values/prod.customer-workshop.yaml"
+          update_accessibility: "true"

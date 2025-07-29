@@ -1,0 +1,27 @@
+{{- $fullName := include "infra-catalog-tracker.fullname" . -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    {{- include "infra-catalog-tracker.labels" . | nindent 4 }}
+  name: infra-catalog-tracker-config
+data:
+    config.json: |
+        {
+            "dbConfig": {
+                "connectionString": "host=${rds_endpoint} port=${rds_port} user=${rds_username} password=${rds_password} dbname=infra_catalog_tracker sslmode=disable application_name=${HOSTNAME}",
+                "dbType": "postgres",
+                "read_replicas": [
+                    "host=${rds_read_endpoint} port=${rds_port} user=${rds_username} password=${rds_password} dbname=infra-catalog-tracker sslmode=disable application_name=${HOSTNAME}"
+                ],
+                "logConfig": {
+                    "slowThreshold": 1000000000,
+                    "enable": true
+                },
+                "migrationSource": "file:///app/resources/db/migration"
+            },
+            "server": {
+                "port":  "8085"
+            },
+            "recentResourcesLimit": {{ .Values.recentResourcesLimit | default 10 }}
+        }

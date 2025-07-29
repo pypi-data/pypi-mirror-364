@@ -1,0 +1,68 @@
+services:
+  postgresql:
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_MULTIPLE_DATABASES: "iacgen,iacgen:appcd,appcd:tf_module_service,tf_module_service"
+    image: postgres:15-alpine
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -p 5432"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+    volumes:
+      - /var/lib/postgresql/data
+      - ./config/postgres:/docker-entrypoint-initdb.d/
+    networks:
+      - stackgen-local-development
+  iac-gen:
+    build:
+      context: ../iac-gen
+      dockerfile: Dockerfile.dev
+    environment:
+      - APPCD_SERVER=http://appcd:8080
+      - DISABLE_AUTH_CHECK=true
+      - STACKGEN_TEMPLATES_REPO=file://./stackgen-templates
+    networks:
+      - stackgen-local-development
+    volumes:
+      - ../iac-gen:/app
+      - ../stackgen-templates:/app/stackgen-templates
+    depends_on:
+      - postgresql
+    ports:
+      - 9000:9000
+  appcd:
+    build:
+      context: ../appcd
+      dockerfile: Dockerfile.dev
+    environment:
+      - IACGEN_URL=http://iac-gen:9000
+      - CONNECTION_STRING=postgres://appcd:appcd@postgresql:5432/appcd?sslmode=disable
+      - ANALYZER_IMAGE=ghcr.io/appcd-dev/appcd-analyzer:main
+    networks:
+      - stackgen-local-development
+    volumes:
+      - ../appcd:/app
+    depends_on:
+      - postgresql
+    ports:
+      - 8080:8080
+  tf-module-service:
+    build:
+      context: ../tf-module-service
+      dockerfile: Dockerfile.dev
+    networks:
+      - stackgen-local-development
+    ports:
+      - 8084:8084
+    depends_on:
+      - postgresql
+    volumes:
+      - ../tf-module-service:/app
+    command: ["air"]
+networks:
+  stackgen-local-development:
+    driver: bridge

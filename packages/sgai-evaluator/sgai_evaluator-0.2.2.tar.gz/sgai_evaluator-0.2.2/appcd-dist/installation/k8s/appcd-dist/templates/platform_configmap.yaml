@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: stackgen-platform-configmap
+  namespace: {{ .Release.Namespace }}
+data:
+  PLATFORM_CHART_VERSION: {{ .Chart.Version }}
+  PLATFORM_APP_VERSION: {{ .Chart.AppVersion }}
+  PLATFORM_INSTALLATION_IDENTIFIER: {{ .Values.licenseKey }}
+  PLATFORM_INSTALLATION_DATE: {{ now | quote }}
+  APPCD_DOMAIN: {{ .Values.domain | quote }}
+  OTEL_EXPORTER_OTLP_ENDPOINT: {{ default "" .Values.ops.otel.endpoint | quote }}
+  OTEL_RESOURCE_ATTRIBUTES: "deployment.environment={{ .Values.licenseKey }}"
+  TEMPORAL_NAMESPACE: {{ .Values.global.temporal.namespace | default .Release.Namespace }}
+  TEMPORAL_HOSTPORT: {{ .Values.global.temporal.hostport }}
+ 

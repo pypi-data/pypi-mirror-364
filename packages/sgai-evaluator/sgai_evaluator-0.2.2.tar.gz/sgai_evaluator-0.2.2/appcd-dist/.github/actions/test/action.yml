@@ -1,0 +1,44 @@
+name: Test appCD Service
+description: "Run Tests"
+inputs:
+  token:
+    description: "PAT for appcd-e2e repo"
+    required: true
+  e2e_branch:
+    description: "Branch to run tests against"
+    required: false
+    default: "main"
+  stackgen_endpoint:
+    description: "stackgen endpoint"
+    required: false
+    default: "http://localhost:8001"
+outputs:
+  outcome:
+    description: "Test status"
+    value: ${{ steps.test.outcome }}
+runs:
+  using: composite
+  steps:
+    - name: Checkout e2e test repo
+      uses: actions/checkout@v4
+      with:
+        repository: appcd-dev/appcd-e2e
+        token: ${{ inputs.token }}
+        ref: ${{ inputs.e2e_branch }}
+        path: e2e
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: latest
+    - name: Install dependencies
+      shell: bash
+      working-directory: e2e
+      env:
+        STACKGEN_URL: ${{ inputs.stackgen_endpoint }}
+      run: npm ci && npm run ci:minimal
+    - name: Export artifacts
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test_artifacts
+        path: e2e/artifacts

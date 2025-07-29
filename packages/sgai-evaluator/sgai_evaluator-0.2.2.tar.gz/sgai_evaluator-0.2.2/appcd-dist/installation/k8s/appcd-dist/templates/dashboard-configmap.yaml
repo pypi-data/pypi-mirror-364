@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dashboards
+data:
+  analyzer_dashboard_configmap.json: |
+{{ .Files.Get "dashboards/analyzer_dashboard_configmap.json" | indent 4 }}
+  ingress_dashboard_configmap.json: |
+{{ .Files.Get "dashboards/ingress_dashboard_configmap.json" | indent 4 }}

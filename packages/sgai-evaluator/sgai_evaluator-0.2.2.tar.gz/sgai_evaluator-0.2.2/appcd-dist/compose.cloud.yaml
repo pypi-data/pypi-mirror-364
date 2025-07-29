@@ -1,0 +1,124 @@
+version: "3.8"
+services:
+  postgresql:
+    environment:
+      POSTGRES_PASSWORD: temporal
+      POSTGRES_USER: temporal
+      POSTGRES_MULTIPLE_DATABASES: "appcd,appcd:iacgen,iacgen"
+    image: postgres:15
+    networks:
+      - appcd-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U temporal -p 5432"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+    volumes:
+      - /var/lib/postgresql/data
+      - ./config/postgres:/docker-entrypoint-initdb.d/
+  temporal:
+    container_name: temporal
+    depends_on:
+      postgresql:
+        condition: service_healthy
+    # health_check if the port 7233 is open
+    # healthcheck:
+    #   test: ["CMD", "nc", "-z", "localhost", "7233"]
+    #   interval: 5s
+    #   timeout: 5s
+    #   retries: 5
+    environment:
+      - DB=postgresql
+      - DB_PORT=5432
+      - POSTGRES_USER=temporal
+      - POSTGRES_PWD=temporal
+      - POSTGRES_SEEDS=postgresql
+      - DYNAMIC_CONFIG_FILE_PATH=config/dynamicconfig/development-sql.yaml
+    image: temporalio/auto-setup:1.22.3
+    networks:
+      - appcd-network
+    volumes:
+      - ./docker/temporal/dynamicconfig:/etc/temporal/config/dynamicconfig
+    labels:
+      kompose.volume.type: configMap
+  temporal-ui:
+    container_name: temporal-ui
+    depends_on:
+      - temporal
+    environment:
+      - TEMPORAL_ADDRESS=temporal:7233
+      - TEMPORAL_CORS_ORIGINS=http://localhost:3000
+    image: temporalio/ui:2.21.0
+    networks:
+      - appcd-network
+    ports:
+      - 8090:8080
+  appcd:
+    image: ghcr.io/appcd-dev/appcd:${APPCD_VERSION}
+    user: "${APPCD_UID}:${APPCD_GID}"
+    deploy:
+      mode: replicated
+      replicas: 4
+    networks:
+      - appcd-network
+    volumes:
+      - ./out/data:/out/data
+      - ./out/iac:/out/iac
+      - ./config/appcd-cloud:/config
+      - ./data/repos:/data/repos
+      - ./logs:/tmp/logs
+    command:
+      - "server"
+      - "--db-type"
+      - "postgres"
+      - "--db-dsn"
+      - "postgres://appcd:appcd@postgresql:5432/appcd?sslmode=disable"
+      - "--config"
+      - "/config/config.yaml"
+      # - "--log"
+      # - "2"
+    working_dir: /out/data
+    depends_on:
+      temporal:
+        condition: service_started
+      postgresql:
+        condition: service_healthy
+    environment:
+      - TEMPORAL_HOSTPORT=temporal:7233
+      - TMPDIR=/out/data
+      - ARTIFACTS_DIR=/out/data/artifacts
+      - ANALYZER_IMAGE=ghcr.io/appcd-dev/appcd-analyzer:${APPCD_ANALYZER}
+      - IAC_GENERATOR_IMAGE=ghcr.io/appcd-dev/iac-gen:${IACGEN_VERSION}
+      - IACGEN_URL=http://iac-gen:9000
+    env_file:
+      - ./.secrets
+  appcd-ui:
+    image: ghcr.io/appcd-dev/appcd-ui:${APPCDUI_VERSION}
+    networks:
+      - appcd-network
+    ports:
+      - 8000:8000
+    volumes:
+      - ./config/ui/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./out/data:/data
+    depends_on:
+      - appcd
+      - iac-gen
+  iac-gen:
+    image: ghcr.io/appcd-dev/iac-gen:${IACGEN_VERSION}
+    user: "${APPCD_UID}:${APPCD_GID}"
+    networks:
+      - appcd-network
+    command:
+      - "server"
+      - "--db-path"
+      - "postgres://iacgen:iacgen@postgresql:5432/iacgen?sslmode=disable"
+    volumes:
+      - ./out/data/.appcd/appstacks:/data
+      - ./out/iac:/data/iac/
+    environment:
+      - APPCD_SERVER=http://appcd:8080
+networks:
+  appcd-network:
+    driver: bridge
+    name: appcd-network
