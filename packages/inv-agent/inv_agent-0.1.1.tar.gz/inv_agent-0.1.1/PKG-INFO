@@ -1,0 +1,133 @@
+Metadata-Version: 2.3
+Name: inv-agent
+Version: 0.1.1
+Summary: Clinic inventory assistant powered by LLM and inventory management tools.
+License: MIT
+Keywords: inventory,clinic,llm,assistant
+Author: pavans
+Author-email: pavansakireddy@gmail.com
+Requires-Python: >=3.9,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: fpdf (==1.7.2)
+Requires-Dist: langchain-core (==0.3.68)
+Requires-Dist: langchain-ollama (==0.3.4)
+Requires-Dist: langgraph (==0.5.2)
+Requires-Dist: ollama (==0.5.1)
+Requires-Dist: python-dotenv (==1.1.1)
+Description-Content-Type: text/markdown
+
+# Medical Inventory Management Agent
+
+This medical inventory management agent that uses LangGraph with Ollama for natural language processing and automated inventory operations.
+
+## Features
+
+- Natural language inventory management
+- Medicine stock tracking and alerts
+- Automated email notifications for low stock
+- Restock request automation
+- Expiry monitoring
+
+## Requirements
+
+- Python 3.8+
+- Ollama running locally
+- Required Python packages (install via requirements.txt)
+
+## Installation
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Set up Ollama and download a compatible model (e.g., llama3.1:latest)
+
+4. Create a `.env` file in the project root with the following variables:
+   ```
+   SENDER_EMAIL=""
+   SENDER_PASSWORD=""
+   RECEIVER_EMAIL=""
+   MANAGER_EMAIL=""
+   SUPPLIER_EMAIL=""
+   MANAGER_PHONE=""
+   OLLAMA_URL=""
+   OLLAMA_MODEL_NAME=""
+   ```
+
+## Environment Variables
+
+- `SENDER_EMAIL`: Email address for sending notifications
+- `SENDER_PASSWORD`: Password for sender email account
+- `RECEIVER_EMAIL`: Default recipient email address
+- `MANAGER_EMAIL`: Manager's email for inventory alerts
+- `SUPPLIER_EMAIL`: Supplier's email for restock requests
+- `MANAGER_PHONE`: Manager's phone number (optional)
+- `OLLAMA_URL`: Ollama server URL (e.g., http://localhost:11434)
+- `OLLAMA_MODEL_NAME`: Ollama model name (e.g., llama3.1:latest)
+
+## Database Setup
+
+The system automatically creates an SQLite database (`inventory.db`) on first run. If an `annual_po.json` file exists in the project directory, it will load dummy data during initialization.
+
+## Usage
+
+Run the main application:
+```bash
+python main.py
+```
+
+The system supports natural language commands for:
+- Reading medicine information
+- Adding new medicines
+- Updating stock quantities
+- Setting stock alert thresholds
+- Removing medicines from inventory
+- Deleting medicine entries
+- Sending restock requests
+
+## Available Operations
+
+- **Read Medicine**: Check medicine details and stock levels
+- **Add Medicine**: Add new medicines to inventory
+- **Update Stock**: Increase or decrease medicine quantities
+- **Set Alert**: Configure low stock alert thresholds
+- **Remove Stock**: Remove specified quantities from inventory
+- **Delete Medicine**: Completely remove medicine from inventory
+- **Restock Request**: Send automated restock emails to suppliers
+
+## Database Schema
+
+The system uses a SQLite database with the following main table structure:
+- `medicines`: Stores medicine information including drug ID, name, generic name, manufacturer, batch number, expiry date, quantity, unit, price, location, and alert threshold
+
+## Logging
+
+The system includes comprehensive logging for all operations, accessible through the logger module.
+
+## Email Notifications
+
+Automated email notifications are sent for:
+- Low stock alerts
+- Out of stock alerts
+- Restock requests to suppliers
+- Expiry monitor report
+
+## File Structure
+
+- `main.py`: Main application file with agent workflow
+- `inventory_tools.py`: Database operations and tool definitions
+- `send_email_utils.py`: Email notification utilities
+- `logger.py`: Logging functionality
+- `inventory.db`: SQLite database (auto-created)
+- `annual_po.json`: Optional dummy data file
+- `expiry_monitor`: Script to monitor expiring medicines
+- `.env`: Environment variables configuration
+
