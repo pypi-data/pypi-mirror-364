@@ -1,0 +1,49 @@
+Metadata-Version: 2.4
+Name: easycodeluna
+Version: 0.0.1
+Summary: Pacote educativo com funções básicas de Python
+Author: Aparecido Roberto Luna
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Education
+Classifier: Topic :: Education
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license
+Dynamic: requires-python
+Dynamic: summary
+
+# easycode
+
+Pacote educativo para quem está começando a programar em Python.  
+Inclui funções simples para demonstrar conceitos básicos e intermediários, como variáveis, condicionais, loops e listas.
+
+## Instalação
+
+Use o gerenciador de pacotes [pip](https://pip.pypa.io/en/stable/) para instalar easycode:
+
+```bash
+pip install easycode
+
+
+## Uso
+
+from easycode.basics import variables, conditionals
+from easycode.advanced import loops, lists
+
+variables.show_variable_examples()
+print(conditionals.check_number(-5))
+loops.count_to_n(3)
+print(lists.sum_list([1, 2, 3]))
+
+
+## Autor
+Aparecido Roberto
+
+## Licença
+[MIT](https://choosealicense.com/licenses/mit/)
