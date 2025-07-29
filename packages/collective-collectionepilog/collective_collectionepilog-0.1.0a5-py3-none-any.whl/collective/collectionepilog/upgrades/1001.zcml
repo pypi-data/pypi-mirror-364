@@ -1,0 +1,25 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+  xmlns:gs="http://namespaces.zope.org/genericsetup">
+
+  <gs:registerProfile name="1001"
+    title="load viewlets.xml"
+    directory="1001"
+    description='Configuration for version 1001'
+    for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+    provides="Products.GenericSetup.interfaces.EXTENSION" />
+
+  <gs:upgradeSteps source="1000"
+    destination="1001"
+    profile="collective.collectionepilog:default">
+
+    <gs:upgradeStep title="load viewlets.xml"
+      description=""
+      handler=".v1001.upgrade" />
+
+    <gs:upgradeDepends title="load viewlets.xml (GS profile)"
+      description=""
+      import_profile="collective.collectionepilog.upgrades:1001" />
+
+  </gs:upgradeSteps>
+
+</configure>
