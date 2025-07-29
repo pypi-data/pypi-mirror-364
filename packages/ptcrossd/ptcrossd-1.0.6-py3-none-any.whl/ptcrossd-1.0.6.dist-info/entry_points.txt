@@ -1,0 +1,2 @@
+[console_scripts]
+ptcrossd = ptcrossd.ptcrossd:main
