@@ -1,0 +1,8 @@
+LICENSE
+README.md
+pyproject.toml
+src/NBTExplorer/__init__.py
+src/NBTExplorer.egg-info/PKG-INFO
+src/NBTExplorer.egg-info/SOURCES.txt
+src/NBTExplorer.egg-info/dependency_links.txt
+src/NBTExplorer.egg-info/top_level.txt

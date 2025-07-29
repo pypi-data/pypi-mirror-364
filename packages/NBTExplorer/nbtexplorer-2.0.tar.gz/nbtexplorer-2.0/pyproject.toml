@@ -1,0 +1,13 @@
+[project]
+name = "NBTExplorer"
+version = "2.0"
+authors = [
+    {name = "chenxi", email = "chenxi20141212@126.com"},
+]
+description = "NBT文件编辑器"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {file = "LICENSE"}
+[build-system]
+requires = ["nbtlib","setuptools>=46.4.0"]
+build-backend = "setuptools.build_meta"
