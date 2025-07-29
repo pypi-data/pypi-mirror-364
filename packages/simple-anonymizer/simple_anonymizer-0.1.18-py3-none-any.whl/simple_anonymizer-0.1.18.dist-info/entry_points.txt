@@ -1,0 +1,5 @@
+[console_scripts]
+anon-gui=anonymizer_gui:launch
+anon-setup-models=anonymizer_core.setup_models:setup_models
+anon-web=web.cli:main
+

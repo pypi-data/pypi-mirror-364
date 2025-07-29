@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anon - Privacy-First Text Anonymizer</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Styles -->
+    <style>
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(59, 130, 246, 0.3);
+            border-radius: 50%;
+            border-top-color: #3b82f6;
+            animation: spin 1s ease-in-out infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Custom button styles for better Windows compatibility */
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            border: 1px solid #2563eb;
+            color: #ffffff;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            transition: all 0.2s ease;
+        }
+        .btn-primary:hover:not(:disabled) {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            border-color: #1d4ed8;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            border: 1px solid #4b5563;
+            color: #ffffff;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            transition: all 0.2s ease;
+        }
+        .btn-secondary:hover:not(:disabled) {
+            background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
+            border-color: #374151;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transform: translateY(-1px);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border: 1px solid #059669;
+            color: #ffffff;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            transition: all 0.2s ease;
+        }
+        .btn-success:hover:not(:disabled) {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            border-color: #047857;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transform: translateY(-1px);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            border: 1px solid #dc2626;
+            color: #ffffff;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            transition: all 0.2s ease;
+        }
+        .btn-danger:hover:not(:disabled) {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            border-color: #b91c1c;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transform: translateY(-1px);
+        }
+
+        .btn:disabled {
+            background: #9ca3af !important;
+            border-color: #9ca3af !important;
+            color: #ffffff !important;
+            cursor: not-allowed !important;
+            transform: none !important;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1) !important;
+        }
+
+        /* Input styling improvements */
+        .input-field {
+            border: 1px solid #d1d5db;
+            background: #ffffff;
+            transition: all 0.2s ease;
+        }
+        .input-field:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            outline: none;
+        }
+
+        /* Card styling improvements */
+        .card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="container mx-auto px-4 py-8 max-w-7xl">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold text-gray-900 mb-3">
+                    <i class="fas fa-shield-alt mr-3 text-blue-600"></i>Anon
+                </h1>
+                <p class="text-xl text-gray-600 mb-2">
+                    Privacy-First Text Anonymizer
+                </p>
+                <p class="text-base text-gray-500 mt-2">
+                    Your sensitive data deserves better than cloud-based anonymization
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 max-w-7xl">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+            <!-- Always Redact Section -->
+            <div class="card rounded-lg p-8 fade-in">
+                <div class="flex items-center mb-6">
+                    <i class="fas fa-shield-alt text-xl text-blue-600 mr-3"></i>
+                    <h2 class="text-xl font-semibold text-gray-900">Always Redact Words (Secure Management)</h2>
+                </div>
+
+                <!-- Security Info -->
+                <div class="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                    <p class="text-blue-800 text-base">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        📋 Terms are stored securely and not displayed. Use CLI <code class="bg-blue-100 px-1 rounded">anon-web list-redact</code> to view.
+                    </p>
+                </div>
+
+                <!-- Add Word Section -->
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-base font-medium mb-3">
+                        <i class="fas fa-plus mr-2"></i>Add Word to Always Redact
+                    </label>
+                    <div class="flex gap-3">
+                        <input type="text" id="addWordInput" placeholder="Enter word to add"
+                               class="input-field flex-1 px-4 py-3 rounded-md text-base">
+                        <button onclick="addAlwaysRedactWord()"
+                                class="btn btn-primary px-4 py-3 text-base font-medium rounded-md">
+                            <i class="fas fa-plus mr-2"></i>Add
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Remove Word Section -->
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-base font-medium mb-3">
+                        <i class="fas fa-minus mr-2"></i>Remove Word from Always Redact
+                    </label>
+                    <div class="flex gap-3">
+                        <input type="text" id="removeWordInput" placeholder="Enter word to remove"
+                               class="input-field flex-1 px-4 py-3 rounded-md text-base">
+                        <button onclick="removeAlwaysRedactWord()"
+                                class="btn btn-danger px-4 py-3 text-base font-medium rounded-md">
+                            <i class="fas fa-trash mr-2"></i>Remove
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Section -->
+            <div class="card rounded-lg p-8 fade-in">
+                <div class="flex items-center mb-6">
+                    <i class="fas fa-edit text-xl text-blue-600 mr-3"></i>
+                    <h2 class="text-xl font-semibold text-gray-900">Input Text</h2>
+                </div>
+
+                <!-- File Upload -->
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-base font-medium mb-3">
+                        <i class="fas fa-upload mr-2"></i>Upload File (Optional)
+                    </label>
+                    <div class="relative">
+                        <input type="file" id="fileInput" accept=".txt"
+                               class="hidden" />
+                        <label for="fileInput"
+                               class="block w-full p-6 border-2 border-dashed border-gray-300 rounded-lg text-center cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-colors bg-gray-50">
+                            <i class="fas fa-cloud-upload-alt text-2xl text-gray-400 mb-3"></i>
+                            <div class="text-gray-600 text-base font-medium">Click to upload or drag and drop</div>
+                            <div class="text-gray-500 text-sm mt-2">TXT only (max 16MB)</div>
+                        </label>
+                    </div>
+                    <div id="fileInfo" class="mt-3 text-gray-600 text-base hidden"></div>
+                </div>
+
+                <!-- Text Input -->
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-base font-medium mb-3">
+                        <i class="fas fa-keyboard mr-2"></i>Or Enter Text
+                    </label>
+                    <textarea id="inputText" rows="12"
+                              class="input-field w-full p-4 rounded-md resize-y min-h-[250px] text-base"
+                              placeholder="Enter text to anonymize..."></textarea>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-wrap gap-3">
+                    <button id="anonymizeBtn" onclick="anonymizeText()"
+                            class="btn btn-primary px-6 py-3 text-base font-medium rounded-md flex items-center">
+                        <i class="fas fa-shield-alt mr-2"></i>
+                        <span id="anonymizeText">Anonymize</span>
+                        <div id="loadingSpinner" class="loading ml-2 hidden"></div>
+                    </button>
+                    <button onclick="clearText()"
+                            class="btn btn-secondary px-6 py-3 text-base font-medium rounded-md">
+                        <i class="fas fa-trash mr-2"></i>Clear
+                    </button>
+                    <button onclick="loadSample()"
+                            class="btn btn-success px-6 py-3 text-base font-medium rounded-md">
+                        <i class="fas fa-file-alt mr-2"></i>Sample
+                    </button>
+                </div>
+            </div>
+
+            <!-- Output Section -->
+            <div class="card rounded-lg p-8 fade-in">
+                <div class="flex items-center mb-6">
+                    <i class="fas fa-shield-alt text-xl text-blue-600 mr-3"></i>
+                    <h2 class="text-xl font-semibold text-gray-900">Anonymized Text</h2>
+                </div>
+
+                <!-- Output Text -->
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-base font-medium mb-3">
+                        <i class="fas fa-file-alt mr-2"></i>Anonymized Text
+                    </label>
+                    <textarea id="outputText" rows="12" readonly
+                              class="input-field w-full p-4 rounded-md bg-gray-50 resize-y min-h-[250px] text-base"
+                              placeholder="Anonymized text will appear here..."></textarea>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-wrap gap-3">
+                    <button id="downloadBtn" onclick="downloadText()" disabled
+                            class="btn btn-success px-6 py-3 text-base font-medium rounded-md">
+                        <i class="fas fa-download mr-2"></i>Download
+                    </button>
+                    <button id="copyBtn" onclick="copyText()" disabled
+                            class="btn btn-primary px-6 py-3 text-base font-medium rounded-md">
+                        <i class="fas fa-copy mr-2"></i>Copy
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Bar -->
+        <div class="mt-8 text-center">
+            <div id="status" class="text-gray-600 text-base"></div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t mt-12">
+        <div class="container mx-auto px-4 py-6 max-w-7xl">
+            <div class="text-center text-gray-500 text-base">
+                <p>&copy; 2025 Anon - Privacy-First Text Anonymizer</p>
+                <p class="mt-2">Built with <i class="fas fa-heart text-red-400"></i> for privacy</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sample text for testing
+        const sampleText = `Dr. John Smith from Acme Corporation called at john.smith@acme.com on 2024-01-15.
+The meeting is scheduled for 2:30 PM at 123 Main Street, New York, NY 10001.
+Please contact Sarah Johnson at sarah.johnson@company.com for more details.`;
+
+        // Always redact words management (secure - no display of words)
+        async function addAlwaysRedactWord() {
+            const input = document.getElementById('addWordInput');
+            const word = input.value.trim();
+
+            if (!word) {
+                showStatus('Please enter a word to add', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/v1/always-redact/add', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ word: word })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    input.value = '';
+                    if (result.action === 'added') {
+                        showStatus(`✅ Added '${word}' to always redact list`, 'success');
+                    } else {
+                        showStatus(`⚠️ '${word}' is already in the list`, 'warning');
+                    }
+                } else {
+                    showStatus(`❌ Error: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showStatus(`❌ Error adding word: ${error.message}`, 'error');
+            }
+        }
+
+        async function removeAlwaysRedactWord() {
+            const input = document.getElementById('removeWordInput');
+            const word = input.value.trim();
+
+            if (!word) {
+                showStatus('Please enter a word to remove', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/v1/always-redact/remove', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ word: word })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    input.value = '';
+                    if (result.action === 'removed') {
+                        showStatus(`🗑️ Removed '${word}' from always redact list`, 'success');
+                    } else {
+                        showStatus(`⚠️ '${word}' not found in always redact list`, 'warning');
+                    }
+                } else {
+                    showStatus(`❌ Error: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showStatus(`❌ Error removing word: ${error.message}`, 'error');
+            }
+        }
+
+        // File handling
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('inputText').value = e.target.result;
+                    document.getElementById('fileInfo').textContent = `Loaded: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+                    document.getElementById('fileInfo').classList.remove('hidden');
+                };
+                reader.readAsText(file);
+            }
+        });
+
+        // Drag and drop
+        const dropZone = document.querySelector('label[for="fileInput"]');
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('border-blue-400');
+        });
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('border-blue-400');
+        });
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('border-blue-400');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                document.getElementById('fileInput').files = files;
+                document.getElementById('fileInput').dispatchEvent(new Event('change'));
+            }
+        });
+
+        async function anonymizeText() {
+            const text = document.getElementById('inputText').value.trim();
+            const fileInput = document.getElementById('fileInput');
+
+            if (!text && !fileInput.files[0]) {
+                showStatus('Please enter text or upload a file', 'error');
+                return;
+            }
+
+            // Show loading state
+            const btn = document.getElementById('anonymizeBtn');
+            const textSpan = document.getElementById('anonymizeText');
+            const spinner = document.getElementById('loadingSpinner');
+
+            btn.disabled = true;
+            textSpan.textContent = 'Processing...';
+            spinner.classList.remove('hidden');
+            showStatus('Anonymizing text...', 'info');
+
+            try {
+                let content = text;
+
+                // If file is selected, read it
+                if (fileInput.files[0]) {
+                    const file = fileInput.files[0];
+                    content = await readFile(file);
+                }
+
+                const response = await fetch('/api/v1/anonymize', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        text: content,
+                        options: {
+                            include_entity_count: true,
+                            include_mapping: false
+                        }
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    document.getElementById('outputText').value = result.anonymized_text;
+                    document.getElementById('downloadBtn').disabled = false;
+                    document.getElementById('copyBtn').disabled = false;
+                    showStatus(`Anonymization complete! ${result.entity_count} entities redacted successfully.`, 'success');
+                } else {
+                    showStatus(`Error: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showStatus(`Error: ${error.message}`, 'error');
+            } finally {
+                // Reset button state
+                btn.disabled = false;
+                textSpan.textContent = 'Anonymize';
+                spinner.classList.add('hidden');
+            }
+        }
+
+        function readFile(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = e => resolve(e.target.result);
+                reader.onerror = e => reject(e);
+                reader.readAsText(file);
+            });
+        }
+
+        function clearText() {
+            document.getElementById('inputText').value = '';
+            document.getElementById('outputText').value = '';
+            document.getElementById('fileInput').value = '';
+            document.getElementById('fileInfo').classList.add('hidden');
+            document.getElementById('downloadBtn').disabled = true;
+            document.getElementById('copyBtn').disabled = true;
+            showStatus('Text cleared', 'info');
+        }
+
+        function loadSample() {
+            document.getElementById('inputText').value = sampleText;
+            showStatus('Sample text loaded', 'info');
+        }
+
+        function copyText() {
+            const outputText = document.getElementById('outputText');
+            outputText.select();
+            document.execCommand('copy');
+            showStatus('Text copied to clipboard!', 'success');
+        }
+
+        function downloadText() {
+            const text = document.getElementById('outputText').value;
+            const blob = new Blob([text], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `anonymized_${new Date().toISOString().slice(0, 10)}.txt`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+            showStatus('File downloaded', 'success');
+        }
+
+        function showStatus(message, type) {
+            const status = document.getElementById('status');
+            status.textContent = message;
+
+            // Remove existing classes
+            status.className = 'text-gray-600 text-base font-medium';
+
+            // Add type-specific styling
+            if (type === 'error') {
+                status.className = 'text-red-600 text-base font-medium';
+            } else if (type === 'success') {
+                status.className = 'text-green-600 text-base font-medium';
+            } else if (type === 'warning') {
+                status.className = 'text-yellow-600 text-base font-medium';
+            } else if (type === 'info') {
+                status.className = 'text-blue-600 text-base font-medium';
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            showStatus('Ready to anonymize', 'info');
+
+            // Add Enter key handlers for word management inputs
+            document.getElementById('addWordInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    addAlwaysRedactWord();
+                }
+            });
+
+            document.getElementById('removeWordInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    removeAlwaysRedactWord();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
