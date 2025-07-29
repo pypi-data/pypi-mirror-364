@@ -1,0 +1,10 @@
+LICENSE
+pyproject.toml
+src/dbdb/__init__.py
+src/dbdb/dbdb_project.py
+src/tinydbdb.egg-info/PKG-INFO
+src/tinydbdb.egg-info/SOURCES.txt
+src/tinydbdb.egg-info/dependency_links.txt
+src/tinydbdb.egg-info/entry_points.txt
+src/tinydbdb.egg-info/top_level.txt
+tests/test_dbdb.py

@@ -1,0 +1,3 @@
+[console_scripts]
+dbdb = dbdb.dbdb_project:main
+tinydbdb = dbdb.dbdb_project:main

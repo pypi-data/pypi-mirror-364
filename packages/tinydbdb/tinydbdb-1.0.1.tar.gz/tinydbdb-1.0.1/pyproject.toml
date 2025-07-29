@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tinydbdb"
+version = "1.0.1"
+description = "A simple file-based key-value database with CLI and persistence"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [{name = "Vikas Gulia", email = "vikasgulia17@example.com"}]
+requires-python = ">=3.9"
+keywords = ["database", "key-value", "cli", "pickle", "educational"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+dependencies = []
+
+[project.scripts]
+tinydbdb = "dbdb.dbdb_project:main"
+dbdb = "dbdb.dbdb_project:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["dbdb"]  # Only valid if your module lives in src/dbdb/
