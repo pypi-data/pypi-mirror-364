@@ -1,0 +1,20 @@
+Metadata-Version: 2.3
+Name: whitedot
+Version: 1.7.0
+Summary: Whitedot is a cryptocurrency designed to be democratized through nodes, a semi-centralized server that cannot tamper with the system, and cryptography.
+License: MIT
+Author: SeafoodStudios
+Requires-Python: >=3.10
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: cryptography (>=45.0.5,<46.0.0)
+Requires-Dist: requests (>=2.32.4,<3.0.0)
+Requires-Dist: send2trash (>=1.8.3,<2.0.0)
+Description-Content-Type: text/markdown
+
+# Whitedot Cryptocurrency
+See the GitHub repository: https://github.com/SeafoodStudios/Whitedot
