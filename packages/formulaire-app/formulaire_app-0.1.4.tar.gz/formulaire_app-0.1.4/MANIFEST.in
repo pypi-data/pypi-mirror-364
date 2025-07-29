@@ -1,0 +1,3 @@
+include README.md LICENSE
+recursive-include formulaire_app/templates *
+recursive-include formulaire_app/static *
