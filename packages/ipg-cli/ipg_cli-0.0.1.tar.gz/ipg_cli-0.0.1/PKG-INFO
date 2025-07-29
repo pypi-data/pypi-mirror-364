@@ -1,0 +1,16 @@
+Metadata-Version: 2.4
+Name: ipg-cli
+Version: 0.0.1
+Summary: A CLI tool for generating AI applications like deepstream
+Author-email: Mohd Yusuf <yusuf.intelligentedgesystems@gmail.com>
+License: MIT
+Keywords: deepstream,gstreamer,cli,onnx,automation,ai,artificial intelligence,computer vision,edge ai,intelligent edge,craftifai,intelligent edge systems,ies,nvidia,jetson,palm vein,inference,opencv,triton inference server
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: onnx
+Requires-Dist: numpy
+Requires-Dist: docker
+Requires-Dist: rich
+Requires-Dist: tqdm
+Dynamic: license-file

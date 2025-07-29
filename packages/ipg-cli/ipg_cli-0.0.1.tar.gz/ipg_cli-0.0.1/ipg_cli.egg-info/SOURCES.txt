@@ -1,0 +1,15 @@
+LICENSE
+pyproject.toml
+ipg_cli/__init__.py
+ipg_cli/cli.py
+ipg_cli/main.py
+ipg_cli.egg-info/PKG-INFO
+ipg_cli.egg-info/SOURCES.txt
+ipg_cli.egg-info/dependency_links.txt
+ipg_cli.egg-info/entry_points.txt
+ipg_cli.egg-info/requires.txt
+ipg_cli.egg-info/top_level.txt
+ipg_cli/bin/__init__.py
+ipg_cli/bin/test
+ipg_cli/include/__init__.py
+ipg_cli/lib/__init__.py
