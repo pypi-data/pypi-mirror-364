@@ -1,0 +1,44 @@
+Metadata-Version: 2.4
+Name: orappgen
+Version: 0.1.1
+Summary: Générateur d'applications Django structurées (modèles, vues, urls...)
+Author: Ben'Or
+Author-email: benjamin@Djoo.com
+License: MIT
+Classifier: Framework :: Django
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: Django>=3.2
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# orappgen
+
+**orappgen** est un générateur d'applications Django structuré. Il remplace `django-admin startapp` en créant une app avec :
+
+- des dossiers `models/` et `views/`
+- un `urls.py` prêt à l’emploi
+- des fichiers comme `apps.py`, `admin.py`, `tests.py`, etc.
+- des modèles et vues organisés en modules (`user.py`, `dashboard.py`, etc.)
+
+## Installation
+
+```bash
+pip install orappgen 
+```
+
+## Utilisation
+```bash
+startcustomapp <nom_de_l_app>"
