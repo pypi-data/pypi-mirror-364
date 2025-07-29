@@ -1,0 +1,3 @@
+[console_scripts]
+litellm-cz-etl = litellm_cz_etl:main
+
