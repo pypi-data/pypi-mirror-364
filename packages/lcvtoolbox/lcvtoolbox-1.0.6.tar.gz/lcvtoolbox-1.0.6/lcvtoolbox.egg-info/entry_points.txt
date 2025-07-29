@@ -1,0 +1,3 @@
+[console_scripts]
+cv-toolbox = lcvtoolbox.cli.main:main
+toolbox = lcvtoolbox.cli.main:main

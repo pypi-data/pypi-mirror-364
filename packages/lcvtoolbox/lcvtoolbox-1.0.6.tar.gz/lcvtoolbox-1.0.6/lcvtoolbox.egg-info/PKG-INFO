@@ -1,0 +1,132 @@
+Metadata-Version: 2.4
+Name: lcvtoolbox
+Version: 1.0.6
+Summary: Computer vision toolbox for road infrastructure analysis
+Author-email: Thibaut DEVERAUX <thibaut.deveraux@logiroad-center.com>, Michael MERLANGE <michael.merlange@logiroad-center.com>
+Maintainer-email: Thibaut DEVERAUX <thibaut.deveraux@logiroad-center.com>, Michael MERLANGE <michael.merlange@logiroad-center.com>, Antoine GERARDEAUX <antoine.gerardeaux@logiroad-center.com>, Pierre-Yves LACROIX <pierre-yves.lacroix@logiroad-center.com>, Houda MAAMATOU <houda.maamatou@logiroad-center.com>, Theo DENIER <theo.denier@logiroad-center.com>
+License: Copyright (c) 2025 Logiroad. All rights reserved.
+Project-URL: Homepage, https://github.com/logiroad/cv-toolbox
+Project-URL: Repository, https://github.com/logiroad/cv-toolbox.git
+Project-URL: Issues, https://github.com/logiroad/cv-toolbox/issues
+Project-URL: Documentation, https://github.com/logiroad/cv-toolbox/wiki
+Project-URL: Release Notes, https://github.com/logiroad/cv-toolbox/releases
+Keywords: computer-vision,detection,segmentation,classification,transformers
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Scientific/Engineering :: Image Processing
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: numpy<2.3.0,>=2.0.0
+Requires-Dist: opencv-python>=4.12.0
+Requires-Dist: Pillow>=11.3.0
+Requires-Dist: datasets>=4.0.0
+Requires-Dist: pydantic>=2.11.0
+Requires-Dist: typer>=0.9.0
+Requires-Dist: pycocotools>=2.0.7
+Requires-Dist: utm>=0.8.1
+Requires-Dist: shapely>=2.1.1
+Requires-Dist: matplotlib>=3.8.0
+Requires-Dist: requests>=2.31.0
+Requires-Dist: rich>=13.7.0
+Requires-Dist: huggingface-hub>=0.20.0
+Provides-Extra: dev
+Requires-Dist: setuptools>=80.9.0; extra == "dev"
+Requires-Dist: wheel>=0.45.1; extra == "dev"
+Requires-Dist: build>=1.2.2; extra == "dev"
+Requires-Dist: twine>=6.1.0; extra == "dev"
+Requires-Dist: pytest>=8.4.1; extra == "dev"
+Requires-Dist: pytest-cov>=6.2.1; extra == "dev"
+Requires-Dist: ruff==0.12.3; extra == "dev"
+Requires-Dist: mypy>=1.17.0; extra == "dev"
+Requires-Dist: pre-commit>=4.2.0; extra == "dev"
+Provides-Extra: docs
+Requires-Dist: sphinx>=8.2.3; extra == "docs"
+Requires-Dist: sphinx-rtd-theme>=3.0.2; extra == "docs"
+Requires-Dist: sphinx-autodoc-typehints>=3.2.0; extra == "docs"
+Requires-Dist: sphinx-copybutton>=0.5.2; extra == "docs"
+Requires-Dist: myst-parser>=4.0.1; extra == "docs"
+Requires-Dist: sphinx-autobuild>=2021.3.14; extra == "docs"
+
+# CV Toolbox
+
+Just another computer vision toolbox.
+
+This project is not ready for public use.
+
+If you look for comprehensive libraries consider these alternatives:
+
+- [pytransform3d](https://pypi.org/project/pytransform3d/) for 3D computations
+- [shapely](https://pypi.org/project/shapely/) for 2D computations
+- [CVAT SDK](https://docs.cvat.ai/docs/api_sdk/sdk/) to interact with CVAT
+- [Hub client library](https://huggingface.co/docs/huggingface_hub/index) to interact with Hugging Face
+
+## Installation
+
+### Only available on PyPI
+
+```bash
+# Install the latest version
+pip install lcvtoolbox
+
+# Install a specific version
+pip install lcvtoolbox==1.0.1
+
+# Install with optional dependencies
+pip install lcvtoolbox[dev]  # Development tools
+pip install lcvtoolbox[docs]  # Documentation tools
+pip install lcvtoolbox[dev,docs]  # All optional dependencies
+```
+
+### System Requirements
+
+- Python 3.12 or higher
+- pip (Python package installer)
+
+For OpenCV support, you may need system libraries:
+
+```bash
+# Ubuntu/Debian
+sudo apt-get update && sudo apt-get install -y \
+    libglib2.0-0 libsm6 libxext6 libxrender-dev libgomp1
+
+# macOS
+brew install opencv
+
+# Windows: Should work out of the box
+```
+
+## Python API
+
+```python
+import lcvtoolbox
+
+# Example usage of spatial primitives
+from lcvtoolbox.spatial.primitives import Point
+
+# Create a 3D point
+point = Point(x=1.0, y=2.0, z=3.0)
+```
+
+## Features
+
+### Spatial Primitives
+
+- **Points and Vectors**: 3D point and vector operations
+- **Rotations**: Support for multiple rotation representations (quaternion, Euler angles, rotation matrix, axis-angle)
+- **Poses**: 6DOF pose representations with transformations
+- **Coordinate Transformations**: Convert between different coordinate systems
+
+### Computer Vision Tools
+
+- **Image Processing**: Cropping, tiling, and preprocessing utilities
+- **CVAT Integration**: API client for CVAT annotation platform
+- **Hugging Face Integration**: Tools for dataset management
+
+## License
+
+All rights reserved.

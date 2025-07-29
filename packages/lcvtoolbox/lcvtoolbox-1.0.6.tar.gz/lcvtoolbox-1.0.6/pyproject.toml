@@ -1,0 +1,228 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lcvtoolbox"
+version = "1.0.6"
+description = "Computer vision toolbox for road infrastructure analysis"
+authors = [
+    {name = "Thibaut DEVERAUX", email = "thibaut.deveraux@logiroad-center.com"},
+    {name = "Michael MERLANGE", email = "michael.merlange@logiroad-center.com"}
+]
+maintainers = [
+    {name = "Thibaut DEVERAUX", email = "thibaut.deveraux@logiroad-center.com"},
+    {name = "Michael MERLANGE", email = "michael.merlange@logiroad-center.com"},
+    {name = "Antoine GERARDEAUX", email = "antoine.gerardeaux@logiroad-center.com"},
+    {name = "Pierre-Yves LACROIX", email = "pierre-yves.lacroix@logiroad-center.com"},
+    {name = "Houda MAAMATOU", email = "houda.maamatou@logiroad-center.com"},
+    {name = "Theo DENIER", email = "theo.denier@logiroad-center.com"}
+]
+readme = "README.md"
+license = {text = "Copyright (c) 2025 Logiroad. All rights reserved."}
+requires-python = ">=3.12"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Image Processing",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+keywords = ["computer-vision", "detection", "segmentation", "classification", "transformers"]
+
+# Core dependencies
+dependencies = [
+    "numpy>=2.0.0,<2.3.0",
+    "opencv-python>=4.12.0",
+    "Pillow>=11.3.0",
+    "datasets>=4.0.0",
+    "pydantic>=2.11.0",
+    "typer>=0.9.0",
+    "pycocotools>=2.0.7",
+    "utm>=0.8.1",
+    "shapely>=2.1.1",
+    "matplotlib>=3.8.0",
+    "requests>=2.31.0",
+    "rich>=13.7.0",
+    "huggingface-hub>=0.20.0",
+]
+
+# Optional dependencies
+[project.optional-dependencies]
+dev = [
+    "setuptools>=80.9.0",
+    "wheel>=0.45.1",
+    "build>=1.2.2",
+    "twine>=6.1.0",
+    "pytest>=8.4.1",
+    "pytest-cov>=6.2.1",
+    "ruff==0.12.3",
+    "mypy>=1.17.0",
+    "pre-commit>=4.2.0",
+]
+docs = [
+    "sphinx>=8.2.3",
+    "sphinx-rtd-theme>=3.0.2",
+    "sphinx-autodoc-typehints>=3.2.0",
+    "sphinx-copybutton>=0.5.2",
+    "myst-parser>=4.0.1",
+    "sphinx-autobuild>=2021.3.14",
+]
+
+# Entry points for command-line tools
+[project.scripts]
+cv-toolbox = "lcvtoolbox.cli.main:main"
+toolbox = "lcvtoolbox.cli.main:main"
+
+# URLs
+[project.urls]
+Homepage = "https://github.com/logiroad/cv-toolbox"
+Repository = "https://github.com/logiroad/cv-toolbox.git"
+Issues = "https://github.com/logiroad/cv-toolbox/issues"
+Documentation = "https://github.com/logiroad/cv-toolbox/wiki"
+"Release Notes" = "https://github.com/logiroad/cv-toolbox/releases"
+
+# Setuptools configuration
+[tool.setuptools.packages.find]
+where = ["."]
+
+# Include non-Python files
+[tool.setuptools.package-data]
+lcvtoolbox = ["*.yaml", "*.yml", "*.json", "models/*.pth"]
+
+# Ruff configuration (replaces black, isort, flake8)
+[tool.ruff]
+line-length = 250
+target-version = "py312"
+
+# Enable pycodestyle (E, W), Pyflakes (F), isort (I), and other useful rules
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings  
+    "F",    # Pyflakes
+    "I",    # isort
+    "UP",   # pyupgrade
+    "B",    # flake8-bugbear
+    "C4",   # flake8-comprehensions
+    "PL",   # pylint
+    "SIM",  # flake8-simplify
+]
+
+ignore = [
+    "E501",   # line too long (handled by line-length)
+    "PLR0913", # too many arguments
+    "PLR0912", # too many branches
+    "PLR0915", # too many statements
+]
+
+exclude = [
+    ".eggs",
+    ".git",
+    ".hg",
+    ".mypy_cache",
+    ".tox",
+    ".venv",
+    ".cache",
+    ".data",
+    "__pycache__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "venv",
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.ruff.lint.isort]
+known-first-party = ["lcvtoolbox"]
+force-single-line = false
+force-sort-within-sections = false
+single-line-exclusions = ["typing"]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]  # Allow unused imports in __init__.py
+"tests/*" = ["PLR2004"]  # Allow magic values in tests
+
+# pytest configuration
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "--verbose",
+    "--cov=lcvtoolbox",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--cov-report=xml",
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+]
+
+# mypy configuration
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[[tool.mypy.overrides]]
+module = [
+    "cv2.*",
+    "torch.*",
+    "torchvision.*",
+    "ultralytics.*",
+    "pycocotools.*",
+]
+ignore_missing_imports = true
+
+# Coverage configuration
+[tool.coverage.run]
+source = ["lcvtoolbox"]
+omit = [
+    "*/tests/*",
+    "*/test_*",
+    "*/__pycache__/*",
+    "*/.*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
+
+[tool.pylint.messages_control]
+disable = [
+    "logging-fstring-interpolation",  # W1203
+]
