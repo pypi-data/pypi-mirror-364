@@ -1,0 +1,20 @@
+[project]
+name = "pangerl-mcp-server-weather"
+version = "0.1.1"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "lanpang", email = "hxjagf@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "httpx>=0.28.1",
+    "mcp[cli]>=1.12.1",
+]
+
+[project.scripts]
+pangerl-mcp-server-weather = "pangerl_mcp_server_weather:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
