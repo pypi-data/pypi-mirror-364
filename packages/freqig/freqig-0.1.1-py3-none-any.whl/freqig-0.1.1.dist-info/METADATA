@@ -1,0 +1,186 @@
+Metadata-Version: 2.4
+Name: freqIG
+Version: 0.1.1
+Summary: Frequency-domain model explanation (IG) package
+Home-page: https://gitlab.com/paulabraham.graeve/flex
+Author: Paul Gräve
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
+License-File: LICENSE
+License-File: CITATION.cff
+Requires-Dist: torch>=2.0.0
+Requires-Dist: numpy>=1.21.0
+Requires-Dist: captum>=0.6.0
+Provides-Extra: academic
+Requires-Dist: howfairis>=0.20.0; extra == "academic"
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: summary
+
+# freqIG
+
+## Overview
+
+This repository contains the implementation of **freqIG**, a method based on the principle of **FLEX (Frequency Layer Explanation)** [1], designed to explain the predictions of deep neural networks (DNNs) for time-series classification tasks. freqIG combines **Integrated Gradients (IG)** with a frequency-domain transform (via the **Real Fast Fourier Transform (RFFT)**) to provide frequency-based attribution scores.
+
+The method is generally useful for understanding how different frequency components of a time-series input influence the predictions of a DNN, thus enhancing model interpretability.
+
+*For details on the general concept, see [1]: "Using EEG Frequency Attributions to Explain the Classifications of a Deep Neural Network for Sleep Staging" (Paul GrÃ¤ve et al.).*
+
+---
+
+## Features
+
+- **RFFT Transformation**: Input time-series data are transformed into the frequency domain using the RFFT.
+- **iRFFT Transformation**: The inverse RFFT (iRFFT) is implemented as the first layer in the DNN to process frequency-domain inputs.
+- **Integrated Gradients Attribution**: Captum's IG method is used to compute relevance scores for frequency bands, providing insights into the features contributing to the model's predictions.
+
+---
+
+## Definition (FLEX principle)
+Let F be our model (DNN) and x be our input (time-series data). Then with $\bar{F} = F \circ iRFFT$ and $\bar{x} = RFFT(x)$ we get  
+$$FLEX_i(F,x) = IG_i(\bar{F},\bar{x})$$,  
+where $FLEX(F,x) = (FLEX_1(F,x), ..., FLEX_n(F,x))$ with $x \in \mathbb{R}^n$.
+
+---
+
+## Installation
+
+### Requirements
+- Python 3.8+
+- Required libraries:
+  - `numpy`
+  - `torch`
+  - `captum`
+
+### Install Dependencies
+You can install the required Python libraries using `pip`:
+```bash
+pip install numpy torch captum
+```
+
+---
+
+# Documentation
+
+## freqIG.attribute
+Compute frequency-based attribution scores for a model predicting on time-series data.
+
+```bash
+freqIG.attribute(
+    input: Union[np.ndarray, list, torch.Tensor],
+    model: Any,
+    target: Optional[int] = None,
+    baseline: Optional[Union[np.ndarray, list, torch.Tensor]] = None,
+    n_steps: int = 50,
+    segment: Optional[Union[np.ndarray, list, torch.Tensor]] = None,
+    start_idx: Optional[int] = None,
+    additional_forward_args: Optional[Any] = None
+) -> np.ndarray
+```
+
+### Parameters
+- **input** : array-like or torch.Tensor  
+  The input time-series data.
+
+- **model** : callable  
+  The (frequency-domain) model to explain.
+
+- **target** : int, optional  
+  Index of the class to explain. If None, explains the model's predicted class.
+
+- **baseline** : array-like or torch.Tensor, optional  
+  Baseline input for Integrated Gradients. Defaults to zero input.
+
+- **n_steps** : int, default=50  
+  Number of steps in the IG path.
+
+- **segment** : array-like or torch.Tensor, optional  
+  Segment of the input for localized attribution.
+
+- **start_idx** : int, optional  
+  Start index of the segment within the original input.
+
+- **additional_forward_args** : Any, optional  
+  Additional arguments passed to the model during attribution.
+
+### Returns
+
+- **np.ndarray**  
+  Array containing the frequency attribution scores.
+
+### Raises
+
+- **ValueError**  
+  If `segment` is provided but `start_idx` is missing, or if the segment exceeds the bounds of the input.
+- **ValueError**  
+  If `baseline` is provided but its shape does not match the input.
+
+### Notes
+
+This function applies Integrated Gradients in the frequency domain to provide frequency-wise attributions for any model acting on time-series data, following the FLEX [1] principle.
+
+### References
+
+[1] Using EEG Frequency Attributions to Explain the Classifications of a Deep Neural Network for Sleep Staging  
+Paul GrÃ¤ve, T. Steinbrinker, F. Ehrlich, P. Hempel, P. Zaschke, D. Krefting, N. Spicher; 2025.
+
+### Examples
+
+```bash
+from freqIG import attribute
+
+# Generate dummy time-series data: 20 samples, each of length 10
+np.random.seed(0)
+n_samples = 20
+n_features = 10
+X = np.linspace(0, 1, n_features)[None, :] + 0.1 * np.random.randn(n_samples, n_features)
+y = np.random.randint(0, 2, size=(n_samples,))  # Binary classification
+
+X_torch = torch.tensor(X, dtype=torch.float32)
+y_torch = torch.tensor(y, dtype=torch.long)
+
+# Simple frequency-domain model (2-class classifier)
+class SimpleModel(torch.nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.fc = torch.nn.Linear(n_features, 2)
+    def forward(self, x):
+        return self.fc(x)
+
+model = SimpleModel()
+criterion = torch.nn.CrossEntropyLoss()
+optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
+
+# VERY simple training loop (just for demonstration!)
+model.train()
+for epoch in range(30):
+    optimizer.zero_grad()
+    outputs = model(X_torch)
+    loss = criterion(outputs, y_torch)
+    loss.backward()
+    optimizer.step()
+model.eval()
+
+# Pick one sample for explanation
+sample = X[0:1]
+
+# Run freqIG.attribute to get attributions
+attr_scores = attribute(
+    input=sample,    # shape (1, 10)
+    model=model,
+    target=0,        # Explain class 0
+    n_steps=30
+)
+
+print("Attribution scores:", attr_scores)
+```
