@@ -1,0 +1,19 @@
+from enum import Enum
+from plum import dispatch
+from typing import TypeVar,Union,Generic,List,Tuple
+from spire.xls.common import *
+from spire.xls import *
+from ctypes import *
+import abc
+
+class HyperLinkType(Enum):
+    """
+    Hyper link type.
+
+    """
+    none = 0
+    Url = 1
+    File = 2
+    Unc = 3
+    Workbook = 4
+
