@@ -1,0 +1,33 @@
+from typing import Dict
+
+from zenx.pipelines.base import Pipeline
+from zenx.exceptions import DropItem
+from zenx.utils import log_processing_time
+
+
+
+class PreprocessPipeline(Pipeline):
+    name = "preprocess"
+    required_settings = []
+
+
+    async def start(self) -> None: 
+        pass 
+    
+    
+    @log_processing_time
+    async def process_item(self, item: Dict, spider: str) -> Dict:
+        self.drop_if_scraped_too_late(item)
+        _id = item.get("_id")
+        if _id:
+            inserted = await self.db.insert(_id, spider)
+            if not inserted:
+                raise DropItem
+
+        scraped_time = item['scraped_at'] - item['responded_at']
+        self.logger.info("scraped", id=item.get("_id"), time_ms=scraped_time)
+        return item
+    
+
+    async def close(self) -> None: 
+        pass
