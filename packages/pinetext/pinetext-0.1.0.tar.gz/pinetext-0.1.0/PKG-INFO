@@ -1,0 +1,15 @@
+Metadata-Version: 2.4
+Name: pinetext
+Version: 0.1.0
+Summary: PineText
+License-File: LICENSE
+Requires-Python: >=3.13
+Requires-Dist: pinecone>=7.3.0
+Requires-Dist: pydantic-settings>=2.10.1
+Requires-Dist: typer>=0.16.0
+Description-Content-Type: text/markdown
+
+## PineText
+
+[![test](https://github.com/ezhuk/pinetext/actions/workflows/test.yml/badge.svg)](https://github.com/ezhuk/pinetext/actions/workflows/test.yml)
+[![codecov](https://codecov.io/github/ezhuk/pinetext/graph/badge.svg?token=0YJASFE5OM)](https://codecov.io/github/ezhuk/pinetext)
