@@ -1,0 +1,50 @@
+DoctorCheck
+DoctorCheck est un package Python qui fournit une application Django pour évaluer la santé des utilisateurs en fonction de leur tension artérielle et d'autres symptômes, sans utiliser de base de données. Il inclut une interface interactive HTML/CSS/JS pour collecter les données et fournir un diagnostic simple.
+Installation
+pip install doctorcheck
+
+Création de l'application
+Après avoir installé le package, vous pouvez créer l'application Django doctorcheck dans votre répertoire courant avec la commande suivante :
+create_doctorcheck
+
+Cela générera automatiquement le dossier doctorcheck avec tous les fichiers nécessaires (vues, templates, fichiers statiques, etc.).
+Configuration
+
+Copiez le dossier doctorcheck généré dans votre projet Django.
+Ajoutez "doctorcheck" à INSTALLED_APPS dans votre fichier settings.py :
+
+INSTALLED_APPS = [
+    ...
+    "doctorcheck",
+]
+
+
+Incluez les URLs dans votre fichier urls.py principal :
+
+from django.urls import include, path
+
+urlpatterns = [
+    ...
+    path("health/", include("doctorcheck.urls")),
+]
+
+
+Assurez-vous que les fichiers statiques sont collectés :
+
+python manage.py collectstatic
+
+Utilisation
+
+Accédez à l'URL /health/ pour voir le formulaire d'évaluation.
+Entrez l'âge, la tension systolique, la tension diastolique, et cochez les symptômes (maux de tête, fatigue).
+Soumettez le formulaire pour obtenir un diagnostic.
+
+Développement
+Pour contribuer ou modifier le package :
+
+Clonez le dépôt : git clone https://github.com/votre-compte/doctorcheck.git
+Installez les dépendances : pip install -r requirements.txt
+Testez avec : python -m unittest discover tests
+
+Licence
+MIT
