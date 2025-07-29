@@ -1,0 +1,16 @@
+LICENCE
+README.md
+setup.py
+django_app1/__init__.py
+django_app1/admin.py
+django_app1/apps.py
+django_app1/models.py
+django_app1/tests.py
+django_app1/urls.py
+django_app1/views.py
+django_app1.egg-info/PKG-INFO
+django_app1.egg-info/SOURCES.txt
+django_app1.egg-info/dependency_links.txt
+django_app1.egg-info/entry_points.txt
+django_app1.egg-info/top_level.txt
+django_app1/migrations/__init__.py
