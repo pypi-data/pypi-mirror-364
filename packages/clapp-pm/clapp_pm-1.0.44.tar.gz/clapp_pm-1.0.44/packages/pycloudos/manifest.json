@@ -1,0 +1,15 @@
+{
+  "name": "pycloudos",
+  "version": "1.0.0",
+  "language": "python",
+  "entry": "main.py",
+  "description": "Python ile yazılmış işletim sistemi",
+  "dependencies": [
+    "flet",
+    "supabase",
+    "requests",
+    "black",
+    "flake8",
+    "mypy"
+  ]
+}
