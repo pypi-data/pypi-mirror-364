@@ -1,0 +1,149 @@
+Metadata-Version: 2.4
+Name: cs-py-func
+Version: 20250724
+Summary: Convenience facilities related to Python functions.
+Keywords: python2,python3
+Author-email: Cameron Simpson <cs@cskk.id.au>
+Requires-Python: >=3
+Description-Content-Type: text/markdown
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Project-URL: MonoRepo Commits, https://bitbucket.org/cameron_simpson/css/commits/branch/main
+Project-URL: Monorepo Git Mirror, https://github.com/cameron-simpson/css
+Project-URL: Monorepo Hg/Mercurial Mirror, https://hg.sr.ht/~cameron-simpson/css
+Project-URL: Source, https://github.com/cameron-simpson/css/blob/main/lib/python/cs/py/func.py
+
+Convenience facilities related to Python functions.
+
+*Latest release 20250724*:
+* func_a_kw_fmt: shorten long %r, widen another field.
+* Drop Python 2 support.
+
+Short summary:
+* `callif`: Call `func(*a,**kw)` if `doit` is true otherwise just print it out.
+* `callmethod_if`: Call the named `method` on the object `obj` if it exists.
+* `derived_from`: A property which must be recomputed if the revision of another property exceeds the snapshot revision.
+* `derived_property`: A property which must be recomputed if the reference revision (attached to self) exceeds the snapshot revision.
+* `func_a_kw`: Return a string representing a call to `func(*a,**kw)`.
+* `func_a_kw_fmt`: Prepare a percent-format string and associated argument list describing a call to `func(*a,**kw)`. Return `format,args`.
+* `funccite`: Return a citation for a function (name and code location).
+* `funcname`: Return a name for the supplied function `func`. Several objects do not have a __name__ attribute, such as partials.
+* `prop`: A substitute for the builtin @property.
+
+Module contents:
+- <a name="callif"></a>`callif(doit, func, *a, **kw)`: Call `func(*a,**kw)` if `doit` is true
+  otherwise just print it out.
+
+  The parameter `func` may be preceeded optionally by a `dict`
+  containing modes. The current modes are:
+  * `'print'`: the print function, default the builtin `print`
+- <a name="callmethod_if"></a>`callmethod_if(obj, method, default=None, a=None, kw=None)`: Call the named `method` on the object `obj` if it exists.
+
+  If it does not exist, return `default` (which defaults to None).
+  Otherwise call getattr(obj, method)(*a, **kw).
+  `a` defaults to ().
+  `kw` defaults to {}.
+- <a name="derived_from"></a>`derived_from(property_name)`: A property which must be recomputed
+  if the revision of another property exceeds the snapshot revision.
+- <a name="derived_property"></a>`derived_property(func, original_revision_name='_revision', lock_name='_lock', property_name=None, unset_object=None)`: A property which must be recomputed
+  if the reference revision (attached to self)
+  exceeds the snapshot revision.
+- <a name="func_a_kw"></a>`func_a_kw(func, *a, **kw)`: Return a string representing a call to `func(*a,**kw)`.
+- <a name="func_a_kw_fmt"></a>`func_a_kw_fmt(func, *a, **kw)`: Prepare a percent-format string and associated argument list
+  describing a call to `func(*a,**kw)`.
+  Return `format,args`.
+
+  The `func` argument can also be a string,
+  typically a prepared description of `func` such as `funccite(func)`.
+
+  *Note*: the returned `args` is a `list` for easy incorporation
+  into further arguments.  The `%` operator requires a `tuple`.
+- <a name="funccite"></a>`funccite(func)`: Return a citation for a function (name and code location).
+- <a name="funcname"></a>`funcname(func)`: Return a name for the supplied function `func`.
+  Several objects do not have a __name__ attribute, such as partials.
+- <a name="prop"></a>`prop(func)`: A substitute for the builtin @property.
+
+  The builtin @property decorator lets internal AttributeErrors escape.
+  While that can support properties that appear to exist conditionally,
+  in practice this is almost never what I want, and it masks deeper errors.
+  Hence this wrapper for @property that transmutes internal AttributeErrors
+  into RuntimeErrors.
+
+# Release Log
+
+
+
+*Release 20250724*:
+* func_a_kw_fmt: shorten long %r, widen another field.
+* Drop Python 2 support.
+
+*Release 20240630*:
+funcname: include the module name, handle functions with no __module__.
+
+*Release 20230331*:
+Drop @trace, moved to cs.debug.
+
+*Release 20230210*:
+Drop the returns_* and yields_* decorators, these days type annotations and @typechecked are the go.
+
+*Release 20221207*:
+* @trace: trace exceptions by default, previously false.
+* Late import of cs.fs.shortpath to avoid import loop.
+* New func_a_kw(func,*a,**kw) returning the formatted form of func_a_kw_fmt(func,*a,**kw).
+
+*Release 20221118*:
+@trace: add indenting.
+
+*Release 20220619*:
+@trace: rename some parameters, add with_caller.
+
+*Release 20220311.1*:
+New callif(doit[,modes],func,*a,**kw) to call or print a function, used in -n/--dry-run stuff sometimes.
+
+*Release 20220311*:
+* @trace: new pprint=False option to use pprint.pformat instead of repr for the return value.
+* @trace: bugfix use of retval parameter.
+
+*Release 20210913*:
+New func_a_kw_fmt(func,*a,**kw) imported from cs.pfx, hooked it into @trace.
+
+*Release 20210906*:
+funcname: special case functools.partial, return concise name.
+
+*Release 20210717*:
+* Move @trace from debug to py.func, defer log call imports to avoid loops.
+* Drop cs.pfx requirement, import opportunisticly with fallback.
+
+*Release 20200518*:
+funcname: prefer `func.__qualname__` over `func.__name__`
+
+*Release 20190729*:
+funccite: handle callables with no __code__ attribute.
+
+*Release 20190108*:
+Break import loop. Use cs.py3.raise_from for portability.
+
+*Release 20181231*:
+* Some type specific convenience wrappers for yields_type and returns_type.
+* Bugfix for @prop.
+
+*Release 20170906.1*:
+Minor tweaks.
+
+*Release 20170906*:
+Bugfix for @prop.
+
+*Release 20170608*:
+New decorator @prop which works just like the builtin @property, but transmutes internal AttributeError into RuntimeError, unmasking many bugs.
+
+*Release 20160828*:
+Use "install_requires" instead of "requires" in DISTINFO.
+
+*Release 20150115*:
+First PyPI release.
