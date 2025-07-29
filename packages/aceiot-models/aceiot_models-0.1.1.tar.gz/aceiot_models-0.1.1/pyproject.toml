@@ -1,0 +1,234 @@
+[project]
+name = "aceiot-models"
+version = "0.1.1"
+description = "Pydantic models for ACE IoT Aerodrome platform"
+readme = "README.md"
+requires-python = ">=3.13"
+license = {text = "MIT"}
+authors = [
+    {name = "Andrew Rodgers", email = "andrew@aceiotsolutions.com"},
+]
+maintainers = [
+    {name = "Andrew Rodgers", email = "andrew@aceiotsolutions.com"},
+]
+keywords = ["aceiot", "iot", "pydantic", "models"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "pydantic>=2.11.7",
+    "pytz>=2025.2",
+    "pyyaml>=6.0.2",
+    "toml>=0.10.2",
+    "email-validator>=2.1.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/ACE-IoT-Solutions/aceiot-models"  # Update with your repo URL
+Repository = "https://github.com/ACE-IoT-Solutions/aceiot-models.git"  # Update with your repo URL
+Issues = "https://github.com/ACE-IoT-Solutions/aceiot-models/issues"  # Update with your repo URL
+
+[dependency-groups]
+dev = [
+    "pyrefly>=0.25.0",
+    "pytest>=8.4.1", 
+    "ruff>=0.12.4",
+    "pytest-cov>=6.2.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+# Ruff configuration for linting
+line-length = 100
+target-version = "py313"
+exclude = [
+    ".bzr",
+    ".direnv", 
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+]
+
+[tool.ruff.lint]
+# Enable specific rule categories
+select = [
+    # Pyflakes
+    "F",
+    # pycodestyle
+    "E", "W",
+    # isort
+    "I",
+    # pep8-naming
+    "N",
+    # pydocstyle
+    "D",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # flake8-comprehensions
+    "C4",
+    # flake8-pie
+    "PIE",
+    # flake8-type-checking
+    "TCH",
+    # flake8-unused-arguments
+    "ARG",
+    # flake8-use-pathlib
+    "PTH",
+    # Ruff-specific rules
+    "RUF",
+]
+
+ignore = [
+    # Allow non-lowercase variable names (for API compatibility)
+    "N806",
+    # Allow builtin attribute shadowing
+    "A003", 
+    # Allow missing docstrings in magic methods
+    "D105",
+    # Allow missing docstrings in nested functions
+    "D106",
+    # Allow missing docstrings in __init__ methods
+    "D107",
+    # Line too long - let formatter handle this
+    "E501",
+    # Allow relative imports
+    "TID252",
+]
+
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = []
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.lint.per-file-ignores]
+# Tests can use magic values, assertions, and relative imports
+"tests/**/*.py" = [
+    "D100", "D101", "D102", "D103", "D104",  # Missing docstrings in tests
+    "S101",  # Use of assert in tests
+    "PLR2004",  # Magic value used in comparison
+    "ARG001", "ARG002",  # Unused function arguments in tests
+]
+# __init__.py files can have unused imports
+"**/__init__.py" = [
+    "F401",  # Unused import
+    "D104",  # Missing docstring in public package
+]
+
+[tool.ruff.lint.pydocstyle]
+# Use Google-style docstrings
+convention = "google"
+
+[tool.ruff.lint.isort]
+# Import sorting configuration
+force-single-line = false
+force-sort-within-sections = false
+lines-after-imports = 2
+known-first-party = ["aceiot_models"]
+known-third-party = ["pydantic", "pytest"]
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+
+[tool.ruff.format]
+# Enable auto-formatting
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.pyrefly]
+# Pyrefly configuration for type checking
+include = ["aceiot_models", "tests"]
+exclude = [
+    ".venv",
+    "**/__pycache__",
+    "build",
+    "dist"
+]
+
+python_version = "3.13"
+strict = false
+
+[tool.pytest.ini_options]
+# Pytest configuration
+minversion = "8.0"
+addopts = [
+    "--strict-markers",
+    "--strict-config", 
+    "--verbose",
+    "--tb=short",
+    "--cov=aceiot_models",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--cov-report=xml",
+    "--cov-fail-under=40",
+]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests", 
+    "api: marks tests as API tests",
+]
+
+[tool.coverage.run]
+# Coverage configuration
+source = ["aceiot_models"]
+omit = [
+    "tests/*",
+    "*/tests/*", 
+    "*/__pycache__/*",
+    "*/migrations/*",
+    "setup.py",
+]
+
+[tool.coverage.report]
+# Coverage reporting
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]

@@ -1,0 +1,70 @@
+Metadata-Version: 2.4
+Name: aceiot-models
+Version: 0.1.1
+Summary: Pydantic models for ACE IoT Aerodrome platform
+Project-URL: Homepage, https://github.com/ACE-IoT-Solutions/aceiot-models
+Project-URL: Repository, https://github.com/ACE-IoT-Solutions/aceiot-models.git
+Project-URL: Issues, https://github.com/ACE-IoT-Solutions/aceiot-models/issues
+Author-email: Andrew Rodgers <andrew@aceiotsolutions.com>
+Maintainer-email: Andrew Rodgers <andrew@aceiotsolutions.com>
+License: MIT
+License-File: LICENSE
+Keywords: aceiot,iot,models,pydantic
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.13
+Requires-Dist: email-validator>=2.1.0
+Requires-Dist: pydantic>=2.11.7
+Requires-Dist: pytz>=2025.2
+Requires-Dist: pyyaml>=6.0.2
+Requires-Dist: toml>=0.10.2
+Description-Content-Type: text/markdown
+
+# aceiot-models
+
+Pydantic models for the ACE IoT Aerodrome Platform
+
+## Installation
+
+```bash
+pip install aceiot-models
+```
+
+## Usage
+
+```python
+from aceiot_models import Sample, BACnetModel
+
+# Example usage will be added here
+```
+
+## Development
+
+This project uses `uv` for dependency management. To set up a development environment:
+
+```bash
+# Install uv if you haven't already
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Clone the repository
+git clone https://github.com/yourusername/aceiot-models.git
+cd aceiot-models
+
+# Install dependencies
+uv sync --all-extras
+
+# Run tests
+uv run pytest
+
+# Run linting
+uv run ruff check .
+uv run ruff format .
+```
+
+## License
+
+MIT License
