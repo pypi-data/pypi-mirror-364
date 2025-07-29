@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: keypractice
+Version: 0.1.0
+Summary: A slim, cross-platform terminal-based typing trainer with YAML-based exercises and analytics.
+Author: Your Name
+Requires-Python: >=3.7
+Requires-Dist: PyYAML>=6.0
+Dynamic: author
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
