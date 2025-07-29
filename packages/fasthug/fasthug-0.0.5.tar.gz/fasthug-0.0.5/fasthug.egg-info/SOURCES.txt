@@ -1,0 +1,17 @@
+LICENSE
+README.md
+pyproject.toml
+fasthug/__init__.py
+fasthug/__main__.py
+fasthug/bench.py
+fasthug/fasthug.py
+fasthug.egg-info/PKG-INFO
+fasthug.egg-info/SOURCES.txt
+fasthug.egg-info/dependency_links.txt
+fasthug.egg-info/entry_points.txt
+fasthug.egg-info/requires.txt
+fasthug.egg-info/top_level.txt
+tests/test_basic.py
+tests/test_bench.py
+tests/test_quantization.py
+utils/app.py

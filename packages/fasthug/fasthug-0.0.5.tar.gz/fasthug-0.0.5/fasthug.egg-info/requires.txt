@@ -1,0 +1,6 @@
+torch
+transformers
+accelerate
+numpy
+huggingface_hub
+tabulate

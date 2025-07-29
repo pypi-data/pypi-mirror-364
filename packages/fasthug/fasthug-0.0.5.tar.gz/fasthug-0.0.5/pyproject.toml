@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fasthug"
+version = "0.0.5"
+description = "Load HuggingFace Large Language Models 5x faster"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+authors = [{ name = "Alvin Wan" }]
+dependencies = [
+    "torch",
+    "transformers",
+    "accelerate",
+    "numpy",
+    "huggingface_hub",
+    "tabulate",
+]
+
+[project.scripts]
+fhb = "fasthug.__main__:main"
+fhbench = "fasthug.__main__:main"
+fasthugbench = "fasthug.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
