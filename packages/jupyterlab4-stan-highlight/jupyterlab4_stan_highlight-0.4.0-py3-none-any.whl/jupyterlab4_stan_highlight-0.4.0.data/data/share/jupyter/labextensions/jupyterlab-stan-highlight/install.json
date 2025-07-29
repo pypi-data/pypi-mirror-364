@@ -1,0 +1,13 @@
+{
+    "name": "jupyterlab4-stan-highlight",
+    "discovery": {
+        "server": {
+            "managers": [
+                "pip"
+            ],
+            "base": {
+                "name": "jupyterlab4_stan_highlight"
+            }
+        }
+    }
+}

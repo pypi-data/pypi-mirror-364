@@ -1,0 +1,139 @@
+Metadata-Version: 2.4
+Name: jupyterlab4_stan_highlight
+Version: 0.4.0
+Dynamic: Keywords
+Summary: Jupyterlab extension to highlight Stan syntax
+Project-URL: Repository, https://github.com/earth06/jupyterlab-stan-highlight.git
+Author: Oonishi Takato
+License: 
+        The MIT License (MIT)
+        Copyright (c) 2018, Kyle Barron
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+License-File: LICENSE
+Classifier: Framework :: Jupyter
+Classifier: Framework :: Jupyter :: JupyterLab
+Classifier: Framework :: Jupyter :: JupyterLab :: 4
+Classifier: Framework :: Jupyter :: JupyterLab :: Extensions
+Classifier: Framework :: Jupyter :: JupyterLab :: Extensions :: Prebuilt
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+
+# jupyterlab-stan-highlight
+
+JupyterLab extension to highlight Stan syntax in notebooks and standalone Stan files.
+
+This extension has been updated to work with **JupyterLab 4.0+** and uses CodeMirror 6 for syntax highlighting.
+
+Modeled on the [VSCode grammar](https://github.com/ivan-bocharov/stan-vscode) and uses 
+[stan-language-definitions](https://github.com/jrnold/stan-language-definitions)
+
+Use it with [CmdStanJupyter](https://github.com/WardBrian/CmdStanJupyter) to receive
+highlighting for your `%%stan` blocks in python notebooks!
+
+## Features
+
+- Syntax highlighting for `.stan` files
+- Automatic highlighting for `%%stan` magic cells in Jupyter notebooks
+- Support for Stan language constructs including:
+  - Data types (int, real, vector, matrix, etc.)
+  - Control flow (for, while, if, else)
+  - Distributions and functions
+  - Comments and preprocessor directives
+
+## Prerequisites
+
+* JupyterLab 4.0 or later
+
+## Installation
+
+### From PyPI (Recommended)
+
+```bash
+pip install jupyterlab-stan-highlight
+```
+
+### Development Installation
+
+For a development install, clone this repository and run:
+
+```bash
+pip install -e .
+# Or if you prefer to use conda/mamba
+# conda install -c conda-forge jupyterlab nodejs
+# mamba install -c conda-forge jupyterlab nodejs
+
+# Install dependencies
+jlpm install
+
+# Build the extension
+jlpm run build
+
+# Install the extension for development
+jupyter labextension develop . --overwrite
+```
+
+## Usage
+
+1. **Stan Files**: Open any `.stan` file in JupyterLab and syntax highlighting will be applied automatically.
+
+2. **Notebook Magic Cells**: In a Jupyter notebook, create a code cell that starts with `%%stan` and the rest of the cell content will be highlighted as Stan code:
+
+```python
+%%stan
+data {
+  int<lower=0> N;
+  vector[N] y;
+}
+parameters {
+  real mu;
+  real<lower=0> sigma;
+}
+model {
+  y ~ normal(mu, sigma);
+}
+```
+
+## Building
+
+To build the extension:
+
+```bash
+jlpm run build
+```
+
+To build for production:
+
+```bash
+jlpm run build:prod
+```
+
+## Changes from Previous Version
+
+This version (0.4.0+) includes major updates for JupyterLab 4 compatibility:
+
+- Migrated from CodeMirror 5 to CodeMirror 6
+- Updated to use JupyterLab 4 APIs
+- Modernized build system using `@jupyterlab/builder`
+- Added TypeScript support
+- Improved magic cell detection
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+MIT License - see LICENSE file for details.
