@@ -1,0 +1,4 @@
+[console_scripts]
+nshsnap=nshsnap.cli:main
+nshsnap-run=nshsnap.run_cli:main
+
