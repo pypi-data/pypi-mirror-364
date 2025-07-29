@@ -1,0 +1,12 @@
+dialectid/__init__.py,sha256=USKApZCAvx5A-IkrUBY_wBH3PS8v_J2r4b3vQmjvUf0,1340
+dialectid/model.py,sha256=tO5fLbSFkYdoNuDYaHYsuAriEoDTxY4NHw2QAgWicTo,7324
+dialectid/utils.py,sha256=yJdpBCg1XB9eVTtrr93Ps2lcHHPHVs25pjr4F6wqRCg,5670
+dialectid/data/emojis.json.gz,sha256=gVUcUy7yNR2ZkFxPHhB8hNvFIKM65t4pL6M2ELAwJnY,21602
+dialectid/tests/__init__.py,sha256=Wf46T-OV2s7efRAJOE1DCkVPf48AmwGukxWdxArO_U4,1221
+dialectid/tests/test_model.py,sha256=6kWu2iwlqcgTCkiq-IgHL98lU9Zs2FFHJbpfnOU47UY,5888
+dialectid/tests/test_utils.py,sha256=e83v17-hG4os-dgCnieB8y2DreV3t0kjbmwgfRKDm7s,2260
+dialectid-0.1.3.dist-info/licenses/LICENSE,sha256=b2Fw8m_VQjSbrrIs6BjgMGEix3a6GAMPvMkyrQAP-yU,1189
+dialectid-0.1.3.dist-info/METADATA,sha256=7J0I9DaDmr2wvDw1ZBOX8k3-wT_sopsqnOEcTok8Vg8,2118
+dialectid-0.1.3.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+dialectid-0.1.3.dist-info/top_level.txt,sha256=InE4bfGUJ2K3g9kbLjLt_Rjekx21ga-9LzMXpcqLGmg,10
+dialectid-0.1.3.dist-info/RECORD,,
