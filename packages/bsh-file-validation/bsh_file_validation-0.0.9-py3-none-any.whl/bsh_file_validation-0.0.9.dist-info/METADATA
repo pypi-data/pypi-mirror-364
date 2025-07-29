@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: bsh-file-validation
+Version: 0.0.9
+Summary: A simple library for file validation
+Home-page: https://pypi.org/project/bsh-file-validation/
+Author: BSH_USER
+Author-email: ramvinoth1993@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+Requires-Dist: msal==1.32.3
+Requires-Dist: tinytag==2.1.0
+Requires-Dist: moviepy==1.0.3
+
+# BSH File Validation
+
+
