@@ -1,0 +1,14 @@
+scikit-learn>=1.2
+threadpoolctl>=3.1
+scikit-survival<1.0,>=0.22
+scipy>=1.11
+pandas>=1.5
+matplotlib>=3.7
+
+[dev]
+pytest
+twine
+
+[gui]
+dearpygui<2.0,>=1.6.2
+dearpygui-ext<1.0,>=0.9.5
