@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+requirements.txt
+setup.py
+enhanced_chinese_translator/__init__.py
+enhanced_chinese_translator/translator.py
+enhanced_chinese_translator.egg-info/PKG-INFO
+enhanced_chinese_translator.egg-info/SOURCES.txt
+enhanced_chinese_translator.egg-info/dependency_links.txt
+enhanced_chinese_translator.egg-info/entry_points.txt
+enhanced_chinese_translator.egg-info/not-zip-safe
+enhanced_chinese_translator.egg-info/requires.txt
+enhanced_chinese_translator.egg-info/top_level.txt
