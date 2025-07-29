@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: adss
+Version: 1.24
+Summary: Astronomical Data Smart System
+Home-page: https://github.com/schwarzam/adss
+Author: Gustavo Schwarz
+Author-email: gustavo.b.schwarz@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+License-File: LICENSE
+Requires-Dist: requests
+Requires-Dist: astropy
+
