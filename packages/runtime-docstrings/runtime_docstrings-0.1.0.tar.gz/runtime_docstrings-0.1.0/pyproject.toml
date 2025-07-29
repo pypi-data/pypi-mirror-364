@@ -1,0 +1,29 @@
+[project]
+name = "runtime-docstrings"
+version = "0.1.0"
+description = "Runtime access to Python class attribute docstrings (PEP 224)"
+readme = "README.md"
+authors = [{ name = "gesslerpd", email = "gesslerpd@users.noreply.github.com" }]
+requires-python = ">=3.10"
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/gesslerpd/runtime-docstrings"
+Repository = "https://github.com/gesslerpd/runtime-docstrings"
+Issues = "https://github.com/gesslerpd/runtime-docstrings/issues"
+
+[build-system]
+requires = ["uv-build>=0.8.2"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = ["pytest>=8.4.1", "pytest-cov>=6.2.1", "ruff>=0.12.4"]
+
+[tool.pytest.ini_options]
+addopts = "--import-mode=importlib"
+
+[tool.coverage.run]
+branch = true
+
+[tool.coverage.report]
+precision = 2
