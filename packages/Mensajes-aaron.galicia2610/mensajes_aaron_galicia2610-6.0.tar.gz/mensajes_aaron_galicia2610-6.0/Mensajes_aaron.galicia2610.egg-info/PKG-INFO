@@ -1,0 +1,32 @@
+Metadata-Version: 2.4
+Name: Mensajes-aaron.galicia2610
+Version: 6.0
+Summary: Un paquete para saludar y despedir
+Home-page: https://www.facebook.com/GaliciaProvide/
+Author: A.E. Galicia
+Author-email: aaron.galicia2610@outlook.com
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy>=1.24.1
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary
+
+# Mensajes
+
+El paquete de mensajeria para pruebas de AarÃ³n Galicia
+
