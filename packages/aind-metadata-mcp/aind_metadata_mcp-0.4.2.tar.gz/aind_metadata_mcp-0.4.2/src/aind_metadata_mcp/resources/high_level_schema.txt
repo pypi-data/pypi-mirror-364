@@ -1,0 +1,569 @@
+The graph below represents the structure of each metadata asset. 
+Use this as a reference to determine high level nesting structure for simple queries.
+Note that the actual schema includes more nesting that is not included in this schema.
+
+Metadata/
+├── metadata_status
+├── name (name of data asset, follows specific structure <modality>_<subject_id>_<date>)
+├── quality_control
+├── schema_version
+├── external_links/
+│   ├── Code Ocean: array (code ocean asset id)
+├── acquisition/
+│   ├── describedBy: string
+│   ├── schema_version: string
+│   ├── protocol_id: array (DOI for protocols.io)
+│   ├── experimenter_full_name*: array (First and last name of the experimenter(s))
+│   ├── specimen_id*: string
+│   ├── subject_id: string or null
+│   ├── instrument_id*: string
+│   ├── calibrations: array (List of calibration measurements taken prior to acquisition)
+│   ├── maintenance: array (List of maintenance on rig prior to acquisition)
+│   ├── session_start_time*: string
+│   ├── session_end_time*: string
+│   ├── session_type: string or null
+│   ├── tiles*: array
+│   ├── axes*: array
+│   ├── chamber_immersion*: enum
+│   ├── sample_immersion: string or null
+│   ├── active_objectives: array or null
+│   ├── local_storage_directory: string or null
+│   ├── external_storage_directory: string or null
+│   ├── processing_steps: array (List of downstream processing steps planned for each channel)
+│   ├── software: object or null
+│   └── notes: string or null
+│
+├── data_description/
+│   ├── describedBy: string
+│   ├── schema_version: string
+│   ├── license: string
+│   ├── platform*: object (Name for a standardized primary data collection system)
+│   ├── subject_id*: string (Unique identifier for the subject of data acquisition)
+│   ├── creation_time*: string (Time that data files were created)
+│   ├── label: string or null (A short name for the data, used in file names and labels)
+│   ├── name: string or null (Name of data, conventionally also the name of the directory)
+│   ├── institution*: object (Organization that collected this data)
+│   ├── funding_source*: array (Funding source. If internal funding, select 'Allen Institute')
+│   ├── data_level*: enum (Level of processing that data has undergone - contains one of these words: [derived, raw, simulated])
+│   ├── group: string or null (A short name for the group of individuals that collected this data)
+│   ├── investigators*: array (Full name(s) of key investigators)
+│   ├── project_name: string or null (A name for a set of coordinated activities)
+│   ├── restrictions: string or null (Detail any restrictions on publishing or sharing these data)
+│   ├── modality*: array (A short name for the specific manner of data generation)
+│   ├── related_data: array (Path and description of associated data assets)
+│   └── data_summary: string or null (Semantic summary of experimental goal)
+│
+├── instrument/
+│   ├── describedBy: string
+│   ├── schema_version: string
+│   ├── instrument_id: string or null
+│   ├── modification_date*: string
+│   ├── instrument_type*: enum
+│   ├── manufacturer*: object
+│   ├── temperature_control: object or null
+│   ├── humidity_control: object or null
+│   ├── optical_tables: array
+│   ├── enclosure: object or null
+│   ├── objectives*: array
+│   ├── detectors: array
+│   ├── light_sources: array
+│   ├── lenses: array
+│   ├── fluorescence_filters: array
+│   ├── motorized_stages: array
+│   ├── scanning_stages: array
+│   ├── additional_devices: array
+│   ├── calibration_date: string or null
+│   ├── calibration_data: string or null
+│   ├── com_ports: array
+│   ├── daqs: array
+│   └── notes: string or null
+│
+├── procedures/
+│   ├── describedBy: string
+│   ├── schema_version: string
+│   ├── subject_id*: string (Unique identifier for the subject)
+│   ├── subject_procedures: array
+│   ├── specimen_procedures: array
+│   └── notes: string or null
+│
+├── processing/
+│   ├── describedBy: string
+│   ├── schema_version: string
+│   ├── processing_pipeline*: enum (Pipeline used to process data)
+│   ├── analyses: array (Analysis steps taken after processing)
+│   └── notes: string or null
+│
+├── quality_control/
+│   ├── describedBy: string
+│   ├── schema_version: string
+│   ├── evaluations*: array
+│   └── notes: string or null
+│
+├── rig/
+│   ├── describedBy: string
+│   ├── schema_version: string
+│   ├── rig_id*: string (Unique rig identifier)
+│   ├── modification_date*: string
+│   ├── mouse_platform*: object
+│   ├── stimulus_devices: array
+│   ├── cameras: array
+│   ├── enclosure: object or null
+│   ├── ephys_assemblies: array
+│   ├── fiber_assemblies: array
+│   ├── stick_microscopes: array
+│   ├── laser_assemblies: array
+│   ├── patch_cords: array
+│   ├── light_sources: array
+│   ├── detectors: array
+│   ├── objectives: array
+│   ├── filters: array
+│   ├── lenses: array
+│   ├── digital_micromirror_devices: array
+│   ├── polygonal_scanners: array
+│   ├── pockels_cells: array
+│   ├── additional_devices: array
+│   ├── daqs: array
+│   ├── calibrations*: array
+│   ├── ccf_coordinate_transform: string or null (Path to coordinate transform file)
+│   ├── origin: object or null
+│   ├── rig_axes: object or null
+│   ├── modalities*: array
+│   └── notes: string or null
+│
+├── session/
+│   ├── describedBy: string
+│   ├── schema_version: string
+│   ├── protocol_id: array (DOI for protocols.io)
+│   ├── experimenter_full_name*: array (First and last name of the experimenter(s))
+│   ├── session_start_time*: string
+│   ├── session_end_time: string or null
+│   ├── session_type*: string
+│   ├── iacuc_protocol: string or null
+│   ├── rig_id*: string
+│   ├── calibrations: array (Calibrations of rig devices prior to session)
+│   ├── maintenance: array (Maintenance of rig devices prior to session)
+│   ├── subject_id*: string
+│   ├── animal_weight_prior: number or null (Animal weight before procedure)
+│   ├── animal_weight_post: number or null (Animal weight after procedure)
+│   ├── weight_unit: enum
+│   ├── anaesthesia: object or null
+│   ├── data_streams*: array (Collection of devices recorded simultaneously)
+│   ├── stimulus_epochs: array
+│   ├── mouse_platform_name*: string
+│   ├── active_mouse_platform*: boolean (Is the mouse platform being actively controlled)
+│   ├── headframe_registration: object or null (MRI transform matrix for headframe)
+│   ├── reward_delivery: number or null
+│   ├── reward_consumed_total: number or null
+│   ├── reward_consumed_unit: enum
+│   └── notes: string or null
+│
+└── subject/
+    ├── describedBy: string
+    ├── schema_version: string
+    ├── subject_id*: string (Unique identifier for the subject)
+    ├── sex*: enum
+    ├── date_of_birth*: string
+    ├── genotype: string or null (Genotype of the animal providing both alleles)
+    ├── species*: object
+    ├── alleles: array (Allele names and persistent IDs)
+    ├── background_strain: object or null
+    ├── breeding_info: object or null
+    ├── source*: object (Where the subject was acquired from)
+    ├── rrid: object or null (RRID of mouse if acquired from supplier)
+    ├── restrictions: string or null (Any restrictions on use or publishing)
+    ├── wellness_reports: array
+    ├── housing: object or null
+    └── notes: string or null
+
+The quality_control schema defines how quality metrics are organized and evaluated for data assets:
+
+- Each data asset has an array of "evaluations"
+- Each evaluation contains:
+  - modality: The type of data (SPIM, ecephys, behavior, etc.)
+  - stage: When quality was assessed (Raw data, Processing, Analysis, Multi-asset)
+  - metrics: Array of individual measurements with name, value, and status history
+  - status: Overall Pass/Fail/Pending status of the evaluation
+Important quality_control query patterns:
+1. To query evaluation properties:
+   {"quality_control.evaluations": {"\$elemMatch": {<conditions>}}}
+
+2. To unwind and query individual evaluations:
+   [{\$unwind: "\$quality_control.evaluations"}, {\$match: {"quality_control.evaluations.<field>": <value>}}]
+
+3. To query metrics within evaluations:
+   [{\$unwind: "\$quality_control.evaluations"}, 
+    {\$unwind: "\$quality_control.evaluations.metrics"},
+    {\$match: {"quality_control.evaluations.metrics.name": <metric_name>}}]
+
+4. For aggregating QC statistics:
+   [{\$unwind: "\$quality_control.evaluations"},
+    {\$group: {_id: "\$quality_control.evaluations.modality.abbreviation", count: {\$sum: 1}}}]
+
+Example queries:
+- Find assets with failed quality control evaluations: 
+  {"quality_control.evaluations.latest_status": "Fail"}
+- Find SPIM data with pending QC: 
+  {"quality_control.evaluations": {"\$elemMatch": {"modality.abbreviation": "SPIM", "latest_status": "Pending"}}}
+- Count metrics per evaluation: 
+  {\$project: {"metricCount": {\$size: "\$quality_control.evaluations.metrics"}}}
+
+Modality Reference (Use When Applicable):
+For modality filtering, use the shorthand codes, accessing data_description.modality.abbreviation:
+"EMG", "ISI", "MRI", "SPIM", "behavior", "behavior-videos", "confocal", "ecephys", "fMOST", "fib", "icephys", "merfish", "pophys", "slap"
+
+This is an example of a procedures field that's filled out - use it to gain more insight to how this class is structured.
+
+procedures": {
+        "describedBy": "https://raw.githubusercontent.com/AllenNeuralDynamics/aind-data-schema/main/src/aind_data_schema/core/procedures.py",
+        "schema_version": "0.11.2",
+        "subject_id": "662616",
+        "subject_procedures": [
+        {
+            "procedure_type": "Surgery",
+            "start_date": "2023-02-03",
+            "experimenter_full_name": "30509",
+            "iacuc_protocol": null,
+            "animal_weight_prior": null,
+            "animal_weight_post": null,
+            "weight_unit": "gram",
+            "anaesthesia": null,
+            "workstation_id": null,
+            "procedures": [
+            {
+                "procedure_type": "Perfusion",
+                "protocol_id": "dx.doi.org/10.17504/protocols.io.bg5vjy66",
+                "output_specimen_ids": [
+                "662616"
+                ]
+            }
+            ],
+            "notes": null
+        },
+        {
+            "procedure_type": "Surgery",
+            "start_date": "2023-01-05",
+            "experimenter_full_name": "NSB-5756",
+            "iacuc_protocol": "2109",
+            "animal_weight_prior": "16.6",
+            "animal_weight_post": "16.7",
+            "weight_unit": "gram",
+            "anaesthesia": {
+            "type": "isoflurane",
+            "duration": "120.0",
+            "duration_unit": "minute",
+            "level": "1.5"
+            },
+            "workstation_id": "SWS 1",
+            "procedures": [
+            {
+                "injection_materials": [
+                {
+                    "material_type": "Virus",
+                    "name": "SL1-hSyn-Cre",
+                    "tars_identifiers": {
+                    "virus_tars_id": null,
+                    "plasmid_tars_alias": null,
+                    "prep_lot_number": "221118-11",
+                    "prep_date": null,
+                    "prep_type": null,
+                    "prep_protocol": null
+                    },
+                    "addgene_id": null,
+                    "titer": {
+                    "$numberLong": "37500000000000"
+                    },
+                    "titer_unit": "gc/mL"
+                },
+                {
+                    "material_type": "Virus",
+                    "name": "AAV1-CAG-H2B-mTurquoise2-WPRE",
+                    "tars_identifiers": {
+                    "virus_tars_id": null,
+                    "plasmid_tars_alias": null,
+                    "prep_lot_number": "221118-4",
+                    "prep_date": null,
+                    "prep_type": null,
+                    "prep_protocol": null
+                    },
+                    "addgene_id": null,
+                    "titer": {
+                    "$numberLong": "15000000000000"
+                    },
+                    "titer_unit": "gc/mL"
+                }
+                ],
+                "recovery_time": "10.0",
+                "recovery_time_unit": "minute",
+                "injection_duration": null,
+                "injection_duration_unit": "minute",
+                "instrument_id": "NJ#2",
+                "protocol_id": "dx.doi.org/10.17504/protocols.io.bgpujvnw",
+                "injection_coordinate_ml": "0.35",
+                "injection_coordinate_ap": "2.2",
+                "injection_coordinate_depth": [
+                "2.1"
+                ],
+                "injection_coordinate_unit": "millimeter",
+                "injection_coordinate_reference": "Bregma",
+                "bregma_to_lambda_distance": "4.362",
+                "bregma_to_lambda_unit": "millimeter",
+                "injection_angle": "0",
+                "injection_angle_unit": "degrees",
+                "targeted_structure": "mPFC",
+                "injection_hemisphere": "Right",
+                "procedure_type": "Nanoject injection",
+                "injection_volume": [
+                "200"
+                ],
+                "injection_volume_unit": "nanoliter"
+            },
+            {
+                "injection_materials": [
+                {
+                    "material_type": "Virus",
+                    "name": "AAV-Syn-DIO-TVA66T-dTomato-CVS N2cG",
+                    "tars_identifiers": {
+                    "virus_tars_id": null,
+                    "plasmid_tars_alias": null,
+                    "prep_lot_number": "220916-4",
+                    "prep_date": null,
+                    "prep_type": null,
+                    "prep_protocol": null
+                    },
+                    "addgene_id": null,
+                    "titer": {
+                    "$numberLong": "18000000000000"
+                    },
+                    "titer_unit": "gc/mL"
+                }
+                ],
+                "recovery_time": "10.0",
+                "recovery_time_unit": "minute",
+                "injection_duration": null,
+                "injection_duration_unit": "minute",
+                "instrument_id": "NJ#2",
+                "protocol_id": "dx.doi.org/10.17504/protocols.io.bgpujvnw",
+                "injection_coordinate_ml": "2.9",
+                "injection_coordinate_ap": "-0.6",
+                "injection_coordinate_depth": [
+                "3.6"
+                ],
+                "injection_coordinate_unit": "millimeter",
+                "injection_coordinate_reference": "Bregma",
+                "bregma_to_lambda_distance": "4.362",
+                "bregma_to_lambda_unit": "millimeter",
+                "injection_angle": "30",
+                "injection_angle_unit": "degrees",
+                "targeted_structure": "VM",
+                "injection_hemisphere": "Right",
+                "procedure_type": "Nanoject injection",
+                "injection_volume": [
+                "200"
+                ],
+                "injection_volume_unit": "nanoliter"
+            }
+            ],
+            "notes": null
+        },
+        {
+            "procedure_type": "Surgery",
+            "start_date": "2023-01-25",
+            "experimenter_full_name": "NSB-5756",
+            "iacuc_protocol": "2109",
+            "animal_weight_prior": "18.6",
+            "animal_weight_post": "18.7",
+            "weight_unit": "gram",
+            "anaesthesia": {
+            "type": "isoflurane",
+            "duration": "45.0",
+            "duration_unit": "minute",
+            "level": "1.5"
+            },
+            "workstation_id": "SWS 5",
+            "procedures": [
+            {
+                "injection_materials": [
+                {
+                    "material_type": "Virus",
+                    "name": "EnvA CVS-N2C-histone-GFP",
+                    "tars_identifiers": {
+                    "virus_tars_id": null,
+                    "plasmid_tars_alias": null,
+                    "prep_lot_number": "221110",
+                    "prep_date": null,
+                    "prep_type": null,
+                    "prep_protocol": null
+                    },
+                    "addgene_id": null,
+                    "titer": {
+                    "$numberLong": "10700000000"
+                    },
+                    "titer_unit": "gc/mL"
+                }
+                ],
+                "recovery_time": "10.0",
+                "recovery_time_unit": "minute",
+                "injection_duration": null,
+                "injection_duration_unit": "minute",
+                "instrument_id": "NJ#5",
+                "protocol_id": "dx.doi.org/10.17504/protocols.io.bgpujvnw",
+                "injection_coordinate_ml": "2.9",
+                "injection_coordinate_ap": "-0.6",
+                "injection_coordinate_depth": [
+                "3.6"
+                ],
+                "injection_coordinate_unit": "millimeter",
+                "injection_coordinate_reference": "Bregma",
+                "bregma_to_lambda_distance": "4.362",
+                "bregma_to_lambda_unit": "millimeter",
+                "injection_angle": "30",
+                "injection_angle_unit": "degrees",
+                "targeted_structure": "VM",
+                "injection_hemisphere": "Right",
+                "procedure_type": "Nanoject injection",
+                "injection_volume": [
+                "200"
+                ],
+                "injection_volume_unit": "nanoliter"
+            }
+            ],
+            "notes": null
+        }
+        ],
+        "specimen_procedures": [
+        {
+            "procedure_type": "Fixation",
+            "procedure_name": "SHIELD OFF",
+            "specimen_id": "662616",
+            "start_date": "2023-02-10",
+            "end_date": "2023-02-12",
+            "experimenter_full_name": "DT",
+            "protocol_id": "none",
+            "reagents": [
+            {
+                "name": "SHIELD Epoxy",
+                "source": "LiveCanvas Technologies",
+                "rrid": null,
+                "lot_number": "unknown",
+                "expiration_date": null
+            },
+            {
+                "name": "SHIELD Buffer",
+                "source": "LiveCanvas Technologies",
+                "rrid": null,
+                "lot_number": "unknown",
+                "expiration_date": null
+            }
+            ],
+            "hcr_series": null,
+            "immunolabeling": null,
+            "notes": "None"
+        },
+        {
+            "procedure_type": "Fixation",
+            "procedure_name": "SHIELD ON",
+            "specimen_id": "662616",
+            "start_date": "2023-02-12",
+            "end_date": "2023-02-13",
+            "experimenter_full_name": "DT",
+            "protocol_id": "none",
+            "reagents": [
+            {
+                "name": "SHIELD ON",
+                "source": "LiveCanvas Technologies",
+                "rrid": null,
+                "lot_number": "unknown",
+                "expiration_date": null
+            }
+            ],
+            "hcr_series": null,
+            "immunolabeling": null,
+            "notes": "None"
+        },
+        {
+            "procedure_type": "Delipidation",
+            "procedure_name": "24h Delipidation",
+            "specimen_id": "662616",
+            "start_date": "2023-02-15",
+            "end_date": "2023-02-16",
+            "experimenter_full_name": "DT",
+            "protocol_id": "none",
+            "reagents": [
+            {
+                "name": "Delipidation Buffer",
+                "source": "LiveCanvas Technologies",
+                "rrid": null,
+                "lot_number": "unknown",
+                "expiration_date": null
+            }
+            ],
+            "hcr_series": null,
+            "immunolabeling": null,
+            "notes": "None"
+        },
+        {
+            "procedure_type": "Delipidation",
+            "procedure_name": "Active Delipidation",
+            "specimen_id": "662616",
+            "start_date": "2023-02-16",
+            "end_date": "2023-02-18",
+            "experimenter_full_name": "DT",
+            "protocol_id": "none",
+            "reagents": [
+            {
+                "name": "Conduction Buffer",
+                "source": "LiveCanvas Technologies",
+                "rrid": null,
+                "lot_number": "unknown",
+                "expiration_date": null
+            }
+            ],
+            "hcr_series": null,
+            "immunolabeling": null,
+            "notes": "None"
+        },
+        {
+            "procedure_type": "Refractive index matching",
+            "procedure_name": "50% EasyIndex",
+            "specimen_id": "662616",
+            "start_date": "2023-02-19",
+            "end_date": "2023-02-20",
+            "experimenter_full_name": "DT",
+            "protocol_id": "none",
+            "reagents": [
+            {
+                "name": "EasyIndex",
+                "source": "LiveCanvas Technologies",
+                "rrid": null,
+                "lot_number": "unknown",
+                "expiration_date": null
+            }
+            ],
+            "hcr_series": null,
+            "immunolabeling": null,
+            "notes": "None"
+        },
+        {
+            "procedure_type": "Refractive index matching",
+            "procedure_name": "100% EasyIndex",
+            "specimen_id": "662616",
+            "start_date": "2023-02-20",
+            "end_date": "2023-02-21",
+            "experimenter_full_name": "DT",
+            "protocol_id": "none",
+            "reagents": [
+            {
+                "name": "EasyIndex",
+                "source": "LiveCanvas Technologies",
+                "rrid": null,
+                "lot_number": "unknown",
+                "expiration_date": null
+            }
+            ],
+            "hcr_series": null,
+            "immunolabeling": null,
+            "notes": "None"
+        }
+        ],
+        "notes": null
+    },
