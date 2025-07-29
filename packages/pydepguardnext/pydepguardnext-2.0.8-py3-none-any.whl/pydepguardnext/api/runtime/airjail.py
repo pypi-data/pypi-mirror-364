@@ -1,0 +1,335 @@
+import os
+import shutil
+import tempfile
+import uuid
+from pathlib import Path
+from typing import List, Optional
+from pydepguardnext.api.log.logit import logit
+import builtins
+import types
+import sys
+from types import MappingProxyType 
+
+import os
+import stat
+from pathlib import Path
+
+JAIL_ROOT = Path(".").resolve(strict=True)
+
+def is_within_jail(path: Path) -> bool:
+    """
+    Verifies the given path is within the defined jail, even if symlinks are involved.
+    """
+    try:
+        # Realpath follows symlinks and collapses any `..` etc.
+        path_real = path.resolve(strict=True)
+        jail_real = JAIL_ROOT
+
+        # Fast case: check string prefix
+        if str(path_real).startswith(str(jail_real)):
+            return True
+
+        # Fallback: compare inodes to prevent mountpoint symlink escape
+        jail_dev_ino = os.stat(jail_real)
+        path_dev_ino = os.stat(path_real)
+
+        return jail_dev_ino.st_dev == path_dev_ino.st_dev and str(path_real).startswith(str(jail_real))
+
+    except FileNotFoundError:
+        # Even if file doesn't exist yet, block if its parent escapes jail
+        try:
+            parent = path.parent.resolve(strict=True)
+            return str(parent).startswith(str(JAIL_ROOT))
+        except Exception:
+            return False
+    except Exception:
+        return False
+
+def check_jail_violation(path: Path, op="read"):
+    """
+    Raises if a path is outside the jail root, accounting for symlinks, fds, etc.
+    """
+    if not is_within_jail(path):
+        raise PermissionError(f"[PDG] Jail violation ({op}): {path}")
+
+
+logslug = "api.runtime.airjail"
+_sandbox_enabled = False
+_maximum_security_details = {}
+_maximum_security_enabled = False
+
+def block_serialization_modules():
+    import sys
+    sys.modules["pickle"] = None
+    sys.modules["marshal"] = None
+    sys.modules["dill"] = None
+    logit("serialization modules (pickle, marshal, dill) blocked", "i")
+
+def wrap_subprocess_with_manifest(allowed_commands: list[str]):
+    import subprocess
+    import shlex
+
+    def is_allowed(cmd):
+        # Normalize command to string (even if it's a list)
+        if isinstance(cmd, list):
+            cmd_str = ' '.join(cmd)
+        else:
+            cmd_str = cmd
+
+        # Strip leading/trailing and tokenize to prevent sneaky trickery
+        tokens = shlex.split(cmd_str)
+
+        # Allow match if the whole command or base command is allowed
+        base = tokens[0] if tokens else ''
+        return cmd_str in allowed_commands or base in allowed_commands
+
+    def guarded_subprocess(*args, **kwargs):
+        cmd = args[0] if args else kwargs.get('args')
+
+        if not is_allowed(cmd):
+            logit(f"Blocked subprocess call: {cmd}", "x")
+            raise RuntimeError(f"Blocked subprocess call: {cmd}")
+
+        logit(f"Allowed subprocess call: {cmd}", "i")
+        return _real_subprocess_run(*args, **kwargs)
+
+    _real_subprocess_run = subprocess.run
+    subprocess.run = guarded_subprocess
+    subprocess.call = guarded_subprocess
+    subprocess.check_call = guarded_subprocess
+    subprocess.check_output = guarded_subprocess
+
+    def guarded_popen(*args, **kwargs):
+        cmd = args[0] if args else kwargs.get('args')
+        if not is_allowed(cmd):
+            logit(f"Blocked subprocess Popen: {cmd}", "x")
+            raise RuntimeError(f"Blocked subprocess Popen: {cmd}")
+        logit(f"Allowed subprocess Popen: {cmd}", "i")
+        return _real_popen(*args, **kwargs)
+
+    _real_popen = subprocess.Popen
+    subprocess.Popen = guarded_popen
+
+    logit("Subprocess wrapped with manifest-based policy", "i")
+
+
+def disable_os_escape():
+    import os
+    import subprocess
+
+    class BlockedEnviron(dict):
+        def __getitem__(self, key): raise RuntimeError("Access to environment variables is blocked")
+        def __setitem__(self, key, value): raise RuntimeError("Environment variable mutation blocked")
+
+    os.environ = BlockedEnviron()
+
+    def blocked_subprocess(*args, **kwargs):
+        raise RuntimeError("Subprocess execution is blocked")
+
+    subprocess.run = blocked_subprocess
+    subprocess.Popen = blocked_subprocess
+    subprocess.call = blocked_subprocess
+    subprocess.check_call = blocked_subprocess
+    subprocess.check_output = blocked_subprocess
+
+    logit("os.environ and subprocess blocked", "i")
+
+def disable_introspection():
+    import sys, gc, inspect
+
+    sys._getframe = lambda *args, **kwargs: (_ for _ in ()).throw(RuntimeError("frame access blocked"))
+    gc.get_objects = lambda: (_ for _ in ()).throw(RuntimeError("gc access blocked"))
+    inspect.stack = lambda: (_ for _ in ()).throw(RuntimeError("inspect access blocked"))
+    inspect.currentframe = lambda: (_ for _ in ()).throw(RuntimeError("inspect access blocked"))
+
+    logit("introspection via gc, inspect, sys._getframe blocked", "i")
+
+def nuke_ipython_globals():
+    for key in ('_ih', '_oh', '_exit', '_i', '_ii', '_iii'):
+        if key in globals():
+            del globals()[key]
+    logit("IPython REPL globals nuked", "i")
+
+def freeze_sysmodules_and_builtins():
+    import sys, builtins
+
+    sys.modules = MappingProxyType(sys.modules)
+    builtins.__dict__ = MappingProxyType(builtins.__dict__)
+    logit("sys.modules and builtins frozen with MappingProxyType", "i")
+
+
+def _raise_ctypes_blocked(*args, **kwargs):
+    raise RuntimeError("ctypes is blocked unless --need-ctypes is enabled")
+
+def block_ctypes():
+    blocked_ctypes = types.ModuleType("ctypes")
+    setattr(blocked_ctypes, "CDLL", _raise_ctypes_blocked)
+
+    sys.modules["ctypes"] = blocked_ctypes
+    builtins.__import__ = _wrap_import(builtins.__import__)
+
+def _wrap_import(orig_import):
+    def wrapped(name, *args, **kwargs):
+        if name.startswith("ctypes"):
+            raise ImportError("ctypes blocked unless --need-ctypes is provided")
+        return orig_import(name, *args, **kwargs)
+    return wrapped
+
+
+def enable_sandbox_open():
+    global _sandbox_enabled
+    if _sandbox_enabled:
+        return
+
+    import builtins
+    _real_open = builtins.open
+
+    def sandbox_open(path, *args, **kwargs):
+        from pathlib import Path
+        root = Path(".").resolve()
+        try:
+            target = Path(path).resolve()
+            if not str(target).startswith(str(root)):
+                raise PermissionError(f"Access denied outside of fakeroot: {target}")
+        except Exception as e:
+            raise PermissionError(f"Access denied: {e}")
+        return _real_open(path, *args, **kwargs)
+
+    builtins.open = sandbox_open
+    _sandbox_enabled = True
+    logit("sandbox_open is now active", "i")
+
+def disable_network_access():
+    # import socket
+    # import builtins
+
+    # def blocked_socket(*args, **kwargs):
+    #    raise RuntimeError("Network access is blocked in this environment")
+
+    # socket.socket = blocked_socket
+    # builtins.__import__ = _wrap_import(builtins.__import__)
+    # logit("Network access has been disabled", "i")
+    pass
+
+def disable_file_write():
+    import builtins
+    import os
+
+    def blocked_open(*args, **kwargs):
+        if 'w' in args[0] or 'a' in args[0] or 'x' in args[0]:
+            raise PermissionError("File write operations are blocked in this environment")
+        return builtins.open(*args, **kwargs)
+
+    builtins.open = blocked_open
+    logit("File write operations have been disabled", "i")
+
+def disable_urllib_requests():
+    pass
+    '''
+    import urllib.request
+    import urllib.error
+
+    def blocked_urlopen(*args, **kwargs):
+        raise RuntimeError("Network access is blocked in this environment")
+
+    urllib.request.urlopen = blocked_urlopen
+    urllib.error.URLError = RuntimeError
+    logit("urllib requests have been disabled", "i")
+    '''
+
+def disable_socket_access():
+    pass
+    '''
+    import socket
+    import builtins
+
+    def blocked_socket(*args, **kwargs):
+        raise RuntimeError("Socket access is blocked in this environment")
+
+    socket.socket = blocked_socket
+    builtins.__import__ = _wrap_import(builtins.__import__)
+    logit("Socket access has been disabled", "i")
+    '''
+
+def shadow_eval(code: str, globals=None, locals=None):
+    if globals is None:
+        globals = {}
+    if locals is None:
+        locals = {}
+
+    if _maximum_security_details["_maximum_security_enabled"]:
+        logit(f"CODE RUN DETECTED: {code}", "w", source=f"{logslug}.{__name__}")
+        raise RuntimeError("Maximum security mode is enabled, code execution is blocked.")
+    
+    
+    
+
+
+
+    return eval(code, globals, locals)
+
+def patch_environment_to_venv(venv_path: Path):
+    import sys
+    bin_dir = venv_path / ("Scripts" if os.name == "nt" else "bin")
+    python_path = bin_dir / ("python.exe" if os.name == "nt" else "python3")
+
+    path_var = os.pathsep.join([str(bin_dir)])
+    venv_var = str(venv_path)
+    sys.executable = str(python_path)
+    return bin_dir, python_path, path_var, venv_var
+
+def maximum_security():
+    block_ctypes()
+    enable_sandbox_open()
+    disable_file_write()
+    disable_network_access()
+    disable_urllib_requests()
+    disable_socket_access()
+    logit("Maximum security mode is now active. Enjoy your stay!", "i", source=f"{logslug}.{__name__}")
+    global _maximum_security_enabled
+    _maximum_security_enabled = True
+    _maximum_security_enabled = MappingProxyType({
+        "sandbox_open": _sandbox_enabled,
+        "ctypes_blocked": True,
+        "network_access_blocked": True,
+        "file_write_blocked": True,
+        "urllib_requests_blocked": True,
+        "socket_access_blocked": True,
+        "_maximum_security_enabled": True
+    })
+
+def prepare_fakeroot(
+    script_path: Path,
+    include_files: Optional[List[Path]] = None,
+    persist: bool = False,
+    hash_suffix: str = "",
+    base_dir: Optional[Path] = None,
+    enable_sandbox: bool = False,
+) -> Path:
+    if include_files is None:
+        include_files = []
+
+    base_dir = base_dir or Path(".pydepguard_venvs")
+    base_dir.mkdir(parents=True, exist_ok=True)
+
+    tag = "persist" if persist else uuid.uuid4().hex[:8]
+    fakeroot_path = base_dir / f"fakeroot_{hash_suffix}_{tag}"
+    app_dir = fakeroot_path / "app"
+
+    if not persist:
+        shutil.rmtree(fakeroot_path, ignore_errors=True)
+
+    app_dir.mkdir(parents=True, exist_ok=True)
+
+    shutil.copy2(script_path, app_dir / "main.py")
+
+    for file in include_files:
+        if file.exists():
+            dest = app_dir / file.name
+            shutil.copy2(file, dest)
+    bindir, python_bin, path_var, venv_var = patch_environment_to_venv(fakeroot_path)
+    if enable_sandbox:
+        enable_sandbox_open()
+
+    logit(f"Prepared fakeroot at {fakeroot_path}", "i", source=f"{logslug}.{prepare_fakeroot.__name__}")
+    return app_dir, bindir, python_bin, path_var, venv_var
