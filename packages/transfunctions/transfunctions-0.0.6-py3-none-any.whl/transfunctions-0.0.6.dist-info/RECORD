@@ -1,0 +1,13 @@
+transfunctions/__init__.py,sha256=_0XmF-LdEwJdvqbOinvJ6gFtr6nO--i7x5itzwh998U,639
+transfunctions/errors.py,sha256=96BtB-aXbxi5PdmK_3ziwnlMxtu6cLqjZUZRVUPraos,241
+transfunctions/markers.py,sha256=U9NUlsn5ngCj4I3fA6NfLChrUwuOGJH64XpsAC8egZA,682
+transfunctions/py.typed,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+transfunctions/transformer.py,sha256=ylll4jJgpebqNNBIkqbNN4FHXUkkASyTvRE4ZznNPGs,9759
+transfunctions/decorators/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+transfunctions/decorators/superfunction.py,sha256=q644sWYmyj8tqEmGDACllqhm6dM5vbNQnrt2xaHlTKQ,3832
+transfunctions/decorators/transfunction.py,sha256=QPLBv040UoVL2pk3rO-RcC8SaIJDnaBRJgUnFNem-fk,213
+transfunctions-0.0.6.dist-info/LICENSE,sha256=L_NBs_4_bybzCMhe-ck36eMjIdbo7ZLGYa9i5Nu59WY,1067
+transfunctions-0.0.6.dist-info/METADATA,sha256=LBhl0xEVU-ym33-QgBqIsOjKoTKwryKSbVGNoZFr6mA,16095
+transfunctions-0.0.6.dist-info/WHEEL,sha256=tZoeGjtWxWRfdplE7E3d45VPlLNQnvbKiYnx7gwAy8A,92
+transfunctions-0.0.6.dist-info/top_level.txt,sha256=5CvFoDaqfqSb03T1l7D4H74yNC6jeZ-KKRoj3Prx5zo,15
+transfunctions-0.0.6.dist-info/RECORD,,
