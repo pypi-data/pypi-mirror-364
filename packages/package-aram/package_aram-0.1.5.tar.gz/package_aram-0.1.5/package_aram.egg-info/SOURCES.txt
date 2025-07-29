@@ -1,0 +1,9 @@
+MANIFEST.in
+README.md
+setup.py
+package_aram.egg-info/PKG-INFO
+package_aram.egg-info/SOURCES.txt
+package_aram.egg-info/dependency_links.txt
+package_aram.egg-info/entry_points.txt
+package_aram.egg-info/requires.txt
+package_aram.egg-info/top_level.txt
