@@ -1,0 +1,2 @@
+[pulpcore.plugin]
+pulp_python = pulp_python:default_app_config
