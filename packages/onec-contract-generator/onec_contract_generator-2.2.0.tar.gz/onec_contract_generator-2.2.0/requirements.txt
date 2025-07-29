@@ -1,0 +1,7 @@
+# OneC Contract Generator - Production Dependencies
+# 
+# Этот пакет использует только стандартную библиотеку Python
+# Дополнительные зависимости не требуются
+#
+# Для разработки используйте:
+# pip install -e ".[dev]" 
