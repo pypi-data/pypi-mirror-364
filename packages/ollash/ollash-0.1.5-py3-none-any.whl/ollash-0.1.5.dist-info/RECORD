@@ -1,0 +1,13 @@
+ollash/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+ollash/__main__.py,sha256=BNT-y2_3lrutLWbD5F7nSECtKju-PTYE_cF5QS5gIAE,780
+ollash/ollama_nl2bash.py,sha256=ft3OJBDNVFTwo1tCO5fjSQW-JkNPsqgMQiqAPqtjUg4,1517
+ollash/progress.py,sha256=16-6ORrWQ9_g5LUnPtBzQkkdcLzrfqwE8rmRYErAR4A,226
+ollash/utils.py,sha256=go1DNpXVuI_EaxEvKHnrSW3GC3SE-fgyk8gXltfw1aQ,4329
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/test_ollama.py,sha256=hcDmbaK_ApqqkGIv8_WmdMqh2gnDEHYmbP5xNoYhCLk,1243
+tests/test_utils.py,sha256=IUZ26CSL0n6jFQlM9R7mIdaRX8_596skkePlpoZmwro,2971
+ollash-0.1.5.dist-info/METADATA,sha256=YX0Hs9HknE8a4ZAA5_v0bGwq1DoSPAF6BkVbZAGx63w,3323
+ollash-0.1.5.dist-info/WHEEL,sha256=lTU6B6eIfYoiQJTZNc-fyaR6BpL6ehTzU3xGYxn2n8k,91
+ollash-0.1.5.dist-info/entry_points.txt,sha256=KW6ZJagv_ySUUH9vQnml64hqh_ovtuxBjE9n_rg3bLI,48
+ollash-0.1.5.dist-info/top_level.txt,sha256=_vw_CaUIY3hJYtSlETZKoUz-TEQUr2uKRcFVTs3LHB0,13
+ollash-0.1.5.dist-info/RECORD,,
