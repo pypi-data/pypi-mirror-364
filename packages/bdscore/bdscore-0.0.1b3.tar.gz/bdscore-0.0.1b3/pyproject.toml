@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=42", "wheel", "requests"]
+build-backend = "setuptools.build_meta" 
+
+[project]
+name = "bdscore"
+version = "0.0.1-beta.3"
+description = "Biblioteca oficial da BDS DataSolution para integração com dados de mercado e dados proprietários."
+readme = "README.md"
+authors = [{ name = "BDS DataSolution", email = "comercial@bdsdatasolution.com.br" }]
+
+keywords = [
+    "SaaS", "Finance", "MarketData", "MarketRisk", "BigData", "Analytics", "API","DataSolution", "BDS", "FinancialData", "RiskManagement", "Integration", "DataScience", "Quantitative", "Trading", "Investments", "PaaS", "BDaaS", "ArtificialIntelligence", "MachineLearning", "OpenFinance", "Fintech", "DataHub"
+]
+dependencies = [
+    "requests"
+]
+requires-python = ">=3.9"
