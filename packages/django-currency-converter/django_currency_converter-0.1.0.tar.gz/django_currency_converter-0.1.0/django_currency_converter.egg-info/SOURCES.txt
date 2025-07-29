@@ -1,0 +1,14 @@
+MANIFEST.in
+README.md
+pyproject.toml
+setup.cfg
+django_currency_converter/__init__.py
+django_currency_converter/forms.py
+django_currency_converter/urls.py
+django_currency_converter/utils.py
+django_currency_converter/views.py
+django_currency_converter.egg-info/PKG-INFO
+django_currency_converter.egg-info/SOURCES.txt
+django_currency_converter.egg-info/dependency_links.txt
+django_currency_converter.egg-info/requires.txt
+django_currency_converter.egg-info/top_level.txt

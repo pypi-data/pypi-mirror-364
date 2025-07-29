@@ -1,0 +1,2 @@
+recursive-include student_yop/templates *.html
+recursive-include student_yop/static *.css

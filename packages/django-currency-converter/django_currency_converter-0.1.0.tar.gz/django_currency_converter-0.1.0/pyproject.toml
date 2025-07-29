@@ -1,0 +1,10 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "django-currency-converter"
+version = "0.1.0"
+description = "Formulaire Django pour conversion de devises"
+authors = [{name = "Ton Nom"}]
+dependencies = ["django"]
