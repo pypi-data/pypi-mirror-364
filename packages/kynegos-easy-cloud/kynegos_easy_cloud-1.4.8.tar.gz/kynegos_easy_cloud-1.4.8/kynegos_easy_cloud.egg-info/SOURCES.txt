@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+kynegos_easy_cloud/Download_Catastro_Spain.py
+kynegos_easy_cloud/Kynegos_Easy_Plus_Functions.py
+kynegos_easy_cloud/Kynegos_GIS_functions.py
+kynegos_easy_cloud/Kynegos_functions.py
+kynegos_easy_cloud/__init__.py
+kynegos_easy_cloud.egg-info/PKG-INFO
+kynegos_easy_cloud.egg-info/SOURCES.txt
+kynegos_easy_cloud.egg-info/dependency_links.txt
+kynegos_easy_cloud.egg-info/requires.txt
+kynegos_easy_cloud.egg-info/top_level.txt
