@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "google-ai-studio-utils"
+version = "1.1.0"
+description = ""
+authors = ["Teddy Xinyuan Chen <45612704+tddschn@users.noreply.github.com>"]
+readme = "README.md"
+license = "MIT"
+homepage = "https://github.com/tddschn/google-ai-studio-utils"
+repository = "https://github.com/tddschn/google-ai-studio-utils"
+classifiers = ["Topic :: Utilities"]
+keywords = ["chatgpt"]
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/tddschn/google-ai-studio-utils/issues"
+[tool.poetry.scripts]
+# gai2html = "google_ai_studio_utils.google_ai_studio_conversation_csv_to_html:main"
+gai2html = "google_ai_studio_utils.google_ai_studio_conversation_python_to_html:main"
+gco2html = "google_ai_studio_utils.github_copilot_chat_conversation_json_to_html:main"
+
+[tool.poetry.dependencies]
+python = ">=3.10, <4.0"
+pyperclip = "^1.8.2"
+markdown = "^3.6"
+
+
+[tool.poetry.group.dev.dependencies]
+better-exceptions = "^0.3.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
