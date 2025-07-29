@@ -1,0 +1,81 @@
+Metadata-Version: 2.4
+Name: everysk-orjson
+Version: 3.11.1
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Python :: 3.14
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Rust
+Classifier: Typing :: Typed
+License-File: LICENSE-APACHE
+License-File: LICENSE-MIT
+Summary: Fast, correct Python JSON library supporting dataclasses, datetimes, and numpy
+Keywords: fast,json,dataclass,dataclasses,datetime,rfc,8259,3339
+Author: ijl <ijl@mailbox.org>
+Author-email: ijl <ijl@mailbox.org>
+License: Apache-2.0 OR MIT
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+Project-URL: source, https://github.com/Everysk/orjson
+Project-URL: documentation, https://github.com/Everysk/orjson
+Project-URL: changelog, https://github.com/Everysk/orjson/blob/master/CHANGELOG.md
+
+# everysk-json
+
+`everysk-json` is a high-performance JSON library for Python, forked from [`orjson`](https://github.com/ijl/orjson). It provides fast serialization and deserialization, with additional features for handling big integers and special floating-point values.
+
+## Features
+
+- **Big Integer Support**  
+    Parse large integers without loss of precision using the `OPT_BIG_INTEGER` option.
+
+    ```python
+    import orjson
+
+    result = orjson.dumps(100000000000000000001, option=orjson.OPT_BIG_INTEGER)
+    print(result) # b'100000000000000000001'
+
+    result = orjson.loads(b'100000000000000000001', option=orjson.OPT_BIG_INTEGER)
+    print(result)  # 100000000000000000001
+    ```
+
+- **NaN as Null**  
+    Convert `NaN` values to `null` during deserialization with the `OPT_NAN_AS_NULL` option.
+
+    ```python
+    import orjson
+
+    result = orjson.loads('{"x": nan}', option=orjson.OPT_NAN_AS_NULL)
+    print(result)  # {'x': None}
+    ```
+
+## Installation
+
+```bash
+pip install everysk-json
+```
+
+## Usage
+
+`everysk-json` is a drop-in replacement for `orjson`. Simply import and use the additional options as needed.
+
+## License
+
+Available to you under either the Apache 2 license or MIT license at your choice.
+See [LICENSE-APACHE](./LICENSE-APACHE) or [LICENSE-MIT](./LICENSE-MIT) for details.
+
+
+[![artifact](https://github.com/Everysk/orjson/actions/workflows/artifact.yaml/badge.svg?branch=master)](https://github.com/Everysk/orjson/actions/workflows/artifact.yaml)
+
