@@ -1,0 +1,61 @@
+# 🧠 mypackage_anshita
+
+`mypackage_anshita` is a Python package built with ❤️ using Ollama models. It supports:
+
+- 💬 Prompt-based text generation using models like `gemma:2b`, `llama2`, and more
+- 🔍 Vector-based document embedding + semantic search using FAISS
+- ⚙️ Model flexibility for generation and embeddings
+## 🚀 Installation
+
+Install directly from PyPI:
+
+```bash
+pip install mypackage-anshita
+
+📌 **Why this?** → Shows users how to install your package easily.
+
+---
+
+### ✅ 3. Features
+
+```markdown
+## 🔥 Features
+
+- `PromptRunner` class for prompt-based responses from various models
+- `DocumentEmbedder` class for embedding documents and performing vector-based search
+- Uses Ollama + FAISS + NumPy
+- Tested with Gemma, LLaMA2, and other local models via Ollama
+## 💡 Usage Example
+
+### Generate Text with PromptRunner
+
+```python
+from mypackage_anshita import PromptRunner
+
+runner = PromptRunner(model='gemma:2b')
+response = runner.run_prompt("What is the theory of relativity?")
+print(response)
+from mypackage_anshita import DocumentEmbedder
+
+docs = ["Marie Curie won two Nobel Prizes.", "Einstein created the theory of relativity."]
+embedder = DocumentEmbedder()
+embedder.embed_text(docs)
+
+results = embedder.search("radioactivity")
+print(results)
+
+📌 **Why this?** → Shows users how to *actually use* your package in code.
+
+---
+
+### ✅ 5. Author Info
+
+```markdown
+## 👩‍💻 Author
+
+**Anshita Bhatnagar**  
+Made with 💕 during internship  
+Built using LangChain, Ollama, FAISS and Streamlit
+## 📄 License
+
+MIT License
