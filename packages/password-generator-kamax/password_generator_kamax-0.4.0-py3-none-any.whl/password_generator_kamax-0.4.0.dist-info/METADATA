@@ -1,0 +1,41 @@
+Metadata-Version: 2.4
+Name: password-generator-kamax
+Version: 0.4.0
+Summary: Un générateur de mots de passe sécurisé en ligne de commande et en Python
+Author: kamax
+Author-email: blab97400@gmail.com
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Environment :: Console
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license
+Dynamic: requires-python
+Dynamic: summary
+
+# password-generator-kamax
+
+Un petit outil Python pour générer des mots de passe sécurisés, utilisable en ligne de commande ou dans un script Python.
+
+## Fonctionnalités
+
+- Génère des mots de passe sécurisés automatiquement.
+- Disponible en ligne de commande.
+
+
+## Installation
+
+Si tu es dans le dossier du projet :
+
+```bash
+pip install password-generator-kamax
+
+
+generate-password
