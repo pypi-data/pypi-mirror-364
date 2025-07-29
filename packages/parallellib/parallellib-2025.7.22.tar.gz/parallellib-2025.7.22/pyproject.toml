@@ -1,0 +1,45 @@
+[tool.black]
+line-length = 80
+
+[tool.isort]
+profile = "black"
+
+[tool.pylint.'MESSAGES CONTROL']
+max-line-length = 120
+disable= "W0311"
+
+[tool.flake8]
+max-line-length = 120
+ignore = ['E203']
+
+[build-system]
+#requires = ["setuptools"]
+requires = ["hatchling", "hatch-requirements-txt"]
+build-backend = "hatchling.build"
+#build-backend = "setuptools.build_meta"
+
+[tool.hatch.version]
+path = "parallellib/__init__.py"
+
+[project]
+name = "parallellib"
+dynamic = ['version', 'dependencies']
+authors = [{ name="Vaishak Prasad", email="vaishakprasad@gmail.com"}, ]
+description = " Templates for parallel computing "
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[tool.hatch.metadata.hooks.requirements_txt]
+files = ["requirements.txt"]
+
+[project.urls]
+"Homepage" = "https://github.com/vaishakp/parallellib"
+"Bug Tracker" = "https://github.com/vaishakp/parallellib/issues"
+
+[tool.hatch.metadata]
+allow-direct-references = true
