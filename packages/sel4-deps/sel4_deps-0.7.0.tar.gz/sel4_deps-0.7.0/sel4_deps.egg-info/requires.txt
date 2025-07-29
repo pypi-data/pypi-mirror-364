@@ -1,0 +1,17 @@
+six
+future
+jinja2
+lxml
+ply
+psutil
+bs4
+pyelftools
+sh
+pexpect
+pyyaml>=5.1
+jsonschema
+pyfdt
+cmake-format==0.6.13
+guardonce
+autopep8==2.3.2
+libarchive-c
