@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: loon-parser
+Version: 2.0.0
+Summary: LOON: Label-Oriented Object Notation parser
+Author: mmmmosca
+Requires-Python: >=3.7
+Dynamic: author
+Dynamic: requires-python
+Dynamic: summary
