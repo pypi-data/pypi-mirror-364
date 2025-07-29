@@ -1,0 +1,30 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+aiohttp = ">=3.8.0"
+beautifulsoup4 = ">=4.11.0"
+colorlog = ">=6.7.0"
+pyyaml = ">=6.0"
+lxml = ">=4.9.0"
+
+[dev-packages]
+pytest = "*"
+black = "*"
+flake8 = "*"
+isort = "*"
+mypy = "*"
+pylint = "*"
+bandit = "*"
+pydocstyle = "*"
+vulture = "*"
+radon = "*"
+safety = "*"
+pre-commit = "*"
+twine = "*"
+build = "*"
+
+[requires]
+python_version = "3.8"
