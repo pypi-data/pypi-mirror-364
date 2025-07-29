@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "inv-agent"
+version = "0.1.0"
+description = "Clinic inventory assistant powered by LLM and inventory management tools."
+authors = ["pavans <pavansakireddy@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+keywords = ["inventory", "clinic", "llm", "assistant"]
+packages = [
+  { include = "inv_agent", from = "src" }
+]
+requires-poetry = ">=1.8"
+
+[tool.poetry.dependencies]
+python = ">=3.9,<4.0"
+langgraph = "0.5.2"
+langchain-core = "^0.1"
+langchain-ollama = ">=0.1.0,<0.2.0"
+ollama-python = ">=0.2.0,<0.3.0"
+python-dotenv = "^1.0"
+fpdf = "^1.7"
+# stdlib modules (smtplib, sqlite3, zoneinfo, email) are built-in and don't need listing
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.0"
+
+[build-system]
+requires = ["poetry-core>=1.4.0"]
+build-backend = "poetry.core.masonry.api"
