@@ -1,0 +1,13 @@
+folium
+geopandas
+ipyleaflet
+ipywidgets
+localtileserver
+matplotlib
+numpy
+
+[all]
+Chartops[extra]
+
+[extra]
+pandas
