@@ -1,0 +1,2 @@
+[console_scripts]
+gh-safeapprove = gh_safeapprove.cli:app

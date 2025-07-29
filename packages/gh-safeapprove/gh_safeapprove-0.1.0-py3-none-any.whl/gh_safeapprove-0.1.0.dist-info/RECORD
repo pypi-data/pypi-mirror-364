@@ -1,0 +1,10 @@
+gh_safeapprove/__init__.py,sha256=MYwdUHygoLmARyHvPSOJD8fMMMknHwLw4UAZmnE3Q4s,120
+gh_safeapprove/approver.py,sha256=Ku1F1Oh8yld170K7Gsf_RWFXswNsuTuuZGYou8jbujY,3462
+gh_safeapprove/cli.py,sha256=EsjLbPPb6nFGfEQF11fw6TZ7sY53ePSqdZMFBESA8Wo,2667
+gh_safeapprove/github_client.py,sha256=eaG7bYAnptDW7I1Cie68hmGpTpWAbWxEQ3xhxPulq5s,2431
+gh_safeapprove/utils.py,sha256=Nen8BguTHHFKHchqNPxPjDLFQg13357V0v1zbuOsIic,3202
+gh_safeapprove-0.1.0.dist-info/METADATA,sha256=4_8V5DB5Li2avHs4phJyb6bMSmPJMIeRe44zA76KIp4,4612
+gh_safeapprove-0.1.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+gh_safeapprove-0.1.0.dist-info/entry_points.txt,sha256=xa3TH8d8AiP9nz2kvoaLFgzTnt2mWDpEXkv0eJ8ehsI,58
+gh_safeapprove-0.1.0.dist-info/licenses/LICENSE,sha256=hsUbJ9alCe3v6dvf_FLHNjLdt0ada1O26pkXm93KM-s,1069
+gh_safeapprove-0.1.0.dist-info/RECORD,,
