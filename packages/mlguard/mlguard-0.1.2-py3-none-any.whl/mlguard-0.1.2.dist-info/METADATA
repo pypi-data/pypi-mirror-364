@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: mlguard
+Version: 0.1.2
+Summary: A diagnostic toolkit for evaluating machine learning models. MLGuard provides plug-and-play checks for class imbalance, overfitting, multicollinearity, bias detection, and more — built on top of scikit-learn, pandas, and statsmodels.
+Home-page: https://github.com/HDJadeja/mlguard
+Author: Hetrajsinh Jadeja
+Author-email: hetrajadeja01@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: scikit-learn
+Requires-Dist: matplotlib
+Requires-Dist: statsmodels
+
+# MLGuard 
+
+Lightweight Python library for automated machine learning model checks:
+
+- Bias Detection (group fairness check)
+- Class Imbalance Detection
+- Multicollinearity Detection
+- Overfitting/Underfitting Detection (using learning curves)
+
+---
+
+
+## visit Docs 
+https://mlguard-tool.tiiny.site/
+
+
+## Installation
+
+```bash
+pip install mlguard
+
+
+

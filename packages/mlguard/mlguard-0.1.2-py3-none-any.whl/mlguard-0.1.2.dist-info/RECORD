@@ -1,0 +1,11 @@
+mlguard/__init__.py,sha256=INTcoAcoToVspkg3pJ_MLysyip3Cj84euIOVEnxrxJ0,210
+mlguard/bias_detecter.py,sha256=FsBwsIGadRQ02Gvm4Z1Ae7uRqnco8PaD2Qu75YiN7SU,3459
+mlguard/class_imbalance.py,sha256=SY5b_hM8E2zP3JW_JujcrhrOzvdE0D8LnCAhxO2pf90,2273
+mlguard/multicollinearitychecker.py,sha256=n0JHwgorElTutslUTOSIExZtDFB31plFMJZ0lPV1Atw,2056
+mlguard/overfitting.py,sha256=4s5IxLoNMTyFBKfZdujYv0sAak3Y4z7S3EWRwgvhsyA,4438
+mlguard/utils.py,sha256=a3Iprql5mnz1540CIPALspWzDp-bw_VLekPi7ELq-ZM,1676
+mlguard-0.1.2.dist-info/LICENSE,sha256=s8vMok8-iDtFNLwGKpaG9KNn1_Xuc4eb18Y9n1iMKpE,1095
+mlguard-0.1.2.dist-info/METADATA,sha256=vCjmJXa85OyB2m46mBqFuqIoaKUIh9l35-iNoQu6gbg,1308
+mlguard-0.1.2.dist-info/WHEEL,sha256=tZoeGjtWxWRfdplE7E3d45VPlLNQnvbKiYnx7gwAy8A,92
+mlguard-0.1.2.dist-info/top_level.txt,sha256=ZS67DBZizJfeygld7Q9huuMw0RrH0-DJsGlAVGt8Wfc,8
+mlguard-0.1.2.dist-info/RECORD,,
