@@ -1,0 +1,2 @@
+[console_scripts]
+shiqi-grafana-chart-mcp = shiqi_grafana_chart_mcp:main
