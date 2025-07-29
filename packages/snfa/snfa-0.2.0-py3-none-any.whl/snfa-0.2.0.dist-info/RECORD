@@ -1,0 +1,11 @@
+snfa/__init__.py,sha256=e4E4UG0q0wFpLCavzOMdyW-jXNB3YfoGnbE5Ixhwouc,212
+snfa/aligner.py,sha256=ZLdH-aU3bZ7QBu30mVsMy9nJXe5cH41XKWpgMVXoB5Y,7050
+snfa/stft.py,sha256=3w_dN1exFuSt8QBCsQJ6kfXnab_POanTrgoYduLlYp4,2604
+snfa/utils.py,sha256=qam7lF3yUTYwFCMzNk7t20-X8fJwktYHC5YPVIguYU4,3430
+snfa/viterbi.py,sha256=oATLHODSYO6LOW-F8sHi_9KGaeR1IlNPOPE_35R62sw,4693
+snfa/models/jp.npz,sha256=HzRzNEJsxncs7ElC0WMqJlFliJxzhpwUhvcLM1rGCSc,1153356
+snfa-0.2.0.dist-info/licenses/LICENCE,sha256=gCxlaS65XXlbLtmrI4ZhWLPPXKnMqQWQMKLI-LKcIJ0,2894
+snfa-0.2.0.dist-info/METADATA,sha256=WPV0ysh2vFNQBR5WT2usuZU-SYf1YDGrp1KK2l8Nlrs,4161
+snfa-0.2.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+snfa-0.2.0.dist-info/top_level.txt,sha256=QqeS9ZRvgYPkli6Xt3UAe4IP4Zcsfw6LhQ50-DP5dig,5
+snfa-0.2.0.dist-info/RECORD,,
