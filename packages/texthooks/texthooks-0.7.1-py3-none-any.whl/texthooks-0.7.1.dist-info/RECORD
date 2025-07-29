@@ -1,0 +1,15 @@
+texthooks/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+texthooks/_common.py,sha256=akmhACTcdfrit_0AFt9ZnXrAY69KmNDhepJWEo3NDdU,3042
+texthooks/_recorders.py,sha256=c8nfoD01uYKVu8LiSEt2X-Y_6oc1EYm1CI7pQiKcUh0,6672
+texthooks/alphabetize_codeowners.py,sha256=5WDG4mtbIUQ6A3LPjL5t54sdbRuM8O95Er0x4KXHFCM,3254
+texthooks/fix_ligatures.py,sha256=RnR6sQXKWIQO6GVHk4Bzhk9xvT9J23Ah81KwocXuQpw,1928
+texthooks/fix_smartquotes.py,sha256=jlc5CP9o--JG4b6_v-shdLJDVI6urvOwHBAsT_aMI2w,5645
+texthooks/fix_spaces.py,sha256=XvZBeUJbU4ZpBQvCZH8ejjjlXdiwvfG4dvs8gV7HcUE,3241
+texthooks/fix_unicode_dashes.py,sha256=2d6MWURGzo_tEmmgNjGTfs4_jjsNFfv8hdpWRvXfOxg,4937
+texthooks/forbid_bidi_controls.py,sha256=5DnKEBbM44ueIl8bIlJW1IDthGEF0uVnfF3anGwVoBo,1608
+texthooks/macro_expand.py,sha256=sAiRJSz0HkIzvXMG6WL4BSgePMXwLDpo2sTqQjlkaLc,2127
+texthooks-0.7.1.dist-info/entry_points.txt,sha256=FGRUZtp5SwUhnP3Q-jf26N5gUAziGvxTCDodgxg1wMo,358
+texthooks-0.7.1.dist-info/licenses/LICENSE,sha256=Pl3zg6yR6SoEtjqha60yjIqeOer7fV0k4liDH4RNOcw,583
+texthooks-0.7.1.dist-info/WHEEL,sha256=G2gURzTEtmeR8nrdXUJfNiB3VYVxigPQ-bEQujpNiNs,82
+texthooks-0.7.1.dist-info/METADATA,sha256=PfCucC_AHLz46SdY_qdnhh6KLVhAS4-sloROkEnjgaI,9686
+texthooks-0.7.1.dist-info/RECORD,,
