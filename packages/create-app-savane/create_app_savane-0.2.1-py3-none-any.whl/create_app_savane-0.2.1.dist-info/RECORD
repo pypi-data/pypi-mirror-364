@@ -1,0 +1,15 @@
+create_app/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+create_app/cli.py,sha256=f9no8DJfliX9CdyjPTlBGZJGcCCnjufXlPURY6wFXms,1649
+momo/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+momo/admin.py,sha256=suMo4x8I3JBxAFBVIdE-5qnqZ6JAZV0FESABHOSc-vg,63
+momo/apps.py,sha256=se_JwTrw8oTn0lZZT9w0jEWs74iOWeb843TJ99k891I,139
+momo/tests.py,sha256=mrbGGRNg5jwbTJtWWa7zSKdDyeB4vmgZCRc2nk6VY-g,60
+momo/urls.py,sha256=-3_l2Z6oNkP1iaZf5exoCSDxlOh3BAlBoAg9wSLELW8,91
+momo/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+momo/models/__init__.py,sha256=0rPVvb48SPpEsn5t9bT3ziS2jeZ31VZ8jhM9I2vI5ws,14
+momo/views/__init__.py,sha256=3IylRHwsJ1fBLYV0JXkaa8Ai4nAyRGfsFPFBodaHxes,13
+create_app_savane-0.2.1.dist-info/METADATA,sha256=pzI0h1b8dl8oxdT29hQ6A3bCHQYaKjKeLt40v98Ex4E,2887
+create_app_savane-0.2.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+create_app_savane-0.2.1.dist-info/entry_points.txt,sha256=zY8i1Nx6Kg5fM1CXlNpMxS62P8vaYT7j6TaaDbvkj94,51
+create_app_savane-0.2.1.dist-info/top_level.txt,sha256=_B53rSQjJvLcf3Vmu3Zq5GDCdy7Ya1OADa5qUj-uMpw,16
+create_app_savane-0.2.1.dist-info/RECORD,,
