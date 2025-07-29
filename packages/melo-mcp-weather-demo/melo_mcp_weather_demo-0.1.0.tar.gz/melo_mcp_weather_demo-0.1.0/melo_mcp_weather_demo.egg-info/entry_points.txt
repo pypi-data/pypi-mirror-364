@@ -1,0 +1,2 @@
+[console_scripts]
+melo-mcp-weather-demo = weather:main

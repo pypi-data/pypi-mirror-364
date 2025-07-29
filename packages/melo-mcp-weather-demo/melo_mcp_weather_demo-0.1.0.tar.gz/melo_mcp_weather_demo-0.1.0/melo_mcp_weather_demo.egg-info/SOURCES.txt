@@ -1,0 +1,11 @@
+README.md
+pyproject.toml
+melo_mcp_weather_demo.egg-info/PKG-INFO
+melo_mcp_weather_demo.egg-info/SOURCES.txt
+melo_mcp_weather_demo.egg-info/dependency_links.txt
+melo_mcp_weather_demo.egg-info/entry_points.txt
+melo_mcp_weather_demo.egg-info/requires.txt
+melo_mcp_weather_demo.egg-info/top_level.txt
+src/__init__.py
+src/__main__.py
+src/weather.py
