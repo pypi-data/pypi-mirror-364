@@ -1,0 +1,2 @@
+[console_scripts]
+gitlab-mcp = gitlab_clone_mcp_server.server:main
