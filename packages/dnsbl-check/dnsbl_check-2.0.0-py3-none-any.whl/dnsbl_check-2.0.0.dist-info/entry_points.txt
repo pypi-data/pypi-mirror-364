@@ -1,0 +1,2 @@
+[console_scripts]
+dnsbl-check = dnsbl_check.__main__:main
