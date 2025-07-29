@@ -1,0 +1,3 @@
+[console_scripts]
+b_ipynb2py = byzh_extra.__main__:ipynb2py
+b_py2ipynb = byzh_extra.__main__:py2ipynb
