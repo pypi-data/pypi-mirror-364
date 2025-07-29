@@ -1,0 +1,6 @@
+lazy-loader
+httpx
+pydantic
+
+[sdk]
+trading-sdk
