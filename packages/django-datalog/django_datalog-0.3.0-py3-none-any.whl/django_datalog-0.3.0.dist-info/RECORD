@@ -1,0 +1,13 @@
+django_datalog/__init__.py,sha256=QBfwoG-yJq_0eRqD_TBudWgX0SinriTrTpEf4CAmumI,374
+django_datalog/apps.py,sha256=ConQakBjws19HPiCCnzpteivsaygVMFCb4Sdfhy5Awg,194
+django_datalog/facts.py,sha256=kqrsgeq8lsJ-mA1-hnpF_xYNwByQory3rWq2OFtDGtI,12567
+django_datalog/models.py,sha256=UBUEs5n86HArnVA94YVppDPi6hLdfOX3pt9grrJJgbk,1291
+django_datalog/optimizer.py,sha256=sZIEuLJ94pAGws_JWCPiLNMPYJm3q4vEsl03C0FddwA,22219
+django_datalog/query.py,sha256=dlk9NwT0Qz4erIaPDvbark8eVDswFGc4yHIXTuoERCM,19667
+django_datalog/rules.py,sha256=5MdRulK4CbDI7A8uPfFdxv_Yb1jNq8irU9uFxM32Umg,12653
+django_datalog/variables.py,sha256=xse9symwekEErlE3QvbUvAscHgTOPIzD1tyYXEixW0Y,431
+django_datalog/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_datalog-0.3.0.dist-info/METADATA,sha256=htip8kSzC-6f1-Eea6zBgje12Vgh6iIe1i-2lYi-8JQ,7143
+django_datalog-0.3.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+django_datalog-0.3.0.dist-info/licenses/LICENSE,sha256=GTVQl3vH6ht70wJXKC0yMT8CmXKHxv_YyO_utAgm7EA,1065
+django_datalog-0.3.0.dist-info/RECORD,,
