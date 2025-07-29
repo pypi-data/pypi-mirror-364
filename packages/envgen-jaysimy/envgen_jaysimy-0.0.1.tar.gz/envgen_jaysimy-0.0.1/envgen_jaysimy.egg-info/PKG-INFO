@@ -1,0 +1,47 @@
+Metadata-Version: 2.4
+Name: envgen-jaysimy
+Version: 0.0.1
+Summary: Un package CLI qui génère un fichier .env prêt à l’emploi pour Django, Flask, etc.
+Author: jay-simy
+Author-email: simyjeanpaul@gmail.com
+License: MIT
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: python-dotenv>=1.0.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# envgen
+
+envgen est un outil en ligne de commande simple pour générer des fichiers `.env` prêts à l’emploi pour des projets Django ou Flask.
+
+---
+
+## 🔧 Installation
+
+```bash
+pip install envgen
+
+###  🔧 Utilisation
+
+```bash
+
+envgen <framework_choisi>
+
+"Cela créera un fichier .env dans le dossier courant avec les variables d’environnement de base pour le framework choisi."
