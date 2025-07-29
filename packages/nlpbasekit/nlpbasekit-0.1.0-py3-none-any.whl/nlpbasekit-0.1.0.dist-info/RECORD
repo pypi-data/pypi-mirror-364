@@ -1,0 +1,12 @@
+NLPkit/__init__.py,sha256=JIGwDj1eeUozyhXL4EMvIMuLIxeIdgxJFuPGPkRw0Ws,883
+NLPkit/_core.py,sha256=73OglKdgoxxjhErTgNUIwiGzWrvoIKXrfYI-0HI9S1g,89045
+NLPkit/_version.py,sha256=L_iPDYkMbBDDzulvcGLBs4s-Y-rNep7IJ04WHfyUwfA,55
+NLPkit/preprocessing.py,sha256=iUR_h1jkxuks_HPFGfKRDOkr6RfFZRZSkzWeykxdwIE,56
+NLPkit/utils.py,sha256=utcAeUiRUH7xGUgLp0luDtKnxC4eZwxdZTQn5YwE5Qk,61
+NLPkit/models/__init__.py,sha256=4kPOvZqtKMoArWNUYWg5DSENTEbWGiGnI2YJs18kf4E,439
+NLPkit/models/classifier.py,sha256=73OglKdgoxxjhErTgNUIwiGzWrvoIKXrfYI-0HI9S1g,89045
+nlpbasekit-0.1.0.dist-info/licenses/LICENSE,sha256=qfNWcgU5Bl0EpATXS7uBrY6IWdHu8FQblr1VmctmzAU,1108
+nlpbasekit-0.1.0.dist-info/METADATA,sha256=CpaN-wMA1AfBIzomasnymOLUKi6k3mvkP1liMOP9CRU,2867
+nlpbasekit-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+nlpbasekit-0.1.0.dist-info/top_level.txt,sha256=XcofHkm_bUB75WMMUo8pdwPT32K8APlhTeL0jhRuVi8,7
+nlpbasekit-0.1.0.dist-info/RECORD,,
