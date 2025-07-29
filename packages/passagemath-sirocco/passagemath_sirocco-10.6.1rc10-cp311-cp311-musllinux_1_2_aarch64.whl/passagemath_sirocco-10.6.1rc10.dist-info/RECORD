@@ -1,0 +1,13 @@
+passagemath_sirocco.libs/libgcc_s-2d945d6c.so.1,sha256=vOxWA-IrCq2Ge0JIF0xBvQacJ_y9aXiQaq9SbOFJ2cw,201673
+passagemath_sirocco.libs/libgmp-28992bcb.so.10.5.0,sha256=39RziKoH_g2OhnEBq5-qofgfvZr8AK5Y_sd-SOOFDhk,666617
+passagemath_sirocco.libs/libmpfr-e34bb864.so.6.2.1,sha256=ybficntLIj-Dxgu2MwX27ZpJGKJa0cwFY0cwqnkGpbg,930305
+passagemath_sirocco.libs/libsirocco-cf1cad46.so.0.0.0,sha256=2NtOesnyUPx-QqSL72O98YseA9SoYRaKBlsxhdu8SlQ,995721
+passagemath_sirocco.libs/libstdc++-85f2cd6d.so.6.0.33,sha256=cx82rYRx6hPLMqIfyMnsCfijsOVT6OAkj5C5nemlNvE,3650097
+sage/all__sagemath_sirocco.py,sha256=DETVlVgWYtPIsdw2wOM9oqCp-RfID9ymRYZCbm70-io,188
+sage/libs/all__sagemath_sirocco.py,sha256=BnLb9I-8oMsUKI5uRle_hxp92wdAAez3PgwDyMK-KRc,46
+sage/libs/sirocco.cpython-311-aarch64-linux-musl.so,sha256=bUBRU4iT1chT_Wv9XiDRvm1gaMFdTb4Fy6_Tlx7a-E8,789321
+sage/libs/sirocco.pyx,sha256=SX_40zdJcrptjAArU19WaB7QLIT6DGPs6I9V9x2pz-Y,11171
+passagemath_sirocco-10.6.1rc10.dist-info/METADATA,sha256=yu4UJNw4AtieWGyfinaNzUK-WNgJLd58beccA_E-YJo,5075
+passagemath_sirocco-10.6.1rc10.dist-info/WHEEL,sha256=LNZuceeFd58B9QVekwESAWqB09LEv_tgGDcYQrpkG9U,113
+passagemath_sirocco-10.6.1rc10.dist-info/top_level.txt,sha256=Kmzulf9WsphADFQuqgvdy5mvTLDj_V2zkFHU2s3UXos,6
+passagemath_sirocco-10.6.1rc10.dist-info/RECORD,,
