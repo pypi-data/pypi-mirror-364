@@ -1,0 +1,17 @@
+requests
+PyPDF2
+coverage
+openai==1.70.0
+filetype==1.2.0
+scrapegraphai==1.46.0
+youtube_transcript_api==0.6.3
+loguru
+gitingest==0.1.4
+aiohttp
+markitdown==0.0.2
+beautifulsoup4
+
+[dev]
+coverage
+coverage-badge
+pytest

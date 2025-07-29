@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "parsethisio"
+version = "0.2.3"
+
+description = "A Python library to extract text from various sources for LLM preprocessing."
+readme = "README.md"
+requires-python = ">=3.10, <4.0"
+license = {text = "GNU Affero General Public License v3.0"}
+authors = [
+  { name = "Jörn Depenbrock", email = "joern@jdde.de" }
+]
+keywords = ["text extraction", "LLM", "PDF", "web", "preprocessing"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent"
+]
+
+# requirements.txt generated from here
+dependencies = [
+  "requests",
+  "PyPDF2",  # Keep PyPDF2 as primary PDF parser
+  "coverage",
+  "openai==1.70.0",
+  "filetype==1.2.0",
+  "scrapegraphai==1.46.0",
+  "youtube_transcript_api==0.6.3",
+  "loguru",
+  "gitingest==0.1.4",
+  "aiohttp",
+  "markitdown==0.0.2",  # Add Markitdown for enhanced document parsing
+  "beautifulsoup4",  # Required for HTML parsing
+]
+
+# requirements-dev.txt generated from here
+[project.optional-dependencies]
+dev = [
+  "coverage",
+  "coverage-badge",
+  "pytest"
+]
