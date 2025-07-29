@@ -1,0 +1,19 @@
+site_name: Metagit-AI Documentation
+theme:
+  name: material
+nav:
+  - 'index.md'
+  - 'Terminology': 'terminology.md'
+  - 'Application Logic': 'app.logic.md'
+  - 'Development': 'development.md'
+  - 'Secrets': 'secrets.analysis.md'
+  - 'CLI Reference': 'cli_reference.md'
+markdown_extensions:
+  - mkdocs-click
+  - admonition         # Adds boxes for Notes, Warnings, etc.
+  - attr_list          # Adds attribute lists to generated HTML
+  - codehilite         # Syntax coloring for code blocks
+  - def_list           # Adds syntax for definition lists
+  - sane_lists         # Enables list items with multiple paragraphs
+  - toc:               # Builds a table of contents
+      permalink: "#"   # Puts a "#" at the end of each header
