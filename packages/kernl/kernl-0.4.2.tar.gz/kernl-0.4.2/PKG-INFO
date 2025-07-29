@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: kernl
+Version: 0.4.2
+Summary: To be Updated
+Home-page: https://github.com/nnilayy/kernl
+Author: Nilay Kumar Bhatnagar
+Author-email: nnilayy.work@email.com
+License: MIT
+Classifier: Programming Language :: Python :: 3.11
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Development Status :: 3 - Alpha
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/nnilayy/kernl/main/assets/kernl-banner.png" alt="Kernl Banner" width="80%">
+</p>
+
+<p align="center">
+  <a href="https://pypi.org/project/kernl/">
+    <img src="https://img.shields.io/pypi/v/kernl.svg?color=brightgreen" alt="PyPI Version">
+  </a>
+  <a href="https://pepy.tech/project/kernl">
+    <img src="https://static.pepy.tech/badge/kernl" alt="Downloads">
+  </a>
+  <img src="https://img.shields.io/pypi/pyversions/kernl.svg" alt="Python Versions">
+  <a href="https://github.com/nnilayy/kernl/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/nnilayy/kernl.svg" alt="License">
+  </a>
+</p>
