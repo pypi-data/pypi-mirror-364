@@ -1,0 +1,13 @@
+precice_profiling-1.2.0.dist-info/licenses/LICENSE,sha256=zceK9hk4SLjXFbwv3NRrzgP8MEk73caMQsJCVuL-Xn4,1107
+preciceprofiling/analyze.py,sha256=pU_M4KoB9tPtjTgQenQdXMQJmfiStLkRCIOvshmbXpU,6707
+preciceprofiling/common.py,sha256=CCOC2cE2NMY_GIT2-6A4yshuwP-OP3gBfxcpeC47mWE,6247
+preciceprofiling/export.py,sha256=ObHpcSHHa5mn_EfxKeDjrHUxY29tjricSNSmOpOVWnE,974
+preciceprofiling/histogram.py,sha256=WRG5K0NuCnDEikxWQGaZfS4b7ere701-E1fdvAfcOcI,3456
+preciceprofiling/merge.py,sha256=QVZwnZDmfwEhU2bD7nZ5sBBWxjZk1m5qX-CN5NWRgrs,15895
+preciceprofiling/parsers.py,sha256=-5hgS1KDoM0wOvv1sLm2efF9t54_vwzSFHIimI-FODA,405
+preciceprofiling/trace.py,sha256=qe5JuwMcnEE7NrU4HJm1HPZUQmE5711R8a53Pa76qgY,1421
+precice_profiling-1.2.0.dist-info/METADATA,sha256=kl-AxLOtADl9ErxmTgpLBW7gnwQkECN_PzlZ77O0pUw,3554
+precice_profiling-1.2.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+precice_profiling-1.2.0.dist-info/entry_points.txt,sha256=43RWLIYVBy3jq8zASBdWtcGJ1sdOaZL6-MMWkSqcUCI,302
+precice_profiling-1.2.0.dist-info/top_level.txt,sha256=U808HLygIu9sg93JeFDiCB1noFFH_ch7RGNrO9fEhk0,17
+precice_profiling-1.2.0.dist-info/RECORD,,
