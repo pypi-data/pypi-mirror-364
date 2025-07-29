@@ -1,0 +1,79 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rbadata"
+version = "0.1.1"
+description = "Download and tidy data from the Reserve Bank of Australia"
+readme = {file = "README.md", content-type = "text/markdown"}
+license = {text = "MIT"}
+authors = [
+    {name = "caymandev"}
+]
+maintainers = [
+    {name = "caymandev"}
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+keywords = ["rba", "economics", "finance", "australia", "data"]
+requires-python = ">=3.9"
+dependencies = [
+    "pandas>=1.3.0",
+    "requests>=2.25.0",
+    "openpyxl>=3.0.0",
+    "beautifulsoup4>=4.9.0",
+    "lxml>=4.6.0",
+    "python-dateutil>=2.8.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "pytest-cov>=2.0",
+    "black>=22.0",
+    "flake8>=4.0",
+    "mypy>=0.900",
+    "isort>=5.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/caymandev/rbadata"
+Documentation = "https://rbadata.readthedocs.io"
+Repository = "https://github.com/caymandev/rbadata"
+Issues = "https://github.com/caymandev/rbadata/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["rbadata*"]
+exclude = ["tests*"]
+
+[tool.setuptools.package-data]
+rbadata = ["data/*.json"]
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
