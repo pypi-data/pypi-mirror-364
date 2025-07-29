@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kinaid"
+version = "1.1.2"
+description = "KINAID : Kinase Activity and Inference Dashboard"
+authors = [
+    { name = "Javed M. Aman" , email = "javeda@princeton.edu"},
+    { name = "Mona Singh" , email = "mona@cs.princeton.edu"}
+]
+dependencies = [
+    "numpy",
+    "scipy",
+    "scikit-learn",
+    "pandas",
+    "tqdm",
+    "plotly",
+    "statsmodels",
+    "dash",
+    "dash_cytoscape",
+    "mpire",
+    "python-calamine",
+    "xlsxwriter",
+    "openpyxl",
+    "pyxlsb"
+]
+readme = "README.md"
+license = {file = "LICENSE"}
+
+[project.optional-dependencies]
+# Define any optional dependencies if needed
+
+[project.scripts]
+kinaid-install = "kinaid:run_default_configuration"
+kinaid-add = "kinaid:run_add_organism"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[project.urls]
+homepage = "https://kinaid.princeton.edu"
+repository = "https://github.com/Singh-Lab/kinaid"

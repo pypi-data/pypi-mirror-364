@@ -1,0 +1,3 @@
+[console_scripts]
+kinaid-add = kinaid:run_add_organism
+kinaid-install = kinaid:run_default_configuration
