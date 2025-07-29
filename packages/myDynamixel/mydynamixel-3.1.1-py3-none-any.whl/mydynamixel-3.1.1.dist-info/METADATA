@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: myDynamixel
+Version: 3.1.1
+Summary: Support tool for Smart Actuator, Dynamixel Series.
+Author: Toshihiro Nishimura
+Author-email: tnishimura@se.kanazawa-u.ac.jp
+License: MIT
+Requires-Dist: numpy
+Requires-Dist: dynamixel_sdk>=3
+Dynamic: author
+Dynamic: author-email
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: summary
