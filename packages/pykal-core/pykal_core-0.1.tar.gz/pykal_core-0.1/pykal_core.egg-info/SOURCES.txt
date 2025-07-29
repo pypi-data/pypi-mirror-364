@@ -1,0 +1,8 @@
+pyproject.toml
+./pykal_core/__init__.py
+pykal_core/__init__.py
+pykal_core.egg-info/PKG-INFO
+pykal_core.egg-info/SOURCES.txt
+pykal_core.egg-info/dependency_links.txt
+pykal_core.egg-info/requires.txt
+pykal_core.egg-info/top_level.txt
