@@ -1,0 +1,5 @@
+include README.md
+include LICENSE
+recursive-include doctorcheck/templates *.html
+recursive-include doctorcheck/static *.css *.js
+recursive-include doctorcheck/management *.py
