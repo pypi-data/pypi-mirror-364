@@ -1,0 +1,12 @@
+{
+  "description": "Kotlin API for Lets-Plot: multiplatform plotting library based on Grammar of Graphics",
+  "properties": [
+    { "name": "v", "value": "4.10.0" },
+    { "name": "v-renovate-hint", "value": "update: package=org.jetbrains.lets-plot:lets-plot-kotlin-jupyter" },
+    { "name": "isolatedFrame", "value": "" }
+  ],
+  "link": "https://github.com/JetBrains/lets-plot-kotlin",
+  "dependencies": [
+    "org.jetbrains.lets-plot:lets-plot-kotlin-jupyter:$v"
+  ]
+}

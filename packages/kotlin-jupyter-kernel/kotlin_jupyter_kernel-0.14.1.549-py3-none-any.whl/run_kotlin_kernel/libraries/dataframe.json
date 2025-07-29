@@ -1,0 +1,17 @@
+{
+  "description": "Kotlin framework for structured data processing",
+  "properties": [
+    { "name": "v", "value": "1.0.0-dev-7089" },
+    { "name": "v-renovate-hint", "value": "update: package=org.jetbrains.kotlinx:dataframe" }
+  ],
+  "link": "https://github.com/Kotlin/dataframe",
+  "init": [
+    "if (!\"$v\".startsWith('0')) USE { dependencies(\"org.jetbrains.kotlinx:dataframe-jupyter:$v\") }"
+  ],
+  "dependencies": [
+    "org.jetbrains.kotlinx:dataframe:$v"
+  ],
+  "integrationTypeNameRules": [
+    "+:org.jetbrains.kotlinx.dataframe.**"
+  ]
+}
