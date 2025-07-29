@@ -1,0 +1,15 @@
+pyscan/__init__.py,sha256=VkPVSX6x7d0pBCl7SLuu0AH8wvST8o7iiwXbn743Kq8,21
+pyscan/libann.so,sha256=q29muJnv2X0K5pUSmciDENORCYOKIFXysc_kzp4ZToY,472152
+pyscan/libappext.so,sha256=ZnfYaNFzNYoeFW2icPp8pOg-ctklOpL8Zi6qUMjDU9I,48600
+pyscan/libdiscrepancy.so,sha256=l5SkD_Z-3Ddl4rNow2KOS0bCbsm8BgUGE2HozHOYMPE,43976
+pyscan/libpyscan.cpython-39-x86_64-linux-gnu.so,sha256=KKKEAr2Co2arquPtzcsO0dc27lElizD424irq7cICC8,1363161
+pyscan/pyscan.py,sha256=7L0a4NtVK0zzh6r-QiOyddes4t_wnmMa6oAv_yTXChE,32278
+pyscan_stats.libs/libgmp-d944b113.so.10.3.2,sha256=bFgbGIGbRmQapGRIrfZxXZj9WjcjJAepAU0FCwb6PKs,652977
+pyscan_stats.libs/libgmpxx-8b3a383a.so.4.5.2,sha256=HsnwPasIPNkBYbx-BVJf1sLKtqY2uX18tHGT2MEkdB4,47593
+pyscan_stats.libs/libgsl-b64c76bc.so.23.1.0,sha256=WHmErYaNTgM28syqO_oYO3j36NEhi8clvutO91MGkwQ,3132433
+pyscan_stats.libs/libgslcblas-cd2c2030.so.0.0.0,sha256=Mbx2IdhN07T41yMwqn4VY5pFrmlK3EU6rRhRppMDdx0,322777
+pyscan_stats.libs/libmpfr-b7fafdf8.so.4.1.6,sha256=MmsDzq0CO9ak-vZa3MBwwUFfQs0HcD5te7GQyNqu7nA,533337
+pyscan_stats-0.1.1.dist-info/METADATA,sha256=F4HzCpO4k3J-r3Kh3c-9CurwHakAPtZjNzCxigl6atY,3777
+pyscan_stats-0.1.1.dist-info/WHEEL,sha256=c1d7RZit8t4ia6J8U7n4R1kwZ6orzQhpoQezzT_KI5U,153
+pyscan_stats-0.1.1.dist-info/RECORD,,
+pyscan_stats-0.1.1.dist-info/licenses/LICENSE,sha256=rD4F0VGJ1mIRDLINa6zGAPjTCF6Mpkg0oA7U_sIps6E,1091
