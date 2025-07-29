@@ -1,0 +1,12 @@
+LICENSE.txt
+README.md
+pyproject.toml
+setup.py
+easypath/__init__.py
+easypath/main.py
+easypath/test.py
+easypath.egg-info/PKG-INFO
+easypath.egg-info/SOURCES.txt
+easypath.egg-info/dependency_links.txt
+easypath.egg-info/not-zip-safe
+easypath.egg-info/top_level.txt
