@@ -1,0 +1,13 @@
+AUTHORS.md
+LICENSE
+README.md
+pyproject.toml
+SUWWP/__init__.py
+SUWWP/file_read.py
+SUWWP/random_copy.py
+SUWWP/structure_project.py
+SUWWP/time_now.py
+SUWWP.egg-info/PKG-INFO
+SUWWP.egg-info/SOURCES.txt
+SUWWP.egg-info/dependency_links.txt
+SUWWP.egg-info/top_level.txt

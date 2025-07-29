@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "SUWWP"
+version = "0.2.2"
+description = "Speeding Up Work With Python"
+readme = "README.md"
+requires-python = ">=3.6"
+license = "MIT"
+license-files = ["LICENSE", "AUTHORS.md"]
+
+authors = [
+    {name = "Dovintc", email = "dovintc23@gmail.com"},
+    {name = "Tooch1c", email = "d18044204@gmail.com"}
+]
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+]
+
+keywords = ["python", "utility", "helper", "suwwp", "speedup", "development"]
+
+[project.urls]
+Homepage = "https://github.com/Dovintc32/SUWWP "
+Repository = "https://github.com/Dovintc32/SUWWP "
