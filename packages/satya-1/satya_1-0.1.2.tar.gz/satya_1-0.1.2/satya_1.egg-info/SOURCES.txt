@@ -1,0 +1,9 @@
+LICENSE
+README.md
+setup.py
+satya/__init__.py
+satya/interpreter.py
+satya_1.egg-info/PKG-INFO
+satya_1.egg-info/SOURCES.txt
+satya_1.egg-info/dependency_links.txt
+satya_1.egg-info/top_level.txt
