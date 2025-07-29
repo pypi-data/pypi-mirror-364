@@ -1,0 +1,11 @@
+django_routines/__init__.py,sha256=g9xlFZmt7qpIUi8dx2xkcimHNw7LXIk4qgZ9INrwdVc,27245
+django_routines/apps.py,sha256=b4ekAgubw-s1S86MC4KUPKDZl7RGwJltywqun2qwZ_M,141
+django_routines/exceptions.py,sha256=0GLeFUuzIA_ybdfFq0K2eBA3xMGbIa7TYzjofHXgWMU,94
+django_routines/signals.py,sha256=deZrHJMUAZTV2iEi2J7iWYRrKNWBBWY5h_HV5azntBM,2554
+django_routines/management/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_routines/management/commands/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_routines/management/commands/routine.py,sha256=qWMYzFnrF_yuQmF9rDEYm4akblzQ1qvDqfG7Yj_nWxU,20233
+django_routines-1.6.0.dist-info/METADATA,sha256=o7O2HxmTz8aJ9JmY7bbP8TJunTAGWo7hDQl33rvzFkg,12272
+django_routines-1.6.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+django_routines-1.6.0.dist-info/licenses/LICENSE,sha256=wl1TpREO4H7IvzS7rr5wQ7hUCg-9wfwYlDIoeUeCwuc,1073
+django_routines-1.6.0.dist-info/RECORD,,
