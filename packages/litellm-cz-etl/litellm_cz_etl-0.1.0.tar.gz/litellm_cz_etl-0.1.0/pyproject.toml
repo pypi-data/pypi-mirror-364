@@ -1,0 +1,43 @@
+[project]
+name = "litellm-cz-etl"
+version = "0.1.0"
+description = "Transform LiteLLM database data into CloudZero AnyCost CBF format"
+readme = "README.md"
+authors = [
+    { name = "Erik Peterson", email = "erik@cloudzero.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "psycopg2-binary>=2.9.0",
+    "polars>=0.20.0",
+    "httpx>=0.25.0",
+    "click>=8.1.0",
+    "connectorx>=0.3.0",
+]
+
+[project.scripts]
+litellm-cz-etl = "litellm_cz_etl:main"
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "PIE", "SIM", "RET"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+[dependency-groups]
+dev = [
+    "pytest>=7.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.5.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.8.0,<0.9"]
+build-backend = "uv_build"
