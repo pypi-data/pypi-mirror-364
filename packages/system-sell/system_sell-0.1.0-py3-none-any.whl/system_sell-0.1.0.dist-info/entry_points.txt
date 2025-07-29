@@ -1,0 +1,2 @@
+[console_scripts]
+system-sell = system_sell:main
