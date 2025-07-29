@@ -1,0 +1,13 @@
+doctorcheck/__init__.py,sha256=pMtTmSUht-XtbR_7Doz6bsQqopJJd8rZ8I8zy2HwwoA,22
+doctorcheck/apps.py,sha256=j2x4CJ5Sr1bUhz-JnrAwjWPd8iCHmyYhqNorxbt2VQo,153
+doctorcheck/health_logic.py,sha256=yMRqed32aBk4eTifwKOaMcTCNhaW4X1bVGT2HTLJfos,1117
+doctorcheck/urls.py,sha256=fcK3dnm23qAP50tDSMWdpVqwVTbBlDJ9PVqAkCnp8UU,153
+doctorcheck/views.py,sha256=tfOGuMXkwSdFROTt1z08LEsr4lCvzBWW7yXgsUzYXfY,835
+doctorcheck/static/doctorcheck/css/style.css,sha256=TUcyFcG_RY0mh87hOGekmcO2rAAbWIcjpfFJMssLtgs,886
+doctorcheck/static/doctorcheck/js/script.js,sha256=SsWbSdjv5TJu7RHrij0m7rZOZwuj-YxlPo9QazKvPFw,452
+doctorcheck/templates/doctorcheck/base.html,sha256=YuAAYBXlGmEIRP3ILYewKPdcbrrNwOijF0KBhC9OTas,375
+doctorcheck/templates/doctorcheck/health_check.html,sha256=OGffRoAKiGeb-eUPttytU6Q4iP3jSJcYnwszxzsUH3Y,1114
+doctorcheck-0.10.0.dist-info/METADATA,sha256=uKGIRA4ZPBharyUEqzAxnoz_390RB_BB78Ia5g5Mbu8,5616
+doctorcheck-0.10.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+doctorcheck-0.10.0.dist-info/top_level.txt,sha256=tqFkTwqtMNv1moQ5EYkL77BLjF4mpPt6DHLjudxsnKo,12
+doctorcheck-0.10.0.dist-info/RECORD,,
