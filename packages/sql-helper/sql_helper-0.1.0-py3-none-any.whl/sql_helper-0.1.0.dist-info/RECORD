@@ -1,0 +1,14 @@
+sql_helper/__init__.py,sha256=3P1paxlwrZAtDwiXSRXg0hl6ufj6btDlOoW7tELiSBM,21767
+sql_helper/settings.ini,sha256=arejGlD88cgQvqeKXmdKac_Rm7lKiMbeEmwIE-aLn3g,1104
+sql_helper/scripts/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+sql_helper/scripts/sql_ipython.py,sha256=D7Opcs-6UCO0Bl6a1n_-m68et0DBVjRl3P0kRpKGm-s,1024
+tests/__init__.py,sha256=jci-DFyrUeT4kU4vCgkmGeFgq6wfxwEtoyRQcBSuM_8,43
+tests/test_mysql.py,sha256=abY_lIqUFPrsFUQhPCMp6rty_idsyq_iK9ltwd59puI,3906
+tests/test_postgresql.py,sha256=XKYHhoE6kG873SbmTvld7sVvLlxVnAspG4mWFt9AQHU,3956
+tests/test_sqlite.py,sha256=KFws4-zEC-F0nhESfQd4geyydjPIVi0Q50q0ej1tmKQ,1419
+sql_helper-0.1.0.dist-info/LICENSE.txt,sha256=zvTkt6BCfNA0UoWHvDmJY0LC3BySpqAUzJjN-jgIdmw,608
+sql_helper-0.1.0.dist-info/METADATA,sha256=PnnQYIxPmugKu8yZq0-ZCNgnVN72W1qnGDFZOCSZcK0,15711
+sql_helper-0.1.0.dist-info/WHEEL,sha256=pkctZYzUS4AYVn6dJ-7367OJZivF2e8RA9b_ZBjif18,92
+sql_helper-0.1.0.dist-info/entry_points.txt,sha256=dfqHn6BnO9Pibz5h-GpA6HwR6cbZdWLcnY1jcmPCE5A,68
+sql_helper-0.1.0.dist-info/top_level.txt,sha256=e_EbjXYHKdx-87D2VmSs-YTq_JDHQx9_D4AtmxGW91U,17
+sql_helper-0.1.0.dist-info/RECORD,,

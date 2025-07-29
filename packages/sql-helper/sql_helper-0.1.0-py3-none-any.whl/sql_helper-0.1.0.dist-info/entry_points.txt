@@ -1,0 +1,2 @@
+[console_scripts]
+sql-ipython = sql_helper.scripts.sql_ipython:main
