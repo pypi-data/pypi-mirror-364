@@ -1,0 +1,16 @@
+# Включаем все файлы из папки bin
+recursive-include simulations/Cbc-refactor-win64-msvc14-mt/bin *
+
+# Включаем все файлы из папки include
+recursive-include simulations/Cbc-refactor-win64-msvc14-mt/include *
+
+# Включаем все файлы из папки lib
+recursive-include simulations/Cbc-refactor-win64-msvc14-mt/lib *
+
+# Включаем все файлы из папки share
+recursive-include simulations/Cbc-refactor-win64-msvc14-mt/share *
+
+# Включаем файлы документации
+include simulations/AUTHORS
+include simulations/LICENSE
+include simulations/README.md
