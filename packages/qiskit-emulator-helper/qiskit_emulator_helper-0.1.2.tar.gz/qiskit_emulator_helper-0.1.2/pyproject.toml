@@ -1,0 +1,23 @@
+# pyproject.toml
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qiskit-emulator-helper"
+version = "0.1.2"
+authors = [
+    { name="NT Nguyen", email="ntn9uy3n@gmail.com" },
+]
+description = "A helper library to easily find, propose, and get Qiskit's fake backends (emulators)."
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "qiskit-ibm-runtime>=0.20.0"
+]
