@@ -1,0 +1,6 @@
+main.py
+__pycache__/
+.coverage
+out/
+img/
+token
