@@ -1,0 +1,15 @@
+README.md
+setup.py
+Telegramd/__init__.py
+Telegramd/exceptions/__init__.py
+Telegramd/exceptions/exceptions.py
+Telegramd/functions/__init__.py
+Telegramd/functions/function01.py
+Telegramd/functions/function02.py
+Telegramd/functions/function03.py
+Telegramd/functions/function04.py
+telegrams.egg-info/PKG-INFO
+telegrams.egg-info/SOURCES.txt
+telegrams.egg-info/dependency_links.txt
+telegrams.egg-info/requires.txt
+telegrams.egg-info/top_level.txt
