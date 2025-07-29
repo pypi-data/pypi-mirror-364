@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+requirements.txt
+setup.py
+mkdocs_freetext/__init__.py
+mkdocs_freetext/plugin.py
+mkdocs_freetext.egg-info/PKG-INFO
+mkdocs_freetext.egg-info/SOURCES.txt
+mkdocs_freetext.egg-info/dependency_links.txt
+mkdocs_freetext.egg-info/entry_points.txt
+mkdocs_freetext.egg-info/not-zip-safe
+mkdocs_freetext.egg-info/requires.txt
+mkdocs_freetext.egg-info/top_level.txt
+tests/__init__.py
+tests/test_plugin.py
