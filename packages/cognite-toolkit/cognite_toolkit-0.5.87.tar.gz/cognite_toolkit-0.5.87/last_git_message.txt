@@ -1,0 +1,26 @@
+[CDF-25203] 💼Dump extraction pipeline (#1752)
+
+# Description
+
+This adds support for dumping extraction-pipelines. This is typically
+used by users that either have existing extraction pipelines that they
+want to govern, or they want to develop new extraction pipelines in the
+UI and then dump it to start governance.
+
+## Changelog
+
+- [x] Patch
+- [ ] Minor
+- [ ] Skip
+
+## cdf
+
+### Added
+
+- [alpha] Support dumping `extraction-pipeline`.
+
+## templates
+
+No changes.
+
+
