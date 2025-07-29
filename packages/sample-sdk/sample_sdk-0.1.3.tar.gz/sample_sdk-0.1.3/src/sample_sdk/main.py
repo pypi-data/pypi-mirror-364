@@ -1,0 +1,2 @@
+def greet(name: str):
+    return f"Hello, {name}! This is a sample SDK version 0.1.2. Thank you for using it."
