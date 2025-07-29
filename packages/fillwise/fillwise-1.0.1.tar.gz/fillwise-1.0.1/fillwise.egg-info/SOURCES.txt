@@ -1,0 +1,13 @@
+LICENSE
+README.md
+pyproject.toml
+fillwise/__init__.py
+fillwise/_styles.py
+fillwise/_utils.py
+fillwise/core.py
+fillwise.egg-info/PKG-INFO
+fillwise.egg-info/SOURCES.txt
+fillwise.egg-info/dependency_links.txt
+fillwise.egg-info/requires.txt
+fillwise.egg-info/top_level.txt
+tests/test_fillwise.py
