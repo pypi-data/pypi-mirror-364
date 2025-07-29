@@ -1,0 +1,17 @@
+[project]
+name = "agi-steps"
+version = "0.1.7"
+license = "MIT"
+description = "Framework para gerenciamento e execução de etapas (steps) configuráveis em Python. Permite organizar scripts em grupos, ativar/desativar etapas e customizar configurações via dicionários."
+readme = "README.md"
+authors = [
+    { name = "Moacyr Rodrigues Neto", email = "moacyr.neto@agi.com.br" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "tomli>=2.2.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

@@ -1,0 +1,19 @@
+
+# Arquivos e pastas ignorados pelo Git
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.swp
+*.swo
+*.log
+.env
+venv/
+build/
+dist/
+wheels/
+*.egg-info/
+.hatch/
+.idea/
+.vscode/
+.DS_Store

@@ -1,0 +1,51 @@
+# agi-steps
+
+Framework para gerenciamento e execução de etapas (steps) configuráveis em Python.
+
+## Descrição
+
+O `agi-steps` permite organizar scripts em grupos, ativar/desativar etapas e customizar configurações via dicionários. Ideal para pipelines, automações e fluxos de trabalho flexíveis.
+
+## Instalação
+
+```bash
+pip install .
+```
+
+## Uso Básico
+
+
+### Como módulo (CLI)
+
+```bash
+python -m agi_steps
+```
+
+### Como biblioteca
+
+```python
+from agi_steps import hello
+print(hello())  # "Hello from agi-steps!"
+
+from agi_steps.steps import create_steps
+steps_dict = {
+    # Defina suas etapas aqui
+}
+grupos = create_steps(steps_dict)
+```
+
+## Principais Funções
+
+- `create_steps(steps: dict) -> dict[list]`: Cria grupos de etapas a partir de um dicionário de configuração.
+- `sorts_steps(steps: list[str]) -> list[str]`: Ordena etapas.
+- `get_step_settings(steps: list[str], step_setting: str) -> str`: Recupera configurações de uma etapa.
+- `get_active_steps(steps: dict) -> list[str]`: Lista etapas ativas.
+
+## Requisitos
+
+- Python >= 3.11
+- tomli >= 2.2.1
+
+## Licença
+
+MIT
