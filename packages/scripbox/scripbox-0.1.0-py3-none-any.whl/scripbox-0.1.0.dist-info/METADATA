@@ -1,0 +1,29 @@
+Metadata-Version: 2.4
+Name: scripbox
+Version: 0.1.0
+Summary: A CLI tool for logging into Scripbox
+Home-page: https://github.com/YBR1104/scripbox
+Author: YASHWANTH BR
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-python
+Dynamic: summary
+
+# Scripbox CLI
+
+A simple command-line tool for logging into Scripbox using a mobile number.
+
+## 🚀 Installation
+
+You can install the package using `pip`:
+
+```bash
+pip install scripbox
+
