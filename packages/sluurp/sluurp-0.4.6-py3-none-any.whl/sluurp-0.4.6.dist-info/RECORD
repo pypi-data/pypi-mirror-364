@@ -1,0 +1,12 @@
+sluurp/__init__.py,sha256=0YutNz49y_1rCAcHVAmli14zPeqllau1ShCSGu_DNRQ,65
+sluurp/executor.py,sha256=GSzsDtrxewCTcfWX2u3RWwV_ct6eV7sG75jZdxXqTW8,1232
+sluurp/job.py,sha256=VcuP9lRgHlU11sRujBrDGIAgYO6xGQhQ0reog2Puy1g,15322
+sluurp/utils.py,sha256=Mffik2e7z7VGFG4zlVUqQfi_qMqf7dUYCrsywlooseM,3552
+sluurp/tests/test_executor.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+sluurp/tests/test_job.py,sha256=b8CCS70hAN8JIG_OWzbNnBv2aLC38VT6YGLVJfSLFPg,6558
+sluurp/tests/test_utils.py,sha256=jVgIjiHRMtGWinljkSEYCHwv9vOZklCiVDlv3XhcCgE,1770
+sluurp-0.4.6.dist-info/licenses/LICENSE.md,sha256=2OkPl4F5J299dR1IEfcXUMrDsY_ke7n8pnOyyF2ATR4,1102
+sluurp-0.4.6.dist-info/METADATA,sha256=ablujGm6am4BvdTgP8Kx-_k1jpOirjybDXbTPYHQ6Ic,1013
+sluurp-0.4.6.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+sluurp-0.4.6.dist-info/top_level.txt,sha256=dfh6_xDQ9qQlYSmENhNjosuSRzHXlbdrkr_UCgCDpdA,7
+sluurp-0.4.6.dist-info/RECORD,,
