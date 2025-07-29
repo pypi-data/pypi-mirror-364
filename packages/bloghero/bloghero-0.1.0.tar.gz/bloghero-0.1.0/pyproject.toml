@@ -1,0 +1,122 @@
+[project]
+name = "bloghero"
+version = "0.1.0"
+description = "A simple Python library and CLI tool for generating hero images by overlaying text on background images"
+authors = [{ name = "Yegor Tokmakov", email = "yegor@tokmakov.biz" }]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "click (>=8.2.1,<9.0.0)",
+    "pillow (>=11.3.0,<12.0.0)",
+    "requests (>=2.32.4,<3.0.0)",
+    "google-api-python-client (>=2.176.0,<3.0.0)",
+    "pydantic (>=2.11.7,<3.0.0)"
+]
+keywords = ["blog", "hero", "image", "generation", "cli", "automation"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "Topic :: Multimedia :: Graphics",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Text Processing :: Fonts",
+]
+
+[project.urls]
+Homepage = "https://github.com/yegortokmakov/bloghero"
+Documentation = "https://github.com/yegortokmakov/bloghero#readme"
+Repository = "https://github.com/yegortokmakov/bloghero"
+"Bug Tracker" = "https://github.com/yegortokmakov/bloghero/issues"
+
+[project.scripts]
+bloghero = "bloghero.cli:cli"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.4.1,<9.0.0",
+    "black>=25.1.0,<26.0.0",
+    "flake8>=7.3.0,<8.0.0",
+    "mypy>=1.17.0,<2.0.0",
+    "pytest-cov>=6.2.1,<7.0.0",
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.1"
+black = "^25.1.0"
+flake8 = "^7.3.0"
+mypy = "^1.17.0"
+pytest-cov = "^6.2.1"
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[[tool.mypy.overrides]]
+module = ["PIL.*", "google.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q --strict-markers --cov=bloghero --cov-report=term-missing"
+testpaths = ["tests"]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
+]
+
+[tool.coverage.run]
+source = ["bloghero"]
+omit = ["*/tests/*", "*/examples/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
