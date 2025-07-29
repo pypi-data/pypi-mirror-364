@@ -1,0 +1,12 @@
+ipydex/__init__.py,sha256=gvom7NCjSC39oK5fdkscQKXBkw4Af3BfowDDpJXnuSg,133
+ipydex/cli.py,sha256=Ywbjn9deXzxqdqsee6hzsu2VsKiLSd1Pk5LoVMUEuoo,862
+ipydex/core.py,sha256=ZAbh6e1JvuMh4GshuCD3_v7-9zbE55IzjyC3AXyFQb4,41578
+ipydex/displaytools.py,sha256=CbcvPqe2Jg0DZalkL3Z32Z0J6StCqz6yTH5y4DVDvhE,26034
+ipydex/release.py,sha256=NGIecTe1EEM7UeBjKSJ4vCWuGDWF1ZX4PckW2Eguxps,23
+ipydex/utils.py,sha256=CKe0g3-EHY3yvi9_jOVblSdEOGJDa4idE9JyRaSKAB8,5642
+ipydex-0.20.0.dist-info/licenses/LICENSE,sha256=WJ7YI-moTFb-uVrFjnzzhGJrnL9P2iqQe8NuED3hutI,35141
+ipydex-0.20.0.dist-info/METADATA,sha256=Ho_MuUNj69DPhDfXUqHlqgGoYdke4ztaf2NTkfRbl1U,5338
+ipydex-0.20.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+ipydex-0.20.0.dist-info/entry_points.txt,sha256=hsBjfW7ElY10LJ_AOWdpbzjY9GbgtS8IUpif4ZGrm-c,78
+ipydex-0.20.0.dist-info/top_level.txt,sha256=oroqhsQT6jAbrIrdLVfuOEkEkB1AWWNtC03z8-4cWtA,7
+ipydex-0.20.0.dist-info/RECORD,,
