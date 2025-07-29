@@ -1,0 +1,16 @@
+current directory: /home/runner/work/pact-ruby-standalone/pact-ruby-standalone/build/vendor/ruby/3.3.0/gems/json-2.7.1/ext/json
+/opt/hostedtoolcache/Ruby/3.3.5/x64/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /home/runner/work/pact-ruby-standalone/pact-ruby-standalone/build/vendor/ruby/3.3.0/gems/json-2.7.1/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20250626-2267-19oped sitelibdir\=./.gem.20250626-2267-19oped clean
+
+current directory: /home/runner/work/pact-ruby-standalone/pact-ruby-standalone/build/vendor/ruby/3.3.0/gems/json-2.7.1/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20250626-2267-19oped sitelibdir\=./.gem.20250626-2267-19oped
+make: Nothing to be done for 'all'.
+
+current directory: /home/runner/work/pact-ruby-standalone/pact-ruby-standalone/build/vendor/ruby/3.3.0/gems/json-2.7.1/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20250626-2267-19oped sitelibdir\=./.gem.20250626-2267-19oped install
+
+current directory: /home/runner/work/pact-ruby-standalone/pact-ruby-standalone/build/vendor/ruby/3.3.0/gems/json-2.7.1/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20250626-2267-19oped sitelibdir\=./.gem.20250626-2267-19oped clean
