@@ -1,0 +1,172 @@
+Metadata-Version: 2.4
+Name: gucken-image-reader
+Version: 1.1.1
+Summary: MCP server for image reader using OpenAI vision API (gpt-4o-mini)
+Author: Jay Pak
+Author-email: Jay Pak <jaypark@forestsoft.co.kr>
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: mcp
+Requires-Dist: openai
+Requires-Dist: python-dotenv
+Dynamic: license-file
+
+[English](#english) | [한국어](#한국어)
+
+---
+
+## English
+
+**gucken-image-reader** is an MCP (Model Context Protocol) server that leverages OpenAI’s Vision API to generate detailed descriptions of images. It exposes a single `describe_image` tool over stdio transport, allowing any MCP‐compatible host (e.g., Claude, custom apps) to request an image path and receive a textual description.
+
+### Installation
+
+1. **Install UV (if you haven’t already)**
+
+   * **macOS / Linux**
+
+     ```bash
+     curl -LsSf https://astral.sh/uv/install.sh | sh
+     ```
+   * **Windows (PowerShell)**
+
+     ```powershell
+     powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+     ```
+
+### Configuration
+
+Create a `.env` file in the working directory (or export the variable directly):
+
+```dotenv
+OPENAI_API_KEY=your_openai_api_key_here
+```
+
+### Integration with MCP host
+
+Add an entry to your `claude_desktop_config.json` (or other MCP‐compatible host config):
+
+```json
+{
+  "mcpServers": {
+    "image-recognition": {
+      "command": "uvx",
+      "args": [
+        "gucken-image-reader"
+      ],
+      "env": {
+        "OPENAI_API_KEY": "your_openai_api_key_here"
+      }
+    }
+  }
+}
+```
+
+* **command**: `uvx`
+* **args**: the console script name `gucken-image-reader`
+* **env**: ensure `OPENAI_API_KEY` is set
+
+### Usage
+
+1. Install and configure as above.
+
+2. Start or restart your MCP host (e.g., Claude app); it will launch the server on stdio.
+
+3. Send a JSON‐RPC or MCP request invoking the `describe_image` tool with a local image file path:
+
+   ```json
+   {
+     "jsonrpc": "2.0",
+     "method": "describe_image",
+     "params": ["./path/to/image.jpg"],
+     "id": 1
+   }
+   ```
+
+4. Receive a response with the model’s textual description.
+
+### License
+
+MIT
+
+---
+
+## 한국어
+
+**gucken-image-reader**은 OpenAI Vision API를 활용해 이미지에 대한 상세 설명을 생성하는 MCP(Model Context Protocol) 서버입니다. `describe_image` 툴을 stdio 방식으로 사용해, 이미지를 텍스트로 설명해줍니다
+
+### 설치
+
+1. **UV 설치 (아직 설치하지 않으셨다면)**
+
+   * **macOS / Linux**
+
+     ```bash
+     curl -LsSf https://astral.sh/uv/install.sh | sh
+     ```
+   * **Windows (PowerShell)**
+
+     ```powershell
+     powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+     ```
+
+
+### 설정
+
+다음 내용을 담은 `.env` 파일을 작업 디렉터리에 생성하거나, 환경 변수를 직접 설정하세요:
+
+```dotenv
+OPENAI_API_KEY=your_openai_api_key_here
+```
+
+### MCP 호스트 통합
+
+`claude_desktop_config.json`(또는 다른 MCP 호환 호스트 설정)에 다음 항목을 추가하세요:
+
+```json
+{
+  "mcpServers": {
+    "image-reader": {
+      "command": "uvx",
+      "args": [
+        "gucken-image-reader"
+      ],
+      "env": {
+        "OPENAI_API_KEY": "your_openai_api_key_here"
+      }
+    }
+  }
+}
+```
+
+* **command**: `uvx`
+* **args**: 콘솔 스크립트 이름 `gucken-image-reader`
+* **env**: `OPENAI_API_KEY` 설정 필수
+
+### 사용 방법
+
+1. 위 설치·설정 과정을 완료합니다.
+
+2. MCP 호스트(예: Claude 앱)를 실행하거나 재시작하면 서버가 stdio로 구동됩니다.
+
+3. `describe_image` 툴을 호출하며 로컬 이미지 파일 경로를 전송합니다:
+
+   ```json
+   {
+     "jsonrpc": "2.0",
+     "method": "describe_image",
+     "params": ["./path/to/image.jpg"],
+     "id": 1
+   }
+   ```
+
+4. 모델이 생성한 이미지 묘사 텍스트를 응답으로 받습니다.
+
+### 라이선스
+
+MIT
