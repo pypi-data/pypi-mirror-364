@@ -1,0 +1,3 @@
+[console_scripts]
+github-gather-background = fastmcp_agents.library.agent.github.gather_background:main
+github-issue-triage = fastmcp_agents.library.agent.github.issue_triage:main
