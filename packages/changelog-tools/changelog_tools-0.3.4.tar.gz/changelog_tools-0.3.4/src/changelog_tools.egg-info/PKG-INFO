@@ -1,0 +1,122 @@
+Metadata-Version: 2.4
+Name: changelog_tools
+Version: 0.3.4
+Summary: This project provides tools to manage changelog files.
+Author-email: Sigilence Technologies <contact@sigilence.com>
+License: FreeBSD License
+        
+        Copyright © 2025 by Sigilence Technologies <contact@sigilence.com>
+        
+        Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+        
+        1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+        
+        2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the
+        documentation and/or other materials provided with the distribution.
+        
+        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES,
+        INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+        IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
+        OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+        OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+        (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+        
+Project-URL: Our Website, https://www.sigilence-technologies.com/
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# Changelog Tools
+
+This project provides tools to manage changelog files, according to the [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format.
+
+<!-- more -->
+
+<div class="grid cards" markdown>
+
+- :material-license: __FreeBSD__ License
+- :fontawesome-brands-python: __Python__ >= 3.8 is required
+- :fontawesome-solid-link: [https://pypi.org/](https://pypi.org/project/changelog-tools/)
+- :fontawesome-solid-at: __Author__ : [Sigilence Technologies](https://pypi.org/user/Sigilence/)
+
+</div>
+
+## Tools
+
+### Usage
+
+```shell
+python3 -m changelog_tools <command> [options]
+python3 -m changelog_tools --help  # Display usage information and a list of the provided commands.
+```
+
+### Available commands
+
+#### **get**
+
+Check and display the latest version of a changelog file, which is by default the CHANGELOG.md file in the current directory.
+
+```shell
+python3 -m changelog_tools get
+```
+
+**<CHANGELOG_PATH>** (optional)
+
+Specifies a changelog path. If given path is a directory, the tool defaults a CHANGELOG.md file in that directory.
+
+```shell
+python3 -m changelog_tools get data/CHANGELOG.md
+```
+
+#### **summarize**
+
+To get a list of changes between two versions, run the script:
+
+```shell
+python3 -m changelog_tools summarize --old <old_version> --new <new_version> <changelog_path>
+```
+
+**--old** (optional)
+Specifies a version from which to start looking for changes. This version corresponds to the lowest/oldest of the file.
+If not provided, the tool defaults to the initial version. If provided version does not exist in the file, it'll raise an error.
+
+**--new** (optional)
+Specifies a version to end looking for changes. This version corresponds to the highest/latest version of the file.
+If not provided, the tool defaults to the latest version. If provided version does not exist in the file, it'll raise an error.
+
+**--include_unreleased** (optional)
+Set by default to False. It is used to include unreleased items to the output, if needed.
+
+**<CHANGELOG_PATH>** (optional)
+
+Specifies a changelog path. If given path is a directory, the tool defaults a CHANGELOG.md file in that directory.
+
+##### Example of what you'll get
+
+Summary with different sections sorted by alphabetical order.
+
+```
+# Changelog summary
+
+Here are all the changes between 0.0.1 and 0.0.3:
+
+### Added
+
+- v1.1 Brazilian Portuguese translation.
+- v1.1 German Translation.
+- v1.1 Spanish translation.
+
+### Changed
+
+- Use frontmatter title & description in each language version template.
+- Replace broken OpenGraph image with an appropriately-sized Keep a Changelog image that will render properly (although in English for all languages).
+```

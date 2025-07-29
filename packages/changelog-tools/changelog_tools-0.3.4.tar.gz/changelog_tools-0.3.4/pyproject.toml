@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "changelog_tools"
+version = "0.3.4"
+authors = [
+  { name="Sigilence Technologies", email="contact@sigilence.com" },
+]
+description = "This project provides tools to manage changelog files."
+readme = "USAGE.md"
+requires-python = ">=3.8"
+classifiers = [
+    # Supported Python versions
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    # Project maturity
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers"
+]
+# TODO: Use the new format when we'll drop Python3.8 version compatibility
+# New format available on setuptools>=77.0.0 (require Python 3.9 or later)
+license = {file = "LICENSE"}
+
+[project.urls]
+"Our Website" = "https://www.sigilence-technologies.com/"
