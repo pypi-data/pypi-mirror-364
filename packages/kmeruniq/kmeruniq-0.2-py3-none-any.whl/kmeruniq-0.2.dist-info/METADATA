@@ -1,0 +1,21 @@
+Metadata-Version: 2.4
+Name: kmeruniq
+Version: 0.2
+Summary: Extract uniq kmer into an ondisk efficient datastructure and allows querying
+Project-URL: Repository, https://gitlab.inria.fr/vizisoft/kmeruniq
+Author-email: Charles Paperman <charles.paperman@univ-lille.fr>, Camille Marchet <camille.marchet@univ-lille.fr>
+License-Expression: BSD-3-Clause
+Keywords: DNA,kmer
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Requires-Python: >=3.9
+Requires-Dist: tqdm
+Requires-Dist: vizibridge
+Provides-Extra: dev
+Requires-Dist: mypy; extra == 'dev'
+Requires-Dist: pytest; extra == 'dev'
+Requires-Dist: ruff; extra == 'dev'
+Description-Content-Type: text/markdown
+
+# TODO

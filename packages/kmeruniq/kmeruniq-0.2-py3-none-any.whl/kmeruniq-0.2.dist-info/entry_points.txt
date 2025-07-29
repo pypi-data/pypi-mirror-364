@@ -1,0 +1,2 @@
+[console_scripts]
+kmeruniq = kmeruniq.__main__:main
