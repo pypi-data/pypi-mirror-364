@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+src/console/__init__.py
+src/console/_version.py
+src/console/py.typed
+src/nexus_console.egg-info/PKG-INFO
+src/nexus_console.egg-info/SOURCES.txt
+src/nexus_console.egg-info/dependency_links.txt
+src/nexus_console.egg-info/entry_points.txt
+src/nexus_console.egg-info/requires.txt
+src/nexus_console.egg-info/top_level.txt
