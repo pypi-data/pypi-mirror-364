@@ -1,0 +1,2 @@
+[console_scripts]
+qblox-scheduler = qblox_scheduler:main
