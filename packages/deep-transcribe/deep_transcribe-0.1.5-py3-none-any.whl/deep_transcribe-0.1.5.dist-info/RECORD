@@ -1,0 +1,11 @@
+deep_transcribe/__init__.py,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
+deep_transcribe/__main__.py,sha256=VVTgwlCWZwsiYHCyUeJqxAhFt2NTvMgHJ4phxSNIKW4,85
+deep_transcribe/cli_main.py,sha256=wM1T29SQHW_-B3mAW4sZhuhm8kJFzFnit50dNmaAiQo,8196
+deep_transcribe/py.typed,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+deep_transcribe/transcribe_commands.py,sha256=zI6X1H18sOp8PgIWQ2Z0D2UC1a6qRq322A82iaeF6Gk,8562
+deep_transcribe/transcribe_options.py,sha256=q6_uB732NTVCaNxmVHoUTPfor1nIk1YPA39kznotocI,4276
+deep_transcribe-0.1.5.dist-info/METADATA,sha256=R3zEHXFt8e82Gfp2B3ZNQzr0sqn4eKNhIwLY5hPvFOo,5485
+deep_transcribe-0.1.5.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+deep_transcribe-0.1.5.dist-info/entry_points.txt,sha256=nXCBngKxZZP5sbRtJMx2DX_vH6znAoiuaOqlGKQfwZk,66
+deep_transcribe-0.1.5.dist-info/licenses/LICENSE,sha256=rCh2PsfYeiU6FK_0wb58kHGm_Fj5c43fdcHEexiVzIo,34562
+deep_transcribe-0.1.5.dist-info/RECORD,,
