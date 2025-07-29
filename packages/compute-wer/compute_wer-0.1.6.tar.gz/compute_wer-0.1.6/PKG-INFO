@@ -1,0 +1,57 @@
+Metadata-Version: 2.4
+Name: compute-wer
+Version: 0.1.6
+Summary: Compute WER
+Author-email: Zhendong Peng <pzd17@tsinghua.org.cn>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/pengzhendong/compute-wer
+Project-URL: Documentation, https://github.com/pengzhendong/compute-wer#readme
+Project-URL: BugTracker, https://github.com/pengzhendong/compute-wer/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: click>=8.1.7
+Requires-Dist: contractions>=0.1.73
+Requires-Dist: edit-distance>=1.0.6
+Requires-Dist: wetext>=0.0.7
+Dynamic: license-file
+
+# compute-wer
+
+## Installation
+
+```bash
+$ pip install compute-wer
+```
+
+## Usage
+
+```bash
+$ cat ref.txt
+
+/path/to/audio1 莫愁前路无知己
+/path/to/audio2 天下谁人不识君
+```
+
+```bash
+$ cat hyp.txt
+
+/path/to/audio1 海内存知己
+/path/to/audio2 天下谁人不识君
+```
+
+```bash
+$ compute-wer ref.txt hyp.txt wer.txt
+```
+
+```bash
+$ compute-wer "莫愁前路无知己" "海内存知己"
+```
+
+## Help
+
+```bash
+$ compute-wer --help
+```

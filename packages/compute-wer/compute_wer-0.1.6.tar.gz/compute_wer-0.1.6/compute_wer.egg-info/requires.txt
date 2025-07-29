@@ -1,0 +1,4 @@
+click>=8.1.7
+contractions>=0.1.73
+edit-distance>=1.0.6
+wetext>=0.0.7
