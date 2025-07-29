@@ -1,0 +1,26 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+  - caption: Getting Started
+    chapters:
+      - file: install
+  - caption: GNSS-Acoustic Theory
+    chapters:
+      - file: gnssa
+        sections:
+          - file: travel_time_delays
+          - file: gnssa_preprocessing
+          - file: gnssa_derivation
+  - caption: User Guide
+    chapters:
+      - file: input
+      - file: config_yaml
+      - file: position_inversion
+  - caption: Help & reference
+    chapters:
+      - file: configs
+      - file: dataspec
+      - file: api
