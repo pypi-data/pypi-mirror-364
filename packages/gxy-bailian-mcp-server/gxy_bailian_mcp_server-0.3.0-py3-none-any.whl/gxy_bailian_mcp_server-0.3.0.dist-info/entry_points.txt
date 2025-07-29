@@ -1,0 +1,3 @@
+[console_scripts]
+gxy-bailian-mcp-server = gxy_bailian_mcp_server:main
+
