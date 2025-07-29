@@ -1,0 +1,8 @@
+pandas==1.5.3
+numpy==1.23.0
+scanpy==1.9.8
+scipy==1.9.1
+rpy2
+tables
+seaborn==0.13.2
+matplotlib==3.7.1

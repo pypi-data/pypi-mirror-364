@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+setup.cfg
+setup.py
+spatialsurf.egg-info/PKG-INFO
+spatialsurf.egg-info/SOURCES.txt
+spatialsurf.egg-info/dependency_links.txt
+spatialsurf.egg-info/entry_points.txt
+spatialsurf.egg-info/requires.txt
+spatialsurf.egg-info/top_level.txt
