@@ -1,0 +1,14 @@
+app_django/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+app_django/admin.py,sha256=suMo4x8I3JBxAFBVIdE-5qnqZ6JAZV0FESABHOSc-vg,63
+app_django/apps.py,sha256=ZDRcsiTl0EUfi5934INKw5Yhicd09gHsTtCfmc37vEM,151
+app_django/models.py,sha256=Vjc0p2XbAPgE6HyTF6vll98A4eDhA5AvaQqsc4kQ9AQ,57
+app_django/tests.py,sha256=mrbGGRNg5jwbTJtWWa7zSKdDyeB4vmgZCRc2nk6VY-g,60
+app_django/urls.py,sha256=-AMv6ziInKSLiN7b18gJAxzKhvMyzDdLv27lm3JRcsg,105
+app_django/views.py,sha256=9Kksoq7-z-S3kK1NMiXXqJrySxeJtCVuRtxOoMzXXn0,136
+app_django/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+pack_app-0.2.3.dist-info/licenses/LICENSE,sha256=qwmi9Q-wTM9R08y6Zz8AiVyQaF27wKoCroATW62NQgs,127
+pack_app-0.2.3.dist-info/METADATA,sha256=sVHXBqQD8B5vAnHTkILScg6aXgPJACKxPvQVCTsc48Q,1790
+pack_app-0.2.3.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+pack_app-0.2.3.dist-info/entry_points.txt,sha256=Zu9sum8tEFMBCCWW2F-IVxf9Xyf42OOYFF9zgoTTKV8,47
+pack_app-0.2.3.dist-info/top_level.txt,sha256=ULbFkmf32qDiySMEXoi9rsWglP1P4tcdYU_PCU76e4Q,11
+pack_app-0.2.3.dist-info/RECORD,,
