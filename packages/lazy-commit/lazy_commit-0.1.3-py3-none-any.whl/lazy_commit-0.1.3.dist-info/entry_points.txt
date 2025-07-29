@@ -1,0 +1,2 @@
+[console_scripts]
+commit = smart_commit.cli:app
