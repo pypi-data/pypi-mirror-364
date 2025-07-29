@@ -1,0 +1,3 @@
+[console_scripts]
+diagnose=deepdiagnostics.client.client:main
+
