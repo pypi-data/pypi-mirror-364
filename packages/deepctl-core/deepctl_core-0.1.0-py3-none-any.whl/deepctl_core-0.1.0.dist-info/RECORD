@@ -1,0 +1,14 @@
+deepctl_core/__init__.py,sha256=9gep100fyACCPK_ntmf69VWzlZ1bzq9KH8ixLENwnus,1047
+deepctl_core/auth.py,sha256=W5iKhlumvZy-AaO33_vQfQy3i1bZ-aT4NYNHjW2Fffg,22472
+deepctl_core/base_command.py,sha256=ayYs17PTl2Eeqht7LDzO6fTVyhFiuXfb4-oAvXcFNDw,10169
+deepctl_core/base_group_command.py,sha256=mmo-_5agIz0b8AQmjK14DOMkRdqCKtkOO_saaF8K6Mc,6288
+deepctl_core/client.py,sha256=RKjyyFWYXGp2ykgErxetg0hTkWYaqxz7zqfTWYjJUH8,10255
+deepctl_core/config.py,sha256=840FK5KNq6oEpF270oFHYK23hCE1YM-wbm0hREMb0lA,10911
+deepctl_core/models.py,sha256=2IoQUbE_a-wPyaGekV-ALhs48R3M0Dj8hiXYzMduJs8,938
+deepctl_core/output.py,sha256=A0q36WyINgWqkYmK4kNfcLJ1lb8yZ15yQFNcsTbf0wQ,13404
+deepctl_core/plugin_manager.py,sha256=wGnOrHDKF_XDGPeUawQejY9JfQ3zNWHH07YD8z5udX4,14436
+deepctl_core/py.typed,sha256=YXwU1m4vdt55g3Gm8ICmh09DZ_o5IYq3udGpBuwLPzM,54
+deepctl_core-0.1.0.dist-info/METADATA,sha256=7NGBKRPgpNAe-2SLgJpOXqEkKozVF5_lad99L-Mu7No,1308
+deepctl_core-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+deepctl_core-0.1.0.dist-info/top_level.txt,sha256=NILQsQiVzbojyGFllxAeyzkvucbMU7_Ty6p3D8KVgn8,13
+deepctl_core-0.1.0.dist-info/RECORD,,
