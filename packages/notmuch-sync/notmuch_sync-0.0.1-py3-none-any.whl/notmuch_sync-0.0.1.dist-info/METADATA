@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: notmuch-sync
+Version: 0.0.1
+Summary: Synchronize notmuch email databases and message files between local and remote systems, compatible with mbsync.
+Project-URL: Homepage, https://github.com/larskotthoff/notmuch-sync
+Project-URL: Issues, https://github.com/larskotthoff/notmuch-sync/issues
+Author-email: Lars Kotthoff <lars@larsko.org>
+License-Expression: BSD-3-Clause
+License-File: LICENSE
+Classifier: Development Status :: 3 - Alpha
+Classifier: Topic :: Communications :: Email
+Requires-Python: >=3.6
+Requires-Dist: notmuch2
+Requires-Dist: xapian-bindings
