@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "adnus"
+version = "0.1.0"
+description = "A Python library for Advanced Number Systems (AdNuS), including Bicomplex, Neutrosophic, and Hyperreal numbers."
+authors = ["Mehmet Keçeci <mkececi@yaani.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+numpy = "^2.3.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
