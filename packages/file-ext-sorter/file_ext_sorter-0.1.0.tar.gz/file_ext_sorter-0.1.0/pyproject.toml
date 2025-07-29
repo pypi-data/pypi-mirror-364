@@ -1,0 +1,52 @@
+
+[project]
+name = "file-ext-sorter"
+version = "0.1.0"
+description = "A Python CLI tool to sort files by their extension"
+readme = { file = "README.pypi.md", content-type = "text/markdown" }
+license = { text = "MIT" }
+authors = [
+  { name = "Oleksandr Romashko", email = "alex.rmshk@gmail.com" }
+]
+
+requires-python = ">=3.8, <3.15"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Operating System :: OS Independent",
+    "Environment :: Console"
+]
+
+dependencies = [
+  "aiofiles>=24.1.0,<25.0.0",
+  "aioshutil>=1.5,<2.0",
+  "colorama>=0.4.6,<0.5.0",
+  "tomli>=2.2.1; python_version < '3.11'"
+]
+
+[project.optional-dependencies]
+dev = ["types-colorama>=0.4.15.20240311"]
+
+[project.scripts]
+file-ext-sorter = "file_ext_sorter.main:main"
+
+[tool.poetry]
+# Only needed to set package inclusion path
+packages = [{ include = "file_ext_sorter", from = "src" }]
+
+[tool.poetry.group.dev.dependencies]
+types-colorama = "^0.4.15.20240311"
+
+[project.urls]
+Homepage = "https://github.com/oleksandr-romashko/goit-pythonweb-hw-04"
+Issues = "https://github.com/oleksandr-romashko/goit-pythonweb-hw-04/issues"
+
+[build-system]
+requires = ["poetry-core>=1.7.0"]
+build-backend = "poetry.core.masonry.api"
