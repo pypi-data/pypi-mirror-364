@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools", "wheel", "beautifulsoup4"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "updatepkgs"
+version = "0.1.0"
+description = "A CLI tool to update Python packages easily"
+authors = [{name = "Dishani William", email = "dishaniwilliam@outlook.com"}]
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.7"
+dependencies = ["tqdm"]
+
+[project.scripts]
+update-pkgs = "updatepkgs.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/dnettz/updatepkgs"

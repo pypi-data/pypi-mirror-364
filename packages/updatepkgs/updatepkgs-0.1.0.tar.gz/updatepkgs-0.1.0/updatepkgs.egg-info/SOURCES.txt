@@ -1,0 +1,11 @@
+README.md
+pyproject.toml
+setup.py
+updatepkgs/__init__.py
+updatepkgs/__main__.py
+updatepkgs.egg-info/PKG-INFO
+updatepkgs.egg-info/SOURCES.txt
+updatepkgs.egg-info/dependency_links.txt
+updatepkgs.egg-info/entry_points.txt
+updatepkgs.egg-info/requires.txt
+updatepkgs.egg-info/top_level.txt
