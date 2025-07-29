@@ -1,0 +1,11 @@
+pcgw_api-0.2.0.dist-info/METADATA,sha256=nDXD8twMKdfgkLnfXmCnIXmQIM_-OLkWvYRzhVu_YLo,3572
+pcgw_api-0.2.0.dist-info/WHEEL,sha256=9P2ygRxDrTJz3gsagc0Z96ukrxjr-LFBGOgv3AuKlCA,90
+pcgw_api-0.2.0.dist-info/entry_points.txt,sha256=6OYgBcLyFCUgeqLgnvMyOJxPCWzgy7se4rLPKtNonMs,34
+pcgw_api-0.2.0.dist-info/licenses/LICENSE,sha256=IMF9i4xIpgCADf0U-V1cuf9HBmqWQd3qtI3FSuyW4zE,26526
+pcgw_api/__init__.py,sha256=ocO1VXhEam2GiH0YCEkVp7Ks2bYE1j1ZEDA59bsLVl4,50
+pcgw_api/pcgw.py,sha256=S4Ak-qRr9qoicN4naJVOCSArf-O_MGM3JpGWnlBVp6U,12325
+pcgw_api/tables.json,sha256=0FnQ-GPjm0osK9023yZWDq3eZGxFzy8q-iIy6qeE77w,5373
+pcgw_api/tables.py,sha256=A8_gbBdvG5bM0ZQLfzvtJxp_54rkLAuEDAEi5mrpuLM,23446
+pcgw_api/update_fields.py,sha256=2EhuZ_AEBroE3j4XelEvQiUJd7vVBlh2U2UR7dFT37w,4708
+pcgw_api/utils.py,sha256=Nm5GCWAUkZOlsR4qjY7ewmXw9--1FXsm0qnw-9RwO5U,4192
+pcgw_api-0.2.0.dist-info/RECORD,,
