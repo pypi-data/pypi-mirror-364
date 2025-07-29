@@ -1,0 +1,20 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_src_path: /home/maik/develop/plonecore/copier-backend-addon
+author: Maik Derstappen - md@derico.de
+description: Provideds a behavior for collections to add epilog RichText field under
+    the collection results.
+dst_path: collective.collectionepilog
+feature_distribution: false
+feature_headless: false
+github_organization: collective
+plone_version: '6.1'
+python_package_name: collective.collectionepilog
+repository_url: https://github.com/collective/collective.collectionepilog
+supported_versions_plone:
+- '6.1'
+supported_versions_python:
+- '3.13'
+- '3.12'
+user_email: md@derico.de
+user_name: MrTango
+version_package: 0.1.0

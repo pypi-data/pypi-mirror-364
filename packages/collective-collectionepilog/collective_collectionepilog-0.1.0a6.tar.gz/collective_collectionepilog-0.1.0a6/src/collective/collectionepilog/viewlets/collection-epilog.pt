@@ -1,0 +1,7 @@
+<div metal:define-macro="epilog-field-view"
+        id="parent-fieldname-epilog" class="stx"
+        tal:define="epilog view/epilog"
+        tal:condition="epilog"
+        tal:attributes="class view/epilog_class">
+    <div metal:define-slot="inside" tal:replace="structure epilog">The body</div>
+</div>
