@@ -1,0 +1,21 @@
+from enum import Enum
+from plum import dispatch
+from typing import TypeVar,Union,Generic,List,Tuple
+from spire.xls.common import *
+from spire.xls import *
+from ctypes import *
+import abc
+
+class ExcelComboType(Enum):
+    """
+    Represents possible combo box type values..
+
+    """
+    Regular = 0
+    PivotTablePageField = 1
+    AutoFilter = 3
+    AutoComplete = 5
+    DataValidation = 6
+    PivotTableRowOrColumn = 7
+    TableTotalRow = 9
+

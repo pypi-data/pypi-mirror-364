@@ -1,0 +1,168 @@
+from enum import Enum
+from plum import dispatch
+from typing import TypeVar,Union,Generic,List,Tuple
+from spire.xls.common import *
+from spire.xls import *
+from ctypes import *
+import abc
+
+class ICustomDocumentProperties (CollectionBase[DocumentProperty]) :
+    """Custom document properties collection interface.
+    
+    This interface represents a collection of custom document properties in an Excel workbook.
+    Custom document properties are user-defined metadata that can be added to a document to
+    store additional information about the file. The interface provides methods for adding,
+    accessing, and managing custom properties of various data types.
+    
+    Inherits from:
+        CollectionBase[DocumentProperty]: Base collection of DocumentProperty objects
+    """
+    @dispatch
+
+    def get_Item(self ,strName:str)->IDocumentProperty:
+        """Gets a document property by name.
+        
+        Args:
+            strName (str): The name of the document property to retrieve.
+            
+        Returns:
+            IDocumentProperty: The document property with the specified name.
+        """
+        
+        GetDllLibXls().ICustomDocumentProperties_get_Item.argtypes=[c_void_p ,c_void_p]
+        GetDllLibXls().ICustomDocumentProperties_get_Item.restype=c_void_p
+        intPtr = CallCFunction(GetDllLibXls().ICustomDocumentProperties_get_Item, self.Ptr, strName)
+        ret = None if intPtr==None else DocumentProperty(intPtr)
+        return ret
+
+
+    @dispatch
+
+    def get_Item(self ,iIndex:int)->IDocumentProperty:
+        """Gets a document property by index.
+        
+        Args:
+            iIndex (int): The zero-based index of the document property to retrieve.
+            
+        Returns:
+            IDocumentProperty: The document property at the specified index.
+        """
+        
+        GetDllLibXls().ICustomDocumentProperties_get_ItemI.argtypes=[c_void_p ,c_int]
+        GetDllLibXls().ICustomDocumentProperties_get_ItemI.restype=c_void_p
+        intPtr = CallCFunction(GetDllLibXls().ICustomDocumentProperties_get_ItemI, self.Ptr, iIndex)
+        ret = None if intPtr==None else DocumentProperty(intPtr)
+        return ret
+
+
+    @property
+    def Count(self)->int:
+        """Gets the number of document properties in the collection.
+        
+        Returns:
+            int: The number of document properties.
+        """
+        GetDllLibXls().ICustomDocumentProperties_get_Count.argtypes=[c_void_p]
+        GetDllLibXls().ICustomDocumentProperties_get_Count.restype=c_int
+        ret = CallCFunction(GetDllLibXls().ICustomDocumentProperties_get_Count, self.Ptr)
+        return ret
+
+
+    def Remove(self ,strName:str):
+        """Removes a document property from the collection.
+        
+        Args:
+            strName (str): The name of the document property to remove.
+        """
+        
+        GetDllLibXls().ICustomDocumentProperties_Remove.argtypes=[c_void_p ,c_void_p]
+        CallCFunction(GetDllLibXls().ICustomDocumentProperties_Remove, self.Ptr, strName)
+
+
+    def Contains(self ,strName:str)->bool:
+        """Determines whether the collection contains a document property with the specified name.
+        
+        Args:
+            strName (str): The name of the document property to find.
+            
+        Returns:
+            bool: True if a document property with the specified name exists, otherwise False.
+        """
+        
+        GetDllLibXls().ICustomDocumentProperties_Contains.argtypes=[c_void_p ,c_void_p]
+        GetDllLibXls().ICustomDocumentProperties_Contains.restype=c_bool
+        ret = CallCFunction(GetDllLibXls().ICustomDocumentProperties_Contains, self.Ptr, strName)
+        return ret
+
+    def Clear(self):
+        """Removes all document properties from the collection.
+        """
+        GetDllLibXls().ICustomDocumentProperties_Clear.argtypes=[c_void_p]
+        CallCFunction(GetDllLibXls().ICustomDocumentProperties_Clear, self.Ptr)
+
+    @dispatch
+
+    def Add(self ,strName:str,value:str):
+        """Adds a string document property to the collection.
+        
+        Args:
+            strName (str): The name of the document property.
+            value (str): The string value of the document property.
+        """
+        
+        GetDllLibXls().ICustomDocumentProperties_Add.argtypes=[c_void_p ,c_void_p,c_void_p]
+        CallCFunction(GetDllLibXls().ICustomDocumentProperties_Add, self.Ptr, strName,value)
+
+    @dispatch
+
+    def Add(self ,strName:str,value:bool):
+        """Adds a boolean document property to the collection.
+        
+        Args:
+            strName (str): The name of the document property.
+            value (bool): The boolean value of the document property.
+        """
+        
+        GetDllLibXls().ICustomDocumentProperties_AddSV.argtypes=[c_void_p ,c_void_p,c_bool]
+        CallCFunction(GetDllLibXls().ICustomDocumentProperties_AddSV, self.Ptr, strName,value)
+
+    @dispatch
+
+    def Add(self ,strName:str,value:DateTime):
+        """Adds a date/time document property to the collection.
+        
+        Args:
+            strName (str): The name of the document property.
+            value (DateTime): The date/time value of the document property.
+        """
+        intPtrvalue:c_void_p = value.Ptr
+
+        GetDllLibXls().ICustomDocumentProperties_AddSV1.argtypes=[c_void_p ,c_void_p,c_void_p]
+        CallCFunction(GetDllLibXls().ICustomDocumentProperties_AddSV1, self.Ptr, strName,intPtrvalue)
+
+    @dispatch
+
+    def Add(self ,strName:str,value:int):
+        """Adds an integer document property to the collection.
+        
+        Args:
+            strName (str): The name of the document property.
+            value (int): The integer value of the document property.
+        """
+        
+        GetDllLibXls().ICustomDocumentProperties_AddSV11.argtypes=[c_void_p ,c_void_p,c_int]
+        CallCFunction(GetDllLibXls().ICustomDocumentProperties_AddSV11, self.Ptr, strName,value)
+
+    @dispatch
+
+    def Add(self ,strName:str,value:float):
+        """Adds a floating-point document property to the collection.
+        
+        Args:
+            strName (str): The name of the document property.
+            value (float): The floating-point value of the document property.
+        """
+        
+        GetDllLibXls().ICustomDocumentProperties_AddSV111.argtypes=[c_void_p ,c_void_p,c_double]
+        CallCFunction(GetDllLibXls().ICustomDocumentProperties_AddSV111, self.Ptr, strName,value)
+

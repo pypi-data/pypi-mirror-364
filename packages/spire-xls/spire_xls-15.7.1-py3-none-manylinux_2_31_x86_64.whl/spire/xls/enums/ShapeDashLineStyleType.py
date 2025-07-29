@@ -1,0 +1,22 @@
+from enum import Enum
+from plum import dispatch
+from typing import TypeVar,Union,Generic,List,Tuple
+from spire.xls.common import *
+from spire.xls import *
+from ctypes import *
+import abc
+
+class ShapeDashLineStyleType(Enum):
+    """
+    Represents shape dash line style.
+
+    """
+    Solid = 0
+    Dotted = 2
+    DottedRound = 1
+    Dashed = 6
+    MediumDashed = 7
+    DashDot = 8
+    MediumDashDot = 9
+    DashDotDot = 10
+
