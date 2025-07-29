@@ -1,0 +1,2 @@
+[console_scripts]
+create_doctorcheck = create_doctorcheck:main
