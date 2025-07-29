@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ledlang"
+version = "0.2.9.dev20250723005228"
+description = "A language for controlling LED animations. Other device must support PLOT and CLEAR calls."
+readme = { file = "README.md", content-type = "text/markdown" }
+requires-python = ">=3.6"
+authors = [
+  { name = "ElliNet13" }
+]
+license = { text = "MIT" }
+dependencies = [
+  "pyserial"
+]
+
+[project.urls]
+Homepage = "https://github.com/ElliNet13/ledlang"
+
+[project.scripts]
+ledlang-test = "ledlang.LEDLangTesting:main"
+ledlang = "ledlang.LEDSendCLI:main"
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["ledlang*"]
+
+[tool.setuptools.package-data]
+ledlang = ["tests/*"]
