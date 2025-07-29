@@ -1,0 +1,16 @@
+dayhoff/__init__.py,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
+dayhoff/activation_checkpointing.py,sha256=WUq22ZVL15_tTBm6IsSOwRxmdcdaGUK2F7a1on-Fdfk,956
+dayhoff/analysis_utils.py,sha256=-HDoWx_lj_QoUPOEttEJ14iws9EbWA-rJVc-l75P2jg,2867
+dayhoff/collators.py,sha256=_r6F6GMVUHk8msfWWXm1JeS_4zH9a-BqQjuhkG3iHDA,17563
+dayhoff/constants.py,sha256=dqEMXtWVYCoto2BNN8ZiRbHUtqUsEIJMOuXp_zhXJcE,651
+dayhoff/datasets.py,sha256=QBQvLkkI1rO-ORlEaOa6r9evZF_cTJN4Wrr8RItskC0,13793
+dayhoff/losses.py,sha256=OZp14BKWzDRselm7O1J8YZqx2PSh93lb-qPbsg7jBho,3225
+dayhoff/model.py,sha256=kLBw41IkeJF4I8QeOHD47tHtnJdOGNR-D28ddDiEit4,11518
+dayhoff/samplers.py,sha256=_s4FOP9MG_v6VLfme4BxhnzLA9hXjR0rktzPV5PJNjg,2750
+dayhoff/tokenizers.py,sha256=QbmG9qD_xTu_XAwgSY_CBYzPG0RqKgagxXLLhVtkGns,4246
+dayhoff/utils.py,sha256=e_J_LXcg3kqDRAq6TTzcuiXQfXL36ETpiM_XQa-XwSo,8242
+dayhoff-0.1.0.dist-info/licenses/LICENSE,sha256=ws_MuBL-SCEBqPBFl9_FqZkaaydIJmxHrJG2parhU4M,1141
+dayhoff-0.1.0.dist-info/METADATA,sha256=gdNTb6uuTzzJKEZqIUlCshKs2m7NzFEKSGAHJ5z4pqA,18340
+dayhoff-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+dayhoff-0.1.0.dist-info/top_level.txt,sha256=m9AfpWKxdcYV4vSo3URPtoEMU2wH0Gyd4NZhQr9vioU,8
+dayhoff-0.1.0.dist-info/RECORD,,
