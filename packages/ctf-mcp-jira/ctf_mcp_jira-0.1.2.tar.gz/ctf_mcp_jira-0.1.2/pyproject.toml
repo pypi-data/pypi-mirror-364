@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ctf_mcp_jira"
+version = "0.1.2"
+description = "MCP server for JIRA integration"
+readme = "README.md"
+authors = [
+    {name = "Tim Kitchens", email = "timkitch@codingthefuture.ai"}
+]
+license = "MIT"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "mcp[cli]>=1.0.0",
+    "anyio>=4.0.0",
+    "starlette>=0.36.0",
+    "uvicorn>=0.27.0",
+    "PyYAML>=6.0.1",
+    "platformdirs>=4.2.2",
+    "markdown-it-py>=3.0.0",
+    "mdurl>=0.1.2",
+    "streamlit",
+    "requests>=2.31.0"
+]
+
+[project.scripts]
+# Single entry point for server that handles both transports
+ctf-mcp-jira-server = "mcp_jira.server.app:main"
+ctf-mcp-jira-client = "mcp_jira.client.app:main"
+ctf-mcp-jira-config = "mcp_jira.ui.run_ui:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["mcp_jira*"]
+namespaces = false 
