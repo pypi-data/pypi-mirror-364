@@ -1,0 +1,55 @@
+div#map {
+    width: 100%;
+    height: 100dvh;
+}
+
+div.panel-info {
+    width: 13em;
+}
+
+div.card {
+    width: 10.5em;
+}
+
+div.card .btn-close {
+    font-size: 8pt;
+}
+
+div.card #sq1090-conn {
+    display: none;
+    text-align: center;
+    font-size: small;
+}
+
+div.panel-info table tr th {
+    font-weight: normal;
+}
+
+table#panel-info-general tr td {
+    width: 100%;
+    text-align: right;
+}
+
+div#panel-info-aircraft {
+    height: 100%;
+}
+
+#panel-info-aircraft td {
+    vertical-align: top;
+}
+
+#panel-info-aircraft td:first-child {
+    padding-right: 10px;
+}
+
+div#panel-info-aircraft .progress {
+    height: 3px;
+}
+
+div#panel-info-aircraft .progress-bar {
+    font-size: xx-small;
+}
+
+footer {
+    font-size: small;
+}

@@ -1,0 +1,24 @@
+Metadata-Version: 2.2
+Name: sq1090-console
+Version: 0.1.0.dev6
+Summary: Sq1090 Console - show aircraft information
+Home-page: https://gitlab.com/sq1090/sq1090-console
+Author: Artur Wroblewski
+Author-email: wrobell@riseup.net
+License: GPLv3+
+Project-URL: Source Code, https://gitlab.com/sq1090/sq1090-console
+Project-URL: Bug tracker, https://gitlab.com/sq1090/sq1090-console/issues
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Classifier: Programming Language :: Python :: 3
+Classifier: Development Status :: 3 - Alpha
+Requires-Python: >=3.13
+Description-Content-Type: text/x-rst
+License-File: COPYING
+Requires-Dist: blacksheep>=2.4.0
+Requires-Dist: rbfly>=0.10.0
+Requires-Dist: uvloop
+Provides-Extra: tests
+Requires-Dist: mypy==1.16.1; extra == "tests"
+Requires-Dist: ruff; extra == "tests"
+Requires-Dist: pytest; extra == "tests"

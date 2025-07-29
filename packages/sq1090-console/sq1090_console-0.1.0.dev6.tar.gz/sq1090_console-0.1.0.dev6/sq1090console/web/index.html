@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>Sq1090 - Console</title>
+  <script src='maplibre-gl.js'></script>
+  <script src='jquery.js'></script>
+  <script src='bootstrap.js'></script>
+
+  <script src='timeline.js'></script>
+  <script src='console.js'></script>
+
+  <link rel='stylesheet' href='maplibre-gl.css'/>
+  <link rel='stylesheet' href='bootstrap.css'/>
+
+  <link rel='stylesheet' href='timeline.css'/>
+  <link rel='stylesheet' href='console.css'/>
+</head>
+<body>
+  <div class='content container-fluid'><div class='row'>
+    <div class='col'><div id='map'></div></div>
+    <div class='col-auto d-flex flex-column panel-info'>
+      <div class='card border-primary my-3'>
+        <div class='card-header p-2'><strong>Sq1090 Console</strong></div>
+        <div class='card-body p-2'>
+          <div id='sq1090-conn' class='text-bg-warning mb-2 p-2'>
+            <strong>disconnected</strong>
+          </div>
+          <table id='panel-info-general'>
+            <tr id='panel-info-time'><th>time:</td><td></td></tr>
+            <tr id='panel-info-time-delta'><th>time<sub>d<sub>:</td><td></td></tr>
+            <tr id='panel-info-aircrafts'><th>aircrafts:</td><td></td></tr>
+          </table>
+        </div>
+      </div>
+      <div id='panel-info-aircraft' class='overflow-auto my-2'>
+      </div>
+      <footer class='container-fluid text-muted mt-auto'>
+        &copy; 2025 Artur Wróblewski
+      </footer>
+    </div>
+  </div></div>
+</body>
+</html>
+<!-- vim: set sw=2:et:ai -->
