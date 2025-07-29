@@ -1,0 +1,3 @@
+[console_scripts]
+polsartools = polsartools.cli:cli
+
