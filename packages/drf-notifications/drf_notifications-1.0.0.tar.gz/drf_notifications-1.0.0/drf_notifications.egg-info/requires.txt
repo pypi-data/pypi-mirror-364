@@ -1,0 +1,6 @@
+django>=4.2
+django-model-utils>=3.1.0
+jsonfield>=2.1.0
+swapper
+packaging
+djangorestframework==3.16.0
