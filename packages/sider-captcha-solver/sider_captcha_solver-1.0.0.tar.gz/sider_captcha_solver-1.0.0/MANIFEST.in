@@ -1,0 +1,41 @@
+# Include important files
+include README.md
+include README_zh.md
+include LICENSE
+include requirements.txt
+
+# Include configuration files
+recursive-include configs *.yaml
+
+# Include the best model checkpoint
+include src/checkpoints/best_model.pth
+
+# Include all Python files
+recursive-include src *.py
+recursive-include scripts *.py
+
+# Include test files
+recursive-include tests *.py
+
+# Exclude unnecessary files
+global-exclude __pycache__
+global-exclude *.py[co]
+global-exclude .DS_Store
+global-exclude *.log
+global-exclude *.txt.bak
+global-exclude *.swp
+global-exclude *~
+global-exclude .git*
+
+# Exclude data directory (too large)
+prune data
+
+# Exclude other checkpoints (only include best_model.pth)
+exclude src/checkpoints/checkpoint_epoch_*.pth
+exclude src/checkpoints/latest_checkpoint.pth
+exclude src/checkpoints/training_log_*.txt
+
+# Exclude logs and outputs
+prune logs
+prune outputs
+prune results

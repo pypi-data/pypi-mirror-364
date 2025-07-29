@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Sider_CAPTCHA_Solver"
+version = "1.0.0"
+description = "Industrial-grade slider CAPTCHA recognition system based on deep learning"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "TomokotoKiyoshi"},
+]
+maintainers = [
+    {name = "TomokotoKiyoshi"},
+]
+keywords = ["captcha", "slider", "recognition", "deep-learning", "pytorch", "centernet", "computer-vision"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+dependencies = [
+    "torch>=2.0.0",
+    "torchvision>=0.15.0",
+    "opencv-python>=4.5.0",
+    "Pillow>=9.0.0",
+    "numpy>=1.20.0",
+    "matplotlib>=3.5.0",
+    "tqdm>=4.60.0",
+    "PyYAML>=6.0",
+    "requests>=2.25.0",
+    "aiohttp>=3.8.0",
+    "loguru>=0.6.0",
+    "pandas>=1.3.0",
+    "seaborn>=0.11.0",
+    "psutil>=5.8.0",
+    "fastapi>=0.70.0",
+    "uvicorn>=0.15.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/TomokotoKiyoshi/Sider_CAPTCHA_Solver"
+Documentation = "https://github.com/TomokotoKiyoshi/Sider_CAPTCHA_Solver/blob/main/README.md"
+Repository = "https://github.com/TomokotoKiyoshi/Sider_CAPTCHA_Solver"
+Issues = "https://github.com/TomokotoKiyoshi/Sider_CAPTCHA_Solver/issues"
+
+[project.scripts]
+sider-captcha-predict = "scripts.inference.predict:main"
+sider-captcha-evaluate = "scripts.evaluation.evaluate_model:main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*", "scripts*"]
+exclude = ["tests*", "data*", "logs*", "outputs*", "results*"]
+
+[tool.setuptools.package-data]
+src = ["checkpoints/best_model.pth"]
+"*" = ["*.yaml"]
