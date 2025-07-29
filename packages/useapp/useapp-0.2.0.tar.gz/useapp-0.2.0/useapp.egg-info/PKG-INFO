@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: useapp
+Version: 0.2.0
+Summary: Application Django pour la gestion des notifications utilisateurs
+Home-page: https://github.com/Estherkouao/packageapp.git
+Author: amah esther
+Author-email: estherkouao9@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Framework :: Django
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
+
+'useapp' dans ilstallapp
+path('useapp /',include, name = 'useapp')
+
+
