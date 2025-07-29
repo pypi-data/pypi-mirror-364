@@ -1,0 +1,16 @@
+
+recursive-include simulations/Cbc-refactor-win64-msvc14-mt/bin *
+
+
+recursive-include simulations/Cbc-refactor-win64-msvc14-mt/include *
+
+
+recursive-include simulations/Cbc-refactor-win64-msvc14-mt/lib *
+
+
+recursive-include simulations/Cbc-refactor-win64-msvc14-mt/share *
+
+
+include simulations/AUTHORS
+include simulations/LICENSE
+include simulations/README.md
