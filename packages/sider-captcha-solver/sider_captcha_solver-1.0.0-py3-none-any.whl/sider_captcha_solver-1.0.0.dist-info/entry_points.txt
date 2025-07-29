@@ -1,0 +1,3 @@
+[console_scripts]
+sider-captcha-evaluate = scripts.evaluation.evaluate_model:main
+sider-captcha-predict = scripts.inference.predict:main
