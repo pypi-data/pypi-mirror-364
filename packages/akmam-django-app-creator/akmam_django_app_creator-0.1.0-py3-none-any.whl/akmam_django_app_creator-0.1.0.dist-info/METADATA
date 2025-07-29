@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: akmam-django-app-creator
+Version: 0.1.0
+Summary: Automagically generate Django apps
+Author: Mélodie
+License: MIT
+Requires-Python: >=3.6
+License-File: LICENSE
+Dynamic: author
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-python
+Dynamic: summary

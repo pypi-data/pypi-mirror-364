@@ -1,0 +1,2 @@
+[console_scripts]
+akmam-django-app-creator = app_creator.core:main
