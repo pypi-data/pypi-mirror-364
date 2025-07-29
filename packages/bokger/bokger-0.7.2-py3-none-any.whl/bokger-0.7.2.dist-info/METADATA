@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: bokger
+Version: 0.7.2
+Summary: A logging package that generates debugging information in html.
+Author: chaoweichen26@gmail.com
+Requires-Python: >=3.0
+Requires-Dist: bokeh
+Requires-Dist: numpy
+Requires-Dist: pydecor
+Requires-Dist: rich
+Provides-Extra: test
+Requires-Dist: pytest; extra == "test"
+Requires-Dist: junit2html; extra == "test"
