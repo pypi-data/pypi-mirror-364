@@ -1,0 +1,12 @@
+LICENSE
+README.rst
+pyproject.toml
+django_navtag/__init__.py
+django_navtag/models.py
+django_navtag.egg-info/PKG-INFO
+django_navtag.egg-info/SOURCES.txt
+django_navtag.egg-info/dependency_links.txt
+django_navtag.egg-info/not-zip-safe
+django_navtag.egg-info/top_level.txt
+django_navtag/templatetags/__init__.py
+django_navtag/templatetags/navtag.py
