@@ -1,0 +1,18 @@
+Metadata-Version: 2.4
+Name: a5
+Version: 0.0.10
+Summary: a5
+Author: Aapeli
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.9
+Requires-Dist: boto3
+Requires-Dist: gunicorn
+Requires-Dist: openai
+Requires-Dist: pico-acme
+Requires-Dist: pynacl
+Requires-Dist: tqdm
+Dynamic: author
+Dynamic: classifier
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary

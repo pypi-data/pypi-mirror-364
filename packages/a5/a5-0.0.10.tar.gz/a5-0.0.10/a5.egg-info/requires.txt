@@ -1,0 +1,6 @@
+boto3
+gunicorn
+openai
+pico-acme
+pynacl
+tqdm
