@@ -1,0 +1,2 @@
+[console_scripts]
+shrinky = shrinky.__main__:cli
