@@ -1,0 +1,5 @@
+[console_scripts]
+sherlock = sherlock.core:main
+
+[nbdev]
+sherlock = sherlock._modidx:d
