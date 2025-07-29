@@ -1,0 +1,14 @@
+{
+  "deepwiki": {
+    "url": "https://mcp.deepwiki.com/mcp",
+    "transport": "streamable_http"
+  },
+  "semgrep": {
+    "url": "https://mcp.semgrep.ai/mcp",
+    "transport": "streamable_http"
+  },
+  "grep": {
+    "url": "https://mcp.grep.app",
+    "transport": "streamable_http"
+  }
+}
