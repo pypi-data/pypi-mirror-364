@@ -1,0 +1,12 @@
+include README.md
+include LICENSE
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+recursive-exclude tests *
+recursive-exclude htmlcov *
+global-exclude .DS_Store
+global-exclude .git*
+global-exclude .hive-mind*
+global-exclude *.swp
+global-exclude *.bak
+global-exclude *~

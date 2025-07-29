@@ -1,0 +1,81 @@
+{
+  "sessionId": "session-1753218717423-518j1u7mc",
+  "checkpointId": "checkpoint-1753218747424-fg1f6zi7o",
+  "checkpointName": "auto-save-1753218747424",
+  "timestamp": "2025-07-22T21:12:27.425Z",
+  "data": {
+    "timestamp": "2025-07-22T21:12:27.424Z",
+    "changeCount": 5,
+    "changesByType": {
+      "swarm_created": [
+        {
+          "type": "swarm_created",
+          "data": {
+            "swarmId": "swarm-1753218717422-d6hj5f1w1",
+            "swarmName": "hive-1753218717418",
+            "objective": "review the functionality in the ace-api-kit package and ensure our aceiot-models-cli package includes all of the functionality present in ace-api-kit, if there are any new use-cases implied by the ace-api-kit codebase, ensure we have testing in our project that ensures we're covering all use cases, when complete, create a roadmap for future functionality based on industry best practices and the sector we're working in, smart buildings",
+            "workerCount": 8
+          },
+          "timestamp": "2025-07-22T21:11:57.423Z"
+        }
+      ],
+      "agent_activity": [
+        {
+          "type": "agent_activity",
+          "data": {
+            "agentId": "worker-swarm-1753218717422-d6hj5f1w1-0",
+            "activity": "spawned",
+            "data": {
+              "type": "researcher",
+              "name": "Researcher Worker 1"
+            }
+          },
+          "timestamp": "2025-07-22T21:11:57.423Z"
+        },
+        {
+          "type": "agent_activity",
+          "data": {
+            "agentId": "worker-swarm-1753218717422-d6hj5f1w1-1",
+            "activity": "spawned",
+            "data": {
+              "type": "coder",
+              "name": "Coder Worker 2"
+            }
+          },
+          "timestamp": "2025-07-22T21:11:57.423Z"
+        },
+        {
+          "type": "agent_activity",
+          "data": {
+            "agentId": "worker-swarm-1753218717422-d6hj5f1w1-2",
+            "activity": "spawned",
+            "data": {
+              "type": "analyst",
+              "name": "Analyst Worker 3"
+            }
+          },
+          "timestamp": "2025-07-22T21:11:57.423Z"
+        },
+        {
+          "type": "agent_activity",
+          "data": {
+            "agentId": "worker-swarm-1753218717422-d6hj5f1w1-3",
+            "activity": "spawned",
+            "data": {
+              "type": "tester",
+              "name": "Tester Worker 4"
+            }
+          },
+          "timestamp": "2025-07-22T21:11:57.423Z"
+        }
+      ]
+    },
+    "statistics": {
+      "tasksProcessed": 0,
+      "tasksCompleted": 0,
+      "memoryUpdates": 0,
+      "agentActivities": 4,
+      "consensusDecisions": 0
+    }
+  }
+}

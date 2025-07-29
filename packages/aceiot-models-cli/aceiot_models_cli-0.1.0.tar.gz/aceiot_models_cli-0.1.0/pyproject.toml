@@ -1,0 +1,93 @@
+[project]
+name = "aceiot-models-cli"
+version = "0.1.0"
+description = "Command-line interface for ACE IoT Aerodrome API using aceiot-models package"
+readme = "README.md"
+authors = [
+    { name = "Andrew Rodgers", email = "andrew@aceiotsolutions.com" }
+]
+license = {text = "MIT"}
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+]
+keywords = ["aceiot", "iot", "api", "cli", "bacnet"]
+requires-python = ">=3.13"
+dependencies = [
+    "aceiot-models==0.1.1",
+    "click>=8.2.1",
+    "requests>=2.31.0",
+    "pyyaml>=6.0.1",
+    "rich>=13.7.0",
+    "email-validator>=2.1.0",
+    "click-repl>=0.3.0",
+    "prompt-toolkit>=3.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/ACE-IoT-Solutions/aceiot-models-cli"
+Repository = "https://github.com/ACE-IoT-Solutions/aceiot-models-cli"
+Issues = "https://github.com/ACE-IoT-Solutions/aceiot-models-cli/issues"
+
+[project.scripts]
+aceiot-models-cli = "aceiot_models_cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pyrefly>=0.25.0",
+    "pytest>=8.4.1",
+    "pytest-cov>=6.0.0",
+    "ruff>=0.12.4",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+fix = true
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
+    "N",   # pep8-naming
+    "SIM", # flake8-simplify
+]
+ignore = [
+    "E501",  # line too long (handled by formatter)
+    "B008",  # do not perform function calls in argument defaults
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+addopts = [
+    "-v",
+    "--cov=aceiot_models_cli",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+]
+
+[tool.mypy]
+python_version = "3.13"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+strict_optional = true
