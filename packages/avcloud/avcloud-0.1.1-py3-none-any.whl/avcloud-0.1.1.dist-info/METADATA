@@ -1,0 +1,18 @@
+Metadata-Version: 2.3
+Name: avcloud
+Version: 0.1.1
+Summary: repository to host external facing avcloud sdk
+Author: Summer Li
+Author-email: jiaoyli@umich.edu
+Requires-Python: >=3.10
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: httpx (>=0.28.1,<0.29.0)
+Description-Content-Type: text/markdown
+
+# AVCloud SDK
+
+A Python SDK for interfacing with AVCloud services.

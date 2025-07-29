@@ -1,0 +1,13 @@
+avcloud/__init__.py,sha256=ttQfTzrEjcP-6k182Xi7hGe_GCmMVQRetPvTBy02hJI,281
+avcloud/experimental/__init__.py,sha256=HY5xOD9tARyeMh7L_7tB3xc9gER789wBv3e0Xr8Zev8,198
+avcloud/experimental/client.py,sha256=Gc7CFVqKKZwxwSP55rNhAace1nx63McHHhxUvKa8_9A,1234
+avcloud/experimental/http_client/__init__.py,sha256=9uHR_Bn3DzAKMHcsyHCwgIKZfeGwtFMuVpCPuZHut-U,100
+avcloud/experimental/http_client/client.py,sha256=ZaYzS-JlgYCDbINtk1mNDFECQiodZze4OX4NEnIypwM,4973
+avcloud/experimental/oci/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+avcloud/experimental/oci/_logger.py,sha256=qFrUYwDt8osr0gBvbrTlEkdAMU_K3QWartf_NmdR5aE,9495
+avcloud/experimental/oci/manager.py,sha256=R2C3V41HyvFTX_th7DV0p07PDA-8IVLJg0p0T5PTw0A,7377
+avcloud/experimental/resources/downloader.py,sha256=nn8-8BT0dXo7WJbXt_aODsvBXMR_yFGOf-dMlB9V6_M,2104
+avcloud/experimental/resources/search.py,sha256=Sso4sUTs8kMycFAZPiAt3Mv3BX1GxIkiasTYwuWvFGc,1270
+avcloud-0.1.1.dist-info/METADATA,sha256=uvVWrmzHkR4gixdQJXGYhD_hZZUN-QSAm8_uz6046Fw,581
+avcloud-0.1.1.dist-info/WHEEL,sha256=b4K_helf-jlQoXBBETfwnf4B04YC67LOev0jo4fX5m8,88
+avcloud-0.1.1.dist-info/RECORD,,
