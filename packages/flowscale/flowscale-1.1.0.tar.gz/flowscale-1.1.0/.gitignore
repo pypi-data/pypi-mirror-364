@@ -1,0 +1,5 @@
+dist/
+fresh_env/
+.env
+flowscale/__pycache__/
+__pycache__/
