@@ -1,0 +1,76 @@
+Metadata-Version: 2.4
+Name: nvidia_rag
+Version: 2.2.1
+Summary: This blueprint serves as a reference solution for a foundational Retrieval Augmented Generation (RAG) pipeline.
+Author-email: NVIDIA RAG <foundational-rag-dev@exchange.nvidia.com>
+License-Expression: Apache-2.0
+Project-URL: Homepage, https://github.com/NVIDIA-AI-Blueprints/rag
+Project-URL: Documentation, https://github.com/NVIDIA-AI-Blueprints/rag/blob/main/README.md
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: bleach==6.2.0
+Requires-Dist: dataclass-wizard==0.27.0
+Requires-Dist: fastapi==0.115.5
+Requires-Dist: langchain==0.3.7
+Requires-Dist: langchain-community==0.3.7
+Requires-Dist: langchain-milvus>=0.1.10
+Requires-Dist: langchain-nvidia-ai-endpoints==0.3.10
+Requires-Dist: minio==7.2.15
+Requires-Dist: pdfplumber>=0.6
+Requires-Dist: pydantic==2.9.2
+Requires-Dist: pymilvus==2.5.8
+Requires-Dist: pymilvus-model==0.3.2
+Requires-Dist: python-multipart==0.0.18
+Requires-Dist: pyyaml==6.0.2
+Requires-Dist: unstructured[all-docs]>=0.15.1
+Requires-Dist: uvicorn[standard]==0.32.0
+Requires-Dist: langchain-core>=0.3.31
+Requires-Dist: redis==5.2.1
+Requires-Dist: protobuf>=5.29.5
+Provides-Extra: rag
+Requires-Dist: langchain-openai==0.2.8; extra == "rag"
+Requires-Dist: opentelemetry-api==1.29.0; extra == "rag"
+Requires-Dist: opentelemetry-exporter-otlp==1.29.0; extra == "rag"
+Requires-Dist: opentelemetry-exporter-prometheus==0.50b0; extra == "rag"
+Requires-Dist: opentelemetry-instrumentation==0.50b0; extra == "rag"
+Requires-Dist: opentelemetry-instrumentation-fastapi==0.50b0; extra == "rag"
+Requires-Dist: opentelemetry-instrumentation-milvus==0.36.0; extra == "rag"
+Requires-Dist: opentelemetry-processor-baggage==0.50b0; extra == "rag"
+Requires-Dist: opentelemetry-sdk==1.29.0; extra == "rag"
+Provides-Extra: ingest
+Requires-Dist: nv-ingest-api==25.6.2; extra == "ingest"
+Requires-Dist: nv-ingest-client==25.6.3; extra == "ingest"
+Requires-Dist: tritonclient==2.57.0; extra == "ingest"
+Requires-Dist: overrides==7.7.0; extra == "ingest"
+Requires-Dist: tqdm==4.67.1; extra == "ingest"
+Requires-Dist: opentelemetry-api==1.29.0; extra == "ingest"
+Requires-Dist: opentelemetry-exporter-otlp==1.29.0; extra == "ingest"
+Requires-Dist: opentelemetry-exporter-prometheus==0.50b0; extra == "ingest"
+Requires-Dist: opentelemetry-instrumentation==0.50b0; extra == "ingest"
+Requires-Dist: opentelemetry-instrumentation-fastapi==0.50b0; extra == "ingest"
+Requires-Dist: opentelemetry-instrumentation-milvus==0.36.0; extra == "ingest"
+Requires-Dist: opentelemetry-processor-baggage==0.50b0; extra == "ingest"
+Requires-Dist: opentelemetry-sdk==1.29.0; extra == "ingest"
+Provides-Extra: all
+Requires-Dist: nvidia-rag[ingest,rag]; extra == "all"
+Dynamic: license-file
+
+<h1><img align="center" src="https://github.com/user-attachments/assets/cbe0d62f-c856-4e0b-b3ee-6184b7c4d96f">NVIDIA RAG Blueprint</h1>
+
+
+## Overview
+This python package enables developers to interact with the [NVIDIA RAG Blueprint](https://build.nvidia.com/nvidia/build-an-enterprise-rag-pipeline).
+The NVIDIA RAG blueprint serves as a reference solution for a foundational Retrieval Augmented Generation (RAG) pipeline.
+One of the key use cases in Generative AI is enabling users to ask questions and receive answers based on their enterprise data corpus.
+This blueprint demonstrates how to set up a RAG solution that uses NVIDIA NIM and GPU-accelerated components.
+By default, this blueprint leverages locally-deployed NVIDIA NIM microservices to meet specific data governance and latency requirements.
+However, you can replace these models with your NVIDIA-hosted models available in the [NVIDIA API Catalog.](https://build.nvidia.com)
+
+The target audience for this blueprint is developers who want a quick start to set up a RAG solution with a path-to-production with the NVIDIA NIM.
+
+## Source code
+The source code for this python package is available [here.](https://github.com/NVIDIA-AI-Blueprints/rag)
+
+## Example usage
+Refer to [this notebook](https://github.com/NVIDIA-AI-Blueprints/rag/blob/main/notebooks/rag_library_usage.ipynb) to understand how to leverage this python package for building enterprise RAG usecases!
