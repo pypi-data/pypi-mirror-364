@@ -1,0 +1,228 @@
+# Matplotlib style sheet to mimic gnuplot default style
+# Based on gnuplot postscript eps color colortext terminal
+
+# Figure properties
+figure.figsize: 6.4, 4.8
+figure.dpi: 300
+figure.facecolor: white
+figure.edgecolor: black
+figure.autolayout: True
+
+# Axes properties
+axes.facecolor: white
+axes.edgecolor: black
+axes.linewidth: 0.8
+axes.grid: False
+axes.labelsize: medium
+axes.labelcolor: black
+axes.axisbelow: True
+axes.formatter.use_mathtext: True
+axes.formatter.use_locale: False
+axes.unicode_minus: True
+
+# Set color cycle - gnuplot default 8 colors
+axes.prop_cycle: cycler('color', ['9400d3', '009e73', '56b4e9', 'e69f00', 'f0e442', '0072b2', 'e51e10', '000000'])
+
+# Grid properties (gnuplot default is no grid)
+grid.color: gray
+grid.linestyle: -
+grid.linewidth: 0.5
+grid.alpha: 0.5
+
+# Line properties
+lines.linewidth: 1.0
+lines.linestyle: -
+lines.color: C0
+lines.marker: None
+lines.markeredgewidth: 0.5
+lines.markeredgecolor: auto
+lines.markerfacecolor: auto
+lines.markersize: 6
+lines.solid_capstyle: round
+lines.solid_joinstyle: round
+lines.antialiased: True
+
+# Define line styles to match gnuplot dash patterns
+# These will need to be applied programmatically as matplotlib doesn't support dash patterns in style files
+# LT0: solid (default)
+# LT1: dashed [4, 2]
+# LT2: dashed [2, 2]
+# LT3: dashdot [6, 2, 2, 2]
+# LT4: dashdotdash [2, 2, 6, 2, 2, 2]
+# LT5: dashed [8, 4]
+# LT6: complex [3, 3, 3, 3, 3, 12]
+# LT7: dashdot [6, 6, 2, 6]
+
+# Marker properties
+markers.fillstyle: full
+
+# Patch properties
+patch.linewidth: 1.0
+patch.facecolor: C0
+patch.edgecolor: black
+patch.antialiased: True
+
+# Font properties - gnuplot uses Helvetica for PostScript
+# font.serif : cmr10, Computer Modern Serif, DejaVu Serif
+font.family : serif
+# axes.formatter.use_mathtext : True
+# font.family: sans-serif
+font.sans-serif: Helvetica, Arial, DejaVu Sans, Bitstream Vera Sans, sans-serif
+font.size: 10.0
+font.serif : cmr10, Computer Modern Serif, DejaVu Serif
+# font.serif: Times, DejaVu Serif, Bitstream Vera Serif, Computer Modern Roman, serif
+font.monospace: Courier, DejaVu Mono, Bitstream Vera Mono, Computer Modern Typewriter, monospace
+
+# Text properties
+text.color: black
+text.usetex: False
+text.latex.preamble:
+text.hinting: auto
+text.hinting_factor: 8
+text.antialiased: True
+
+# Math text properties
+mathtext.fontset: cm
+mathtext.fallback: cm
+mathtext.default: regular
+
+# Tick properties
+xtick.top: False
+xtick.bottom: True
+xtick.labeltop: False
+xtick.labelbottom: True
+xtick.major.size: 4.0
+xtick.minor.size: 2.0
+xtick.major.width: 0.8
+xtick.minor.width: 0.6
+xtick.major.pad: 4.0
+xtick.minor.pad: 4.0
+xtick.color: black
+xtick.labelsize: medium
+xtick.direction: out
+xtick.minor.visible: False
+xtick.major.top: True
+xtick.major.bottom: True
+xtick.minor.top: True
+xtick.minor.bottom: True
+xtick.alignment: center
+
+ytick.left: True
+ytick.right: False
+ytick.labelleft: True
+ytick.labelright: False
+ytick.major.size: 4.0
+ytick.minor.size: 2.0
+ytick.major.width: 0.8
+ytick.minor.width: 0.6
+ytick.major.pad: 4.0
+ytick.minor.pad: 4.0
+ytick.color: black
+ytick.labelsize: medium
+ytick.direction: out
+ytick.minor.visible: False
+ytick.major.left: True
+ytick.major.right: True
+ytick.minor.left: True
+ytick.minor.right: True
+ytick.alignment: center_baseline
+
+# Legend properties
+legend.loc: best
+legend.frameon: True
+legend.framealpha: 1.0
+legend.facecolor: white
+legend.edgecolor: black
+legend.fancybox: False
+legend.shadow: False
+legend.numpoints: 1
+legend.scatterpoints: 1
+legend.markerscale: 1.0
+legend.fontsize: medium
+legend.title_fontsize: None
+legend.borderpad: 0.4
+legend.columnspacing: 2.0
+legend.borderaxespad: 0.5
+legend.handlelength: 2.0
+legend.handletextpad: 0.8
+legend.labelspacing: 0.5
+
+# Savefig properties
+savefig.dpi: figure
+savefig.facecolor: white
+savefig.edgecolor: white
+savefig.format: png
+savefig.bbox: tight
+savefig.pad_inches: 0.1
+
+# Histogram properties
+hist.bins: 10
+
+# Scatter properties
+scatter.marker: o
+scatter.edgecolors: face
+
+# Error bar properties
+errorbar.capsize: 0
+
+# Boxplot properties
+boxplot.notch: False
+boxplot.vertical: True
+boxplot.whiskers: 1.5
+boxplot.bootstrap: None
+boxplot.patchartist: False
+boxplot.showmeans: False
+boxplot.showcaps: True
+boxplot.showbox: True
+boxplot.showfliers: True
+boxplot.meanline: False
+boxplot.flierprops.marker: o
+boxplot.flierprops.markerfacecolor: none
+boxplot.flierprops.markeredgecolor: black
+boxplot.flierprops.markersize: 6
+boxplot.flierprops.linestyle: none
+boxplot.boxprops.color: black
+boxplot.boxprops.linewidth: 1.0
+boxplot.boxprops.linestyle: -
+boxplot.whiskerprops.color: black
+boxplot.whiskerprops.linewidth: 1.0
+boxplot.whiskerprops.linestyle: -
+boxplot.capprops.color: black
+boxplot.capprops.linewidth: 1.0
+boxplot.capprops.linestyle: -
+boxplot.medianprops.color: black
+boxplot.medianprops.linewidth: 1.0
+boxplot.medianprops.linestyle: -
+boxplot.meanprops.color: black
+boxplot.meanprops.marker: ^
+boxplot.meanprops.markerfacecolor: black
+boxplot.meanprops.markeredgecolor: black
+boxplot.meanprops.markersize: 6
+boxplot.meanprops.linestyle: none
+
+# Image properties
+image.aspect: equal
+image.interpolation: antialiased
+image.cmap: viridis
+image.lut: 256
+image.origin: upper
+image.resample: True
+
+# Contour properties
+contour.negative_linestyle: dashed
+contour.corner_mask: True
+contour.linewidth: None
+
+# Colorbar properties
+# Note: These properties are not supported in style files
+# Set them programmatically when needed:
+# plt.colorbar(orientation='vertical', fraction=0.15, shrink=1.0, aspect=20, pad=0.05)
+
+# Date properties
+date.autoformatter.year: %Y
+date.autoformatter.month: %Y-%m
+date.autoformatter.day: %Y-%m-%d
+date.autoformatter.hour: %m-%d %H
+date.autoformatter.minute: %d %H:%M
+date.autoformatter.second: %H:%M:%S
+date.autoformatter.microsecond: %M:%S.%f
