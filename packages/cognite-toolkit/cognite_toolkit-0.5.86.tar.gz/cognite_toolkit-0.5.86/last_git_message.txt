@@ -1,0 +1,28 @@
+[CDF-25031] 🗄 Profiling output excel  (#1740)
+
+# Description
+
+Example output of running `cdf profile transformations -d assets`
+<img width="1573" height="233" alt="image"
+src="https://github.com/user-attachments/assets/5b127259-28ce-47f5-8923-3380e55eca09"
+/>
+
+
+## Changelog
+
+- [x] Patch
+- [ ] Minor
+- [ ] Skip
+
+## cdf
+
+### Added
+
+- [alpha] All profile commands, `cdf profile` now has an
+`--output-spreadsheet` option for writing the profiling table to a
+spreadsheet.
+
+## templates
+
+No changes.
+
