@@ -1,0 +1,10 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+mymathlib/__init__.py
+mymathlib/operations.py
+xmymathlibx.egg-info/PKG-INFO
+xmymathlibx.egg-info/SOURCES.txt
+xmymathlibx.egg-info/dependency_links.txt
+xmymathlibx.egg-info/top_level.txt
