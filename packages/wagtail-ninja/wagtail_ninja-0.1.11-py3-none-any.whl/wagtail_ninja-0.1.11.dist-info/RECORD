@@ -1,0 +1,10 @@
+wagtail_ninja/__init__.py,sha256=iEidmjy6Ha6gw_x14p5DHrruP70I-PhiEsGi9T3k7pc,49
+wagtail_ninja/_django_ninja_patch.py,sha256=6mBOl3eyUJN-R3JpzoHUxQuJFKgvO5rzcJ20VoU3Qxw,5497
+wagtail_ninja/router.py,sha256=vWH5Yh98MUHGWlb-CN6lILOHzdy4Ddt7lt5zeulj0_o,6092
+wagtail_ninja/schema.py,sha256=Js64wkpH_-q66YMpOmDRFYF1Vz7uGG-I_5fX9OoeWt8,4112
+wagtail_ninja/typer.py,sha256=gJMvOxhGNEqPxOdsYK--exdudQBW-TdQHt0aIKK6JCw,10049
+wagtail_ninja-0.1.11.dist-info/licenses/LICENSE,sha256=molCr6bPNeLvYY24PdVwmAWHPwHgrWJKF6wnY0By-Lc,1500
+wagtail_ninja-0.1.11.dist-info/METADATA,sha256=DANgqY0nljHR2Br1ifcmykVrlf39wR56n4TCSLBFAqc,6182
+wagtail_ninja-0.1.11.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+wagtail_ninja-0.1.11.dist-info/top_level.txt,sha256=-leYe04Qdbhp7W7tTf2BDaxtAyxJVJAsgTzxXSKRnFM,14
+wagtail_ninja-0.1.11.dist-info/RECORD,,
