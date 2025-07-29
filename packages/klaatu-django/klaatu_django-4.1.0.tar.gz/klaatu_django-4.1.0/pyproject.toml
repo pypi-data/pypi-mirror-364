@@ -1,0 +1,106 @@
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = ["setuptools"]
+
+[project]
+dependencies = [
+    "beautifulsoup4",
+    "Django>=3.2",
+    # "Django>=3.2,<4",
+    "djangorestframework",
+    "klaatu-python",
+    "Pillow",
+    "python-dateutil",
+]
+dynamic = ["version"]
+name = "klaatu-django"
+requires-python = ">=3.10"
+authors = [
+    {name = "Robert Huselius", email = "robert@huseli.us"},
+]
+license = "GPL-3.0-only"
+license-files = ["LICENSE"]
+readme = "README.md"
+
+[project.optional-dependencies]
+dev = [
+    "flake8",
+    "ipdb",
+    "ipython",
+    "isort",
+    "mypy>=0.910",
+    "pylint",
+    "pylint-django",
+    "types-python-dateutil",
+]
+
+[project.urls]
+Homepage = "https://github.com/Eboreg/klaatu-django"
+Source = "https://github.com/Eboreg/klaatu-django"
+Issues = "https://github.com/Eboreg/klaatu-django/issues"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages]
+find = {}
+
+[tool.setuptools.dynamic]
+version = {attr = "klaatu_django.__version__"}
+
+[tool.isort]
+combine_as_imports = true
+default_section = "THIRDPARTY"
+include_trailing_comma = true
+known_django = "django"
+known_self = "klaatu_django"
+line_length = 119
+multi_line_output = 3
+sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "DJANGO", "SELF", "LOCALFOLDER"]
+skip = ".venv"
+
+[tool.mypy]
+check_untyped_defs = true
+exclude = "^\\.venv"
+files = "klaatu_django"
+ignore_missing_imports = true
+show_error_codes = true
+
+[tool.pylint.main]
+ignore = [".git", "__pycache__", ".venv", ".vscode"]
+max-branches = 16
+
+[tool.pylint.format]
+max-line-length = 119
+
+[tool.pylint.messages_control]
+disable = [
+    "abstract-method",
+    "assignment-from-none",
+    "broad-exception-caught",
+    "broad-exception-raised",
+    "consider-using-f-string",
+    "django-not-configured",
+    "import-outside-toplevel",
+    "invalid-name",
+    "missing-class-docstring",
+    "missing-function-docstring",
+    "missing-module-docstring",
+    "pointless-string-statement",
+    "protected-access",
+    "redefined-builtin",
+    "too-few-public-methods",
+    "too-many-ancestors",
+    "too-many-arguments",
+    "too-many-branches",
+    "too-many-locals",
+    "too-many-return-statements",
+    "too-many-statements",
+    "ungrouped-imports",
+    "unnecessary-lambda-assignment",
+    "unspecified-encoding",
+    "unused-argument",
+]
+
+[tool.pylint.typecheck]
+generated-members = ["objects", "DoesNotExist"]

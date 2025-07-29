@@ -1,0 +1,16 @@
+beautifulsoup4
+Django>=3.2
+djangorestframework
+klaatu-python
+Pillow
+python-dateutil
+
+[dev]
+flake8
+ipdb
+ipython
+isort
+mypy>=0.910
+pylint
+pylint-django
+types-python-dateutil
