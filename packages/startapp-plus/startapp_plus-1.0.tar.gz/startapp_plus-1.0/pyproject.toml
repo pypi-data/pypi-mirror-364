@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "startapp-plus"
+version = "1.0"
+description = "Un générateur de structure d'app Django améliorée"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+  "django>=4.2"
+]
+authors = [
+  {name = "prince01", email = "axelvianney49@gmail.com"},
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Framework :: Django"
+]
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.scripts]
+startapp-plus = "startapp_plus.__main__:main"
