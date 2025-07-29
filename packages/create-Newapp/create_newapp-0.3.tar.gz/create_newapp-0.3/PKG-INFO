@@ -1,0 +1,32 @@
+Metadata-Version: 2.4
+Name: create_Newapp
+Version: 0.3
+Summary: Un outil pour créer une application Django complète automatiquement.
+Author: Tieba
+Classifier: Programming Language :: Python :: 3
+Classifier: Framework :: Django
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: requires-python
+Dynamic: summary
+
+#  create_django
+
+`create_Newapp` est un package Python qui vous permet de générer automatiquement une application Django complète prête à l'emploi, en une seule commande.
+
+---
+
+##  Fonctionnalités
+
+- Génère un dossier d'application Django avec une structure complète
+
+---
+
+## Installation
+
+```bash
+pip install create_django
