@@ -1,0 +1,147 @@
+[build-system]
+
+requires = [
+    "setuptools",
+    "setuptools-scm",
+]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+exclude = [
+    "contrib*",
+    "docs*",
+    "tests*",
+    "samples*",
+    "ressources*",
+    "dist*",
+]
+
+[tool.setuptools_scm]
+version_file = "IMTreatment/_version.py"
+fallback_version = "0.0.0"
+
+[tool.pdm.scripts]
+test = "tox -e test"
+lint = "tox -e lint"
+
+[project]
+name = "IMTreatment"
+dynamic = ["version"]
+description = "Tools to analyze scalar and vector fields"
+readme = "README.rst"
+classifiers = [
+        'Development Status :: 5 - Production/Stable',
+        'Intended Audience :: Science/Research',
+        'Topic :: Scientific/Engineering',
+        'Programming Language :: Python :: 3 :: Only',
+        'Natural Language :: English',
+        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
+        'Operating System :: OS Independent',
+]
+keywords = ['scalarfield', 'vectorfield', 'fluid dynamics', 'PIV', 'vortex']
+authors = [
+    { name = "Gaby Launay", email = "gaby.launay@protonmail.com" },
+]
+dependencies = [
+    "numpy>=2.2.3",
+    "matplotlib>=3.10.0",
+    "scipy>=1.15.2",
+    "unum>=4.2.1",
+    "imageio>=2.37.0",
+    "multiprocess>=0.70.17",
+    "psutil>=7.0.0",
+    "colorama>=0.4.6",
+    "pywavelets>=1.8.0"
+]
+requires-python = ">=3.10"
+
+[project.license]
+text = "GPLv3"
+
+[project.urls]
+Homepage = 'https://framagit.org/gabylaunay/IMTreatment'
+
+[tool.ruff]
+line-length = 80
+extend-exclude = ["docs/*"]
+
+[tool.ruff.lint]
+select = [
+    "F",     # pyflakes
+    "E",     # pycodestyle
+    "W",     # pycodestyle
+    "I",     # isort
+    # "N",     # pep8-name
+    "D",     # pydocstyle
+    "UP",    # pyupgrade
+    "YTT",   # version uses
+    "S",     # bandit
+    "BLE",   # blind except
+    # "FBT",   # boolean trap
+    "B",     # bugbear
+    "A",     # builtins
+    "COM",   # commas
+    "C4",    # list comprehension
+    "DTZ",   # datetime
+    "T10",   # debugger
+    "ICN",   # import conventions
+    "INP",   # missing __init__
+    "PIE",   # unecessary stuff
+    "PT",    # pytest
+    "Q",     # quotes
+    # "RET",   # returns
+    "SLF",   # self
+    "SIM",   # simplify
+    # "ARG",   # unused arguments
+    "PD",    # pandas
+    "PGH",   # pygrep
+    "NPY",   # numpy
+    # "PERF",  # performance
+    "RUF",   # ruff specific
+    ]
+ignore = [
+    'D200',
+    'E203',
+    'D200',
+    'PT011',
+    'SIM102',  # nested ifs
+    'SIM105',  # pass exception
+    'S110',    # silencing exception
+    'BLE001',  # silencing exception
+    'COM812',  # conflict with formatter
+    ]
+
+[tool.ruff.extend-per-file-ignores]
+"__init__.py" = ["F401", "I001"]
+"tests{/}*" = ["D", "N", "S101", "E501", "INP001", "F841", "SLF", "NPY002"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[dependency-groups]
+lint = [
+    "pre-commit>=4.1.0",
+    "black>=25.1.0",
+]
+test = [
+    "pytest>=8.3.4",
+    "pytest-cov>=6.0.0",
+    "pytest-icdiff>=0.9",
+    "pytest-xdist>=3.6.1",
+    "pytest-mpl>=0.17.0",
+    "IMTreatment[all]",
+]
+coverage = [
+    "coverage>=7.6.12",
+]
+all = [
+    "modred>=2.1.0",
+    "ReadIM>=0.8.4",
+    "networkx>=3.4.2",
+    "h5py>=3.13.0",
+    "scikit-learn>=1.6.1",
+]
+dev = [
+    "tox-pdm>=0.7.2",
+    "ruff>=0.9.7",
+]
