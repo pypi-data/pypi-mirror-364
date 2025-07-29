@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Andev Web</title>
+       {% load static %}
+  <link rel="stylesheet" href="{% static 'formulaire_app/style.css' %}">
+</head>
+<body>
+  <canvas id="matrixCanvas"></canvas>
+  <section>
+    <div class="signin">
+      <div class="content">
+        <h2>Login</h2>
+        <div class="form">
+          <div class="inputBox">
+            <input type="text" required>
+            <i>Username</i>
+          </div>
+          <div class="inputBox">
+            <input type="password" required>
+            <i>Password</i>
+          <div class="links">
+              <a href="{% url 'forgot_password' %}">Forgot Password</a>
+              <a href="{% url 'register' %}">Register</a>
+          </div>
+
+
+          <div class="inputBox">
+            <input type="submit" value="Login">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="{% static 'formulaire_app/script.js' %}"></script>
+</body>
+</html>
