@@ -1,0 +1,10 @@
+pixel_canon/__init__.py,sha256=-WVAwL7iif6dvvp5dSzqOMT-fovVS9VVKLdShDcubp0,557
+pixel_canon/common.py,sha256=XwrnxKHwVxTyY9ojmDM2zCGw81Gx5Bt7rYPcP9PiLvM,2293
+pixel_canon/core.py,sha256=d9IkYCm4ohvJaN4kbhqB6S5pzjJ3dVHLmCcSCRIayo4,3206
+pixel_canon/utils.py,sha256=UEYQyWhWpE7HINl2BDRt4NMHodilOSjxZM_mRYGSpx4,2328
+pixel_canon/backends/__init__.py,sha256=-Rws3VFNM0s8aJxX83DkUxiD14_mJmZfM5PO224Hq8I,319
+pixel_canon/backends/numpy_backend.py,sha256=-pnH4s8MDXiYpuWlkhnu63IbqliSBz9LJHJ3jJth93E,4356
+pixel_canon-0.1.0.dist-info/METADATA,sha256=RNgCqSlZ0DOm0ya-RnhRW_l_9-Y63NbdZd03YrT25p4,3400
+pixel_canon-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+pixel_canon-0.1.0.dist-info/top_level.txt,sha256=0hIi6vgZcfTpftCOJhcjJOXPh8W0gFX1gzJkuG7fdMk,12
+pixel_canon-0.1.0.dist-info/RECORD,,

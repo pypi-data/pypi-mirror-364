@@ -1,0 +1,100 @@
+Metadata-Version: 2.4
+Name: pixel-canon
+Version: 0.1.0
+Summary: The canon for pixel data topology. A cross-language specification to define the logical layout of images.
+Author-email: GolonChenroppi <golonchenroppi@gmail.com>
+Project-URL: Homepage, https://github.com/GolonChenroppi/pixel-canon
+Project-URL: Bug Tracker, https://github.com/GolonChenroppi/pixel-canon/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Image Processing
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Provides-Extra: numpy
+Requires-Dist: numpy; extra == "numpy"
+
+# Pixel-Canon: Python Implementation
+
+This directory contains the Python implementation of the Pixel-Canon specification.
+
+## Development Setup
+
+To work on this package locally, it is recommended to install it in "editable" mode inside a virtual environment.
+
+1.  **Navigate to this directory:**
+    ```bash
+    cd path/to/pixel-canon/python
+    ```
+
+2.  **Create a virtual environment:**
+    ```bash
+    python -m venv .venv
+    ```
+
+3.  **Activate the virtual environment:**
+    *   **Windows (Command Prompt, cmd.exe):**
+        ```cmd
+        .venv\Scripts\activate.bat
+        ```
+    *   **Windows (PowerShell):**
+        ```powershell
+        # Если вы получаете ошибку о политике выполнения, сначала выполните:
+        # Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
+        .venv\Scripts\Activate.ps1
+        ```
+    *   **macOS / Linux (bash/zsh):**
+        ```bash
+        source .venv/bin/activate
+        ```
+
+4.  **Install the package in editable mode:**
+    This command will install the package and its dependencies, making it available system-wide (within the virtual environment) while allowing you to edit the source code directly.
+    ```bash
+    pip install -e .
+    ```
+    If you need the dependencies for running tests or specific backends, you can install them as extras:
+    ```bash
+    pip install -e ".[numpy]"
+    ```
+
+## Running Tests
+
+From the root of the python directory (`pixel-canon/python`), run the following command:
+
+```bash
+python -m unittest discover -s tests
+```
+
+This command explicitly tells `unittest` to start discovery in the `tests` subdirectory, ensuring all tests are found and executed correctly.
+
+## Publishing to PyPI
+
+This is a guide for project maintainers.
+
+1.  **Install build tools:**
+    ```bash
+    pip install build twine
+    ```
+
+2.  **Clean up previous builds (optional but recommended):**
+    ```bash
+    rm -rf build dist pixel_canon.egg-info
+    ```
+
+3.  **Build the package:**
+    This command creates the `dist/` directory with a wheel (`.whl`) and a source archive (`.tar.gz`).
+    ```bash
+    python -m build
+    ```
+
+4.  **Upload to PyPI:**
+    You will be prompted for a username and password.
+    *   For **username**, enter `__token__`.
+    *   For **password**, paste your PyPI API token (including the `pypi-` prefix).
+    ```bash
+    python -m twine upload dist/*
+    ```
