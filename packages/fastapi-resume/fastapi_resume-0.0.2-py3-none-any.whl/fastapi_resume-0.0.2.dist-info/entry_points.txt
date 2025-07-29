@@ -1,0 +1,2 @@
+[console_scripts]
+fast-resume = fastapi_resume.cli:app
