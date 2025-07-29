@@ -1,0 +1,10 @@
+MANIFEST.in
+setup.py
+PureAI.egg-info/PKG-INFO
+PureAI.egg-info/SOURCES.txt
+PureAI.egg-info/dependency_links.txt
+PureAI.egg-info/requires.txt
+PureAI.egg-info/top_level.txt
+pureai/RagPUREAI.cpython-312-x86_64-linux-gnu.so
+pureai/__init__.py
+pureai/libtorch_config.py
