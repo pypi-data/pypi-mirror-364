@@ -1,0 +1,12 @@
+pytest_modern/__init__.py,sha256=6J0e9708j8Vn3Gt2_lnyv2YXhaMbDFTC7keJdxfHCs8,142
+pytest_modern/benchmark_report.py,sha256=nRUTwUMV4IqTwxy6vnm5jbvNE7BAoo2zicsVypAd6NE,6845
+pytest_modern/coverage_report.py,sha256=moJnpcItKHTUlUi8jcdnNCy_bYYaXUqRzZX3XBrKLRU,2856
+pytest_modern/header.py,sha256=SlUgUR-yT0JImYrZfuPxhLO2I6qdB9JexM8JexOdF8E,1591
+pytest_modern/plugin.py,sha256=qJI7Q0l9eZG95h9liJkyl9TjveRWJGGk_T-NnFd09t0,1700
+pytest_modern/terminal.py,sha256=3FWEM1nw3ZeXrfJa50DIpd3itXvSeSQcHUfzAC36pfY,21835
+pytest_modern/traceback.py,sha256=R4mXoVAw3cT7pxVQmKNKmVHxpG5LX_pYCyjV-lfSdUE,8338
+pytest_modern-0.7.1.dist-info/METADATA,sha256=JoB9r0Tv9Lem6kQcG0_8DnxsZFUCnDNpEUPpRSnnMzU,2325
+pytest_modern-0.7.1.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+pytest_modern-0.7.1.dist-info/entry_points.txt,sha256=_ArT8rb4LVSjDiWUBGTE5XEXQjRqOIohRxIeOlFty5U,48
+pytest_modern-0.7.1.dist-info/licenses/LICENSE,sha256=xx0jnfkXJvxRnG63LTGOxlggYnIysveWIZ6H3PNdCrQ,11357
+pytest_modern-0.7.1.dist-info/RECORD,,
