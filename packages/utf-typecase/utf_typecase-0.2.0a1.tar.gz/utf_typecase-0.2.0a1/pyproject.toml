@@ -1,0 +1,28 @@
+[project]
+name = "utf-typecase"
+version = "0.2.0a1"
+description = "Remote Unicode keyboard: select UTF characters in a browser and insert them on another device."
+authors = [{name="AlexanderGoebel", email="lollybyte.git@gmail.com"}]
+readme = "README.md"
+license = {text = "GPL-3.0-or-later"}
+requires-python = ">=3.7"
+dependencies = ["click", "click-completion", "click-pwsh", "flask", "requests", "pyautogui", "pyperclip"]
+
+[project.urls]
+Homepage = "https://github.com/lollybyte/utf-typecase"
+Repository = "https://github.com/lollybyte/utf-typecase"
+Issues = "https://github.com/lollybyte/utf-typecase/issues"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project.scripts]
+utf-typecase = "utf_typecase.cli.main:main"
+
+[tool.setuptools.package-data]
+"utf_typecase" = ["completions/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

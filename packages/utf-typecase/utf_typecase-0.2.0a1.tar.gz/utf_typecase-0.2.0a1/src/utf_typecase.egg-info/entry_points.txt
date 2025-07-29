@@ -1,0 +1,2 @@
+[console_scripts]
+utf-typecase = utf_typecase.cli.main:main
