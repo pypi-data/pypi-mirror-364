@@ -1,0 +1,22 @@
+Metadata-Version: 2.4
+Name: topsis-nandini
+Version: 0.1.0
+Summary: TOPSIS implementation for multi-criteria decision making
+Author: Nandini Shekhar
+Author-email: your_email@example.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: pandas
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary
+
+topsis
