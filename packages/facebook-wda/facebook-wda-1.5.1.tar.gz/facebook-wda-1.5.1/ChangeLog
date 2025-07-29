@@ -1,0 +1,7 @@
+CHANGES
+=======
+
+1.5.1
+-----
+
+* fix limit depth calls (#165)
