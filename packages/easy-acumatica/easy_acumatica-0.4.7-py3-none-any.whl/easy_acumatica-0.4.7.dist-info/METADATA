@@ -1,0 +1,79 @@
+Metadata-Version: 2.4
+Name: easy_acumatica
+Version: 0.4.7
+Summary: Python wrapper for the Acumatica REST API
+Author-email: Matthew Hirstius <matthew.c.hirstius@gmail.com>
+License: MIT
+Project-URL: Homepage, https://www.easyacumatica.com/
+Project-URL: Source, https://github.com/Nioron07/Easy-Acumatica
+Project-URL: Documentation, https://easyacumatica.com/python
+Project-URL: Bug Tracker, https://github.com/Nioron07/Easy-Acumatica/issues
+Keywords: acumatica,erp,api,rest,client
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Office/Business :: Financial :: Accounting
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests<3.0.0,>=2.25.1
+Requires-Dist: typing-extensions>=4.0.0; python_version < "3.10"
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0.0; extra == "dev"
+Requires-Dist: pytest-mock>=3.0.0; extra == "dev"
+Requires-Dist: requests-mock>=1.9.0; extra == "dev"
+Requires-Dist: flask>=2.0.0; extra == "dev"
+Requires-Dist: types-requests; extra == "dev"
+Dynamic: license-file
+
+# Easy-Acumatica
+
+A lightweight, Pythonic wrapper around Acumatica’s contract-based REST API.  
+Handles session management, login/logout, URL building, and OData query-string construction so you can focus on your business logic.
+
+## Installation
+
+```bash
+pip install easy-acumatica
+```
+
+Supports Python 3.8+ and depends only on `requests`.
+
+## Documentation
+
+Full usage examples and API reference can be found on our docs website:  
+https://easyacumatica.com/python
+
+Or on our Github Wiki:
+https://github.com/Nioron07/Easy-Acumatica/wiki
+
+## PyPI
+
+https://pypi.org/project/easy-acumatica/
+
+## NPM
+
+Not using Python? See the NPM version by joeBewon [here](https://easyacumatica.com/npm)
+
+## License
+
+MIT-licensed (see [LICENSE](LICENSE) for details)
+
+## Generate Stubs for Development
+
+```bash
+easy-acumatica-stubs --url "*base url" --username "*username*" --password "*password*" --tenant "*Tenant*" --endpoint-version "*api version*"
+```
+
+## Easy Acumatica-Chan says "Thanks for Downloading!"
+
+![Logo](assets/EA-Anime.png)
