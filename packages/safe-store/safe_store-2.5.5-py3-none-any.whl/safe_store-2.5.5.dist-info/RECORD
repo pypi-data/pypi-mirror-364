@@ -1,0 +1,17 @@
+safe_store/webui/.gitignore,sha256=zo5gtctWYPds36DZN1LSgRzJK_zs87n1K9Amd8COeBM,72
+safe_store/webui/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+safe_store/webui/config_manager.py,sha256=t_hAJz8c3rZRvh6zsHjsJECusmNstFYN5X5kfQPYQ9U,4635
+safe_store/webui/example.config.toml,sha256=g1m2kxqJpvsHy3yvDLBk66PDSOWzsEXOK1TTVwjt11s,1975
+safe_store/webui/main.py,sha256=Hu3UKYYjlBWgasTL6gzKCnoA90MkelyFFWRXFkhqQ68,33002
+safe_store/webui/databases/default/docs/21ceb0e9-8bf1-48fd-ad03-9b1c843004fd_install_lollms_webui.txt,sha256=pvfPwgUtSyV4VQkVpGqdytMgZinXbCWLJzxhvKwkwFc,4719
+safe_store/webui/databases/default/docs/2b5e6d41-11a3-4091-992a-3256ec25d32b_gevasco formulaire_1redemande_Line Aloui.pdf,sha256=OVgTb0iIc89orNUILpbrt3vhUiEM5PxhGOW_cmPrILs,1607810
+safe_store/webui/databases/default/docs/41296cd5-fdbe-41bb-9c82-1380c3a07563_script_models.md,sha256=yXzyDUuPJKOry3ryLZ05Y1rKap46BKCYBoZcGSUZQ9k,357
+safe_store/webui/databases/default/docs/fc75b20d-4d66-404f-849d-4206919e5005_lollms_architecture.md,sha256=Hs-xk733I9XNws2Bi-_fuDhTiSf3Xi3bFh6SOf9veAo,8688
+safe_store/webui/static/index.html,sha256=WixB_38WQOdKHwRLWww-8rZtXxzN9dh1f--dgR2H9jQ,20278
+safe_store/webui/static_assets/script.js,sha256=Xr3DVdXwT7qzU4YuiIbIF3CLsnwYt0os5q06qAtBs4I,41276
+safe_store/webui/static_assets/style.css,sha256=DSoGQ6ifJE2nYyj7fTCPkRWklupJWakmZvR675yQ-hQ,8417
+safe_store-2.5.5.dist-info/METADATA,sha256=GaB8PXujizyz0fBoWN2xSRcn2Grj-f9e976nK_3Yubs,23373
+safe_store-2.5.5.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+safe_store-2.5.5.dist-info/entry_points.txt,sha256=YW_UkwZ_1YJdab1GaHmowxKb_HjGFy8-kaLuqGaEAM8,71
+safe_store-2.5.5.dist-info/licenses/LICENSE,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+safe_store-2.5.5.dist-info/RECORD,,
