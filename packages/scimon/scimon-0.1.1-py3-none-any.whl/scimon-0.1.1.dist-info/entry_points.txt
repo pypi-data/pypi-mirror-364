@@ -1,0 +1,5 @@
+[console_scripts]
+scimon = scimon.cli:app
+
+[pipx.run]
+scimon = scimon.cli:app
