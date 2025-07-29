@@ -1,0 +1,25 @@
+[project]
+name = "decorpack"
+version = "0.1.1"
+description = "Add your description here"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Pierre LAPOLLA"}
+]
+requires-python = ">=3.13"
+dependencies = [
+    "dotenv>=0.9.9",
+    "structlog>=25.3.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.2.0",
+    "pytest>=8.3.5",
+    "pytest-cov>=6.1.1",
+]
