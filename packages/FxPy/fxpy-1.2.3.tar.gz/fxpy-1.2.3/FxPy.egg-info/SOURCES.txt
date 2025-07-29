@@ -1,0 +1,13 @@
+LICENSE
+README.md
+setup.py
+FxPy.egg-info/PKG-INFO
+FxPy.egg-info/SOURCES.txt
+FxPy.egg-info/dependency_links.txt
+FxPy.egg-info/entry_points.txt
+FxPy.egg-info/requires.txt
+FxPy.egg-info/top_level.txt
+fxpy/__init__.py
+fxpy/menu.py
+fxpy/start.py
+fxpy/web.py
