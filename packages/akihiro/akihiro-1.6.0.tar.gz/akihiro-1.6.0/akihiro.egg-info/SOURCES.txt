@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+akihiro/__init__.py
+akihiro/core.py
+akihiro/key.py
+akihiro.egg-info/PKG-INFO
+akihiro.egg-info/SOURCES.txt
+akihiro.egg-info/dependency_links.txt
+akihiro.egg-info/requires.txt
+akihiro.egg-info/top_level.txt

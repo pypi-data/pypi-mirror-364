@@ -1,0 +1,461 @@
+# Akihiro
+
+**Akihiro** is a Python utility library that enhances the traditional programming experience using advanced language model capabilities.
+
+It allows developers to integrate intelligent behaviors such as summarization, translation, entity extraction, contextual evaluation, and data generation directly into their code. Simplifying complex logic through natural language understanding.
+
+---
+
+## ✨ Features
+
+- 🧠 **Contextual Evaluation** – Evaluate if a variable satisfies a condition using plain language.
+- 📄 **Text Summarization** – Generate concise summaries from long text input.
+- 🌐 **Natural Translation** – Translate text accurately into different languages.
+- 🔍 **Entity Extraction** – Identify and classify entities (e.g., people, places, organizations) from structured or unstructured data.
+- 🎯 **Context Extraction** – Extract specific information from data using natural language queries.
+- 📊 **Sentiment Analysis** – Analyze the emotional tone and sentiment of text.
+- 🎲 **Data Generation** – Generate realistic fake data for testing and development.
+- 🏷️ **Auto Tagging** – Automatically generate context-aware tags for any text.
+- 🤝 **Contextual Compare** – Compare two texts/data for contextual similarity (not just exact match).
+
+---
+
+## 🔧 Installation
+
+```bash
+pip install akihiro
+```
+
+---
+
+## 🚀 Quick Start
+
+```python
+from akihiro import (
+    isContext, summarizeText, translateText, extractEntities,
+    extractContext, analyzeSentiment, generate_fullname, generate_email_from_username
+    , autoTag, contextualCompare
+)
+
+# Check if a variable meets a condition
+result = isContext("John Doe", "is a person's name")
+print(result)  # True
+
+# Extract specific context
+colors = extractContext("I have red and blue balloons", "colors")
+print(colors)  # ['red', 'blue']
+
+# Generate fake data
+name = generate_fullname()
+email = generate_email_from_username("john_doe")
+print(f"{name}: {email}")
+
+# Analyze sentiment
+sentiment = analyzeSentiment("I love this amazing product!")
+print(sentiment)
+```
+
+### 📚 Get Help and Tutorials
+
+```python
+import akihiro
+akihiro.info()  # Display comprehensive tutorials for all functions
+```
+
+---
+
+## 📚 Detailed Examples
+
+### 1. Contextual Evaluation (`isContext`)
+
+Evaluate if a variable satisfies a condition using natural language.
+
+```python
+from akihiro import isContext
+
+# Check if a string is a name
+result = isContext("John Doe", "is a person's name")
+print(result)  # True
+
+# Check if a number is positive
+result = isContext(42, "is a positive number")
+print(result)  # True
+
+# Check if a string contains specific text
+result = isContext("Hello world", "contains the word 'hello'")
+print(result)  # True
+
+# Check if a list has specific properties
+result = isContext([1, 2, 3], "contains only numbers")
+print(result)  # True
+
+# Check complex conditions
+result = isContext("user@example.com", "is a valid email address")
+print(result)  # True
+```
+
+**Expected Output:**
+```
+True
+True
+True
+True
+True
+```
+
+### 2. Context Extraction (`extractContext`)
+
+Extract specific information from data using natural language queries.
+
+```python
+from akihiro import extractContext
+
+# Extract colors from text
+text = "I have a red and blue balloon, and also a black cloth"
+colors = extractContext(text, "colors")
+print(colors)  # ['red', 'blue', 'black']
+
+# Extract only balloon colors
+balloon_colors = extractContext(text, "balloon colors")
+print(balloon_colors)  # ['red', 'blue']
+
+# Extract numbers from text
+text_with_numbers = "I have 5 apples, 3 oranges, and 10 bananas"
+numbers = extractContext(text_with_numbers, "numbers")
+print(numbers)  # ['5', '3', '10']
+
+# Extract names from text
+text_with_names = "John works with Sarah and Mike at the office"
+names = extractContext(text_with_names, "names")
+print(names)  # ['John', 'Sarah', 'Mike']
+```
+
+**Expected Output:**
+```
+['red', 'blue', 'black']
+['red', 'blue']
+['5', '3', '10']
+['John', 'Sarah', 'Mike']
+```
+
+### 3. Text Summarization (`summarizeText`)
+
+Generate concise summaries from long text with customizable length.
+
+```python
+from akihiro import summarizeText
+
+# Summarize a long article
+long_text = """
+Artificial Intelligence (AI) has revolutionized the way we approach problem-solving in modern computing. 
+Machine learning algorithms can now process vast amounts of data to identify patterns and make predictions 
+with remarkable accuracy. Deep learning, a subset of machine learning, uses neural networks with multiple 
+layers to model complex relationships in data. These technologies are being applied across various industries, 
+from healthcare diagnostics to autonomous vehicles, transforming how we work and live.
+"""
+
+summary = summarizeText(long_text, max_length=30)
+print(summary)
+```
+
+**Expected Output:**
+```
+AI revolutionizes problem-solving through machine learning and deep learning, transforming industries from healthcare to autonomous vehicles.
+```
+
+### 4. Text Translation (`translateText`)
+
+Translate text to different languages with natural accuracy.
+
+```python
+from akihiro import translateText
+
+# Translate to Spanish
+spanish = translateText("Hello, how are you today?", "Spanish")
+print(spanish)  # ¡Hola! ¿Cómo estás hoy?
+
+# Translate to French
+french = translateText("The weather is beautiful today", "French")
+print(french)  # Le temps est magnifique aujourd'hui
+
+# Translate to Japanese
+japanese = translateText("Thank you very much", "Japanese")
+print(japanese)  # どうもありがとうございます
+
+# Translate to German
+german = translateText("I love programming", "German")
+print(german)  # Ich liebe das Programmieren
+```
+
+**Expected Output:**
+```
+¡Hola! ¿Cómo estás hoy?
+Le temps est magnifique aujourd'hui
+どうもありがとうございます
+Ich liebe das Programmieren
+```
+
+### 5. Entity Extraction (`extractEntities`)
+
+Extract and classify named entities from text or structured data.
+
+```python
+from akihiro import extractEntities
+
+# Extract entities from text
+text = "John Smith works at Microsoft in Seattle. He previously worked at Google in Mountain View."
+entities = extractEntities(text)
+print(entities)
+```
+
+**Expected Output:**
+```json
+[
+    {"entity": "John Smith", "type": "Person"},
+    {"entity": "Microsoft", "type": "Organization"},
+    {"entity": "Seattle", "type": "Location"},
+    {"entity": "Google", "type": "Organization"},
+    {"entity": "Mountain View", "type": "Location"}
+]
+```
+
+### 6. Sentiment Analysis (`analyzeSentiment`)
+
+Analyze the emotional tone and sentiment of text.
+
+```python
+from akihiro import analyzeSentiment
+
+# Analyze positive sentiment
+positive_text = "I absolutely love this product! It's amazing and works perfectly."
+sentiment = analyzeSentiment(positive_text)
+print(sentiment)
+
+# Analyze negative sentiment
+negative_text = "This is the worst experience I've ever had. Terrible service!"
+sentiment = analyzeSentiment(negative_text)
+print(sentiment)
+
+# Analyze neutral sentiment
+neutral_text = "The weather is cloudy today with a chance of rain."
+sentiment = analyzeSentiment(neutral_text)
+print(sentiment)
+```
+
+**Expected Output:**
+```json
+{
+    "sentiment": "positive",
+    "confidence": 0.95,
+    "emotion": "happy"
+}
+{
+    "sentiment": "negative", 
+    "confidence": 0.88,
+    "emotion": "angry"
+}
+{
+    "sentiment": "neutral",
+    "confidence": 0.72,
+    "emotion": "calm"
+}
+```
+
+### 7. Data Generation Functions
+
+Generate realistic fake data for testing and development.
+
+```python
+from akihiro import (
+    generate_comment, generate_email_from_username, generate_fullname,
+    generate_paragraph, generate_sentence, generate_username_from_fullname
+)
+
+# Generate random comment
+comment = generate_comment()
+print(comment)
+
+# Generate email from username
+email = generate_email_from_username("john_doe")
+print(email)  # john_doe@gmail.com
+
+# Generate full name
+fullname = generate_fullname()
+print(fullname)  # Dr. John Smith
+
+# Generate paragraph
+paragraph = generate_paragraph(sentences=2)
+print(paragraph)
+
+# Generate sentence
+sentence = generate_sentence()
+print(sentence)
+
+# Generate username from full name
+username = generate_username_from_fullname("John Michael Smith")
+print(username)  # johnmichaelsmith
+```
+
+**Expected Output:**
+```
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
+john_doe@gmail.com
+Dr. John Smith
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+The quick brown fox jumps over the lazy dog.
+johnmichaelsmith
+```
+
+### 8. Auto Tagging (`autoTag`)
+
+Automatically generate context-aware tags for any text.
+
+```python
+from akihiro import autoTag
+
+text = "The stock market crashed yesterday due to global economic concerns."
+tags = autoTag(text)
+print(tags)  # ["finance", "news", "stock market"]
+```
+
+**Expected Output:**
+```
+["finance", "news", "stock market"]
+```
+
+### 9. Contextual Compare (`contextualCompare`)
+
+Compare two texts/data for contextual similarity (not just exact match).
+
+```python
+from akihiro import contextualCompare
+
+# Compare two sentences for emotion similarity
+result = contextualCompare("I am happy", "I feel joyful", context="emotion")
+print(result)  # True
+
+# Compare two topics
+result = contextualCompare("Artificial Intelligence", "Machine Learning", context="topic")
+print(result)  # True/False (depending on LLM judgment)
+```
+
+**Expected Output:**
+```
+True
+True
+```
+
+---
+
+## 🔧 Advanced Usage
+
+### Error Handling
+
+```python
+from akihiro import summarizeText, translateText, extractContext
+
+try:
+    # Handle potential API errors
+    summary = summarizeText("Your text here", max_length=10)
+    print(summary)
+except Exception as e:
+    print(f"Error: {e}")
+
+try:
+    colors = extractContext("Red and blue items", "colors")
+    print(colors)
+except Exception as e:
+    print(f"Extraction error: {e}")
+```
+
+### Custom Data Generation
+
+```python
+from akihiro import generate_fullname, generate_email_from_username
+
+# Generate multiple test users
+for i in range(5):
+    name = generate_fullname()
+    username = generate_username_from_fullname(name)
+    email = generate_email_from_username(username)
+    print(f"User {i+1}: {name} ({email})")
+```
+
+### Sentiment Analysis for Social Media
+
+```python
+from akihiro import analyzeSentiment
+
+# Analyze customer reviews
+reviews = [
+    "Amazing product! Highly recommend!",
+    "Terrible quality, waste of money",
+    "It's okay, nothing special",
+    "Best purchase ever! Love it!"
+]
+
+for review in reviews:
+    sentiment = analyzeSentiment(review)
+    print(f"Review: {review}")
+    print(f"Sentiment: {sentiment['sentiment']} ({sentiment['confidence']:.2f})")
+    print("---")
+```
+
+### 8. Library Information (`info`)
+
+Get comprehensive tutorials and examples for all functions.
+
+```python
+import akihiro
+
+# Display complete function tutorials
+akihiro.info()
+```
+
+**Expected Output:**
+```
+================================================================================
+🎯 AKIHIRO LIBRARY - COMPLETE FUNCTION TUTORIAL
+================================================================================
+
+1️⃣ CONTEXTUAL EVALUATION (isContext)
+--------------------------------------------------
+Evaluate if a variable satisfies a condition using natural language.
+
+📝 Usage:
+   result = isContext(variable, condition)
+
+💡 Examples:
+   isContext('John Doe', 'is a person's name') → True
+   isContext(42, 'is a positive number') → True
+   ...
+
+[Complete tutorial for all functions...]
+```
+
+---
+
+## 🛠️ Requirements
+
+- Python 3.6+
+- `requests` library
+- `faker` library
+- Internet connection (for API calls)
+
+---
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+---
+
+## 📞 Support
+
+If you encounter any issues or have questions, please open an issue on GitHub.
