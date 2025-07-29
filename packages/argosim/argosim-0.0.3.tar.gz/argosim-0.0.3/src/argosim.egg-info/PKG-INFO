@@ -1,0 +1,42 @@
+Metadata-Version: 2.4
+Name: argosim
+Version: 0.0.3
+Summary: Radio interferometric simulations package for the ARGOS radio telescope.
+Author-email: Ezequiel Centofanti <ezequiel.centofanti@cea.fr>, Emma Ayçoberry <Emma.AYCOBERRY@cea.fr>
+Maintainer-email: Ezequiel Centofanti <ezequiel.centofanti@cea.fr>, Emma Ayçoberry <Emma.AYCOBERRY@cea.fr>
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy>=1.26
+Requires-Dist: matplotlib>=3.8
+Requires-Dist: scikit-image>=0.22
+Provides-Extra: doc
+Requires-Dist: myst-parser; extra == "doc"
+Requires-Dist: numpydoc; extra == "doc"
+Requires-Dist: sphinx; extra == "doc"
+Requires-Dist: sphinx-book-theme; extra == "doc"
+Provides-Extra: lint
+Requires-Dist: black; extra == "lint"
+Requires-Dist: isort; extra == "lint"
+Provides-Extra: release
+Requires-Dist: build; extra == "release"
+Requires-Dist: twine; extra == "release"
+Provides-Extra: test
+Requires-Dist: pytest; extra == "test"
+Requires-Dist: pytest-cov; extra == "test"
+Requires-Dist: pytest-pydocstyle; extra == "test"
+Provides-Extra: dev
+Requires-Dist: argosim[doc,lint,release,test]; extra == "dev"
+Dynamic: license-file
+
+[![CI](https://github.com/ARGOS-telescope/argosim/actions/workflows/ci-build.yml/badge.svg)](https://github.com/ARGOS-telescope/argosim/actions/workflows/ci-build.yml)
+[![docs](https://img.shields.io/badge/docs-Sphinx-blue)](https://argos-telescope.github.io/argosim/)
+[![pypi](https://img.shields.io/pypi/v/argosim)](https://pypi.org/project/argosim/)
+[![License](https://img.shields.io/badge/License-MIT-brigthgreen.svg)](https://github.com/ARGOS-telescope/argosim/blob/main/LICENSE) 
+
+# Argosim
+Argosim is a python package for radio interferometric observation simulations and image reconstruction.
+
+See the [documentation](https://argos-telescope.github.io/argosim/) for installing and running Argosim.
+
+Software developed at the [CosmoStat](https://www.cosmostat.org/) laboratory, CEA, Paris-Saclay, for the [ARGOS](https://argos-telescope.eu) telescope.
