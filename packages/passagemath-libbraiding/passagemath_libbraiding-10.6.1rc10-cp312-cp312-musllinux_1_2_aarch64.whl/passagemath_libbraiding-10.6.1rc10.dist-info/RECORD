@@ -1,0 +1,11 @@
+passagemath_libbraiding.libs/libbraiding-5d3f65f7.so.0.0.0,sha256=9l1Rx8s-xEJajG13s1men-9WV03T2Um040VYtReK4Ds,2762953
+passagemath_libbraiding.libs/libgcc_s-2d945d6c.so.1,sha256=vOxWA-IrCq2Ge0JIF0xBvQacJ_y9aXiQaq9SbOFJ2cw,201673
+passagemath_libbraiding.libs/libstdc++-85f2cd6d.so.6.0.33,sha256=cx82rYRx6hPLMqIfyMnsCfijsOVT6OAkj5C5nemlNvE,3650097
+sage/all__sagemath_libbraiding.py,sha256=YFtacYzpNCVWMxSKZW0rwFrLVGiuBZ-eXSEcwouWpG4,350
+sage/libs/all__sagemath_libbraiding.py,sha256=HzvyH9JZ1Fjh65Qx_jwx_UD5XSJg2iOTg7L5ajVVYvs,50
+sage/libs/braiding.cpython-312-aarch64-linux-musl.so,sha256=G2PiEo-ZXbGicq8DZ2Pj_1FdiRNvSwbsjopAqLfdt1g,1249641
+sage/libs/braiding.pyx,sha256=xJfL8rQhdliD5Z4PyZybDQzuVsr8bbMaUzUTwl0eIuc,14059
+passagemath_libbraiding-10.6.1rc10.dist-info/METADATA,sha256=8Dzd3K86fNIBlnBqM5C89-U7e3bAAwu6jLOWw5y-sQc,5177
+passagemath_libbraiding-10.6.1rc10.dist-info/WHEEL,sha256=OhR_OrUHeSS9Wv6z5202HxeJVPkI7JBt4nUD2fey9No,113
+passagemath_libbraiding-10.6.1rc10.dist-info/top_level.txt,sha256=Kmzulf9WsphADFQuqgvdy5mvTLDj_V2zkFHU2s3UXos,6
+passagemath_libbraiding-10.6.1rc10.dist-info/RECORD,,
