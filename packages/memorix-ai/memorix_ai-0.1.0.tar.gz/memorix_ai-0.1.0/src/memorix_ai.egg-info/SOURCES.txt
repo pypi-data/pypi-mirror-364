@@ -1,0 +1,15 @@
+LICENSE
+README.md
+pyproject.toml
+src/memorix/__init__.py
+src/memorix/config.py
+src/memorix/embedder.py
+src/memorix/memory_api.py
+src/memorix/metadata_store.py
+src/memorix/vector_store.py
+src/memorix_ai.egg-info/PKG-INFO
+src/memorix_ai.egg-info/SOURCES.txt
+src/memorix_ai.egg-info/dependency_links.txt
+src/memorix_ai.egg-info/requires.txt
+src/memorix_ai.egg-info/top_level.txt
+tests/test_memory_api.py
