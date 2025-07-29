@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling >= 1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "nphard-generators"
+version = "0.1.0"
+authors = [
+  { name="Gordian Hunecke", email="gogoh60@gmail.com" },
+]
+description = "Contains generators for np-hard problems with known solution."
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "GPL-3.0-only"
+license-files = ["LICEN[CS]E*"]
+
+dependencies = [
+  "numpy",
+  "scipy",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest",
+  "pylint",
+  "build",
+  "twine",
+  "pytest-rerunfailures"
+]
+
+[project.urls]
+Homepage = "https://github.com/Jumagoro/nphard-generators"
+Issues = "https://github.com/Jumagoro/nphard-generators/issues"
+
+[tool.hatch.build]
+sources = ["src"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["nphard_generators"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = [
+  "--import-mode=importlib",
+  "-ra"
+]
