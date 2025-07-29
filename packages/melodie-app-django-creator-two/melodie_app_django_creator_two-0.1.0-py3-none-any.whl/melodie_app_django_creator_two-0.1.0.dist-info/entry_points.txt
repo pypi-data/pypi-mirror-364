@@ -1,0 +1,2 @@
+[console_scripts]
+melodie-app-django-creator-two = app_creator.core:main
