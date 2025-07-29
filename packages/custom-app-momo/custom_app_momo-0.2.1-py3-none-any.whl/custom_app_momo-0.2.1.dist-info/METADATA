@@ -1,0 +1,38 @@
+Metadata-Version: 2.4
+Name: custom-app-momo
+Version: 0.2.1
+Summary: Générateur de structure d'app Django personnalisée
+Author: Mohamed
+Author-email: omomo9414@gmail.com
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: Framework :: Django
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license
+Dynamic: summary
+
+# custom-app-momo
+
+**custom-app-momo** est un outil en ligne de commande permettant de générer rapidement des applications Django avec une structure modulaire et bien organisée, adaptée aux projets professionnels.
+
+## Fonctionnalités
+
+- Génération automatique d'une application Django avec :
+  - Fichiers `urls.py`, `admin.py`, `apps.py` intégrés
+  - Dossiers séparés pour `views/` et `models/`
+  - Structure claire, idéale pour le développement en équipe
+- Commande simple d’utilisation
+- Gain de temps significatif sur les projets Django
+
+## Installation
+
+Installez le package depuis PyPI :
+
+```bash
+pip install custom-app-momo

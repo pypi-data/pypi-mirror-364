@@ -1,0 +1,14 @@
+custom_app/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+custom_app/cli.py,sha256=OdzniNh1SWTT3QJLENhEJ24mZgDnBLnEPmJLDtQRmAM,1693
+delivery/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+delivery/admin.py,sha256=suMo4x8I3JBxAFBVIdE-5qnqZ6JAZV0FESABHOSc-vg,63
+delivery/apps.py,sha256=hWNgWlax7VVMXI8EEhbSe1BNF65xmpMll3ZyhCF_e1A,147
+delivery/tests.py,sha256=mrbGGRNg5jwbTJtWWa7zSKdDyeB4vmgZCRc2nk6VY-g,60
+delivery/urls.py,sha256=-3_l2Z6oNkP1iaZf5exoCSDxlOh3BAlBoAg9wSLELW8,91
+delivery/models/__init__.py,sha256=0rPVvb48SPpEsn5t9bT3ziS2jeZ31VZ8jhM9I2vI5ws,14
+delivery/views/__init__.py,sha256=3IylRHwsJ1fBLYV0JXkaa8Ai4nAyRGfsFPFBodaHxes,13
+custom_app_momo-0.2.1.dist-info/METADATA,sha256=rxcrZKhakIc8yiW0EmNJpsffxrTcJwejjCZ4Trx3EJA,1150
+custom_app_momo-0.2.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+custom_app_momo-0.2.1.dist-info/entry_points.txt,sha256=HvVrGti5l1TTW8xXMi4c7IyDzEaLlzy56NhRSO0BkOI,51
+custom_app_momo-0.2.1.dist-info/top_level.txt,sha256=lcx4KIhiXgFsrYE8KRvwsrJyV4eSdxs39nSlj6-IO-4,20
+custom_app_momo-0.2.1.dist-info/RECORD,,
