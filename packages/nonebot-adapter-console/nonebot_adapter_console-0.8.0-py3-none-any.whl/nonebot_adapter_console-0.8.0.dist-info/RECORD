@@ -1,0 +1,14 @@
+nonebot/adapters/console/__init__.py,sha256=NpZs9IRb2HJYIqCHXrnuA8eHcgbXjxHXGzQS0V59eiI,244
+nonebot/adapters/console/adapter.py,sha256=nTCfjuovVdlfL-gdbK9-MvBCTeYNQjkQ5eHGTcxf5_8,3350
+nonebot/adapters/console/backend.py,sha256=DqDd6gyyFCyh3OmyqZhR68HHdyDsD_Gt5fxwt3ldmz8,2857
+nonebot/adapters/console/bot.py,sha256=3WZjgLjWR4eUYMooXIp6UPQbtGnFPlsbae0jgPUDVBg,4495
+nonebot/adapters/console/config.py,sha256=cVPbXLHKHstjgJBxTyhSgwBT8V-v5WC2IiNpVRofY4g,204
+nonebot/adapters/console/event.py,sha256=Ulgm8o14AwgRfPsj71H5m8JTOqAOtdFUfqQNVeaSxeM,3532
+nonebot/adapters/console/exception.py,sha256=XFZ9bz_G_QWRmy3GigcWViVmCo8VReJuujcE42taIcY,470
+nonebot/adapters/console/message.py,sha256=cLQIsF_Qn1-Q5-YrV0McURw6UzkBxoULxRTDh7m0N8g,4963
+nonebot/adapters/console/utils.py,sha256=XSr7sQB_nUg6tkPWPjoZm2xZLKcL7_7Z-A9FE4D7pls,355
+nonebot_adapter_console-0.8.0.dist-info/METADATA,sha256=aUKSt8qB-mBtb93ZviVDmgGk4gVd2NFRWKfF_nzkaHY,1603
+nonebot_adapter_console-0.8.0.dist-info/WHEEL,sha256=9P2ygRxDrTJz3gsagc0Z96ukrxjr-LFBGOgv3AuKlCA,90
+nonebot_adapter_console-0.8.0.dist-info/entry_points.txt,sha256=6OYgBcLyFCUgeqLgnvMyOJxPCWzgy7se4rLPKtNonMs,34
+nonebot_adapter_console-0.8.0.dist-info/licenses/LICENSE,sha256=p9pwUXEeHWD47I05Xq0xtlq25WAfRxhiQWYOh8i438s,1078
+nonebot_adapter_console-0.8.0.dist-info/RECORD,,
