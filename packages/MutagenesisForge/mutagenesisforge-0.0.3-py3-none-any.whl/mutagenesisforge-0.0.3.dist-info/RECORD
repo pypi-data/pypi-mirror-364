@@ -1,0 +1,14 @@
+MutagenesisForge/__init__.py,sha256=Hk6fkLAgzkkviIIpJ22fnExQ9iOYEJXI2Y9QvDOYfM0,107
+MutagenesisForge/context.py,sha256=Z4KZ_bCeGEhW4cfW2oembwl_jglmBwrS776zP1YFWrw,18164
+MutagenesisForge/exhaustive.py,sha256=Mr3iRQ0FXqnZ3zbtkQBQWDZ_ULIqk1RrFq8XkHmW5BE,6956
+MutagenesisForge/main.py,sha256=rDpTEpSnROawgsuQhn6xnaYT_JeKKuWqQU1vkO-eYio,7395
+MutagenesisForge/mutation_model.py,sha256=T1jyaCK8KU__7Re1uF9895dWPJYCeSCBQQtJwOmD7lc,9960
+MutagenesisForge/stat_utils.py,sha256=ZSmYVwVrsTgJVXRElp1j5fO_uBYgANUB8oALGx52_Kc,998
+MutagenesisForge/test.ipynb,sha256=yXugfOa-P7E9dR52DMFYLZVqZv1RZ7Eh30lX7hSGYUw,9854
+MutagenesisForge/transition_transversion.py,sha256=Og6QUaS24YatW75JAKfKkhds8Px39vgsywhptiE52iE,750
+MutagenesisForge/utils.py,sha256=J_2AqExz0wCYBb_jzLebs_Buq6jfoQpfnfJRMt7w2QI,804
+mutagenesisforge-0.0.3.dist-info/LICENSE,sha256=bgrzmrtW3bY04E_aUOza-HgglpmOV0Y97lueV71reWQ,1069
+mutagenesisforge-0.0.3.dist-info/METADATA,sha256=SiJG4Eoc5OdmItOPXZhtVuAWKSfjt7v1KSR-bX3gfPk,696
+mutagenesisforge-0.0.3.dist-info/WHEEL,sha256=FMvqSimYX_P7y0a7UY-_Mc83r5zkBZsCYPm7Lr0Bsq4,88
+mutagenesisforge-0.0.3.dist-info/entry_points.txt,sha256=BGvIKMVt6mE3yDmZsFUrW3VWg4pyMlm9bfHNBLkMEA8,62
+mutagenesisforge-0.0.3.dist-info/RECORD,,
