@@ -1,0 +1,11 @@
+README.md
+pyproject.toml
+genai_textkit/__init__.py
+genai_textkit/config.py
+genai_textkit/text.py
+genai_textkit.egg-info/PKG-INFO
+genai_textkit.egg-info/SOURCES.txt
+genai_textkit.egg-info/dependency_links.txt
+genai_textkit.egg-info/requires.txt
+genai_textkit.egg-info/top_level.txt
+tests/test_text.py
