@@ -1,0 +1,19 @@
+Metadata-Version: 2.4
+Name: django-app1
+Version: 0.2.0
+Summary: Générateur de structure d'app Django personnalisée
+Author: alphine2.0
+Author-email: ouattaratchelourgo02@gmail.com
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: Framework :: Django
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
+License-File: LICENCE
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description-content-type
+Dynamic: license
+Dynamic: license-file
+Dynamic: summary
