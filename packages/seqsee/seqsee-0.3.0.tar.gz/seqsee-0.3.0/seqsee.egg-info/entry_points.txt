@@ -1,0 +1,4 @@
+[console_scripts]
+seqsee = seqsee.main:main
+seqsee-convert-all = seqsee.convert_all:main
+seqsee-jsonmaker = seqsee.jsonmaker:main
