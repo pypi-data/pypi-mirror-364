@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tukan_python"
+version = "0.1.0"
+description = "A package to utilize the tukan API."
+authors = [
+    { name="roberto", email="roberto@tukanmx.com" }
+]
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.7"
+dependencies = [
+    "loguru==0.7.2",
+    "numpy==1.26.1",
+    "pandas==2.1.1",
+    "pytest==7.4.2",
+    "python-dotenv==1.0.0",
+    "requests==2.31.0",
+    "tqdm==4.66.1"
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/TukanMx/tukan_python"

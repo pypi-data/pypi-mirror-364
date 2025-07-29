@@ -1,0 +1,2 @@
+# Exclude the entire tests directory from the package distribution
+prune tests
