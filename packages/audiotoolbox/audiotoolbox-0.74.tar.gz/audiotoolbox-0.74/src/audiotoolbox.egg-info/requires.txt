@@ -1,0 +1,14 @@
+numpy
+scipy
+matplotlib
+soundfile
+
+[dev]
+pytest
+coverage
+pytest-cov
+
+[docs]
+sphinx
+sphinx-rtd-theme
+matplotlib
