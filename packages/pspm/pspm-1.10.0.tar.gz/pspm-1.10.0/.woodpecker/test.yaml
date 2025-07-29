@@ -1,0 +1,13 @@
+when:
+  - event: push
+    path: 'src/**'
+
+matrix:
+  PYTHON_VERSION: ["3.10", "3.11", "3.12"]
+
+steps:
+  - name: test
+    image: python:${PYTHON_VERSION}-slim
+    commands:
+      - pip install -r requirements-test.lock .
+      - pytest

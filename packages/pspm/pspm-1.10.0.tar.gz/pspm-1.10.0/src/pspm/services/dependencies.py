@@ -1,0 +1,121 @@
+"""Module to handle dependencies."""
+
+from __future__ import annotations
+
+from pathlib import Path
+from typing import Literal
+
+from typer import Exit
+
+from pspm.entities.command_runner import BaseCommandRunner, CommandRunner
+from pspm.entities.installer import BaseInstaller, UVInstaller
+from pspm.entities.package_manager import PackageManager
+from pspm.entities.pyproject import Pyproject
+from pspm.entities.resolver import BaseResolver, UVResolver
+from pspm.entities.toml import Toml
+from pspm.entities.virtual_env import VirtualEnv
+from pspm.errors.dependencies import AddError
+from pspm.utils.printing import print_error
+
+
+def _get_pyproject_path() -> str:
+    path = Path(Path.cwd()) / "pyproject.toml"
+    if not path.exists():
+        print_error("Did not found pyproject.toml")
+        raise Exit(code=1)
+    return str(path)
+
+
+def _get_pyproject() -> Pyproject:
+    path = _get_pyproject_path()
+    parser = Toml(str(path))
+    return Pyproject(parser)
+
+
+def _get_command_runner() -> BaseCommandRunner:
+    return CommandRunner()
+
+
+def _get_resolver() -> BaseResolver:
+    return UVResolver(_get_command_runner())
+
+
+def _get_installer() -> BaseInstaller:
+    return UVInstaller(_get_command_runner())
+
+
+def _get_package_manager() -> PackageManager:
+    virtual_env = VirtualEnv()
+    return PackageManager(
+        _get_pyproject(), _get_installer(), _get_resolver(), virtual_env
+    )
+
+
+def sync_dependencies() -> None:
+    """Install all dependencies and the package itself."""
+    package_manager = _get_package_manager()
+    package_manager.sync()
+
+
+def manage_dependency(
+    action: Literal["add", "remove"],
+    packages: list[str],
+    group: str | None = None,
+) -> None:
+    """Add dependency to pyproject.
+
+    Args:
+        action: Action to take can be either add or remove
+        packages: Packages to install or remove
+        group: Group to insert package
+
+    Raises:
+        Exit: If cant add dependency
+    """
+    package_manager = _get_package_manager()
+    try:
+        package_manager.manage_dependencies(action, packages, group)
+    except AddError as e:
+        print_error(str(e))
+        raise Exit(1) from e
+
+
+def lock_dependencies(*, update: bool = False) -> None:
+    """Lock dependencies."""
+    package_manager = _get_package_manager()
+    package_manager.compile_requirements(upgrade=update)
+
+
+def get_version() -> str:
+    """Retrive pyproject version.
+
+    Returns:
+        Project version.
+    """
+    pyproject = _get_pyproject()
+    return pyproject.version
+
+
+def change_version(
+    new_version: str | None = None,
+    bump_rule: Literal["major", "minor", "patch"] | None = None,
+) -> str:
+    """Change project version.
+
+    Args:
+        new_version: Version to change to
+        bump_rule: Rule to change version
+
+    Raises:
+        ValueError: If neither argument were provided
+
+    Returns:
+        Updated version
+    """
+    pyproject = _get_pyproject()
+    if new_version:
+        return pyproject.change_version(new_version)
+    if bump_rule:
+        return pyproject.bump_version(bump_rule)
+    error_message = "Missing action to change version"
+    raise ValueError(error_message)

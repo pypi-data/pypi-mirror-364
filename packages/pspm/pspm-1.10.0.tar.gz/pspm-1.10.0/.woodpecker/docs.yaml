@@ -1,0 +1,20 @@
+when:
+  - event: push
+    branch: main
+    path: ["mkdocs.yml", "docs/**"]
+  - event: manual
+
+steps:
+  - name: build
+    image: python:3.12-slim
+    commands:
+      - pip install -r requirements-docs.lock
+      - mkdocs build
+  - name: deploy
+    image: node:alpine
+    environment:
+      CLOUDFLARE_ACCOUNT_ID:
+        from_secret: CLOUDFLARE_ACCOUNT_ID
+      CLOUDFLARE_API_TOKEN:
+        from_secret: CLOUDFLARE_API_TOKEN
+    commands: npx wrangler pages deploy site --project-name=pspm

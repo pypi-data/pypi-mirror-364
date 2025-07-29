@@ -1,0 +1,94 @@
+[project]
+name = "pspm"
+version = "1.10.0"
+dependencies = [
+    "typer",
+    "tomli; python_version < \"3.11\"",
+    "tomli-w",
+    "copier",
+]
+requires-python = ">=3.9"
+authors = [
+    { name = "Jahn16", email = "jpdeoliveiraferreira@gmail.com" },
+]
+description = "A simple Python package manager"
+readme = "README.md"
+keywords = [
+    "packaging",
+    "dependency",
+    "workflow",
+]
+classifiers = [
+    "Topic :: Software Development :: Build Tools",
+    "Programming Language :: Python",
+]
+
+[project.license]
+file = "LICENSE"
+
+[project.scripts]
+spm = "pspm.cli:app"
+
+[project.optional-dependencies]
+uv = [
+    "uv>=0.4.8",
+]
+test = [
+    "uv>=0.4.8",
+    "pytest",
+]
+docs = [
+    "mkdocs",
+    "mkdocs-material",
+    "markdown-gfm-admonition",
+    "mkdocs-awesome-pages-plugin",
+]
+
+[project.urls]
+Repository = "https://codeberg.org/Jahn16/pspm"
+Documentation = "https://pspm.jahn16.com"
+Releases = "https://codeberg.org/Jahn16/pspm/releases"
+
+[build-system]
+requires = [
+    "hatchling",
+]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = [
+    "src/pspm",
+]
+
+[tool.ruff]
+preview = true
+line-length = 79
+
+[tool.ruff.lint]
+select = [
+    "ALL",
+]
+ignore = [
+    "CPY",
+    "COM812",
+    "S404",
+    "S603",
+]
+extend-safe-fixes = [
+    "FA102",
+]
+exclude = [
+    "tests/*",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.format]
+docstring-code-format = false
+
+[tool.mypy]
+strict = true
+exclude = [
+    "tests",
+]

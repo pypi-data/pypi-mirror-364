@@ -1,0 +1,13 @@
+when:
+  - event: push
+    path: 'src/**'
+
+steps:
+  - name: format
+    image: registry.gitlab.com/pipeline-components/ruff
+    commands:
+      - ruff format
+  - name: lint
+    image: registry.gitlab.com/pipeline-components/ruff
+    commands:
+      - ruff check src/

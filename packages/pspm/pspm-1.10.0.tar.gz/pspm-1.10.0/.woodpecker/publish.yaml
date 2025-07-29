@@ -1,0 +1,18 @@
+when:
+  - event: tag
+
+steps:
+  - name: build
+    image: python:3.12-slim
+    commands:
+      - pip install build
+      - python3 -m build
+  - name: upload
+    image: python:3.12-slim
+    environment:
+      TWINE_USERNAME: __token__
+      TWINE_PASSWORD:
+        from_secret: PYPI_TOKEN
+    commands:
+      - pip install twine
+      - twine upload dist/*
