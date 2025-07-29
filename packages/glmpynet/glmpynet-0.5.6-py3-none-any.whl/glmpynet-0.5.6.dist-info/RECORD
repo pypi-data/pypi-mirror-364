@@ -1,0 +1,13 @@
+glmpynet/__init__.py,sha256=n86oQmfHe9Ld4EkGfBY7fNI2mkG3CLt0DoojIuLuMWs,88
+glmpynet/__main__.py,sha256=BEGiTIHjDCQZXbO6kcZLnBZU0gV8A3C5mlZFBYqQpLQ,336
+glmpynet/_version.py,sha256=CMH34Gt1AqO7z_TqRj94XwohGoVCf8aes0djkqm45mk,22
+glmpynet/logistic_regression.py,sha256=pLJ3Kwg5rcVshSunSrat3QKFhABBii39mWl_J8G4Wfg,6332
+glmpynet/binding/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+glmpynet/binding/base.py,sha256=fQ8KSHP68rO0EpKN75rU5mt53GwevZU-kI3YgCNdPgo,1665
+glmpynet/binding/mock.py,sha256=pJ-1Wj-mO31b6zHKIB5WGA0AY2lyeAeRG7C29ab43Mw,1492
+glmpynet-0.5.6.dist-info/licenses/LICENSE,sha256=JERYRx5FuDfPzE0l9fYvIDPutnzwd-L9YxC8srG2Du0,18083
+glmpynet-0.5.6.dist-info/METADATA,sha256=DkKBRurmfMr1Hqy79RNE2Gjg65W7pK-FGxup34nqvj0,25021
+glmpynet-0.5.6.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+glmpynet-0.5.6.dist-info/entry_points.txt,sha256=WX_vXosgvkmrdbW8g6862-aGy5Fwq96nIVtIMb21riE,52
+glmpynet-0.5.6.dist-info/top_level.txt,sha256=9tt9DuOKVKn-1JkDtjFrvDYgj3EeMcDmZtR5VLzoASw,9
+glmpynet-0.5.6.dist-info/RECORD,,
