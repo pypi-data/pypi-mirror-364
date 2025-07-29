@@ -1,0 +1,63 @@
+{
+    "client_name": "Caribbeancode",
+    "currency": "€",
+    "items": [
+      {
+        "description": "Développement frontend",
+        "quantity": 1,
+        "unit_price": 2000,
+        "details": [
+          "Accueil",
+          "Connexion",
+          "Inscription & vérification de compte",
+          "Sélection et informations du profil",
+          "Paramètres & modification de mot de passe",
+          "Gestion des drones (ajout, édition, liste)",
+          "Gestion des interventions (création, consultation)",
+          "Pages supplémentaires pour bon fonctionnement de l’application"
+        ]
+      },
+      {
+        "description": "Développement backend",
+        "quantity": 1,
+        "unit_price": 4000,
+        "details": [
+          "Modélisation de la base de données",
+          "Création des routes API (CRUD)",
+          "Authentification sécurisée via JWT",
+          "Vérification de compte par email/SMS",
+          "Reverse proxy"
+        ]
+      },
+      {
+        "description": "Sécurité & Authentification",
+        "quantity": 1,
+        "unit_price": 1000,
+        "details": [
+          "Système JWT sécurisé",
+          "Vérification d’identité par email ou SMS",
+          "Gestion des sessions"
+        ]
+      },
+      {
+        "description": "Intégration & tests",
+        "quantity": 1,
+        "unit_price": 1000,
+        "details": [
+          "Déploiement initial (Apple, Android, backend)",
+          "Script de déploiement",
+          "Recette fonctionnelle avec le client",
+          "Corrections & ajustements mineurs"
+        ]
+      },
+      {
+        "description": "Réserve pages supplémentaires",
+        "quantity": 1,
+        "unit_price": 2000,
+        "details": [
+          "Prévision d'évolutions ou fonctionnalités additionnelles"
+        ]
+      }
+    ]
+  }
+  
