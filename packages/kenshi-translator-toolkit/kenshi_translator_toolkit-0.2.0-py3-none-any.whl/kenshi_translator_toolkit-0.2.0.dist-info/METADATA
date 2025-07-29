@@ -1,0 +1,70 @@
+Metadata-Version: 2.4
+Name: kenshi-translator-toolkit
+Version: 0.2.0
+Summary: Ferramenta para extração e reinserção de textos em arquivos .mod do Kenshi (Beta)
+Project-URL: Homepage, https://github.com/AlexPrestes/kenshi-translator-toolkit
+Project-URL: Repository, https://github.com/AlexPrestes/kenshi-translator-toolkit
+Project-URL: Documentation, https://github.com/AlexPrestes/kenshi-translator-toolkit/blob/main/README.md
+Project-URL: Bug Tracker, https://github.com/AlexPrestes/kenshi-translator-toolkit/issues
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# Kenshi Translator Toolkit (Beta)
+
+[![PyPI version](https://img.shields.io/pypi/v/kenshi-translator-toolkit.svg)](https://pypi.org/project/kenshi-translator-toolkit/)
+[![GitHub license](https://img.shields.io/github/license/AlexPrestes/kenshi-translator-toolkit)](https://github.com/AlexPrestes/kenshi-translator-toolkit/blob/main/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/AlexPrestes/kenshi-translator-toolkit)](https://github.com/AlexPrestes/kenshi-translator-toolkit/issues)
+
+⚠️ **Versão beta inicial** - Ferramenta em desenvolvimento ativo ⚠️
+
+## Links Importantes
+- **Repositório GitHub**: https://github.com/AlexPrestes/kenshi-translator-toolkit
+- **Documentação**: https://github.com/AlexPrestes/kenshi-translator-toolkit/blob/main/README.md
+- **Reportar Bugs**: https://github.com/AlexPrestes/kenshi-translator-toolkit/issues
+
+## Instalação
+```bash
+pip install kenshi-translator-toolkit
+```
+
+## Uso básico
+```python
+from kenshi_translator_toolkit import Decoder, Encoder
+
+# Inicializa os componentes
+decoder = Decoder()
+encoder = Encoder()
+
+# Lê o arquivo original (binário) e decodifica os dados
+with open("/path/to/original.mod", "rb") as f:
+    content = f.read()
+    data = decoder.decode_mod(content)
+
+# Modifica os campos de tradução (exemplo)
+for record in data.data:
+
+    if record.name:
+        record.trans_name = record.name
+
+    if record.description:
+        record.trans_desc = record.description
+
+    for dialog in record.text:
+        dialog.trans_text = dialog.text
+
+# Codifica os dados novamente para um buffer binário
+buffer = encoder.encode_mod(data)
+
+# Salva o resultado em um novo arquivo
+with open("/path/to/translated.mod", "wb") as f:
+    f.write(buffer)
+```
+=======
+# kenshi-translator-toolkit
+Ferramenta para extração e reinserção de textos em arquivos .mod do Kenshi
