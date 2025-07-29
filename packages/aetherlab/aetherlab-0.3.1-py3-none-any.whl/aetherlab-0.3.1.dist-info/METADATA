@@ -1,0 +1,116 @@
+Metadata-Version: 2.4
+Name: aetherlab
+Version: 0.3.1
+Summary: Official Python SDK for AetherLab's AI Guardrails and Compliance Platform
+Home-page: https://github.com/AetherLabCo/aetherlab-community
+Author: AetherLab
+Author-email: AetherLab <support@aetherlab.ai>
+License: MIT
+Project-URL: Homepage, https://aetherlab.ai
+Project-URL: Documentation, https://docs.aetherlab.ai
+Project-URL: Repository, https://github.com/AetherLabCo/aetherlab-community
+Project-URL: Issues, https://github.com/AetherLabCo/aetherlab-community/issues
+Keywords: aetherlab,ai,guardrails,compliance,safety,llm,security,content-moderation,prompt-injection,ai-safety,chatbot-safety,ml-security,artificial-intelligence,machine-learning,nlp,openai,anthropic,gpt,claude,gemini,mistral,llama,ai-governance,responsible-ai,prompt-engineering,ai-monitoring
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Quality Assurance
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests>=2.28.0
+Requires-Dist: urllib3>=1.26.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.21.0; extra == "dev"
+Requires-Dist: black>=23.0.0; extra == "dev"
+Requires-Dist: flake8>=6.0.0; extra == "dev"
+Requires-Dist: mypy>=1.0.0; extra == "dev"
+Requires-Dist: twine>=4.0.0; extra == "dev"
+Requires-Dist: wheel>=0.38.0; extra == "dev"
+Dynamic: author
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+
+# AetherLab Python SDK
+
+Official Python SDK for the AetherLab AI Control Layer.
+
+## Installation
+
+```bash
+pip install aetherlab
+```
+
+## Quick Start
+
+```python
+from aetherlab import AetherLabClient
+
+# Initialize the client
+client = AetherLabClient(api_key="your-api-key")
+
+# Validate content (recommended new API)
+result = client.validate_content(
+    content="Your AI-generated content here",
+    content_type="customer_support",
+    desired_attributes=["helpful", "professional"],
+    prohibited_attributes=["rude", "misleading"]
+)
+
+# Check compliance metrics
+print(f"Compliant: {result.is_compliant}")
+print(f"Probability of non-compliance: {result.avg_threat_level:.1%}")
+print(f"Confidence in compliance: {result.confidence_score:.1%}")
+
+if result.is_compliant:
+    print(f"✅ Content is safe: {result.content}")
+else:
+    print(f"❌ Issues found: {result.violations}")
+    print(f"💡 Suggestion: {result.suggested_revision}")
+
+# Legacy API (still supported)
+result = client.test_prompt(
+    user_prompt="Hello, how can I help?",
+    blacklisted_keywords=["harmful", "dangerous"]
+)
+print(f"Compliant: {result.is_compliant}")
+```
+
+## Features
+
+- ✅ Content validation with context-aware analysis
+- ✅ Multi-language support
+- ✅ Real-time compliance checking
+- ✅ Suggested revisions for non-compliant content
+- ✅ Legacy API compatibility
+- ✅ Media analysis capabilities
+- ✅ Audit logging
+
+## Documentation
+
+For full documentation, visit [docs.aetherlab.ai](https://docs.aetherlab.ai)
+
+## Examples
+
+See the [examples directory](../../examples/python/) for complete examples.
+
+## Support
+
+- GitHub Issues: [github.com/AetherLabCo/aetherlab-community/issues](https://github.com/AetherLabCo/aetherlab-community/issues)
+- Email: support@aetherlab.ai
+
+## License
+
+MIT 
