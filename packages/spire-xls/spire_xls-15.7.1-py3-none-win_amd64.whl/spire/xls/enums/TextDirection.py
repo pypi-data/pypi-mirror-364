@@ -1,0 +1,19 @@
+from enum import Enum
+from plum import dispatch
+from typing import TypeVar,Union,Generic,List,Tuple
+from spire.xls.common import *
+from spire.xls import *
+from ctypes import *
+import abc
+
+class TextDirection(Enum):
+    """
+    Represents different text direction.
+
+    """
+    Horizontal = 0
+    RotateAllText90 = 1
+    RotateAllText270 = 2
+    StackedLeftToRight = 3
+    StackedRightToLeft = 4
+

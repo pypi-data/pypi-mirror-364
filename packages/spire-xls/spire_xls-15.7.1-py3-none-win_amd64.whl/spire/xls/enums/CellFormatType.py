@@ -1,0 +1,20 @@
+from enum import Enum
+from plum import dispatch
+from typing import TypeVar,Union,Generic,List,Tuple
+from spire.xls.common import *
+from spire.xls import *
+from ctypes import *
+import abc
+
+class CellFormatType(Enum):
+    """
+    Cell format types.
+
+    """
+    Unknown = 0
+    General = 1
+    Text = 2
+    Number = 3
+    DateTime = 4
+    Formula = 5
+

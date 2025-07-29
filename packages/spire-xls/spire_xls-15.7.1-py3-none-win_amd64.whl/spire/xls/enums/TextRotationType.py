@@ -1,0 +1,18 @@
+from enum import Enum
+from plum import dispatch
+from typing import TypeVar,Union,Generic,List,Tuple
+from spire.xls.common import *
+from spire.xls import *
+from ctypes import *
+import abc
+
+class TextRotationType(Enum):
+    """
+    Text Rotation types.
+
+    """
+    LeftToRight = 0
+    TopToBottom = 1
+    CounterClockwise = 2
+    Clockwise = 3
+

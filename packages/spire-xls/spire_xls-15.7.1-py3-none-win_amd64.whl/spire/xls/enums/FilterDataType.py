@@ -1,0 +1,21 @@
+from enum import Enum
+from plum import dispatch
+from typing import TypeVar,Union,Generic,List,Tuple
+from spire.xls.common import *
+from spire.xls import *
+from ctypes import *
+import abc
+
+class FilterDataType(Enum):
+    """
+    Data type for filters.
+
+    """
+    NotUsed = 0
+    FloatingPoint = 1
+    String = 2
+    Boolean = 3
+    ErrorCode = 4
+    MatchAllBlanks = 5
+    MatchAllNonBlanks = 6
+

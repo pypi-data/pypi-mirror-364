@@ -1,0 +1,19 @@
+from enum import Enum
+from plum import dispatch
+from typing import TypeVar,Union,Generic,List,Tuple
+from spire.xls.common import *
+from spire.xls import *
+from ctypes import *
+import abc
+
+class CommentVAlignType(Enum):
+    """
+    Comment vertically align
+
+    """
+    Top = 1
+    Center = 2
+    Bottom = 3
+    Justify = 4
+    Distributed = 7
+
