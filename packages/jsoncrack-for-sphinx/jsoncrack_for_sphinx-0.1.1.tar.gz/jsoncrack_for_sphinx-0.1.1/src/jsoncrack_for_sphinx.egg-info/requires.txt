@@ -1,0 +1,13 @@
+sphinx>=4.0.0
+jsf>=0.8.0
+
+[dev]
+black>=22.0.0
+isort>=5.0.0
+flake8>=4.0.0
+mypy>=0.900
+types-docutils
+
+[test]
+pytest>=7.0.0
+pytest-cov>=4.0.0

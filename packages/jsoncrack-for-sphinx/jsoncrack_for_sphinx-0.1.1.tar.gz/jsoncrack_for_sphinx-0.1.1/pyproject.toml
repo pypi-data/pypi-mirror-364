@@ -1,0 +1,86 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jsoncrack-for-sphinx"
+dynamic = ["version"]
+description = "Sphinx extension for automatically adding JSON and JSON Schema to documentation"
+authors = [
+    {name = "Miskler"}
+]
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Framework :: Sphinx :: Extension",
+    "Topic :: Documentation",
+    "Topic :: Documentation :: Sphinx",
+]
+dependencies = [
+    "sphinx>=4.0.0",
+    "jsf>=0.8.0"
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+]
+dev = [
+    "black>=22.0.0",
+    "isort>=5.0.0",
+    "flake8>=4.0.0",
+    "mypy>=0.900",
+    "types-docutils",
+]
+
+[project.urls]
+Homepage = "https://miskler.github.io/jsoncrack-for-sphinx/examples.html"
+Repository = "https://github.com/miskler/jsoncrack-for-sphinx"
+Issues = "https://github.com/miskler/jsoncrack-for-sphinx/issues"
+Documentation = "https://miskler.github.io/jsoncrack-for-sphinx/quickstart"
+
+[project.entry-points."sphinx.extensions"]
+jsoncrack_for_sphinx = "jsoncrack_for_sphinx"
+
+[tool.setuptools.dynamic]
+version = {attr = "jsoncrack_for_sphinx.__version__"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.setuptools.package-data]
+"jsoncrack_for_sphinx" = ["static/*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+show_error_codes = true
+ignore_missing_imports = false
+
+[[tool.mypy.overrides]]
+module = ["jsf", "jsf.*"]
+ignore_missing_imports = true

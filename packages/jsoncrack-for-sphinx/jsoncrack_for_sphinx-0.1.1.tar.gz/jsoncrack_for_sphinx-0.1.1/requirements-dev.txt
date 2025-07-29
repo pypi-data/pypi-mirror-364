@@ -1,0 +1,25 @@
+# Development requirements
+-e .
+
+# Testing
+pytest>=7.0.0
+pytest-cov>=4.0.0
+pytest-mock>=3.0.0
+pytest-json-report>=1.5.0
+coverage>=7.0.0
+coverage-badge>=1.1.0
+
+# Code quality
+black>=22.0.0
+isort>=5.0.0
+flake8>=4.0.0
+mypy>=0.900
+types-docutils
+
+# Documentation
+sphinx>=4.0.0
+furo>=2024.8.0
+
+# Build and release
+build>=0.10.0
+twine>=4.0.0
