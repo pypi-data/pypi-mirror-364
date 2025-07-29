@@ -1,0 +1,289 @@
+Metadata-Version: 2.4
+Name: kg-engine-v2
+Version: 2.1.2
+Summary: Advanced Knowledge Graph Engine with semantic search and temporal tracking
+Project-URL: Homepage, https://github.com/dasein108/kg_semantic
+Project-URL: Repository, https://github.com/dasein108/kg_semantic.git
+Project-URL: Issues, https://github.com/dasein108/kg_semantic/issues
+Author-email: KG/Semantic Engine <acidpictures@gmail.com>
+Requires-Python: >=3.8
+Requires-Dist: dateparser>=1.1.0
+Requires-Dist: llama-index-vector-stores-neo4jvector>=0.3.0
+Requires-Dist: llama-index>=0.10.0
+Requires-Dist: neo4j>=5.0.0
+Requires-Dist: numpy>=1.24.0
+Requires-Dist: openai>=1.0.0
+Requires-Dist: python-dotenv>=1.0.0
+Requires-Dist: sentence-transformers>=2.2.0
+Provides-Extra: dev
+Requires-Dist: black>=23.0.0; extra == 'dev'
+Requires-Dist: flake8>=6.0.0; extra == 'dev'
+Requires-Dist: mypy>=1.0.0; extra == 'dev'
+Requires-Dist: pytest>=7.0.0; extra == 'dev'
+Description-Content-Type: text/markdown
+
+# Knowledge Graph Engine v2
+
+Modern Neo4j-based knowledge graph engine with semantic search capabilities and intelligent relationship management.
+
+## 🎯 Overview
+
+A production-ready knowledge graph system built entirely on **Neo4j** for persistent graph storage and vector search. Combines graph database operations with semantic vector search to provide intelligent information storage, retrieval, and reasoning.
+
+## ✨ Key Features
+
+- **🏗️ Neo4j-Native Architecture**: Complete Neo4j integration for both graph and vector operations
+- **🔍 Enhanced Semantic Search**: Improved vector search with dynamic thresholds and contextual boosting
+- **🤖 LLM Integration**: OpenAI/Ollama support for entity extraction and query processing  
+- **⚔️ Conflict Resolution**: Intelligent handling of contradicting information with temporal tracking
+- **⏰ Temporal Tracking**: Complete relationship history with date ranges and conflict resolution
+- **🎯 Smart Query Understanding**: Context-aware search with semantic category matching
+- **📊 Optimized Performance**: Lower similarity thresholds (0.3) for better recall
+- **🚀 Production Ready**: ACID compliance, comprehensive error handling, modern architecture
+
+## 📁 Project Structure
+
+```
+src/                                  # Main source directory
+├── kg_engine/                        # Knowledge Graph Engine
+│   ├── core/                         # Core engine
+│   │   └── engine.py                 # Main KG Engine
+│   ├── models/                       # Data models
+│   │   └── models.py                 # Graph data structures
+│   ├── storage/                      # Storage components
+│   │   ├── graph_db.py               # Neo4j graph operations
+│   │   ├── neo4j_vector_store.py     # Vector storage
+│   │   ├── vector_store.py           # Vector store interface
+│   │   └── ...                       # Other storage components
+│   ├── llm/                          # LLM integration
+│   │   └── llm_interface.py          # OpenAI/Ollama interface
+│   ├── config/                       # Configuration
+│   │   ├── neo4j_config.py           # Neo4j settings
+│   │   └── neo4j_schema.py           # Schema management
+│   └── utils/                        # Utilities
+│       ├── date_parser.py            # Date parsing
+│       └── ...                       # Other utilities
+├── examples/                         # Usage examples
+│   ├── examples.py                   # Basic examples
+│   ├── bio_example.py                # Biographical demo
+│   └── simple_bio_demo.py            # Simple demo
+└── test_neo4j_integration.py         # Test suite
+
+docs/                                 # Comprehensive documentation
+├── architecture/                     # System design
+├── user-guide/                       # Getting started
+├── api/                              # API reference
+└── development/                      # Development guides
+```
+
+## 🚀 Quick Start
+
+### Prerequisites
+```bash
+# Install Neo4j (required)
+docker run --name neo4j -p7474:7474 -p7687:7687 -d \
+    -e NEO4J_AUTH=neo4j/password \
+    neo4j:latest
+```
+
+### Installation
+```bash
+pip install -e .
+```
+
+### Basic Usage
+```python
+from src.kg_engine import KnowledgeGraphEngineV2, InputItem
+from src.kg_engine.config import Neo4jConfig
+
+# Initialize with Neo4j
+engine = KnowledgeGraphEngineV2(
+    api_key="your-openai-key",  # or "ollama" for local LLM
+    neo4j_config=Neo4jConfig()
+)
+
+# Add knowledge
+result = engine.process_input([
+    InputItem(description="Alice works as a software engineer at Google"),
+    InputItem(description="Bob lives in San Francisco")
+])
+
+# Search with natural language
+response = engine.search("Who works at Google?")
+print(response.answer)  # "Alice works as a software engineer at Google."
+```
+
+## 🤖 LLM Setup Options
+
+### Option 1: OpenAI (Recommended for Production)
+```bash
+export OPENAI_API_KEY="your-api-key"
+```
+
+```python
+engine = KnowledgeGraphEngineV2(
+    api_key="your-openai-key",
+    model="gpt-4.1-nano"  # Fast and cost-effective
+)
+```
+
+### Option 2: Local Ollama (Privacy & Cost-Free)
+```bash
+# Install Ollama
+curl -fsSL https://ollama.ai/install.sh | sh
+
+# Start server
+ollama serve
+
+# Pull a model
+ollama pull llama3.2:3b  # Recommended: good balance of size/performance
+```
+
+```python
+engine = KnowledgeGraphEngineV2(
+    api_key="ollama",
+    base_url="http://localhost:11434/v1",
+    model="llama3.2:3b"
+)
+```
+
+## 🏗️ Architecture
+
+```
+┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│   LLM Interface │    │   Graph Database │    │  Vector Store   │
+│                 │    │                  │    │                 │
+│ • Entity Extract│    │ • Neo4j Native   │    │ • Neo4j Vectors │
+│ • Query Parse   │    │ • Conflict Det.  │    │ • Semantic      │
+│ • Answer Gen.   │    │ • Temporal Track │    │ • Search        │
+└─────────────────┘    └──────────────────┘    └─────────────────┘
+         │                       │                       │
+         └───────────────────────┼───────────────────────┘
+                                 │
+                    ┌─────────────────────┐
+                    │ KG Engine v2        │
+                    │                     │
+                    │ • Process Input     │
+                    │ • Smart Updates     │
+                    │ • Hybrid Search     │
+                    │ • Natural Language  │
+                    └─────────────────────┘
+```
+
+## 📊 Advanced Features
+
+### Intelligent Conflict Resolution
+```python
+# Initial information
+engine.process_input([InputItem(description="Alice lives in Boston")])
+
+# Update with conflicting information (automatically resolves)
+engine.process_input([InputItem(description="Alice moved to Seattle in 2024")])
+
+# System automatically:
+# 1. Marks old relationship as obsolete
+# 2. Adds new relationship as active
+# 3. Maintains complete history
+```
+
+### Enhanced Semantic Search
+```python
+# Improved semantic understanding with contextual boosting
+response = engine.search("Who works in technology?")
+# ✅ Returns all tech workers including software engineers, developers
+
+response = engine.search("Who was born in Europe?")
+# ✅ Returns all European births: Berlin, Lyon, Barcelona, Paris
+
+response = engine.search("What do people do for hobbies?")
+# ✅ Returns all "enjoys" relationships with boosted relevance scores
+```
+
+### Temporal Relationship Tracking
+```python
+# Natural language dates
+engine.process_input([
+    InputItem(description="Project started", from_date="2 months ago"),
+    InputItem(description="Alice joined", from_date="last week")
+])
+```
+
+## 📚 Documentation
+
+- **[📖 Quick Start](docs/user-guide/quick-start.md)**: Get running in 5 minutes
+- **[🏗️ Architecture](docs/architecture/overview.md)**: System design and components
+- **[📊 Workflows](docs/architecture/workflows.md)**: Process flows with diagrams
+- **[🔧 API Reference](docs/api/README.md)**: Complete API documentation
+- **[👩‍💻 Development](docs/development/README.md)**: Development setup and guidelines
+
+## 🚦 Running Examples
+
+```bash
+# Run basic examples
+python src/examples/examples.py
+
+# Run biographical knowledge graph demo  
+python src/examples/simple_bio_demo.py
+
+# Verify project structure
+python verify_structure.py
+```
+
+Expected output:
+```
+✅ Neo4j connection verified
+🚀 Knowledge Graph Engine v2 initialized
+   - Vector store: kg_v2 (neo4j)
+   - Graph database: Neo4j (persistent)
+   
+=== Example: Semantic Relationship Handling ===
+1. Adding: John Smith teaches at MIT
+   Result: 1 new edge(s) created
+...
+```
+
+## 🔍 Search Capabilities
+
+The Knowledge Graph Engine v2 features advanced semantic search with:
+
+- **Dynamic Similarity Thresholds**: Base threshold of 0.3 with context-specific adjustments
+- **Semantic Category Matching**: Understands relationships between concepts (e.g., "technology" → "software engineer")
+- **Query-Specific Boosting**: Different query types get tailored relevance scoring
+- **Geographic Intelligence**: Recognizes European cities and other geographic relationships
+- **Contextual Understanding**: Distinguishes between work, hobbies, locations, and other relationship types
+
+### Example Queries
+```python
+# Technology and profession queries
+"Who works in technology?" → Finds software engineers, developers, tech professionals
+"Tell me about engineers" → Returns all engineering-related professions
+
+# Geographic queries  
+"Who was born in Europe?" → Finds Berlin, Lyon, Barcelona, Paris births
+"Who lives in Paris?" → Returns all Paris residents
+
+# Activity and interest queries
+"What do people do for hobbies?" → Returns all "enjoys" relationships
+"Tell me about photographers" → Finds people who enjoy or specialize in photography
+
+# Entity-specific queries
+"Tell me about Emma Johnson" → Returns all relationships for Emma
+```
+
+### PyPI Release Steps:
+
+  1. Update version (currently 2.1.1 in both files)
+
+  2. Clean and build:
+  rm -rf dist/ build/
+  python -m build
+
+  3. Test locally:
+  pip install dist/*.whl
+  python -c "from kg_engine import KnowledgeGraphEngineV2; print('Import successful')"
+
+  # Upload to production PyPI
+  twine upload dist/*
+## License
+
+MIT License
