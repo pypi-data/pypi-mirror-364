@@ -1,0 +1,2 @@
+[console_scripts]
+easyssh = easyssh:cli
