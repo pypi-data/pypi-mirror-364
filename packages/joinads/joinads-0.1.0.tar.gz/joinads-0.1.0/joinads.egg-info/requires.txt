@@ -1,0 +1,8 @@
+python-dotenv
+requests
+fastapi
+dbutils
+pytz
+pymysql
+rich
+typer
