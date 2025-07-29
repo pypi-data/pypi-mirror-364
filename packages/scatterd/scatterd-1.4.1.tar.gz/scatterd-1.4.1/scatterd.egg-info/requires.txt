@@ -1,0 +1,5 @@
+scipy
+matplotlib
+numpy
+colourmap>=1.1.19
+seaborn
