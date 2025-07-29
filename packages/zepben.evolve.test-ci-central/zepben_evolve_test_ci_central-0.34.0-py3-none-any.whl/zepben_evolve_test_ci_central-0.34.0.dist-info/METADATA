@@ -1,0 +1,49 @@
+Metadata-Version: 2.4
+Name: zepben.evolve.test_ci_central
+Version: 0.34.0
+Summary: Python lib CI test
+Home-page: https://github.com/zepben/python-lib-ci-test
+Author: Kurt Greaves
+Author-email: kurt.greaves@zepben.com
+License: MPL 2.0
+Classifier: License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests<2.27.0,>=2.26.0
+Requires-Dist: zepben.protobuf==0.21.0
+Requires-Dist: zepben.auth==0.9.0
+Requires-Dist: dataclassy==0.6.2
+Requires-Dist: six==1.16.0
+Provides-Extra: test
+Requires-Dist: pytest; extra == "test"
+Requires-Dist: pytest-cov; extra == "test"
+Requires-Dist: pytest-asyncio; extra == "test"
+Requires-Dist: pytest-timeout; extra == "test"
+Requires-Dist: hypothesis<6; extra == "test"
+Requires-Dist: grpcio-testing==1.46.3; extra == "test"
+Requires-Dist: pylint; extra == "test"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+![Build Status](https://img.shields.io/github/workflow/status/zepben/evolve-sdk-python/Deploy%20snapshot%20to%20Pypi)
+[![codecov](https://codecov.io/gh/zepben/evolve-sdk-python/branch/main/graph/badge.svg?token=B0WNRMMR77)](https://codecov.io/gh/zepben/evolve-sdk-python)
+
+
+# THIS IS A DUMMY REPOSITORY FOR CI TESTING
