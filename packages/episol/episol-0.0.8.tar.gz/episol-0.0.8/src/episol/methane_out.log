@@ -1,0 +1,143 @@
+============================================================================ 
+eprism3d 1.1.325
+eprism3d begins at 2025-07-23,18:13:06
+@Akshay: /home/pswanson/epipy_packaging/src/episol
+eprism3d -f methane.gro -s methane.top -p /home/pswanson/epipy_packaging/src/episol/tip3p-amber14.01A.gaff -coulomb coulomb -rc 1 -T 298 -log methane_out.log -nr 30.0x30.0x30.0 -ndiis 5 -errtolrism 1e-08 -delvv 0.5 -dynamic-delvv 1 -pwd ./ -o methane_out -cmd closure=PSE3 rism,step=500 report:all save:all -nt 1 -v 1 
+---------------------------------------------------------------------------- 
+eprism3d : solute file methane.top may need to be converted with gmxtop2solute
+eprism3d : error : methane.top doesn't contain any infromation of solute
+============================================================================ 
+eprism3d 1.1.325
+eprism3d begins at 2025-07-23,18:13:17
+@Akshay: /home/pswanson/epipy_packaging/src/episol
+eprism3d -f methane.gro -s methane.solute -p /home/pswanson/epipy_packaging/src/episol/tip3p-amber14.01A.gaff -coulomb coulomb -rc 1 -T 298 -log methane_out.log -nr 30.0x30.0x30.0 -ndiis 5 -errtolrism 1e-08 -delvv 0.5 -dynamic-delvv 1 -pwd ./ -o methane_out -cmd closure=PSE3 rism,step=500 report:all save:all -nt 1 -v 1 
+---------------------------------------------------------------------------- 
+eprism3d : process 384943 (nice 0)
+eprism3d trajectory: methane.gro
+    solutes: 5 atoms in methane.gro: MOL
+    solvents: 2 sites in: tip3p
+    solvent densities: 33.4229/33.4229
+    forcefield gaff, rvdw 1, rcoul 1, temperature 298
+> Frame 1, box=3x3x3 nm³, pbc=xyz, grid=0.1x0.1x0.1 nm³
+  RISM-PSE3 step 1 stdev 0.12284 (DIISx1)    
+  RISM-PSE3 step 2 stdev 7.76491e-02 (DIISx2)    
+  RISM-PSE3 step 3 stdev 3.64590e-02 (DIISx3)    
+  RISM-PSE3 step 4 stdev 2.82885e-02 (DIISx4)    
+  RISM-PSE3 step 5 stdev 2.43320e-02 (DIISx5)    
+  RISM-PSE3 step 6 stdev 1.43584e-02 (DIISx5)    
+  RISM-PSE3 step 7 stdev 1.18140e-02 (DIISx5)    
+  RISM-PSE3 step 8 stdev 6.96158e-03 (DIISx5)    
+  RISM-PSE3 step 9 stdev 4.79751e-03 (DIISx5)    
+  RISM-PSE3 step 10 stdev 3.91208e-03 (DIISx5)    
+  RISM-PSE3 step 11 stdev 3.12909e-03 (DIISx5)    
+  RISM-PSE3 step 12 stdev 2.94327e-03 (DIISx5)    
+  RISM-PSE3 step 13 stdev 2.75287e-03 (DIISx5)    
+  RISM-PSE3 step 14 stdev 2.71138e-03 (DIISx5)    
+  RISM-PSE3 step 15 stdev 2.63799e-03 (DIISx5)    
+  RISM-PSE3 step 16 stdev 2.52035e-03 (DIISx5)    
+  RISM-PSE3 step 17 stdev 2.37300e-03 (DIISx5)    
+  RISM-PSE3 step 18 stdev 2.00993e-03 (DIISx5)    
+  RISM-PSE3 step 19 stdev 1.59232e-03 (DIISx5)    
+  RISM-PSE3 step 20 stdev 1.31139e-03 (DIISx5)    
+  RISM-PSE3 step 21 stdev 1.15981e-03 (DIISx5)    
+  RISM-PSE3 step 22 stdev 8.51519e-04 (DIISx5)    
+  RISM-PSE3 step 23 stdev 5.94580e-04 (DIISx5)    
+  RISM-PSE3 step 24 stdev 4.44475e-04 (DIISx5)    
+  RISM-PSE3 step 25 stdev 3.25375e-04 (DIISx5)    
+  RISM-PSE3 step 26 stdev 2.16629e-04 (DIISx5)    
+  RISM-PSE3 step 27 stdev 1.89622e-04 (DIISx5)    
+  RISM-PSE3 step 28 stdev 1.58375e-04 (DIISx5)    
+  RISM-PSE3 step 29 stdev 1.33181e-04 (DIISx5)    
+  RISM-PSE3 step 30 stdev 1.19531e-04 (DIISx5)    
+  RISM-PSE3 step 31 stdev 1.04613e-04 (DIISx5)    
+  RISM-PSE3 step 32 stdev 8.01154e-05 (DIISx5)    
+  RISM-PSE3 step 33 stdev 7.21886e-05 (DIISx5)    
+  RISM-PSE3 step 34 stdev 6.56016e-05 (DIISx5)    
+  RISM-PSE3 step 35 stdev 5.02195e-05 (DIISx5)    
+  RISM-PSE3 step 36 stdev 3.91604e-05 (DIISx5)    
+  RISM-PSE3 step 37 stdev 3.25007e-05 (DIISx5)    
+  RISM-PSE3 step 38 stdev 2.61489e-05 (DIISx5)    
+  RISM-PSE3 step 39 stdev 2.22948e-05 (DIISx5)    
+  RISM-PSE3 step 40 stdev 2.02779e-05 (DIISx5)    
+  RISM-PSE3 step 41 stdev 1.84135e-05 (DIISx5)    
+  RISM-PSE3 step 42 stdev 1.76069e-05 (DIISx5)    
+  RISM-PSE3 step 43 stdev 1.68345e-05 (DIISx5)    
+  RISM-PSE3 step 44 stdev 1.60035e-05 (DIISx5)    
+  RISM-PSE3 step 45 stdev 1.42118e-05 (DIISx5)    
+  RISM-PSE3 step 46 stdev 1.36662e-05 (DIISx5)    
+  RISM-PSE3 step 47 stdev 1.20305e-05 (DIISx5)    
+  RISM-PSE3 step 48 stdev 9.89515e-06 (DIISx5)    
+  RISM-PSE3 step 49 stdev 8.87083e-06 (DIISx5)    
+  RISM-PSE3 step 50 stdev 7.73524e-06 (DIISx5)    
+  RISM-PSE3 step 51 stdev 6.70370e-06 (DIISx5)    
+  RISM-PSE3 step 52 stdev 6.16034e-06 (DIISx5)    
+  RISM-PSE3 step 53 stdev 5.67354e-06 (DIISx5)    
+  RISM-PSE3 step 54 stdev 4.31366e-06 (DIISx5)    
+  RISM-PSE3 step 55 stdev 3.91779e-06 (DIISx5)    
+  RISM-PSE3 step 56 stdev 3.48599e-06 (DIISx5)    
+  RISM-PSE3 step 57 stdev 3.23620e-06 (DIISx5)    
+  RISM-PSE3 step 58 stdev 3.08709e-06 (DIISx5)    
+  RISM-PSE3 step 59 stdev 2.90257e-06 (DIISx5)    
+  RISM-PSE3 step 60 stdev 2.55866e-06 (DIISx5)    
+  RISM-PSE3 step 61 stdev 2.38540e-06 (DIISx5)    
+  RISM-PSE3 step 62 stdev 2.22819e-06 (DIISx5)    
+  RISM-PSE3 step 63 stdev 1.97935e-06 (DIISx5)    
+  RISM-PSE3 step 64 stdev 1.79099e-06 (DIISx5)    
+  RISM-PSE3 step 65 stdev 1.60605e-06 (DIISx5)    
+  RISM-PSE3 step 66 stdev 1.27045e-06 (DIISx5)    
+  RISM-PSE3 step 67 stdev 1.04147e-06 (DIISx5)    
+  RISM-PSE3 step 68 stdev 9.39364e-07 (DIISx5)    
+  RISM-PSE3 step 69 stdev 7.78230e-07 (DIISx5)    
+  RISM-PSE3 step 70 stdev 6.98105e-07 (DIISx5)    
+  RISM-PSE3 step 71 stdev 6.20154e-07 (DIISx5)    
+  RISM-PSE3 step 72 stdev 5.41757e-07 (DIISx5)    
+  RISM-PSE3 step 73 stdev 4.72299e-07 (DIISx5)    
+  RISM-PSE3 step 74 stdev 4.53725e-07 (DIISx5)    
+  RISM-PSE3 step 75 stdev 4.12532e-07 (DIISx5)    
+  RISM-PSE3 step 76 stdev 3.95944e-07 (DIISx5)    
+  RISM-PSE3 step 77 stdev 3.82976e-07 (DIISx5)    
+  RISM-PSE3 step 78 stdev 3.61365e-07 (DIISx5)    
+  RISM-PSE3 step 79 stdev 3.30014e-07 (DIISx5)    
+  RISM-PSE3 step 80 stdev 3.10382e-07 (DIISx5)    
+  RISM-PSE3 step 81 stdev 2.87916e-07 (DIISx5)    
+  RISM-PSE3 step 82 stdev 2.55544e-07 (DIISx5)    
+  RISM-PSE3 step 83 stdev 2.39800e-07 (DIISx5)    
+  RISM-PSE3 step 84 stdev 2.14117e-07 (DIISx5)    
+  RISM-PSE3 step 85 stdev 1.88823e-07 (DIISx5)    
+  RISM-PSE3 step 86 stdev 1.70032e-07 (DIISx5)    
+  RISM-PSE3 step 87 stdev 1.49107e-07 (DIISx5)    
+  RISM-PSE3 step 88 stdev 1.20420e-07 (DIISx5)    
+  RISM-PSE3 step 89 stdev 1.14019e-07 (DIISx5)    
+  RISM-PSE3 step 90 stdev 1.06465e-07 (DIISx5)    
+  RISM-PSE3 step 91 stdev 9.74943e-08 (DIISx5)    
+  RISM-PSE3 step 92 stdev 8.96007e-08 (DIISx5)    
+  RISM-PSE3 step 93 stdev 8.25803e-08 (DIISx5)    
+  RISM-PSE3 step 94 stdev 7.45767e-08 (DIISx5)    
+  RISM-PSE3 step 95 stdev 7.16853e-08 (DIISx5)    
+  RISM-PSE3 step 96 stdev 6.76668e-08 (DIISx5)    
+  RISM-PSE3 step 97 stdev 5.98701e-08 (DIISx5)    
+  RISM-PSE3 step 98 stdev 5.50569e-08 (DIISx5)    
+  RISM-PSE3 step 99 stdev 4.92749e-08 (DIISx5)    
+  RISM-PSE3 step 100 stdev 4.30509e-08 (DIISx5)    
+  RISM-PSE3 step 101 stdev 3.85585e-08 (DIISx5)    
+  RISM-PSE3 step 102 stdev 3.52820e-08 (DIISx5)    
+  RISM-PSE3 step 103 stdev 2.92826e-08 (DIISx5)    
+  RISM-PSE3 step 104 stdev 2.66940e-08 (DIISx5)    
+  RISM-PSE3 step 105 stdev 2.34595e-08 (DIISx5)    
+  RISM-PSE3 step 106 stdev 1.94200e-08 (DIISx5)    
+  RISM-PSE3 step 107 stdev 1.64793e-08 (DIISx5)    
+  RISM-PSE3 step 108 stdev 1.50562e-08 (DIISx5)    
+  RISM-PSE3 step 109 stdev 1.34580e-08 (DIISx5)    
+  RISM-PSE3 step 110 stdev 1.25339e-08 (DIISx5)    
+  RISM-PSE3 step 111 stdev 1.16470e-08 (DIISx5)    
+  RISM-PSE3 step 112 stdev 1.01509e-08 (DIISx5)    
+  RISM-PSE3 step 113 stdev 9.08315e-09 (DIISx5)  
+   Atom    mass          DN      DN_vac         -TS        LJSR        Coul        Hef0      Volume        exGF      excess
+     OW    16x1    -1.50859    -3.07491    -11.5524    -5.52577    -12.7393   0.0961446   0.0451363     21.4935     33.5616
+     HW     1x2    -1.50854   -0.768726    -5.16124    -2.20894      12.476    0.018401   0.0451351    -3.99643     4.19241
+  total  18.015    -1.50858    -2.81683    -10.8372     -7.7347   -0.263293    0.114546   0.0451362     17.4971      37.754
+eprism3d : cmd[4] : waning : HI not performed and dd will not be saved.
+  save cmd,lj,coul,ef,rmin,uuv,ulr,cuv,clr,huv,hlr,dd,guv to "methane_out.ts4s", 2.048 MB compressed from 4.533 MB
+Memory usage: 55 blocks assigned, 34.59 MB
+eprism3d ends at 2025-07-23,18:13:17 (0.38 s)
+============================================================================ 
