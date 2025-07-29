@@ -1,0 +1,12 @@
+# SYSTEM-SELL Requirements
+# Core dependencies
+cryptography>=41.0.0
+asyncio-dgram>=2.1.2
+
+# Optional dependencies for enhanced features
+qrcode[pil]>=7.4.2  # For QR code generation
+colorama>=0.4.6     # For colored terminal output
+
+# Development dependencies
+pytest>=7.4.0       # For advanced testing
+pytest-asyncio>=0.21.0  # For async test support
