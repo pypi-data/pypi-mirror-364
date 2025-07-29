@@ -1,0 +1,15 @@
+LICENSE
+README.md
+pyproject.toml
+src/gfetch/app.py
+src/gfetch/auth.py
+src/gfetch/emails.py
+src/gfetch/scratch.py
+src/gfetch_cli.egg-info/PKG-INFO
+src/gfetch_cli.egg-info/SOURCES.txt
+src/gfetch_cli.egg-info/dependency_links.txt
+src/gfetch_cli.egg-info/requires.txt
+src/gfetch_cli.egg-info/top_level.txt
+tests/test_app.py
+tests/test_auth.py
+tests/test_emails.py
