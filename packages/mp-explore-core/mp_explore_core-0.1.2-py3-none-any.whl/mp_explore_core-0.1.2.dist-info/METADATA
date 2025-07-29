@@ -1,0 +1,37 @@
+Metadata-Version: 2.4
+Name: mp_explore_core
+Version: 0.1.2
+Summary: Gather up-to-date and reliable information about Members of Parliament
+Project-URL: Homepage, https://git.fsfe.org/mp-explore/mp-explore
+Project-URL: Issues, https://git.fsfe.org/mp-explore/mp-explore/issues
+Author-email: "Free Software Foundation Europe e.V." <mp-explore@fsfe.org>
+Maintainer-email: Sofía Aritz <sofiaritz@fsfe.org>
+License-Expression: AGPL-3.0-or-later
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Typing :: Typed
+Requires-Python: >=3.11
+Requires-Dist: pandas>=2
+Description-Content-Type: text/markdown
+
+<!--
+SPDX-FileCopyrightText: 2025 Free Software Foundation Europe e.V. <mp-explore@fsfe.org>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+# MP Explore Core
+
+Part of the [MP Explore](https://git.fsfe.org/mp-explore/mp-explore) project.
+
+MP Explore Core is the core of the MP Explore project, defining the primitives for data sources, processes, and data consumers.
+
+## Where to get it
+
+You can get it through the [Python Package Index (PyPI)](https://pypi.org/project/mp_explore_core/):
+
+```sh
+$ pip3 install mp_explore_core
+```
