@@ -1,0 +1,13 @@
+caffeinated_whale_cli/__init__.py,sha256=Pru0BlFBASFCFo7McHdohtKkUtgMPDwbGfyUZlE2_Vw,21
+caffeinated_whale_cli/main.py,sha256=xQdLvEIoocyYgEGBdXRmhCB8iPMvYCJW_Uo6M15mahw,736
+caffeinated_whale_cli/commands/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+caffeinated_whale_cli/commands/inspect.py,sha256=SJH2CZHW4tqRGSDtjq3cVxYQwCkPxECJG8_I5Sv5LOM,7113
+caffeinated_whale_cli/commands/list.py,sha256=p1_3hbc-06JNFSa4BcfohbTifQRbozP2vwjSiU9_SeM,6127
+caffeinated_whale_cli/commands/start.py,sha256=m3Wvyfx-3J5DsKZ4SSwUeg7uwbTsLl5k9BTskHzC7mU,2156
+caffeinated_whale_cli/commands/stop.py,sha256=CUIOt6Tlb0PX_lWM9-f105FpUOaPk6iO8wDxyVmJxwQ,2017
+caffeinated_whale_cli/commands/utils.py,sha256=a4uyIpmnF8ojuTC8jHQY0N_C_nhl_bgTM0BuXcCLX8M,805
+caffeinated_whale_cli-0.1.0.dist-info/METADATA,sha256=473kD6FUAK60LCkHEzlnNx9u_gVY__rsa4TV_wyiiCs,943
+caffeinated_whale_cli-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+caffeinated_whale_cli-0.1.0.dist-info/entry_points.txt,sha256=qnxcKaFpuWuwaqadGt6AOmkAkZH0a7BiTUl4Zmj_MsU,73
+caffeinated_whale_cli-0.1.0.dist-info/top_level.txt,sha256=GaadiIQP3a2zljCI_xQz4xN2vLUWbmieLhC7TY4ZvCI,22
+caffeinated_whale_cli-0.1.0.dist-info/RECORD,,
