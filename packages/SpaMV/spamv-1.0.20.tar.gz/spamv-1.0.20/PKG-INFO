@@ -1,0 +1,52 @@
+Metadata-Version: 2.4
+Name: SpaMV
+Version: 1.0.20
+Summary: The Python package for a spatial multi-omics integration algorithm called SpaMV.
+Author-email: Yang Liu <yangliu1214@hkbu.edu.hk>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/enderlogic/SpaMV
+Project-URL: Issues, https://github.com/enderlogic/SpaMV/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: pyro-ppl
+Requires-Dist: scanpy
+Requires-Dist: torch_geometric
+Requires-Dist: squidpy==1.6.2
+Requires-Dist: dask[dataframe]==2024.11.2
+Requires-Dist: numpy<2.3
+Requires-Dist: rpy2
+Requires-Dist: scikit-misc
+
+# SpaMV: An interpretable spatial multi-omics data integration and dimension reduction algorithm
+
+# Installation
+
+1) Create and activate a conda environment with python 3.12
+
+```
+conda env create spamv python==3.12
+conda activate spamv
+```
+
+2) Before you install our package, please make sure you have installed the pyg-lib package.
+
+```
+# For CPU users
+pip install pyg-lib -f https://data.pyg.org/whl/torch-2.6.0+cpu.html
+# For GPU users
+pip install pyg-lib -f https://data.pyg.org/whl/torch-2.6.0+cuda118.html
+```
+
+3) Then you could install our package as follows:
+
+```
+pip install spamv
+```
+
+# Tutorial
+
+We provide two jupyter notebooks (Tutorial_simulation.ipynb and Tutorial_realworld.ipynb) to reproduce the results in
+our paper. Before you run them, please make sure that you have downloaded the simulated data and/or real-world data from
+our Zenodo repositoy.
