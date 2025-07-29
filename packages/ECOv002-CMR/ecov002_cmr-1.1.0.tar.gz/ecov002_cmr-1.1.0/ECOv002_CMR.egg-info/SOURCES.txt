@@ -1,0 +1,35 @@
+.gitignore
+Concept ID.ipynb
+ECOSTRESS CMR Search.ipynb
+ECOSTRESS Granule Download.ipynb
+LICENSE
+README.md
+makefile
+pyproject.toml
+.github/workflows/ci.yml
+.github/workflows/python-publish.yml
+ECOv002_CMR/ECOSTRESS_CMR_search.py
+ECOv002_CMR/ECOSTRESS_CMR_search_links.py
+ECOv002_CMR/ECOv002_CMR.py
+ECOv002_CMR/__init__.py
+ECOv002_CMR/concept_ID_from_DOI.py
+ECOv002_CMR/constants.py
+ECOv002_CMR/download_ECOSTRESS_granule.py
+ECOv002_CMR/download_ECOSTRESS_granule_files.py
+ECOv002_CMR/download_file.py
+ECOv002_CMR/exceptions.py
+ECOv002_CMR/granule_ID.py
+ECOv002_CMR/granule_ID_from_filename.py
+ECOv002_CMR/interpret_ECOSTRESS_URLs.py
+ECOv002_CMR/product_name_from_filename.py
+ECOv002_CMR/variable_from_filename.py
+ECOv002_CMR/version.txt
+ECOv002_CMR.egg-info/PKG-INFO
+ECOv002_CMR.egg-info/SOURCES.txt
+ECOv002_CMR.egg-info/dependency_links.txt
+ECOv002_CMR.egg-info/requires.txt
+ECOv002_CMR.egg-info/top_level.txt
+ECOv002_CMR/timer/__init__.py
+ECOv002_CMR/timer/timer.py
+tests/test_import_ECOv002_CMR.py
+tests/test_import_dependencies.py
