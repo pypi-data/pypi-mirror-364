@@ -1,0 +1,43 @@
+Metadata-Version: 2.4
+Name: net_device_conn
+Version: 0.1.0
+Summary: Another network connection project using netmiko
+Author-email: Larry Zhu <larry.lan.zhu@gmail.com>
+License-Expression: MIT
+Project-URL: Repository, https://github.com/myusernamehasbeentaken/net-device-conn
+Keywords: network,client,ssh
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: netmiko>=4.5.0
+Dynamic: license-file
+
+#  net-device-conn
+
+## Current Features 
+- Still under development.
+
+### How to Use:
+    # Update pip and create a virtual environment, then activate the environment and install.
+        ```
+        python -m pip install --upgrade pip
+        py -m venv venv
+        .\venv\Scripts\activate
+        python -m pip install .
+        ```
+    
+    # If you have a GNS3 environment or a network device with SSH setup then you can try and connect to it.
+        ```
+        (venv) net-device-conn> python
+        >>> import net_device_conn
+        >>> handler = net_device_conn.DeviceHandler(device_type="cisco_ios", host='192.168.233.10', username='admin', password='cisco') 
+        >>> h = handler.connect()
+        >>> output = h.send_command('show ver')
+        >>> print(output)
+        >>> exit()
+        ```
+
+## Dependency:
+    netmiko

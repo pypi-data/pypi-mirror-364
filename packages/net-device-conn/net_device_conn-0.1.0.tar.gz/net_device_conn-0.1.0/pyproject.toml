@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools >= 80.1.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "net_device_conn"
+version = "0.1.0"
+description = "Another network connection project using netmiko"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+  { name="Larry Zhu", email="larry.lan.zhu@gmail.com" },
+]
+license = "MIT"
+dependencies = [
+  "netmiko>=4.5.0"
+]
+keywords = ["network", "client", "ssh"]
+classifiers = [
+    "Programming Language :: Python :: 3.9",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Repository = "https://github.com/myusernamehasbeentaken/net-device-conn"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = [
+  "net_device_conn",
+  "net_device_conn.drivers",
+  "net_device_conn.drivers.cisco",
+  "net_device_conn.drivers.f5",
+]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-data]
+"net_device_conn" = [""]
