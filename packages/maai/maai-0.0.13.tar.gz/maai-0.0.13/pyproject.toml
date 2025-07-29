@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "maai"
+dynamic = ["version"]
+description = "Real-time and Continuous Non-Linguistic Behavior (Maai) Generation Software"
+authors = [
+  { name = "MaAI team", email = "inoue@sap.ist.i.kyoto-u.ac.jp" }
+]
+license = { file = "LICENSE" }
+
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.2.0",
+    "numpy",
+    "einops==0.7.0",
+    "soundfile==0.12.1",
+    "pygame",
+    "pydub==0.25.1",
+    "pyaudio",
+    "matplotlib==3.7.5",
+    "seaborn==0.13.2",
+    "fastapi==0.111.0",
+    "huggingface-hub",
+]
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build]
+sources = ["src"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/**"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/maai"]
+
+[project.urls]
+Homepage = "https://github.com/MaAI-Kyoto/MaAI"
