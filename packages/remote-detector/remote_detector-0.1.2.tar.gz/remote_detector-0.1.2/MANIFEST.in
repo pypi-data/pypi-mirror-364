@@ -1,0 +1,9 @@
+include README.md
+include LICENSE
+include PYPI_PUBLISHING.md
+recursive-include remote_detector *
+global-exclude *.pyc
+global-exclude __pycache__
+global-exclude *.log
+global-exclude *.pid
+global-exclude .DS_Store 
