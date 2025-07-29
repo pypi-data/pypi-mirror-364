@@ -1,0 +1,11 @@
+README.md
+pyproject.toml
+setup.py
+PACKAGE_DJANGO/__init__.py
+PACKAGE_DJANGO/__main__.py
+PACKAGE_DJANGO/gen.py
+create_Newapp.egg-info/PKG-INFO
+create_Newapp.egg-info/SOURCES.txt
+create_Newapp.egg-info/dependency_links.txt
+create_Newapp.egg-info/entry_points.txt
+create_Newapp.egg-info/top_level.txt
