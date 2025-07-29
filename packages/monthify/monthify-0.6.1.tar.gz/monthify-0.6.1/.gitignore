@@ -1,0 +1,12 @@
+.cache
+*.log
+*.pyc
+*.bat
+*.dat
+last_run.txt
+logs/*
+.idea/*
+dist/*
+tags
+*.m3u8
+*.stats
