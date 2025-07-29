@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: django-admin-commander
+Version: 0.1.0
+Summary: Add your description here
+Author: Lucas Camillo
+License-File: LICENSE
+Requires-Python: >=3.11
+Requires-Dist: django>=4.2
+Description-Content-Type: text/markdown
+
+# django-admin-commander
+A Django app to run management commands from the admin panel
