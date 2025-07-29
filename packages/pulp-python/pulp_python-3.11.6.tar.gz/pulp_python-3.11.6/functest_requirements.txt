@@ -1,0 +1,7 @@
+git+https://github.com/pulp/pulp-smash.git#egg=pulp-smash
+pytest<8
+lxml
+twine
+pypi-simple
+pytest-xdist
+pytest-timeout
