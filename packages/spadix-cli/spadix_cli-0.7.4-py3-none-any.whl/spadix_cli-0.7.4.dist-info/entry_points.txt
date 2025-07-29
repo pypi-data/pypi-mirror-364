@@ -1,0 +1,2 @@
+[console_scripts]
+spadix = spadix_cli.__init__:main
