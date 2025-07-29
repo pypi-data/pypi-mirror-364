@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools >= 77.0.3", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sonorapy"
+version = "0.1.0"
+authors = [ { name="Hazael Montanaro", email="hazael.montanaro@empa.ch" } ]
+description = "Python interface for 3D GPU-accelerated acoustics FDTD solver Sonora"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+]
+license = "LicenseRef-Proprietary"
+license-files = ["LICENSE"]
+dependencies = [
+  "numpy",
+  "scipy",
+  "matplotlib",
+  "pandas",
+  "h5py",
+  "vtk",
+  "trimesh[easy]"
+]
