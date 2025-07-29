@@ -1,0 +1,2 @@
+[console_scripts]
+attention-viz-dashboard = attention_viz.dashboard.app:main
