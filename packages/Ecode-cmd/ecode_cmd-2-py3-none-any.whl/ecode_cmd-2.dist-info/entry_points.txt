@@ -1,0 +1,2 @@
+[console_scripts]
+Ecode = Ecode.__main__:main
