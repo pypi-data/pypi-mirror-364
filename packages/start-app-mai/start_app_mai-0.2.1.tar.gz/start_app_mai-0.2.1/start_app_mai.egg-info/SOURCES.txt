@@ -1,0 +1,9 @@
+README.md
+setup.py
+start_app_mai/__init__.py
+start_app_mai/cli.py
+start_app_mai.egg-info/PKG-INFO
+start_app_mai.egg-info/SOURCES.txt
+start_app_mai.egg-info/dependency_links.txt
+start_app_mai.egg-info/entry_points.txt
+start_app_mai.egg-info/top_level.txt

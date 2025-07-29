@@ -1,0 +1,44 @@
+Metadata-Version: 2.4
+Name: start_app_mai
+Version: 0.2.1
+Summary: Générateur de structure d'app Django personnalisée
+Author: soro F M
+Author-email: soferelaha@gmail.com
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: Framework :: Django
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license
+Dynamic: summary
+
+# start_app_mai
+
+**start_app_mai** est un outil en ligne de commande permettant de générer rapidement des applications Django avec une structure modulaire et bien organisée, adaptée aux projets professionnels.
+
+## Fonctionnalités
+
+- Crée une application Django avec :
+  - un fichier `urls.py` directement généré,
+  - un dossier `views/` au lieu d'un simple `views.py`,
+  - un dossier `models/` au lieu d'un seul `models.py`,
+  - une structure claire prête pour des projets plus complexes.
+
+
+## Installation
+
+Installez le package depuis PyPI :
+
+bash
+pip install start_app_mai
+
+## Lancer l'application 
+
+bash
+ start_app_mai "name app"
+
