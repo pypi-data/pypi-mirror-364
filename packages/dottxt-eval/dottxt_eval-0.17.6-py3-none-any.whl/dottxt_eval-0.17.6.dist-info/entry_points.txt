@@ -1,0 +1,2 @@
+[console_scripts]
+doteval = doteval.cli:cli
