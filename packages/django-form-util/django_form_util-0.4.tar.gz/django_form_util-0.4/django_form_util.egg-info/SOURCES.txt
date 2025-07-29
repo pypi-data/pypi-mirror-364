@@ -1,0 +1,16 @@
+LICENSE
+README.md
+pyproject.toml
+django_form_util.egg-info/PKG-INFO
+django_form_util.egg-info/SOURCES.txt
+django_form_util.egg-info/dependency_links.txt
+django_form_util.egg-info/entry_points.txt
+django_form_util.egg-info/requires.txt
+django_form_util.egg-info/top_level.txt
+form_util/__init__.py
+form_util/__main__.py
+form_util/templates/__init__.py
+form_util/templates/apps.py
+form_util/templates/forms.py
+form_util/templates/urls.py
+form_util/templates/views.py
