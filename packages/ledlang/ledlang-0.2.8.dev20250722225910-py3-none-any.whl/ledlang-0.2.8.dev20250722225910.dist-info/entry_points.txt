@@ -1,0 +1,3 @@
+[console_scripts]
+ledlang = ledlang.LEDSendCLI:main
+ledlang-test = ledlang.LEDLangTesting:main
