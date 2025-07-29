@@ -1,0 +1,84 @@
+[tool.poetry]
+name = "pyview-web"
+
+packages = [
+  { include = "pyview" },
+]
+
+version = "0.4.0"
+description = "LiveView in Python"
+authors = ["Larry Ogrodnek <ogrodnek@gmail.com>"]
+license = "MIT"
+readme = "readme.md"
+homepage = "https://pyview.rocks"
+repository = "https://github.com/ogrodnek/pyview"
+keywords = ["web", "api", "LiveView"]
+
+classifiers = [
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: System Administrators",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python",
+    "Topic :: Internet",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development",
+    "Typing :: Typed",
+    "Development Status :: 4 - Beta",
+    "Environment :: Web Environment",
+    "Framework :: AsyncIO",
+    "Framework :: Pydantic",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
+    "Topic :: Internet :: WWW/HTTP",
+]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.14"
+starlette = "^0.47.2"
+uvicorn = "0.34.3"
+wsproto = "1.2.0"
+APScheduler = "3.11.0"
+markupsafe = "^3.0.2"
+itsdangerous = "^2.2.0"
+pydantic = "^2.9.2"
+click = "^8.1.7"
+
+[tool.poetry.scripts]
+pv = "pyview.cli.main:cli"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.0"
+black = "24.3.0"
+pyright = "1.1.403"
+pytest-cov = "^6.1.1"
+pytest-asyncio = "0.21.2"
+
+[tool.poetry.group.profiling.dependencies]
+scalene = {version = "^1.5.51", python = "!=3.11.0,>=3.11"}
+memray = "^1.6.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pyright]
+exclude = [
+    ".venv",
+    "examples",
+    "examples/.venv",
+    "**/vendor",
+    "**/node_modules",
+    "**/__pycache__",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
