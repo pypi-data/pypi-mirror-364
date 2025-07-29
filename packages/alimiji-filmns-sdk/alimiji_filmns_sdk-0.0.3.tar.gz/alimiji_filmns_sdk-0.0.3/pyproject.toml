@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=78.1.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "alimiji_filmns_sdk"
+version = "0.0.3"
+authors = [
+  { name="[Ali MIJIYAWA]" },
+]
+description = "SDK Python pour accéder à l’API MovieLens (Data Analysts/Data Scientists friendly)"
+readme = "readme.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    'fastapi>=0.116.1',
+    'fastapi-cli>=0.0.8',
+    'fastapi-cloud-cli>=0.1.4',
+    'httpx>=0.28.1',
+    'backoff>=2.2.1',
+    'pydantic>=2.11.7',
+    'pydantic-extra-types>=2.10.5',
+    'pydantic-settings>=2.10.1',
+    'pydantic_core>=2.33.2',
+    'pandas>=2.2.3',
+    'numpy>=2.2.4'
+]

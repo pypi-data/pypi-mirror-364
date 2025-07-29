@@ -1,0 +1,12 @@
+pyproject.toml
+readme.md
+src/alimiji_filmns_sdk/__init__.py
+src/alimiji_filmns_sdk/film_client.py
+src/alimiji_filmns_sdk/film_config.py
+src/alimiji_filmns_sdk.egg-info/PKG-INFO
+src/alimiji_filmns_sdk.egg-info/SOURCES.txt
+src/alimiji_filmns_sdk.egg-info/dependency_links.txt
+src/alimiji_filmns_sdk.egg-info/requires.txt
+src/alimiji_filmns_sdk.egg-info/top_level.txt
+src/alimiji_filmns_sdk/schemas/__init__.py
+src/alimiji_filmns_sdk/schemas/schemas.py
