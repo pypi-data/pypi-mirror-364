@@ -1,0 +1,12 @@
+LICENSE
+README.md
+ffgrep.py
+setup.py
+version.py
+ffgrep.egg-info/PKG-INFO
+ffgrep.egg-info/SOURCES.txt
+ffgrep.egg-info/dependency_links.txt
+ffgrep.egg-info/entry_points.txt
+ffgrep.egg-info/not-zip-safe
+ffgrep.egg-info/top_level.txt
+tests/test_ffgrep.py
