@@ -1,0 +1,15 @@
+translation_helper/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+translation_helper/main.py,sha256=nimuKQGrybjVu_DKPauEdsNewrBajdq2enxVbrRJfl0,1473
+translation_helper/theme.json,sha256=PYuAomZUZXwxE-EIvpVPuFFlse1rAyZyt5HfqdLdF0o,4526
+translation_helper/components/CreateKeyWindow.py,sha256=yUCGcAVyGn95owHoZkuWJXisqU5wRZErW5VI83qCMXw,2089
+translation_helper/components/KeysFrame.py,sha256=kBbtVu89NtgrWmvWNUZjHKM4-PYPbb_NcG_gc7x76Y0,5674
+translation_helper/components/LoadButton.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+translation_helper/components/ValuesFrame.py,sha256=Gs6vQxZ6WorzPuz-M-sTwEA_YMivw3ZMk-_GiL-tJQ4,2249
+translation_helper/components/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+translation_helper/data/TranslationManager.py,sha256=tP6g4ye2uffot-O9mVbZtxPuP7pWseheD8LOFU6r6ZM,1694
+translation_helper/data/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+translation_helper-0.1.0.dist-info/METADATA,sha256=CZ0jS6kqh7bOdMSFj0ydaqTnWMObDbcrNXQO_pWef30,284
+translation_helper-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+translation_helper-0.1.0.dist-info/entry_points.txt,sha256=EuoMx3QWuWHhLEmVsO0NhTezW4ktlyeIQ3PbIAK-NtE,67
+translation_helper-0.1.0.dist-info/top_level.txt,sha256=HO_JK8miCq7WzI3AMgNwhXIGkYdf0GVxwIT4t0BVIo8,19
+translation_helper-0.1.0.dist-info/RECORD,,
