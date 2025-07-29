@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "mineru-mcp": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/Users/xiesiyang/work/xzinfra/gitlab/xzinfra/ai-platform/xzinfra-mineru-mcp",
+        "run",
+        "-m",
+        "src.xzinfra_mineru_mcp.mineru.cli",
+        "--allowed",
+        "/Users/xiesiyang/Desktop/test_mineru/"
+      ],
+      "env": {
+        "SELF_MINERU_BASE_URL": "http://192.168.103.17:30201",
+        "SELF_MINERU_API_KEY": "123"
+      }
+    }
+  }
+}

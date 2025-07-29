@@ -1,0 +1,21 @@
+[project]
+name = "xzinfra-mineru-mcp"
+version = "0.1.0"
+description = "对接 MinerU 自行部署提供的服务 "
+readme = "README.md"
+authors = [
+    { name = "xiesiyang", email = "xiesiyang@xzinfra.com" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "aiohttp>=3.12.14",
+    "aiofiles>=24.1.0",
+    "fastmcp",
+]
+
+[project.scripts]
+xzinfra-mineru-mcp = "xzinfra_mineru_mcp.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

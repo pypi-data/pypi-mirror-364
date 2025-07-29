@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: xzinfra-mineru-mcp
+Version: 0.1.0
+Summary: 对接 MinerU 自行部署提供的服务 
+Author-email: xiesiyang <xiesiyang@xzinfra.com>
+Requires-Python: >=3.10
+Requires-Dist: aiofiles>=24.1.0
+Requires-Dist: aiohttp>=3.12.14
+Requires-Dist: fastmcp
