@@ -1,0 +1,2 @@
+class CashItAPIError(Exception):
+    pass
