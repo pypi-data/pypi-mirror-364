@@ -1,0 +1,7 @@
+
+[develop]
+pytest
+ddt
+mock
+pre-commit
+go-task-bin
