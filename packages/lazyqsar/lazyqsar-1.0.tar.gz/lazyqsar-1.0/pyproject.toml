@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lazyqsar"
+version = "1.0"
+description = "A library to quickly build QSAR models"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "GPLv3" }
+authors = [
+  { name = "Ersilia Open Source Initiative", email = "hello@ersilia.io" },
+  { name = "Miquel Duran Frigola", email = "miquel@ersilia.io" },
+  { name = "Gemma Turon Rodrigo", email = "gemma@ersilia.io" },
+  { name = "Abel Legese Shibiru", email = "abel@ersilia.io" },
+]
+keywords = ["qsar", "machine-learning", "chemistry", "computer-aided-drug-design"]
+classifiers = [
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+  "Operating System :: OS Independent",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "requests==2.32.3",
+    "xgboost==3.0.2",
+    "joblib==1.5.1",
+    "pandas==2.3.0",
+    "scikit-learn==1.6.1",
+    "optuna==4.4.0",
+    "h5py==3.14.0",
+    "psutil==7.0.0",
+    "flaml==2.3.5"
+]
+
+[project.optional-dependencies]
+tune-tables = []
+
+descriptors = [
+  "numpy==1.26.4",
+  "rdkit==2023.9.5",
+  "chemprop<=2.2.0"
+]
+
+[project.urls]
+"Source Code" = "https://github.com/ersilia-os/lazy-qsar"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+exclude = ["utilities"]
