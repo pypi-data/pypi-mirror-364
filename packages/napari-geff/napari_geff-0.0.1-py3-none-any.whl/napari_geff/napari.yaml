@@ -1,0 +1,35 @@
+name: napari-geff
+display_name: Geff IO
+# use 'hidden' to remove plugin from napari hub search results
+visibility: public
+# see https://napari.org/stable/plugins/technical_references/manifest.html#fields for valid categories
+# categories: []
+contributions:
+  commands:
+    - id: napari-geff.get_reader
+      python_name: napari_geff._reader:get_geff_reader
+      title: Open data with Geff IO
+    - id: napari-geff.write
+      python_name: napari_geff._writer:write_tracks
+      title: Save data with Geff IO
+    - id: napari-geff.sample_data
+      title: Load sample data
+      python_name: napari_geff.data.load_sample_data:load_sample_data
+    - id: napari-geff.sample_data_3d
+      title: Load 3D sample data
+      python_name: napari_geff.data.load_sample_data:load_sample_data_3d
+  readers:
+    - command: napari-geff.get_reader
+      accepts_directories: true
+      filename_patterns: ['*']
+  writers:
+    - command: napari-geff.write
+      layer_types: ['tracks']
+      filename_extensions: []
+  sample_data:
+    - key: napari-geff.sample_data
+      display_name: Sample tracks data, w masks and images
+      command: napari-geff.sample_data
+    - key: napari-geff.sample_data_3d
+      display_name: Sample tracks data, 3D
+      command: napari-geff.sample_data_3d
