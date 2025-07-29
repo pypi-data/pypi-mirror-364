@@ -1,0 +1,10 @@
+LICENSE
+README.md
+pyproject.toml
+velotrain.py
+velotrain.egg-info/PKG-INFO
+velotrain.egg-info/SOURCES.txt
+velotrain.egg-info/dependency_links.txt
+velotrain.egg-info/entry_points.txt
+velotrain.egg-info/requires.txt
+velotrain.egg-info/top_level.txt

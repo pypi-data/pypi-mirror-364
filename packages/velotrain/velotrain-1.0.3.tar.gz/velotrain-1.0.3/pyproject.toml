@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "velotrain"
+version = "1.0.3"
+description = "Velodrome transponder training timing"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+keywords = ["velodrome", "transponder", "timing"]
+authors = [
+    {email = "ndf-zz@6-v.org", name = "Nathan Fraser"}
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Topic :: Other/Nonlisted Topic",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "metarace>=2.1.15,<2.2",
+    "ypmeteo",
+]
+
+[project.urls]
+homepage = "https://github.com/ndf-zz/velotrain"
+repository = "https://github.com/ndf-zz/velotrain"
+
+[project.scripts]
+velotrain = "velotrain:main"
