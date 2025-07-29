@@ -1,0 +1,39 @@
+Metadata-Version: 2.2
+Name: a2y_hengchangsheng
+Version: 0.8.5
+Summary: A module that interfaces HengChangSheng things.
+Home-page: http://www.kersci.com/a2y/hengchangsheng.html
+Author: Yu Han
+Author-email: hanjunyu@163.com
+License: Private
+Platform: Windows
+Platform: Linux
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: Free For Educational Use
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Operating System :: Microsoft :: Windows :: Windows 10
+Classifier: Operating System :: POSIX :: Linux
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: a2y_wxtools
+Requires-Dist: pymssql
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: platform
+Dynamic: requires-dist
+Dynamic: summary
+
+# Python Module: a2y_hengchangsheng
+
+## 简述
+a2y_hengchangsheng 模块提供一些针对深圳恒昌盛（惠州弘盛昌）的专用功能。
+
+## ChangeLog
+
+- 2025-07-23 适配 Python3.12，版本升级为 0.8.5。
