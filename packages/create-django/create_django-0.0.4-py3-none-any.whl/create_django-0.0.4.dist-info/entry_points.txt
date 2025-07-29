@@ -1,0 +1,2 @@
+[console_scripts]
+create-django = create_django.__main__:main
