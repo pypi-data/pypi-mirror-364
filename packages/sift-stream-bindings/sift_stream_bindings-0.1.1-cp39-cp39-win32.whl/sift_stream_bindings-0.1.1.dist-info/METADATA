@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: sift-stream-bindings
+Version: 0.1.1
+Classifier: Programming Language :: Rust
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Keywords: sift,siftstack,sift-stack,sift_rs,telemetry
+Home-Page: https://github.com/sift-stack/sift/tree/main/rust
+Author: Sift Software Engineers <engineering@siftstack.com>
+Author-email: Sift Software Engineers <engineering@siftstack.com>
+Maintainer-email: Sift Software Engineers <engineering@siftstack.com>
+License: MIT
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+Project-URL: Source Code, https://github.com/sift-stack/sift/tree/main/rust
+
+# Sift Stream Python Bindings
+
+[![pypi](https://img.shields.io/pypi/v/sift-stream-bindings)](https://pypi.org/project/sift-stream-bindings/)
+[![pypi](https://img.shields.io/pypi/pyversions/sift-stream-bindings)](https://pypi.org/project/sift-stream-bindings/)
+
+This library provides Python bindings for the `sift_stream` crate, offering access to the core functionality offered by `sift_stream` via Python. It is built using [pyo3](https://docs.rs/pyo3/latest/pyo3/) and published using [maturin](https://github.com/PyO3/maturin). This library is built with the intention of being used within the underlying architecture of the sift-stack-py package.
+
