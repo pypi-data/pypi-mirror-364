@@ -1,0 +1,4 @@
+[console_scripts]
+onec-contract-analyze = scripts.analyze:main
+onec-contract-generate = core.launcher:main
+onec-contract-test = scripts.test:main
