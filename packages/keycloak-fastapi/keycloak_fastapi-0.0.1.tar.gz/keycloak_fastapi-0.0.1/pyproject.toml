@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "keycloak-fastapi"
+version = "0.0.1"
+description = "keycloak-fastapi is Python package providing access to custom apps"
+authors = ["David Campos <dcampos@istmocenter.com>"]
+readme = "README.md"
+keywords = ["keycloak", "openid", "oidc"]
+classifiers=[
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Development Status :: 3 - Alpha",
+    "Operating System :: MacOS",
+    "Operating System :: Unix",
+    "Operating System :: Microsoft :: Windows",
+    "Topic :: Utilities",
+]
+packages = [
+    {include = "keycloak_fastapi", from = "src/"},
+    {include = "keycloak_fastapi/**/*.py", from = "src/"},
+]
+include = ["LICENSE", "CHANGELOG.md", "CONTRIBUTING.md"]
+
+[tool.poetry.dependencies]
+python = ">=3.7,<4.0"
+python-keycloak = "^2.16.1"
+fastapi-permissions = "*"
+fastapi-security = "*"
+fastapi = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
