@@ -1,0 +1,14 @@
+LICENSE
+README.md
+pyproject.toml
+setup.cfg
+src/paretoarchive/__init__.py
+src/paretoarchive/np.py
+src/paretoarchive/pandas.py
+src/py_paretoarchive.egg-info/PKG-INFO
+src/py_paretoarchive.egg-info/SOURCES.txt
+src/py_paretoarchive.egg-info/dependency_links.txt
+src/py_paretoarchive.egg-info/not-zip-safe
+src/py_paretoarchive.egg-info/top_level.txt
+tests/test_pandas.py
+tests/test_pareto.py
