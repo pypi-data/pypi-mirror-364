@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+yahoo_finance_mcp/__init__.py
+yahoo_finance_mcp/server.py
+yahoo_finance_mcp.egg-info/PKG-INFO
+yahoo_finance_mcp.egg-info/SOURCES.txt
+yahoo_finance_mcp.egg-info/dependency_links.txt
+yahoo_finance_mcp.egg-info/entry_points.txt
+yahoo_finance_mcp.egg-info/requires.txt
+yahoo_finance_mcp.egg-info/top_level.txt
