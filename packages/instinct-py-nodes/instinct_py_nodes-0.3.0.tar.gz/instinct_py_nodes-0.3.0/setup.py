@@ -1,0 +1,25 @@
+from setuptools import setup, find_packages
+
+with open("README.md", "r", encoding="utf-8") as fh:
+    long_description = fh.read()
+
+setup(
+    name="instinct-py-nodes",
+    version="0.3.0",
+    author="Nexstem",
+    author_email="developers@nexstem.ai",
+    description="A Python package for creating compute nodes for use in Nexstem Instinct Products",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    package_dir={"": "src"},
+    packages=find_packages(where="src"),
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+    ],
+    python_requires=">=3.6",
+    install_requires=[
+        "pyzmq>=0.0.0",
+    ],
+)
