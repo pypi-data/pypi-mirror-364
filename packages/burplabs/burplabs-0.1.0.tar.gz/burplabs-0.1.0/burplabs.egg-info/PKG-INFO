@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: burplabs
+Version: 0.1.0
+Summary: PortSwigger Lab Automation Tool
+Author: Sneh
+Author-email: Sneh <bavarvasneh@gmail.com>
+Requires-Python: >=3.7
+Requires-Dist: requests
+Requires-Dist: beautifulsoup4
+Requires-Dist: prompt_toolkit
+Requires-Dist: colorama
+Requires-Dist: rich
+Dynamic: author
