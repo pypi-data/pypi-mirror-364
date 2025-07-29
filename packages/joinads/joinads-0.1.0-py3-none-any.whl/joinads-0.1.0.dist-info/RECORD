@@ -1,0 +1,13 @@
+joinads/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+joinads/cli.py,sha256=k1csAMSTHH8ZqV1AfGSLRTrwGKfVvyj84Rm3NUOEUh0,732
+joinads/core.py,sha256=xYOPsi17l--S4YqICwJKVwb05y6QliHk2eROxDqDIVg,1539
+joinads/repository.py,sha256=GbibPevkXzOv_xO2cssPS0_kM6xlbYQCaZSywftlMMQ,154
+joinads/SQL/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+joinads/SQL/config.py,sha256=GHpRYJ9CEo_XPYFaN4GJ0sLj041CAr5bCHVHS6HvhbA,930
+joinads/SQL/connection.py,sha256=TTzhRzE-GV4lNP3L1sibAXjrzzgew-0b4vEkuYG2mrc,9857
+joinads/SQL/query.py,sha256=-1blVZw0SqOMjDbYmbTPxjbDayDEAOrEIkYSumlqNvY,45779
+joinads-0.1.0.dist-info/METADATA,sha256=tJSMMc1-Giia8lsdBVVhQK88xjoGlMpSDLvaBH-Vn7U,269
+joinads-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+joinads-0.1.0.dist-info/entry_points.txt,sha256=LNcL41VmXGZpt5auEb9FjHAK121J5VEsKtvK42QUCto,45
+joinads-0.1.0.dist-info/top_level.txt,sha256=A_TA2gDTrbq5A-iVKn6aDSKIy3O01l9S7rIcaV2QiYc,8
+joinads-0.1.0.dist-info/RECORD,,
