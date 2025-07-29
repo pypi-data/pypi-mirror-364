@@ -1,0 +1,9 @@
+README.md
+setup.py
+create-djangoapp/__init__.py
+create-djangoapp/cli.py
+django_creator.egg-info/PKG-INFO
+django_creator.egg-info/SOURCES.txt
+django_creator.egg-info/dependency_links.txt
+django_creator.egg-info/entry_points.txt
+django_creator.egg-info/top_level.txt
