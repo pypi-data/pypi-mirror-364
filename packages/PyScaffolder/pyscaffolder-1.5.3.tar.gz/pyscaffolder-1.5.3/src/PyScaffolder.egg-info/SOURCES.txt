@@ -1,0 +1,10 @@
+LICENSE
+README.md
+pyproject.toml
+setup.cfg
+setup.py
+src/PyScaffolder.egg-info/PKG-INFO
+src/PyScaffolder.egg-info/SOURCES.txt
+src/PyScaffolder.egg-info/dependency_links.txt
+src/PyScaffolder.egg-info/not-zip-safe
+src/PyScaffolder.egg-info/top_level.txt
