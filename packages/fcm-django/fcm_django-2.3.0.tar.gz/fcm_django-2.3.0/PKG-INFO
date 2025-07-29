@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: fcm-django
+Version: 2.3.0
+Summary: Send push notifications to mobile devices & browsers through FCM in Django.
+Home-page: https://github.com/xtrinch/fcm-django
+Download-URL: https://github.com/xtrinch/fcm-django/tarball/master
+Author: xTrinch
+Author-email: mojca.rojko@gmail.com
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Networking
+Requires-Python: >=3.9
+License-File: LICENSE.txt
+Requires-Dist: firebase-admin<8,>=6.2
+Requires-Dist: Django
+Requires-Dist: swapper
