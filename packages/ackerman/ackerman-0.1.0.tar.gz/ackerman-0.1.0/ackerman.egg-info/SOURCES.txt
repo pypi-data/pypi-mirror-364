@@ -1,0 +1,10 @@
+LICENSE
+README.md
+constants.py
+pyproject.toml
+ackerman.egg-info/PKG-INFO
+ackerman.egg-info/SOURCES.txt
+ackerman.egg-info/dependency_links.txt
+ackerman.egg-info/entry_points.txt
+ackerman.egg-info/requires.txt
+ackerman.egg-info/top_level.txt

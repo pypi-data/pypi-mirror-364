@@ -1,0 +1,23 @@
+[project]
+name = "ackerman"
+version = "0.1.0"
+description = "an cli application to compare the levenshtein distances between strings and files."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "click>=8.2.1",
+    "pytest>=8.4.1",
+    "setuptools>=80.9.0",
+]
+authors = [{name="sagnikc395",email="sgnikchatterjee607@gmail.com"}]
+keywords = ["levenshtein", "cli", "distance", "text"]
+
+[project.scripts]
+lev = "levi:main"  # assumes you have a `main()` function in levi.py
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = ["ackerman", "constants"] 
