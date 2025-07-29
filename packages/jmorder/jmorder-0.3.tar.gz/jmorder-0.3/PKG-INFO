@@ -1,0 +1,6 @@
+Metadata-Version: 2.4
+Name: jmorder
+Version: 0.3
+Requires-Dist: pandas
+Requires-Dist: xlrd>=1.2.0
+Dynamic: requires-dist
