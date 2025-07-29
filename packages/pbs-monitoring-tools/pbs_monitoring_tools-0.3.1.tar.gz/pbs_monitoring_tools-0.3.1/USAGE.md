@@ -1,0 +1,92 @@
+# Proxmox Backup Server (PBS) Monitoring Tools
+
+This project provides tools that use Proxmox Backup Server (PBS) API with Proxmoxer, in order to get status informations, like backups that have failed.
+
+<!-- more -->
+
+<div class="grid cards" markdown>
+
+- :material-license: __FreeBSD__ License
+- :fontawesome-brands-python: __Python__ >= 3.11 is required
+- :fontawesome-solid-link: [https://pypi.org/](https://pypi.org/project/pbs-monitoring-tools/)
+- :fontawesome-solid-at: __Author__ : [Sigilence Technologies](https://pypi.org/user/Sigilence/)
+
+</div>
+
+## Tools
+
+### Usage
+
+### Available commands
+
+You have to be authenticated in order to use this tool.
+
+To set up authentication, create a `auth.yaml` file that looks like that:
+
+```yaml
+host: <the_pbs_host>
+user: <username@pbs>
+token_name: <TOKEN_NAME>
+token_value: <TOKEN_VALUE>
+```
+
+And replace placeholders by your credentials and host of the Proxmox Backup Server you'll need to reach.
+
+The token has to have at least the `Backup.Audit` role/privilege.
+
+Now, to use `pbs_monitoring_tools`, you'll have to use this command line
+
+```shell
+python3 -m pbs_monitoring_tools --auth-file ../<auth-file.yml> [arguments...]
+python3 -m pbs_monitoring_tools --help
+python3 -m pbs_monitoring_tools --version
+```
+
+### Arguments
+
+There is a few arguments that you can use:
+
+```shell
+python3 -m pbs_monitoring_tools --auth-file ../<auth-file.yml> --datastores --namespaces-to-ignore --max-depth --max-age --filling-remaining-days --quiet
+```
+
+All the command lines arguments are optional.
+
+
+#### --datastores
+
+If not provided, tools will consider that you want to run through all datastores. Otherwise, you can specify a datastores list, like that:
+
+```shell
+python3 -m pbs_monitoring_tools --auth-file ../<auth-file.yml> --datastores="datastore1,datastore2"
+```
+
+#### --namespaces-to-ignore
+
+If not provided, tools will consider that you don't want to exclude any namespace. Otherwise, you can specify which namespaces you want to ignore:
+
+```shell
+python3 -m pbs_monitoring_tools --auth-file ../<auth-file.yml> --namespaces-to-ignore="namespace1,namespace2"
+```
+
+#### --max-depth
+
+If not provided, tools default to maximum depth value allowed by API. Otherwise, you can specify a value between 0 and 7 (should be an integer value).
+
+#### --max-snapshot-age-hours
+
+If not provided, tools default to 72 hours (3 days) as value from which we consider that a snapshot is too old. You'll need to use hours as value (should be an integer value).
+
+#### --filling-remaining-days
+
+If not provided, tools default to 30 days. You'll need to use days as value (should be an integer value).
+
+#### --debug
+
+If provided, enable `debug` level logs.
+
+#### --quiet
+
+#### --no-errors
+
+If provided, print nothing if snapshots check does not raise errors. Otherwise, print a message to tell that no errours were found.

@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pbs_monitoring_tools"
+version = "0.3.1"
+authors = [
+  { name = "Sigilence Technologies", email = "contact@sigilence.com" }
+]
+description = "This project provides tools that use Proxmox Backup Server (PBS) API with Proxmoxer package."
+readme = "USAGE.md"
+license = "BSD-2-Clause"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+dependencies = [
+  "proxmoxer>=2.2.0",
+  "requests>=2.32.3",
+  "PyYAML>=6.0.2",
+]
+classifiers = [
+  # Supported Python versions
+  "Programming Language :: Python :: 3.11",
+  "Intended Audience :: Developers"
+]
+
+[project.urls]
+"Our Website" = "https://www.sigilence-technologies.com/"
