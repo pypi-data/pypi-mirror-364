@@ -1,0 +1,2 @@
+[console_scripts]
+wanyi-today-server = wanyi_today.main:main
