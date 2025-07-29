@@ -1,0 +1,94 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "anantduggal-changelog-generator"
+version = "1.0.0"
+description = "AI-powered changelog generator with smart caching and async processing"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Anant Duggal", email = "aduggal@uwaterloo.ca"}
+]
+maintainers = [
+    {name = "Anant Duggal", email = "aduggal@uwaterloo.ca"}
+]
+keywords = ["changelog", "git", "ai", "claude", "github", "cli"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Systems Administration",
+    "Topic :: Text Processing :: Markup",
+    "Topic :: Utilities",
+]
+requires-python = ">=3.9"
+dependencies = [
+    "aiohttp>=3.8.0,<4.0.0",
+    "aiofiles>=23.0.0,<24.0.0",
+    "redis[hiredis]>=4.5.0,<5.0.0",
+    "PyYAML>=6.0.0,<7.0.0",
+    "rich>=13.0.0,<14.0.0",
+    "requests>=2.31.0,<3.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "mypy>=1.0.0",
+    "flake8>=6.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/anantduggal/changelog-generator"
+Documentation = "https://github.com/anantduggal/changelog-generator#readme"
+Repository = "https://github.com/anantduggal/changelog-generator"
+Issues = "https://github.com/anantduggal/changelog-generator/issues"
+Changelog = "https://github.com/anantduggal/changelog-generator/blob/main/CHANGELOG.md"
+
+[project.scripts]
+ai-changelog-generator = "changelog_generator.changelog_generator_enhanced:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/changelog_generator"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/README.md",
+    "/LICENSE",
+    "/CHANGELOG.md",
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"] 
