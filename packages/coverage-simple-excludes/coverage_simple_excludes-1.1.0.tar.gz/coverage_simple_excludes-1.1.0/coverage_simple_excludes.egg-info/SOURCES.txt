@@ -1,0 +1,12 @@
+LICENSE.txt
+README.md
+pyproject.toml
+requirements.txt
+coverage_simple_excludes/__init__.py
+coverage_simple_excludes.egg-info/PKG-INFO
+coverage_simple_excludes.egg-info/SOURCES.txt
+coverage_simple_excludes.egg-info/dependency_links.txt
+coverage_simple_excludes.egg-info/requires.txt
+coverage_simple_excludes.egg-info/top_level.txt
+tests/test_excludes.py
+tests/test_regexen.py
