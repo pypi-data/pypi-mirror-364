@@ -1,0 +1,4 @@
+[console_scripts]
+github-gather-background = fastmcp_agents.library.agent.github.gather_background:run
+github-investigate-issue = fastmcp_agents.library.agent.github.investigate_issue:run
+
