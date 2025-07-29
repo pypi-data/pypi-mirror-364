@@ -1,0 +1,3 @@
+[console_scripts]
+ipydex = ipydex.script:main
+ipydex_catch = ipydex.cli:catch

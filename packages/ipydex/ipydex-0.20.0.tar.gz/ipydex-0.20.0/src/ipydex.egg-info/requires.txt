@@ -1,0 +1,5 @@
+ipython>=9.0.0
+pexpect
+pickleshare
+stack_data
+colorama
