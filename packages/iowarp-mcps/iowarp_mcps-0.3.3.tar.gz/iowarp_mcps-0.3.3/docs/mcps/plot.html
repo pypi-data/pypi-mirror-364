@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plot MCP - Scientific MCPs</title>
+    <meta name="description" content="Create visualizations and plots from CSV data through the Model Context Protocol.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔬</text></svg>">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">🔬</div>
+                <div class="logo-text">Scientific MCPs</div>
+            </div>
+            <a href="../index.html" style="color: white; text-decoration: none; margin-left: auto;">← Back to Directory</a>
+        </div>
+    </header>
+
+    <main class="main-content" style="grid-template-columns: 1fr; max-width: 1000px;">
+        <div class="detail-header">
+            <div class="detail-title">
+                <div class="mcp-icon">📈</div>
+                <div>
+                    <h1>Plot</h1>
+                    <span class="mcp-category">Analysis & Visualization</span>
+                </div>
+            </div>
+            <p class="mcp-description">Advanced data visualization with comprehensive plotting capabilities for data analysis using matplotlib and seaborn. Supports multiple chart types including line plots, bar plots, scatter plots, histograms, and heatmaps with extensive customization options.</p>
+            
+            <div class="detail-stats">
+                <div class="stat-card">
+                    <span class="stat-value">1.0.0</span>
+                    <span class="stat-label">Version</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">6</span>
+                    <span class="stat-label">Actions</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">Jul 19</span>
+                    <span class="stat-label">Updated</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">Python</span>
+                    <span class="stat-label">Language</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" data-tab="installation">Installation</button>
+            <button class="tab" data-tab="actions">Available Actions</button>
+            <button class="tab" data-tab="examples">Examples</button>
+        </div>
+
+        <div id="installation" class="tab-content active">
+            <h3>Installation Methods</h3>
+            
+            <h4>Quick Start</h4>
+            <div class="code-block">cd /path/to/scientific-mcps/Plot
+uv sync && uv run plot-mcp</div>
+            
+            <h4>UV Package Manager</h4>
+            <div class="code-block">uv sync
+uv run plot-mcp</div>
+            
+            <h4>Traditional pip</h4>
+            <div class="code-block">pip install -e .
+uv run python -m src.server</div>
+            
+            <h4>Claude Desktop</h4>
+            <div class="code-block">{
+  "mcpServers": {
+    "plot-mcp": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "path/to/directory/scientific-mcps/Plot/",
+        "run",
+        "plot-mcp"
+      ]
+    }
+  }
+}</div>
+            
+            <h4>WARP Client</h4>
+            <div class="code-block">MCP:
+  - Plot
+python3 bin/wrp.py --conf=bin/confs/Gemini.yaml</div>
+            
+            <h4>Claude CLI</h4>
+            <div class="code-block">npm install -g @anthropic-ai/claude-code
+claude add mcp plot -- uv --directory ~/scientific-mcps/Plot run plot-mcp</div>
+        </div>
+
+        <div id="actions" class="tab-content">
+            <h3>Available Actions</h3>
+            <ul class="actions-list">
+                <li class="action-item">
+                    <div class="action-name">data_info</div>
+                    <div class="action-description">Get detailed information about dataset structure, column types, and basic statistics</div>
+                    <div class="action-params">Parameters: data_file</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">line_plot</div>
+                    <div class="action-description">Create line plots for time series data and continuous relationships</div>
+                    <div class="action-params">Parameters: data_file, x_column, y_column, title, save_path</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">bar_plot</div>
+                    <div class="action-description">Generate bar charts for categorical data visualization</div>
+                    <div class="action-params">Parameters: data_file, x_column, y_column, title, save_path</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">scatter_plot</div>
+                    <div class="action-description">Create scatter plots to visualize relationships between two continuous variables</div>
+                    <div class="action-params">Parameters: data_file, x_column, y_column, title, save_path</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">histogram_plot</div>
+                    <div class="action-description">Generate histograms to show distribution of continuous data</div>
+                    <div class="action-params">Parameters: data_file, column, bins, title, save_path</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">heatmap_plot</div>
+                    <div class="action-description">Create correlation heatmaps and matrix visualizations</div>
+                    <div class="action-params">Parameters: data_file, title, save_path</div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="examples" class="tab-content">
+            <h3>Usage Examples</h3>
+            
+            <h4>Create line plot from time series data</h4>
+            <div class="code-block">result = line_plot("/data/temperature.csv", "date", "temperature", "Temperature Trends")</div>
+            
+            <h4>Generate comprehensive data analysis</h4>
+            <div class="code-block">info = data_info("/data/sales.csv")</div>
+            
+            <h4>Create multiple visualizations for data exploration</h4>
+            <div class="code-block">scatter = scatter_plot("/data/sales.csv", "price", "quantity", "Price vs Quantity")
+hist = histogram_plot("/data/sales.csv", "revenue", bins=50, "Revenue Distribution")
+heatmap = heatmap_plot("/data/sales.csv", "Sales Correlation Matrix")</div>
+            
+            <h4>Bar chart with automatic data aggregation</h4>
+            <div class="code-block">bar = bar_plot("/data/categories.csv", "category", "sales", "Sales by Category")</div>
+        </div>
+
+        <div style="margin-top: 2rem; padding: 1rem; background: var(--bg-secondary); border-radius: 8px;">
+            <h3>Repository</h3>
+            <p>
+                <a href="https://github.com/iowarp/scientific-mcps" target="_blank" style="color: var(--primary-color); text-decoration: none;">
+                    🔗 View on GitHub
+                </a>
+            </p>
+            <p style="margin-top: 0.5rem; color: var(--text-secondary);">
+                Part of the Scientific MCPs collection - bringing AI practically to science!
+            </p>
+        </div>
+    </main>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

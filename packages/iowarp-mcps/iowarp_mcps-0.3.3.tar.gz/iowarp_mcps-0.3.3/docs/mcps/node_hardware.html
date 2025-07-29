@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node Hardware MCP - Scientific MCPs</title>
+    <meta name="description" content="Comprehensive system monitoring and hardware information with remote node support and health checks.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔬</text></svg>">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">🔬</div>
+                <div class="logo-text">Scientific MCPs</div>
+            </div>
+            <a href="../index.html" style="color: white; text-decoration: none; margin-left: auto;">← Back to Directory</a>
+        </div>
+    </header>
+
+    <main class="main-content" style="grid-template-columns: 1fr; max-width: 1000px;">
+        <div class="detail-header">
+            <div class="detail-title">
+                <div class="mcp-icon">💻</div>
+                <div>
+                    <h1>Node Hardware</h1>
+                    <span class="mcp-category">System Management</span>
+                </div>
+            </div>
+            <p class="mcp-description">Comprehensive system monitoring and hardware information with remote node support and health checks. Provides detailed CPU, memory, and system information for HPC environments.</p>
+            
+            <div class="detail-stats">
+                <div class="stat-card">
+                    <span class="stat-value">1.0.0</span>
+                    <span class="stat-label">Version</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">3</span>
+                    <span class="stat-label">Actions</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">Jul 19</span>
+                    <span class="stat-label">Updated</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">Python</span>
+                    <span class="stat-label">Language</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" data-tab="installation">Installation</button>
+            <button class="tab" data-tab="actions">Available Actions</button>
+            <button class="tab" data-tab="examples">Examples</button>
+        </div>
+
+        <div id="installation" class="tab-content active">
+            <h3>Installation Methods</h3>
+            
+            <h4>Quick Start</h4>
+            <div class="code-block">cd /path/to/scientific-mcps/Node_Hardware
+uv sync && uv run node-hardware-mcp</div>
+            
+            <h4>UV Package Manager</h4>
+            <div class="code-block">uv sync
+uv run node-hardware-mcp</div>
+            
+            <h4>Traditional pip</h4>
+            <div class="code-block">pip install -e .
+python -m src.server</div>
+            
+            <h4>Direct Execution</h4>
+            <div class="code-block">uv run node-hardware-mcp</div>
+            
+            <h4>Claude Desktop</h4>
+            <div class="code-block">{
+  "mcpServers": {
+    "node-hardware-mcp": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/path/to/scientific-mcps/Node_Hardware",
+        "run", 
+        "node-hardware-mcp"
+      ]
+    }
+  }
+}</div>
+            
+            <h4>WARP Client</h4>
+            <div class="code-block">MCP:
+  - Node_Hardware
+python3 bin/wrp.py --conf=bin/confs/Gemini.yaml</div>
+            
+            <h4>Claude CLI</h4>
+            <div class="code-block">claude add mcp node-hardware -- uv --directory ~/path/to/scientific-mcps/Node_Hardware run node-hardware-mcp</div>
+        </div>
+
+        <div id="actions" class="tab-content">
+            <h3>Available Actions</h3>
+            <ul class="actions-list">
+                <li class="action-item">
+                    <div class="action-name">get_node_info</div>
+                    <div class="action-description">Get comprehensive local node information including CPU, memory, disk, and network details</div>
+                    <div class="action-params">Parameters: None</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">get_remote_node_info</div>
+                    <div class="action-description">Get hardware information from remote nodes via SSH</div>
+                    <div class="action-params">Parameters: hostname, username, ssh_key_path</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">health_check</div>
+                    <div class="action-description">Perform comprehensive system health check with thresholds</div>
+                    <div class="action-params">Parameters: cpu_threshold, memory_threshold, disk_threshold</div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="examples" class="tab-content">
+            <h3>Usage Examples</h3>
+            
+            <h4>Local Hardware Information</h4>
+            <div class="code-block">get_node_info()
+get_node_info(components=['cpu', 'memory'])
+get_node_info(exclude_components=['processes', 'sensors'])
+get_node_info(components=['system', 'summary'])
+get_node_info(components=['cpu', 'memory', 'disk', 'performance'])
+get_node_info(components=['sensors', 'gpu'], include_health=True)</div>
+            
+            <h4>Remote Hardware Information</h4>
+            <div class="code-block">get_remote_node_info(hostname='server1.example.com')
+get_remote_node_info(
+    hostname='192.168.1.100',
+    username='admin',
+    ssh_key='~/.ssh/id_rsa'
+)
+get_remote_node_info(
+    hostname='server1.example.com',
+    username='admin',
+    port=2222,
+    timeout=60,
+    components=['cpu', 'memory', 'disk']
+)</div>
+            
+            <h4>High-Performance Remote Collection</h4>
+            <div class="code-block">get_remote_node_info(
+    hostname='hpc-node-01',
+    username='hpcuser',
+    ssh_key='~/.ssh/hpc_key',
+    timeout=120,
+    components=['cpu', 'memory', 'gpu']
+)
+get_remote_node_info(
+    hostname='cluster-node-01',
+    components=['performance', 'summary'],
+    include_performance=True,
+    include_health=True
+)</div>
+        </div>
+
+        <div style="margin-top: 2rem; padding: 1rem; background: var(--bg-secondary); border-radius: 8px;">
+            <h3>Repository</h3>
+            <p>
+                <a href="https://github.com/iowarp/scientific-mcps" target="_blank" style="color: var(--primary-color); text-decoration: none;">
+                    🔗 View on GitHub
+                </a>
+            </p>
+            <p style="margin-top: 0.5rem; color: var(--text-secondary);">
+                Part of the Scientific MCPs collection - bringing AI practically to science!
+            </p>
+        </div>
+    </main>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

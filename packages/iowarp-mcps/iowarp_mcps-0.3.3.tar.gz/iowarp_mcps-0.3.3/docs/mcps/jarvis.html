@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jarvis MCP - Scientific MCPs</title>
+    <meta name="description" content="HPC ecosystem management with package discovery, repository management, and resource monitoring.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔬</text></svg>">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">🔬</div>
+                <div class="logo-text">Scientific MCPs</div>
+            </div>
+            <a href="../index.html" style="color: white; text-decoration: none; margin-left: auto;">← Back to Directory</a>
+        </div>
+    </header>
+
+    <main class="main-content" style="grid-template-columns: 1fr; max-width: 1000px;">
+        <div class="detail-header">
+            <div class="detail-title">
+                <div class="mcp-icon">🤖</div>
+                <div>
+                    <h1>Jarvis</h1>
+                    <span class="mcp-category">System Management</span>
+                </div>
+            </div>
+            <p class="mcp-description">HPC ecosystem management with package discovery, repository management, and resource monitoring. Provides comprehensive tools for managing HPC software environments.</p>
+            
+            <div class="detail-stats">
+                <div class="stat-card">
+                    <span class="stat-value">1.0.0</span>
+                    <span class="stat-label">Version</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">5</span>
+                    <span class="stat-label">Actions</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">Jul 19</span>
+                    <span class="stat-label">Updated</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">Python</span>
+                    <span class="stat-label">Language</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" data-tab="installation">Installation</button>
+            <button class="tab" data-tab="actions">Available Actions</button>
+            <button class="tab" data-tab="examples">Examples</button>
+        </div>
+
+        <div id="installation" class="tab-content active">
+            <h3>Installation Methods</h3>
+            
+            <h4>Quick Start</h4>
+            <div class="code-block">cd /path/to/scientific-mcps/Jarvis
+uv sync && uv run jarvis-mcp</div>
+            
+            <h4>UV Package Manager</h4>
+            <div class="code-block">uv sync
+uv run jarvis-mcp</div>
+            
+            <h4>Traditional pip</h4>
+            <div class="code-block">pip install -e .
+cd src && python server.py</div>
+            
+            <h4>Direct Execution</h4>
+            <div class="code-block">uv run jarvis-mcp
+cd src && python server.py</div>
+            
+            <h4>Claude Desktop</h4>
+            <div class="code-block">{
+  "mcpServers": {
+    "jarvis-mcp": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/path/to/scientific-mcps/Jarvis",
+        "run", 
+        "jarvis-mcp"
+      ]
+    }
+  }
+}</div>
+            
+            <h4>WARP Client</h4>
+            <div class="code-block">MCP:
+  - Jarvis
+python3 bin/wrp.py --conf=bin/confs/Gemini.yaml</div>
+        </div>
+
+        <div id="actions" class="tab-content">
+            <h3>Available Actions</h3>
+            <ul class="actions-list">
+                <li class="action-item">
+                    <div class="action-name">get_all_packages</div>
+                    <div class="action-description">Get comprehensive list of all available packages in Jarvis ecosystem</div>
+                    <div class="action-params">Parameters: None</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">get_package_info</div>
+                    <div class="action-description">Get detailed information about specific packages including dependencies and versions</div>
+                    <div class="action-params">Parameters: package_name</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">get_all_repos</div>
+                    <div class="action-description">Get list of all configured repositories in the system</div>
+                    <div class="action-params">Parameters: None</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">modify_repo</div>
+                    <div class="action-description">Modify repository configuration and settings</div>
+                    <div class="action-params">Parameters: repo_name, action, config</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">get_resource_status</div>
+                    <div class="action-description">Get current status of HPC resources and system health</div>
+                    <div class="action-params">Parameters: resource_type</div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="examples" class="tab-content">
+            <h3>Usage Examples</h3>
+            
+            <h4>Package Discovery</h4>
+            <div class="code-block">get_all_packages()
+get_all_packages(package_type="application")
+get_all_packages(repository_filter="custom_repo")
+get_all_packages(sort_by="popularity")
+get_all_packages(include_descriptions=True, sort_by="name")</div>
+            
+            <h4>Package Information</h4>
+            <div class="code-block">get_package_info("incompact3d")
+get_package_info(
+    "incompact3d",
+    return_config_params=True,
+    return_examples=True,
+    return_dependencies=True
+)
+get_package_info(
+    "ior",
+    return_description=True,
+    return_outputs=True,
+    return_performance_notes=True,
+    summary_level="comprehensive"
+)</div>
+            
+            <h4>Repository Management</h4>
+            <div class="code-block">get_all_repos(include_health_status=True, include_package_counts=True)
+get_all_repos(show_priority_order=True)
+modify_repo(
+    repo_name="custom_tools",
+    operation="add",
+    repo_path="/path/to/custom_tools"
+)
+modify_repo(
+    repo_name="custom_tools", 
+    operation="promote"
+)</div>
+        </div>
+
+        <div style="margin-top: 2rem; padding: 1rem; background: var(--bg-secondary); border-radius: 8px;">
+            <h3>Repository</h3>
+            <p>
+                <a href="https://github.com/iowarp/scientific-mcps" target="_blank" style="color: var(--primary-color); text-decoration: none;">
+                    🔗 View on GitHub
+                </a>
+            </p>
+            <p style="margin-top: 0.5rem; color: var(--text-secondary);">
+                Part of the Scientific MCPs collection - bringing AI practically to science!
+            </p>
+        </div>
+    </main>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

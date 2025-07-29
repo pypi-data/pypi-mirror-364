@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pandas MCP - Scientific MCPs</title>
+    <meta name="description" content="Load, filter, and manipulate CSV data using pandas through the Model Context Protocol.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔬</text></svg>">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">🔬</div>
+                <div class="logo-text">Scientific MCPs</div>
+            </div>
+            <a href="../index.html" style="color: white; text-decoration: none; margin-left: auto;">← Back to Directory</a>
+        </div>
+    </header>
+
+    <main class="main-content" style="grid-template-columns: 1fr; max-width: 1000px;">
+        <div class="detail-header">
+            <div class="detail-title">
+                <div class="mcp-icon">🐼</div>
+                <div>
+                    <h1>Pandas</h1>
+                    <span class="mcp-category">Data Processing</span>
+                </div>
+            </div>
+            <p class="mcp-description">Comprehensive data analysis with statistical operations, data cleaning, transformations, and time series analysis using pandas. Provides powerful data manipulation capabilities for scientific computing workflows.</p>
+            
+            <div class="detail-stats">
+                <div class="stat-card">
+                    <span class="stat-value">1.0.0</span>
+                    <span class="stat-label">Version</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">15</span>
+                    <span class="stat-label">Actions</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">Jul 19</span>
+                    <span class="stat-label">Updated</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">Python</span>
+                    <span class="stat-label">Language</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" data-tab="installation">Installation</button>
+            <button class="tab" data-tab="actions">Available Actions</button>
+            <button class="tab" data-tab="examples">Examples</button>
+        </div>
+
+        <div id="installation" class="tab-content active">
+            <h3>Installation Methods</h3>
+            
+            <h4>Quick Start</h4>
+            <div class="code-block">cd /path/to/scientific-mcps/Pandas
+uv sync
+uv run pandas-mcp</div>
+            
+            <h4>Install Dependencies</h4>
+            <div class="code-block">uv add fastmcp pandas numpy scipy openpyxl pyarrow tables rich tabulate
+uv run python -m src.server</div>
+            
+            <h4>Claude Desktop</h4>
+            <div class="code-block">{
+  "mcpServers": {
+    "pandas-mcp": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/path/to/scientific-mcps/Pandas",
+        "run", 
+        "pandas-mcp"
+      ]
+    }
+  }
+}</div>
+            
+            <h4>WARP Client</h4>
+            <div class="code-block">MCP:
+  - Pandas
+python3 bin/wrp.py --conf=bin/confs/Gemini.yaml</div>
+            
+            <h4>Claude CLI</h4>
+            <div class="code-block">claude add mcp pandas -- uv --directory ~/path/to/scientific-mcps/Pandas run pandas-mcp</div>
+        </div>
+
+        <div id="actions" class="tab-content">
+            <h3>Available Actions</h3>
+            <ul class="actions-list">
+                <li class="action-item">
+                    <div class="action-name">load_csv</div>
+                    <div class="action-description">Load CSV files into pandas DataFrames for analysis</div>
+                    <div class="action-params">Parameters: file_path</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">get_info</div>
+                    <div class="action-description">Get detailed information about DataFrame structure and data types</div>
+                    <div class="action-params">Parameters: data</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">describe_data</div>
+                    <div class="action-description">Generate comprehensive descriptive statistics for all columns</div>
+                    <div class="action-params">Parameters: data</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">filter_data</div>
+                    <div class="action-description">Filter DataFrame rows based on specified conditions</div>
+                    <div class="action-params">Parameters: data, condition</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">sort_data</div>
+                    <div class="action-description">Sort DataFrame by one or more columns</div>
+                    <div class="action-params">Parameters: data, columns, ascending</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">group_data</div>
+                    <div class="action-description">Group data and perform aggregation operations</div>
+                    <div class="action-params">Parameters: data, group_by, aggregations</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">merge_data</div>
+                    <div class="action-description">Merge multiple DataFrames using various join operations</div>
+                    <div class="action-params">Parameters: left_data, right_data, on, how</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">pivot_data</div>
+                    <div class="action-description">Create pivot tables for data reshaping and analysis</div>
+                    <div class="action-params">Parameters: data, index, columns, values, aggfunc</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">clean_data</div>
+                    <div class="action-description">Clean data by removing duplicates and handling inconsistencies</div>
+                    <div class="action-params">Parameters: data, remove_duplicates</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">handle_missing</div>
+                    <div class="action-description">Handle missing values through various strategies</div>
+                    <div class="action-params">Parameters: data, strategy, columns</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">detect_outliers</div>
+                    <div class="action-description">Detect outliers using statistical methods</div>
+                    <div class="action-params">Parameters: data, columns, method</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">correlation_analysis</div>
+                    <div class="action-description">Calculate correlation matrices between numerical columns</div>
+                    <div class="action-params">Parameters: data, method</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">time_series_analysis</div>
+                    <div class="action-description">Perform time series analysis and trend detection</div>
+                    <div class="action-params">Parameters: data, date_column, value_column</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">resample_data</div>
+                    <div class="action-description">Resample time series data with different frequencies</div>
+                    <div class="action-params">Parameters: data, date_column, frequency, aggregation</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">export_data</div>
+                    <div class="action-description">Export processed data to various formats</div>
+                    <div class="action-params">Parameters: data, file_path, format</div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="examples" class="tab-content">
+            <h3>Usage Examples</h3>
+            
+            <h4>Basic Data Analysis</h4>
+            <div class="code-block">result = load_data("/data/employees.csv", encoding="utf-8")
+stats = statistical_summary("/data/employees.csv", 
+                           columns=["salary", "age", "years_experience"],
+                           include_distributions=True)</div>
+            
+            <h4>Data Cleaning Pipeline</h4>
+            <div class="code-block">missing_handled = handle_missing_data("/data/dataset.csv", 
+                                     strategy="mean", 
+                                     columns=["price", "quantity"])
+
+cleaned = clean_data("/data/dataset.csv", 
+                    remove_duplicates=True, 
+                    detect_outliers=True,
+                    convert_types=True)</div>
+            
+            <h4>Advanced Transformations</h4>
+            <div class="code-block">grouped = groupby_operations("/data/sales.csv", 
+                            group_by=["region", "category"], 
+                            operations={"revenue": "sum", "quantity": "mean"})
+
+pivot = pivot_table("/data/sales.csv", 
+                   index=["date"], 
+                   columns=["category"], 
+                   values=["revenue"],
+                   aggfunc="sum")</div>
+            
+            <h4>Time Series Analysis</h4>
+            <div class="code-block">resampled = time_series_operations("/data/timeseries.csv", 
+                                  date_column="timestamp", 
+                                  operation="resample",
+                                  frequency="M")
+
+rolling = time_series_operations("/data/timeseries.csv", 
+                                date_column="timestamp",
+                                operation="rolling_mean")</div>
+        </div>
+
+        <div style="margin-top: 2rem; padding: 1rem; background: var(--bg-secondary); border-radius: 8px;">
+            <h3>Repository</h3>
+            <p>
+                <a href="https://github.com/iowarp/scientific-mcps" target="_blank" style="color: var(--primary-color); text-decoration: none;">
+                    🔗 View on GitHub
+                </a>
+            </p>
+            <p style="margin-top: 0.5rem; color: var(--text-secondary);">
+                Part of the Scientific MCPs collection - bringing AI practically to science!
+            </p>
+        </div>
+    </main>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

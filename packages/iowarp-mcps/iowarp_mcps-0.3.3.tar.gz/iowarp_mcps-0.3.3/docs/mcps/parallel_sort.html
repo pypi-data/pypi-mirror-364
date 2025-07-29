@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parallel Sort MCP - Scientific MCPs</title>
+    <meta name="description" content="Multi-purpose data processing toolkit with sorting, compression, parquet reading, and pandas analysis capabilities through the Model Context Protocol.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔬</text></svg>">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">🔬</div>
+                <div class="logo-text">Scientific MCPs</div>
+            </div>
+            <a href="../index.html" style="color: white; text-decoration: none; margin-left: auto;">← Back to Directory</a>
+        </div>
+    </header>
+
+    <main class="main-content" style="grid-template-columns: 1fr; max-width: 1000px;">
+        <div class="detail-header">
+            <div class="detail-title">
+                <div class="mcp-icon">⚡</div>
+                <div>
+                    <h1>Parallel Sort</h1>
+                    <span class="mcp-category">Data Processing</span>
+                </div>
+            </div>
+            <p class="mcp-description">Enterprise-grade log analysis and processing platform built on the FastMCP framework. Provides comprehensive log sorting, advanced analytics, pattern detection, anomaly detection, multi-condition filtering, and export capabilities. Features parallel processing for large files, temporal analysis, error clustering, and sophisticated statistical insights for scientific computing and system monitoring workflows.</p>
+            
+            <div class="detail-stats">
+                <div class="stat-card">
+                    <span class="stat-value">1.0.0</span>
+                    <span class="stat-label">Version</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">7</span>
+                    <span class="stat-label">Actions</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">Jan 15</span>
+                    <span class="stat-label">Updated</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">Python</span>
+                    <span class="stat-label">Language</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" data-tab="installation">Installation</button>
+            <button class="tab" data-tab="actions">Available Actions</button>
+            <button class="tab" data-tab="examples">Examples</button>
+        </div>
+
+        <div id="installation" class="tab-content active">
+            <h3>Installation Methods</h3>
+            
+            <h4>Global Installation</h4>
+            <div class="code-block">uv pip install scientific-mcps</div>
+            
+            <h4>Individual MCP Installation</h4>
+            <div class="code-block">uv pip install "scientific-mcps[parallel-sort]"</div>
+            
+            <h4>Direct Server</h4>
+            <div class="code-block">uv run mcp_parallel_sort</div>
+            
+            <h4>Claude Desktop Configuration</h4>
+            <div class="code-block">{
+  "mcpServers": {
+    "parallel-sort": {
+      "command": "uv",
+      "args": ["run", "mcp_parallel_sort"]
+    }
+  }
+}</div>
+        </div>
+
+        <div id="actions" class="tab-content">
+            <h3>Available Actions</h3>
+            <ul class="actions-list">
+                <li class="action-item">
+                    <div class="action-name">sort_log_by_timestamp</div>
+                    <div class="action-description">Sort log file entries chronologically by timestamp with graceful handling of invalid entries</div>
+                    <div class="action-params">Parameters: file_path (path to log file)</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">parallel_sort_large_file</div>
+                    <div class="action-description">High-performance parallel processing for large files (>100MB) with configurable chunk sizes and worker processes</div>
+                    <div class="action-params">Parameters: file_path (large log file), chunk_size_mb (optional, default 100), max_workers (optional, default CPU count)</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">analyze_log_statistics</div>
+                    <div class="action-description">Comprehensive statistical analysis including temporal patterns, log level distribution, message analysis, and data quality metrics</div>
+                    <div class="action-params">Parameters: file_path (log file)</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">detect_log_patterns</div>
+                    <div class="action-description">Advanced pattern detection including error clustering, anomaly detection, trending issues, and temporal pattern analysis</div>
+                    <div class="action-params">Parameters: file_path (log file), time_window_minutes (optional, default 5), min_cluster_size (optional, default 3)</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">filter_logs</div>
+                    <div class="action-description">Multi-condition filtering with complex logical operations (AND, OR, NOT) and multiple operators (equals, contains, regex, between, etc.)</div>
+                    <div class="action-params">Parameters: file_path (log file), filters (array of filter conditions), logical_operator (optional, default AND)</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">apply_preset_filter</div>
+                    <div class="action-description">Apply predefined filters for common use cases: errors_only, warnings_and_errors, exclude_debug, connection_issues, authentication_events</div>
+                    <div class="action-params">Parameters: file_path (log file), preset_name (filter preset to apply)</div>
+                </li>
+                <li class="action-item">
+                    <div class="action-name">export_logs</div>
+                    <div class="action-description">Export processed logs in multiple formats (JSON, CSV, plain text) with optional metadata and summary reports</div>
+                    <div class="action-params">Parameters: file_path (log file), export_format (json|csv|txt), output_path (optional), include_metadata (optional, default false)</div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="examples" class="tab-content">
+            <h3>Usage Examples</h3>
+            
+            <h4>Basic Log Processing</h4>
+            <div class="code-block">// Sort log files chronologically
+{"action": "sort_log_by_timestamp", "file_path": "system.log"}
+
+// High-performance processing for large files
+{"action": "parallel_sort_large_file", "file_path": "massive_logs.log", "chunk_size_mb": 200, "max_workers": 4}</div>
+            
+            <h4>Advanced Analytics and Pattern Detection</h4>
+            <div class="code-block">// Comprehensive statistical analysis
+{"action": "analyze_log_statistics", "file_path": "application.log"}
+
+// Detect anomalies and error clusters
+{"action": "detect_log_patterns", "file_path": "server.log", "time_window_minutes": 10, "min_cluster_size": 5}
+
+// Apply predefined filters
+{"action": "apply_preset_filter", "file_path": "debug.log", "preset_name": "errors_only"}</div>
+            
+            <h4>Complex Filtering and Export</h4>
+            <div class="code-block">// Multi-condition filtering
+{"action": "filter_logs", "file_path": "audit.log", 
+ "filters": [
+   {"field": "level", "operator": "in", "value": ["ERROR", "FATAL"]},
+   {"field": "timestamp", "operator": "between", "value": ["2024-01-01", "2024-01-31"]}
+ ], 
+ "logical_operator": "AND"}
+
+// Export with metadata
+{"action": "export_logs", "file_path": "filtered_logs.log", "export_format": "json", "include_metadata": true}</div>
+            
+            <h4>Scientific Computing Workflows</h4>
+            <div class="code-block">// Process experimental data logs
+{"action": "sort_log_by_timestamp", "file_path": "experiment_run_001.log"}
+
+// Analyze computational job patterns
+{"action": "detect_log_patterns", "file_path": "hpc_jobs.log"}
+
+// Filter authentication events for security analysis
+{"action": "apply_preset_filter", "file_path": "cluster_access.log", "preset_name": "authentication_events"}
+
+// Statistical analysis of simulation outputs
+{"action": "analyze_log_statistics", "file_path": "simulation_results.log"}</div>
+            
+            <h4>System Monitoring Use Cases</h4>
+            <div class="code-block">// Monitor connection issues
+{"action": "apply_preset_filter", "file_path": "network.log", "preset_name": "connection_issues"}
+
+// Detect performance anomalies
+{"action": "detect_log_patterns", "file_path": "performance.log", "time_window_minutes": 15}
+
+// Export critical errors for incident response
+{"action": "filter_logs", "file_path": "critical_system.log",
+ "filters": [{"field": "level", "operator": "equals", "value": "CRITICAL"}]}
+{"action": "export_logs", "file_path": "critical_filtered.log", "export_format": "csv"}</div>
+        </div>
+
+        <div style="margin-top: 2rem; padding: 1rem; background: var(--bg-secondary); border-radius: 8px;">
+            <h3>Performance & Technical Specifications</h3>
+            <ul style="margin: 0.5rem 0; padding-left: 1.5rem; color: var(--text-secondary);">
+                <li><strong>Architecture:</strong> Built on FastMCP framework with async processing</li>
+                <li><strong>Parallel Processing:</strong> Automatic detection for files >100MB</li>
+                <li><strong>Memory Optimization:</strong> Streaming processing with configurable chunk sizes (default 100MB)</li>
+                <li><strong>Worker Management:</strong> Configurable processes (default: CPU count, max 8)</li>
+                <li><strong>Log Format:</strong> YYYY-MM-DD HH:MM:SS LEVEL MESSAGE</li>
+                <li><strong>Export Formats:</strong> JSON, CSV, Plain Text with optional metadata</li>
+                <li><strong>Filter Presets:</strong> errors_only, warnings_and_errors, exclude_debug, connection_issues, authentication_events</li>
+                <li><strong>Anomaly Detection:</strong> Statistical analysis for volume spikes and drops</li>
+                <li><strong>Pattern Recognition:</strong> Error clustering, temporal analysis, trending issues</li>
+                <li><strong>Transport Support:</strong> stdio and SSE transports</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 2rem; padding: 1rem; background: var(--bg-secondary); border-radius: 8px;">
+            <h3>Repository</h3>
+            <p>
+                <a href="https://github.com/iowarp/scientific-mcps" target="_blank" style="color: var(--primary-color); text-decoration: none;">
+                    🔗 View on GitHub
+                </a>
+            </p>
+            <p style="margin-top: 0.5rem; color: var(--text-secondary);">
+                Part of the Scientific MCPs collection - bringing AI practically to science!
+            </p>
+        </div>
+    </main>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>
