@@ -1,0 +1,2 @@
+[console_scripts]
+django-calcul = p1.cli:main

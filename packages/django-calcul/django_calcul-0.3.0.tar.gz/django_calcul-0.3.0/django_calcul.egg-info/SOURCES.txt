@@ -1,0 +1,10 @@
+README.md
+setup.py
+django_calcul.egg-info/PKG-INFO
+django_calcul.egg-info/SOURCES.txt
+django_calcul.egg-info/dependency_links.txt
+django_calcul.egg-info/entry_points.txt
+django_calcul.egg-info/top_level.txt
+p1/__init__.py
+p1/cli.py
+p1/operations.py
