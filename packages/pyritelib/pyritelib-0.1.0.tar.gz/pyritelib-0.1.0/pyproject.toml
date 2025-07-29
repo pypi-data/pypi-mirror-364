@@ -1,0 +1,24 @@
+[project]
+name = "pyritelib"
+version = "0.1.0"
+description = "Library of various utilities that I use in my programmes."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Ángel Moreno Prieto", email = "angelmorenoprieto@gmail.com" },
+]
+dependencies = []
+
+[tool.ruff]
+ignore = ["F401"]
+
+[dependency-groups]
+dev = ["black>=25.1.0", "pytest>=8.4.1", "ruff>=0.12.4"]
+
+[project.urls]
+Homepage = "https://github.com/angelmorenoprieto/pyrite"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["pyrite"]
