@@ -1,0 +1,145 @@
+Metadata-Version: 2.4
+Name: kinaid
+Version: 1.1.2
+Summary: KINAID : Kinase Activity and Inference Dashboard
+Author-email: "Javed M. Aman" <javeda@princeton.edu>, Mona Singh <mona@cs.princeton.edu>
+License: MIT License
+        
+        Copyright (c) 2024 Singh Lab
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: homepage, https://kinaid.princeton.edu
+Project-URL: repository, https://github.com/Singh-Lab/kinaid
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: scikit-learn
+Requires-Dist: pandas
+Requires-Dist: tqdm
+Requires-Dist: plotly
+Requires-Dist: statsmodels
+Requires-Dist: dash
+Requires-Dist: dash_cytoscape
+Requires-Dist: mpire
+Requires-Dist: python-calamine
+Requires-Dist: xlsxwriter
+Requires-Dist: openpyxl
+Requires-Dist: pyxlsb
+Dynamic: license-file
+
+## KINAID
+<img src="https://kinaid.princeton.edu/assets/logo3.png" width="500">
+
+
+# Public webserver version
+https://kinaid.princeton.edu
+
+# Install library
+  ```
+  python3 -m pip install kinaid
+  ```
+
+### install resources
+can take up to 3GB HDD memory.
+
+## Requires the following libraries
+
+- `biopython`
+- `dash`
+- `dash-cytoscape`
+- `mpire`
+- `numpy`
+- `openpyxl`
+- `pandas`
+- `pyxlsb`
+- `scipy`
+- `statsmodels`
+
+  ```
+  cd <DIRECTORY TO INSTALL KINAID RESOURCES>
+  kinaid-install
+  ```
+
+### add additional organism
+Choose organism from DIOPT
+https://www.flyrnai.org/diopt
+
+```
+usage: kinaid-add [-h] [--organism_name ORGANISM_NAME] [--taxon_id TAXON_ID] [--orthologs_dir ORTHOLOGS_DIR]
+                  [--human_kinases_database_file HUMAN_KINASES_DATABASE_FILE] [--threads THREADS]
+
+options:
+  -h, --help            show this help message and exit
+  --organism_name ORGANISM_NAME
+                        Name of organism
+  --taxon_id TAXON_ID   DIOPT Taxon ID of organism
+  --orthologs_dir ORTHOLOGS_DIR
+                        Directory to store ortholog files
+  --human_kinases_database_file HUMAN_KINASES_DATABASE_FILE
+                        File containing human kinases database
+  --threads THREADS     Number of threads to use
+```
+
+#### Example
+```
+kinaid-add --organism_name clawed_frog --taxon_id 8364 --threads 4
+```
+
+
+# Private webserver version
+
+- clone this repository
+- change to kinaid root directory
+
+### install resources
+can take up to 3GB HDD memory.
+
+  ```
+  python3 -m kinaid.utility --threads 4
+  ```
+### run dashboard
+  ```
+  usage: dashboard.py [-h] [--port PORT] [--host HOST] [--no_debug]
+
+  options:
+  -h, --help   show this help message and exit
+  --port PORT
+  --host HOST
+  --no_debug
+  ```
+
+  ```
+  python3 dashboard.py
+  ```
+
+## Examples
+
+### sandbox.ipynb
+
+basic examples of loading phosphoproteomics data and running library version of kinaid
+
+### yeast_tests.ipynb
+
+notebook to generate yeast experiment data for Supplementary Table 4. The data must be loaded by the dashboard.
+
+### offline_tests.ipynb
+
+notebook to generate and run experiments for Supplementary Table 3. This experiment evaluated the performance of the library and not the dashboard.
