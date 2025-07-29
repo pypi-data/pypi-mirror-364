@@ -1,0 +1,9 @@
+freezegun
+typing_extensions>=4.0.0
+ckanext-toolbelt>=0.6.6
+
+[dev]
+pytest-ckan
+pytest-freezegun
+pytest-factoryboy
+pytest-rerunfailures
