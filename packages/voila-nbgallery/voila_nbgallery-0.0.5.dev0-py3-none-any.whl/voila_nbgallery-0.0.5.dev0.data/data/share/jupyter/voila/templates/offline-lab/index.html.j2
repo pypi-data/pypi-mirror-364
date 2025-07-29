@@ -1,0 +1,14 @@
+{%- extends 'lab/index.html.j2' -%}
+
+{%- block html_head_css -%}
+{{ super() }}
+{{ resources.include_css("static/font-awesome-4.7.0/css/font-awesome.min.css") }}
+{%- endblock html_head_css -%}
+
+{% block footer_js %}
+{{ super() }}
+<script>
+define("base/js/dialog", [], () => {});
+</script>
+{% endblock footer_js %}
+

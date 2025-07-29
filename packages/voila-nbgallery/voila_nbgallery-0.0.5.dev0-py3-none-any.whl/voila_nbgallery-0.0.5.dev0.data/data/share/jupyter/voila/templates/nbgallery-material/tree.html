@@ -1,0 +1,66 @@
+{% extends "material/tree.html" %}
+
+{% set fallback_template = fallback_template or 'offline-lab' %}
+
+
+{% block head %}
+  {{ super() }}
+  <style type="text/css">
+    .nav-wrapper {
+      padding-left: 20px;
+    }
+
+    .container {
+      padding: 10px 20px;
+    }
+  </style>
+{% endblock head %}
+
+
+{% block body %}
+ <header>
+    <div class="navbar-fixed">
+      <nav class="top-nav">
+        <div class="nav-wrapper blue-grey darken-4">
+          <div class="brand-logo">
+            {{ page_title }}
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+      <ul class="collection with-header">
+        <li class="collection-header"><h6>Click to launch notebooks with Voila:</h6></li>
+
+        {% if breadcrumbs|length > 1: %}
+          <li class="collection-item">
+            <a href="{{breadcrumbs[-2][0]}}"><i class="material-icons">arrow_back</i> ..</a>
+          </li>
+        {% endif %}
+
+        {% for content in contents.content %}
+
+          {% if content.type == 'notebook' %}
+            <li class="bold collection-item">
+              <a href="{{base_url}}voila/render/{{content.path}}" title="Launch dashboard"><i class="material-icons">library_books</i> {{content.name}}</a>
+              <div class="right">
+                <a href="{{base_url}}voila/render/{{content.path}}?voila-template={{fallback_template}}" title="Launch with plain template"><i class="material-icons">note</i></a>
+              </div>
+            </li>
+          {% endif %}
+
+          {% if content.type == 'directory' %}
+            <li class="bold collection-item">
+              <a href="{{base_url}}voila/tree/{{content.path}}"><i class="material-icons">folder</i> {{content.name}}</a>
+            </li>
+          {% endif %}
+
+        {% endfor %}
+      </ul>
+
+      {% block custom_content %}
+      {% endblock custom_content %}
+    </div>
+  </header>
+{% endblock body %}

@@ -1,0 +1,212 @@
+{%- extends 'material/index.html.j2' -%}
+
+{% set fallback_template = fallback_template or 'offline-lab' %}
+
+{% set nbgallery = nb.metadata.get('gallery', {}) %}
+{% set title = nbgallery.get('title', resources.get('metadata', {}).get('name', 'Untitled')) %}
+{% set owner_name = nbgallery.get('owner_name', '') %}
+{% set owner_url = nbgallery.get('owner_url', '') %}
+{% set description = nbgallery.get('description', '') %}
+{% set url = nbgallery.get('url', '') %}
+{% set nb_uuid = nbgallery.get('uuid', '') %}
+{% set nb_git_commit_id = nbgallery.get('git_commit_id', '') %}
+
+
+{%- block html_head_css -%}
+  {{ super() }}
+
+  {# Use local copy of font-awesome #}
+  {{ resources.include_css("static/font-awesome-4.7.0/css/font-awesome.min.css") }}
+
+  <style type="text/css">
+    /* Qgrid: make buttons look more like ipywidgets */
+    .q-grid-toolbar .btn {
+      color: var(--jp-ui-font-color1);
+      background-color: var(--jp-layout-color2) !important;
+      border-color: var(--jp-border-color2) !important;
+      font-size: var(--jp-widgets-font-size) !important;
+      height: var(--jp-widgets-inline-height);
+      line-height: var(--jp-widgets-inline-height) !important;
+      text-transform: none;
+      box-shadow: none;
+      padding: 0px 20px !important;
+    }
+
+    /* Qgrid: make filter checkboxes visible */
+    .check-box-cell input[type=checkbox]:checked, .check-box-cell input[type=checkbox]:not(:checked) {
+      position: relative;
+      opacity: 1;
+    }
+
+    /* Make Password widget look like Text widget */
+    input[type=password]:not(.browser-default):disabled, input[type=password]:not(.browser-default),
+    input[type=text]:not(.browser-default):disabled, input[type=text]:not(.browser-default) {
+      height: var(--jp-widgets-inline-height);
+      line-height: var(--jp-widgets-inline-height);
+      font-size: var(--jp-widgets-font-size);
+      padding: var(--jp-widgets-input-padding) calc( var(--jp-widgets-input-padding) * 2);
+      border: var(--jp-widgets-input-border-width) solid var(--jp-widgets-input-border-color);
+      background-color: var(--jp-widgets-input-background-color);
+      color: var(--jp-widgets-input-color);
+      font-size: var(--jp-widgets-font-size);
+      box-sizing: border-box;
+    }
+
+    /* Tweak the navbar */
+    .navbar-fixed {
+      z-index: 10000;
+    }
+
+    .nav-wrapper {
+      padding-left: 20px;
+    }
+
+    .card .card-content {
+      padding: 12px 20px 1px 20px;
+    }
+
+    /* Let the notebook use the full screen width */
+    .container {
+      margin-left: 0px;
+      margin-right: 0px;
+      max-width: none;
+    }
+
+    /* Let tables be wider too, for pandas */
+    table {
+      max-width: none;
+      width: auto;
+    }
+
+    /* Undo the voila-material values (it blocks our dropdown) */
+    .brand-logo {
+      height: auto;
+      width: auto;
+    }
+  </style>
+{%- endblock html_head_css -%}
+
+{%- block body_header -%}
+
+  {# We've replaced this whole block, so skip to the grandparent template #}
+  {{ super.super() }}
+
+  <header>
+
+    {# Show notebook metdata in navbar dropdown #}
+    <div id="notebook-info" class="card blue-grey darken-3 dropdown-content">
+      <div style="line-height: 1.25;" class="card-content">
+        <span class="card-title">{{ title }}</span>
+        {% if owner_name %}
+          <p>Owner: <a href="{{owner_url}}">{{owner_name}}</a></p>
+        {% endif %}
+        <blockquote>{{ description or 'No description available.' }}</blockquote>
+        {% if url %}
+          <div class="card-action">
+            <a target="_blank" href="{{ url }}">View in nbgallery</a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    {# Navbar #}
+    <div class="navbar-fixed" style="height: 90px">
+      <nav class="top-nav">
+        {% block extra_header %}
+        {% endblock extra_header %}
+        <div class="nav-wrapper blue-grey darken-4">
+          <a href="#" class="brand-logo">{{ title }}</a>
+          <ul class="right">
+            <li><a class="dropdown-trigger" href="#!" data-target="notebook-info">&nbsp;<i class="material-icons right" title="nbgallery info">info_outline</i></a></li>
+            {% if resources.theme == 'dark' %}
+              <li><a href="?theme=light"><i class="material-icons" title="Reload with light theme">brightness_5</i></a></li>
+              <li><a href="?theme=dark&voila-template={{fallback_template}}"><i class="material-icons" title="Reload with plain template">note</i></a></li>
+            {% else %}
+              <li><a href="?theme=dark"><i class="material-icons" title="Reload with dark theme">brightness_3</i></a></li>
+              <li><a href="?theme=light&voila-template={{fallback_template}}"><i class="material-icons" title="Reload with plain template">note</i></a></li>
+            {% endif %}
+            <li><a href="#"><i class="material-icons" id="kernel-status-icon" title="kernel idle">radio_button_unchecked</i></a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+{%- endblock body_header -%}
+
+
+{% block footer_js %}
+
+  {# We've replaced this whole block, so skip to the grandparent template #}
+  {{ super.super() }}
+
+  <script type="text/javascript">
+    // qgrid workaround
+    define("base/js/dialog", [], () => {});
+
+    // activate navbar dropdown
+    document.addEventListener('DOMContentLoaded', function() {
+      elems = document.querySelectorAll('.dropdown-trigger');
+      instances = M.Dropdown.init(elems, {constrainWidth: false, coverTrigger: false});
+    });
+  </script>
+
+  {#
+  This is copied from voila-material, with two additions:
+    * Workaround for https://github.com/voila-dashboards/voila-material/issues/22
+    * Set nbgallery UUID in the kernel environment (this only works in server
+      extension mode; execute requests are blocked in standalone mode)
+  #}
+  <script type="text/javascript">
+    requirejs(['static/voila'], function(voila) {
+      (async function() {
+        var kernel = await voila.connectKernel();
+        console.log(kernel);
+
+        // Don't try to handle comm messages
+        kernel.registerCommTarget = () => {};
+        kernel.removeCommTarget = () => {};
+        kernel._handleCommOpen = () => {};
+        kernel._handleCommClose = () => {};
+        kernel._handleCommMsg = () => {};
+
+        // Register kernel-busy indicator
+        console.log('Registering kernel-busy indicator...');
+        kernel.statusChanged.connect(() => {
+          // console.log(kernel.status);
+          var el = document.getElementById("kernel-status-icon");
+
+          if (kernel.status == 'busy') {
+            el.innerHTML = 'radio_button_checked';
+            el.title = 'kernel busy';
+          } else {
+            el.innerHTML = 'radio_button_unchecked';
+            el.title = 'kernel idle';
+          }
+        });
+
+        {% block nbgallery_uuid_js %}
+        {% if nb.metadata.kernelspec.language == 'python' and nb_uuid %}
+        // Set nbgallery UUID in kernel environment
+        console.log('Setting nbgallery uuid in kernel...');
+        const future = kernel.requestExecute({ code: 'import os; os.environ["NBGALLERY_UUID"] = "{{nb_uuid}}"; os.environ["NBGALLERY_GIT_COMMIT_ID"] = "{{nb_git_commit_id}}";' });
+        // Log the response
+        future.onIOPub = msg => {
+          if (msg.header.msg_type !== 'status') {
+            console.log(msg.content);
+          }
+        };
+        // DO NOT wait on the future:
+        // Execute requests are blocked in standalone voila, so it never completes.
+        // DO NOT await future.done;
+        {% endif %}
+        {% endblock nbgallery_uuid_js %}
+      })();
+    });
+  </script>
+{% endblock footer_js %}
+
