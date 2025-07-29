@@ -1,0 +1,13 @@
+Metadata-Version: 2.3
+Name: runtime-docstrings
+Version: 0.0.0
+Summary: Runtime access to Python class attribute docstrings (PEP 224)
+Author: gesslerpd
+Author-email: gesslerpd <gesslerpd@users.noreply.github.com>
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+
+
+# runtime-docstrings
+
+Runtime access to Python class attribute docstrings (PEP 224)
