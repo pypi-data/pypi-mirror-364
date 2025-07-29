@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "yostate"
+version = "1.0.0"
+description = "Toolset to construct State Machines"
+authors = ["Evgeny Evseev <pelid80@gmail.com>"]
+license = "GNU GPLv3"
+readme = "README.md"
+repository = "https://gitlab.dvmn.org/dvmn-open-source-dev-tools/yostate"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pydantic = ">=2.11,<3.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = {version = "7.4.3", extras = ["anyio"]}
+trio = "0.23.1"
+anyio = "4.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
