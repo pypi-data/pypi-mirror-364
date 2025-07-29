@@ -1,0 +1,2 @@
+[console_scripts]
+dshake = dshake.cli:main

@@ -1,0 +1,26 @@
+[project]
+name = "dshake"
+version = "0.1.0"
+description = "Dependency Shake: Analyze actual package usage in your Python codebase."
+authors = [{ name = "Zhetao Dong", email = "zhetao.dong@gmail.com" }]
+readme = "README.md"
+license = { file = "LICENSE" }
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+requires-python = ">=3.9"
+
+[project.scripts]
+dshake = "dshake.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/donin1129/dependency-shaking"
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
