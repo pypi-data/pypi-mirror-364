@@ -1,0 +1,589 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Getting Started with ManipulaPy" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://manipulapy.readthedocs.io/getting_started/index.html" />
+<meta property="og:site_name" content="ManipulaPy Documentation" />
+<meta property="og:description" content="Welcome to ManipulaPy! This guide will get you up and running with modern robotics programming in Python. What you’ll learn: Installation- Verify Your Installation., Your First Robot, Your First Tr..." />
+<meta name="description" content="Welcome to ManipulaPy! This guide will get you up and running with modern robotics programming in Python. What you’ll learn: Installation- Verify Your Installation., Your First Robot, Your First Tr..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting Started with ManipulaPy &mdash; ManipulaPy 1.1.0 Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=fc837d61"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=fd10adb8"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="🔧 API Reference Guide" href="../api/index.html" />
+    <link rel="prev" title="ManipulaPy Documentation" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ManipulaPy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">🚀 Get Started</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started with ManipulaPy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#verify-your-installation">Verify Your Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#your-first-robot">Your First Robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#your-first-trajectory">Your First Trajectory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#your-first-simulation">Your First Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#your-first-control-system">Your First Control System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#your-first-vision-system">Your First Vision System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-s-next">What’s Next?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#common-issues-solutions">Common Issues &amp; Solutions</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🛠️ API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">🔧 API Reference Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">📚 User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Kinematics.html">Kinematics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Dynamics.html">Dynamics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Control.html">Control Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Trajectory_Planning.html">Trajectory Planning User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Simulation.html">Simulation Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/URDF_Processor.html">URDF Processor User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Perception.html">Perception User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/vision.html">Vision User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Potential_Field.html">Potential Field Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Collision_Checker.html">Collision Checker Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/CUDA_Kernels.html">CUDA Kernels User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ManipulaPy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Getting Started with ManipulaPy</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/getting_started/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="getting-started-with-manipulapy">
+<span id="getting-started"></span><h1>Getting Started with ManipulaPy<a class="headerlink" href="#getting-started-with-manipulapy" title="Link to this heading"></a></h1>
+<p>Welcome to ManipulaPy! This guide will get you up and running with modern robotics programming in Python.</p>
+<div class="getting-started-hero">
+   <div class="hero-content">
+      <h2>🚀 Ready to Build Robots?</h2>
+      <p>ManipulaPy makes robot programming accessible with GPU acceleration,
+         computer vision, and a clean Python API. Let's get started!</p>
+   </div>
+</div><nav class="contents local" id="what-you-ll-learn">
+<p class="topic-title"><strong>What you’ll learn</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#installation" id="id1">Installation</a></p>
+<ul>
+<li><p><a class="reference internal" href="#verify-your-installation" id="id2">Verify Your Installation</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#your-first-robot" id="id3">Your First Robot</a></p></li>
+<li><p><a class="reference internal" href="#your-first-trajectory" id="id4">Your First Trajectory</a></p></li>
+<li><p><a class="reference internal" href="#your-first-simulation" id="id5">Your First Simulation</a></p></li>
+<li><p><a class="reference internal" href="#your-first-control-system" id="id6">Your First Control System</a></p></li>
+<li><p><a class="reference internal" href="#your-first-vision-system" id="id7">Your First Vision System</a></p></li>
+<li><p><a class="reference internal" href="#what-s-next" id="id8">What’s Next?</a></p></li>
+<li><p><a class="reference internal" href="#common-issues-solutions" id="id9">Common Issues &amp; Solutions</a></p></li>
+</ul>
+</nav>
+<section id="installation">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Installation</a><a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
+<p>🔧 <strong>Quick Install</strong></p>
+<p>The fastest way to get started:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>manipulapy
+</pre></div>
+</div>
+<p>🚀 <strong>Recommended Install (with GPU acceleration)</strong></p>
+<p>For the best performance:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>manipulapy<span class="o">[</span>cuda<span class="o">]</span>
+</pre></div>
+</div>
+<p>📦 <strong>Full Installation (all features)</strong></p>
+<p>To unlock all capabilities:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>manipulapy<span class="o">[</span>all<span class="o">]</span>
+</pre></div>
+</div>
+<p>🛠️ <strong>Development Installation</strong></p>
+<p>If you want to contribute or modify the library:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/yourusername/ManipulaPy.git
+<span class="nb">cd</span><span class="w"> </span>ManipulaPy
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="o">[</span>dev<span class="o">]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>System Requirements:</strong></p>
+<ul class="simple">
+<li><p>Python 3.8 or higher</p></li>
+<li><p>NumPy, SciPy (automatically installed)</p></li>
+<li><p>Optional: CUDA for GPU acceleration</p></li>
+<li><p>Optional: PyBullet for simulation</p></li>
+</ul>
+</div>
+<section id="verify-your-installation">
+<h3><a class="toc-backref" href="#id2" role="doc-backlink">Verify Your Installation</a><a class="headerlink" href="#verify-your-installation" title="Link to this heading"></a></h3>
+<p>Let’s make sure everything is working:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ManipulaPy</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎉 ManipulaPy installed successfully!&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Version: </span><span class="si">{</span><span class="n">ManipulaPy</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="your-first-robot">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Your First Robot</a><a class="headerlink" href="#your-first-robot" title="Link to this heading"></a></h2>
+<p>🤖 <strong>Load a Robot Model</strong></p>
+<p>ManipulaPy comes with built-in robot models. Let’s start with the xArm:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">ManipulaPy.urdf_processor</span> <span class="kn">import</span> <span class="n">URDFToSerialManipulator</span>
+<span class="kn">from</span> <span class="nn">ManipulaPy.ManipulaPy_data.xarm</span> <span class="kn">import</span> <span class="n">urdf_file</span> <span class="k">as</span> <span class="n">xarm_urdf_file</span>
+
+<span class="c1"># Load the built-in xArm robot</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📁 Loading xArm robot model...&quot;</span><span class="p">)</span>
+<span class="n">urdf_processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="n">xarm_urdf_file</span><span class="p">)</span>
+<span class="n">robot</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">serial_manipulator</span>
+<span class="n">dynamics</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">dynamics</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Robot loaded with </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">S_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2"> degrees of freedom&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>🎯 <strong>Forward Kinematics</strong></p>
+<p>Calculate where the robot’s end-effector is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Robot at home position (all joints at 0°)</span>
+<span class="n">home_angles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">end_effector_pose</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">home_angles</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="s2">&quot;space&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🏠 Home position:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Position: </span><span class="si">{</span><span class="n">end_effector_pose</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Orientation:</span><span class="se">\n</span><span class="si">{</span><span class="n">end_effector_pose</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>🔄 <strong>Inverse Kinematics</strong></p>
+<p>Find joint angles to reach a target position:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a target pose</span>
+<span class="n">target_position</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+<span class="n">T_target</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">target_position</span><span class="p">)</span>
+
+<span class="c1"># Solve inverse kinematics</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎯 Solving inverse kinematics...&quot;</span><span class="p">)</span>
+<span class="n">solution</span><span class="p">,</span> <span class="n">success</span><span class="p">,</span> <span class="n">iterations</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">iterative_inverse_kinematics</span><span class="p">(</span>
+    <span class="n">T_desired</span><span class="o">=</span><span class="n">T_target</span><span class="p">,</span>
+    <span class="n">thetalist0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span>
+    <span class="n">max_iterations</span><span class="o">=</span><span class="mi">1000</span>
+<span class="p">)</span>
+
+<span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Solution found in </span><span class="si">{</span><span class="n">iterations</span><span class="si">}</span><span class="s2"> iterations!&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🔧 Joint angles: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">°&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;❌ No solution found&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="your-first-trajectory">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Your First Trajectory</a><a class="headerlink" href="#your-first-trajectory" title="Link to this heading"></a></h2>
+<p>⚡ <strong>GPU-Accelerated Planning</strong></p>
+<p>Plan smooth robot motions with CUDA acceleration:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ManipulaPy.path_planning</span> <span class="kn">import</span> <span class="n">TrajectoryPlanning</span>
+
+<span class="c1"># Set up trajectory planner</span>
+<span class="n">joint_limits</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">]]</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">planner</span> <span class="o">=</span> <span class="n">TrajectoryPlanning</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">xarm_urdf_file</span><span class="p">,</span> <span class="n">dynamics</span><span class="p">,</span> <span class="n">joint_limits</span><span class="p">)</span>
+
+<span class="c1"># Plan a smooth trajectory</span>
+<span class="n">start_angles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">end_angles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📈 Planning trajectory...&quot;</span><span class="p">)</span>
+<span class="n">trajectory</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span>
+    <span class="n">thetastart</span><span class="o">=</span><span class="n">start_angles</span><span class="p">,</span>
+    <span class="n">thetaend</span><span class="o">=</span><span class="n">end_angles</span><span class="p">,</span>
+    <span class="n">Tf</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span>          <span class="c1"># 5 seconds</span>
+    <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>           <span class="c1"># 100 waypoints</span>
+    <span class="n">method</span><span class="o">=</span><span class="mi">5</span>         <span class="c1"># Quintic (smooth) interpolation</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Generated </span><span class="si">{</span><span class="n">trajectory</span><span class="p">[</span><span class="s1">&#39;positions&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> waypoints&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🚀 Start velocity: </span><span class="si">{</span><span class="n">trajectory</span><span class="p">[</span><span class="s1">&#39;velocities&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🏁 End velocity: </span><span class="si">{</span><span class="n">trajectory</span><span class="p">[</span><span class="s1">&#39;velocities&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>📊 <strong>Visualize the Trajectory</strong></p>
+<p>See your robot’s planned motion:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the trajectory</span>
+<span class="n">planner</span><span class="o">.</span><span class="n">plot_trajectory</span><span class="p">(</span><span class="n">trajectory</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;My First Robot Trajectory&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="your-first-simulation">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Your First Simulation</a><a class="headerlink" href="#your-first-simulation" title="Link to this heading"></a></h2>
+<p>🎬 <strong>PyBullet Physics Simulation</strong></p>
+<p>Bring your robot to life with realistic physics:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ManipulaPy.sim</span> <span class="kn">import</span> <span class="n">Simulation</span>
+
+<span class="c1"># Create physics simulation</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎬 Starting simulation...&quot;</span><span class="p">)</span>
+<span class="n">sim</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">(</span>
+    <span class="n">urdf_file_path</span><span class="o">=</span><span class="n">xarm_urdf_file</span><span class="p">,</span>
+    <span class="n">joint_limits</span><span class="o">=</span><span class="n">joint_limits</span><span class="p">,</span>
+    <span class="n">torque_limits</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">]]</span> <span class="o">*</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="n">time_step</span><span class="o">=</span><span class="mf">0.01</span>
+<span class="p">)</span>
+
+<span class="c1"># Initialize robot and controllers</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">initialize_robot</span><span class="p">()</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">initialize_planner_and_controller</span><span class="p">()</span>
+
+<span class="c1"># Execute the trajectory in simulation</span>
+<span class="n">waypoints</span> <span class="o">=</span> <span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">][::</span><span class="mi">10</span><span class="p">]</span>  <span class="c1"># Use every 10th point</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🏃 Running simulation...&quot;</span><span class="p">)</span>
+<span class="n">final_position</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">run_trajectory</span><span class="p">(</span><span class="n">waypoints</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🏁 Final end-effector position: </span><span class="si">{</span><span class="n">final_position</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="your-first-control-system">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Your First Control System</a><a class="headerlink" href="#your-first-control-system" title="Link to this heading"></a></h2>
+<p>🎛️ <strong>Intelligent Robot Control</strong></p>
+<p>Control your robot with advanced algorithms:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ManipulaPy.control</span> <span class="kn">import</span> <span class="n">ManipulatorController</span>
+
+<span class="c1"># Create smart controller</span>
+<span class="n">controller</span> <span class="o">=</span> <span class="n">ManipulatorController</span><span class="p">(</span><span class="n">dynamics</span><span class="p">)</span>
+
+<span class="c1"># Current and desired robot states</span>
+<span class="n">current_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">current_vel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">desired_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+<span class="n">desired_vel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="c1"># Auto-tune controller gains</span>
+<span class="n">ultimate_gain</span> <span class="o">=</span> <span class="mf">50.0</span>    <span class="c1"># Experiment to find this</span>
+<span class="n">ultimate_period</span> <span class="o">=</span> <span class="mf">0.5</span>   <span class="c1"># Measure from oscillations</span>
+<span class="n">Kp</span><span class="p">,</span> <span class="n">Ki</span><span class="p">,</span> <span class="n">Kd</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">tune_controller</span><span class="p">(</span><span class="n">ultimate_gain</span><span class="p">,</span> <span class="n">ultimate_period</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;PID&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🎛️ Auto-tuned gains:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Kp: </span><span class="si">{</span><span class="n">Kp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, Ki: </span><span class="si">{</span><span class="n">Ki</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, Kd: </span><span class="si">{</span><span class="n">Kd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Compute control torques</span>
+<span class="n">control_torques</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">computed_torque_control</span><span class="p">(</span>
+    <span class="n">thetalistd</span><span class="o">=</span><span class="n">desired_pos</span><span class="p">,</span>
+    <span class="n">dthetalistd</span><span class="o">=</span><span class="n">desired_vel</span><span class="p">,</span>
+    <span class="n">ddthetalistd</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span>
+    <span class="n">thetalist</span><span class="o">=</span><span class="n">current_pos</span><span class="p">,</span>
+    <span class="n">dthetalist</span><span class="o">=</span><span class="n">current_vel</span><span class="p">,</span>
+    <span class="n">g</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">]),</span>
+    <span class="n">dt</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+    <span class="n">Kp</span><span class="o">=</span><span class="n">Kp</span><span class="p">,</span> <span class="n">Ki</span><span class="o">=</span><span class="n">Ki</span><span class="p">,</span> <span class="n">Kd</span><span class="o">=</span><span class="n">Kd</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚡ Control torques: </span><span class="si">{</span><span class="n">control_torques</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="your-first-vision-system">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Your First Vision System</a><a class="headerlink" href="#your-first-vision-system" title="Link to this heading"></a></h2>
+<p>👁️ <strong>Computer Vision &amp; Perception</strong></p>
+<p>Add eyes to your robot:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ManipulaPy.vision</span> <span class="kn">import</span> <span class="n">Vision</span>
+<span class="kn">from</span> <span class="nn">ManipulaPy.perception</span> <span class="kn">import</span> <span class="n">Perception</span>
+
+<span class="c1"># Setup camera system</span>
+<span class="n">camera_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;workspace_camera&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;translation&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>  <span class="c1"># 1m above workspace</span>
+    <span class="s2">&quot;rotation&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>           <span class="c1"># Look down at 45°</span>
+    <span class="s2">&quot;fov&quot;</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span>
+    <span class="s2">&quot;intrinsic_matrix&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">320</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">240</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
+    <span class="s2">&quot;distortion_coeffs&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1"># Create vision system</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;👁️ Setting up vision system...&quot;</span><span class="p">)</span>
+<span class="n">vision</span> <span class="o">=</span> <span class="n">Vision</span><span class="p">(</span><span class="n">camera_configs</span><span class="o">=</span><span class="p">[</span><span class="n">camera_config</span><span class="p">])</span>
+<span class="n">perception</span> <span class="o">=</span> <span class="n">Perception</span><span class="p">(</span><span class="n">vision_instance</span><span class="o">=</span><span class="n">vision</span><span class="p">)</span>
+
+<span class="c1"># Detect objects in the workspace</span>
+<span class="n">obstacle_points</span><span class="p">,</span> <span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">perception</span><span class="o">.</span><span class="n">detect_and_cluster_obstacles</span><span class="p">(</span>
+    <span class="n">camera_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">depth_threshold</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span>  <span class="c1"># Objects within 3m</span>
+    <span class="n">eps</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>              <span class="c1"># Clustering parameter</span>
+    <span class="n">min_samples</span><span class="o">=</span><span class="mi">3</span>         <span class="c1"># Minimum points per cluster</span>
+<span class="p">)</span>
+
+<span class="n">num_clusters</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">cluster_labels</span><span class="p">))</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">in</span> <span class="n">cluster_labels</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🔍 Detected </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">obstacle_points</span><span class="p">)</span><span class="si">}</span><span class="s2"> obstacle points&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;📦 Found </span><span class="si">{</span><span class="n">num_clusters</span><span class="si">}</span><span class="s2"> distinct objects&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="what-s-next">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">What’s Next?</a><a class="headerlink" href="#what-s-next" title="Link to this heading"></a></h2>
+<p>🎉 <strong>Congratulations!</strong> You’ve just built your first robot system with ManipulaPy.</p>
+<div class="next-steps">
+   <div class="step-category">
+      <h4>📚 Learn the Fundamentals</h4>
+      <ul>
+         <li><a href="../user_guide/Kinematics.html">🔧 Kinematics Deep Dive</a></li>
+         <li><a href="../user_guide/Dynamics.html">⚖️ Robot Dynamics</a></li>
+         <li><a href="../user_guide/Trajectory_Planning.html">🛤️ Motion Planning</a></li>
+      </ul>
+   </div>
+   <div class="step-category">
+      <h4>🎓 Explore Tutorials</h4>
+      <ul>
+         <li><a href="../tutorials/index.html">🤖 Build a Pick & Place Robot</a></li>
+         <li><a href="../tutorials/index.html">👁️ Vision-Guided Manipulation</a></li>
+         <li><a href="../tutorials/index.html">🏭 Multi-Robot Coordination</a></li>
+      </ul>
+   </div>
+   <div class="step-category">
+      <h4>🛠️ API Reference</h4>
+      <ul>
+         <li><a href="../api/kinematics.html">📖 Kinematics API</a></li>
+         <li><a href="../api/dynamics.html">📖 Dynamics API</a></li>
+         <li><a href="../api/control.html">📖 Control API</a></li>
+         <li><a href="../api/path_planning.html">📖 Planning API</a></li>
+      </ul>
+   </div>
+</div></section>
+<section id="common-issues-solutions">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Common Issues &amp; Solutions</a><a class="headerlink" href="#common-issues-solutions" title="Link to this heading"></a></h2>
+<p>⚠️ <strong>Installation Problems</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># If you get permission errors</span>
+pip<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span>manipulapy
+
+<span class="c1"># If you need CUDA support</span>
+pip<span class="w"> </span>install<span class="w"> </span>manipulapy<span class="o">[</span>cuda<span class="o">]</span>
+<span class="c1"># Verify CUDA is available</span>
+python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import cupy; print(&#39;CUDA available!&#39;)&quot;</span>
+</pre></div>
+</div>
+<p>⚠️ <strong>Import Errors</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># If ManipulaPy modules aren&#39;t found</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;/path/to/ManipulaPy&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">ManipulaPy</span>
+</pre></div>
+</div>
+<p>⚠️ <strong>Simulation Issues</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># If PyBullet simulation fails</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">pybullet</span>
+
+<span class="c1"># Test PyBullet installation</span>
+<span class="kn">import</span> <span class="nn">pybullet</span> <span class="k">as</span> <span class="nn">p</span>
+<span class="n">p</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">DIRECT</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PyBullet working!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>⚠️ <strong>Performance Issues</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check if CUDA acceleration is working</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">cupy</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🚀 CUDA acceleration available&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚠️ Install CuPy for GPU acceleration&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>💡 <strong>Pro Tips</strong></p>
+<div class="pro-tips">
+   <div class="tip">
+      <span class="tip-icon">🎯</span>
+      <strong>Start Simple</strong><br>
+      Begin with forward kinematics before inverse kinematics
+   </div>
+   <div class="tip">
+      <span class="tip-icon">📊</span>
+      <strong>Visualize Everything</strong><br>
+      Use the plotting functions to understand robot behavior
+   </div>
+   <div class="tip">
+      <span class="tip-icon">⚡</span>
+      <strong>Use GPU Acceleration</strong><br>
+      Install CUDA for 7x faster computations
+   </div>
+   <div class="tip">
+      <span class="tip-icon">🔧</span>
+      <strong>Check Joint Limits</strong><br>
+      Always define realistic joint limits for safety
+   </div>
+</div><p>📞 <strong>Need Help?</strong></p>
+<ul class="simple">
+<li><p>📖 Check the <a class="reference internal" href="../api/index.html"><span class="doc">🔧 API Reference Guide</span></a> for detailed function documentation</p></li>
+<li><p>🐛 Report bugs on <a class="reference external" href="https://github.com/yourusername/ManipulaPy/issues">GitHub Issues</a></p></li>
+<li><p>💬 Join our community discussions</p></li>
+<li><p>📧 Contact the maintainers for support</p></li>
+</ul>
+<style>
+.getting-started-hero {
+   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+   color: white;
+   padding: 2rem;
+   border-radius: 10px;
+   margin: 2rem 0;
+   text-align: center;
+}
+.getting-started-hero h2 {
+   margin-top: 0;
+   font-size: 2rem;
+}
+.next-steps {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+   gap: 1.5rem;
+   margin: 2rem 0;
+}
+.step-category {
+   border: 1px solid #e1e4e8;
+   border-radius: 8px;
+   padding: 1rem;
+   background: #f8f9fa;
+}
+.step-category h4 {
+   margin-top: 0;
+   color: #0366d6;
+}
+.step-category ul {
+   margin: 0;
+   padding-left: 1rem;
+}
+.step-category li {
+   margin: 0.5rem 0;
+}
+.pro-tips {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   gap: 1rem;
+   margin: 1.5rem 0;
+}
+.tip {
+   color: white;
+   padding: 1rem;
+   border-radius: 8px;
+   text-align: center;
+}
+
+.tip:nth-child(1) {
+   background: #2563eb; /* Strong blue */
+}
+
+.tip:nth-child(2) {
+   background: #dc2626; /* Strong red */
+}
+
+.tip:nth-child(3) {
+   background: #059669; /* Strong green */
+}
+
+.tip:nth-child(4) {
+   background: #7c3aed; /* Strong purple */
+}
+.tip-icon {
+   font-size: 1.5rem;
+   display: block;
+   margin-bottom: 0.5rem;
+}
+</style></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="ManipulaPy Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../api/index.html" class="btn btn-neutral float-right" title="🔧 API Reference Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Mohamed Aboelnar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

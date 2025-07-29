@@ -1,0 +1,377 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Quick‑start example" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://manipulapy.readthedocs.io/tutorials/Kinematics.html" />
+<meta property="og:site_name" content="ManipulaPy Documentation" />
+<meta property="og:description" content="# Kinematics User Guide This chapter walks you through everyday kinematics workflows in ManipulaPy: from building a SerialManipulator object, to computing forward & inverse kinematics, Jacobians, w..." />
+<meta name="description" content="# Kinematics User Guide This chapter walks you through everyday kinematics workflows in ManipulaPy: from building a SerialManipulator object, to computing forward & inverse kinematics, Jacobians, w..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quick‑start example &mdash; ManipulaPy 1.1.0 Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=fc837d61"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=fd10adb8"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ManipulaPy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">🚀 Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started with ManipulaPy</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🛠️ API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">🔧 API Reference Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">📚 User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Kinematics.html">Kinematics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Dynamics.html">Dynamics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Control.html">Control Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Trajectory_Planning.html">Trajectory Planning User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Simulation.html">Simulation Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/URDF_Processor.html">URDF Processor User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Perception.html">Perception User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/vision.html">Vision User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Potential_Field.html">Potential Field Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Collision_Checker.html">Collision Checker Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/CUDA_Kernels.html">CUDA Kernels User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ManipulaPy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Quick‑start example</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorials/Kinematics.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p># Kinematics User Guide</p>
+<p>This chapter walks you through <strong>everyday kinematics workflows</strong> in ManipulaPy:
+from building a <em>SerialManipulator</em> object, to computing forward &amp; inverse
+kinematics, Jacobians, workspace envelopes, and velocity mappings.  It assumes
+you already ran the :doc:<cite>../installation</cite> guide and have a working Python
+interpreter.</p>
+<p>## Prerequisites</p>
+<ul class="simple">
+<li><p>Python ≥ 3.8 with <cite>numpy</cite> &amp; <cite>matplotlib</cite></p></li>
+<li><p>ManipulaPy ≥ 1.1.0</p></li>
+<li><p>A basic grasp of screw theory / the Product‑of‑Exponentials (PoE) model.</p></li>
+</ul>
+<p>If you need a refresher, see <cite>Modern Robotics, Ch 3</cite>_ (free online PDF) or our
+:doc:<cite>../theory/screw_theory</cite> page.</p>
+<p>## What is robot kinematics?</p>
+<p><em>Robot kinematics</em> studies the geometry of a manipulator <strong>without</strong> worrying
+about forces or torques.  The central problems are:</p>
+<ul class="simple">
+<li><p><strong>Forward kinematics (FK):</strong> joint angles → pose of the tool frame :math:<cite>T in
+mathrm{SE}(3)</cite>.</p></li>
+<li><p><strong>Inverse kinematics (IK):</strong> desired pose → one or more joint angle
+solutions.</p></li>
+<li><p><strong>Velocity kinematics:</strong> joint‑space rates ↔ spatial twist of the
+end‑effector.</p></li>
+</ul>
+<p>ManipulaPy models every rigid motion as an element of
+:math:<cite>mathrm{SE}(3) cong mathbb{R}^3 times mathrm{SO}(3)</cite> using
+<em>homogeneous transforms</em> and encodes joint axes as <strong>screws</strong>
+:math:<cite>S_i in mathfrak{se}(3)</cite>.</p>
+<p>Forward kinematics via PoE</p>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a></p>
+<aside class="system-message" id="id1">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/tutorials/Kinematics.rst</span>, line 41); <em><a href="#id2">backlink</a></em></p>
+<p>Inline literal start-string without end-string.</p>
+</aside>
+<aside class="system-message" id="id3">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/tutorials/Kinematics.rst</span>, line 41); <em><a href="#id4">backlink</a></em></p>
+<p>Inline interpreted text or phrase reference start-string without end-string.</p>
+</aside>
+<p>With screws arranged column‑wise in <span class="math notranslate nohighlight">\(S_{list} \in \mathbb{R}^{6\times n}\)</span>
+and a <em>home configuration</em> matrix <span class="math notranslate nohighlight">\(M\)</span>, the FK map is</p>
+<div class="math notranslate nohighlight">
+\[T(\theta)\;=\;e^{[S_1] \theta_1}\;e^{[S_2] \theta_2}\;\dots
+e^{[S_n] \theta_n}\,M.\]</div>
+<p>ManipulaPy evaluates this with numerically stable <em>Rodrigues</em> formulas.</p>
+<section id="quickstart-example">
+<h1>Quick‑start example<a class="headerlink" href="#quickstart-example" title="Link to this heading"></a></h1>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">Define a 6‑DoF UR5‑like arm in 10 lines</span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">ManipulaPy.kinematics</span> <span class="kn">import</span> <span class="n">SerialManipulator</span>
+
+<span class="c1"># Home pose of tool frame (millimetres → metres)</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.817</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.000</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.191</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>     <span class="p">]])</span>
+
+<span class="c1"># Screw axes in the *space* frame (ω | v)</span>
+<span class="n">S_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mf">0.000</span><span class="p">,</span>  <span class="mf">0.000</span><span class="p">,</span> <span class="mf">0.000</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.089</span><span class="p">,</span>  <span class="mf">0.000</span><span class="p">,</span> <span class="mf">0.000</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.089</span><span class="p">,</span>  <span class="mf">0.000</span><span class="p">,</span> <span class="mf">0.425</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.089</span><span class="p">,</span>  <span class="mf">0.000</span><span class="p">,</span> <span class="mf">0.817</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mf">0.000</span><span class="p">,</span>  <span class="mf">0.109</span><span class="p">,</span> <span class="mf">0.000</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.089</span><span class="p">,</span>  <span class="mf">0.000</span><span class="p">,</span> <span class="mf">0.817</span><span class="p">],</span>
+<span class="p">])</span><span class="o">.</span><span class="n">T</span>
+
+<span class="n">robot</span> <span class="o">=</span> <span class="n">SerialManipulator</span><span class="p">(</span><span class="n">M_list</span><span class="o">=</span><span class="n">M</span><span class="p">,</span> <span class="n">S_list</span><span class="o">=</span><span class="n">S_list</span><span class="p">)</span>  <span class="c1"># B_list autocomputed</span>
+
+<span class="n">thetalist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">([</span><span class="mi">30</span><span class="p">,</span> <span class="o">-</span><span class="mi">45</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">])</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">thetalist</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="creating-a-robot-from-urdf">
+<h1>Creating a robot from URDF<a class="headerlink" href="#creating-a-robot-from-urdf" title="Link to this heading"></a></h1>
+<p>Most users will load a <em>real</em> robot description:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ManipulaPy.urdf_processor</span> <span class="kn">import</span> <span class="n">URDFToSerialManipulator</span>
+
+<span class="n">urdf_path</span> <span class="o">=</span> <span class="s2">&quot;resources/urdfs/panda_arm.urdf&quot;</span>
+<span class="n">robot</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="n">urdf_path</span><span class="p">)</span><span class="o">.</span><span class="n">serial_manipulator</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">n_joints</span><span class="p">)</span>          <span class="c1"># 7</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">joint_limits</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>  <span class="c1"># per‑joint lower/upper bounds</span>
+</pre></div>
+</div>
+<p>ManipulaPy parses <code class="docutils literal notranslate"><span class="pre">&lt;limit&gt;</span></code> tags, inertias, and collision geometry so the
+same object can be reused for dynamics and planning.</p>
+</section>
+<section id="forward-kinematics-recipes">
+<h1>Forward kinematics recipes<a class="headerlink" href="#forward-kinematics-recipes" title="Link to this heading"></a></h1>
+<section id="single-pose">
+<h2>Single pose<a class="headerlink" href="#single-pose" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">T_B</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">thetalist</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="s2">&quot;body&quot;</span><span class="p">)</span>
+<span class="n">xyz</span> <span class="o">=</span> <span class="n">T_B</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">R</span>   <span class="o">=</span> <span class="n">T_B</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span>      <span class="c1"># orientation matrix</span>
+</pre></div>
+</div>
+</section>
+<section id="batch-evaluation">
+<h2>Batch evaluation<a class="headerlink" href="#batch-evaluation" title="Link to this heading"></a></h2>
+<p>If you need thousands of FK calls per frame, wrap them in NumPy arrays:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">thetas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="p">(</span><span class="mi">1024</span><span class="p">,</span> <span class="n">robot</span><span class="o">.</span><span class="n">n_joints</span><span class="p">))</span>
+<span class="n">poses</span>  <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">batch_forward_kinematics</span><span class="p">(</span><span class="n">thetas</span><span class="p">)</span>  <span class="c1"># returns (1024, 4, 4)</span>
+</pre></div>
+</div>
+<p>(The batch routine is CuPy‑accelerated when installed with
+<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">ManipulaPy[gpu-cuda11]</span></code>.)</p>
+</section>
+</section>
+<section id="inverse-kinematics">
+<h1>Inverse kinematics<a class="headerlink" href="#inverse-kinematics" title="Link to this heading"></a></h1>
+<p>ManipulaPy supplies <strong>four flavours</strong>:</p>
+<ol class="arabic simple">
+<li><p><em>Newton–Raphson</em> (<cite>iterative_inverse_kinematics</cite>) – default, robust.</p></li>
+<li><p><em>Levenberg–Marquardt</em> (<cite>lm_inverse_kinematics</cite>) – higher success near
+singularities.</p></li>
+<li><p><em>Position‑only IK</em> (<cite>position_inverse_kinematics</cite>) – ignores orientation.</p></li>
+<li><p><em>Null‑space IK</em> (redundancy resolution) – exposed via
+<code class="docutils literal notranslate"><span class="pre">NullSpaceIKSolver</span></code>.</p></li>
+</ol>
+<p>Example (basic Newton):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">success</span><span class="p">,</span> <span class="n">sol</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">iterative_inverse_kinematics</span><span class="p">(</span>
+    <span class="n">T_desired</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">thetalist0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">n_joints</span><span class="p">))</span>
+
+<span class="k">assert</span> <span class="n">success</span>
+</pre></div>
+</div>
+</section>
+<section id="jacobian-singularities">
+<h1>Jacobian &amp; singularities<a class="headerlink" href="#jacobian-singularities" title="Link to this heading"></a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">J</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">jacobian</span><span class="p">(</span><span class="n">thetalist</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="s2">&quot;space&quot;</span><span class="p">)</span>  <span class="c1"># (6 × n)</span>
+<span class="n">manipulability</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">J</span> <span class="o">@</span> <span class="n">J</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+<span class="n">cond_number</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">J</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A warning is raised if <code class="docutils literal notranslate"><span class="pre">cond_number &gt; 1e6</span></code> (config near singularity).</p>
+</section>
+<section id="velocity-kinematics-helper">
+<h1>Velocity kinematics helper<a class="headerlink" href="#velocity-kinematics-helper" title="Link to this heading"></a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">θdot</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>      <span class="c1"># joint rates [rad s⁻¹]</span>
+<span class="n">V_s</span>    <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">end_effector_velocity</span><span class="p">(</span><span class="n">thetalist</span><span class="p">,</span> <span class="n">θdot</span><span class="p">)</span>  <span class="c1"># spatial twist</span>
+
+<span class="c1"># Solve inverse velocity problem</span>
+<span class="n">V_des</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>     <span class="c1"># move +X &amp; rotate +Z</span>
+<span class="n">θdot_r</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">joint_velocity</span><span class="p">(</span><span class="n">thetalist</span><span class="p">,</span> <span class="n">V_des</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="workspace-visualisation-snippet">
+<h1>Workspace visualisation snippet<a class="headerlink" href="#workspace-visualisation-snippet" title="Link to this heading"></a></h1>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">Scatter plot of reachable positions (CPU‑only)</span><a class="headerlink" href="#id8" title="Link to this code"></a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">pts</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">sample_workspace</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">();</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;3d&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="o">*</span><span class="n">pts</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.4</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;X [m]&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Y [m]&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s2">&quot;Z [m]&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="troubleshooting">
+<h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h1>
+<table class="docutils align-default" id="ug-kinematics-troubleshoot">
+<thead>
+<tr class="row-odd"><th class="head"><p>Symptom</p></th>
+<th class="head"><p>Fix</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>IK fails to</p></td>
+<td><ul class="simple">
+<li><p>Check if the target pose is outside joint</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>converge</p></td>
+<td><p>  limits or workspace.
+* Provide a better initial guess; use the</p>
+<aside class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/tutorials/Kinematics.rst</span>, line 204)</p>
+<p>Unexpected indentation.</p>
+</aside>
+<blockquote>
+<div><p><em>smart_initial_guess</em> helper below.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-even"><td><p>Numerical</p></td>
+<td><ul class="simple">
+<li><p>Call IK with <code class="docutils literal notranslate"><span class="pre">damping</span></code> &gt; 1e‑4 or switch to</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>instability</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lm_inverse_kinematics</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p>Joint limit</p></td>
+<td><ul>
+<li><p>Run <a href="#id5"><span class="problematic" id="id6">:pyfunc:`ManipulaPy.kinematics.utils.enforce_joint_limits`</span></a>.</p>
+<aside class="system-message" id="id5">
+<p class="system-message-title">System Message: ERROR/3 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/tutorials/Kinematics.rst</span>, line 208); <em><a href="#id6">backlink</a></em></p>
+<p>Unknown interpreted text role “pyfunc”.</p>
+</aside>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>violation</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">Smart initial guess helper</span><a class="headerlink" href="#id9" title="Link to this code"></a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">smart_initial_guess</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">T_desired</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">robot</span><span class="o">.</span><span class="n">current_configuration</span>   <span class="c1"># live robot state</span>
+    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+        <span class="c1"># fallback: mid‑range of each joint</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">joint_limits</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<aside class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/tutorials/Kinematics.rst</span>, line 221)</p>
+<p>Document may not end with a transition.</p>
+</aside>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Mohamed Aboelnar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

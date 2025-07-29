@@ -1,0 +1,1154 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Simulation Module User Guide" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://manipulapy.readthedocs.io/user_guide/Simulation.html" />
+<meta property="og:site_name" content="ManipulaPy Documentation" />
+<meta property="og:description" content="The Simulation Module provides a comprehensive PyBullet-based environment for visualizing, testing, and interacting with your ManipulaPy-powered robot models. It supports real-time control, traject..." />
+<meta name="description" content="The Simulation Module provides a comprehensive PyBullet-based environment for visualizing, testing, and interacting with your ManipulaPy-powered robot models. It supports real-time control, traject..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulation Module User Guide &mdash; ManipulaPy 1.1.0 Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=fc837d61"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=fd10adb8"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Singularity Analysis User Guide" href="Singularity_Analysis.html" />
+    <link rel="prev" title="Trajectory Planning User Guide" href="Trajectory_Planning.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ManipulaPy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">🚀 Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started with ManipulaPy</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🛠️ API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">🔧 API Reference Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">📚 User Guides</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">User Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#complete-guide-overview">📚 Complete Guide Overview</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Kinematics.html">Kinematics User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Dynamics.html">Dynamics User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Control.html">Control Module User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="URDF_Processor.html">URDF Processor User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Trajectory_Planning.html">Trajectory Planning User Guide</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Simulation Module User Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#installation-and-setup">Installation and Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quick-start">Quick Start</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-api-reference">Module API Reference</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#advanced-examples">Advanced Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#advanced-configuration">Advanced Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#best-practices">Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#integration-with-other-modules">Integration with Other Modules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Collision_Checker.html">Collision Checker Module User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Potential_Field.html">Potential Field Module User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Perception.html">Perception User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CUDA_Kernels.html">CUDA Kernels User Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#learning-pathways">🗺️ Learning Pathways</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#guide-categories">📖 Guide Categories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#quick-reference">🎯 Quick Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#study-tips">💡 Study Tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#need-help">🆘 Need Help?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Kinematics.html">Kinematics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Dynamics.html">Dynamics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Control.html">Control Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Trajectory_Planning.html">Trajectory Planning User Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Simulation Module User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation-and-setup">Installation and Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verification">Verification</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#quick-start">Quick Start</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basic-trajectory-simulation">Basic Trajectory Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#interactive-manual-control">Interactive Manual Control</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-api-reference">Module API Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simulation-class">Simulation Class</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#constructor-parameters">Constructor Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#core-simulation-methods">Core Simulation Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#initialization-and-setup-methods">Initialization and Setup Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state-management-and-monitoring">State Management and Monitoring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data-logging-and-analysis">Data Logging and Analysis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-examples">Advanced Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#closed-loop-control-simulation">Closed-Loop Control Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multi-phase-simulation-workflow">Multi-Phase Simulation Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gpu-accelerated-batch-simulation">GPU-Accelerated Batch Simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-configuration">Advanced Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#physics-parameter-tuning">Physics Parameter Tuning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-visualization-and-debugging">Custom Visualization and Debugging</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#performance-optimization">Performance Optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#memory-management">Memory Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parallel-simulation-setup">Parallel Simulation Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting-guide">Troubleshooting Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#common-issues-and-solutions">Common Issues and Solutions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#debugging-tools">Debugging Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#performance-benchmarks">Performance Benchmarks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#integration-with-other-modules">Integration with Other Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="URDF_Processor.html">URDF Processor User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Perception.html">Perception User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vision.html">Vision User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Potential_Field.html">Potential Field Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Collision_Checker.html">Collision Checker Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CUDA_Kernels.html">CUDA Kernels User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ManipulaPy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">User Guide</a></li>
+      <li class="breadcrumb-item active">Simulation Module User Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user_guide/Simulation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="simulation-module-user-guide">
+<h1>Simulation Module User Guide<a class="headerlink" href="#simulation-module-user-guide" title="Link to this heading"></a></h1>
+<p>The Simulation Module provides a comprehensive PyBullet-based environment for visualizing,
+testing, and interacting with your ManipulaPy-powered robot models. It supports
+real-time control, trajectory playback, collision checking, data logging, and GPU-accelerated
+computations through CuPy integration.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This guide assumes Python 3.10+, PyBullet 3.2.5+, CuPy 12.0+, and Matplotlib 3.5+.
+For optimal performance, CUDA-capable GPU is recommended but not required.</p>
+</div>
+<nav class="contents local" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#installation-and-setup" id="id2">Installation and Setup</a></p>
+<ul>
+<li><p><a class="reference internal" href="#prerequisites" id="id3">Prerequisites</a></p></li>
+<li><p><a class="reference internal" href="#verification" id="id4">Verification</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#quick-start" id="id5">Quick Start</a></p>
+<ul>
+<li><p><a class="reference internal" href="#basic-trajectory-simulation" id="id6">Basic Trajectory Simulation</a></p></li>
+<li><p><a class="reference internal" href="#interactive-manual-control" id="id7">Interactive Manual Control</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#module-api-reference" id="id8">Module API Reference</a></p>
+<ul>
+<li><p><a class="reference internal" href="#simulation-class" id="id9">Simulation Class</a></p>
+<ul>
+<li><p><a class="reference internal" href="#constructor-parameters" id="id10">Constructor Parameters</a></p></li>
+<li><p><a class="reference internal" href="#core-simulation-methods" id="id11">Core Simulation Methods</a></p></li>
+<li><p><a class="reference internal" href="#initialization-and-setup-methods" id="id12">Initialization and Setup Methods</a></p></li>
+<li><p><a class="reference internal" href="#state-management-and-monitoring" id="id13">State Management and Monitoring</a></p></li>
+<li><p><a class="reference internal" href="#data-logging-and-analysis" id="id14">Data Logging and Analysis</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#advanced-examples" id="id15">Advanced Examples</a></p>
+<ul>
+<li><p><a class="reference internal" href="#closed-loop-control-simulation" id="id16">Closed-Loop Control Simulation</a></p></li>
+<li><p><a class="reference internal" href="#multi-phase-simulation-workflow" id="id17">Multi-Phase Simulation Workflow</a></p></li>
+<li><p><a class="reference internal" href="#gpu-accelerated-batch-simulation" id="id18">GPU-Accelerated Batch Simulation</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#advanced-configuration" id="id19">Advanced Configuration</a></p>
+<ul>
+<li><p><a class="reference internal" href="#physics-parameter-tuning" id="id20">Physics Parameter Tuning</a></p></li>
+<li><p><a class="reference internal" href="#custom-visualization-and-debugging" id="id21">Custom Visualization and Debugging</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#performance-optimization" id="id22">Performance Optimization</a></p>
+<ul>
+<li><p><a class="reference internal" href="#memory-management" id="id23">Memory Management</a></p></li>
+<li><p><a class="reference internal" href="#parallel-simulation-setup" id="id24">Parallel Simulation Setup</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#troubleshooting-guide" id="id25">Troubleshooting Guide</a></p>
+<ul>
+<li><p><a class="reference internal" href="#common-issues-and-solutions" id="id26">Common Issues and Solutions</a></p></li>
+<li><p><a class="reference internal" href="#debugging-tools" id="id27">Debugging Tools</a></p></li>
+<li><p><a class="reference internal" href="#performance-benchmarks" id="id28">Performance Benchmarks</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#best-practices" id="id29">Best Practices</a></p></li>
+<li><p><a class="reference internal" href="#integration-with-other-modules" id="id30">Integration with Other Modules</a></p></li>
+<li><p><a class="reference internal" href="#see-also" id="id31">See Also</a></p></li>
+</ul>
+</nav>
+<section id="installation-and-setup">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Installation and Setup</a><a class="headerlink" href="#installation-and-setup" title="Link to this heading"></a></h2>
+<section id="prerequisites">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h3>
+<p>Before using the Simulation module, ensure you have the following dependencies:</p>
+<p><strong>Core Dependencies</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>ManipulaPy<span class="o">[</span>simulation<span class="o">]</span><span class="w"> </span>pybullet&gt;<span class="o">=</span><span class="m">3</span>.2.5<span class="w"> </span>matplotlib&gt;<span class="o">=</span><span class="m">3</span>.5<span class="w"> </span>numpy&gt;<span class="o">=</span><span class="m">1</span>.21
+</pre></div>
+</div>
+<p><strong>GPU Acceleration (Optional but Recommended)</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>cupy-cuda11x<span class="w">  </span><span class="c1"># For CUDA 11.x</span>
+<span class="c1"># or</span>
+pip<span class="w"> </span>install<span class="w"> </span>cupy-cuda12x<span class="w">  </span><span class="c1"># For CUDA 12.x</span>
+</pre></div>
+</div>
+<p><strong>URDF Processing</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>urchin&gt;<span class="o">=</span><span class="m">0</span>.0.27
+</pre></div>
+</div>
+</section>
+<section id="verification">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Verification</a><a class="headerlink" href="#verification" title="Link to this heading"></a></h3>
+<p>Verify your installation with this simple test:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pybullet</span> <span class="k">as</span> <span class="nn">p</span>
+<span class="kn">import</span> <span class="nn">ManipulaPy.sim</span> <span class="k">as</span> <span class="nn">sim</span>
+<span class="kn">import</span> <span class="nn">cupy</span> <span class="k">as</span> <span class="nn">cp</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PyBullet version:&quot;</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CuPy version:&quot;</span><span class="p">,</span> <span class="n">cp</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CUDA available:&quot;</span><span class="p">,</span> <span class="n">cp</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Simulation module loaded:&quot;</span><span class="p">,</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="s2">&quot;Simulation&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If CUDA is not available, the simulation will automatically fall back to CPU computation
+with slightly reduced performance.</p>
+</div>
+</section>
+</section>
+<section id="quick-start">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Quick Start</a><a class="headerlink" href="#quick-start" title="Link to this heading"></a></h2>
+<section id="basic-trajectory-simulation">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Basic Trajectory Simulation</a><a class="headerlink" href="#basic-trajectory-simulation" title="Link to this heading"></a></h3>
+<p>Launch a simple trajectory playback with your robot:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ManipulaPy.sim</span> <span class="kn">import</span> <span class="n">Simulation</span>
+<span class="kn">from</span> <span class="nn">ManipulaPy.ManipulaPy_data.xarm</span> <span class="kn">import</span> <span class="n">urdf_file</span> <span class="k">as</span> <span class="n">xarm_urdf</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Define joint limits for a 6-DOF manipulator</span>
+<span class="n">joint_limits</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="mf">3.14</span><span class="p">,</span> <span class="mf">3.14</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">6</span>
+<span class="n">torque_limits</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">6</span>  <span class="c1"># Newton-meters</span>
+
+<span class="c1"># Create Simulation instance</span>
+<span class="n">sim</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">(</span>
+    <span class="n">urdf_file_path</span><span class="o">=</span><span class="n">xarm_urdf</span><span class="p">,</span>
+    <span class="n">joint_limits</span><span class="o">=</span><span class="n">joint_limits</span><span class="p">,</span>
+    <span class="n">torque_limits</span><span class="o">=</span><span class="n">torque_limits</span><span class="p">,</span>
+    <span class="n">time_step</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>           <span class="c1"># 100 Hz simulation</span>
+    <span class="n">real_time_factor</span><span class="o">=</span><span class="mf">1.0</span>      <span class="c1"># Real-time playback</span>
+<span class="p">)</span>
+
+<span class="c1"># Initialize robot dynamics and planning</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">initialize_robot</span><span class="p">()</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">initialize_planner_and_controller</span><span class="p">()</span>
+
+<span class="c1"># Generate a smooth sinusoidal trajectory</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+<span class="n">trajectory</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">t_i</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
+    <span class="c1"># Create smooth joint motion</span>
+    <span class="n">joint_angles</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">t_i</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">])</span>
+    <span class="n">trajectory</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">joint_angles</span><span class="p">)</span>
+
+<span class="c1"># Execute trajectory with visualization</span>
+<span class="n">final_ee_position</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">run_trajectory</span><span class="p">(</span><span class="n">trajectory</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Final end-effector position: </span><span class="si">{</span><span class="n">final_ee_position</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="interactive-manual-control">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Interactive Manual Control</a><a class="headerlink" href="#interactive-manual-control" title="Link to this heading"></a></h3>
+<p>Enter manual control mode for real-time robot manipulation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enter interactive mode with GUI sliders</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">manual_control</span><span class="p">()</span>
+
+<span class="c1"># This opens PyBullet GUI with:</span>
+<span class="c1"># - Joint sliders for each degree of freedom</span>
+<span class="c1"># - Gravity control (-20 to 20 m/s²)</span>
+<span class="c1"># - Time step adjustment (0.001 to 0.1 s)</span>
+<span class="c1"># - Reset button to return to home position</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="module-api-reference">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Module API Reference</a><a class="headerlink" href="#module-api-reference" title="Link to this heading"></a></h2>
+<section id="simulation-class">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Simulation Class</a><a class="headerlink" href="#simulation-class" title="Link to this heading"></a></h3>
+<section id="constructor-parameters">
+<h4><a class="toc-backref" href="#id10" role="doc-backlink">Constructor Parameters</a><a class="headerlink" href="#constructor-parameters" title="Link to this heading"></a></h4>
+<dl class="py method">
+<dt class="sig sig-object py" id="init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">urdf_file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joint_limits</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">torque_limits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">real_time_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">physics_client</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize the simulation environment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>urdf_file_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Path to the robot’s URDF file</p></li>
+<li><p><strong>joint_limits</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a>) – List of (min, max) tuples for each joint in radians</p></li>
+<li><p><strong>torque_limits</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a>) – Optional list of (min, max) torques in N⋅m. If None, uses unlimited torques</p></li>
+<li><p><strong>time_step</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Physics simulation time step in seconds (default: 0.01)</p></li>
+<li><p><strong>real_time_factor</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Playback speed multiplier (1.0 = real-time, 0.5 = half-speed)</p></li>
+<li><p><strong>physics_client</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Existing PyBullet client ID, or None to create new GUI client</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#FileNotFoundError" title="(in Python v3.13)"><strong>FileNotFoundError</strong></a> – If URDF file doesn’t exist</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.13)"><strong>ValueError</strong></a> – If joint_limits and URDF DOF don’t match</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="core-simulation-methods">
+<h4><a class="toc-backref" href="#id11" role="doc-backlink">Core Simulation Methods</a><a class="headerlink" href="#core-simulation-methods" title="Link to this heading"></a></h4>
+<p><strong>Trajectory Execution</strong></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="run_trajectory">
+<span class="sig-name descname"><span class="pre">run_trajectory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">joint_trajectory</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">np.ndarray</span></span></span><a class="headerlink" href="#run_trajectory" title="Link to this definition"></a></dt>
+<dd><p>Execute a sequence of joint configurations with physics simulation and visualization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>joint_trajectory</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a>) – List of joint angle arrays, each matching robot DOF</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Final end-effector position [x, y, z]</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example: Linear interpolation between two poses</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">end</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="n">trajectory</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="n">i</span> <span class="o">/</span> <span class="mf">99.0</span>
+    <span class="n">pose</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+    <span class="n">trajectory</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pose</span><span class="p">)</span>
+
+<span class="n">final_pos</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">run_trajectory</span><span class="p">(</span><span class="n">trajectory</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<p><strong>Controller Integration</strong></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="run_controller">
+<span class="sig-name descname"><span class="pre">run_controller</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desired_positions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desired_velocities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desired_accelerations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ftip</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Kp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ki</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Kd</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">np.ndarray</span></span></span><a class="headerlink" href="#run_controller" title="Link to this definition"></a></dt>
+<dd><p>Execute closed-loop control with real-time feedback and visualization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>controller</strong> (<em>ManipulatorController</em>) – Controller instance from ManipulaPy.control</p></li>
+<li><p><strong>desired_positions</strong> (<em>np.ndarray</em>) – Desired joint positions (N_steps × DOF)</p></li>
+<li><p><strong>desired_velocities</strong> (<em>np.ndarray</em>) – Desired joint velocities (N_steps × DOF)</p></li>
+<li><p><strong>desired_accelerations</strong> (<em>np.ndarray</em>) – Desired joint accelerations (N_steps × DOF)</p></li>
+<li><p><strong>g</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a>) – Gravity vector [gx, gy, gz] in m/s²</p></li>
+<li><p><strong>Ftip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a>) – External force/torque at end-effector [fx, fy, fz, τx, τy, τz]</p></li>
+<li><p><strong>Kp</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a>) – Proportional gains for each joint</p></li>
+<li><p><strong>Ki</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a>) – Integral gains for each joint</p></li>
+<li><p><strong>Kd</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a>) – Derivative gains for each joint</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Final end-effector position</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><strong>Manual Control and Interaction</strong></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="manual_control">
+<span class="sig-name descname"><span class="pre">manual_control</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#manual_control" title="Link to this definition"></a></dt>
+<dd><p>Enter interactive manual control mode with GUI sliders.</p>
+<p>Creates real-time sliders for:
+- Each robot joint (within specified limits)
+- Gravity magnitude and direction
+- Physics time step
+- Reset button for returning to home position</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyboardInterrupt" title="(in Python v3.13)"><strong>KeyboardInterrupt</strong></a> – Exit manual mode with Ctrl+C</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="initialization-and-setup-methods">
+<h4><a class="toc-backref" href="#id12" role="doc-backlink">Initialization and Setup Methods</a><a class="headerlink" href="#initialization-and-setup-methods" title="Link to this heading"></a></h4>
+<dl class="py method">
+<dt class="sig sig-object py" id="initialize_robot">
+<span class="sig-name descname"><span class="pre">initialize_robot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#initialize_robot" title="Link to this definition"></a></dt>
+<dd><p>Process URDF file and create robot dynamics model.</p>
+<p>This method:
+- Loads and parses the URDF file
+- Extracts kinematic and dynamic parameters
+- Creates SerialManipulator and ManipulatorDynamics instances
+- Identifies non-fixed joints for control</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="initialize_planner_and_controller">
+<span class="sig-name descname"><span class="pre">initialize_planner_and_controller</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#initialize_planner_and_controller" title="Link to this definition"></a></dt>
+<dd><p>Initialize trajectory planning and control modules.</p>
+<p>Creates:
+- TrajectoryPlanning instance for path generation
+- ManipulatorController for closed-loop control
+- Collision checking and potential field modules</p>
+</dd></dl>
+
+</section>
+<section id="state-management-and-monitoring">
+<h4><a class="toc-backref" href="#id13" role="doc-backlink">State Management and Monitoring</a><a class="headerlink" href="#state-management-and-monitoring" title="Link to this heading"></a></h4>
+<dl class="py method">
+<dt class="sig sig-object py" id="get_joint_positions">
+<span class="sig-name descname"><span class="pre">get_joint_positions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">np.ndarray</span></span></span><a class="headerlink" href="#get_joint_positions" title="Link to this definition"></a></dt>
+<dd><p>Get current joint positions from simulation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Joint angles in radians</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="set_joint_positions">
+<span class="sig-name descname"><span class="pre">set_joint_positions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">joint_positions</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#set_joint_positions" title="Link to this definition"></a></dt>
+<dd><p>Set target joint positions for position control.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>joint_positions</strong> (<em>array_like</em>) – Target angles in radians</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="check_collisions">
+<span class="sig-name descname"><span class="pre">check_collisions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#check_collisions" title="Link to this definition"></a></dt>
+<dd><p>Check for self-collisions and log contact points.</p>
+<p>Queries PyBullet contact detection and logs warnings for any detected collisions
+between robot links.</p>
+</dd></dl>
+
+</section>
+<section id="data-logging-and-analysis">
+<h4><a class="toc-backref" href="#id14" role="doc-backlink">Data Logging and Analysis</a><a class="headerlink" href="#data-logging-and-analysis" title="Link to this heading"></a></h4>
+<dl class="py method">
+<dt class="sig sig-object py" id="save_joint_states">
+<span class="sig-name descname"><span class="pre">save_joint_states</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'joint_states.csv'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#save_joint_states" title="Link to this definition"></a></dt>
+<dd><p>Save current joint states to CSV file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Output CSV filename</p>
+</dd>
+</dl>
+<p>Creates CSV with columns: Position, Velocity for each joint.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plot_trajectory_in_scene">
+<span class="sig-name descname"><span class="pre">plot_trajectory_in_scene</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">joint_trajectory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_effector_trajectory</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plot_trajectory_in_scene" title="Link to this definition"></a></dt>
+<dd><p>Create 3D visualization of end-effector trajectory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>joint_trajectory</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a>) – Joint angle trajectory</p></li>
+<li><p><strong>end_effector_trajectory</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a>) – End-effector position trajectory</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+</section>
+<section id="advanced-examples">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">Advanced Examples</a><a class="headerlink" href="#advanced-examples" title="Link to this heading"></a></h2>
+<section id="closed-loop-control-simulation">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">Closed-Loop Control Simulation</a><a class="headerlink" href="#closed-loop-control-simulation" title="Link to this heading"></a></h3>
+<p>Demonstrate advanced controller integration with GPU acceleration:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ManipulaPy.sim</span> <span class="kn">import</span> <span class="n">Simulation</span>
+<span class="kn">from</span> <span class="nn">ManipulaPy.control</span> <span class="kn">import</span> <span class="n">ManipulatorController</span>
+<span class="kn">from</span> <span class="nn">ManipulaPy.path_planning</span> <span class="kn">import</span> <span class="n">TrajectoryPlanning</span>
+<span class="kn">import</span> <span class="nn">cupy</span> <span class="k">as</span> <span class="nn">cp</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Setup simulation</span>
+<span class="n">sim</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">(</span><span class="n">urdf_file_path</span><span class="o">=</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">,</span>
+                <span class="n">joint_limits</span><span class="o">=</span><span class="p">[(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)]</span><span class="o">*</span><span class="mi">6</span><span class="p">,</span>
+                <span class="n">torque_limits</span><span class="o">=</span><span class="p">[(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)]</span><span class="o">*</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">initialize_robot</span><span class="p">()</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">initialize_planner_and_controller</span><span class="p">()</span>
+
+<span class="c1"># Generate reference trajectory</span>
+<span class="n">planner</span> <span class="o">=</span> <span class="n">TrajectoryPlanning</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;robot.urdf&quot;</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">dynamics</span><span class="p">,</span>
+                            <span class="n">sim</span><span class="o">.</span><span class="n">joint_limits</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">torque_limits</span><span class="p">)</span>
+
+<span class="n">traj_data</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span>
+    <span class="n">thetastart</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span>
+    <span class="n">thetaend</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
+    <span class="n">Tf</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span>  <span class="c1"># 5 second trajectory</span>
+    <span class="n">N</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>   <span class="c1"># 500 waypoints</span>
+    <span class="n">method</span><span class="o">=</span><span class="mi">5</span> <span class="c1"># Quintic time scaling</span>
+<span class="p">)</span>
+
+<span class="c1"># Controller parameters</span>
+<span class="n">controller</span> <span class="o">=</span> <span class="n">ManipulatorController</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">dynamics</span><span class="p">)</span>
+<span class="n">Kp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">50</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>  <span class="c1"># Position gains</span>
+<span class="n">Ki</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">])</span>  <span class="c1"># Integral gains</span>
+<span class="n">Kd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>     <span class="c1"># Derivative gains</span>
+
+<span class="c1"># Execute closed-loop control</span>
+<span class="n">final_pos</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">run_controller</span><span class="p">(</span>
+    <span class="n">controller</span><span class="o">=</span><span class="n">controller</span><span class="p">,</span>
+    <span class="n">desired_positions</span><span class="o">=</span><span class="n">traj_data</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">],</span>
+    <span class="n">desired_velocities</span><span class="o">=</span><span class="n">traj_data</span><span class="p">[</span><span class="s2">&quot;velocities&quot;</span><span class="p">],</span>
+    <span class="n">desired_accelerations</span><span class="o">=</span><span class="n">traj_data</span><span class="p">[</span><span class="s2">&quot;accelerations&quot;</span><span class="p">],</span>
+    <span class="n">g</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">],</span>
+    <span class="n">Ftip</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="n">Kp</span><span class="o">=</span><span class="n">Kp</span><span class="p">,</span> <span class="n">Ki</span><span class="o">=</span><span class="n">Ki</span><span class="p">,</span> <span class="n">Kd</span><span class="o">=</span><span class="n">Kd</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="multi-phase-simulation-workflow">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">Multi-Phase Simulation Workflow</a><a class="headerlink" href="#multi-phase-simulation-workflow" title="Link to this heading"></a></h3>
+<p>Combine trajectory execution, manual control, and data logging:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="c1"># Phase 1: Automated trajectory execution</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Phase 1: Running automated trajectory...&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create complex multi-segment trajectory</span>
+<span class="n">segments</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">waypoints</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>           <span class="c1"># Home</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="c1"># Intermediate</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span> <span class="c1"># Target</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">waypoints</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">segment</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="n">j</span> <span class="o">/</span> <span class="mf">49.0</span>
+        <span class="n">pose</span> <span class="o">=</span> <span class="n">waypoints</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="p">(</span><span class="n">waypoints</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">waypoints</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">segment</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pose</span><span class="p">)</span>
+    <span class="n">segments</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">segment</span><span class="p">)</span>
+
+<span class="n">sim</span><span class="o">.</span><span class="n">run_trajectory</span><span class="p">(</span><span class="n">segments</span><span class="p">)</span>
+
+<span class="c1"># Phase 2: Manual inspection and adjustment</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Phase 2: Manual control mode...&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Use GUI sliders to inspect robot configuration&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Press Reset button when done&quot;</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">manual_control</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Manual control ended&quot;</span><span class="p">)</span>
+
+<span class="c1"># Phase 3: Data logging and analysis</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Phase 3: Saving simulation data...&quot;</span><span class="p">)</span>
+
+<span class="c1"># Save joint states</span>
+<span class="n">timestamp</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">save_joint_states</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;joint_states_</span><span class="si">{</span><span class="n">timestamp</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Additional trajectory analysis</span>
+<span class="n">ee_positions</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">joint_config</span> <span class="ow">in</span> <span class="n">segments</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:]:</span>  <span class="c1"># Last 10 poses</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">set_joint_positions</span><span class="p">(</span><span class="n">joint_config</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">ee_pos</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">get_joint_positions</span><span class="p">()</span>  <span class="c1"># Current state</span>
+    <span class="n">ee_positions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ee_pos</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Trajectory analysis complete. Final EE positions saved.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="gpu-accelerated-batch-simulation">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">GPU-Accelerated Batch Simulation</a><a class="headerlink" href="#gpu-accelerated-batch-simulation" title="Link to this heading"></a></h3>
+<p>Leverage CuPy for high-performance batch processing:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cupy</span> <span class="k">as</span> <span class="nn">cp</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># Generate large batch of test trajectories</span>
+<span class="n">n_trajectories</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">trajectory_length</span> <span class="o">=</span> <span class="mi">200</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generating </span><span class="si">{</span><span class="n">n_trajectories</span><span class="si">}</span><span class="s2"> test trajectories...&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create random but smooth trajectories</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">trajectories</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_trajectories</span><span class="p">):</span>
+    <span class="c1"># Random waypoints</span>
+    <span class="n">waypoints</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>  <span class="c1"># 5 waypoints, 6 DOF</span>
+
+    <span class="c1"># Smooth interpolation</span>
+    <span class="n">trajectory</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>  <span class="c1"># 4 segments</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">trajectory_length</span> <span class="o">//</span> <span class="mi">4</span><span class="p">):</span>
+            <span class="n">alpha</span> <span class="o">=</span> <span class="n">k</span> <span class="o">/</span> <span class="p">(</span><span class="n">trajectory_length</span> <span class="o">//</span> <span class="mi">4</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">pose</span> <span class="o">=</span> <span class="n">waypoints</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="p">(</span><span class="n">waypoints</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">waypoints</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+            <span class="n">trajectory</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pose</span><span class="p">)</span>
+
+    <span class="n">trajectories</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trajectory</span><span class="p">)</span>
+
+<span class="c1"># Batch execution with timing</span>
+<span class="n">execution_times</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">final_positions</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Executing batch simulation...&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">traj</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">trajectories</span><span class="p">):</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+    <span class="c1"># Clip to joint limits</span>
+    <span class="n">traj_clipped</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">pose</span> <span class="ow">in</span> <span class="n">traj</span><span class="p">:</span>
+        <span class="n">clipped</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">pose</span><span class="p">,</span>
+                        <span class="p">[</span><span class="n">limits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">limits</span> <span class="ow">in</span> <span class="n">sim</span><span class="o">.</span><span class="n">joint_limits</span><span class="p">],</span>
+                        <span class="p">[</span><span class="n">limits</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">limits</span> <span class="ow">in</span> <span class="n">sim</span><span class="o">.</span><span class="n">joint_limits</span><span class="p">])</span>
+        <span class="n">traj_clipped</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clipped</span><span class="p">)</span>
+
+    <span class="n">final_pos</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">run_trajectory</span><span class="p">(</span><span class="n">traj_clipped</span><span class="p">)</span>
+    <span class="n">execution_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+
+    <span class="n">execution_times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">execution_time</span><span class="p">)</span>
+    <span class="n">final_positions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">final_pos</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">20</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Completed </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">n_trajectories</span><span class="si">}</span><span class="s2"> trajectories&quot;</span><span class="p">)</span>
+
+<span class="c1"># Performance analysis</span>
+<span class="n">avg_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">execution_times</span><span class="p">)</span>
+<span class="n">std_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">execution_times</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Batch Simulation Results:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average execution time: </span><span class="si">{</span><span class="n">avg_time</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">std_time</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total simulation time: </span><span class="si">{</span><span class="nb">sum</span><span class="p">(</span><span class="n">execution_times</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Trajectories per minute: </span><span class="si">{</span><span class="mi">60</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">n_trajectories</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="n">execution_times</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="advanced-configuration">
+<h2><a class="toc-backref" href="#id19" role="doc-backlink">Advanced Configuration</a><a class="headerlink" href="#advanced-configuration" title="Link to this heading"></a></h2>
+<section id="physics-parameter-tuning">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">Physics Parameter Tuning</a><a class="headerlink" href="#physics-parameter-tuning" title="Link to this heading"></a></h3>
+<p>Fine-tune simulation physics for accuracy vs. performance:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># High-precision configuration</span>
+<span class="n">sim_precise</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">(</span>
+    <span class="n">urdf_file_path</span><span class="o">=</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">,</span>
+    <span class="n">joint_limits</span><span class="o">=</span><span class="n">joint_limits</span><span class="p">,</span>
+    <span class="n">time_step</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>      <span class="c1"># 1000 Hz for high precision</span>
+    <span class="n">real_time_factor</span><span class="o">=</span><span class="mf">0.1</span>  <span class="c1"># Slow motion for detailed analysis</span>
+<span class="p">)</span>
+
+<span class="c1"># Real-time configuration</span>
+<span class="n">sim_realtime</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">(</span>
+    <span class="n">urdf_file_path</span><span class="o">=</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">,</span>
+    <span class="n">joint_limits</span><span class="o">=</span><span class="n">joint_limits</span><span class="p">,</span>
+    <span class="n">time_step</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>       <span class="c1"># 50 Hz for real-time performance</span>
+    <span class="n">real_time_factor</span><span class="o">=</span><span class="mf">1.0</span>  <span class="c1"># Real-time execution</span>
+<span class="p">)</span>
+
+<span class="c1"># After initialization, adjust physics parameters</span>
+<span class="kn">import</span> <span class="nn">pybullet</span> <span class="k">as</span> <span class="nn">p</span>
+
+<span class="c1"># Set solver iterations for accuracy</span>
+<span class="n">p</span><span class="o">.</span><span class="n">setPhysicsEngineParameter</span><span class="p">(</span><span class="n">numSolverIterations</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Enable additional collision margin</span>
+<span class="n">p</span><span class="o">.</span><span class="n">setPhysicsEngineParameter</span><span class="p">(</span><span class="n">contactBreakingThreshold</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+
+<span class="c1"># Configure constraint solving</span>
+<span class="n">p</span><span class="o">.</span><span class="n">setPhysicsEngineParameter</span><span class="p">(</span><span class="n">constraintSolverType</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">CONSTRAINT_SOLVER_LCP_PGS</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="custom-visualization-and-debugging">
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">Custom Visualization and Debugging</a><a class="headerlink" href="#custom-visualization-and-debugging" title="Link to this heading"></a></h3>
+<p>Add custom visual elements and debugging information:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pybullet</span> <span class="k">as</span> <span class="nn">p</span>
+
+<span class="k">def</span> <span class="nf">add_coordinate_frame</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">orientation</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add coordinate frame visualization.&quot;&quot;&quot;</span>
+    <span class="c1"># X-axis (red)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">addUserDebugLine</span><span class="p">(</span><span class="n">position</span><span class="p">,</span>
+                      <span class="p">[</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">size</span><span class="p">,</span> <span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">position</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span>
+                      <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">lineWidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="c1"># Y-axis (green)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">addUserDebugLine</span><span class="p">(</span><span class="n">position</span><span class="p">,</span>
+                      <span class="p">[</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">size</span><span class="p">,</span> <span class="n">position</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span>
+                      <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">lineWidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="c1"># Z-axis (blue)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">addUserDebugLine</span><span class="p">(</span><span class="n">position</span><span class="p">,</span>
+                      <span class="p">[</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">position</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="n">size</span><span class="p">],</span>
+                      <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">lineWidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">add_workspace_visualization</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Visualize robot workspace boundary.&quot;&quot;&quot;</span>
+    <span class="n">workspace_points</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Sample random joint configurations</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+        <span class="n">joints</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">limit</span> <span class="ow">in</span> <span class="n">sim</span><span class="o">.</span><span class="n">joint_limits</span><span class="p">:</span>
+            <span class="n">joints</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">limit</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">limit</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+        <span class="c1"># Get end-effector position</span>
+        <span class="n">T</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">joints</span><span class="p">)</span>
+        <span class="n">workspace_points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">T</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+
+    <span class="c1"># Draw workspace boundary points</span>
+    <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">workspace_points</span><span class="p">[::</span><span class="mi">10</span><span class="p">]:</span>  <span class="c1"># Subsample for performance</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">addUserDebugLine</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">lineWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Usage in simulation</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">initialize_robot</span><span class="p">()</span>
+
+<span class="c1"># Add visualization elements</span>
+<span class="n">add_coordinate_frame</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mf">0.2</span><span class="p">)</span>  <span class="c1"># World frame</span>
+<span class="n">add_workspace_visualization</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="performance-optimization">
+<h2><a class="toc-backref" href="#id22" role="doc-backlink">Performance Optimization</a><a class="headerlink" href="#performance-optimization" title="Link to this heading"></a></h2>
+<section id="memory-management">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">Memory Management</a><a class="headerlink" href="#memory-management" title="Link to this heading"></a></h3>
+<p>Optimize memory usage for long-running simulations:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gc</span>
+<span class="kn">import</span> <span class="nn">psutil</span>
+<span class="kn">import</span> <span class="nn">cupy</span> <span class="k">as</span> <span class="nn">cp</span>
+
+<span class="k">def</span> <span class="nf">monitor_memory</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Monitor CPU and GPU memory usage.&quot;&quot;&quot;</span>
+    <span class="c1"># CPU memory</span>
+    <span class="n">cpu_memory</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">virtual_memory</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CPU Memory: </span><span class="si">{</span><span class="n">cpu_memory</span><span class="o">.</span><span class="n">percent</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">% used&quot;</span><span class="p">)</span>
+
+    <span class="c1"># GPU memory (if available)</span>
+    <span class="k">if</span> <span class="n">cp</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+        <span class="n">mempool</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">get_default_memory_pool</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GPU Memory: </span><span class="si">{</span><span class="n">mempool</span><span class="o">.</span><span class="n">used_bytes</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1024</span><span class="o">**</span><span class="mi">3</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> GB used&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">cleanup_simulation</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Clean up memory after simulation.&quot;&quot;&quot;</span>
+    <span class="c1"># Force garbage collection</span>
+    <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+
+    <span class="c1"># Clear GPU memory pool</span>
+    <span class="k">if</span> <span class="n">cp</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+        <span class="n">mempool</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">get_default_memory_pool</span><span class="p">()</span>
+        <span class="n">mempool</span><span class="o">.</span><span class="n">free_all_blocks</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Memory cleanup completed&quot;</span><span class="p">)</span>
+
+<span class="c1"># Example usage in long simulation loop</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="c1"># Run trajectory</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">run_trajectory</span><span class="p">(</span><span class="n">trajectory</span><span class="p">)</span>
+
+    <span class="c1"># Periodic cleanup</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">monitor_memory</span><span class="p">()</span>
+        <span class="n">cleanup_simulation</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="parallel-simulation-setup">
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">Parallel Simulation Setup</a><a class="headerlink" href="#parallel-simulation-setup" title="Link to this heading"></a></h3>
+<p>Configure multiple simulation instances for parallel processing:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">multiprocessing</span> <span class="k">as</span> <span class="nn">mp</span>
+<span class="kn">import</span> <span class="nn">pybullet</span> <span class="k">as</span> <span class="nn">p</span>
+
+<span class="k">def</span> <span class="nf">run_simulation_worker</span><span class="p">(</span><span class="n">worker_id</span><span class="p">,</span> <span class="n">urdf_path</span><span class="p">,</span> <span class="n">joint_limits</span><span class="p">,</span> <span class="n">trajectory_queue</span><span class="p">,</span> <span class="n">result_queue</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Worker function for parallel simulation.&quot;&quot;&quot;</span>
+    <span class="c1"># Create simulation in DIRECT mode (no GUI)</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">DIRECT</span><span class="p">)</span>
+
+    <span class="n">sim</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">(</span><span class="n">urdf_file_path</span><span class="o">=</span><span class="n">urdf_path</span><span class="p">,</span>
+                    <span class="n">joint_limits</span><span class="o">=</span><span class="n">joint_limits</span><span class="p">,</span>
+                    <span class="n">physics_client</span><span class="o">=</span><span class="n">client</span><span class="p">)</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">initialize_robot</span><span class="p">()</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">trajectory</span> <span class="o">=</span> <span class="n">trajectory_queue</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">trajectory</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># Shutdown signal</span>
+                <span class="k">break</span>
+
+            <span class="n">final_pos</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">run_trajectory</span><span class="p">(</span><span class="n">trajectory</span><span class="p">)</span>
+            <span class="n">result_queue</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="n">worker_id</span><span class="p">,</span> <span class="n">final_pos</span><span class="p">))</span>
+
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">break</span>
+
+    <span class="n">p</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+
+<span class="c1"># Usage example</span>
+<span class="k">def</span> <span class="nf">parallel_simulation_example</span><span class="p">():</span>
+    <span class="n">n_workers</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="n">trajectory_queue</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+    <span class="n">result_queue</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+
+    <span class="c1"># Start worker processes</span>
+    <span class="n">workers</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_workers</span><span class="p">):</span>
+        <span class="n">worker</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">run_simulation_worker</span><span class="p">,</span>
+                          <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="s2">&quot;robot.urdf&quot;</span><span class="p">,</span> <span class="n">joint_limits</span><span class="p">,</span>
+                                <span class="n">trajectory_queue</span><span class="p">,</span> <span class="n">result_queue</span><span class="p">))</span>
+        <span class="n">worker</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="n">workers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">worker</span><span class="p">)</span>
+
+    <span class="c1"># Submit trajectories</span>
+    <span class="k">for</span> <span class="n">traj</span> <span class="ow">in</span> <span class="n">trajectories</span><span class="p">:</span>
+        <span class="n">trajectory_queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">traj</span><span class="p">)</span>
+
+    <span class="c1"># Collect results</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">trajectories</span><span class="p">:</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result_queue</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+
+    <span class="c1"># Shutdown workers</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">workers</span><span class="p">:</span>
+        <span class="n">trajectory_queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">worker</span> <span class="ow">in</span> <span class="n">workers</span><span class="p">:</span>
+        <span class="n">worker</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">results</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="troubleshooting-guide">
+<h2><a class="toc-backref" href="#id25" role="doc-backlink">Troubleshooting Guide</a><a class="headerlink" href="#troubleshooting-guide" title="Link to this heading"></a></h2>
+<section id="common-issues-and-solutions">
+<h3><a class="toc-backref" href="#id26" role="doc-backlink">Common Issues and Solutions</a><a class="headerlink" href="#common-issues-and-solutions" title="Link to this heading"></a></h3>
+<p><strong>1. Black screen or no GUI</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check PyBullet GUI availability</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">GUI</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;GUI mode available&quot;</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;GUI mode not available, using DIRECT mode&quot;</span><span class="p">)</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">DIRECT</span><span class="p">)</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Solutions:</strong>
+- Ensure X11 forwarding for remote systems: <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">-X</span> <span class="pre">username&#64;hostname</span></code>
+- Install GUI libraries: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">python3-tk</span></code>
+- Use DIRECT mode for headless servers</p>
+<p><strong>2. Joint limit violations</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">validate_trajectory</span><span class="p">(</span><span class="n">trajectory</span><span class="p">,</span> <span class="n">joint_limits</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate trajectory against joint limits.&quot;&quot;&quot;</span>
+    <span class="n">violations</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">pose</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">trajectory</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="p">(</span><span class="n">min_val</span><span class="p">,</span> <span class="n">max_val</span><span class="p">))</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">pose</span><span class="p">,</span> <span class="n">joint_limits</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">angle</span> <span class="o">&lt;</span> <span class="n">min_val</span> <span class="ow">or</span> <span class="n">angle</span> <span class="o">&gt;</span> <span class="n">max_val</span><span class="p">:</span>
+                <span class="n">violations</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">min_val</span><span class="p">,</span> <span class="n">max_val</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">violations</span>
+
+<span class="c1"># Usage</span>
+<span class="n">violations</span> <span class="o">=</span> <span class="n">validate_trajectory</span><span class="p">(</span><span class="n">trajectory</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">joint_limits</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">violations</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">violations</span><span class="p">)</span><span class="si">}</span><span class="s2"> joint limit violations&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">step</span><span class="p">,</span> <span class="n">joint</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">min_val</span><span class="p">,</span> <span class="n">max_val</span> <span class="ow">in</span> <span class="n">violations</span><span class="p">[:</span><span class="mi">5</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Step </span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="s2">, Joint </span><span class="si">{</span><span class="n">joint</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">angle</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> not in [</span><span class="si">{</span><span class="n">min_val</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">max_val</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>3. Simulation instability</strong></p>
+<p>Reduce time step and increase solver iterations:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># More stable configuration</span>
+<span class="n">sim</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">(</span><span class="n">urdf_file_path</span><span class="o">=</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">,</span>
+                <span class="n">joint_limits</span><span class="o">=</span><span class="n">joint_limits</span><span class="p">,</span>
+                <span class="n">time_step</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>  <span class="c1"># Smaller time step</span>
+
+<span class="c1"># Increase solver accuracy</span>
+<span class="n">p</span><span class="o">.</span><span class="n">setPhysicsEngineParameter</span><span class="p">(</span><span class="n">numSolverIterations</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">setPhysicsEngineParameter</span><span class="p">(</span><span class="n">useSplitImpulse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>4. Performance issues</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Profile simulation performance</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">cProfile</span>
+
+<span class="k">def</span> <span class="nf">profile_trajectory</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">trajectory</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Profile trajectory execution.&quot;&quot;&quot;</span>
+    <span class="n">profiler</span> <span class="o">=</span> <span class="n">cProfile</span><span class="o">.</span><span class="n">Profile</span><span class="p">()</span>
+
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">profiler</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
+
+    <span class="n">sim</span><span class="o">.</span><span class="n">run_trajectory</span><span class="p">(</span><span class="n">trajectory</span><span class="p">)</span>
+
+    <span class="n">profiler</span><span class="o">.</span><span class="n">disable</span><span class="p">()</span>
+    <span class="n">execution_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Execution time: </span><span class="si">{</span><span class="n">execution_time</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;FPS: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">trajectory</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">execution_time</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Print top time consumers</span>
+    <span class="n">profiler</span><span class="o">.</span><span class="n">print_stats</span><span class="p">(</span><span class="n">sort</span><span class="o">=</span><span class="s1">&#39;cumtime&#39;</span><span class="p">,</span> <span class="n">lines</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>5. CUDA/CuPy errors</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Graceful fallback to CPU</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">cupy</span> <span class="k">as</span> <span class="nn">cp</span>
+    <span class="n">device</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">Device</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using GPU: </span><span class="si">{</span><span class="n">device</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CuPy not available, using NumPy&quot;</span><span class="p">)</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">cp</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CUDA error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">, falling back to NumPy&quot;</span><span class="p">)</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">cp</span>
+</pre></div>
+</div>
+</section>
+<section id="debugging-tools">
+<h3><a class="toc-backref" href="#id27" role="doc-backlink">Debugging Tools</a><a class="headerlink" href="#debugging-tools" title="Link to this heading"></a></h3>
+<p>Enable detailed logging and visualization:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="c1"># Enable debug logging</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
+                   <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(name)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add trajectory debugging</span>
+<span class="k">def</span> <span class="nf">debug_trajectory</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">trajectory</span><span class="p">,</span> <span class="n">step_interval</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Debug trajectory execution with detailed logging.&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">pose</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">trajectory</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="n">step_interval</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># Log joint positions</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Step </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: joints = </span><span class="si">{</span><span class="n">pose</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Check joint limits</span>
+            <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="p">(</span><span class="n">min_val</span><span class="p">,</span> <span class="n">max_val</span><span class="p">))</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">pose</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">joint_limits</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="n">angle</span> <span class="o">&lt;</span> <span class="n">min_val</span> <span class="ow">or</span> <span class="n">angle</span> <span class="o">&gt;</span> <span class="n">max_val</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  WARNING: Joint </span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2"> out of limits: </span><span class="si">{</span><span class="n">angle</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Visualize current pose</span>
+            <span class="n">sim</span><span class="o">.</span><span class="n">set_joint_positions</span><span class="p">(</span><span class="n">pose</span><span class="p">)</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="performance-benchmarks">
+<h3><a class="toc-backref" href="#id28" role="doc-backlink">Performance Benchmarks</a><a class="headerlink" href="#performance-benchmarks" title="Link to this heading"></a></h3>
+<p>Typical performance metrics for reference:</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Performance Benchmarks</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 30.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Configuration</p></th>
+<th class="head"><p>FPS (GUI)</p></th>
+<th class="head"><p>FPS (Headless)</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Default (dt=0.01)</p></td>
+<td><p>60-100</p></td>
+<td><p>200-500</p></td>
+<td><p>Standard real-time</p></td>
+</tr>
+<tr class="row-odd"><td><p>High precision (dt=0.001)</p></td>
+<td><p>10-20</p></td>
+<td><p>50-100</p></td>
+<td><p>Detailed physics</p></td>
+</tr>
+<tr class="row-even"><td><p>Fast preview (dt=0.02)</p></td>
+<td><p>100-200</p></td>
+<td><p>500-1000</p></td>
+<td><p>Quick visualization</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPU accelerated</p></td>
+<td><p>+20-50%</p></td>
+<td><p>+30-70%</p></td>
+<td><p>With CuPy controller</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="best-practices">
+<h2><a class="toc-backref" href="#id29" role="doc-backlink">Best Practices</a><a class="headerlink" href="#best-practices" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Always validate trajectories</strong> before execution</p></li>
+<li><p><strong>Use appropriate time steps</strong> for your application</p></li>
+<li><p><strong>Monitor memory usage</strong> in long simulations</p></li>
+<li><p><strong>Enable collision checking</strong> for safety-critical applications</p></li>
+<li><p><strong>Save simulation data</strong> for post-analysis</p></li>
+<li><p><strong>Use GPU acceleration</strong> for compute-intensive controllers</p></li>
+<li><p><strong>Profile performance</strong> to identify bottlenecks</p></li>
+</ol>
+</section>
+<section id="integration-with-other-modules">
+<h2><a class="toc-backref" href="#id30" role="doc-backlink">Integration with Other Modules</a><a class="headerlink" href="#integration-with-other-modules" title="Link to this heading"></a></h2>
+<p>The Simulation module integrates seamlessly with other ManipulaPy components:</p>
+<ul class="simple">
+<li><p><strong>Kinematics</strong>: Forward/inverse kinematics for trajectory generation</p></li>
+<li><p><strong>Dynamics</strong>: Physics-based simulation and control</p></li>
+<li><p><strong>Path Planning</strong>: Trajectory optimization and collision avoidance</p></li>
+<li><p><strong>Control</strong>: Closed-loop feedback control implementation</p></li>
+<li><p><strong>Vision</strong>: Sensor simulation and perception testing</p></li>
+</ul>
+</section>
+<section id="see-also">
+<h2><a class="toc-backref" href="#id31" role="doc-backlink">See Also</a><a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="Control.html"><span class="doc">Control Module User Guide</span></a> — Controller Implementation Guide</p></li>
+<li><p><a class="reference internal" href="Trajectory_Planning.html"><span class="doc">Trajectory Planning User Guide</span></a> — Path Planning and Optimization</p></li>
+<li><p><a class="reference internal" href="Dynamics.html"><span class="doc">Dynamics User Guide</span></a> — Robot Dynamics and Physics</p></li>
+<li><p><a class="reference internal" href="../api/simulation.html"><span class="doc">Simulation API Reference</span></a> — Complete API Reference</p></li>
+<li><p><a class="reference external" href="https://pybullet.org/">PyBullet Documentation</a> — Physics Engine Reference</p></li>
+<li><p><a class="reference external" href="https://cupy.dev/">CuPy Documentation</a> — GPU Acceleration Reference</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Trajectory_Planning.html" class="btn btn-neutral float-left" title="Trajectory Planning User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Singularity_Analysis.html" class="btn btn-neutral float-right" title="Singularity Analysis User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Mohamed Aboelnar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

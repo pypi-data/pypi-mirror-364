@@ -1,0 +1,420 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Perception API Reference" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://manipulapy.readthedocs.io/api/perception.html" />
+<meta property="og:site_name" content="ManipulaPy Documentation" />
+<meta property="og:description" content="This page documents ManipulaPy.perception, the module for higher-level perception capabilities including obstacle detection, 3D point cloud generation, clustering, and environmental understanding f..." />
+<meta name="description" content="This page documents ManipulaPy.perception, the module for higher-level perception capabilities including obstacle detection, 3D point cloud generation, clustering, and environmental understanding f..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perception API Reference &mdash; ManipulaPy 1.1.0 Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=fc837d61"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=fd10adb8"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Vision API Reference" href="vision.html" />
+    <link rel="prev" title="CUDA Kernels API Reference" href="cuda_kernels.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ManipulaPy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">🚀 Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started with ManipulaPy</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🛠️ API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">🔧 API Reference Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#module-overview">📦 Module Overview</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="kinematics.html">Kinematics API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dynamics.html">Dynamics API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="path_planning.html">Path Planning API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="control.html">Control API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="urdf_processor.html">URDF Processor API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html">Simulation API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="potential_field.html">Potential Field API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda_kernels.html">CUDA Kernels API Reference</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Perception API Reference</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#quick-navigation">Quick Navigation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perception-class">Perception Class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#primary-perception-methods">Primary Perception Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stereo-vision-integration">Stereo Vision Integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#machine-learning-components">Machine Learning Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#resource-management">Resource Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#logging-infrastructure">Logging Infrastructure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dependencies-and-integration">Dependencies and Integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#error-recovery-and-robustness">Error Recovery and Robustness</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#see-also">See Also</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#external-dependencies">External Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="vision.html">Vision API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="singularity.html">Singularity API Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#how-to-use-this-reference">📖 How to Use This Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#quick-navigation">🔍 Quick Navigation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">📚 User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Kinematics.html">Kinematics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Dynamics.html">Dynamics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Control.html">Control Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Trajectory_Planning.html">Trajectory Planning User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Simulation.html">Simulation Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/URDF_Processor.html">URDF Processor User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Perception.html">Perception User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/vision.html">Vision User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Potential_Field.html">Potential Field Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Collision_Checker.html">Collision Checker Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/CUDA_Kernels.html">CUDA Kernels User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ManipulaPy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">🔧 API Reference Guide</a></li>
+      <li class="breadcrumb-item active">Perception API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/perception.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="perception-api-reference">
+<span id="api-perception"></span><h1>Perception API Reference<a class="headerlink" href="#perception-api-reference" title="Link to this heading"></a></h1>
+<p>This page documents <strong>ManipulaPy.perception</strong>, the module for higher-level perception capabilities including obstacle detection, 3D point cloud generation, clustering, and environmental understanding for robotic systems.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>For conceptual explanations, see <a class="reference internal" href="../user_guide/Perception.html"><span class="doc">Perception User Guide</span></a>.</p>
+</div>
+<p>—</p>
+<section id="quick-navigation">
+<h2>Quick Navigation<a class="headerlink" href="#quick-navigation" title="Link to this heading"></a></h2>
+<p>—</p>
+</section>
+<section id="perception-class">
+<h2>Perception Class<a class="headerlink" href="#perception-class" title="Link to this heading"></a></h2>
+<p>—</p>
+</section>
+<section id="primary-perception-methods">
+<h2>Primary Perception Methods<a class="headerlink" href="#primary-perception-methods" title="Link to this heading"></a></h2>
+<section id="obstacle-detection-pipeline">
+<h3>Obstacle Detection Pipeline<a class="headerlink" href="#obstacle-detection-pipeline" title="Link to this heading"></a></h3>
+<p>—</p>
+</section>
+</section>
+<section id="stereo-vision-integration">
+<h2>Stereo Vision Integration<a class="headerlink" href="#stereo-vision-integration" title="Link to this heading"></a></h2>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/perception.rst</span>, line 86)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Stereo</span> <span class="n">Vision</span> <span class="n">Integration</span>
+<span class="o">========================</span>
+</pre></div>
+</div>
+</aside>
+<section id="disparity-computation">
+<h3>Disparity Computation<a class="headerlink" href="#disparity-computation" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/perception.rst</span>, line 89)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Disparity</span> <span class="n">Computation</span>
+<span class="o">--------------------</span>
+</pre></div>
+</div>
+</aside>
+</section>
+<section id="point-cloud-generation">
+<h3>Point Cloud Generation<a class="headerlink" href="#point-cloud-generation" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/perception.rst</span>, line 111)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Point</span> <span class="n">Cloud</span> <span class="n">Generation</span>
+<span class="o">---------------------</span>
+</pre></div>
+</div>
+</aside>
+<p>—</p>
+</section>
+</section>
+<section id="machine-learning-components">
+<h2>Machine Learning Components<a class="headerlink" href="#machine-learning-components" title="Link to this heading"></a></h2>
+<section id="clustering-analysis">
+<h3>Clustering Analysis<a class="headerlink" href="#clustering-analysis" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/perception.rst</span>, line 138)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Clustering</span> <span class="n">Analysis</span>
+<span class="o">------------------</span>
+</pre></div>
+</div>
+</aside>
+<p>—</p>
+</section>
+</section>
+<section id="resource-management">
+<h2>Resource Management<a class="headerlink" href="#resource-management" title="Link to this heading"></a></h2>
+<section id="cleanup-methods">
+<h3>Cleanup Methods<a class="headerlink" href="#cleanup-methods" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/perception.rst</span>, line 176)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Cleanup</span> <span class="n">Methods</span>
+<span class="o">--------------</span>
+</pre></div>
+</div>
+</aside>
+<p>—</p>
+</section>
+</section>
+<section id="logging-infrastructure">
+<h2>Logging Infrastructure<a class="headerlink" href="#logging-infrastructure" title="Link to this heading"></a></h2>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/perception.rst</span>, line 201)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Logging</span> <span class="n">Infrastructure</span>
+<span class="o">=====================</span>
+</pre></div>
+</div>
+</aside>
+<section id="logger-configuration">
+<h3>Logger Configuration<a class="headerlink" href="#logger-configuration" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/perception.rst</span>, line 204)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Logger</span> <span class="n">Configuration</span>
+<span class="o">-------------------</span>
+</pre></div>
+</div>
+</aside>
+<p>—</p>
+</section>
+<section id="error-handling-hierarchy">
+<h3>Error Handling Hierarchy<a class="headerlink" href="#error-handling-hierarchy" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Vision Instance Validation</strong>: Constructor-level checking</p></li>
+<li><p><strong>Image Availability</strong>: Depth image validation with fallbacks</p></li>
+<li><p><strong>Detection Results</strong>: None-checking with empty array returns</p></li>
+<li><p><strong>Clustering Input</strong>: Empty point array handling</p></li>
+<li><p><strong>Resource Cleanup</strong>: Exception-safe cleanup operations</p></li>
+</ol>
+<p>—</p>
+</section>
+</section>
+<section id="dependencies-and-integration">
+<h2>Dependencies and Integration<a class="headerlink" href="#dependencies-and-integration" title="Link to this heading"></a></h2>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/perception.rst</span>, line 239)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Dependencies</span> <span class="ow">and</span> <span class="n">Integration</span>
+<span class="o">===========================</span>
+</pre></div>
+</div>
+</aside>
+<section id="required-dependencies">
+<h3>Required Dependencies<a class="headerlink" href="#required-dependencies" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/perception.rst</span>, line 242)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Required</span> <span class="n">Dependencies</span>
+<span class="o">--------------------</span>
+</pre></div>
+</div>
+</aside>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Module</p></th>
+<th class="head"><p>Purpose</p></th>
+<th class="head"><p>Integration Point</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sklearn.cluster.DBSCAN</span></code></p></td>
+<td><p>Point clustering</p></td>
+<td><p>cluster_obstacles() method</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">numpy</span></code></p></td>
+<td><p>Array operations</p></td>
+<td><p>All coordinate manipulations</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">logging</span></code></p></td>
+<td><p>Debug/status output</p></td>
+<td><p>Logger configuration and usage</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ManipulaPy.vision</span></code></p></td>
+<td><p>Low-level vision</p></td>
+<td><p>vision_instance dependency</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="vision-module-interface">
+<h3>Vision Module Interface<a class="headerlink" href="#vision-module-interface" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/perception.rst</span>, line 265)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Vision</span> <span class="n">Module</span> <span class="n">Interface</span>
+<span class="o">----------------------</span>
+</pre></div>
+</div>
+</aside>
+<p>Perception requires Vision instance with specific methods:</p>
+<ul class="simple">
+<li><p><strong>capture_image()</strong>: RGB/depth image acquisition</p></li>
+<li><p><strong>detect_obstacles()</strong>: YOLO-based object detection</p></li>
+<li><p><strong>stereo_enabled</strong>: Boolean stereo capability flag</p></li>
+<li><p><strong>rectify_stereo_images()</strong>: Stereo rectification</p></li>
+<li><p><strong>compute_disparity()</strong>: Disparity map computation</p></li>
+<li><p><strong>get_stereo_point_cloud()</strong>: 3D reconstruction</p></li>
+<li><p><strong>release()</strong>: Resource cleanup</p></li>
+</ul>
+<p>—</p>
+</section>
+</section>
+<section id="error-recovery-and-robustness">
+<h2>Error Recovery and Robustness<a class="headerlink" href="#error-recovery-and-robustness" title="Link to this heading"></a></h2>
+<section id="vision-failure-handling">
+<h3>Vision Failure Handling<a class="headerlink" href="#vision-failure-handling" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Missing Depth</strong>: Empty array return with warning logs</p></li>
+<li><p><strong>Detection Failures</strong>: None-result handling with error logs</p></li>
+<li><p><strong>Stereo Unavailability</strong>: Runtime exception with clear messaging</p></li>
+</ul>
+</section>
+<section id="clustering-robustness">
+<h3>Clustering Robustness<a class="headerlink" href="#clustering-robustness" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Empty Input</strong>: Graceful handling with early return</p></li>
+<li><p><strong>Insufficient Points</strong>: DBSCAN handles minimum sample requirements</p></li>
+<li><p><strong>Parameter Validation</strong>: Implicit through sklearn parameter checking</p></li>
+</ul>
+</section>
+<section id="resource-management-safety">
+<h3>Resource Management Safety<a class="headerlink" href="#resource-management-safety" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Constructor Validation</strong>: Immediate failure for invalid Vision instances</p></li>
+<li><p><strong>Cleanup Exceptions</strong>: Silent handling in destructor context</p></li>
+<li><p><strong>Multiple Cleanup Calls</strong>: Safe repeated release() invocation</p></li>
+</ul>
+<p>—</p>
+</section>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="vision.html"><span class="doc">Vision API Reference</span></a> – Low-level computer vision and camera management</p></li>
+<li><p><a class="reference internal" href="path_planning.html"><span class="doc">Path Planning API Reference</span></a> – Trajectory planning with obstacle avoidance</p></li>
+<li><p><a class="reference internal" href="potential_field.html"><span class="doc">Potential Field API Reference</span></a> – Obstacle-aware potential field methods</p></li>
+<li><p><a class="reference internal" href="control.html"><span class="doc">Control API Reference</span></a> – Control systems with environmental feedback</p></li>
+</ul>
+</section>
+<section id="external-dependencies">
+<h2>External Dependencies<a class="headerlink" href="#external-dependencies" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/clustering.html#dbscan">scikit-learn</a> – DBSCAN clustering algorithm</p></li>
+<li><p><a class="reference external" href="https://numpy.org/doc/stable/">NumPy</a> – Numerical array operations</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/logging.html">Python logging</a> – Structured logging framework</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cuda_kernels.html" class="btn btn-neutral float-left" title="CUDA Kernels API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="vision.html" class="btn btn-neutral float-right" title="Vision API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Mohamed Aboelnar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,588 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Utils Module" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://manipulapy.readthedocs.io/api/utils.html" />
+<meta property="og:site_name" content="ManipulaPy Documentation" />
+<meta property="og:description" content="Utilities Module - ManipulaPy This module contains essential utility functions for working with rigid body motions, transformations, and related operations in robotic manipulation. Functions cover ..." />
+<meta name="description" content="Utilities Module - ManipulaPy This module contains essential utility functions for working with rigid body motions, transformations, and related operations in robotic manipulation. Functions cover ..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Utils Module &mdash; ManipulaPy 1.1.0 Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=fc837d61"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=fd10adb8"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ManipulaPy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">🚀 Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started with ManipulaPy</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🛠️ API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">🔧 API Reference Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">📚 User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Kinematics.html">Kinematics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Dynamics.html">Dynamics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Control.html">Control Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Trajectory_Planning.html">Trajectory Planning User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Simulation.html">Simulation Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/URDF_Processor.html">URDF Processor User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Perception.html">Perception User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/vision.html">Vision User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Potential_Field.html">Potential Field Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Collision_Checker.html">Collision Checker Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/CUDA_Kernels.html">CUDA Kernels User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ManipulaPy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Utils Module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/utils.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-ManipulaPy.utils">
+<span id="utils-module"></span><h1>Utils Module<a class="headerlink" href="#module-ManipulaPy.utils" title="Link to this heading"></a></h1>
+<p>Utilities Module - ManipulaPy</p>
+<p>This module contains essential utility functions for working with rigid body motions,
+transformations, and related operations in robotic manipulation. Functions cover
+screw theory, matrix operations, Lie algebra computations, time scaling, and
+coordinate transformations for kinematics and dynamics calculations.</p>
+<p>The functions in this module support:
+- Extracting and manipulating screw vectors and twists
+- Computing transformation matrices from twists and joint angles
+- Matrix logarithms and exponentials for SE(3) and SO(3)
+- Converting between rotation matrices and Euler angles
+- Skew-symmetric matrix operations
+- Time scaling functions for trajectory generation</p>
+<p>Copyright (c) 2025 Mohamed Aboelnar</p>
+<p>This file is part of ManipulaPy.</p>
+<p>ManipulaPy is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.</p>
+<p>ManipulaPy is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU Affero General Public License for more details.</p>
+<p>You should have received a copy of the GNU Affero General Public License
+along with ManipulaPy. If not, see &lt;<a class="reference external" href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>&gt;.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="ManipulaPy.utils.extract_r_list">
+<span class="sig-prename descclassname"><span class="pre">ManipulaPy.utils.</span></span><span class="sig-name descname"><span class="pre">extract_r_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Slist</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ManipulaPy/utils.html#extract_r_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ManipulaPy.utils.extract_r_list" title="Link to this definition"></a></dt>
+<dd><p>Extracts the r_list from the given Slist.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Slist</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a>) – A list of S vectors representing the joint screws.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An array of r vectors.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ManipulaPy.utils.extract_omega_list">
+<span class="sig-prename descclassname"><span class="pre">ManipulaPy.utils.</span></span><span class="sig-name descname"><span class="pre">extract_omega_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Slist</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ManipulaPy/utils.html#extract_omega_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ManipulaPy.utils.extract_omega_list" title="Link to this definition"></a></dt>
+<dd><p>Extracts the first three elements from each sublist in the given list and returns them as a numpy array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Slist</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a>) – A list of sublists.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A numpy array containing the first three elements from each sublist.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ManipulaPy.utils.extract_screw_list">
+<span class="sig-prename descclassname"><span class="pre">ManipulaPy.utils.</span></span><span class="sig-name descname"><span class="pre">extract_screw_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">omega_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ManipulaPy/utils.html#extract_screw_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ManipulaPy.utils.extract_screw_list" title="Link to this definition"></a></dt>
+<dd><p>Build a 6xn screw-axis matrix from (3xn) angular velocities ‘omega_list’
+and (3xn) positions ‘r_list’.
+For each column i:</p>
+<aside class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/ManipulaPy/utils.py:docstring of ManipulaPy.utils.extract_screw_list</span>, line 4)</p>
+<p>Unexpected indentation.</p>
+</aside>
+<blockquote>
+<div><p>S[:3, i] = w = omega_list[:, i]
+S[3:, i] = v = - w x r</p>
+</div></blockquote>
+<p>Returns a 6xn array of [wx, wy, wz, vx, vy, vz] in each column.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ManipulaPy.utils.NearZero">
+<span class="sig-prename descclassname"><span class="pre">ManipulaPy.utils.</span></span><span class="sig-name descname"><span class="pre">NearZero</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ManipulaPy/utils.html#NearZero"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ManipulaPy.utils.NearZero" title="Link to this definition"></a></dt>
+<dd><p>Determines if a given number is near zero.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>z</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The number to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the number is near zero, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ManipulaPy.utils.skew_symmetric">
+<span class="sig-prename descclassname"><span class="pre">ManipulaPy.utils.</span></span><span class="sig-name descname"><span class="pre">skew_symmetric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ManipulaPy/utils.html#skew_symmetric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ManipulaPy.utils.skew_symmetric" title="Link to this definition"></a></dt>
+<dd><p>Returns the skew symmetric matrix of a 3D vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>v</strong> (<em>array-like</em>) – A 3D vector.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The corresponding skew symmetric matrix.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ManipulaPy.utils.transform_from_twist">
+<span class="sig-prename descclassname"><span class="pre">ManipulaPy.utils.</span></span><span class="sig-name descname"><span class="pre">transform_from_twist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ManipulaPy/utils.html#transform_from_twist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ManipulaPy.utils.transform_from_twist" title="Link to this definition"></a></dt>
+<dd><p>Computes the transformation matrix from a twist and a joint angle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> (<em>array-like</em>) – A 6D twist vector.</p></li>
+<li><p><strong>theta</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The joint angle.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The corresponding transformation matrix.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ManipulaPy.utils.adjoint_transform">
+<span class="sig-prename descclassname"><span class="pre">ManipulaPy.utils.</span></span><span class="sig-name descname"><span class="pre">adjoint_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ManipulaPy/utils.html#adjoint_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ManipulaPy.utils.adjoint_transform" title="Link to this definition"></a></dt>
+<dd><p>Computes the adjoint transformation matrix for a given transformation matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>T</strong> (<em>np.ndarray</em>) – A 4x4 transformation matrix.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The corresponding adjoint transformation matrix.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ManipulaPy.utils.logm">
+<span class="sig-prename descclassname"><span class="pre">ManipulaPy.utils.</span></span><span class="sig-name descname"><span class="pre">logm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ManipulaPy/utils.html#logm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ManipulaPy.utils.logm" title="Link to this definition"></a></dt>
+<dd><p>Computes the logarithm of a transformation matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>T</strong> (<em>np.ndarray</em>) – A 4x4 transformation matrix.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The logarithm of the transformation matrix.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ManipulaPy.utils.rotation_logm">
+<span class="sig-prename descclassname"><span class="pre">ManipulaPy.utils.</span></span><span class="sig-name descname"><span class="pre">rotation_logm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ManipulaPy/utils.html#rotation_logm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ManipulaPy.utils.rotation_logm" title="Link to this definition"></a></dt>
+<dd><p>Computes the logarithm of a rotation matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>R</strong> (<em>np.ndarray</em>) – A 3x3 rotation matrix.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple containing the rotation vector and the angle.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)">tuple</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ManipulaPy.utils.logm_to_twist">
+<span class="sig-prename descclassname"><span class="pre">ManipulaPy.utils.</span></span><span class="sig-name descname"><span class="pre">logm_to_twist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logm</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ManipulaPy/utils.html#logm_to_twist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ManipulaPy.utils.logm_to_twist" title="Link to this definition"></a></dt>
+<dd><p>Convert the logarithm of a transformation matrix to a twist vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>logm</strong> (<em>np.ndarray</em>) – The logarithm of a transformation matrix.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The corresponding twist vector.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ManipulaPy.utils.skew_symmetric_to_vector">
+<span class="sig-prename descclassname"><span class="pre">ManipulaPy.utils.</span></span><span class="sig-name descname"><span class="pre">skew_symmetric_to_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skew_symmetric</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ManipulaPy/utils.html#skew_symmetric_to_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ManipulaPy.utils.skew_symmetric_to_vector" title="Link to this definition"></a></dt>
+<dd><p>Convert a skew-symmetric matrix to a vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>skew_symmetric</strong> (<em>np.ndarray</em>) – A 3x3 skew-symmetric matrix.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The corresponding vector.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ManipulaPy.utils.se3ToVec">
+<span class="sig-prename descclassname"><span class="pre">ManipulaPy.utils.</span></span><span class="sig-name descname"><span class="pre">se3ToVec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">se3_matrix</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ManipulaPy/utils.html#se3ToVec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ManipulaPy.utils.se3ToVec" title="Link to this definition"></a></dt>
+<dd><p>Convert an se(3) matrix to a twist vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>se3_matrix</strong> (<em>np.ndarray</em>) – A 4x4 matrix from the se(3) Lie algebra.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A 6-dimensional twist vector.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ManipulaPy.utils.TransToRp">
+<span class="sig-prename descclassname"><span class="pre">ManipulaPy.utils.</span></span><span class="sig-name descname"><span class="pre">TransToRp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ManipulaPy/utils.html#TransToRp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ManipulaPy.utils.TransToRp" title="Link to this definition"></a></dt>
+<dd><p>Converts a homogeneous transformation matrix into a rotation matrix and position vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>T</strong> (<em>np.ndarray</em>) – A 4x4 transformation matrix.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple containing the rotation matrix and position vector.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)">tuple</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ManipulaPy.utils.TransInv">
+<span class="sig-prename descclassname"><span class="pre">ManipulaPy.utils.</span></span><span class="sig-name descname"><span class="pre">TransInv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ManipulaPy/utils.html#TransInv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ManipulaPy.utils.TransInv" title="Link to this definition"></a></dt>
+<dd><p>Inverts a homogeneous transformation matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>T</strong> (<em>np.ndarray</em>) – A 4x4 transformation matrix.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The inverse of the transformation matrix.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ManipulaPy.utils.MatrixLog6">
+<span class="sig-prename descclassname"><span class="pre">ManipulaPy.utils.</span></span><span class="sig-name descname"><span class="pre">MatrixLog6</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ManipulaPy/utils.html#MatrixLog6"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ManipulaPy.utils.MatrixLog6" title="Link to this definition"></a></dt>
+<dd><p>Compute the matrix logarithm of a given transformation matrix T.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>T</strong> (<em>np.ndarray</em>) – The transformation matrix of shape (4, 4).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The matrix logarithm of T, with shape (4, 4).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ManipulaPy.utils.MatrixExp6">
+<span class="sig-prename descclassname"><span class="pre">ManipulaPy.utils.</span></span><span class="sig-name descname"><span class="pre">MatrixExp6</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">se3mat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ManipulaPy/utils.html#MatrixExp6"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ManipulaPy.utils.MatrixExp6" title="Link to this definition"></a></dt>
+<dd><p>Computes the matrix exponential of a matrix in se(3).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>se3mat</strong> (<em>np.ndarray</em>) – A 4x4 matrix representing a twist in se(3).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The corresponding 4x4 transformation matrix in SE(3).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ManipulaPy.utils.MatrixLog3">
+<span class="sig-prename descclassname"><span class="pre">ManipulaPy.utils.</span></span><span class="sig-name descname"><span class="pre">MatrixLog3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ManipulaPy/utils.html#MatrixLog3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ManipulaPy.utils.MatrixLog3" title="Link to this definition"></a></dt>
+<dd><p>Computes the matrix logarithm of a rotation matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>R</strong> (<em>np.ndarray</em>) – A 3x3 rotation matrix.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The matrix logarithm of the rotation matrix.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ManipulaPy.utils.VecToso3">
+<span class="sig-prename descclassname"><span class="pre">ManipulaPy.utils.</span></span><span class="sig-name descname"><span class="pre">VecToso3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">omega</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ManipulaPy/utils.html#VecToso3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ManipulaPy.utils.VecToso3" title="Link to this definition"></a></dt>
+<dd><p>Converts a 3D angular velocity vector to a skew-symmetric matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>omega</strong> (<em>array-like</em>) – A 3D angular velocity vector.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The corresponding skew-symmetric matrix.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ManipulaPy.utils.VecTose3">
+<span class="sig-prename descclassname"><span class="pre">ManipulaPy.utils.</span></span><span class="sig-name descname"><span class="pre">VecTose3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">V</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ManipulaPy/utils.html#VecTose3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ManipulaPy.utils.VecTose3" title="Link to this definition"></a></dt>
+<dd><p>Converts a spatial velocity vector to an se(3) matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>V</strong> (<em>array-like</em>) – A 6D spatial velocity vector.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The corresponding 4x4 matrix in se(3).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ManipulaPy.utils.MatrixExp3">
+<span class="sig-prename descclassname"><span class="pre">ManipulaPy.utils.</span></span><span class="sig-name descname"><span class="pre">MatrixExp3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">so3mat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ManipulaPy/utils.html#MatrixExp3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ManipulaPy.utils.MatrixExp3" title="Link to this definition"></a></dt>
+<dd><p>Computes the matrix exponential of a matrix in so(3).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>so3mat</strong> (<em>np.ndarray</em>) – A 3x3 skew-symmetric matrix.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The corresponding 3x3 rotation matrix in SO(3).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ManipulaPy.utils.CubicTimeScaling">
+<span class="sig-prename descclassname"><span class="pre">ManipulaPy.utils.</span></span><span class="sig-name descname"><span class="pre">CubicTimeScaling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Tf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ManipulaPy/utils.html#CubicTimeScaling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ManipulaPy.utils.CubicTimeScaling" title="Link to this definition"></a></dt>
+<dd><p>Compute the cubic time scaling factor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Tf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The total time of the motion.</p></li>
+<li><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The current time.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The cubic time scaling factor.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ManipulaPy.utils.QuinticTimeScaling">
+<span class="sig-prename descclassname"><span class="pre">ManipulaPy.utils.</span></span><span class="sig-name descname"><span class="pre">QuinticTimeScaling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Tf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ManipulaPy/utils.html#QuinticTimeScaling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ManipulaPy.utils.QuinticTimeScaling" title="Link to this definition"></a></dt>
+<dd><p>Compute the quintic time scaling factor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Tf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The total time of the motion.</p></li>
+<li><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The current time.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The quintic time scaling factor.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ManipulaPy.utils.rotation_matrix_to_euler_angles">
+<span class="sig-prename descclassname"><span class="pre">ManipulaPy.utils.</span></span><span class="sig-name descname"><span class="pre">rotation_matrix_to_euler_angles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ManipulaPy/utils.html#rotation_matrix_to_euler_angles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ManipulaPy.utils.rotation_matrix_to_euler_angles" title="Link to this definition"></a></dt>
+<dd><p>Convert a rotation matrix to Euler angles (roll, pitch, yaw).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>R</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a>) – A 3x3 rotation matrix.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A 3-element array representing the Euler angles (roll, pitch, yaw).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ManipulaPy.utils.euler_to_rotation_matrix">
+<span class="sig-prename descclassname"><span class="pre">ManipulaPy.utils.</span></span><span class="sig-name descname"><span class="pre">euler_to_rotation_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">euler_deg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ManipulaPy/utils.html#euler_to_rotation_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ManipulaPy.utils.euler_to_rotation_matrix" title="Link to this definition"></a></dt>
+<dd><p>Convert Euler angles (roll_deg, pitch_deg, yaw_deg) in degrees
+to a 3x3 rotation matrix.
+ZYX convention is typical in robotics: yaw -&gt; pitch -&gt; roll,
+but adapt as needed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>euler_deg</strong> (<em>array-like</em>) – [roll_deg, pitch_deg, yaw_deg]</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A 3x3 rotation matrix (float64 by default).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Mohamed Aboelnar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

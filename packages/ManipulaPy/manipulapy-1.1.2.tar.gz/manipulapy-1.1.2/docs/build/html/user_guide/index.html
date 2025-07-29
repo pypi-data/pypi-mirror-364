@@ -1,0 +1,1061 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="User Guide" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://manipulapy.readthedocs.io/user_guide/index.html" />
+<meta property="og:site_name" content="ManipulaPy Documentation" />
+<meta property="og:description" content="Welcome to the comprehensive ManipulaPy User Guide! This section provides detailed tutorials and explanations for all aspects of robotic manipulation using ManipulaPy. Quick Navigation: 📚 Complete ..." />
+<meta name="description" content="Welcome to the comprehensive ManipulaPy User Guide! This section provides detailed tutorials and explanations for all aspects of robotic manipulation using ManipulaPy. Quick Navigation: 📚 Complete ..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Guide &mdash; ManipulaPy 1.1.0 Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=fc837d61"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=fd10adb8"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Kinematics User Guide" href="Kinematics.html" />
+    <link rel="prev" title="Singularity API Reference" href="../api/singularity.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ManipulaPy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">🚀 Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started with ManipulaPy</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🛠️ API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">🔧 API Reference Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">📚 User Guides</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#complete-guide-overview">📚 Complete Guide Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Kinematics.html">Kinematics User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Dynamics.html">Dynamics User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Control.html">Control Module User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="URDF_Processor.html">URDF Processor User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Trajectory_Planning.html">Trajectory Planning User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Simulation.html">Simulation Module User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Collision_Checker.html">Collision Checker Module User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Potential_Field.html">Potential Field Module User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Perception.html">Perception User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CUDA_Kernels.html">CUDA Kernels User Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#learning-pathways">🗺️ Learning Pathways</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#guide-categories">📖 Guide Categories</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#core-robotics">Core Robotics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#motion-planning-simulation">Motion Planning &amp; Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#perception-intelligence">Perception &amp; Intelligence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#advanced-topics">Advanced Topics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#quick-reference">🎯 Quick Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#study-tips">💡 Study Tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#need-help">🆘 Need Help?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Kinematics.html">Kinematics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Dynamics.html">Dynamics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Control.html">Control Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Trajectory_Planning.html">Trajectory Planning User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Simulation.html">Simulation Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="URDF_Processor.html">URDF Processor User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Perception.html">Perception User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vision.html">Vision User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Potential_Field.html">Potential Field Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Collision_Checker.html">Collision Checker Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CUDA_Kernels.html">CUDA Kernels User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ManipulaPy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">User Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user_guide/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="user-guide">
+<span id="id1"></span><span id="user-guide-index"></span><h1>User Guide<a class="headerlink" href="#user-guide" title="Link to this heading"></a></h1>
+<p>Welcome to the comprehensive ManipulaPy User Guide! This section provides detailed tutorials and explanations for all aspects of robotic manipulation using ManipulaPy.</p>
+<div class="user-guide-hero">
+   <div class="hero-content">
+      <h2>🎓 Master Modern Robotics</h2>
+      <p>From basic kinematics to advanced GPU-accelerated control systems,
+         this guide will take you from beginner to expert.</p>
+
+      <div class="learning-stats">
+         <div class="stat">
+            <span class="stat-number">13</span>
+            <span class="stat-label">Comprehensive Guides</span>
+         </div>
+         <div class="stat">
+            <span class="stat-number">60+</span>
+            <span class="stat-label">Code Examples</span>
+         </div>
+         <div class="stat">
+            <span class="stat-number">120+</span>
+            <span class="stat-label">Practical Tips</span>
+         </div>
+      </div>
+   </div>
+</div><nav class="contents local" id="quick-navigation">
+<p class="topic-title"><strong>Quick Navigation</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#complete-guide-overview" id="id2">📚 Complete Guide Overview</a></p></li>
+<li><p><a class="reference internal" href="#learning-pathways" id="id3">🗺️ Learning Pathways</a></p></li>
+<li><p><a class="reference internal" href="#guide-categories" id="id4">📖 Guide Categories</a></p>
+<ul>
+<li><p><a class="reference internal" href="#core-robotics" id="id5">Core Robotics</a></p></li>
+<li><p><a class="reference internal" href="#motion-planning-simulation" id="id6">Motion Planning &amp; Simulation</a></p></li>
+<li><p><a class="reference internal" href="#perception-intelligence" id="id7">Perception &amp; Intelligence</a></p></li>
+<li><p><a class="reference internal" href="#advanced-topics" id="id8">Advanced Topics</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#quick-reference" id="id9">🎯 Quick Reference</a></p></li>
+<li><p><a class="reference internal" href="#study-tips" id="id10">💡 Study Tips</a></p></li>
+<li><p><a class="reference internal" href="#need-help" id="id11">🆘 Need Help?</a></p></li>
+</ul>
+</nav>
+<section id="complete-guide-overview">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">📚 Complete Guide Overview</a><a class="headerlink" href="#complete-guide-overview" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Core Robotics Fundamentals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Kinematics.html">Kinematics User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Kinematics.html#what-is-robot-kinematics">What is Robot Kinematics?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Kinematics.html#mathematical-foundation">Mathematical Foundation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Kinematics.html#serialmanipulator-class">SerialManipulator Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Kinematics.html#creating-a-robot-model">Creating a Robot Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Kinematics.html#forward-kinematics">Forward Kinematics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Kinematics.html#inverse-kinematics">Inverse Kinematics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Kinematics.html#jacobian-matrix">Jacobian Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Kinematics.html#velocity-kinematics">Velocity Kinematics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Kinematics.html#state-management">State Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Kinematics.html#working-examples">Working Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Kinematics.html#common-issues-and-solutions">Common Issues and Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Kinematics.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Kinematics.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Dynamics.html">Dynamics User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Dynamics.html#introduction-to-robot-dynamics">Introduction to Robot Dynamics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Dynamics.html#setting-up-robot-dynamics">Setting Up Robot Dynamics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Dynamics.html#mass-matrix-computation">Mass Matrix Computation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Dynamics.html#velocity-dependent-forces">Velocity-Dependent Forces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Control.html">Control Module User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Control.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Control.html#mathematical-foundation">Mathematical Foundation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Control.html#installation-and-setup">Installation and Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Control.html#quick-start">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Control.html#controller-types">Controller Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Control.html#advanced-features">Advanced Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Control.html#tuning-methods">Tuning Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Control.html#plotting-and-analysis">Plotting and Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Control.html#cartesian-space-control">Cartesian Space Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Control.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Control.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Control.html#api-reference">API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Control.html#additional-resources">Additional Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="URDF_Processor.html">URDF Processor User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="URDF_Processor.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="URDF_Processor.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="URDF_Processor.html#urdftoserialmanipulator-class">URDFToSerialManipulator Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="URDF_Processor.html#core-methods">Core Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="URDF_Processor.html#joint-limit-handling">Joint Limit Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="URDF_Processor.html#utility-methods">Utility Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="URDF_Processor.html#working-example">Working Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="URDF_Processor.html#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="URDF_Processor.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="URDF_Processor.html#summary">Summary</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Motion Planning &amp; Simulation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Trajectory_Planning.html">Trajectory Planning User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Trajectory_Planning.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Trajectory_Planning.html#joint-space-time-scaling">Joint-Space Time Scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Trajectory_Planning.html#dynamics-aware-torque-computation">Dynamics-Aware Torque Computation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Trajectory_Planning.html#potential-field-collision-avoidance">Potential-Field Collision Avoidance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Trajectory_Planning.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Trajectory_Planning.html#trajectoryplanning-class">TrajectoryPlanning Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Trajectory_Planning.html#core-methods">Core Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Trajectory_Planning.html#dynamics-integration">Dynamics Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Trajectory_Planning.html#trajectory-visualization">Trajectory Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Trajectory_Planning.html#advanced-features">Advanced Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Trajectory_Planning.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Trajectory_Planning.html#real-time-applications">Real-Time Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Trajectory_Planning.html#practical-applications">Practical Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Trajectory_Planning.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Trajectory_Planning.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Simulation.html">Simulation Module User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Simulation.html#installation-and-setup">Installation and Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Simulation.html#quick-start">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Simulation.html#module-api-reference">Module API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Simulation.html#advanced-examples">Advanced Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Simulation.html#advanced-configuration">Advanced Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Simulation.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Simulation.html#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Simulation.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Simulation.html#integration-with-other-modules">Integration with Other Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Simulation.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Singularity_Analysis.html">Singularity Analysis User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Singularity_Analysis.html#theoretical-background">Theoretical Background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Singularity_Analysis.html#installation-and-setup">Installation and Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Singularity_Analysis.html#quick-start">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Singularity_Analysis.html#module-api-reference">Module API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Singularity_Analysis.html#advanced-analysis-examples">Advanced Analysis Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Singularity_Analysis.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Singularity_Analysis.html#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Singularity_Analysis.html#validation-and-testing">Validation and Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Singularity_Analysis.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Singularity_Analysis.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Collision_Checker.html">Collision Checker Module User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Collision_Checker.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Collision_Checker.html#mathematical-background">Mathematical Background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Collision_Checker.html#class-reference">Class Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Collision_Checker.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Collision_Checker.html#usage-examples">Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Collision_Checker.html#advanced-topics">Advanced Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Collision_Checker.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Collision_Checker.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Potential_Field.html">Potential Field Module User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Potential_Field.html#introduction-to-potential-fields">Introduction to Potential Fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Potential_Field.html#class-reference">Class Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Potential_Field.html#usage-examples">Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Potential_Field.html#advanced-topics">Advanced Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Potential_Field.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Potential_Field.html#references">References</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Perception &amp; Intelligence</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Perception.html">Perception User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Perception.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Perception.html#key-features">Key Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Perception.html#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Perception.html#core-functionality">Core Functionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Perception.html#data-flow-architecture">Data Flow Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Perception.html#advanced-applications">Advanced Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Perception.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Perception.html#error-handling-and-robustness">Error Handling and Robustness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Perception.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Perception.html#common-issues-and-solutions">Common Issues and Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Perception.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Advanced Topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Singularity_Analysis.html">Singularity Analysis User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Singularity_Analysis.html#theoretical-background">Theoretical Background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Singularity_Analysis.html#installation-and-setup">Installation and Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Singularity_Analysis.html#quick-start">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Singularity_Analysis.html#module-api-reference">Module API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Singularity_Analysis.html#advanced-analysis-examples">Advanced Analysis Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Singularity_Analysis.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Singularity_Analysis.html#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Singularity_Analysis.html#validation-and-testing">Validation and Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Singularity_Analysis.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Singularity_Analysis.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CUDA_Kernels.html">CUDA Kernels User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CUDA_Kernels.html#what-is-gpu-acceleration">What is GPU Acceleration?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CUDA_Kernels.html#mathematical-foundation">Mathematical Foundation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CUDA_Kernels.html#installation-and-setup">Installation and Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CUDA_Kernels.html#available-cuda-kernels">Available CUDA Kernels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CUDA_Kernels.html#using-gpu-acceleration">Using GPU Acceleration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CUDA_Kernels.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CUDA_Kernels.html#cpu-fallback">CPU Fallback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CUDA_Kernels.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CUDA_Kernels.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CUDA_Kernels.html#integration-with-manipulapy">Integration with ManipulaPy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CUDA_Kernels.html#working-examples">Working Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CUDA_Kernels.html#when-to-use-gpu-acceleration">When to Use GPU Acceleration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CUDA_Kernels.html#getting-started-checklist">Getting Started Checklist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CUDA_Kernels.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="learning-pathways">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">🗺️ Learning Pathways</a><a class="headerlink" href="#learning-pathways" title="Link to this heading"></a></h2>
+<p>Choose your learning path based on your experience level and goals:</p>
+<div class="learning-pathways">
+   <div class="pathway beginner">
+      <div class="pathway-header">
+         <span class="pathway-icon">🌱</span>
+         <h3>Complete Beginner</h3>
+         <p>New to robotics? Start here!</p>
+      </div>
+      <div class="pathway-steps">
+         <div class="step">
+            <span class="step-number">1</span>
+            <div class="step-content">
+               <a href="Kinematics.html"><strong>Kinematics Basics</strong></a>
+               <p>Learn forward and inverse kinematics fundamentals</p>
+            </div>
+         </div>
+         <div class="step">
+            <span class="step-number">2</span>
+            <div class="step-content">
+               <a href="URDF_Processor.html"><strong>Robot Models</strong></a>
+               <p>Load and work with robot URDF files</p>
+            </div>
+         </div>
+         <div class="step">
+            <span class="step-number">3</span>
+            <div class="step-content">
+               <a href="Simulation.html"><strong>Virtual Robots</strong></a>
+               <p>Simulate robots in PyBullet</p>
+            </div>
+         </div>
+         <div class="step">
+            <span class="step-number">4</span>
+            <div class="step-content">
+               <a href="Trajectory_Planning.html"><strong>Motion Planning</strong></a>
+               <p>Plan smooth robot motions</p>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="pathway intermediate">
+      <div class="pathway-header">
+         <span class="pathway-icon">🎯</span>
+         <h3>Robotics Engineer</h3>
+         <p>Ready for advanced control?</p>
+      </div>
+      <div class="pathway-steps">
+         <div class="step">
+            <span class="step-number">1</span>
+            <div class="step-content">
+               <a href="Dynamics.html"><strong>Robot Dynamics</strong></a>
+               <p>Understand forces, torques, and physics</p>
+            </div>
+         </div>
+         <div class="step">
+            <span class="step-number">2</span>
+            <div class="step-content">
+               <a href="Control.html"><strong>Control Systems</strong></a>
+               <p>Implement PID, computed torque control</p>
+            </div>
+         </div>
+         <div class="step">
+            <span class="step-number">3</span>
+            <div class="step-content">
+               <a href="Collision_Checker.html"><strong>Safety Systems</strong></a>
+               <p>Collision detection and avoidance</p>
+            </div>
+         </div>
+         <div class="step">
+            <span class="step-number">4</span>
+            <div class="step-content">
+               <a href="Singularity_Analysis .html"><strong>Singularity Analysis</strong></a>
+               <p>Analyze robot workspace and limitations</p>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="pathway advanced">
+      <div class="pathway-header">
+         <span class="pathway-icon">🚀</span>
+         <h3>Performance Expert</h3>
+         <p>Master GPU acceleration!</p>
+      </div>
+      <div class="pathway-steps">
+         <div class="step">
+            <span class="step-number">1</span>
+            <div class="step-content">
+               <a href="CUDA_Kernels.html"><strong>CUDA Programming</strong></a>
+               <p>GPU acceleration fundamentals</p>
+            </div>
+         </div>
+         <div class="step">
+            <span class="step-number">2</span>
+            <div class="step-content">
+               <a href="Trajectory_Planning.html"><strong>GPU Trajectories</strong></a>
+               <p>Accelerated motion planning</p>
+            </div>
+         </div>
+         <div class="step">
+            <span class="step-number">3</span>
+            <div class="step-content">
+               <a href="Potential_Field.html"><strong>Field Methods</strong></a>
+               <p>Advanced obstacle avoidance</p>
+            </div>
+         </div>
+         <div class="step">
+            <span class="step-number">4</span>
+            <div class="step-content">
+               <a href="../tutorials/index.html"><strong>Optimization</strong></a>
+               <p>Performance tuning techniques</p>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="pathway perception">
+      <div class="pathway-header">
+         <span class="pathway-icon">👁️</span>
+         <h3>Vision & Perception</h3>
+         <p>Master intelligent robotics!</p>
+      </div>
+      <div class="pathway-steps">
+         <div class="step">
+            <span class="step-number">1</span>
+            <div class="step-content">
+               <a href="Vision.html"><strong>Vision Systems</strong></a>
+               <p>Camera setup, calibration, and processing</p>
+            </div>
+         </div>
+         <div class="step">
+            <span class="step-number">2</span>
+            <div class="step-content">
+               <a href="Perception.html"><strong>Perception Pipeline</strong></a>
+               <p>Object detection and environmental understanding</p>
+            </div>
+         </div>
+         <div class="step">
+            <span class="step-number">3</span>
+            <div class="step-content">
+               <a href="Trajectory_Planning.html"><strong>Intelligent Planning</strong></a>
+               <p>Perception-aware motion planning</p>
+            </div>
+         </div>
+         <div class="step">
+            <span class="step-number">4</span>
+            <div class="step-content">
+               <a href="Control.html"><strong>Adaptive Control</strong></a>
+               <p>Reactive and vision-guided control</p>
+            </div>
+         </div>
+      </div>
+   </div>
+</div></section>
+<section id="guide-categories">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">📖 Guide Categories</a><a class="headerlink" href="#guide-categories" title="Link to this heading"></a></h2>
+<section id="core-robotics">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Core Robotics</a><a class="headerlink" href="#core-robotics" title="Link to this heading"></a></h3>
+<p>Essential concepts every robotics engineer should master:</p>
+<div class="guide-grid">
+   <div class="guide-card fundamental">
+      <div class="guide-icon">🔧</div>
+      <h4><a href="Kinematics.html">Kinematics</a></h4>
+      <p><strong>Difficulty:</strong> Beginner</p>
+      <p>Robot geometry, forward/inverse kinematics, Jacobians, and workspace analysis.</p>
+      <div class="guide-features">
+         <span class="feature-tag">📊 Workspace Visualization</span>
+      </div>
+   </div>
+
+   <div class="guide-card fundamental">
+      <div class="guide-icon">⚖️</div>
+      <h4><a href="Dynamics.html">Dynamics</a></h4>
+      <p><strong>Difficulty:</strong> Intermediate</p>
+      <p>Mass matrices, inverse/forward dynamics, Coriolis forces, and gravity compensation.</p>
+      <div class="guide-features">
+         <span class="feature-tag">🔄 Smart Caching</span>
+         <span class="feature-tag">⚡ GPU Accelerated</span>
+      </div>
+   </div>
+
+   <div class="guide-card fundamental">
+      <div class="guide-icon">🎛️</div>
+      <h4><a href="Control.html">Control Systems</a></h4>
+      <p><strong>Difficulty:</strong> Intermediate</p>
+      <p>PID control, computed torque, adaptive controllers, and auto-tuning.</p>
+      <div class="guide-features">
+         <span class="feature-tag">🎯 Auto-tuning</span>
+         <span class="feature-tag">📈 Performance Analysis</span>
+      </div>
+   </div>
+
+   <div class="guide-card fundamental">
+      <div class="guide-icon">🤖</div>
+      <h4><a href="URDF_Processor.html">Robot Models</a></h4>
+      <p><strong>Difficulty:</strong> Beginner</p>
+      <p>Load URDF files, extract robot parameters, and create manipulator objects.</p>
+      <div class="guide-features">
+         <span class="feature-tag">📁 URDF Support</span>
+         <span class="feature-tag">🔧 Built-in Models</span>
+      </div>
+   </div>
+</div></section>
+<section id="motion-planning-simulation">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Motion Planning &amp; Simulation</a><a class="headerlink" href="#motion-planning-simulation" title="Link to this heading"></a></h3>
+<p>Advanced motion planning and realistic simulation:</p>
+<div class="guide-grid">
+   <div class="guide-card planning">
+      <div class="guide-icon">🛤️</div>
+      <h4><a href="Trajectory_Planning.html">Trajectory Planning</a></h4>
+      <p><strong>Difficulty:</strong> Intermediate</p>
+      <p>CUDA-accelerated joint and Cartesian trajectory generation with collision avoidance.</p>
+      <div class="guide-features">
+         <span class="feature-tag">⚡ CUDA Kernels</span>
+         <span class="feature-tag">🚧 Collision Avoidance</span>
+      </div>
+   </div>
+
+   <div class="guide-card planning">
+      <div class="guide-icon">🎮</div>
+      <h4><a href="Simulation.html">PyBullet Simulation</a></h4>
+      <p><strong>Difficulty:</strong> Beginner</p>
+      <p>Physics simulation, trajectory execution, and interactive robot control.</p>
+      <div class="guide-features">
+         <span class="feature-tag">🎯 Real-time Control</span>
+         <span class="feature-tag">📊 Visualization</span>
+      </div>
+   </div>
+
+   <div class="guide-card planning">
+      <div class="guide-icon">🛡️</div>
+      <h4><a href="Collision_Checker.html">Collision Detection</a></h4>
+      <p><strong>Difficulty:</strong> Intermediate</p>
+      <p>Self-collision detection, environment obstacles, and safety monitoring.</p>
+      <div class="guide-features">
+         <span class="feature-tag">🔍 Convex Hull</span>
+         <span class="feature-tag">⚡ Fast Detection</span>
+      </div>
+   </div>
+
+   <div class="guide-card planning">
+      <div class="guide-icon">🌊</div>
+      <h4><a href="Potential_Field.html">Potential Fields</a></h4>
+      <p><strong>Difficulty:</strong> Advanced</p>
+      <p>Artificial potential fields for path planning and obstacle avoidance.</p>
+      <div class="guide-features">
+         <span class="feature-tag">🧲 Attractive Fields</span>
+         <span class="feature-tag">⚡ Repulsive Forces</span>
+      </div>
+   </div>
+</div></section>
+<section id="perception-intelligence">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Perception &amp; Intelligence</a><a class="headerlink" href="#perception-intelligence" title="Link to this heading"></a></h3>
+<p>Computer vision, environmental understanding, and intelligent robot behavior:</p>
+<div class="guide-grid">
+   <div class="guide-card perception">
+      <div class="guide-icon">📷</div>
+      <h4><a href="Vision.html">Vision Systems</a></h4>
+      <p><strong>Difficulty:</strong> Intermediate</p>
+      <p>Camera setup, stereo vision, depth processing, and multi-camera systems.</p>
+      <div class="guide-features">
+         <span class="feature-tag">📐 Stereo Vision</span>
+         <span class="feature-tag">🎛️ PyBullet Debug</span>
+      </div>
+   </div>
+
+   <div class="guide-card perception">
+      <div class="guide-icon">🧠</div>
+      <h4><a href="Perception.html">Perception Pipeline</a></h4>
+      <p><strong>Difficulty:</strong> Advanced</p>
+      <p>Object detection, 3D clustering, environmental understanding, and robot integration.</p>
+      <div class="guide-features">
+         <span class="feature-tag">🔍 YOLO Detection</span>
+         <span class="feature-tag">🌐 3D Clustering</span>
+      </div>
+   </div>
+</div></section>
+<section id="advanced-topics">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Advanced Topics</a><a class="headerlink" href="#advanced-topics" title="Link to this heading"></a></h3>
+<p>Cutting-edge techniques for performance and analysis:</p>
+<div class="guide-grid">
+   <div class="guide-card advanced">
+      <div class="guide-icon">⚠️</div>
+      <h4><a href="Singularity_Analysis .html">Singularity Analysis</a></h4>
+      <p><strong>Difficulty:</strong> Advanced</p>
+      <p>Workspace analysis, manipulability ellipsoids, and singularity avoidance.</p>
+      <div class="guide-features">
+         <span class="feature-tag">📊 Workspace Mapping</span>
+         <span class="feature-tag">🎯 Monte Carlo</span>
+      </div>
+   </div>
+
+   <div class="guide-card advanced">
+      <div class="guide-icon">🚀</div>
+      <h4><a href="CUDA_Kernels.html">GPU Acceleration</a></h4>
+      <p><strong>Difficulty:</strong> Expert</p>
+      <p>Custom CUDA kernels, parallel processing, and performance optimization.</p>
+      <div class="guide-features">
+         <span class="feature-tag">⚡ 50x Speedup</span>
+         <span class="feature-tag">🔧 Custom Kernels</span>
+      </div>
+   </div>
+</div></section>
+</section>
+<section id="quick-reference">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">🎯 Quick Reference</a><a class="headerlink" href="#quick-reference" title="Link to this heading"></a></h2>
+<div class="quick-reference">
+   <div class="ref-section">
+      <h4>🚀 Getting Started</h4>
+      <ul>
+         <li><a href="../getting_started/index.html">Installation Guide</a></li>
+         <li><a href="Kinematics.html#basic-forward-kinematics">First Robot Analysis</a></li>
+         <li><a href="URDF_Processor.html#loading-built-in-models">Built-in Robot Models</a></li>
+         <li><a href="Simulation.html#basic-simulation">Your First Simulation</a></li>
+      </ul>
+   </div>
+
+   <div class="ref-section">
+      <h4>⚡ Performance</h4>
+      <ul>
+         <li><a href="CUDA_Kernels.html#installation">CUDA Setup</a></li>
+         <li><a href="Trajectory_Planning.html#cuda-acceleration">GPU Trajectories</a></li>
+         <li><a href="Dynamics.html#caching">Smart Caching</a></li>
+         <li><a href="../tutorials/index.html">Optimization Tips</a></li>
+      </ul>
+   </div>
+
+   <div class="ref-section">
+      <h4>🔧 Common Tasks</h4>
+      <ul>
+         <li><a href="Kinematics.html#inverse-kinematics">Solve Inverse Kinematics</a></li>
+         <li><a href="Control.html#pid-control">Implement PID Control</a></li>
+         <li><a href="Trajectory_Planning.html#joint-trajectories">Plan Trajectories</a></li>
+         <li><a href="Collision_Checker.html#basic-collision-detection">Check Collisions</a></li>
+      </ul>
+   </div>
+
+   <div class="ref-section">
+      <h4>👁️ Perception</h4>
+      <ul>
+         <li><a href="Vision.html#camera-setup">Setup Cameras</a></li>
+         <li><a href="Perception.html#obstacle-detection">Detect Obstacles</a></li>
+         <li><a href="Perception.html#data-flow-architecture">Data Flow Pipeline</a></li>
+         <li><a href="Vision.html#stereo-vision">Stereo Processing</a></li>
+      </ul>
+   </div>
+
+   <div class="ref-section">
+      <h4>🎓 Advanced Topics</h4>
+      <ul>
+         <li><a href="Control.html#computed-torque-control">Computed Torque Control</a></li>
+         <li><a href="Singularity_Analysis .html#manipulability">Manipulability Analysis</a></li>
+         <li><a href="Potential_Field.html#artificial-potential-fields">Potential Field Planning</a></li>
+         <li><a href="CUDA_Kernels.html#custom-kernels">Custom CUDA Kernels</a></li>
+      </ul>
+   </div>
+</div></section>
+<section id="study-tips">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">💡 Study Tips</a><a class="headerlink" href="#study-tips" title="Link to this heading"></a></h2>
+<div class="study-tips">
+   <div class="tip-card">
+      <div class="tip-icon">📚</div>
+      <h4>Follow the Order</h4>
+      <p>The guides are designed to build on each other. Start with Kinematics and work your way through systematically.</p>
+   </div>
+
+   <div class="tip-card">
+      <div class="tip-icon">💻</div>
+      <h4>Code Along</h4>
+      <p>Each guide includes working code examples. Type them out yourself - don't just copy-paste!</p>
+   </div>
+
+   <div class="tip-card">
+      <div class="tip-icon">🧪</div>
+      <h4>Experiment</h4>
+      <p>Modify the examples, try different parameters, and break things. Learning happens through experimentation.</p>
+   </div>
+
+   <div class="tip-card">
+      <div class="tip-icon">📊</div>
+      <h4>Visualize</h4>
+      <p>Use the plotting functions extensively. Understanding robotics requires good spatial intuition.</p>
+   </div>
+
+   <div class="tip-card">
+      <div class="tip-icon">👁️</div>
+      <h4>See & Think</h4>
+      <p>Use the Vision and Perception modules to add intelligence to your robots. Modern robotics is perception-driven!</p>
+   </div>
+</div></section>
+<section id="need-help">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">🆘 Need Help?</a><a class="headerlink" href="#need-help" title="Link to this heading"></a></h2>
+<p>If you get stuck:</p>
+<ol class="arabic simple">
+<li><p><strong>Check the Examples</strong> - Each guide has complete working examples</p></li>
+<li><p><strong>API Reference</strong> - Detailed function documentation in <a class="reference internal" href="../api/index.html"><span class="doc">🔧 API Reference Guide</span></a></p></li>
+<li><p><strong>GitHub Issues</strong> - Report bugs or ask questions on <a class="reference external" href="https://github.com/boelnasr/ManipulaPy/issues">GitHub</a></p></li>
+</ol>
+<style>
+.user-guide-hero {
+   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+   color: white;
+   padding: 2rem;
+   border-radius: 12px;
+   margin: 2rem 0;
+   text-align: center;
+}
+
+.user-guide-hero h2 {
+   margin-top: 0;
+   font-size: 2.2rem;
+}
+
+.learning-stats {
+   display: flex;
+   justify-content: center;
+   gap: 2rem;
+   margin-top: 1.5rem;
+   flex-wrap: wrap;
+}
+
+.stat {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.stat-number {
+   font-size: 2.5rem;
+   font-weight: bold;
+   color: #ffd700;
+}
+
+.stat-label {
+   font-size: 0.9rem;
+   opacity: 0.9;
+}
+
+.learning-pathways {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+   gap: 2rem;
+   margin: 2rem 0;
+}
+
+.pathway {
+   border: 1px solid #e1e4e8;
+   border-radius: 12px;
+   overflow: hidden;
+   background: white;
+   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.pathway-header {
+   padding: 1.5rem;
+   text-align: center;
+}
+
+.beginner .pathway-header { background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); }
+.intermediate .pathway-header { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); }
+.advanced .pathway-header { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); }
+.perception .pathway-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+
+.pathway-icon {
+   font-size: 2.5rem;
+   display: block;
+   margin-bottom: 0.5rem;
+}
+
+.pathway-header h3 {
+   margin: 0.5rem 0;
+   color: #333;
+}
+
+.perception .pathway-header h3 {
+   color: white;
+}
+
+.pathway-header p {
+   margin: 0;
+   color: #666;
+   font-style: italic;
+}
+
+.perception .pathway-header p {
+   color: rgba(255, 255, 255, 0.9);
+}
+
+.pathway-steps {
+   padding: 1rem;
+}
+
+.step {
+   display: flex;
+   align-items: flex-start;
+   margin-bottom: 1rem;
+   padding: 0.5rem;
+   border-radius: 8px;
+   background: #f8f9fa;
+}
+
+.step-number {
+   background: #007acc;
+   color: white;
+   border-radius: 50%;
+   width: 24px;
+   height: 24px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-weight: bold;
+   font-size: 0.8rem;
+   margin-right: 1rem;
+   flex-shrink: 0;
+}
+
+.step-content h4 {
+   margin: 0 0 0.25rem 0;
+}
+
+.step-content p {
+   margin: 0;
+   font-size: 0.9rem;
+   color: #666;
+}
+
+.guide-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+   gap: 1.5rem;
+   margin: 1.5rem 0;
+}
+
+.guide-card {
+   border: 1px solid #e1e4e8;
+   border-radius: 10px;
+   padding: 1.5rem;
+   background: white;
+   transition: all 0.3s ease;
+   position: relative;
+   overflow: hidden;
+}
+
+.guide-card:hover {
+   transform: translateY(-2px);
+   box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.fundamental { border-left: 4px solid #28a745; }
+.planning { border-left: 4px solid #007bff; }
+.perception { border-left: 4px solid #6f42c1; }
+.advanced { border-left: 4px solid #dc3545; }
+
+.guide-icon {
+   font-size: 2rem;
+   margin-bottom: 1rem;
+   display: block;
+}
+
+.guide-card h4 {
+   margin: 0 0 0.5rem 0;
+}
+
+.guide-card p {
+   margin: 0.5rem 0;
+   color: #666;
+}
+
+.guide-features {
+   margin-top: 1rem;
+   display: flex;
+   flex-wrap: wrap;
+   gap: 0.5rem;
+}
+
+.feature-tag {
+   background: #e9ecef;
+   color: #495057;
+   padding: 0.25rem 0.5rem;
+   border-radius: 4px;
+   font-size: 0.8rem;
+   font-weight: 500;
+}
+
+.quick-reference {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   gap: 1.5rem;
+   margin: 2rem 0;
+}
+
+.ref-section {
+   background: #f8f9fa;
+   border: 1px solid #e9ecef;
+   border-radius: 8px;
+   padding: 1rem;
+}
+
+.ref-section h4 {
+   margin: 0 0 1rem 0;
+   color: #495057;
+}
+
+.ref-section ul {
+   margin: 0;
+   padding-left: 1rem;
+}
+
+.ref-section li {
+   margin-bottom: 0.5rem;
+}
+
+.study-tips {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   gap: 1rem;
+   margin: 2rem 0;
+}
+
+.tip-card {
+   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+   color: white;
+   padding: 1.5rem;
+   border-radius: 10px;
+   text-align: center;
+}
+
+.tip-icon {
+   font-size: 2rem;
+   display: block;
+   margin-bottom: 1rem;
+}
+
+.tip-card h4 {
+   margin: 0 0 0.5rem 0;
+}
+
+.tip-card p {
+   margin: 0;
+   font-size: 0.9rem;
+   opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+   .learning-pathways {
+      grid-template-columns: 1fr;
+   }
+
+   .guide-grid {
+      grid-template-columns: 1fr;
+   }
+
+   .learning-stats {
+      flex-direction: column;
+      gap: 1rem;
+   }
+}
+</style></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../api/singularity.html" class="btn btn-neutral float-left" title="Singularity API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Kinematics.html" class="btn btn-neutral float-right" title="Kinematics User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Mohamed Aboelnar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

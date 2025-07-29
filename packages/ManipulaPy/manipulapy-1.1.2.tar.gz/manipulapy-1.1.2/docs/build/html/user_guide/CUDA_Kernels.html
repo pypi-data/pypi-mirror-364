@@ -1,0 +1,1758 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="CUDA Kernels User Guide" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://manipulapy.readthedocs.io/user_guide/CUDA_Kernels.html" />
+<meta property="og:site_name" content="ManipulaPy Documentation" />
+<meta property="og:description" content="This guide covers the CUDA acceleration features in ManipulaPy, which provide GPU-accelerated functions for high-performance robotic computations including trajectory planning, dynamics computation..." />
+<meta name="description" content="This guide covers the CUDA acceleration features in ManipulaPy, which provide GPU-accelerated functions for high-performance robotic computations including trajectory planning, dynamics computation..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CUDA Kernels User Guide &mdash; ManipulaPy 1.1.0 Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=fc837d61"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=fd10adb8"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Vision User Guide" href="vision.html" />
+    <link rel="prev" title="Perception User Guide" href="Perception.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ManipulaPy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">🚀 Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started with ManipulaPy</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🛠️ API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">🔧 API Reference Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">📚 User Guides</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">User Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#complete-guide-overview">📚 Complete Guide Overview</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Kinematics.html">Kinematics User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Dynamics.html">Dynamics User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Control.html">Control Module User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="URDF_Processor.html">URDF Processor User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Trajectory_Planning.html">Trajectory Planning User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Simulation.html">Simulation Module User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Collision_Checker.html">Collision Checker Module User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Potential_Field.html">Potential Field Module User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Perception.html">Perception User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">CUDA Kernels User Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#what-is-gpu-acceleration">What is GPU Acceleration?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mathematical-foundation">Mathematical Foundation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installation-and-setup">Installation and Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#available-cuda-kernels">Available CUDA Kernels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-gpu-acceleration">Using GPU Acceleration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cpu-fallback">CPU Fallback</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#best-practices">Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#integration-with-manipulapy">Integration with ManipulaPy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#working-examples">Working Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#when-to-use-gpu-acceleration">When to Use GPU Acceleration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#getting-started-checklist">Getting Started Checklist</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#learning-pathways">🗺️ Learning Pathways</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#guide-categories">📖 Guide Categories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#quick-reference">🎯 Quick Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#study-tips">💡 Study Tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#need-help">🆘 Need Help?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Kinematics.html">Kinematics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Dynamics.html">Dynamics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Control.html">Control Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Trajectory_Planning.html">Trajectory Planning User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Simulation.html">Simulation Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="URDF_Processor.html">URDF Processor User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Perception.html">Perception User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vision.html">Vision User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Potential_Field.html">Potential Field Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Collision_Checker.html">Collision Checker Module User Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">CUDA Kernels User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-gpu-acceleration">What is GPU Acceleration?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mathematical-foundation">Mathematical Foundation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cuda-kernel-implementation">CUDA Kernel Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-and-setup">Installation and Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#system-requirements">System Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation-options">Installation Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verification">Verification</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#available-cuda-kernels">Available CUDA Kernels</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#trajectory-generation-kernels">Trajectory Generation Kernels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dynamics-computation-kernels">Dynamics Computation Kernels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#potential-field-kernels">Potential Field Kernels</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#using-gpu-acceleration">Using GPU Acceleration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basic-trajectory-generation">Basic Trajectory Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#trajectoryplanning-with-gpu-kernels">TrajectoryPlanning with GPU Kernels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#batch-dynamics-computation">Batch Dynamics Computation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#potential-field-path-planning">Potential Field Path Planning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#performance-optimization">Performance Optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#memory-management">Memory Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gpu-configuration-check">GPU Configuration Check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#memory-pool-management">Memory Pool Management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#cpu-fallback">CPU Fallback</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#automatic-fallback-system">Automatic Fallback System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#performance-comparison">Performance Comparison</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#common-issues-and-solutions">Common Issues and Solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#best-practices">Best Practices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#data-types">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#problem-sizing">Problem Sizing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#error-handling">Error Handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Memory Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Performance Optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#integration-with-manipulapy">Integration with ManipulaPy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#integration-with-simulation">Integration with Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#integration-with-control">Integration with Control</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#working-examples">Working Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#complete-gpu-workflow-example">Complete GPU Workflow Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#batch-processing-example">Batch Processing Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#performance-profiling-example">Performance Profiling Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#when-to-use-gpu-acceleration">When to Use GPU Acceleration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#performance-guidelines">Performance Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started-checklist">Getting Started Checklist</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Installation and Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quick-start-guide">Quick Start Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#common-patterns">Common Patterns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#conclusion">Conclusion</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#api-reference">API Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ManipulaPy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">User Guide</a></li>
+      <li class="breadcrumb-item active">CUDA Kernels User Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user_guide/CUDA_Kernels.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cuda-kernels-user-guide">
+<h1>CUDA Kernels User Guide<a class="headerlink" href="#cuda-kernels-user-guide" title="Link to this heading"></a></h1>
+<p>This guide covers the <strong>CUDA acceleration</strong> features in ManipulaPy, which provide GPU-accelerated functions for high-performance robotic computations including trajectory planning, dynamics computation, and potential field calculations.</p>
+<nav class="contents local" id="quick-navigation">
+<p class="topic-title"><strong>Quick Navigation</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#what-is-gpu-acceleration" id="id5">What is GPU Acceleration?</a></p></li>
+<li><p><a class="reference internal" href="#mathematical-foundation" id="id6">Mathematical Foundation</a></p>
+<ul>
+<li><p><a class="reference internal" href="#cuda-kernel-implementation" id="id7">CUDA Kernel Implementation</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#installation-and-setup" id="id8">Installation and Setup</a></p>
+<ul>
+<li><p><a class="reference internal" href="#system-requirements" id="id9">System Requirements</a></p></li>
+<li><p><a class="reference internal" href="#installation-options" id="id10">Installation Options</a></p></li>
+<li><p><a class="reference internal" href="#verification" id="id11">Verification</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#available-cuda-kernels" id="id12">Available CUDA Kernels</a></p>
+<ul>
+<li><p><a class="reference internal" href="#trajectory-generation-kernels" id="id13">Trajectory Generation Kernels</a></p></li>
+<li><p><a class="reference internal" href="#dynamics-computation-kernels" id="id14">Dynamics Computation Kernels</a></p></li>
+<li><p><a class="reference internal" href="#potential-field-kernels" id="id15">Potential Field Kernels</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#using-gpu-acceleration" id="id16">Using GPU Acceleration</a></p>
+<ul>
+<li><p><a class="reference internal" href="#basic-trajectory-generation" id="id17">Basic Trajectory Generation</a></p></li>
+<li><p><a class="reference internal" href="#trajectoryplanning-with-gpu-kernels" id="id18">TrajectoryPlanning with GPU Kernels</a></p></li>
+<li><p><a class="reference internal" href="#batch-dynamics-computation" id="id19">Batch Dynamics Computation</a></p></li>
+<li><p><a class="reference internal" href="#potential-field-path-planning" id="id20">Potential Field Path Planning</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#performance-optimization" id="id21">Performance Optimization</a></p>
+<ul>
+<li><p><a class="reference internal" href="#memory-management" id="id22">Memory Management</a></p></li>
+<li><p><a class="reference internal" href="#gpu-configuration-check" id="id23">GPU Configuration Check</a></p></li>
+<li><p><a class="reference internal" href="#memory-pool-management" id="id24">Memory Pool Management</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#cpu-fallback" id="id25">CPU Fallback</a></p>
+<ul>
+<li><p><a class="reference internal" href="#automatic-fallback-system" id="id26">Automatic Fallback System</a></p></li>
+<li><p><a class="reference internal" href="#performance-comparison" id="id27">Performance Comparison</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#troubleshooting" id="id28">Troubleshooting</a></p>
+<ul>
+<li><p><a class="reference internal" href="#common-issues-and-solutions" id="id29">Common Issues and Solutions</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#best-practices" id="id30">Best Practices</a></p>
+<ul>
+<li><p><a class="reference internal" href="#data-types" id="id31">Data Types</a></p></li>
+<li><p><a class="reference internal" href="#problem-sizing" id="id32">Problem Sizing</a></p></li>
+<li><p><a class="reference internal" href="#error-handling" id="id33">Error Handling</a></p></li>
+<li><p><a class="reference internal" href="#id1" id="id34">Memory Management</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id35">Performance Optimization</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#integration-with-manipulapy" id="id36">Integration with ManipulaPy</a></p>
+<ul>
+<li><p><a class="reference internal" href="#integration-with-simulation" id="id37">Integration with Simulation</a></p></li>
+<li><p><a class="reference internal" href="#integration-with-control" id="id38">Integration with Control</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#working-examples" id="id39">Working Examples</a></p>
+<ul>
+<li><p><a class="reference internal" href="#complete-gpu-workflow-example" id="id40">Complete GPU Workflow Example</a></p></li>
+<li><p><a class="reference internal" href="#batch-processing-example" id="id41">Batch Processing Example</a></p></li>
+<li><p><a class="reference internal" href="#performance-profiling-example" id="id42">Performance Profiling Example</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#when-to-use-gpu-acceleration" id="id43">When to Use GPU Acceleration</a></p>
+<ul>
+<li><p><a class="reference internal" href="#performance-guidelines" id="id44">Performance Guidelines</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#getting-started-checklist" id="id45">Getting Started Checklist</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id46">Installation and Setup</a></p></li>
+<li><p><a class="reference internal" href="#quick-start-guide" id="id47">Quick Start Guide</a></p></li>
+<li><p><a class="reference internal" href="#common-patterns" id="id48">Common Patterns</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#conclusion" id="id49">Conclusion</a></p>
+<ul>
+<li><p><a class="reference internal" href="#api-reference" id="id50">API Reference</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="what-is-gpu-acceleration">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">What is GPU Acceleration?</a><a class="headerlink" href="#what-is-gpu-acceleration" title="Link to this heading"></a></h2>
+<p><strong>GPU acceleration</strong> uses NVIDIA graphics cards to perform parallel computations much faster than traditional CPU processing. ManipulaPy leverages CUDA through:</p>
+<ul class="simple">
+<li><p><strong>Numba CUDA kernels</strong>: Low-level parallel computation</p></li>
+<li><p><strong>CuPy arrays</strong>: NumPy-compatible GPU arrays</p></li>
+<li><p><strong>Automatic fallback</strong>: Graceful degradation to CPU when GPU unavailable</p></li>
+<li><p><strong>Memory optimization</strong>: Efficient GPU memory management</p></li>
+</ul>
+<p>Key benefits include:</p>
+<ul class="simple">
+<li><p><strong>10-100x Performance Improvement</strong>: Significant speedup for large-scale computations</p></li>
+<li><p><strong>Real-time Capable</strong>: Suitable for real-time control applications</p></li>
+<li><p><strong>Seamless Integration</strong>: Works directly with existing ManipulaPy classes</p></li>
+</ul>
+</section>
+<section id="mathematical-foundation">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Mathematical Foundation</a><a class="headerlink" href="#mathematical-foundation" title="Link to this heading"></a></h2>
+<section id="cuda-kernel-implementation">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">CUDA Kernel Implementation</a><a class="headerlink" href="#cuda-kernel-implementation" title="Link to this heading"></a></h3>
+<p><strong>Trajectory Generation Kernel:</strong></p>
+<p>The GPU kernel computes smooth trajectories using parallel processing:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}s(t) = \begin{cases}
+  3(t/T_f)^2 - 2(t/T_f)^3 &amp; \text{cubic} \\
+  10(t/T_f)^3 - 15(t/T_f)^4 + 6(t/T_f)^5 &amp; \text{quintic}
+\end{cases}\end{split}\]</div>
+<p>where each thread computes one trajectory point in parallel:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@cuda</span><span class="o">.</span><span class="n">jit</span>
+<span class="k">def</span> <span class="nf">trajectory_kernel</span><span class="p">(</span><span class="n">thetastart</span><span class="p">,</span> <span class="n">thetaend</span><span class="p">,</span> <span class="n">traj_pos</span><span class="p">,</span> <span class="n">traj_vel</span><span class="p">,</span> <span class="n">traj_acc</span><span class="p">,</span> <span class="n">Tf</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">method</span><span class="p">):</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">cuda</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">idx</span> <span class="o">*</span> <span class="p">(</span><span class="n">Tf</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="c1"># Compute time scaling function...</span>
+</pre></div>
+</div>
+<p><strong>Dynamics Computation:</strong></p>
+<p>Parallel inverse dynamics using the Newton-Euler formulation:</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol\tau = M(\boldsymbol\theta)\ddot{\boldsymbol\theta} + C(\boldsymbol\theta,\dot{\boldsymbol\theta})\dot{\boldsymbol\theta} + G(\boldsymbol\theta) + J^T(\boldsymbol\theta)F_{ext}\]</div>
+<p>Each GPU thread processes one trajectory point simultaneously.</p>
+</section>
+</section>
+<section id="installation-and-setup">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Installation and Setup</a><a class="headerlink" href="#installation-and-setup" title="Link to this heading"></a></h2>
+<section id="system-requirements">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">System Requirements</a><a class="headerlink" href="#system-requirements" title="Link to this heading"></a></h3>
+<p><strong>Hardware:</strong>
+- NVIDIA GPU with Compute Capability 3.0 or higher
+- 4GB+ GPU memory recommended
+- PCIe 3.0 x16 slot</p>
+<p><strong>Software:</strong>
+- NVIDIA GPU drivers (latest recommended)
+- CUDA Toolkit 11.0+ or 12.0+
+- Python 3.8+</p>
+</section>
+<section id="installation-options">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Installation Options</a><a class="headerlink" href="#installation-options" title="Link to this heading"></a></h3>
+<p><strong>Option 1: Full GPU Support (Recommended)</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For CUDA 11.x systems</span>
+pip<span class="w"> </span>install<span class="w"> </span>cupy-cuda11x<span class="w"> </span>numba<span class="w"> </span>ManipulaPy
+
+<span class="c1"># For CUDA 12.x systems</span>
+pip<span class="w"> </span>install<span class="w"> </span>cupy-cuda12x<span class="w"> </span>numba<span class="w"> </span>ManipulaPy
+</pre></div>
+</div>
+<p><strong>Option 2: CPU-Only Installation</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Basic installation (no GPU acceleration)</span>
+pip<span class="w"> </span>install<span class="w"> </span>ManipulaPy
+</pre></div>
+</div>
+</section>
+<section id="verification">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Verification</a><a class="headerlink" href="#verification" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">cuda</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Check CUDA availability</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">cuda</span><span class="o">.</span><span class="n">detect</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ CUDA acceleration available&quot;</span><span class="p">)</span>
+    <span class="n">CUDA_AVAILABLE</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;❌ CUDA not available - using CPU fallback&quot;</span><span class="p">)</span>
+    <span class="n">CUDA_AVAILABLE</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># Check CuPy availability</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">cupy</span> <span class="k">as</span> <span class="nn">cp</span>
+    <span class="n">cp</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">compute_capability</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ CuPy GPU arrays available&quot;</span><span class="p">)</span>
+    <span class="n">CUPY_AVAILABLE</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;❌ CuPy not available&quot;</span><span class="p">)</span>
+    <span class="n">CUPY_AVAILABLE</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="available-cuda-kernels">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Available CUDA Kernels</a><a class="headerlink" href="#available-cuda-kernels" title="Link to this heading"></a></h2>
+<section id="trajectory-generation-kernels">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Trajectory Generation Kernels</a><a class="headerlink" href="#trajectory-generation-kernels" title="Link to this heading"></a></h3>
+<p><strong>trajectory_kernel</strong></p>
+<p>Generates smooth joint trajectories with cubic or quintic time scaling.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@cuda</span><span class="o">.</span><span class="n">jit</span>
+<span class="k">def</span> <span class="nf">trajectory_kernel</span><span class="p">(</span><span class="n">thetastart</span><span class="p">,</span> <span class="n">thetaend</span><span class="p">,</span> <span class="n">traj_pos</span><span class="p">,</span> <span class="n">traj_vel</span><span class="p">,</span> <span class="n">traj_acc</span><span class="p">,</span> <span class="n">Tf</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">method</span><span class="p">):</span>
+</pre></div>
+</div>
+<p><strong>Parameters:</strong>
+- <strong>thetastart</strong>: Starting joint angles
+- <strong>thetaend</strong>: Ending joint angles
+- <strong>traj_pos</strong>: Output trajectory positions
+- <strong>traj_vel</strong>: Output trajectory velocities
+- <strong>traj_acc</strong>: Output trajectory accelerations
+- <strong>Tf</strong>: Total trajectory time
+- <strong>N</strong>: Number of trajectory points
+- <strong>method</strong>: Time scaling method (3=cubic, 5=quintic)</p>
+<p><strong>cartesian_trajectory_kernel</strong></p>
+<p>Generates Cartesian space trajectories for end-effector motion.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@cuda</span><span class="o">.</span><span class="n">jit</span>
+<span class="k">def</span> <span class="nf">cartesian_trajectory_kernel</span><span class="p">(</span><span class="n">pstart</span><span class="p">,</span> <span class="n">pend</span><span class="p">,</span> <span class="n">traj_pos</span><span class="p">,</span> <span class="n">traj_vel</span><span class="p">,</span> <span class="n">traj_acc</span><span class="p">,</span> <span class="n">Tf</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">method</span><span class="p">):</span>
+</pre></div>
+</div>
+</section>
+<section id="dynamics-computation-kernels">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Dynamics Computation Kernels</a><a class="headerlink" href="#dynamics-computation-kernels" title="Link to this heading"></a></h3>
+<p><strong>inverse_dynamics_kernel</strong></p>
+<p>Computes required joint torques for given motion trajectories.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@cuda</span><span class="o">.</span><span class="n">jit</span>
+<span class="k">def</span> <span class="nf">inverse_dynamics_kernel</span><span class="p">(</span>
+    <span class="n">thetalist_trajectory</span><span class="p">,</span> <span class="n">dthetalist_trajectory</span><span class="p">,</span> <span class="n">ddthetalist_trajectory</span><span class="p">,</span>
+    <span class="n">gravity_vector</span><span class="p">,</span> <span class="n">Ftip</span><span class="p">,</span> <span class="n">Glist</span><span class="p">,</span> <span class="n">Slist</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">torques_trajectory</span><span class="p">,</span> <span class="n">torque_limits</span><span class="p">):</span>
+</pre></div>
+</div>
+<p><strong>Features:</strong>
+- Parallel computation across trajectory points
+- Includes mass matrix, Coriolis, and gravity effects
+- Automatic torque limit enforcement</p>
+<p><strong>forward_dynamics_kernel</strong></p>
+<p>Simulates robot motion given applied torques.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@cuda</span><span class="o">.</span><span class="n">jit</span>
+<span class="k">def</span> <span class="nf">forward_dynamics_kernel</span><span class="p">(</span>
+    <span class="n">thetalist</span><span class="p">,</span> <span class="n">dthetalist</span><span class="p">,</span> <span class="n">taumat</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">Ftipmat</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">intRes</span><span class="p">,</span>
+    <span class="n">Glist</span><span class="p">,</span> <span class="n">Slist</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">thetamat</span><span class="p">,</span> <span class="n">dthetamat</span><span class="p">,</span> <span class="n">ddthetamat</span><span class="p">,</span> <span class="n">joint_limits</span><span class="p">):</span>
+</pre></div>
+</div>
+</section>
+<section id="potential-field-kernels">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Potential Field Kernels</a><a class="headerlink" href="#potential-field-kernels" title="Link to this heading"></a></h3>
+<p><strong>attractive_potential_kernel</strong></p>
+<p>Computes attractive potential fields for path planning.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@cuda</span><span class="o">.</span><span class="n">jit</span>
+<span class="k">def</span> <span class="nf">attractive_potential_kernel</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">goal</span><span class="p">,</span> <span class="n">potential</span><span class="p">):</span>
+</pre></div>
+</div>
+<p><strong>repulsive_potential_kernel</strong></p>
+<p>Computes repulsive potential fields around obstacles.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@cuda</span><span class="o">.</span><span class="n">jit</span>
+<span class="k">def</span> <span class="nf">repulsive_potential_kernel</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">obstacles</span><span class="p">,</span> <span class="n">potential</span><span class="p">,</span> <span class="n">influence_distance</span><span class="p">):</span>
+</pre></div>
+</div>
+<p><strong>gradient_kernel</strong></p>
+<p>Computes gradients of potential fields for navigation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@cuda</span><span class="o">.</span><span class="n">jit</span>
+<span class="k">def</span> <span class="nf">gradient_kernel</span><span class="p">(</span><span class="n">potential</span><span class="p">,</span> <span class="n">gradient</span><span class="p">):</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="using-gpu-acceleration">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">Using GPU Acceleration</a><a class="headerlink" href="#using-gpu-acceleration" title="Link to this heading"></a></h2>
+<section id="basic-trajectory-generation">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">Basic Trajectory Generation</a><a class="headerlink" href="#basic-trajectory-generation" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">ManipulaPy.path_planning</span> <span class="kn">import</span> <span class="n">TrajectoryPlanning</span>
+<span class="kn">from</span> <span class="nn">ManipulaPy.urdf_processor</span> <span class="kn">import</span> <span class="n">URDFToSerialManipulator</span>
+
+<span class="k">def</span> <span class="nf">generate_gpu_trajectory_example</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Example using ManipulaPy&#39;s TrajectoryPlanning with GPU acceleration.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Load robot model</span>
+    <span class="n">urdf_path</span> <span class="o">=</span> <span class="s2">&quot;path/to/robot.urdf&quot;</span>
+    <span class="n">urdf_processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="n">urdf_path</span><span class="p">)</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">serial_manipulator</span>
+    <span class="n">dynamics</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">dynamics</span>
+
+    <span class="c1"># Create trajectory planner</span>
+    <span class="n">joint_limits</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">6</span>  <span class="c1"># Example 6-DOF robot</span>
+    <span class="n">trajectory_planner</span> <span class="o">=</span> <span class="n">TrajectoryPlanning</span><span class="p">(</span>
+        <span class="n">robot</span><span class="p">,</span> <span class="n">urdf_path</span><span class="p">,</span> <span class="n">dynamics</span><span class="p">,</span> <span class="n">joint_limits</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Generate trajectory using GPU acceleration (automatic)</span>
+    <span class="n">thetastart</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="n">thetaend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.7</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="n">Tf</span> <span class="o">=</span> <span class="mf">2.0</span>  <span class="c1"># 2 seconds</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># 1000 points</span>
+    <span class="n">method</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># Quintic time scaling</span>
+
+    <span class="n">trajectory</span> <span class="o">=</span> <span class="n">trajectory_planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span>
+        <span class="n">thetastart</span><span class="p">,</span> <span class="n">thetaend</span><span class="p">,</span> <span class="n">Tf</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">method</span>
+    <span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generated trajectory with </span><span class="si">{</span><span class="n">trajectory</span><span class="p">[</span><span class="s1">&#39;positions&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> points&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Trajectory shape: </span><span class="si">{</span><span class="n">trajectory</span><span class="p">[</span><span class="s1">&#39;positions&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">trajectory</span>
+
+<span class="c1"># Example usage</span>
+<span class="n">trajectory</span> <span class="o">=</span> <span class="n">generate_gpu_trajectory_example</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="trajectoryplanning-with-gpu-kernels">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">TrajectoryPlanning with GPU Kernels</a><a class="headerlink" href="#trajectoryplanning-with-gpu-kernels" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ManipulaPy.path_planning</span> <span class="kn">import</span> <span class="n">TrajectoryPlanning</span>
+<span class="kn">from</span> <span class="nn">ManipulaPy.urdf_processor</span> <span class="kn">import</span> <span class="n">URDFToSerialManipulator</span>
+
+<span class="c1"># Initialize robot and dynamics</span>
+<span class="n">urdf_processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+<span class="n">robot</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">serial_manipulator</span>
+<span class="n">dynamics</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">dynamics</span>
+
+<span class="c1"># Set up joint and torque limits</span>
+<span class="n">num_joints</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dynamics</span><span class="o">.</span><span class="n">Glist</span><span class="p">)</span>
+<span class="n">joint_limits</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)]</span> <span class="o">*</span> <span class="n">num_joints</span>
+<span class="n">torque_limits</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">)]</span> <span class="o">*</span> <span class="n">num_joints</span>
+
+<span class="c1"># Create trajectory planner (automatically uses GPU when available)</span>
+<span class="n">trajectory_planner</span> <span class="o">=</span> <span class="n">TrajectoryPlanning</span><span class="p">(</span>
+    <span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;robot.urdf&quot;</span><span class="p">,</span> <span class="n">dynamics</span><span class="p">,</span> <span class="n">joint_limits</span><span class="p">,</span> <span class="n">torque_limits</span>
+<span class="p">)</span>
+
+<span class="c1"># Generate trajectory - GPU acceleration happens automatically</span>
+<span class="n">thetastart</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_joints</span><span class="p">)</span>
+<span class="n">thetaend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">num_joints</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span>
+<span class="n">trajectory</span> <span class="o">=</span> <span class="n">trajectory_planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span>
+    <span class="n">thetastart</span><span class="p">,</span> <span class="n">thetaend</span><span class="p">,</span> <span class="n">Tf</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">)</span>
+
+<span class="c1"># Compute inverse dynamics - also GPU accelerated</span>
+<span class="n">torques</span> <span class="o">=</span> <span class="n">trajectory_planner</span><span class="o">.</span><span class="n">inverse_dynamics_trajectory</span><span class="p">(</span>
+    <span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">],</span>
+    <span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;velocities&quot;</span><span class="p">],</span>
+    <span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;accelerations&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Computed torques shape: </span><span class="si">{</span><span class="n">torques</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="batch-dynamics-computation">
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">Batch Dynamics Computation</a><a class="headerlink" href="#batch-dynamics-computation" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_trajectory_dynamics_example</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute dynamics for entire trajectory using GPU acceleration.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Initialize robot and trajectory planner</span>
+    <span class="n">urdf_processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">serial_manipulator</span>
+    <span class="n">dynamics</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">dynamics</span>
+
+    <span class="n">num_joints</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dynamics</span><span class="o">.</span><span class="n">Glist</span><span class="p">)</span>
+    <span class="n">joint_limits</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)]</span> <span class="o">*</span> <span class="n">num_joints</span>
+
+    <span class="n">trajectory_planner</span> <span class="o">=</span> <span class="n">TrajectoryPlanning</span><span class="p">(</span>
+        <span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;robot.urdf&quot;</span><span class="p">,</span> <span class="n">dynamics</span><span class="p">,</span> <span class="n">joint_limits</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Generate trajectory first</span>
+    <span class="n">thetastart</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_joints</span><span class="p">)</span>
+    <span class="n">thetaend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">num_joints</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span>
+
+    <span class="n">trajectory</span> <span class="o">=</span> <span class="n">trajectory_planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span>
+        <span class="n">thetastart</span><span class="p">,</span> <span class="n">thetaend</span><span class="p">,</span> <span class="n">Tf</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">5</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Compute inverse dynamics (GPU accelerated automatically)</span>
+    <span class="n">torques</span> <span class="o">=</span> <span class="n">trajectory_planner</span><span class="o">.</span><span class="n">inverse_dynamics_trajectory</span><span class="p">(</span>
+        <span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">],</span>
+        <span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;velocities&quot;</span><span class="p">],</span>
+        <span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;accelerations&quot;</span><span class="p">],</span>
+        <span class="n">gravity_vector</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">],</span>
+        <span class="n">Ftip</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Computed torques shape: </span><span class="si">{</span><span class="n">torques</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">torques</span>
+
+<span class="c1"># Example usage</span>
+<span class="n">trajectory_torques</span> <span class="o">=</span> <span class="n">compute_trajectory_dynamics_example</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="potential-field-path-planning">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">Potential Field Path Planning</a><a class="headerlink" href="#potential-field-path-planning" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ManipulaPy.potential_field</span> <span class="kn">import</span> <span class="n">PotentialField</span>
+
+<span class="k">def</span> <span class="nf">potential_field_example</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Example using potential fields with GPU acceleration.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Create potential field</span>
+    <span class="n">potential_field</span> <span class="o">=</span> <span class="n">PotentialField</span><span class="p">(</span>
+        <span class="n">attractive_gain</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">repulsive_gain</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span>
+        <span class="n">influence_distance</span><span class="o">=</span><span class="mf">0.5</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Define workspace points</span>
+    <span class="n">workspace_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="n">goal_position</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span>
+    <span class="n">obstacles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">]])</span>
+
+    <span class="c1"># Compute potential field (uses GPU kernels internally when available)</span>
+    <span class="n">total_potential</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">workspace_points</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">point</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">workspace_points</span><span class="p">):</span>
+        <span class="n">attractive</span> <span class="o">=</span> <span class="n">potential_field</span><span class="o">.</span><span class="n">compute_attractive_potential</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">goal_position</span><span class="p">)</span>
+        <span class="n">repulsive</span> <span class="o">=</span> <span class="n">potential_field</span><span class="o">.</span><span class="n">compute_repulsive_potential</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">obstacles</span><span class="p">)</span>
+        <span class="n">total_potential</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">attractive</span> <span class="o">+</span> <span class="n">repulsive</span>
+
+    <span class="k">return</span> <span class="n">total_potential</span>
+
+<span class="c1"># Example usage</span>
+<span class="n">potential_values</span> <span class="o">=</span> <span class="n">potential_field_example</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="performance-optimization">
+<h2><a class="toc-backref" href="#id21" role="doc-backlink">Performance Optimization</a><a class="headerlink" href="#performance-optimization" title="Link to this heading"></a></h2>
+<section id="memory-management">
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">Memory Management</a><a class="headerlink" href="#memory-management" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">optimal_memory_usage</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Example of optimal GPU memory usage with ManipulaPy.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Pre-allocate trajectories for efficiency</span>
+    <span class="n">max_points</span> <span class="o">=</span> <span class="mi">5000</span>
+    <span class="n">num_joints</span> <span class="o">=</span> <span class="mi">6</span>
+
+    <span class="c1"># Use float32 for GPU efficiency</span>
+    <span class="n">thetastart</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_joints</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="n">thetaend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">num_joints</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+    <span class="c1"># Initialize trajectory planner once</span>
+    <span class="n">urdf_processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">serial_manipulator</span>
+    <span class="n">dynamics</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">dynamics</span>
+    <span class="n">joint_limits</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)]</span> <span class="o">*</span> <span class="n">num_joints</span>
+
+    <span class="n">trajectory_planner</span> <span class="o">=</span> <span class="n">TrajectoryPlanning</span><span class="p">(</span>
+        <span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;robot.urdf&quot;</span><span class="p">,</span> <span class="n">dynamics</span><span class="p">,</span> <span class="n">joint_limits</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Process multiple trajectories efficiently</span>
+    <span class="n">trajectories</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="c1"># Vary end positions</span>
+        <span class="n">end_pos</span> <span class="o">=</span> <span class="n">thetaend</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span>
+
+        <span class="n">trajectory</span> <span class="o">=</span> <span class="n">trajectory_planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span>
+            <span class="n">thetastart</span><span class="p">,</span> <span class="n">end_pos</span><span class="p">,</span> <span class="n">Tf</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">max_points</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">3</span>
+        <span class="p">)</span>
+        <span class="n">trajectories</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trajectory</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">trajectories</span>
+
+<span class="k">def</span> <span class="nf">cleanup_gpu_memory</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Clean up GPU memory after computations.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">cupy</span> <span class="k">as</span> <span class="nn">cp</span>
+        <span class="n">mempool</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">get_default_memory_pool</span><span class="p">()</span>
+        <span class="n">mempool</span><span class="o">.</span><span class="n">free_all_blocks</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;GPU memory cleaned up&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+<span class="n">trajectories</span> <span class="o">=</span> <span class="n">optimal_memory_usage</span><span class="p">()</span>
+<span class="n">cleanup_gpu_memory</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="gpu-configuration-check">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">GPU Configuration Check</a><a class="headerlink" href="#gpu-configuration-check" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">check_gpu_configuration</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check optimal GPU configuration for kernels.&quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">cuda</span>
+
+        <span class="k">if</span> <span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+            <span class="n">device</span> <span class="o">=</span> <span class="n">cuda</span><span class="o">.</span><span class="n">get_current_device</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GPU: </span><span class="si">{</span><span class="n">device</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Compute Capability: </span><span class="si">{</span><span class="n">device</span><span class="o">.</span><span class="n">compute_capability</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Max threads per block: </span><span class="si">{</span><span class="n">device</span><span class="o">.</span><span class="n">MAX_THREADS_PER_BLOCK</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Max block dimensions: </span><span class="si">{</span><span class="n">device</span><span class="o">.</span><span class="n">MAX_BLOCK_DIM_X</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Multiprocessor count: </span><span class="si">{</span><span class="n">device</span><span class="o">.</span><span class="n">MULTIPROCESSOR_COUNT</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No CUDA device available&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Numba CUDA not available&quot;</span><span class="p">)</span>
+
+<span class="n">check_gpu_configuration</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="memory-pool-management">
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">Memory Pool Management</a><a class="headerlink" href="#memory-pool-management" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setup_gpu_memory_pool</span><span class="p">(</span><span class="n">max_memory_gb</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configure GPU memory pool for optimal performance.&quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">cupy</span> <span class="k">as</span> <span class="nn">cp</span>
+        <span class="n">mempool</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">get_default_memory_pool</span><span class="p">()</span>
+
+        <span class="c1"># Set memory limit to prevent OOM</span>
+        <span class="n">max_bytes</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">max_memory_gb</span> <span class="o">*</span> <span class="mi">1024</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">mempool</span><span class="o">.</span><span class="n">set_limit</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">max_bytes</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GPU memory pool configured with </span><span class="si">{</span><span class="n">max_memory_gb</span><span class="si">}</span><span class="s2"> GB limit&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">mempool</span>
+
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CuPy not available - cannot configure memory pool&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error configuring memory pool: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+<span class="k">def</span> <span class="nf">cleanup_gpu_memory</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Clean up GPU memory.&quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">cupy</span> <span class="k">as</span> <span class="nn">cp</span>
+        <span class="n">mempool</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">get_default_memory_pool</span><span class="p">()</span>
+        <span class="n">mempool</span><span class="o">.</span><span class="n">free_all_blocks</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;GPU memory cleaned up&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error cleaning up GPU memory: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Example usage</span>
+<span class="n">mempool</span> <span class="o">=</span> <span class="n">setup_gpu_memory_pool</span><span class="p">(</span><span class="n">max_memory_gb</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="c1"># ... perform GPU computations ...</span>
+
+<span class="n">cleanup_gpu_memory</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="cpu-fallback">
+<h2><a class="toc-backref" href="#id25" role="doc-backlink">CPU Fallback</a><a class="headerlink" href="#cpu-fallback" title="Link to this heading"></a></h2>
+<section id="automatic-fallback-system">
+<h3><a class="toc-backref" href="#id26" role="doc-backlink">Automatic Fallback System</a><a class="headerlink" href="#automatic-fallback-system" title="Link to this heading"></a></h3>
+<p>The ManipulaPy modules automatically fall back to CPU computation when GPU acceleration is not available:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_cpu_fallback</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test CPU fallback functionality.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Initialize components</span>
+    <span class="n">urdf_processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">serial_manipulator</span>
+    <span class="n">dynamics</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">dynamics</span>
+    <span class="n">joint_limits</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">dynamics</span><span class="o">.</span><span class="n">Glist</span><span class="p">)</span>
+
+    <span class="c1"># TrajectoryPlanning automatically handles CPU fallback</span>
+    <span class="n">trajectory_planner</span> <span class="o">=</span> <span class="n">TrajectoryPlanning</span><span class="p">(</span>
+        <span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;robot.urdf&quot;</span><span class="p">,</span> <span class="n">dynamics</span><span class="p">,</span> <span class="n">joint_limits</span>
+    <span class="p">)</span>
+
+    <span class="c1"># This will use GPU if available, CPU otherwise</span>
+    <span class="n">thetastart</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+    <span class="n">thetaend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+
+    <span class="n">trajectory</span> <span class="o">=</span> <span class="n">trajectory_planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span>
+        <span class="n">thetastart</span><span class="p">,</span> <span class="n">thetaend</span><span class="p">,</span> <span class="n">Tf</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">3</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Check if result is valid regardless of GPU/CPU</span>
+    <span class="k">assert</span> <span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;velocities&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;accelerations&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Trajectory generation successful (GPU or CPU)&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">trajectory</span>
+
+<span class="n">test_trajectory</span> <span class="o">=</span> <span class="n">test_cpu_fallback</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="performance-comparison">
+<h3><a class="toc-backref" href="#id27" role="doc-backlink">Performance Comparison</a><a class="headerlink" href="#performance-comparison" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compare_cpu_gpu_performance</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compare CPU vs GPU performance across different problem sizes.&quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">cuda</span>
+        <span class="n">cuda_available</span> <span class="o">=</span> <span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">cuda_available</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="c1"># Initialize trajectory planner</span>
+    <span class="n">urdf_processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">serial_manipulator</span>
+    <span class="n">dynamics</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">dynamics</span>
+    <span class="n">joint_limits</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">dynamics</span><span class="o">.</span><span class="n">Glist</span><span class="p">)</span>
+
+    <span class="n">trajectory_planner</span> <span class="o">=</span> <span class="n">TrajectoryPlanning</span><span class="p">(</span>
+        <span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;robot.urdf&quot;</span><span class="p">,</span> <span class="n">dynamics</span><span class="p">,</span> <span class="n">joint_limits</span>
+    <span class="p">)</span>
+
+    <span class="n">problem_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">2000</span><span class="p">]</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">N</span> <span class="ow">in</span> <span class="n">problem_sizes</span><span class="p">:</span>
+        <span class="n">thetastart</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+        <span class="n">thetaend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+
+        <span class="c1"># Time the trajectory generation</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+        <span class="n">trajectory</span> <span class="o">=</span> <span class="n">trajectory_planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span>
+            <span class="n">thetastart</span><span class="p">,</span> <span class="n">thetaend</span><span class="p">,</span> <span class="n">Tf</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">3</span>
+        <span class="p">)</span>
+        <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s1">&#39;problem_size&#39;</span><span class="p">:</span> <span class="n">N</span><span class="p">,</span>
+            <span class="s1">&#39;time_ms&#39;</span><span class="p">:</span> <span class="n">elapsed_time</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span>
+            <span class="s1">&#39;cuda_available&#39;</span><span class="p">:</span> <span class="n">cuda_available</span>
+        <span class="p">})</span>
+
+        <span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;GPU&quot;</span> <span class="k">if</span> <span class="n">cuda_available</span> <span class="k">else</span> <span class="s2">&quot;CPU&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;N=</span><span class="si">{</span><span class="n">N</span><span class="si">:</span><span class="s2">4d</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">elapsed_time</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">6.2f</span><span class="si">}</span><span class="s2">ms (</span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">results</span>
+
+<span class="c1"># Run performance comparison</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="n">perf_results</span> <span class="o">=</span> <span class="n">compare_cpu_gpu_performance</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="troubleshooting">
+<h2><a class="toc-backref" href="#id28" role="doc-backlink">Troubleshooting</a><a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<section id="common-issues-and-solutions">
+<h3><a class="toc-backref" href="#id29" role="doc-backlink">Common Issues and Solutions</a><a class="headerlink" href="#common-issues-and-solutions" title="Link to this heading"></a></h3>
+<p><strong>CUDA Installation Issues</strong></p>
+<p>Problem: <code class="docutils literal notranslate"><span class="pre">ImportError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">'numba.cuda'</span></code></p>
+<p>Solutions:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check CUDA installation</span>
+nvidia-smi
+
+<span class="c1"># Install appropriate CuPy version</span>
+pip<span class="w"> </span>install<span class="w"> </span>cupy-cuda11x<span class="w">  </span><span class="c1"># For CUDA 11.x</span>
+pip<span class="w"> </span>install<span class="w"> </span>cupy-cuda12x<span class="w">  </span><span class="c1"># For CUDA 12.x</span>
+
+<span class="c1"># Install Numba with CUDA support</span>
+pip<span class="w"> </span>install<span class="w"> </span>numba
+
+<span class="c1"># Verify installation</span>
+python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;from numba import cuda; print(&#39;CUDA available:&#39;, cuda.is_available())&quot;</span>
+</pre></div>
+</div>
+<p><strong>GPU Memory Errors</strong></p>
+<p>Problem: <code class="docutils literal notranslate"><span class="pre">CudaAPIError:</span> <span class="pre">CUDA_ERROR_OUT_OF_MEMORY</span></code></p>
+<p>Solutions:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reduce trajectory size</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># Instead of 10000</span>
+
+<span class="c1"># Process in smaller chunks</span>
+<span class="k">def</span> <span class="nf">process_large_trajectory</span><span class="p">(</span><span class="n">thetastart</span><span class="p">,</span> <span class="n">thetaend</span><span class="p">,</span> <span class="n">total_points</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Process large trajectory in chunks.&quot;&quot;&quot;</span>
+    <span class="n">chunk_size</span> <span class="o">=</span> <span class="mi">1000</span>
+    <span class="n">all_positions</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">all_velocities</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">all_accelerations</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Initialize trajectory planner</span>
+    <span class="n">urdf_processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">serial_manipulator</span>
+    <span class="n">dynamics</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">dynamics</span>
+    <span class="n">joint_limits</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">dynamics</span><span class="o">.</span><span class="n">Glist</span><span class="p">)</span>
+
+    <span class="n">trajectory_planner</span> <span class="o">=</span> <span class="n">TrajectoryPlanning</span><span class="p">(</span>
+        <span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;robot.urdf&quot;</span><span class="p">,</span> <span class="n">dynamics</span><span class="p">,</span> <span class="n">joint_limits</span>
+    <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">total_points</span><span class="p">,</span> <span class="n">chunk_size</span><span class="p">):</span>
+        <span class="n">chunk_N</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">chunk_size</span><span class="p">,</span> <span class="n">total_points</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span>
+        <span class="n">chunk_Tf</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">chunk_N</span> <span class="o">/</span> <span class="n">total_points</span>
+
+        <span class="n">chunk_traj</span> <span class="o">=</span> <span class="n">trajectory_planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span>
+            <span class="n">thetastart</span><span class="p">,</span> <span class="n">thetaend</span><span class="p">,</span> <span class="n">chunk_Tf</span><span class="p">,</span> <span class="n">chunk_N</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">3</span>
+        <span class="p">)</span>
+
+        <span class="n">all_positions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chunk_traj</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">])</span>
+        <span class="n">all_velocities</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chunk_traj</span><span class="p">[</span><span class="s2">&quot;velocities&quot;</span><span class="p">])</span>
+        <span class="n">all_accelerations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chunk_traj</span><span class="p">[</span><span class="s2">&quot;accelerations&quot;</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;positions&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">all_positions</span><span class="p">),</span>
+        <span class="s2">&quot;velocities&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">all_velocities</span><span class="p">),</span>
+        <span class="s2">&quot;accelerations&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">all_accelerations</span><span class="p">)</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Performance Issues</strong></p>
+<p>Problem: GPU slower than expected</p>
+<p>Debugging:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">benchmark_trajectory_generation</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Benchmark trajectory generation performance.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Initialize trajectory planner</span>
+    <span class="n">urdf_processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">serial_manipulator</span>
+    <span class="n">dynamics</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">dynamics</span>
+    <span class="n">joint_limits</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">dynamics</span><span class="o">.</span><span class="n">Glist</span><span class="p">)</span>
+
+    <span class="n">trajectory_planner</span> <span class="o">=</span> <span class="n">TrajectoryPlanning</span><span class="p">(</span>
+        <span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;robot.urdf&quot;</span><span class="p">,</span> <span class="n">dynamics</span><span class="p">,</span> <span class="n">joint_limits</span>
+    <span class="p">)</span>
+
+    <span class="n">problem_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">N</span> <span class="ow">in</span> <span class="n">problem_sizes</span><span class="p">:</span>
+        <span class="n">thetastart</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+        <span class="n">thetaend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+
+        <span class="c1"># Time the trajectory generation</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+
+        <span class="n">trajectory</span> <span class="o">=</span> <span class="n">trajectory_planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span>
+            <span class="n">thetastart</span><span class="p">,</span> <span class="n">thetaend</span><span class="p">,</span> <span class="n">Tf</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">3</span>
+        <span class="p">)</span>
+
+        <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+        <span class="n">elapsed_ms</span> <span class="o">=</span> <span class="p">(</span><span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;N=</span><span class="si">{</span><span class="n">N</span><span class="si">:</span><span class="s2">4d</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">elapsed_ms</span><span class="si">:</span><span class="s2">6.2f</span><span class="si">}</span><span class="s2"> ms&quot;</span><span class="p">)</span>
+
+<span class="n">benchmark_trajectory_generation</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="best-practices">
+<h2><a class="toc-backref" href="#id30" role="doc-backlink">Best Practices</a><a class="headerlink" href="#best-practices" title="Link to this heading"></a></h2>
+<section id="data-types">
+<h3><a class="toc-backref" href="#id31" role="doc-backlink">Data Types</a><a class="headerlink" href="#data-types" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ✅ Good: Use float32 for GPU efficiency</span>
+<span class="n">thetastart</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">thetaend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+<span class="c1"># ❌ Bad: Using float64 (unnecessary precision, slower)</span>
+<span class="n">thetastart</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="problem-sizing">
+<h3><a class="toc-backref" href="#id32" role="doc-backlink">Problem Sizing</a><a class="headerlink" href="#problem-sizing" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ✅ Good: Use appropriate problem sizes for GPU acceleration</span>
+<span class="k">def</span> <span class="nf">optimal_problem_sizing</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Choose problem sizes that benefit from GPU acceleration.&quot;&quot;&quot;</span>
+
+    <span class="n">urdf_processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">serial_manipulator</span>
+    <span class="n">dynamics</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">dynamics</span>
+    <span class="n">joint_limits</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">dynamics</span><span class="o">.</span><span class="n">Glist</span><span class="p">)</span>
+
+    <span class="n">trajectory_planner</span> <span class="o">=</span> <span class="n">TrajectoryPlanning</span><span class="p">(</span>
+        <span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;robot.urdf&quot;</span><span class="p">,</span> <span class="n">dynamics</span><span class="p">,</span> <span class="n">joint_limits</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Check if CUDA is available</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">cuda</span>
+        <span class="n">cuda_available</span> <span class="o">=</span> <span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">cuda_available</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="c1"># Adjust problem size based on available acceleration</span>
+    <span class="k">if</span> <span class="n">cuda_available</span><span class="p">:</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="mi">5000</span>  <span class="c1"># Large problem size for GPU</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Using GPU acceleration with large problem size&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># Smaller problem size for CPU</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Using CPU with moderate problem size&quot;</span><span class="p">)</span>
+
+    <span class="n">trajectory</span> <span class="o">=</span> <span class="n">trajectory_planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span> <span class="n">Tf</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">3</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">trajectory</span>
+</pre></div>
+</div>
+</section>
+<section id="error-handling">
+<h3><a class="toc-backref" href="#id33" role="doc-backlink">Error Handling</a><a class="headerlink" href="#error-handling" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ✅ Good: Comprehensive error handling</span>
+<span class="k">def</span> <span class="nf">safe_trajectory_operation</span><span class="p">(</span><span class="n">trajectory_params</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Safe trajectory operation with comprehensive error handling.&quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Initialize components</span>
+        <span class="n">urdf_processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+        <span class="n">robot</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">serial_manipulator</span>
+        <span class="n">dynamics</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">dynamics</span>
+        <span class="n">joint_limits</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">dynamics</span><span class="o">.</span><span class="n">Glist</span><span class="p">)</span>
+
+        <span class="n">trajectory_planner</span> <span class="o">=</span> <span class="n">TrajectoryPlanning</span><span class="p">(</span>
+            <span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;robot.urdf&quot;</span><span class="p">,</span> <span class="n">dynamics</span><span class="p">,</span> <span class="n">joint_limits</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Perform trajectory generation</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">trajectory_planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span><span class="o">**</span><span class="n">trajectory_params</span><span class="p">)</span>
+
+        <span class="c1"># Validate result</span>
+        <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid result, using fallback&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">create_fallback_trajectory</span><span class="p">(</span><span class="o">**</span><span class="n">trajectory_params</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;URDF file not found, using default robot model&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">create_default_trajectory</span><span class="p">(</span><span class="o">**</span><span class="n">trajectory_params</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">MemoryError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Insufficient memory, reducing problem size&quot;</span><span class="p">)</span>
+        <span class="n">reduced_params</span> <span class="o">=</span> <span class="n">trajectory_params</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">reduced_params</span><span class="p">[</span><span class="s1">&#39;N&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">reduced_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span> <span class="mi">500</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">safe_trajectory_operation</span><span class="p">(</span><span class="n">reduced_params</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unexpected error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">. Using basic fallback.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">create_fallback_trajectory</span><span class="p">(</span><span class="o">**</span><span class="n">trajectory_params</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">create_fallback_trajectory</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create simple linear trajectory as fallback.&quot;&quot;&quot;</span>
+    <span class="n">thetastart</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;thetastart&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span>
+    <span class="n">thetaend</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;thetaend&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+    <span class="n">positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">thetastart</span><span class="p">,</span> <span class="n">thetaend</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    <span class="n">velocities</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">positions</span><span class="p">)</span>
+    <span class="n">accelerations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">positions</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;positions&#39;</span><span class="p">:</span> <span class="n">positions</span><span class="p">,</span>
+        <span class="s1">&#39;velocities&#39;</span><span class="p">:</span> <span class="n">velocities</span><span class="p">,</span>
+        <span class="s1">&#39;accelerations&#39;</span><span class="p">:</span> <span class="n">accelerations</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h3><a class="toc-backref" href="#id34" role="doc-backlink">Memory Management</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ✅ Good: Clean up GPU memory after large computations</span>
+<span class="k">def</span> <span class="nf">efficient_trajectory_processing</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Process trajectories efficiently with memory management.&quot;&quot;&quot;</span>
+
+    <span class="n">urdf_processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">serial_manipulator</span>
+    <span class="n">dynamics</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">dynamics</span>
+    <span class="n">joint_limits</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">dynamics</span><span class="o">.</span><span class="n">Glist</span><span class="p">)</span>
+
+    <span class="n">trajectory_planner</span> <span class="o">=</span> <span class="n">TrajectoryPlanning</span><span class="p">(</span>
+        <span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;robot.urdf&quot;</span><span class="p">,</span> <span class="n">dynamics</span><span class="p">,</span> <span class="n">joint_limits</span>
+    <span class="p">)</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>  <span class="c1"># Process multiple trajectories</span>
+            <span class="n">thetastart</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+            <span class="n">thetaend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+
+            <span class="n">trajectory</span> <span class="o">=</span> <span class="n">trajectory_planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span>
+                <span class="n">thetastart</span><span class="p">,</span> <span class="n">thetaend</span><span class="p">,</span> <span class="n">Tf</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">3</span>
+            <span class="p">)</span>
+            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trajectory</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">results</span>
+
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="c1"># Clean up GPU memory</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">cupy</span> <span class="k">as</span> <span class="nn">cp</span>
+            <span class="n">mempool</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">get_default_memory_pool</span><span class="p">()</span>
+            <span class="n">mempool</span><span class="o">.</span><span class="n">free_all_blocks</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="k">pass</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h3><a class="toc-backref" href="#id35" role="doc-backlink">Performance Optimization</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ✅ Good: Minimize data transfers and reuse components</span>
+<span class="k">class</span> <span class="nc">EfficientTrajectoryProcessor</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">urdf_path</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize processor with reusable components.&quot;&quot;&quot;</span>
+
+        <span class="c1"># Initialize once and reuse</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">urdf_processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="n">urdf_path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">robot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">urdf_processor</span><span class="o">.</span><span class="n">serial_manipulator</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">urdf_processor</span><span class="o">.</span><span class="n">dynamics</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">joint_limits</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">Glist</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_planner</span> <span class="o">=</span> <span class="n">TrajectoryPlanning</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="p">,</span> <span class="n">urdf_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_limits</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">process_trajectory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">thetastart</span><span class="p">,</span> <span class="n">thetaend</span><span class="p">,</span> <span class="n">Tf</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Process single trajectory efficiently.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span>
+            <span class="n">thetastart</span><span class="p">,</span> <span class="n">thetaend</span><span class="p">,</span> <span class="n">Tf</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">method</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">process_batch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trajectory_configs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Process multiple trajectories efficiently.&quot;&quot;&quot;</span>
+
+        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">config</span> <span class="ow">in</span> <span class="n">trajectory_configs</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
+            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+        <span class="c1"># Clean up after batch</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">cupy</span> <span class="k">as</span> <span class="nn">cp</span>
+            <span class="n">mempool</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">get_default_memory_pool</span><span class="p">()</span>
+            <span class="n">mempool</span><span class="o">.</span><span class="n">free_all_blocks</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="k">return</span> <span class="n">results</span>
+
+<span class="c1"># Usage example</span>
+<span class="n">processor</span> <span class="o">=</span> <span class="n">EfficientTrajectoryProcessor</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+
+<span class="n">configs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;thetastart&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span> <span class="s2">&quot;thetaend&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">*</span><span class="mf">0.5</span><span class="p">,</span> <span class="s2">&quot;Tf&quot;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="s2">&quot;N&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;thetastart&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">*</span><span class="mf">0.5</span><span class="p">,</span> <span class="s2">&quot;thetaend&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span> <span class="s2">&quot;Tf&quot;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s2">&quot;N&quot;</span><span class="p">:</span> <span class="mi">800</span><span class="p">,</span> <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span>
+<span class="p">]</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">process_batch</span><span class="p">(</span><span class="n">configs</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="integration-with-manipulapy">
+<h2><a class="toc-backref" href="#id36" role="doc-backlink">Integration with ManipulaPy</a><a class="headerlink" href="#integration-with-manipulapy" title="Link to this heading"></a></h2>
+<section id="integration-with-simulation">
+<h3><a class="toc-backref" href="#id37" role="doc-backlink">Integration with Simulation</a><a class="headerlink" href="#integration-with-simulation" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ManipulaPy.sim</span> <span class="kn">import</span> <span class="n">Simulation</span>
+
+<span class="k">def</span> <span class="nf">gpu_accelerated_simulation</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Example of GPU-accelerated simulation.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Create simulation</span>
+    <span class="n">joint_limits</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">6</span>
+    <span class="n">torque_limits</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">6</span>
+
+    <span class="n">sim</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">(</span>
+        <span class="n">urdf_file_path</span><span class="o">=</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">,</span>
+        <span class="n">joint_limits</span><span class="o">=</span><span class="n">joint_limits</span><span class="p">,</span>
+        <span class="n">torque_limits</span><span class="o">=</span><span class="n">torque_limits</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Initialize robot and planner</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">initialize_robot</span><span class="p">()</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">initialize_planner_and_controller</span><span class="p">()</span>
+
+    <span class="c1"># Generate GPU-accelerated trajectory</span>
+    <span class="n">thetastart</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+    <span class="n">thetaend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.6</span><span class="p">])</span>
+
+    <span class="n">trajectory</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">trajectory_planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span>
+        <span class="n">thetastart</span><span class="p">,</span> <span class="n">thetaend</span><span class="p">,</span> <span class="n">Tf</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">5</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Run simulation with GPU-generated trajectory</span>
+    <span class="n">end_pos</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">run_trajectory</span><span class="p">(</span><span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">end_pos</span>
+
+<span class="n">final_position</span> <span class="o">=</span> <span class="n">gpu_accelerated_simulation</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="integration-with-control">
+<h3><a class="toc-backref" href="#id38" role="doc-backlink">Integration with Control</a><a class="headerlink" href="#integration-with-control" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ManipulaPy.control</span> <span class="kn">import</span> <span class="n">ManipulatorController</span>
+<span class="kn">import</span> <span class="nn">cupy</span> <span class="k">as</span> <span class="nn">cp</span>
+
+<span class="k">def</span> <span class="nf">gpu_accelerated_control</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Example of using GPU acceleration with control.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Initialize robot components</span>
+    <span class="n">urdf_processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">serial_manipulator</span>
+    <span class="n">dynamics</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">dynamics</span>
+    <span class="n">joint_limits</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">dynamics</span><span class="o">.</span><span class="n">Glist</span><span class="p">)</span>
+
+    <span class="n">trajectory_planner</span> <span class="o">=</span> <span class="n">TrajectoryPlanning</span><span class="p">(</span>
+        <span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;robot.urdf&quot;</span><span class="p">,</span> <span class="n">dynamics</span><span class="p">,</span> <span class="n">joint_limits</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Create controller</span>
+    <span class="n">controller</span> <span class="o">=</span> <span class="n">ManipulatorController</span><span class="p">(</span><span class="n">dynamics</span><span class="p">)</span>
+
+    <span class="c1"># Generate reference trajectory using GPU</span>
+    <span class="n">thetastart</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+    <span class="n">thetaend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span>
+
+    <span class="n">trajectory</span> <span class="o">=</span> <span class="n">trajectory_planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span>
+        <span class="n">thetastart</span><span class="p">,</span> <span class="n">thetaend</span><span class="p">,</span> <span class="n">Tf</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">5</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Use CuPy for control computations if available</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">cupy</span> <span class="k">as</span> <span class="nn">cp</span>
+
+        <span class="c1"># Convert to CuPy arrays for GPU computation</span>
+        <span class="n">thetalistd</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">dthetalistd</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;velocities&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">ddthetalistd</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;accelerations&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="n">thetalist</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+        <span class="n">dthetalist</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">])</span>
+
+        <span class="c1"># Control gains</span>
+        <span class="n">Kp</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">10.0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span>
+        <span class="n">Ki</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span>
+        <span class="n">Kd</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span>
+
+        <span class="c1"># Compute control signal</span>
+        <span class="n">tau</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">computed_torque_control</span><span class="p">(</span>
+            <span class="n">thetalistd</span><span class="p">,</span> <span class="n">dthetalistd</span><span class="p">,</span> <span class="n">ddthetalistd</span><span class="p">,</span>
+            <span class="n">thetalist</span><span class="p">,</span> <span class="n">dthetalist</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+            <span class="n">Kp</span><span class="o">=</span><span class="n">Kp</span><span class="p">,</span> <span class="n">Ki</span><span class="o">=</span><span class="n">Ki</span><span class="p">,</span> <span class="n">Kd</span><span class="o">=</span><span class="n">Kd</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">cp</span><span class="o">.</span><span class="n">asnumpy</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="c1"># Fall back to NumPy</span>
+        <span class="k">return</span> <span class="n">controller</span><span class="o">.</span><span class="n">computed_torque_control</span><span class="p">(</span>
+            <span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;velocities&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;accelerations&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">]),</span>
+            <span class="n">dt</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+            <span class="n">Kp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">10.0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">6</span><span class="p">),</span>
+            <span class="n">Ki</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">6</span><span class="p">),</span>
+            <span class="n">Kd</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span>
+        <span class="p">)</span>
+
+<span class="n">control_torque</span> <span class="o">=</span> <span class="n">gpu_accelerated_control</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="working-examples">
+<h2><a class="toc-backref" href="#id39" role="doc-backlink">Working Examples</a><a class="headerlink" href="#working-examples" title="Link to this heading"></a></h2>
+<section id="complete-gpu-workflow-example">
+<h3><a class="toc-backref" href="#id40" role="doc-backlink">Complete GPU Workflow Example</a><a class="headerlink" href="#complete-gpu-workflow-example" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">complete_gpu_workflow_example</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Complete example showing GPU acceleration workflow.&quot;&quot;&quot;</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Complete GPU Acceleration Example ===&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 1. Check GPU availability</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">cuda</span>
+        <span class="n">cuda_available</span> <span class="o">=</span> <span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1. CUDA Available: </span><span class="si">{</span><span class="n">cuda_available</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">cuda_available</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1. CUDA Not Available - using CPU fallback&quot;</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">cupy</span> <span class="k">as</span> <span class="nn">cp</span>
+        <span class="n">cupy_available</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   CuPy Available: True&quot;</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">cupy_available</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   CuPy Available: False&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 2. Initialize robot and trajectory planner</span>
+    <span class="n">urdf_processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">serial_manipulator</span>
+    <span class="n">dynamics</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">dynamics</span>
+    <span class="n">joint_limits</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">dynamics</span><span class="o">.</span><span class="n">Glist</span><span class="p">)</span>
+
+    <span class="n">trajectory_planner</span> <span class="o">=</span> <span class="n">TrajectoryPlanning</span><span class="p">(</span>
+        <span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;robot.urdf&quot;</span><span class="p">,</span> <span class="n">dynamics</span><span class="p">,</span> <span class="n">joint_limits</span>
+    <span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;2. Initialized </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">dynamics</span><span class="o">.</span><span class="n">Glist</span><span class="p">)</span><span class="si">}</span><span class="s2">-DOF robot&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 3. Generate trajectory (GPU accelerated if available)</span>
+    <span class="n">thetastart</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dynamics</span><span class="o">.</span><span class="n">Glist</span><span class="p">))</span>
+    <span class="n">thetaend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dynamics</span><span class="o">.</span><span class="n">Glist</span><span class="p">))</span> <span class="o">*</span> <span class="mf">0.5</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="mi">5000</span> <span class="k">if</span> <span class="n">cuda_available</span> <span class="k">else</span> <span class="mi">1000</span>  <span class="c1"># Larger problem for GPU</span>
+
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+    <span class="n">trajectory</span> <span class="o">=</span> <span class="n">trajectory_planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span>
+        <span class="n">thetastart</span><span class="p">,</span> <span class="n">thetaend</span><span class="p">,</span> <span class="n">Tf</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">5</span>
+    <span class="p">)</span>
+    <span class="n">trajectory_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+
+    <span class="n">acceleration_type</span> <span class="o">=</span> <span class="s2">&quot;GPU&quot;</span> <span class="k">if</span> <span class="n">cuda_available</span> <span class="k">else</span> <span class="s2">&quot;CPU&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;3. Generated </span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s2">-point trajectory using </span><span class="si">{</span><span class="n">acceleration_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Time: </span><span class="si">{</span><span class="n">trajectory_time</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> ms&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 4. Compute dynamics (also GPU accelerated)</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+    <span class="n">torques</span> <span class="o">=</span> <span class="n">trajectory_planner</span><span class="o">.</span><span class="n">inverse_dynamics_trajectory</span><span class="p">(</span>
+        <span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">],</span>
+        <span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;velocities&quot;</span><span class="p">],</span>
+        <span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;accelerations&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">dynamics_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;4. Computed inverse dynamics&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Time: </span><span class="si">{</span><span class="n">dynamics_time</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> ms&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Torques shape: </span><span class="si">{</span><span class="n">torques</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 5. Memory cleanup</span>
+    <span class="k">if</span> <span class="n">cupy_available</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">cupy</span> <span class="k">as</span> <span class="nn">cp</span>
+            <span class="n">mempool</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">get_default_memory_pool</span><span class="p">()</span>
+            <span class="n">mempool</span><span class="o">.</span><span class="n">free_all_blocks</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;5. GPU memory cleaned up&quot;</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;5. Memory cleanup skipped&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;5. No GPU memory to clean up&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 6. Performance summary</span>
+    <span class="n">total_time</span> <span class="o">=</span> <span class="n">trajectory_time</span> <span class="o">+</span> <span class="n">dynamics_time</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== Performance Summary ===&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total computation time: </span><span class="si">{</span><span class="n">total_time</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> ms&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Trajectory generation: </span><span class="si">{</span><span class="n">trajectory_time</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> ms&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dynamics computation: </span><span class="si">{</span><span class="n">dynamics_time</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> ms&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Acceleration: </span><span class="si">{</span><span class="n">acceleration_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;trajectory&#39;</span><span class="p">:</span> <span class="n">trajectory</span><span class="p">,</span>
+        <span class="s1">&#39;torques&#39;</span><span class="p">:</span> <span class="n">torques</span><span class="p">,</span>
+        <span class="s1">&#39;performance&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;total_time_ms&#39;</span><span class="p">:</span> <span class="n">total_time</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span>
+            <span class="s1">&#39;trajectory_time_ms&#39;</span><span class="p">:</span> <span class="n">trajectory_time</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span>
+            <span class="s1">&#39;dynamics_time_ms&#39;</span><span class="p">:</span> <span class="n">dynamics_time</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span>
+            <span class="s1">&#39;acceleration_type&#39;</span><span class="p">:</span> <span class="n">acceleration_type</span><span class="p">,</span>
+            <span class="s1">&#39;problem_size&#39;</span><span class="p">:</span> <span class="n">N</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+<span class="c1"># Run the complete example</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">complete_gpu_workflow_example</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="batch-processing-example">
+<h3><a class="toc-backref" href="#id41" role="doc-backlink">Batch Processing Example</a><a class="headerlink" href="#batch-processing-example" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">batch_processing_example</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Example of efficient batch processing with GPU acceleration.&quot;&quot;&quot;</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Batch Processing Example ===&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Initialize trajectory processor</span>
+    <span class="n">processor</span> <span class="o">=</span> <span class="n">EfficientTrajectoryProcessor</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Define multiple trajectory configurations</span>
+    <span class="n">trajectory_configs</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;thetastart&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span>
+            <span class="s2">&quot;thetaend&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">]),</span>
+            <span class="s2">&quot;Tf&quot;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="s2">&quot;N&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="mi">3</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;thetastart&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">]),</span>
+            <span class="s2">&quot;thetaend&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span>
+            <span class="s2">&quot;Tf&quot;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s2">&quot;N&quot;</span><span class="p">:</span> <span class="mi">800</span><span class="p">,</span> <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="mi">5</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;thetastart&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.2</span><span class="p">,</span>
+            <span class="s2">&quot;thetaend&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span>
+            <span class="s2">&quot;Tf&quot;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span> <span class="s2">&quot;N&quot;</span><span class="p">:</span> <span class="mi">1500</span><span class="p">,</span> <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="mi">3</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;thetastart&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+            <span class="s2">&quot;thetaend&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+            <span class="s2">&quot;Tf&quot;</span><span class="p">:</span> <span class="mf">2.5</span><span class="p">,</span> <span class="s2">&quot;N&quot;</span><span class="p">:</span> <span class="mi">1200</span><span class="p">,</span> <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="mi">5</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+
+    <span class="c1"># Process batch</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">process_batch</span><span class="p">(</span><span class="n">trajectory_configs</span><span class="p">)</span>
+    <span class="n">batch_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+
+    <span class="c1"># Analyze results</span>
+    <span class="n">total_points</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processed </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">trajectory_configs</span><span class="p">)</span><span class="si">}</span><span class="s2"> trajectories&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total trajectory points: </span><span class="si">{</span><span class="n">total_points</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Batch processing time: </span><span class="si">{</span><span class="n">batch_time</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> ms&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average time per trajectory: </span><span class="si">{</span><span class="n">batch_time</span><span class="o">*</span><span class="mi">1000</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">trajectory_configs</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> ms&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Validate results</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">trajectory_configs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">expected_shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;N&quot;</span><span class="p">],</span> <span class="mi">6</span><span class="p">)</span>
+        <span class="n">actual_shape</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Trajectory </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">actual_shape</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="s1">&#39;✅&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">actual_shape</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">expected_shape</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;❌&#39;</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">results</span>
+
+<span class="n">batch_results</span> <span class="o">=</span> <span class="n">batch_processing_example</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="performance-profiling-example">
+<h3><a class="toc-backref" href="#id42" role="doc-backlink">Performance Profiling Example</a><a class="headerlink" href="#performance-profiling-example" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">performance_profiling_example</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Comprehensive performance profiling example.&quot;&quot;&quot;</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Performance Profiling Example ===&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Check available acceleration</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">cuda</span>
+        <span class="n">cuda_available</span> <span class="o">=</span> <span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">cuda_available</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="c1"># Initialize trajectory planner</span>
+    <span class="n">urdf_processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">serial_manipulator</span>
+    <span class="n">dynamics</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">dynamics</span>
+    <span class="n">joint_limits</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">dynamics</span><span class="o">.</span><span class="n">Glist</span><span class="p">)</span>
+
+    <span class="n">trajectory_planner</span> <span class="o">=</span> <span class="n">TrajectoryPlanning</span><span class="p">(</span>
+        <span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;robot.urdf&quot;</span><span class="p">,</span> <span class="n">dynamics</span><span class="p">,</span> <span class="n">joint_limits</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Test different problem sizes</span>
+    <span class="n">problem_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">]</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Testing trajectory generation performance:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Acceleration: </span><span class="si">{</span><span class="s1">&#39;GPU (CUDA)&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">cuda_available</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;CPU&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Problem Size | Time (ms) | Points/sec&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">N</span> <span class="ow">in</span> <span class="n">problem_sizes</span><span class="p">:</span>
+        <span class="n">thetastart</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dynamics</span><span class="o">.</span><span class="n">Glist</span><span class="p">))</span>
+        <span class="n">thetaend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">dynamics</span><span class="o">.</span><span class="n">Glist</span><span class="p">))</span>
+
+        <span class="c1"># Warm up (first run may be slower due to initialization)</span>
+        <span class="n">trajectory_planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span>
+            <span class="n">thetastart</span><span class="p">,</span> <span class="n">thetaend</span><span class="p">,</span> <span class="n">Tf</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">method</span><span class="o">=</span><span class="mi">3</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Measure actual performance</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+        <span class="n">trajectory</span> <span class="o">=</span> <span class="n">trajectory_planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span>
+            <span class="n">thetastart</span><span class="p">,</span> <span class="n">thetaend</span><span class="p">,</span> <span class="n">Tf</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">3</span>
+        <span class="p">)</span>
+        <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+
+        <span class="n">points_per_sec</span> <span class="o">=</span> <span class="n">N</span> <span class="o">/</span> <span class="n">elapsed_time</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">N</span><span class="si">:</span><span class="s2">11d</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">elapsed_time</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">8.2f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">points_per_sec</span><span class="si">:</span><span class="s2">9.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s1">&#39;problem_size&#39;</span><span class="p">:</span> <span class="n">N</span><span class="p">,</span>
+            <span class="s1">&#39;time_ms&#39;</span><span class="p">:</span> <span class="n">elapsed_time</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span>
+            <span class="s1">&#39;points_per_sec&#39;</span><span class="p">:</span> <span class="n">points_per_sec</span><span class="p">,</span>
+            <span class="s1">&#39;cuda_available&#39;</span><span class="p">:</span> <span class="n">cuda_available</span>
+        <span class="p">})</span>
+
+        <span class="c1"># Clean up GPU memory between tests</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">cupy</span> <span class="k">as</span> <span class="nn">cp</span>
+            <span class="n">mempool</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">get_default_memory_pool</span><span class="p">()</span>
+            <span class="n">mempool</span><span class="o">.</span><span class="n">free_all_blocks</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+    <span class="c1"># Performance analysis</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">small_size_time</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;time_ms&#39;</span><span class="p">]</span>
+        <span class="n">large_size_time</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;time_ms&#39;</span><span class="p">]</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== Performance Analysis ===&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Smallest problem: </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;problem_size&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> points in </span><span class="si">{</span><span class="n">small_size_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> ms&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Largest problem: </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;problem_size&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> points in </span><span class="si">{</span><span class="n">large_size_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> ms&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">large_size_time</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">efficiency</span> <span class="o">=</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;problem_size&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;problem_size&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">large_size_time</span> <span class="o">/</span> <span class="n">small_size_time</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Scaling efficiency: </span><span class="si">{</span><span class="n">efficiency</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> (1.0 = linear scaling)&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">results</span>
+
+<span class="n">profile_results</span> <span class="o">=</span> <span class="n">performance_profiling_example</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="when-to-use-gpu-acceleration">
+<h2><a class="toc-backref" href="#id43" role="doc-backlink">When to Use GPU Acceleration</a><a class="headerlink" href="#when-to-use-gpu-acceleration" title="Link to this heading"></a></h2>
+<p><strong>Recommended for:</strong></p>
+<ul class="simple">
+<li><p><strong>Large trajectory generation</strong> (N &gt; 1000 points)</p></li>
+<li><p><strong>Batch dynamics computation</strong> for multiple trajectories</p></li>
+<li><p><strong>Dense potential field calculations</strong> with many sample points</p></li>
+<li><p><strong>Real-time path planning</strong> with many obstacles</p></li>
+<li><p><strong>Iterative optimization algorithms</strong> with repeated computations</p></li>
+</ul>
+<p><strong>Not recommended for:</strong></p>
+<ul class="simple">
+<li><p><strong>Small computations</strong> (N &lt; 100 points)</p></li>
+<li><p><strong>One-off calculations</strong> or prototype development</p></li>
+<li><p><strong>Memory-constrained systems</strong> with limited GPU memory</p></li>
+<li><p><strong>Development/debugging phases</strong> where CPU debugging is easier</p></li>
+</ul>
+<section id="performance-guidelines">
+<h3><a class="toc-backref" href="#id44" role="doc-backlink">Performance Guidelines</a><a class="headerlink" href="#performance-guidelines" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id4">
+<caption><span class="caption-text">Problem Size Recommendations</span><a class="headerlink" href="#id4" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 30.0%" />
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Problem Size</p></th>
+<th class="head"><p>Trajectory Points</p></th>
+<th class="head"><p>Recommended Hardware</p></th>
+<th class="head"><p>Expected Speedup</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Small</p></td>
+<td><p>&lt; 100</p></td>
+<td><p>CPU sufficient</p></td>
+<td><p>No benefit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Medium</p></td>
+<td><p>100-1000</p></td>
+<td><p>GPU optional</p></td>
+<td><p>2-5x speedup</p></td>
+</tr>
+<tr class="row-even"><td><p>Large</p></td>
+<td><p>1000-10000</p></td>
+<td><p>GPU recommended</p></td>
+<td><p>10-50x speedup</p></td>
+</tr>
+<tr class="row-odd"><td><p>Very Large</p></td>
+<td><p>&gt; 10000</p></td>
+<td><p>GPU required</p></td>
+<td><p>50-100x speedup</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="getting-started-checklist">
+<h2><a class="toc-backref" href="#id45" role="doc-backlink">Getting Started Checklist</a><a class="headerlink" href="#getting-started-checklist" title="Link to this heading"></a></h2>
+<section id="id3">
+<h3><a class="toc-backref" href="#id46" role="doc-backlink">Installation and Setup</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>✅ Install CUDA support</strong>: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">cupy-cuda11x</span> <span class="pre">numba</span> <span class="pre">ManipulaPy</span></code></p></li>
+<li><p><strong>✅ Verify installation</strong>: Check <code class="docutils literal notranslate"><span class="pre">cuda.is_available()</span></code></p></li>
+<li><p><strong>✅ Start with TrajectoryPlanning</strong>: Use existing ManipulaPy classes</p></li>
+<li><p><strong>✅ Test performance</strong>: Compare GPU vs CPU for your use case</p></li>
+<li><p><strong>✅ Optimize gradually</strong>: Apply memory management best practices</p></li>
+<li><p><strong>✅ Monitor system</strong>: Watch for memory usage and thermal limits</p></li>
+</ol>
+</section>
+<section id="quick-start-guide">
+<h3><a class="toc-backref" href="#id47" role="doc-backlink">Quick Start Guide</a><a class="headerlink" href="#quick-start-guide" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Quick start: GPU-accelerated trajectory generation</span>
+
+<span class="c1"># 1. Import required modules</span>
+<span class="kn">from</span> <span class="nn">ManipulaPy.urdf_processor</span> <span class="kn">import</span> <span class="n">URDFToSerialManipulator</span>
+<span class="kn">from</span> <span class="nn">ManipulaPy.path_planning</span> <span class="kn">import</span> <span class="n">TrajectoryPlanning</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># 2. Load robot</span>
+<span class="n">urdf_processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;your_robot.urdf&quot;</span><span class="p">)</span>
+<span class="n">robot</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">serial_manipulator</span>
+<span class="n">dynamics</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">dynamics</span>
+
+<span class="c1"># 3. Create trajectory planner (GPU acceleration automatic)</span>
+<span class="n">joint_limits</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">dynamics</span><span class="o">.</span><span class="n">Glist</span><span class="p">)</span>
+<span class="n">planner</span> <span class="o">=</span> <span class="n">TrajectoryPlanning</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;your_robot.urdf&quot;</span><span class="p">,</span> <span class="n">dynamics</span><span class="p">,</span> <span class="n">joint_limits</span><span class="p">)</span>
+
+<span class="c1"># 4. Generate trajectory</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dynamics</span><span class="o">.</span><span class="n">Glist</span><span class="p">))</span>
+<span class="n">end</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dynamics</span><span class="o">.</span><span class="n">Glist</span><span class="p">))</span> <span class="o">*</span> <span class="mf">0.5</span>
+
+<span class="n">trajectory</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span>
+    <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">Tf</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">5</span>  <span class="c1"># Large N benefits from GPU</span>
+<span class="p">)</span>
+
+<span class="c1"># 5. Compute dynamics</span>
+<span class="n">torques</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">inverse_dynamics_trajectory</span><span class="p">(</span>
+    <span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">],</span>
+    <span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;velocities&quot;</span><span class="p">],</span>
+    <span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;accelerations&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generated </span><span class="si">{</span><span class="n">trajectory</span><span class="p">[</span><span class="s1">&#39;positions&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> trajectory points&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Computed </span><span class="si">{</span><span class="n">torques</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> torque values&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="common-patterns">
+<h3><a class="toc-backref" href="#id48" role="doc-backlink">Common Patterns</a><a class="headerlink" href="#common-patterns" title="Link to this heading"></a></h3>
+<p><strong>Pattern 1: Batch Processing</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Process multiple trajectories efficiently</span>
+<span class="n">configs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;thetastart&quot;</span><span class="p">:</span> <span class="n">start1</span><span class="p">,</span> <span class="s2">&quot;thetaend&quot;</span><span class="p">:</span> <span class="n">end1</span><span class="p">,</span> <span class="s2">&quot;Tf&quot;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="s2">&quot;N&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;thetastart&quot;</span><span class="p">:</span> <span class="n">start2</span><span class="p">,</span> <span class="s2">&quot;thetaend&quot;</span><span class="p">:</span> <span class="n">end2</span><span class="p">,</span> <span class="s2">&quot;Tf&quot;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s2">&quot;N&quot;</span><span class="p">:</span> <span class="mi">800</span><span class="p">,</span> <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span>
+    <span class="c1"># ... more configurations</span>
+<span class="p">]</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">config</span> <span class="ow">in</span> <span class="n">configs</span><span class="p">:</span>
+    <span class="n">trajectory</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trajectory</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Pattern 2: Progressive Problem Sizing</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start small, scale up based on performance</span>
+<span class="n">base_N</span> <span class="o">=</span> <span class="mi">500</span>
+
+<span class="c1"># Test performance with base size</span>
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">test_trajectory</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">Tf</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">base_N</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">test_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+
+<span class="c1"># Scale up if performance is good</span>
+<span class="k">if</span> <span class="n">test_time</span> <span class="o">&lt;</span> <span class="mf">0.1</span><span class="p">:</span>  <span class="c1"># Less than 100ms</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">base_N</span> <span class="o">*</span> <span class="mi">10</span>  <span class="c1"># Scale up 10x</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">base_N</span>
+
+<span class="c1"># Generate final trajectory</span>
+<span class="n">trajectory</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">Tf</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Pattern 3: Memory-Aware Processing</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Process with automatic memory cleanup</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># Large computation</span>
+    <span class="n">trajectory</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">Tf</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">torques</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">inverse_dynamics_trajectory</span><span class="p">(</span>
+        <span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">],</span> <span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;velocities&quot;</span><span class="p">],</span> <span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;accelerations&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+
+<span class="k">finally</span><span class="p">:</span>
+    <span class="c1"># Always clean up</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">cupy</span> <span class="k">as</span> <span class="nn">cp</span>
+        <span class="n">cp</span><span class="o">.</span><span class="n">get_default_memory_pool</span><span class="p">()</span><span class="o">.</span><span class="n">free_all_blocks</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="conclusion">
+<h2><a class="toc-backref" href="#id49" role="doc-backlink">Conclusion</a><a class="headerlink" href="#conclusion" title="Link to this heading"></a></h2>
+<p>The ManipulaPy CUDA Kernels module provides significant performance improvements for robotics applications through:</p>
+<ul class="simple">
+<li><p><strong>High-Performance Computing</strong>: 10-100x speedup for suitable workloads</p></li>
+<li><p><strong>Seamless Integration</strong>: Works directly with TrajectoryPlanning and other ManipulaPy modules</p></li>
+<li><p><strong>Automatic Fallback</strong>: Graceful degradation to CPU when GPU unavailable</p></li>
+<li><p><strong>Memory Efficiency</strong>: Optimized GPU memory management</p></li>
+</ul>
+<p>The GPU acceleration is built into ManipulaPy’s core modules like <code class="docutils literal notranslate"><span class="pre">TrajectoryPlanning</span></code>, so you can benefit from it without changing your existing code - just install the CUDA dependencies and ManipulaPy will automatically use GPU acceleration when available.</p>
+<p>For additional support and advanced usage patterns, refer to the <a class="reference external" href="https://manipulapy.readthedocs.io">ManipulaPy documentation</a> and <a class="reference external" href="https://github.com/manipulapy/ManipulaPy">GitHub repository</a>.</p>
+<section id="api-reference">
+<h3><a class="toc-backref" href="#id50" role="doc-backlink">API Reference</a><a class="headerlink" href="#api-reference" title="Link to this heading"></a></h3>
+<p>For complete function documentation: <a class="reference internal" href="../api/cuda_kernels.html"><span class="doc">CUDA Kernels API Reference</span></a></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Perception.html" class="btn btn-neutral float-left" title="Perception User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="vision.html" class="btn btn-neutral float-right" title="Vision User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Mohamed Aboelnar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,364 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="🔧 API Reference Guide" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://manipulapy.readthedocs.io/api/index.html" />
+<meta property="og:site_name" content="ManipulaPy Documentation" />
+<meta property="og:description" content="Welcome to the low-level API reference for ManipulaPy. This section contains auto-generated documentation for all key modules, classes, and functions in the library, based on the actual Python sour..." />
+<meta name="description" content="Welcome to the low-level API reference for ManipulaPy. This section contains auto-generated documentation for all key modules, classes, and functions in the library, based on the actual Python sour..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🔧 API Reference Guide &mdash; ManipulaPy 1.1.0 Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=fc837d61"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=fd10adb8"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Kinematics API Reference" href="kinematics.html" />
+    <link rel="prev" title="Getting Started with ManipulaPy" href="../getting_started/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ManipulaPy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">🚀 Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started with ManipulaPy</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🛠️ API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">🔧 API Reference Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-overview">📦 Module Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kinematics.html">Kinematics API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dynamics.html">Dynamics API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="path_planning.html">Path Planning API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="control.html">Control API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="urdf_processor.html">URDF Processor API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html">Simulation API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="potential_field.html">Potential Field API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda_kernels.html">CUDA Kernels API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="perception.html">Perception API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vision.html">Vision API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="singularity.html">Singularity API Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-use-this-reference">📖 How to Use This Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quick-navigation">🔍 Quick Navigation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">📚 User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Kinematics.html">Kinematics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Dynamics.html">Dynamics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Control.html">Control Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Trajectory_Planning.html">Trajectory Planning User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Simulation.html">Simulation Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/URDF_Processor.html">URDF Processor User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Perception.html">Perception User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/vision.html">Vision User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Potential_Field.html">Potential Field Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Collision_Checker.html">Collision Checker Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/CUDA_Kernels.html">CUDA Kernels User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ManipulaPy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">🔧 API Reference Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-reference-guide">
+<span id="api-index"></span><h1>🔧 API Reference Guide<a class="headerlink" href="#api-reference-guide" title="Link to this heading"></a></h1>
+<p>Welcome to the low-level API reference for <strong>ManipulaPy</strong>.</p>
+<p>This section contains auto-generated documentation for all key modules, classes, and functions in the library, based on the actual Python source code using <strong>Sphinx autodoc</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>This section is <strong>not a tutorial</strong> – it’s for precise function/class definitions.</p></li>
+<li><p>For interactive examples and walkthroughs, see <a class="reference external" href="https://docs.python.org/3/tutorial/index.html#tutorial-index" title="(in Python v3.13)"><span>The Python Tutorial</span></a>.</p></li>
+<li><p>For explanations, workflows, and configuration, see the <a class="reference internal" href="../user_guide/index.html#user-guide-index"><span class="std std-ref">User Guide</span></a>.</p></li>
+</ul>
+</div>
+<section id="module-overview">
+<h2>📦 Module Overview<a class="headerlink" href="#module-overview" title="Link to this heading"></a></h2>
+<p class="rubric">🔩 Core Manipulator Stack</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Core Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="kinematics.html">Kinematics API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="kinematics.html#quick-navigation">Quick Navigation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kinematics.html#serialmanipulator-class">SerialManipulator Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kinematics.html#usage-examples">Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kinematics.html#key-features">Key Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kinematics.html#mathematical-background">Mathematical Background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kinematics.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dynamics.html">Dynamics API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dynamics.html#quick-navigation">Quick Navigation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamics.html#full-equations">Full Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamics.html#usage-examples">Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamics.html#key-features">Key Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamics.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamics.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="path_planning.html">Path Planning API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="path_planning.html#quick-navigation">Quick Navigation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="path_planning.html#optimizedtrajectoryplanning-class">OptimizedTrajectoryPlanning Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="path_planning.html#trajectoryplanning-class">TrajectoryPlanning Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="path_planning.html#utility-functions">Utility Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="path_planning.html#cpu-optimization-functions">CPU Optimization Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="path_planning.html#usage-examples">Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="path_planning.html#key-features">Key Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="path_planning.html#performance-characteristics">Performance Characteristics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="path_planning.html#configuration-guidelines">Configuration Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="path_planning.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="control.html">Control API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="control.html#quick-navigation">Quick Navigation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="control.html#manipulatorcontroller-class">ManipulatorController Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="control.html#control-strategies">Control Strategies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="control.html#state-estimation">State Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="control.html#performance-analysis-tools">Performance Analysis Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="control.html#auto-tuning-and-limits">Auto-Tuning and Limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="control.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="urdf_processor.html">URDF Processor API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="urdf_processor.html#quick-navigation">Quick Navigation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="urdf_processor.html#urdftoserialmanipulator-class">URDFToSerialManipulator Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="urdf_processor.html#usage-examples">Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="urdf_processor.html#key-features">Key Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="urdf_processor.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="urdf_processor.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p class="rubric">🧠 Planning, Simulation &amp; Optimization</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Planning &amp; Simulation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="simulation.html">Simulation API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#quick-navigation">Quick Navigation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#simulation-class">Simulation Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#simulation-management">Simulation Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#robot-control-and-state">Robot Control and State</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#interactive-controls">Interactive Controls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#visualization-and-analysis">Visualization and Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#safety-and-monitoring">Safety and Monitoring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#main-execution">Main Execution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#logging-and-utilities">Logging and Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#usage-examples">Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#configuration-options">Configuration Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#integration-with-other-modules">Integration with Other Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#see-also">See Also</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#external-references">External References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="potential_field.html">Potential Field API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="potential_field.html#quick-navigation">Quick Navigation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="potential_field.html#potentialfield-class">PotentialField Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="potential_field.html#potential-field-computations">Potential Field Computations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="potential_field.html#collisionchecker-class">CollisionChecker Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="potential_field.html#collision-detection-methods">Collision Detection Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="potential_field.html#data-structures-and-internal-representation">Data Structures and Internal Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="potential_field.html#computational-complexity-analysis">Computational Complexity Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="potential_field.html#numerical-implementation-details">Numerical Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="potential_field.html#error-handling-and-edge-cases">Error Handling and Edge Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="potential_field.html#memory-management">Memory Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="potential_field.html#see-also">See Also</a></li>
+<li class="toctree-l2"><a class="reference internal" href="potential_field.html#external-dependencies">External Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cuda_kernels.html">CUDA Kernels API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cuda_kernels.html#availability-check">Availability Check</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cuda_kernels.html#core-cuda-kernels">Core CUDA Kernels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cuda_kernels.html#high-level-wrappers">High-Level Wrappers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cuda_kernels.html#cpu-fallback-functions">CPU Fallback Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cuda_kernels.html#memory-management">Memory Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cuda_kernels.html#grid-configuration">Grid Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cuda_kernels.html#performance-tools">Performance Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cuda_kernels.html#constant-memory">Constant Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cuda_kernels.html#module-constants">Module Constants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cuda_kernels.html#environment-variables">Environment Variables</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p class="rubric">👁️ Perception &amp; Vision</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Perception Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="perception.html">Perception API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="perception.html#quick-navigation">Quick Navigation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="perception.html#perception-class">Perception Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="perception.html#primary-perception-methods">Primary Perception Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="perception.html#stereo-vision-integration">Stereo Vision Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="perception.html#machine-learning-components">Machine Learning Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="perception.html#resource-management">Resource Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="perception.html#logging-infrastructure">Logging Infrastructure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="perception.html#dependencies-and-integration">Dependencies and Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="perception.html#error-recovery-and-robustness">Error Recovery and Robustness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="perception.html#see-also">See Also</a></li>
+<li class="toctree-l2"><a class="reference internal" href="perception.html#external-dependencies">External Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vision.html">Vision API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vision.html#quick-navigation">Quick Navigation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vision.html#vision-class">Vision Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vision.html#camera-management">Camera Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vision.html#image-acquisition">Image Acquisition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vision.html#object-detection">Object Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vision.html#stereo-vision-pipeline">Stereo Vision Pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vision.html#pybullet-debug-interface">PyBullet Debug Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vision.html#resource-management">Resource Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vision.html#utility-functions">Utility Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vision.html#data-structures-and-configuration">Data Structures and Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vision.html#error-handling-and-validation">Error Handling and Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vision.html#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vision.html#see-also">See Also</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vision.html#external-dependencies">External Dependencies</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p class="rubric">🧪 Advanced Analysis</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Analysis Tools</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="singularity.html">Singularity API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="singularity.html#quick-navigation">Quick Navigation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="singularity.html#singularity-class">Singularity Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="singularity.html#singularity-detection">Singularity Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="singularity.html#manipulability-analysis">Manipulability Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="singularity.html#workspace-analysis">Workspace Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="singularity.html#mathematical-implementation">Mathematical Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="singularity.html#performance-characteristics">Performance Characteristics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="singularity.html#data-flow-architecture">Data Flow Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="singularity.html#error-handling-and-validation">Error Handling and Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="singularity.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="how-to-use-this-reference">
+<h2>📖 How to Use This Reference<a class="headerlink" href="#how-to-use-this-reference" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Module headers</strong> show the import path: e.g., <code class="docutils literal notranslate"><span class="pre">ManipulaPy.control.ManipulatorController</span></code></p></li>
+<li><p><strong>Function signatures</strong> are exact and include optional/default parameters</p></li>
+<li><p><strong>Class attributes</strong> and properties are listed, with docstrings if provided</p></li>
+<li><p><strong>NumPy/CuPy compatibility</strong> is noted where applicable</p></li>
+<li><p><strong>Examples</strong> may be included for select methods/classes</p></li>
+</ul>
+</section>
+<section id="quick-navigation">
+<h2>🔍 Quick Navigation<a class="headerlink" href="#quick-navigation" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../genindex.html"><span class="std std-ref">Index</span></a> – Alphabetical list of all documented symbols</p></li>
+<li><p><a class="reference internal" href="../py-modindex.html"><span class="std std-ref">Module Index</span></a> – Index of Python modules</p></li>
+<li><p><a class="reference internal" href="../search.html"><span class="std std-ref">Search Page</span></a> – Full-text search across the documentation</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../getting_started/index.html" class="btn btn-neutral float-left" title="Getting Started with ManipulaPy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="kinematics.html" class="btn btn-neutral float-right" title="Kinematics API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Mohamed Aboelnar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

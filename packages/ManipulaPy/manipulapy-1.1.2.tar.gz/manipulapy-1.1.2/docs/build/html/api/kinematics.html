@@ -1,0 +1,376 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Kinematics API Reference" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://manipulapy.readthedocs.io/api/kinematics.html" />
+<meta property="og:site_name" content="ManipulaPy Documentation" />
+<meta property="og:description" content="This page documents ManipulaPy.kinematics, the module for manipulator kinematics computations. Quick Navigation: SerialManipulator Class: Title overline too short. Usage Examples: Title overline to..." />
+<meta name="description" content="This page documents ManipulaPy.kinematics, the module for manipulator kinematics computations. Quick Navigation: SerialManipulator Class: Title overline too short. Usage Examples: Title overline to..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kinematics API Reference &mdash; ManipulaPy 1.1.0 Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=fc837d61"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=fd10adb8"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Dynamics API Reference" href="dynamics.html" />
+    <link rel="prev" title="🔧 API Reference Guide" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ManipulaPy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">🚀 Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started with ManipulaPy</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🛠️ API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">🔧 API Reference Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#module-overview">📦 Module Overview</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Kinematics API Reference</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#quick-navigation">Quick Navigation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#serialmanipulator-class">SerialManipulator Class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#usage-examples">Usage Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#key-features">Key Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mathematical-background">Mathematical Background</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="dynamics.html">Dynamics API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="path_planning.html">Path Planning API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="control.html">Control API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="urdf_processor.html">URDF Processor API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html">Simulation API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="potential_field.html">Potential Field API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda_kernels.html">CUDA Kernels API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="perception.html">Perception API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vision.html">Vision API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="singularity.html">Singularity API Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#how-to-use-this-reference">📖 How to Use This Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#quick-navigation">🔍 Quick Navigation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">📚 User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Kinematics.html">Kinematics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Dynamics.html">Dynamics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Control.html">Control Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Trajectory_Planning.html">Trajectory Planning User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Simulation.html">Simulation Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/URDF_Processor.html">URDF Processor User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Perception.html">Perception User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/vision.html">Vision User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Potential_Field.html">Potential Field Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Collision_Checker.html">Collision Checker Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/CUDA_Kernels.html">CUDA Kernels User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ManipulaPy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">🔧 API Reference Guide</a></li>
+      <li class="breadcrumb-item active">Kinematics API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/kinematics.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="kinematics-api-reference">
+<span id="api-kinematics"></span><h1>Kinematics API Reference<a class="headerlink" href="#kinematics-api-reference" title="Link to this heading"></a></h1>
+<p>This page documents <strong>ManipulaPy.kinematics</strong>, the module for manipulator kinematics computations.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>For conceptual explanations, see <a class="reference internal" href="../user_guide/Kinematics.html"><span class="doc">Kinematics User Guide</span></a>.</p>
+</div>
+<section id="quick-navigation">
+<h2>Quick Navigation<a class="headerlink" href="#quick-navigation" title="Link to this heading"></a></h2>
+</section>
+<section id="serialmanipulator-class">
+<h2>SerialManipulator Class<a class="headerlink" href="#serialmanipulator-class" title="Link to this heading"></a></h2>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/kinematics.rst</span>, line 20)</p>
+<p>Title overline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">------------</span>
+<span class="n">SerialManipulator</span> <span class="n">Class</span>
+<span class="o">------------</span>
+</pre></div>
+</div>
+</aside>
+</section>
+<section id="usage-examples">
+<h2>Usage Examples<a class="headerlink" href="#usage-examples" title="Link to this heading"></a></h2>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/kinematics.rst</span>, line 172)</p>
+<p>Title overline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-------------</span>
+<span class="n">Usage</span> <span class="n">Examples</span>
+<span class="o">-------------</span>
+</pre></div>
+</div>
+</aside>
+<p><strong>Basic Setup</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ManipulaPy.kinematics</span> <span class="kn">import</span> <span class="n">SerialManipulator</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Define robot parameters</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+
+<span class="n">omega_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>    <span class="c1"># Joint 1: Z-axis rotation</span>
+                       <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>    <span class="c1"># Joint 2: Y-axis rotation</span>
+                       <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>   <span class="c1"># Joint 3: Y-axis rotation</span>
+
+<span class="n">robot</span> <span class="o">=</span> <span class="n">SerialManipulator</span><span class="p">(</span><span class="n">M_list</span><span class="o">=</span><span class="n">M</span><span class="p">,</span> <span class="n">omega_list</span><span class="o">=</span><span class="n">omega_list</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Forward Kinematics</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute end-effector pose</span>
+<span class="n">joint_angles</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">]</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">joint_angles</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="s2">&quot;space&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Position: </span><span class="si">{</span><span class="n">T</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Orientation:</span><span class="se">\n</span><span class="si">{</span><span class="n">T</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get pose as [x, y, z, roll, pitch, yaw]</span>
+<span class="n">pose</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">end_effector_pose</span><span class="p">(</span><span class="n">joint_angles</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Jacobian and Velocities</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute Jacobian matrix</span>
+<span class="n">J</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">jacobian</span><span class="p">(</span><span class="n">joint_angles</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="s2">&quot;space&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jacobian shape: </span><span class="si">{</span><span class="n">J</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Forward velocity kinematics</span>
+<span class="n">joint_velocities</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">]</span>
+<span class="n">ee_velocity</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">end_effector_velocity</span><span class="p">(</span><span class="n">joint_angles</span><span class="p">,</span> <span class="n">joint_velocities</span><span class="p">)</span>
+
+<span class="c1"># Inverse velocity kinematics</span>
+<span class="n">desired_velocity</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]</span>
+<span class="n">required_joint_vel</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">joint_velocity</span><span class="p">(</span><span class="n">joint_angles</span><span class="p">,</span> <span class="n">desired_velocity</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Inverse Kinematics</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define target pose</span>
+<span class="n">T_target</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+
+<span class="c1"># Solve inverse kinematics</span>
+<span class="n">initial_guess</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">solution</span><span class="p">,</span> <span class="n">success</span><span class="p">,</span> <span class="n">iterations</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">iterative_inverse_kinematics</span><span class="p">(</span>
+    <span class="n">T_desired</span><span class="o">=</span><span class="n">T_target</span><span class="p">,</span>
+    <span class="n">thetalist0</span><span class="o">=</span><span class="n">initial_guess</span><span class="p">,</span>
+    <span class="n">eomg</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span>
+    <span class="n">ev</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span>
+    <span class="n">plot_residuals</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;IK converged in </span><span class="si">{</span><span class="n">iterations</span><span class="si">}</span><span class="s2"> iterations&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Solution: </span><span class="si">{</span><span class="n">solution</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;IK failed to converge&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Hybrid Neural Network IK</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="c1"># Load trained model and scalers</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;ik_model.pth&quot;</span><span class="p">)</span>
+<span class="n">scaler_X</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>  <span class="c1"># Load fitted scaler</span>
+<span class="n">scaler_y</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>  <span class="c1"># Load fitted scaler</span>
+<span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+
+<span class="c1"># Solve with neural network initialization</span>
+<span class="n">solution</span><span class="p">,</span> <span class="n">success</span><span class="p">,</span> <span class="n">iterations</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">hybrid_inverse_kinematics</span><span class="p">(</span>
+    <span class="n">T_desired</span><span class="o">=</span><span class="n">T_target</span><span class="p">,</span>
+    <span class="n">neural_network</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">scaler_X</span><span class="o">=</span><span class="n">scaler_X</span><span class="p">,</span>
+    <span class="n">scaler_y</span><span class="o">=</span><span class="n">scaler_y</span><span class="p">,</span>
+    <span class="n">device</span><span class="o">=</span><span class="n">device</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>State Management</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Update robot state</span>
+<span class="n">current_positions</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]</span>
+<span class="n">current_velocities</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+
+<span class="n">robot</span><span class="o">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">current_positions</span><span class="p">,</span> <span class="n">current_velocities</span><span class="p">)</span>
+
+<span class="c1"># Access current state</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Current positions: </span><span class="si">{</span><span class="n">robot</span><span class="o">.</span><span class="n">joint_positions</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Current velocities: </span><span class="si">{</span><span class="n">robot</span><span class="o">.</span><span class="n">joint_velocities</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Joint Limits</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define joint limits</span>
+<span class="n">joint_limits</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span>      <span class="c1"># Joint 1: ±180°</span>
+                <span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span>   <span class="c1"># Joint 2: ±90°</span>
+                <span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">)]</span>   <span class="c1"># Joint 3: ±45°</span>
+
+<span class="n">robot</span> <span class="o">=</span> <span class="n">SerialManipulator</span><span class="p">(</span>
+    <span class="n">M_list</span><span class="o">=</span><span class="n">M</span><span class="p">,</span>
+    <span class="n">omega_list</span><span class="o">=</span><span class="n">omega_list</span><span class="p">,</span>
+    <span class="n">joint_limits</span><span class="o">=</span><span class="n">joint_limits</span>
+<span class="p">)</span>
+
+<span class="c1"># Limits are enforced during IK solving</span>
+</pre></div>
+</div>
+</section>
+<section id="key-features">
+<h2>Key Features<a class="headerlink" href="#key-features" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Product of Exponentials</strong> formulation for robust kinematics</p></li>
+<li><p><strong>Dual frame support</strong> (space and body frames) for flexibility</p></li>
+<li><p><strong>Automatic screw axis</strong> computation from joint parameters</p></li>
+<li><p><strong>Damped least squares</strong> IK with singularity handling</p></li>
+<li><p><strong>Neural network integration</strong> for improved IK initialization</p></li>
+<li><p><strong>Joint limit enforcement</strong> during inverse kinematics</p></li>
+<li><p><strong>Comprehensive velocity</strong> kinematics with pseudoinverse</p></li>
+<li><p><strong>Convergence visualization</strong> for debugging IK problems</p></li>
+</ul>
+</section>
+<section id="mathematical-background">
+<h2>Mathematical Background<a class="headerlink" href="#mathematical-background" title="Link to this heading"></a></h2>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/kinematics.rst</span>, line 303)</p>
+<p>Title overline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-----------------</span>
+<span class="n">Mathematical</span> <span class="n">Background</span>
+<span class="o">-----------------</span>
+</pre></div>
+</div>
+</aside>
+<dl class="simple">
+<dt><strong>Screw Theory Foundation:</strong></dt><dd><ul class="simple">
+<li><p>Uses 6D twist vectors to represent joint motion</p></li>
+<li><p>Exponential coordinates for robust orientation handling</p></li>
+<li><p>Adjoint transformations for frame conversions</p></li>
+</ul>
+</dd>
+<dt><strong>Jacobian Computation:</strong></dt><dd><ul class="simple">
+<li><p>Space Jacobian: J_s = [Ad_{T₁} S₁, …, Ad_{Tᵢ} Sᵢ, …]</p></li>
+<li><p>Body Jacobian: J_b computed via inverse transformations</p></li>
+<li><p>Pseudoinverse used for redundant/singular configurations</p></li>
+</ul>
+</dd>
+<dt><strong>Inverse Kinematics:</strong></dt><dd><ul class="simple">
+<li><p>Newton-Raphson iteration in twist coordinates</p></li>
+<li><p>Separate convergence criteria for translation and rotation</p></li>
+<li><p>Adaptive step size for stability (α = 0.058)</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="dynamics.html"><span class="doc">Dynamics API Reference</span></a> – Dynamics computations building on kinematics</p></li>
+<li><p><a class="reference internal" href="control.html"><span class="doc">Control API Reference</span></a> – Controllers using kinematic models</p></li>
+<li><p><a class="reference internal" href="path_planning.html"><span class="doc">Path Planning API Reference</span></a> – Trajectory generation with kinematic constraints</p></li>
+<li><p><a class="reference internal" href="../user_guide/Kinematics.html"><span class="doc">Kinematics User Guide</span></a> – Conceptual overview and theory what to replace here</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="🔧 API Reference Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dynamics.html" class="btn btn-neutral float-right" title="Dynamics API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Mohamed Aboelnar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
