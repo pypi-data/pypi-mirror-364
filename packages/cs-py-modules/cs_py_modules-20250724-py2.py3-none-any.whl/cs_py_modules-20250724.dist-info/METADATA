@@ -1,0 +1,147 @@
+Metadata-Version: 2.4
+Name: cs-py-modules
+Version: 20250724
+Summary: Convenience functions related to modules, packages and importing.
+Keywords: python2,python3
+Author-email: Cameron Simpson <cs@cskk.id.au>
+Description-Content-Type: text/markdown
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Requires-Dist: cs.context>=20250528
+Requires-Dist: cs.gimmicks>=20250428
+Requires-Dist: cs.lex>=20250428
+Requires-Dist: cs.pfx>=20250613
+Project-URL: MonoRepo Commits, https://bitbucket.org/cameron_simpson/css/commits/branch/main
+Project-URL: Monorepo Git Mirror, https://github.com/cameron-simpson/css
+Project-URL: Monorepo Hg/Mercurial Mirror, https://hg.sr.ht/~cameron-simpson/css
+Project-URL: Source, https://github.com/cameron-simpson/css/blob/main/lib/python/cs/py/modules.py
+
+Convenience functions related to modules, packages and importing.
+
+*Latest release 20250724*:
+* Improve resolution of relative imports. (Fix seems to be an overly strong word here, unfortunately.)
+* Drop pretence at Python 2 support.
+
+Short summary:
+* `direct_imports`: Crudely parse `src_filename` for `import` statements. Return the set of directly imported module names.
+* `import_extra`: Try to import the package named `extra_package_name` using `importlib.import_module`.
+* `import_module_from_file`: Import a specific file as a module instance, return the module instance.
+* `import_module_name`: Import `module_name` and return the value of `name` within it.
+* `module_attributes`: Generator yielding the names and values of attributes from a module which were defined in the module.
+* `module_files`: Generator yielding `.py` pathnames involved in a module.
+* `module_names`: Return a list of the names of attributes from a module which were defined in the module.
+
+Module contents:
+- <a name="direct_imports"></a>`direct_imports(src_filename, module_name)`: Crudely parse `src_filename` for `import` statements.
+  Return the set of directly imported module names.
+
+  Resolve relative imports against `module_name`.
+
+  This is a very simple minded source parse.
+- <a name="import_extra"></a>`import_extra(extra_package_name, distinfo)`: Try to import the package named `extra_package_name`
+  using `importlib.import_module`. Return the imported package.
+
+  If an `ImportError` is raised,
+  riffle through the extras mapping in `distinfo['extras_requires']`
+  for the package name, and emit an informative warning
+  about the extras which require this package
+  and whose use a `pip install` time would bring the package in.
+  The original `ImportError` is then reraised.
+
+  If no extra is found this is presumed to be an error by the caller
+  and a `RuntimeError` is raised.
+  This function is for internal use as:
+
+      pkg = import_extra('some_package', DISTINFO)
+
+  which passes in the source module's `DISTINFO` mapping,
+  which I use as the basis for my package distributions.
+
+  A fuller example from my `cs.timeseries` module's
+  `plot` command line mode:
+
+      def cmd_plot(self, argv):
+        """ Usage: {cmd} datadir days fields...
+        """
+        try:
+          import_extra('plotly', DISTINFO)
+        except ImportError as e:
+          raise GetoptError(
+              "the plotly package is not installed: %s" % (e,)
+          ) from e
+
+  which produces this output:
+
+      timeseries.py: plot: import_extra('plotly'): package not available; the following extras pull it in: ['plotting']
+      timeseries.py: the plotly package is not installed: timeseries.py: plot: import_extra('plotly'): No module named 'plotly'
+- <a name="import_module_from_file"></a>`import_module_from_file(module_name, source_file, sys_path=None)`: Import a specific file as a module instance,
+  return the module instance.
+
+  Parameters:
+  * `module_name`: the name to assign to the module
+  * `source_file`: the source file to load
+  * `sys_path`: optional list of paths to set as `sys.path`
+    for the duration of this import;
+    the default is the current value of `sys.path`
+
+  Note that this is a "bare" import;
+  the module instance is not inserted into `sys.modules`.
+
+  *Warning*: `sys.path` is modified for the duration of this function,
+  which may affect concurrent applications.
+- <a name="import_module_name"></a>`import_module_name(module_name, name=None, sys_path=None, lock=None)`: Import `module_name` and return the value of `name` within it.
+
+  Parameters:
+  * `module_name`: the module name to import.
+  * `name`: optional name within the module whose value is returned;
+    if `name` is `None`, return the module itself.
+  * `sys_path`optional list of paths to use as `sys.path` during the import.
+  * `lock`: an optional lock to hold during the import (recommended).
+
+  *Warning*: `sys.path` is modified for the duration of this function,
+  which may affect concurrent applications.
+- <a name="module_attributes"></a>`module_attributes(M)`: Generator yielding the names and values of attributes from a module
+  which were defined in the module.
+- <a name="module_files"></a>`module_files(M)`: Generator yielding `.py` pathnames involved in a module.
+- <a name="module_names"></a>`module_names(M)`: Return a list of the names of attributes from a module which were
+  defined in the module.
+
+# Release Log
+
+
+
+*Release 20250724*:
+* Improve resolution of relative imports. (Fix seems to be an overly strong word here, unfortunately.)
+* Drop pretence at Python 2 support.
+
+*Release 20241122*:
+import_module_name: rename the `path` parameter to `sys_path` to match import_module_from_file, default sys_path to sys.path.
+
+*Release 20240630*:
+direct_imports: fix off-by-one resolving leading dot relative import names.
+
+*Release 20220606*:
+New import_extra(extra_package_name,distinfo) function to politely try to import a package which is associated with an extra.
+
+*Release 20210123*:
+module_attributes: skip values from other modules _if we know the module_ (computed values like tuples have no module and still need to be returned).
+
+*Release 20200521*:
+* New import_module_from_file function to import a Python file as a module instance.
+* New direct_imports(src_filename,module_name=None) returning the set of directly imports module names.
+
+*Release 20190101*:
+New functions: module_names, module_attributes.
+
+*Release 20160918*:
+* New generator function module_files yielding pathnames.
+* import_module_name: accept name=None, just return the module.
+* Add empty "install_requires" for DISTINFO completeness.
+
+*Release 20150116*:
+Initial PyPI release.
