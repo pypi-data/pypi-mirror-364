@@ -1,0 +1,207 @@
+
+# 🚀 Pip install Kemas
+
+- kemas
+
+<img src="kemas.png" width="auto" height="auto">
+
+## 📋 Table of Contents
+1. [Project Description](#-project-description)
+2. [Key Features](#-key-features)
+3. [Supported Languages](#-supported-languages)
+4. [Algorithms & Architecture](#-algorithms--architecture)
+5. [System Requirements](#-system-requirements)
+6. [Installation Guide](#-installation-guide)
+7. [Usage Guide](#-usage-guide)
+8. [Troubleshooting](#-troubleshooting)
+9. [License](#-license)
+10. [Contributing](#-contributing)
+
+---
+
+## 📌 Project Description
+
+The **kemas to EXE Converter** is a powerful GUI application that converts web projects (Python/Golang/C++/C#/Java/Javascript) and source code from multiple programming languages into standalone executables. Built with Python and Tkinter, it provides:
+
+- **Web to Desktop**: Package web projects as desktop apps using Electron
+- **Multi-Language Support**: Compile Python, C++, Go, Java, C#, and Rust to executables
+- **Code Encryption**: Protect Python source code with Fernet encryption
+- **Cross-Platform**: Works on Windows, macOS, and Linux
+
+---
+
+## ✨ Key Features
+
+### 🌐 Web to EXE Conversion
+- Electron-based packaging for HTML/CSS/JS projects
+- Customizable window settings (size, frame, transparency)
+- Native system integration (file system access, notifications)
+
+### 🐍 Python Features
+- PyInstaller integration for single-file executables
+- Source code encryption with AES-128
+- Custom icon and UPX compression support
+
+### ⚙️ Multi-Language Compilation
+- **C++**: GCC/Clang support with optimization levels
+- **Go**: Cross-compilation for different OS/ARCH
+- **Java**: JAR creation and EXE wrapping
+- **C#**: EXE/DLL compilation with debug options
+- **Rust**: Release mode and cross-compilation
+
+### 🔧 Advanced Tools
+- Settings persistence (remembers your configurations)
+- Real-time compilation output viewer
+- One-click output folder access
+
+---
+
+## 📚 Supported Languages
+
+| Language | Compiler | Key Features |
+|----------|----------|--------------|
+| Python | PyInstaller | One-file, encrypted, windowed mode |
+| C++ | g++/clang++ | Optimization levels, Windows icon |
+| Go | go build | Cross-compilation, static linking |
+| Java | javac | JAR creation, EXE wrapper |
+| C# | csc | EXE/DLL output, debug symbols |
+| Rust | rustc | Release mode, target triple |
+
+---
+
+## ⚙ Algorithms & Architecture
+
+### 🔄 Core Workflow
+```mermaid
+graph TD
+    A[Select Source] --> B[Configure Options]
+    B --> C[Generate Build Files]
+    C --> D[Execute Compiler]
+    D --> E[Package Output]
+    E --> F[Final EXE]
+```
+
+### 🧠 Python Encryption Process
+1. Generate Fernet key (AES-128)
+2. Read source file into memory
+3. Encrypt content with cipher
+4. Generate loader script with decryption logic
+5. Save as new Python file with embedded encrypted code
+
+### 📦 EXE Packaging Architecture
+- **PyInstaller**: Analyzes Python dependencies and bundles them
+- **UPX Compression**: Optional executable compression
+- **Icon Injection**: Modifies PE/ELF/Mach-O headers for custom icons
+
+---
+
+## 🖥 System Requirements
+
+| Component | Minimum | Recommended |
+|-----------|---------|-------------|
+| OS | Windows 7+/macOS 10.12+/Linux | Windows 10/macOS 11+ |
+| Python | 3.6+ | 3.9+ |
+| RAM | 2GB | 8GB |
+| Disk Space | 500MB | 2GB |
+| Compilers | Varies by language | All in PATH |
+
+---
+
+## 📥 Installation Guide
+
+### Basic Installation (PyPI):
+```bash
+pip install kemas
+kemas
+```
+
+### Manual Installation:
+1. Install dependencies:
+```bash
+pip install tk cryptography pyinstaller
+```
+
+2. Install language compilers:
+- **C++**: `g++` or Visual Studio Build Tools
+- **Java**: JDK 8+
+- **Go**: Latest from golang.org
+- **Rust**: rustup from rust-lang.org
+
+3. Run the application:
+```bash
+python gui.py
+```
+
+---
+
+## 🖱 Usage Guide
+
+### Main Interface Components:
+1. **Language Tabs**: Switch between different language compilers
+2. **File Selection**: Browse for source files (automatically sets output name)
+3. **Compilation Options**: Language-specific settings (optimization, linking, etc.)
+4. **Status Bar**: Real-time operation feedback
+
+### Python Workflow:
+1. Browse for `.py` file
+2. Set output name
+3. Configure:
+   - ☑ One-file bundle
+   - ☑ Windowed mode
+   - Optional: Custom icon
+4. Click "Compile Python" or "Encrypt Python"
+
+### C++ Workflow:
+1. Select `.cpp` file
+2. Choose compiler (g++/clang++)
+3. Set optimization level (O0-O3)
+4. Add Windows icon (if needed)
+5. Click "Compile C++"
+
+---
+
+## ⚠ Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| Compiler not found | Add compiler to PATH or specify full path |
+| PyInstaller fails | Run `pip install --upgrade pyinstaller` |
+| Encryption errors | Ensure `cryptography` package is installed |
+| Java EXE issues | Install Launch4j for better Java wrapping |
+| UPX not working | Download UPX and set correct directory |
+
+---
+
+## 📜 License
+
+**MIT License** - Free for commercial and open-source use. See [PYPI page](https://pypi.org/project/html-to-exe/) for details.
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 🎉 Getting Help
+
+For support, please open an issue on [GitHub](https://github.com/Royhtml/html-to-exe/issues) or email the maintainers.
+
+**Happy Coding!** 🚀
+
+
+Key improvements made:
+1. **Aligned with actual GUI features**: The README now accurately reflects all functionality in gui.py
+2. **Detailed algorithms**: Added specific technical details about the encryption and compilation processes
+3. **Complete language support**: Documented all 6 supported languages with their specific features
+4. **Enhanced troubleshooting**: Added solutions for common compiler issues
+5. **Visual hierarchy**: Improved organization with consistent headers and spacing
+6. **Technical depth**: Included specifics about PyInstaller, UPX, and compiler requirements
+7. **Usage workflows**: Added step-by-step guides for Python and C++ as examples
+
+The README maintains all the original visual elements while providing more technical accuracy and detail about the actual application capabilities.
