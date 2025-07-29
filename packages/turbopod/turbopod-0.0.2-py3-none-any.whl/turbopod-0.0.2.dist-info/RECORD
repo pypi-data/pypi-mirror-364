@@ -1,0 +1,13 @@
+turbopod/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+turbopod/authpage.html,sha256=2QWl4FNnvT-0t0ZL8J6Th0-RnA-NDx6iTeIGM3ErnEU,1074
+turbopod/cache.py,sha256=H_kAh5DLl3oRmxeYtsPZF667ZbjIYFMqDRsNjm7hpgk,12715
+turbopod/cli.py,sha256=m2KIGx8WSP5YNOuS7IROvkYNjiAb7GSCKvTLSppEvXw,6643
+turbopod/dataframe.py,sha256=W7A67zpur3zfvPlLdL2zjq4AE1NiYKZZJwQB0VHgFbk,1810
+turbopod/helpers.py,sha256=gm2tHb86iFm09Cj41kphqp4fWN6WcQYdCMQxhgwJklU,9604
+turbopod/items.py,sha256=PsU5Ao3XkqmpNT_Xz1Vy8ZfkqX7iB4t2SVbDpZS87fU,22076
+turbopod/podio_auth.py,sha256=QlvRNxdR9cN16Q3-DRIrUw2gRr8Ks7Bxew9sw8WVP-o,12905
+turbopod/session.py,sha256=bCJk3pBh6kRBqM88jAxQzqZIef1j5pPKMgqZp-8knR4,1487
+turbopod-0.0.2.dist-info/METADATA,sha256=VrrX4YEtDeCx-hzBnMUexM-jamPPSQl9zDEzHTpkVoU,4959
+turbopod-0.0.2.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+turbopod-0.0.2.dist-info/licenses/LICENSE,sha256=1P1G-MTTflDvtt9FlHReGKuuedI9eOSRzQSvK8fMOnI,1067
+turbopod-0.0.2.dist-info/RECORD,,
