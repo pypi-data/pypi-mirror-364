@@ -1,0 +1,3 @@
+[console_scripts]
+outhook=outhook.script:main
+
