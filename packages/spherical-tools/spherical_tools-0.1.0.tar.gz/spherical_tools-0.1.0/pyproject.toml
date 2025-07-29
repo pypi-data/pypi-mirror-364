@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "spherical-tools"
+version = "0.1.0"
+description = "Utilities for working with spherical geometry"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{name = "Tom New", email = "tomnewtonnew@gmail.com"}]
+license = {file = "LICENSE"}
+dependencies = ["numpy", "scipy"]
+keywords = ["geoscience", "coordinates", "spherical", "cartesian", "geometry"]
+
+[project.urls]
+Homepage = "https://github.com/tom-new/spherical-tools"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
