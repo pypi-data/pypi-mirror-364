@@ -1,0 +1,17 @@
+.cache
+.coverage
+.mypy*
+*.pyc
+__pycache__
+.tox
+*.egg-info
+.pytest*
+.python-version
+.venv
+
+build/
+dist/
+
+.vscode
+pypi-notes
+profile_rule.py
