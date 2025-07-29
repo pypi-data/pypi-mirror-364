@@ -1,0 +1,16 @@
+vislearnlabpy/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+vislearnlabpy/embeddings/embedding_store.py,sha256=cf5YPhegOYzPlvru2j96a7KPSaMGdamp0ZnadxrVuTc,7346
+vislearnlabpy/embeddings/generate_embeddings.py,sha256=KsG3eaKKvq1xSjcsIHFp9fQrh7L9F6mhVdwPDcNF3dc,8029
+vislearnlabpy/embeddings/similarity_generator.py,sha256=qpWaz9mlaXtzruD9BFpnQ8qIwitk49eiXESuKqSR-HU,4183
+vislearnlabpy/embeddings/similarity_utils.py,sha256=Mx3Gs_2_q9WQfct-SsXFbb5Z3eXvhkvoAnnJJtxMOPc,8588
+vislearnlabpy/embeddings/stimuli_loader.py,sha256=3wEZ_Qv23w5qhhOD09_6k_Ozllqr1PcIiwjmE-GHiFY,8719
+vislearnlabpy/embeddings/utils.py,sha256=66MoWzGSmxhLSdoUkRFxplIMU-KUcQK-76NL30DP5qQ,5939
+vislearnlabpy/extractions/drawings.py,sha256=4Rh8A3UGsiSSwLBh8pax_MG9zlXwzdfh33485aKIpq0,20173
+vislearnlabpy/models/clip_model.py,sha256=6uQ98HKGwdpvQHl-MamIP-EVtxbYZfe0NiO6ZRiGJ5Q,535
+vislearnlabpy/models/feature_generator.py,sha256=8nv95foPVd6QrifvIkyPFKFdPMyncdCoRIvXmXkiTjE,3551
+vislearnlabpy/models/multimodal_model.py,sha256=wmNsAA7UW1U1gNEmYSRREI9fuO270xCfhZLrZZJ_Smw,5979
+vislearnlabpy-0.0.1.18.dist-info/licenses/LICENSE,sha256=iQFCLVcTzopcVqmTMbKI7LCN_IO0UYBCp7i7ocvwkuQ,1075
+vislearnlabpy-0.0.1.18.dist-info/METADATA,sha256=YMPoNjL_JJBNBy-O5DeTmcR8X7OSNldnucRZU312lc0,2337
+vislearnlabpy-0.0.1.18.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+vislearnlabpy-0.0.1.18.dist-info/top_level.txt,sha256=3KYf9ks71988SFCQu0HnPY_Q2KRLkWuC09zJRYQOMxs,14
+vislearnlabpy-0.0.1.18.dist-info/RECORD,,
