@@ -1,0 +1,13 @@
+LICENSE
+README.md
+pyproject.toml
+src/weaktree/__init__.py
+src/weaktree/node.py
+src/weaktree/py.typed
+src/weaktree/types.py
+src/weaktree.egg-info/PKG-INFO
+src/weaktree.egg-info/SOURCES.txt
+src/weaktree.egg-info/dependency_links.txt
+src/weaktree.egg-info/top_level.txt
+tests/test_iterables.py
+tests/test_node.py
