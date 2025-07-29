@@ -1,0 +1,39 @@
+site_name: Graphio
+site_url: https://graphio.readthedocs.io/en/latest/
+theme:
+  name: material
+  features:
+    - content.code.copy
+    - navigation.path
+#    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+markdown_extensions:
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Overview: getting_started/index.md
+  - Details:
+      - OGM: details/ogm.md
+      - Data Sets: details/datasets.md
+  - API Documentation:
+      - NodeSet: api_reference/nodeset.md
+      - RelationshipSet: api_reference/relationshipset.md
+plugins:
+- mkdocstrings:
+    handlers:
+      python:
+        options:
+          allow_inspection: true
+          docstring_style: sphinx
