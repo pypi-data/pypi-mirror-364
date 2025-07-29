@@ -1,0 +1,13 @@
+include README.md
+include LICENSE
+include requirements.txt
+include pyproject.toml
+recursive-include examples *
+recursive-include tests *
+recursive-include nanonets_extractor/configs *
+recursive-include nanonets_extractor/models *
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude __pycache__
+global-exclude .DS_Store
+global-exclude .git* 
