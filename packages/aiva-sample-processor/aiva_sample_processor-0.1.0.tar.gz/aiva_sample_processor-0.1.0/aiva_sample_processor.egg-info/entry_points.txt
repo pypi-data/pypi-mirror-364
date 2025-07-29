@@ -1,0 +1,2 @@
+[console_scripts]
+aiva-sample-processor = generate_sample_csvs:main
