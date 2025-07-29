@@ -1,0 +1,2 @@
+[console_scripts]
+gfetch-cli = gfetch_cli.app:main
