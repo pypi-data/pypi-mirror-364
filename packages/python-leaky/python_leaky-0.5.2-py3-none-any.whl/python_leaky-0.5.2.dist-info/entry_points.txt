@@ -1,0 +1,2 @@
+[console_scripts]
+leaky = leaky.cli:main
