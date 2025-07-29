@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: bdscore
+Version: 0.0.1b1
+Summary: Biblioteca oficial da BDS DataSolution para integração com dados de mercado e dados proprietários.
+Home-page: https://bdsdatasolution.com.br
+Author: BDS DataSolution
+Author-email: BDS DataSolution <comercial@bdsdatasolution.com.br>
+Keywords: bigdata,finance,data
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: requests
