@@ -1,0 +1,3 @@
+[console_scripts]
+alpaka=alpaka.cli:main
+
