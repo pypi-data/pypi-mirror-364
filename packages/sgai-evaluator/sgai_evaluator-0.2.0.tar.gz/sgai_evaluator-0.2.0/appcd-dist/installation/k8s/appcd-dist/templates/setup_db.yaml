@@ -1,0 +1,52 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+    name: setup-db
+    labels:
+        release: {{ .Release.Name }}
+    annotations:
+        "helm.sh/hook": pre-upgrade,pre-install
+        "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+    template:
+        metadata:
+            name: setup-database
+        spec:
+            restartPolicy: Never
+            terminationGracePeriodSeconds: 10
+            containers:
+            - name: setup-db
+              image: "ghcr.io/appcd-dev/bitnami/postgresql:17"
+              imagePullPolicy: IfNotPresent
+              command: ["sh", "-c"]
+              envFrom:
+              - secretRef:
+                  name: "appcd-secrets"
+              env:
+                - name: PGDATABASE
+                  value: postgres
+                - name: PGUSER
+                  valueFrom:
+                    secretKeyRef:
+                      name: "appcd-secrets"
+                      key: "rds_username"
+                - name: PGHOST
+                  valueFrom:
+                    secretKeyRef:
+                        name: "appcd-secrets"
+                        key: "rds_endpoint"
+                - name: PGPASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                        name: "appcd-secrets"
+                        key: "rds_password"
+                - name: PGPORT
+                  valueFrom:
+                    secretKeyRef:
+                        name: "appcd-secrets"
+                        key: "rds_port"
+              args:
+                  - |
+                    for i in appcd iacgen dex exporter vault chat tf_module_service infra_catalog_tracker deployment_manager notifications sgai_iac_db sgai_orchestration; do
+                        psql -tc "SELECT 1 FROM pg_database WHERE datname = '${i}'" | grep -q 1 || psql -c "CREATE DATABASE ${i}"
+                    done

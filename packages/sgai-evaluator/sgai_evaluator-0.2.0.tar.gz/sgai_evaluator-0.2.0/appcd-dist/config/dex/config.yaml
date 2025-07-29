@@ -1,0 +1,47 @@
+issuer: {{ .Env.APPCD_AUTH_ISSUER }}
+
+web:
+  http: 0.0.0.0:5556
+
+# OAuth2 configuration
+oauth2:
+  responseTypes: [ "code", "token", "id_token" ] # also allowed are "token" and "id_token"
+  skipApprovalScreen: true
+  alwaysShowLoginScreen: false
+
+logger:
+  level: debug
+  format: json
+
+storage:
+  type: sqlite3
+  config:
+    file: /var/sqlite/dex.db
+
+telemetry:
+  http: 127.0.0.1:5558
+
+grpc:
+  addr: 127.0.0.1:5557
+
+staticClients:
+  - id: appcd
+    redirectURIs:
+      - http://localhost:8001/appcd/api/v1/auth/callback/sso
+    name: 'appCD'
+    secret: {{ .Env.APPCD_CLIENT_SECRET}}
+
+connectors:
+  - type: google
+    # Config documented at https://dexidp.io/docs/connectors/google/
+    id: google
+    name: Google
+    config:
+      clientID: {{ .Env.GOOGLE_CLIENT_ID }}
+      clientSecret: {{ .Env.GOOGLE_CLIENT_SECRET }}
+      # Dex's issuer URL + "/callback"
+      redirectURI: "{{ .Env.APPCD_AUTH_ISSUER }}/callback"
+      hostedDomains:
+      #  - acme.org
+      groups:
+       - group_1

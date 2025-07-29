@@ -1,0 +1,162 @@
+rbac:
+  createClusterScoped: false
+podAnnotations:
+  reloader.stakater.com/auto: "true"
+env:
+  APPCD_HOST: ${host_domain}
+  DEX_API_CONNECTORS_CRUD: true
+envFrom:
+  - secretRef:
+      name: dex-secret
+  - secretRef:
+      name: appcd-secrets
+replicaCount: 2
+https:
+  enabled: false
+ingress:
+  enabled: true
+  className: nginx
+  hosts:
+    - host: ${host_domain}
+      paths:
+        - path: /auth
+          pathType: Prefix
+  annotations:
+    nginx.org/mergeable-ingress-type: minion
+grpc:
+  enabled: true
+volumeMounts:
+  - name: dex-configmap
+    mountPath: /srv/dex/web/themes/dark/styles.css
+    subPath: stylecss
+    readOnly: true
+  - name: dex-configmap
+    mountPath: /srv/dex/web/templates/header.html
+    subPath: header
+    readOnly: true
+  - name: dex-configmap
+    mountPath: /srv/dex/web/templates/footer.html
+    subPath: footer
+    readOnly: true
+  - name: dex-configmap
+    mountPath: /srv/dex/web/templates/login.html
+    subPath: login
+    readOnly: true
+  - name: dex-secret
+    mountPath: /secret/service_account.json
+    readOnly: true
+    subPath: service_account.json
+volumes:
+  - name: dex-configmap
+    defaultMode: 420
+    configMap:
+      name: dex-configmap
+  - name: dex-secret
+    secret:
+      secretName: dex-secret
+      defaultMode: 420
+config:
+  issuer: https://${host_domain}/auth
+  frontend:
+    logoURL: "https://appcd.com/hubfs/StackGen%20Logos/StackGen-Logo-CMYK-080124_Primary-Horz-Dark-Background.png"
+    theme: dark
+    issuer: StackGen
+    dir: /srv/dex/web
+  storage:
+    type: postgres
+    config:
+      host: $rds_endpoint
+      port: 5432
+      database: dex
+      user: $rds_username
+      password: $rds_password
+      ssl:
+        mode: disable
+
+  # Configuration for the HTTP endpoints.
+  web:
+    http: 0.0.0.0:5556
+  # Configuration for telemetry
+  telemetry:
+    http: 0.0.0.0:5558
+  logger:
+    level: "debug"
+    format: "json"
+  staticClients:
+    - name: appCD
+      IDEnv: appcd_client_id
+      secretEnv: appcd_client_secret
+      redirectURIs:
+        - https://${host_domain}/appcd/api/v1/auth/callback/sso
+    - name: AppCD_CLI
+      ID: alpha_appcd_cli_id
+      Secret: alpha_appcd_cli_secret
+      public: true
+  grpc:
+    addr: 127.0.0.1:5557
+  oauth2:
+    passwordConnector: local
+    skipApprovalScreen: true
+    grantTypes:
+      - "authorization_code"
+  enablePasswordDB: ${enable_local_connector}
+%{ if enable_local_connector ~}
+  staticPasswords:
+%{ for user in local_users ~}
+  - email: "${user.email}"
+    hash: ${user.hash}
+    username: "${user.username}"
+    userID: "${user.userID}"
+%{ endfor ~}    
+%{ endif ~}
+  connectors:
+%{ if auth_connectors.enable ~}
+    - type: ${auth_connectors_type}
+      id: ${auth_connectors_name}
+      name: ${auth_connectors_name}
+      config:
+        ${appcd_authentication_config}
+%{ else ~}
+    - type: github
+      id: github
+      name: GitHub
+      config:
+        clientID: $github_client_id
+        clientSecret: $github_client_secret
+        redirectURI: https://${host_domain}/auth/callback
+        loadAllGroups: true
+%{ if is_dev ~}
+        orgs:
+        - name: stackgen-demo
+%{ endif ~}
+%{ if !is_dev ~}
+    - type: gitlab
+      id: gitlab
+      name: GitLab
+      config:
+        baseURL: https://gitlab.com
+        clientID: $gitlab_client_id
+        clientSecret: $gitlab_client_secret
+        redirectURI: https://${host_domain}/auth/callback
+        useLoginAsID: true
+%{ endif ~}
+    - type: bitbucket-cloud
+      id: bitbucket-cloud
+      name: Bitbucket
+      config:
+        clientID: $bitbucket_client_id
+        clientSecret: $bitbucket_client_secret
+        redirectURI: https://${host_domain}/auth/callback
+    - type: google
+      id: google
+      name: Google
+      config:
+        clientID: $google_client_id
+        clientSecret: $google_client_secret
+        redirectURI: https://${host_domain}/auth/callback
+%{ if is_dev ~}
+        hostedDomains:
+          - appcd.com
+          - stackgen.com
+%{ endif ~}
+%{ endif ~}

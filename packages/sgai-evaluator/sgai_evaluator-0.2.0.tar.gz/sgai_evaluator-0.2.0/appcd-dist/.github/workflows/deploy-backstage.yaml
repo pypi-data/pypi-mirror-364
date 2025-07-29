@@ -1,0 +1,77 @@
+# workflow to deploy backstage to backstage.dev.stackgen.com
+# used from github.com/appcd-dev/stackgen-backstage repo
+name: deploy-backstage
+
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: "Reason for deployment"
+        default: "Manual deployment"
+      environment:
+        type: choice
+        description: "Environment to deploy to"
+        default: "dev"
+        required: true
+        options:
+          - dev
+          - prod
+          - customer-bancolombia 
+
+env:
+  APP_NAME: stackgen-backstage
+  AWS_REGION: us-west-2
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - uses: azure/setup-kubectl@v4
+        id: install
+      
+      - name: Set environment variables
+        id: set-env
+        env:
+          # dev vars
+          DEV_AWS_ROLE_ARN: "arn:aws:iam::339712749745:role/developer-github-oidc-auth-role"
+          DEV_CLUSTER: developer-eks
+          DEV_NAMESPACE: appcd-alpha
+          # PROD vars
+          PROD_AWS_ROLE_ARN: "arn:aws:iam::471112560114:role/cloud-github-oidc-auth-role"
+          PROD_CLUSTER: cloud-eks
+          PROD_NAMESPACE: appcd-cloud-prod
+          CUSTOMER_BANCOLOMBIA_NAMESPACE: appcd-customer-bancolombia
+        run: |
+          if [ "${{ github.event.inputs.environment }}" == "prod" ]; then
+            echo "role_arn=${{ env.PROD_AWS_ROLE_ARN }}" >> $GITHUB_OUTPUT
+            echo "cluster=${{ env.PROD_CLUSTER }}" >> $GITHUB_OUTPUT
+            echo "namespace=${{ env.PROD_NAMESPACE }}" >> $GITHUB_OUTPUT
+          elif [ "${{ github.event.inputs.environment }}" == "customer-bancolombia" ]; then
+            echo "role_arn=${{ env.PROD_AWS_ROLE_ARN }}" >> $GITHUB_OUTPUT
+            echo "cluster=${{ env.PROD_CLUSTER }}" >> $GITHUB_OUTPUT
+            echo "namespace=${{ env.CUSTOMER_BANCOLOMBIA_NAMESPACE }}" >> $GITHUB_OUTPUT
+          else
+            echo "role_arn=${{ env.DEV_AWS_ROLE_ARN }}" >> $GITHUB_OUTPUT
+            echo "cluster=${{ env.DEV_CLUSTER }}" >> $GITHUB_OUTPUT
+            echo "namespace=${{ env.DEV_NAMESPACE }}" >> $GITHUB_OUTPUT
+          fi
+      - name: Set up AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          audience: sts.amazonaws.com
+          aws-region: ${{ env.AWS_REGION }}
+          role-to-assume: ${{ steps.set-env.outputs.role_arn }}
+      - name: Update KubeConfig
+        shell: bash
+        run: |
+          aws eks update-kubeconfig --name ${{ steps.set-env.outputs.cluster }} --region=${{ env.AWS_REGION }}
+      - name: Deploy Backstage and Report Status
+        shell: bash
+        run: |
+          kubectl rollout restart deployment ${{ env.APP_NAME }} -n ${{ steps.set-env.outputs.namespace }}
+          kubectl rollout status deployment ${{ env.APP_NAME }} -n ${{ steps.set-env.outputs.namespace }} --timeout=300s

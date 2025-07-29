@@ -1,0 +1,67 @@
+name: Deploy to Dev cluster > stage namespace
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "installation/k8s/values/dev.stage.yaml"
+env:
+  AWS_REGION: "us-west-2"
+  AWS_ROLE_ARN: "arn:aws:iam::339712749745:role/developer-github-oidc-auth-role"
+  CLUSTER: "developer-eks"
+jobs:
+  deploy_to_stage:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      packages: write
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: ./.github/actions/deploy-to-eks
+        name: Deploy to stage EKS
+        with:
+          cluster: "developer-eks"
+          region: ${{ env.AWS_REGION }}
+          ISSUE_REPORTER_SLACK_URL: ${{ secrets.ISSUE_REPORTER_SLACK_URL }}
+          role_to_assume: ${{ env.AWS_ROLE_ARN }}
+          namespace: "appcd-stage"
+          values_yaml: "./values/dev.stage.yaml"
+  run_e2e_test:
+    runs-on: ubuntu-latest
+    name: Run E2E tests
+    needs:
+      - deploy_to_stage
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Run E2E tests
+        env:
+          GH_TOKEN: ${{ secrets.E2E_TEST_PAT }}
+        run: |
+          gh workflow run \
+          --repo "appcd-dev/appcd-e2e" \
+          --ref "main" \
+          "CI" \
+          -f STACKGEN_URL=http://stage.dev.stackgen.com/
+  run_functional_test:
+    runs-on: ubuntu-latest
+    name: Run Functional tests
+    needs:
+      - deploy_to_stage
+    steps:
+      - name: Run Functional tests
+        env:
+          GH_TOKEN: ${{ secrets.FUNCTIONAL_TEST_PAT }}
+        run: |
+          gh workflow run \
+          --repo "appcd-dev/ui-automation-testsuite" \
+          --ref "main" \
+          "Playwright Tests" \
+          -f STACKGEN_URL=https://stage.dev.stackgen.com
+

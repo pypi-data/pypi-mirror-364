@@ -1,0 +1,9 @@
+is_dev_cluster             = true
+load-balancer-ssl-cert-arn = "arn:aws:acm:us-west-2:339712749745:certificate/5c2df760-beda-4bb6-bba3-0f2bb16f8d5b"
+region                     = "us-west-2"
+suffix                     = "developer"
+instance_type              = "c7gd.4xlarge"
+use_spot_instances         = false
+enable_gpu                 = false
+alert_email                = "alerts-prod-ops-aaaamju5k3vxefjpxt2u5sllwy@stackgen.slack.com"
+read_only_role_name        = "AWSReservedSSO_ReadOnlyAccess_de1aeeec02b20bda"

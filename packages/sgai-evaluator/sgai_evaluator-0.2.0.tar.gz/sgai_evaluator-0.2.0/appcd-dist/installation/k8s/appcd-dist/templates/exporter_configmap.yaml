@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: exporter-config
+    namespace: {{ .Release.Namespace }}
+data:
+    config_yaml: |
+        db:
+            connectionString: host=${rds_endpoint} port=${rds_port} user=${rds_username} password=${rds_password} dbname=exporter sslmode=disable application_name=${HOSTNAME}
+            readReplicas:
+                - host=${rds_read_endpoint} port=${rds_port} user=${rds_username} password=${rds_password} dbname=exporter sslmode=disable application_name=${HOSTNAME}
+            dbType: postgres
+            migrationSource: file:///root/resources/db/migration

@@ -1,0 +1,137 @@
+{{- $name := .Values.image.tag | required ".Values.image.tag is required." -}}
+{{- $ns := .Release.Namespace -}}
+{{- $fullName := include "appcd.fullname" . -}}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $fullName }}
+  labels:
+    {{- include "appcd.labels" . | nindent 4 }}
+  annotations:
+    deploymentTime: {{ now | date "2006-01-02T15:04:05" }}
+    rollme: {{ randAlphaNum 5 | quote }}
+    reloader.stakater.com/auto: "true"
+    {{- range $key, $value := .Values.podAnnotations }}
+    {{ $key }}: {{ $value | quote }}
+    {{- end }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "appcd.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        rollme: {{ randAlphaNum 5 | quote }}
+        {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+      labels:
+        {{- include "appcd.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "appcd.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["/bin/appcd"]
+          args:
+            - "server"
+            - "--config"
+            - "/config/config.yaml"
+            - "--log"
+            - "2"
+            {{- range .Values.rbac.admin_emails }}
+            - "--admin-emails"
+            - "{{ . }}"
+            {{- end }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+            - name: metrics
+              containerPort: 9090
+              protocol: TCP
+            - name: grpc
+              containerPort: 8081
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /api/v1/health
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /api/v1/health
+              port: http
+          envFrom:
+            - configMapRef:
+                name: "stackgen-platform-configmap"
+            {{- range $key, $value := .Values.secrets }}
+            - secretRef:
+                name: {{ $value }}
+            {{- end }}
+          env:
+            - name: TEMPORAL_NAMESPACE
+              value: {{ .Values.global.temporal.namespace | default .Release.Namespace }}
+            - name: TEMPORAL_HOSTPORT
+              value: {{ .Values.global.temporal.hostport }}
+            - name: APPCD_DOMAIN
+              value: {{ .Values.domain }}
+            {{- toYaml .Values.env | nindent 12 }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            {{- if .Values.storage.worm.enabled }}
+            - name: persistent-storage
+              mountPath: /out/data
+            {{- end }}
+            {{- with .Values.volumeMounts }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+      volumes:
+        {{- with .Values.volumes }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+        {{- if .Values.storage.worm.enabled }}
+        - name: persistent-storage
+          persistentVolumeClaim:
+            claimName: {{ printf "storage-%s" $ns }}
+        {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+
+      {{- if .Values.enablePodAntiAffinity }}
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    {{- include "appcd.selectorLabels" . | nindent 20 }}
+                topologyKey: "kubernetes.io/hostname"
+      {{- else if .Values.affinity }}
+      affinity:
+        {{- toYaml .Values.affinity | nindent 8 }}
+      {{- end }}
+
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

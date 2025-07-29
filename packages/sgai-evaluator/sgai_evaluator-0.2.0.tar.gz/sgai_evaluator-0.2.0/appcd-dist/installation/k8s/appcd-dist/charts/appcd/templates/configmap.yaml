@@ -1,0 +1,88 @@
+{{- $fullName := include "appcd.fullname" . -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    {{- include "appcd.labels" . | nindent 4 }}
+  name: {{ $fullName }}-configmap
+data:
+  appcd_config_file: |
+    server:
+      tenancy:
+        dex_config:
+          host: "dex:5557"
+      temporal:
+        maxConcurrentActivityExecutionSize: 1
+      auth:
+        session_duration: 24h
+        enable_group_sync: {{ .Values.auth.enable_group_sync | default false }}
+        need_user_vetting: {{ .Values.auth.need_user_vetting | default false }}
+      database:
+        CONNECTION_STRING: host=${rds_endpoint} port=${rds_port} user=${rds_username} password=${rds_password} dbname=appcd sslmode=disable application_name=${HOSTNAME}
+        READ_REPLICAS: host=${rds_read_endpoint} port=${rds_port} user=${rds_username} password=${rds_password} dbname=appcd sslmode=disable application_name=${HOSTNAME}
+        DB_TYPE: postgres
+        DB_DEBUG: true
+        MIGRATION_SOURCE: file:/app/resources/db/migration
+      {{- if .Values.auth.enabled }}
+      oauth:
+        sso:
+          provider: {{ .Values.auth.provider | default "https://${APPCD_DOMAIN}/auth" }}
+          oauth:
+            clientId: {{ .Values.auth.client_id | default "${appcd_client_id}" }}
+            clientSecret: {{ .Values.auth.client_secret | default "${appcd_client_secret}" }}
+            scopes: {{ .Values.auth.scopes | default "openid,email,groups,profile,federated:id" }}
+            redirectURL: {{ .Values.auth.redirect_url | default "https://${APPCD_DOMAIN}/appcd/api/v1/auth/callback/sso" }}
+      {{- end }}
+      scm:
+        public_gitlab:
+          type: gitlab
+          token_link: https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html
+          oauth:
+            endpoint:
+              authURL: {{ .Values.scm.gitlab.auth_url | default "https://gitlab.com/oauth/authorize" }}
+              tokenURL: {{ .Values.scm.gitlab.token_url | default "https://gitlab.com/oauth/token" }}
+            clientid: ${gitlab_client_id}
+            clientsecret: ${gitlab_client_secret}
+            scopes: "read_api,read_user,read_repository"
+            redirectURL: https://${APPCD_DOMAIN}/appcd/api/v1/scm/public_gitlab/callback
+        public_github:
+          type: github
+          token_link: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
+          oauth:
+            endpoint:
+              authURL: {{ .Values.scm.github.auth_url | default "https://github.com/login/oauth/authorize" }}
+              tokenURL: {{ .Values.scm.github.token_url | default "https://github.com/login/oauth/access_token" }}
+            clientid: ${scm_github_client_id}
+            clientsecret: ${scm_github_client_secret}
+            scopes: "openid,profile,email,repo"
+            redirectURL: https://${APPCD_DOMAIN}/appcd/api/v1/scm/public_github/callback
+        public_bitbucket:
+          type: bitbucket
+          token_link: https://confluence.atlassian.com/bbkb/revoke-app-authorization-from-a-bitbucket-account-1305969450.html
+          oauth:
+            clientId: ${scm_bitbucket_client_id}
+            clientSecret: ${scm_bitbucket_client_secret}
+            scopes: "repository"
+            redirectURL: http://${APPCD_DOMAIN}/appcd/api/v1/scm/public_bitbucket/callback
+            endpoint:
+              authURL: https://bitbucket.org/site/oauth2/authorize
+              tokenURL: https://bitbucket.org/site/oauth2/access_token
+        azure_devops:
+          type: azuredev
+          token_link: https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=Windows
+          oauth:
+            endpoint:
+              authURL: {{ .Values.scm.azure.auth_url | default "https://app.vssps.visualstudio.com/oauth2/authorize" }}
+              tokenURL: {{ .Values.scm.azure.token_url | default "https://app.vssps.visualstudio.com/oauth2/token" }}
+            clientid: ${scm_azure_devops_client_id}
+            clientsecret: ${scm_azure_devops_client_secret}
+            scopes: "vso.code,vso.identity"
+            redirectURL: https://${APPCD_DOMAIN}/appcd/api/v1/scm/azure_devops/callback
+      email:
+        host: ${email_host}
+        port: 587
+        username: ${email_username} 
+        troubleShootingSenderMail: ${email_troubleshooting_sender_mail}
+        recipientMail: support@stackgen.com
+      hubspot:
+        api_key: ${hubspot_api_key}

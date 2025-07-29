@@ -1,0 +1,38 @@
+server:
+  database:
+    connectionString: "/db/appcd.db"
+  # oauth:
+  #   appcd:
+  #     provider: https://cloud.stackgen.com/auth
+  #     oauth:
+  #       clientid: some-client-id
+  #       clientsecret: some-client-secret
+  #       scopes: "openid,email,groups,profile,offline_access,federated:id"
+  #       redirectURL: http://localhost:8001/appcd/api/v1/auth/callback/appcd
+  scm:
+    localfile:
+      type: file
+      api: "/data/repos"
+    public_github:
+      type: github
+      token: ${GITHUB_TOKEN}
+      api: https://api.github.com/
+      oauth:
+        clientid: ${GITHUB_CLIENT_ID}
+        clientsecret: ${GITHUB_CLIENT_SECRET}
+        endpoint:
+          authURL: "https://github.com/login/oauth/authorize"
+          tokenURL: "https://github.com/login/oauth/access_token"
+        redirectURL: http://localhost:8001/appcd/api/v1/scm/public_github/callback
+    # public_gitlab:
+    #   type: gitlab
+    #   token: ${GITLAB_TOKEN}
+    #   api: https://api.gitlab.com/
+    # public_bitbucket:
+    #   type: bitbucket
+    #   token: ${BITBUCKET_TOKEN}
+    #   api: https://bitbucket.org/
+    # public_gitea:
+    #   type: gitea
+    #   token: ${GITEA_TOKEN}
+    #   api: https://gitea.com/

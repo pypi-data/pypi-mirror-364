@@ -1,0 +1,6 @@
+apiVersion: v2
+appVersion: 0.0.1
+description: Generated helm chart created for service "infra-catalog-tracker" with appcd
+name: infra-catalog-tracker
+type: application
+version: 0.1.0

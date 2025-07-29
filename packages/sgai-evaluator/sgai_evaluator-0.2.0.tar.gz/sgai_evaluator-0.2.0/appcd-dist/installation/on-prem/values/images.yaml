@@ -1,0 +1,36 @@
+appcd:
+  image:
+    tag: v2025.7.2
+appcd-ui:
+  image:
+    tag: v0.17.0
+iac-gen:
+  image:
+    tag: v0.50.0
+exporter:
+  helm_workload_5a048be506c75a07b1aeec33d33e56e3:
+    image_tag: v0.9.6
+stackgen-vault:
+  helm_workload_54a040c89d8252de9a426f2ad1f92af6:
+    image_tag: v0.5.0
+deployment-manager:
+  helm_workload_eedf62a44e21519893dea9656ef6fc10:
+    image_tag: v0.4.2
+integrations:
+  helm_workload_1b5f1d019692549bb714785b7636f446:
+    image_tag: v0.11.0
+infra-catalog-tracker:
+  helm_workload_29510bf8f3775740827eff66846105ef:
+    image_tag: v0.3.0
+stackgen-notification:
+  helm_workload_5e47e775fc5a5bfa964f549ee58e64c1:
+    image_tag: main
+sgai-knowledge:
+  image:
+    tag: ""
+sgai-control:
+  image:
+    tag: ""
+tf-module-service:
+  image:
+    tag: "v0.2.0"

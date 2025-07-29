@@ -1,0 +1,2 @@
+/installation/k8s/values/prod* @appcd-dev/prod-on-call
+.env @appcd-dev/prod-on-call

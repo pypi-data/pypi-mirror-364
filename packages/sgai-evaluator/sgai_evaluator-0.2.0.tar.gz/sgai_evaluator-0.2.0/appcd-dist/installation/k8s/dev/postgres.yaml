@@ -1,0 +1,30 @@
+auth:
+  password: thanks_for_trying_appcd
+  username: postgres
+primary:
+  initdb:
+    scripts:
+      00_init_appcd_db.sh: |
+        #!/bin/bash
+        export PGPASSWORD=$POSTGRES_PASSWORD
+        psql -U postgres <<< "CREATE DATABASE appcd"
+        psql -U postgres <<< "GRANT ALL PRIVILEGES ON DATABASE appcd to postgres"
+        psql -U postgres <<< "ALTER DATABASE appcd OWNER TO postgres"
+        psql -U postgres <<< "CREATE DATABASE iacgen"
+        psql -U postgres <<< "GRANT ALL PRIVILEGES ON DATABASE iacgen to postgres"
+        psql -U postgres <<< "ALTER DATABASE iacgen OWNER TO postgres"
+        psql -U postgres <<< "CREATE DATABASE temporal"
+        psql -U postgres <<< "GRANT ALL PRIVILEGES ON DATABASE temporal to postgres"
+        psql -U postgres <<< "ALTER DATABASE temporal OWNER TO postgres"
+        psql -U postgres <<< "CREATE DATABASE temporalvisibility"
+        psql -U postgres <<< "GRANT ALL PRIVILEGES ON DATABASE temporalvisibility to postgres"
+        psql -U postgres <<< "ALTER DATABASE temporalvisibility OWNER TO postgres"
+        psql -U postgres <<< "CREATE USER temporal_admin WITH PASSWORD 'thanks_for_trying_appcd'"
+        psql -U postgres <<< "GRANT ALL PRIVILEGES ON DATABASE temporal TO temporal_admin"
+        psql -U postgres <<< "GRANT ALL PRIVILEGES ON DATABASE temporalvisibility TO temporal_admin"
+        psql -U postgres <<< "ALTER USER temporal_admin WITH SUPERUSER"
+        psql -U postgres <<< "ALTER DATABASE temporalvisibility OWNER TO postgres"
+      01_init_appcd_vira.sh: |
+        psql -U postgres <<< "CREATE DATABASE vira"
+        psql -U postgres <<< "GRANT ALL PRIVILEGES ON DATABASE vira to postgres"
+        psql -U postgres <<< "ALTER DATABASE vira OWNER TO postgres"

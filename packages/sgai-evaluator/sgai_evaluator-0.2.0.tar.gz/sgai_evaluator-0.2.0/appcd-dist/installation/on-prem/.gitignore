@@ -1,0 +1,9 @@
+*.tgz
+.terraform
+**.auto.tfvars
+*.tfstate
+*.tfstate.lock.info
+terraform.tfstate
+terraform.tfstate.backup
+values/appcd-final.yaml
+backend.tf

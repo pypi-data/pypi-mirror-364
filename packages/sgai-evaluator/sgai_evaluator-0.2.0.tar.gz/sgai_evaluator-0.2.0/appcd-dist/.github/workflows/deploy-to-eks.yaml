@@ -1,0 +1,115 @@
+name: Deploy to EKS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: "Reason for deployment"
+        default: "Manual deployment"
+      appcd_version:
+        description: "appcd version to deploy"
+        default: "main"
+      analyzer_version:
+        description: "analyzer version to deploy"
+        default: "main"
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}/appcd
+  AWS_ROLE_ARN: "arn:aws:iam::339712749745:role/developer-github-oidc-auth-role"
+
+jobs:
+  containerize:
+    runs-on: arm-runner
+    name: Build and push Docker image
+    outputs:
+      version: ${{ steps.meta.outputs.version }}
+      tags: ${{ steps.meta.outputs.tags }}
+      labels: ${{ steps.meta.outputs.labels }}
+    steps:
+      - name: Checkout code
+        id: checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+      - name: build appcd-image
+        id: build_appcd_image
+        uses: ./.github/actions/build-image
+        with:
+          tags: ${{ steps.meta.outputs.tags }}
+          push_to_registry: true
+          labels: ${{ steps.meta.outputs.labels }}
+          platforms: linux/arm64
+          registry_secret: ${{ secrets.GITHUB_TOKEN }}
+          appcd_version: ${{ github.event.inputs.appcd_version || 'main'}}
+          analyzer_version: ${{ github.event.inputs.analyzer_version || 'main' }}
+  deploy_to_alpha:
+    runs-on: ubuntu-latest
+    name: Deploy to dev Alpha
+    needs:
+      - containerize
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        id: checkout
+        with:
+          fetch-depth: 1
+      - uses: ./.github/actions/deploy-to-eks
+        name: Deploy to main EKS
+        with:
+          cluster: "developer-eks"
+          region: "us-west-2"
+          role_to_assume: ${{ env.AWS_ROLE_ARN }}
+          ISSUE_REPORTER_SLACK_URL: ${{ secrets.ISSUE_REPORTER_SLACK_URL }}
+          namespace: "appcd-alpha"
+          values_yaml: "./values/dev.alpha.yaml"
+  deploy_to_onprem:
+    runs-on: ubuntu-latest
+    name: Deploy to dev OnPrem
+    needs:
+      - containerize
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        id: checkout
+        with:
+          fetch-depth: 1
+      - uses: ./.github/actions/deploy-to-eks
+        name: Deploy to onprem EKS
+        with:
+          cluster: "developer-eks"
+          region: "us-west-2"
+          role_to_assume: ${{ env.AWS_ROLE_ARN }}
+          ISSUE_REPORTER_SLACK_URL: ${{ secrets.ISSUE_REPORTER_SLACK_URL }}
+          namespace: "appcd-onprem"
+          values_yaml: "./values/dev.onprem.yaml"
+  run_e2e_test:
+    runs-on: ubuntu-latest
+    name: Run E2E tests
+    needs:
+      - deploy_to_alpha
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Run E2E tests
+        env:
+          GH_TOKEN: ${{ secrets.E2E_TEST_PAT }}
+        run: |
+          gh workflow run \
+          --repo "appcd-dev/appcd-e2e" \
+          --ref "main" \
+          "CI" \
+          -f STACKGEN_URL=http://main.dev.stackgen.com/

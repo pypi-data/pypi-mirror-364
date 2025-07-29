@@ -1,0 +1,412 @@
+fullnameOverride: appcd
+pullPolicy: &pullPolicy IfNotPresent
+pullSecret: &pullSecret ghcr-pkg
+enable_ingress: &enable_ingress true
+nginx:
+  client_max_body_size: "10M"
+
+global:
+  temporal:
+    hostport: "temporal-frontend.temporal.svc.cluster.local:7233"
+
+ops:
+  otel:
+    endpoint: ""
+
+features:
+  editableIac: false
+  moduleEditor: true
+  recentStarredModules: true
+  analytics: true
+  apm: true
+  driftDetection: true
+storage:
+  worm:
+    enabled: false
+support:
+  alerts:
+    enabled: true
+    slack:
+      url: https://hooks.slack.com/services/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
+      channel: "#alerts-stackgen-k8s"
+    zenduty:
+      url: "https://events.zenduty.com/integration/gh7sy/prometheus/821e38cc-542d-4742-ba5a-d8102e9b324e/"
+stackgen-vault:
+  enabled: true
+  helm_workload_54a040c89d8252de9a426f2ad1f92af6:
+    image_pull_secret: *pullSecret
+    image_pull_policy: *pullPolicy
+  helm_service_account_f0ede016e49f5c6e877698f299c19067:
+    labels:
+      service: stackgen-vault
+  helm_ingress_338c921c23b152c68768988f70dcc932:
+    annotations:
+      nginx.org/mergeable-ingress-type: minion
+      nginx.org/location-snippets: |
+        auth_request /auth;
+        auth_request_set $login $upstream_http_x_appcd_login;
+        proxy_set_header X-Appcd-Login $login;
+
+        auth_request_set $principal_name $upstream_http_x_stackgen_principal;
+        proxy_set_header X-Stackgen-Principal $principal_name;
+
+        auth_request_set $appcd_org $upstream_http_x_appcd_org;
+        proxy_set_header X-Appcd-Org $appcd_org;
+
+        auth_request_set $appcd_scopes $upstream_http_x_appcd_scopes;
+        proxy_set_header X-Appcd-Scopes $appcd_scopes;
+
+        auth_request_set $stackgen_tenant $upstream_http_x_stackgen_tenant;
+        proxy_set_header X-Stackgen-Tenant $stackgen_tenant;
+
+        rewrite /api/vault/(.*) /$1  break;
+exporter:
+  enabled: false
+  helm_workload_5a048be506c75a07b1aeec33d33e56e3:
+    image_pull_secret: *pullSecret
+    image_pull_policy: *pullPolicy
+  helm_ingress_a0d9d3b950a15ef6aeb5d528f0ed1481:
+    class_name: nginx
+    labels:
+      service: appcd-exporter
+    annotations:
+      nginx.org/mergeable-ingress-type: minion
+      nginx.org/location-snippets: |
+        auth_request /auth;
+        auth_request_set $login $upstream_http_x_appcd_login;
+        proxy_set_header X-Appcd-Login $login;
+
+        auth_request_set $principal_name $upstream_http_x_stackgen_principal;
+        proxy_set_header X-Stackgen-Principal $principal_name;
+
+        auth_request_set $appcd_org $upstream_http_x_appcd_org;
+        proxy_set_header X-Appcd-Org $appcd_org;
+
+        auth_request_set $appcd_scopes $upstream_http_x_appcd_scopes;
+        proxy_set_header X-Appcd-Scopes $appcd_scopes;
+
+        auth_request_set $stackgen_tenant $upstream_http_x_stackgen_tenant;
+        proxy_set_header X-Stackgen-Tenant $stackgen_tenant;
+
+        rewrite /exporter/(.*) /$1  break;
+appcd:
+  imagePullSecrets:
+    - name: *pullSecret
+  ingress:
+    enabled: *enable_ingress
+  image:
+    repository: ghcr.io/appcd-dev/appcd-dist/appcd
+    pullPolicy: *pullPolicy
+  secrets:
+    - "appcd-secrets"
+    - "dex-secret"
+appcd-ui:
+  imagePullSecrets:
+    - name: *pullSecret
+  ingress:
+    enabled: *enable_ingress
+  image:
+    repository: ghcr.io/appcd-dev/appcd-ui
+    pullPolicy: *pullPolicy
+iac-gen:
+  imagePullSecrets:
+    - name: *pullSecret
+  ingress:
+    enabled: *enable_ingress
+  secrets:
+    - "appcd-secrets"
+  image:
+    repository: ghcr.io/appcd-dev/iac-gen
+    pullPolicy: *pullPolicy
+integrations:
+  enabled: true
+  helm_service_account_836e5321363456ef91387743526d4b26:
+    labels:
+      service: integrations
+  helm_ingress_fed20208495e5e5c9c7adf36f31a3b8e:
+    class_name: nginx
+    labels:
+      service: integrations
+    annotations:
+      nginx.org/mergeable-ingress-type: minion
+      nginx.org/location-snippets: |
+        auth_request /auth;
+        auth_request_set $login $upstream_http_x_appcd_login;
+        proxy_set_header X-Appcd-Login $login;
+
+        auth_request_set $principal_name $upstream_http_x_stackgen_principal;
+        proxy_set_header X-Stackgen-Principal $principal_name;
+
+        auth_request_set $appcd_org $upstream_http_x_appcd_org;
+        proxy_set_header X-Appcd-Org $appcd_org;
+
+        auth_request_set $appcd_scopes $upstream_http_x_appcd_scopes;
+        proxy_set_header X-Appcd-Scopes $appcd_scopes;
+
+        auth_request_set $stackgen_tenant $upstream_http_x_stackgen_tenant;
+        proxy_set_header X-Stackgen-Tenant $stackgen_tenant;
+
+        rewrite /integrations/(.*) /$1  break;
+    nginx.org/mergeable-ingress-type: minion
+  helm_ingress_fed20208495e5e5c9c7adf36f31a3b8e_mcp:
+    class_name: nginx
+    labels:
+      service: integrations
+    annotations:
+      nginx.org/mergeable-ingress-type: minion
+      nginx.org/location-snippets: |
+        auth_request /auth;
+        auth_request_set $login $upstream_http_x_appcd_login;
+        proxy_set_header X-Appcd-Login $login;
+
+        auth_request_set $principal_name $upstream_http_x_stackgen_principal;
+        proxy_set_header X-Stackgen-Principal $principal_name;
+
+        auth_request_set $appcd_org $upstream_http_x_appcd_org;
+        proxy_set_header X-Appcd-Org $appcd_org;
+
+        auth_request_set $appcd_scopes $upstream_http_x_appcd_scopes;
+        proxy_set_header X-Appcd-Scopes $appcd_scopes;
+
+        auth_request_set $stackgen_tenant $upstream_http_x_stackgen_tenant;
+        proxy_set_header X-Stackgen-Tenant $stackgen_tenant;
+    nginx.org/mergeable-ingress-type: minion
+  helm_ingress_fed20208495e5e5c9c7adf36f31a3b8e_swagger:
+    class_name: nginx
+    labels:
+      service: integrations
+    annotations:
+      nginx.org/mergeable-ingress-type: minion
+      nginx.org/location-snippets: |
+        rewrite /integrations/(.*) /$1  break;
+    nginx.org/mergeable-ingress-type: minion
+  helm_workload_1b5f1d019692549bb714785b7636f446:
+    image_pull_secret: *pullSecret
+    image_pull_policy: *pullPolicy
+    image: ghcr.io/appcd-dev/integrations
+    env_from_config:
+      - stackgen-platform-configmap
+backstage-adapter:
+  enabled: false
+  helm_service_account_836e5321363456ef91387743526d4b26:
+    labels:
+      service: backstage-adapter
+  helm_ingress_fed20208495e5e5c9c7adf36f31a3b8e:
+    class_name: nginx
+    labels:
+      service: backstage-adapter
+    annotations:
+      nginx.org/mergeable-ingress-type: minion
+      nginx.org/location-snippets: |
+        rewrite /backstage-adapter/(.*) /$1  break;
+    nginx.org/mergeable-ingress-type: minion
+  helm_workload_1b5f1d019692549bb714785b7636f446:
+    image_pull_secret: *pullSecret
+    image_pull_policy: *pullPolicy
+    image: ghcr.io/appcd-dev/backstage-adapter
+tf-module-service:
+  imagePullSecrets:
+    - name: *pullSecret
+  ingress:
+    enabled: *enable_ingress
+  secrets:
+    - "appcd-secrets"
+  image:
+    repository: ghcr.io/appcd-dev/tf-module-service
+    pullPolicy: *pullPolicy
+stackgen-notification:
+  enabled: false
+  helm_workload_5e47e775fc5a5bfa964f549ee58e64c1:
+    image_pull_secret: *pullSecret
+    image_pull_policy: *pullPolicy
+    env_from_config:
+      - stackgen-platform-configmap
+    env_from_secret:
+      - appcd-secrets
+  helm_ingress_eed39ce263775ec4b63c7cb755fbccce:
+    class_name: nginx
+    labels:
+      service: stackgen-notification
+    annotations:
+      nginx.org/mergeable-ingress-type: minion
+      nginx.org/location-snippets: |
+        auth_request /auth;
+        auth_request_set $login $upstream_http_x_appcd_login;
+        proxy_set_header X-Appcd-Login $login;
+
+        auth_request_set $principal_name $upstream_http_x_stackgen_principal;
+        proxy_set_header X-Stackgen-Principal $principal_name;
+
+        auth_request_set $appcd_org $upstream_http_x_appcd_org;
+        proxy_set_header X-Appcd-Org $appcd_org;
+
+        auth_request_set $appcd_scopes $upstream_http_x_appcd_scopes;
+        proxy_set_header X-Appcd-Scopes $appcd_scopes;
+
+        auth_request_set $stackgen_tenant $upstream_http_x_stackgen_tenant;
+        proxy_set_header X-Stackgen-Tenant $stackgen_tenant;
+
+        rewrite /notifications/(.*) /$1  break;
+    nginx.org/mergeable-ingress-type: minion
+cloudscanner:
+  enabled: false
+infra-catalog-tracker:
+  enabled: true
+  recentResourcesLimit: 10
+  helm_workload_29510bf8f3775740827eff66846105ef:
+    image_pull_secret: *pullSecret
+    image_pull_policy: *pullPolicy
+  helm_service_account_6b130394fb9a5db3a9c730cb9f9ce27f:
+    labels:
+      service: infra-catalog-tracker
+  helm_ingress_4087a90c467557bfa43a956a232516a0:
+      class_name: nginx
+      labels:
+        service: infra-catalog-tracker
+      annotations:
+        nginx.org/mergeable-ingress-type: minion
+        nginx.org/location-snippets: |
+          auth_request /auth;
+          auth_request_set $login $upstream_http_x_appcd_login;
+          proxy_set_header X-Appcd-Login $login;
+
+          auth_request_set $principal_name $upstream_http_x_stackgen_principal;
+          proxy_set_header X-Stackgen-Principal $principal_name;
+
+          auth_request_set $appcd_org $upstream_http_x_appcd_org;
+          proxy_set_header X-Appcd-Org $appcd_org;
+
+          auth_request_set $appcd_scopes $upstream_http_x_appcd_scopes;
+          proxy_set_header X-Appcd-Scopes $appcd_scopes;
+
+          auth_request_set $stackgen_tenant $upstream_http_x_stackgen_tenant;
+          proxy_set_header X-Stackgen-Tenant $stackgen_tenant;
+
+          rewrite /infra-catalog-tracker/(.*) /$1  break;
+deployment-manager:
+  enabled: true
+  helm_workload_eedf62a44e21519893dea9656ef6fc10:
+    image_pull_secret: *pullSecret
+    image_pull_policy: *pullPolicy
+  helm_service_account_c0a21e89fa59589e872f15310a2c1462:
+    labels:
+      service: deployment-manager
+  helm_ingress_58fbd417de1059fcbef3ce2fc0073ba6:
+      class_name: nginx
+      labels:
+        service: deployment-manager
+      annotations:
+        nginx.org/mergeable-ingress-type: minion
+        nginx.org/location-snippets: |
+          auth_request /auth;
+          auth_request_set $login $upstream_http_x_appcd_login;
+          proxy_set_header X-Appcd-Login $login;
+
+          auth_request_set $principal_name $upstream_http_x_stackgen_principal;
+          proxy_set_header X-Stackgen-Principal $principal_name;
+
+          auth_request_set $appcd_org $upstream_http_x_appcd_org;
+          proxy_set_header X-Appcd-Org $appcd_org;
+
+          auth_request_set $appcd_scopes $upstream_http_x_appcd_scopes;
+          proxy_set_header X-Appcd-Scopes $appcd_scopes;
+
+          auth_request_set $stackgen_tenant $upstream_http_x_stackgen_tenant;
+          proxy_set_header X-Stackgen-Tenant $stackgen_tenant;
+
+          rewrite /deployment-manager/(.*) /$1  break;
+sgai-knowledge:
+  enabled: false
+  image:
+    tag: main
+    pullPolicy: *pullPolicy
+    pullSecret: *pullSecret
+sgai-control:
+  enabled: false
+  image:
+    tag: main
+    pullPolicy: *pullPolicy
+    pullSecret: *pullSecret
+  ingress:
+    annotations:
+      nginx.org/mergeable-ingress-type: minion
+      nginx.org/location-snippets: |
+        auth_request /auth;
+        auth_request_set $login $upstream_http_x_appcd_login;
+        proxy_set_header X-Appcd-Login $login;
+
+        auth_request_set $principal_name $upstream_http_x_stackgen_principal;
+        proxy_set_header X-Stackgen-Principal $principal_name;
+
+        auth_request_set $appcd_org $upstream_http_x_appcd_org;
+        proxy_set_header X-Appcd-Org $appcd_org;
+
+        auth_request_set $appcd_scopes $upstream_http_x_appcd_scopes;
+        proxy_set_header X-Appcd-Scopes $appcd_scopes;
+
+        auth_request_set $stackgen_tenant $upstream_http_x_stackgen_tenant;
+        proxy_set_header X-Stackgen-Tenant $stackgen_tenant;
+
+        rewrite /api/healer/(.*) /api/$1  break;
+community-infra-gen:
+  enabled: false
+  secretsFrom:
+    - appcd-secrets
+  ingress:
+    annotations:
+      nginx.org/client-max-body-size: "5M"
+      nginx.org/proxy_read_timeout: "300s"
+  image:
+    pullPolicy: *pullPolicy
+    tag: main
+agent-iac-filler:
+  enabled: false
+  agentInfo:
+    name: "IAC_VARIABLE_FILLER"
+  image:
+    tag: "main"
+    repository: ghcr.io/appcd-dev/stackgen-subagents-iac_variable_filler
+agent-intent-to-iac:
+  enabled: false
+  agentInfo:
+    name: "INTENT_TO_IAC"
+  image:
+    tag: "main"
+    repository: ghcr.io/appcd-dev/stackgen-subagents-intent_to_iac
+agent-iac-exporter:
+  enabled: false
+  agentInfo:
+    name: "IAC_EXPORTER"
+  image:
+    tag: "main"
+    repository: ghcr.io/appcd-dev/stackgen-subagents-iac_exporter
+agent-iac-explainer:
+  enabled: false
+  agentInfo:
+    name: "IAC_EXPLAINER"
+  resources:
+    limits:
+      memory: 750Mi
+    requests:
+      memory: 750Mi
+  image:
+    tag: "main"
+    repository: ghcr.io/appcd-dev/sgai-iac-explanation-agent
+sgai-orchestration:
+  enabled: false
+  env:
+    - name: TEMPORAL_TASK_QUEUE
+      value: "sgai-orchestration"
+    - name: AGENT_NAME
+      value: "sgai-orchestration"
+  envFrom:
+    - configMapRef:
+        name: "stackgen-platform-configmap"
+  subagents:
+    - http://appcd-agent-iac-explainer:3001
+    - http://appcd-agent-iac-exporter:3001
+    - http://appcd-agent-iac-filler:3001
+    - http://appcd-agent-intent-to-iac:3001
+  image:
+    tag: "main"
+    repository: ghcr.io/appcd-dev/sgai-orchestration
