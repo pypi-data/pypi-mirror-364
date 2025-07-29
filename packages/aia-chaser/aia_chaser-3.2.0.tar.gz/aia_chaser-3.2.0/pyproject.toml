@@ -1,0 +1,194 @@
+[project]
+name = "aia-chaser"
+version = "3.2.0"
+license = "MIT"
+readme = "README.md"
+
+description = "Chase authority information access from a host certificate to complete the chain of trust."
+
+authors = [{ name = "Josep Pon Farreny", email = "jponfarreny@gmail.com" }]
+
+keywords = ["AIA", "SSL", "TLS", "X.509", "Certificate Chain"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Security",
+    "Topic :: System :: Networking",
+]
+
+[project.urls]
+repository = "https://github.com/jponf/aia-chaser"
+documentation = "https://aia-chaser.readthedocs.io/"
+changelog = "https://aia-chaser.readthedocs.io/en/stable/changelog/"
+
+[tool.poetry]
+package-mode = true
+
+
+[tool.poetry.requires-plugins]
+poetry-plugin-export = ">=1.8"
+poetry-bumpversion = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.masonry.api"
+
+[tool.poetry_bumpversion.file."aia_chaser/__init__.py"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+cryptography = ">=40.0"
+
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+# Formatters
+black = "^24"
+isort = "^5.13.2"
+
+# Linters
+mypy = "^1"
+ruff = "^0"
+pylint = "^3.0.3" # for pyreverse
+
+# Packages vulnerabilities scan
+pip-audit = "^2.5"
+
+# Other tools
+rope = "^1.11.0"       # Rename variables
+pipdeptree = "^2.13.2"
+pre-commit = "^3.5.0"
+toml = "^0.10.2"
+
+[tool.poetry.group.test]
+optional = true
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.4.4"
+pytest-cov = "^4.1.0"
+pytest-randomly = "^3.15.0" # random shuffle tests
+xdoctest = "^1.1.2"
+faker = "^22.4.0"
+
+[tool.poetry.group.docs]
+optional = true
+
+[tool.poetry.group.docs.dependencies]
+mkdocs = "^1.6.1"
+
+# Let poetry resolve version that works with mkdocs
+markdown-include = "*"
+mkdocs-material = "*"
+mkdocstrings = { version = "*", extras = ["python"] }
+pymdown-extensions = "*"
+mkdocs-gen-files = "*"
+mkdocs-literate-nav = "*"
+
+[tool.black]
+target-version = ["py36", "py37", "py38"]
+line-length = 88
+
+[tool.isort]
+profile = "black"
+lines_after_imports = 2
+
+[tool.mypy]
+cache_dir = ".cache/mypy/"
+ignore_missing_imports = true
+no_implicit_optional = true
+check_untyped_defs = true
+strict_equality = true
+disallow_any_generics = true
+disallow_subclassing_any = true
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+disallow_untyped_decorators = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+exclude = "docs/"
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+
+[tool.pytest.ini_options]
+cache_dir = ".cache"
+testpaths = ["tests", "aia_chaser"]
+addopts = [
+    "--strict",
+    "-r sxX",
+    "--cov-report=html",
+    "--cov-report=term-missing:skip-covered",
+    "--no-cov-on-fail",
+    "--xdoc",
+]
+console_output_style = "count"
+markers = ""
+filterwarnings = ["ignore::DeprecationWarning"]
+
+
+[tool.bumpversion]
+current_version = "1.0.0"
+commit = false
+commit_args = "--no-verify"
+tag = false
+tag_name = "{new_version}"
+allow_dirty = true
+parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(\\.(?P<dev>post)\\d+\\.dev\\d+)?"
+serialize = ["{major}.{minor}.{patch}.dev-{dev}", "{major}.{minor}.{patch}"]
+message = "Version updated from {current_version} to {new_version}"
+
+[[tool.bumpversion.files]]
+filename = "aia_chaser/__init__.py"
+
+[tool.ruff]
+cache-dir = ".cache/ruff"
+exclude = [
+    ".git",
+    "__pycache__",
+    "docs/source/conf.py",
+    "old",
+    "build",
+    "dist",
+    ".venv",
+    "scripts",
+]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = ["D100", "D104", "D107", "D401"]
+
+[tool.ruff.lint.flake8-quotes]
+inline-quotes = "double"
+
+[tool.ruff.lint.isort]
+lines-after-imports = 2
+
+[tool.ruff.lint.mccabe]
+max-complexity = 18
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"*/__init__.py" = ["F401"]
+"tests/*.py" = ["D103", "S101"]
+"aia_chaser/cli.py" = ["B008"]
+"aia_chaser/utils/url.py" = ["EM101", "EM102", "TRY003"]
