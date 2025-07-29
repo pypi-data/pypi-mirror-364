@@ -1,0 +1,17 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+dask_iclx/__init__.py
+dask_iclx/cluster.py
+dask_iclx/config.py
+dask_iclx/jobqueue-ic.yaml
+dask_iclx.egg-info/PKG-INFO
+dask_iclx.egg-info/SOURCES.txt
+dask_iclx.egg-info/dependency_links.txt
+dask_iclx.egg-info/requires.txt
+dask_iclx.egg-info/top_level.txt
+tests/test_cluster.py
+tests/test_config.py
+tests/test_integration.py
