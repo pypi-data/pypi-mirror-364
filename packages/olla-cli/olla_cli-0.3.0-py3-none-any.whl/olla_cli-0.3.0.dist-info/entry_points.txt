@@ -1,0 +1,2 @@
+[console_scripts]
+olla-cli = olla_cli.cli:cli
