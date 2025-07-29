@@ -1,0 +1,2 @@
+[console_scripts]
+qr-stego = qr_stego.__main__:main
