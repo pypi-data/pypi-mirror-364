@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: api-bastion
+Version: 0.0.1
+Summary: A resilient and adaptive API client handler with key rotation, rate limiting, and circuit breaking.
+Project-URL: Homepage, https://github.com/Yaroslavlazarenko/api-bastion
+Author-email: Yarik <lzyrslv@gmail.com>
+License-File: LICENSE
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+
+# API-Bastion
+
+A resilient and adaptive API client handler with key rotation, rate limiting, and circuit breaking.
+
+This project is currently under active development. This package is a placeholder to reserve the name on PyPI.
+
+Full functionality coming soon!
