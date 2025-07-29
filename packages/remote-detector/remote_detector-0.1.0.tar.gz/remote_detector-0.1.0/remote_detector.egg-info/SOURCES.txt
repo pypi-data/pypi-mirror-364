@@ -1,0 +1,13 @@
+README.md
+setup.py
+remote_detector/__init__.py
+remote_detector/cli.py
+remote_detector/detector.py
+remote_detector/erp.py
+remote_detector/logger.py
+remote_detector.egg-info/PKG-INFO
+remote_detector.egg-info/SOURCES.txt
+remote_detector.egg-info/dependency_links.txt
+remote_detector.egg-info/entry_points.txt
+remote_detector.egg-info/requires.txt
+remote_detector.egg-info/top_level.txt
