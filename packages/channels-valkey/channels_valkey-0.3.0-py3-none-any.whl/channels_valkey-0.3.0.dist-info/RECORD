@@ -1,0 +1,9 @@
+channels_valkey/__init__.py,sha256=VrXpHDu3erkzwl_WXrqINBm9xWkcyUy53IQOj042dOs,22
+channels_valkey/core.py,sha256=VA6-FBrVu196uMxd20K2Hw00_iQto8351hK1S9LYFxI,26628
+channels_valkey/pubsub.py,sha256=1tnhLHa9x682UdZr7u562Cy4uvoNh4SnOdUOkn7TV0Y,12603
+channels_valkey/serializers.py,sha256=E9Z3wKm9rHkAOPRB1mC9SKhPb2XW7JHAF07zzhjXnNk,5169
+channels_valkey/utils.py,sha256=CNDXQR9KnOJCHHuH0gaKVLwKpcUmRjWEtNTkJA7qPdg,2849
+channels_valkey-0.3.0.dist-info/METADATA,sha256=wqm_1TrdcDwE2kmiWqcz95SJkTk8pc4MQWmX5OHuqtY,12208
+channels_valkey-0.3.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+channels_valkey-0.3.0.dist-info/licenses/LICENSE,sha256=uEZBXRtRTpwd_xSiLeuQbXlLxUbKYSn5UKGM0JHipmk,1552
+channels_valkey-0.3.0.dist-info/RECORD,,
