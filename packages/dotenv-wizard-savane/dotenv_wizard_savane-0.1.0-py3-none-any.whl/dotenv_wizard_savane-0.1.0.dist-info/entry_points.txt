@@ -1,0 +1,2 @@
+[console_scripts]
+dotenv-wizard = dotenv_wizard.cli:main
