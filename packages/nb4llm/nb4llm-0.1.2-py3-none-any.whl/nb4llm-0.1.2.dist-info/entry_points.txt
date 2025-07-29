@@ -1,0 +1,2 @@
+[console_scripts]
+nb4llm = nb4llm.cli:main
