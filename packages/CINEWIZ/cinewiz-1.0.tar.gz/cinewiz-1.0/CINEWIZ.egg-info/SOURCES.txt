@@ -1,0 +1,10 @@
+LICENSE.txt
+README.md
+pyproject.toml
+setup.cfg
+CINEWIZ.egg-info/PKG-INFO
+CINEWIZ.egg-info/SOURCES.txt
+CINEWIZ.egg-info/dependency_links.txt
+CINEWIZ.egg-info/requires.txt
+CINEWIZ.egg-info/top_level.txt
+cinewiz/__init__.py
