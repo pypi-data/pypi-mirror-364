@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bambuluc"
+version = "1.3.0"
+authors = [
+    {name = "Angel Luis Barbero Guerras"},
+]
+description = "Control completo para impresoras Bambu Lab "
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Manufacturing",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Hardware :: Hardware Drivers",
+    "Topic :: Scientific/Engineering",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+]
+keywords = ["bambu", "3d printer", "mqtt", "ftp", "automation", "3mf", "gcode"]
+dependencies = [
+    "paho-mqtt>=1.6.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/AngelBarbero/bambuluc"
+"Bug Reports" = "https://github.com/AngelBarbero/bambuluc/issues"
+"Source" = "https://github.com/AngelBarbero/bambuluc"
+"Documentation" = "https://github.com/AngelBarbero/bambuluc/blob/main/README.md"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "pytest-asyncio>=0.18.0",
+    "black>=22.0",
+    "flake8>=4.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["bambuluc*", "pyarmor_runtime_000000*"]
+
+[tool.setuptools.package-data]
+bambuluc = ["*.md", "*.txt"]
+"pyarmor_runtime_000000" = ["**/*"]
