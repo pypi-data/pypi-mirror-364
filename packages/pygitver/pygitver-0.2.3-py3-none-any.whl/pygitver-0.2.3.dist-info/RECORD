@@ -1,0 +1,13 @@
+pygitver/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+pygitver/changelogs_mngr.py,sha256=667BGv73XHbbmjvOKH4FfTMFoPz8OIB0Q8vNV9anez4,2548
+pygitver/git.py,sha256=tY99gycsTSfpJGlVqKcaUmbFFLm2Ll7xmi4fPj9zFy4,12872
+pygitver/pygitver.py,sha256=Z3chlyqwfwRwuxRHd-wiX2X_dnA76RDqlOsWErD7Jlc,4812
+pygitver/scripts/install.sh,sha256=pekNM0zyhXlFTpAAQ_7Y5VNAq3armFLbTL15JH-avVg,576
+pygitver/scripts/git/hooks/commit-msg,sha256=zePlhGiex37oWMq6y3F9PX12qZN9SSgEWuvq_e6ivKs,214
+pygitver/templates/changelog-common.tmpl,sha256=j-w7_dK2X2wcCABI_LNiooS9WiAcPAwwaj7wqiBInWk,1028
+pygitver/templates/changelog.tmpl,sha256=qjcl-C6Fvzepp0YjL0-4BrZEKW2TdJZwEshWeUF2E80,825
+pygitver-0.2.3.dist-info/METADATA,sha256=K1Ww5_2hFATn0YFG_8R1HScXDZ4JJwHK7nlr-tT7ZCU,8451
+pygitver-0.2.3.dist-info/WHEEL,sha256=C2FUgwZgiLbznR-k0b_5k3Ai_1aASOXDss3lzCUsUug,87
+pygitver-0.2.3.dist-info/entry_points.txt,sha256=wNrLR815OkYcelqe0Y_EEzYnXnN_qo1GKb0RR8oyCsc,52
+pygitver-0.2.3.dist-info/licenses/LICENSE,sha256=OXLcl0T2SZ8Pmy2_dmlvKuetivmyPd5m1q-Gyd-zaYY,35149
+pygitver-0.2.3.dist-info/RECORD,,
