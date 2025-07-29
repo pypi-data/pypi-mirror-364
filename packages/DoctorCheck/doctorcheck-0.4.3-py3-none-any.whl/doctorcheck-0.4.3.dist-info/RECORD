@@ -1,0 +1,10 @@
+doctorcheck/__init__.py,sha256=pMtTmSUht-XtbR_7Doz6bsQqopJJd8rZ8I8zy2HwwoA,22
+doctorcheck/apps.py,sha256=j2x4CJ5Sr1bUhz-JnrAwjWPd8iCHmyYhqNorxbt2VQo,153
+doctorcheck/health_logic.py,sha256=yMRqed32aBk4eTifwKOaMcTCNhaW4X1bVGT2HTLJfos,1117
+doctorcheck/urls.py,sha256=fcK3dnm23qAP50tDSMWdpVqwVTbBlDJ9PVqAkCnp8UU,153
+doctorcheck/views.py,sha256=nZ8ezlX0b7zglJnV7Z3szuxJ3Qh0M7JXbveuIh0jCew,823
+doctorcheck-0.4.3.dist-info/METADATA,sha256=URtyICA_gZXm30wW0pS5pecXEEH9kz2SbOGKpmU_vXM,1811
+doctorcheck-0.4.3.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+doctorcheck-0.4.3.dist-info/entry_points.txt,sha256=sh52JK3fR-wMVN6F9vquguo0oy8PBUwTOODUltC_Rx4,63
+doctorcheck-0.4.3.dist-info/top_level.txt,sha256=tqFkTwqtMNv1moQ5EYkL77BLjF4mpPt6DHLjudxsnKo,12
+doctorcheck-0.4.3.dist-info/RECORD,,
