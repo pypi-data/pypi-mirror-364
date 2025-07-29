@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+async_obj.egg-info/PKG-INFO
+async_obj.egg-info/SOURCES.txt
+async_obj.egg-info/dependency_links.txt
+async_obj.egg-info/top_level.txt
+src/__init__.py
+src/async_obj.py
+tests/func_inside_class.py
+tests/functions.py
