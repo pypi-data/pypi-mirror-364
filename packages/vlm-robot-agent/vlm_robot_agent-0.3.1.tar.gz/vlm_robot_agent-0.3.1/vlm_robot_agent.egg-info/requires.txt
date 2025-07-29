@@ -1,0 +1,14 @@
+openai==1.78.1
+opencv-python==4.11.0.86
+pillow==9.0.1
+pyyaml
+python-dotenv<0.11,>=0.9.1
+protobuf<5,>=4.25.3
+numpy<2.1,>=1.26.0
+scipy<1.16,>=1.13.0
+sounddevice==0.5.2
+librosa<0.11.3,>=0.11.0
+coqui-tts>=0.27.0
+coqpit-config>=0.2.1
+gruut[de,es,fr]<2.5.0,>=2.4.0
+openai-whisper==20240930
