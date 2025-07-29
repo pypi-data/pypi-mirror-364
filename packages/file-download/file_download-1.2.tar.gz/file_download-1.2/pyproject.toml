@@ -1,0 +1,20 @@
+[project]
+name = "file-download"
+version = "1.2"
+description = "Ein einfaches Terminal-Tool zum Herunterladen von Dateien mit Fortschrittsanzeige"
+authors = [
+    { name = "korn20123", email = "aaromzschauer@icloud.com" }
+]
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "requests>=2.32.4,<3.0.0",
+    "tqdm>=4.67.1,<5.0.0"
+]
+
+[project.scripts]
+download = "file_download.download:main"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
