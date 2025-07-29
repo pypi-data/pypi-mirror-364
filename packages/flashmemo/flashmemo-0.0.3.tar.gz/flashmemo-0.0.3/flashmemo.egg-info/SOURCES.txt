@@ -1,0 +1,15 @@
+LICENSE
+README.md
+pyproject.toml
+setup.cfg
+setup.py
+flashmemo/__init__.py
+flashmemo/cli.py
+flashmemo/core.py
+flashmemo/storage.py
+flashmemo.egg-info/PKG-INFO
+flashmemo.egg-info/SOURCES.txt
+flashmemo.egg-info/dependency_links.txt
+flashmemo.egg-info/entry_points.txt
+flashmemo.egg-info/top_level.txt
+tests/test_core.py
