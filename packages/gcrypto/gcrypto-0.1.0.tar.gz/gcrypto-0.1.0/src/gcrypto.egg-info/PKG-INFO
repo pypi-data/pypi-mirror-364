@@ -1,0 +1,78 @@
+Metadata-Version: 2.4
+Name: gcrypto
+Version: 0.1.0
+Summary: A small symetric crypto package
+Author-email: Gil Weisbord <gil.weisbord@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/pypa/gcrypto
+Project-URL: Issues, https://github.com/pypa/gcrypto/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pycryptodome
+Dynamic: license-file
+
+# gcrypto Package
+
+This is a simple symetric crypto wrapper.
+
+## Features
+
+- symetric crypto wrapper
+
+---
+
+## Requirements
+
+- Python 3.8+
+- `pycryptodome` package
+
+Install dependencies using:
+
+pip install -r requirements.txt
+
+---
+
+## Installation
+
+Clone the repository.
+
+```bash
+git clone git@github.com:gilweis/gcrypto.git
+cd gcrypto
+```
+
+---
+
+## Build and Install
+
+To build source and wheel distributions:
+
+python -m build
+
+If you don't have the build tool installed:
+
+pip install build
+
+To install the package locally:
+
+pip install .
+
+To upload to PyPI (optional):
+
+pip install twine
+twine upload dist/*
+
+---
+
+## License
+
+MIT License
+
+## Version
+
+0.1.0
+

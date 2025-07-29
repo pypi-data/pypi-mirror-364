@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gcrypto"
+version = "0.1.0"
+description = "A small symetric crypto package"
+authors = [
+  { name="Gil Weisbord", email="gil.weisbord@gmail.com" },
+]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+  "pycryptodome"
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/pypa/gcrypto"
+Issues = "https://github.com/pypa/gcrypto/issues"

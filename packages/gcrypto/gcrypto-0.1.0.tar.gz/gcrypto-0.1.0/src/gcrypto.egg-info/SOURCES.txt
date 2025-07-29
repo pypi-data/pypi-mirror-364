@@ -1,0 +1,10 @@
+LICENSE
+README.md
+pyproject.toml
+src/gcrypto/__init__.py
+src/gcrypto/gcrypto.py
+src/gcrypto.egg-info/PKG-INFO
+src/gcrypto.egg-info/SOURCES.txt
+src/gcrypto.egg-info/dependency_links.txt
+src/gcrypto.egg-info/requires.txt
+src/gcrypto.egg-info/top_level.txt
