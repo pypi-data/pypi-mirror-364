@@ -1,0 +1,9 @@
+mcp_materialize/__init__.py,sha256=Wdte7dtLZPh4oAskbA3WfwC-9yvIFdoZUg1QH9yALiw,6251
+mcp_materialize/config.py,sha256=YriOut6Nl1g0mRghJqNvEtfKNGRe-xtRMoqL32OOgaw,2818
+mcp_materialize/mz_client.py,sha256=GNhqOyCLIoEha9cQFJBfoEa6y5dAsYquUHZHeh6uWx0,8997
+mcp_materialize/transports.py,sha256=fFJl9QT7EE3-3SkaaUli8upQy7_2qI83slraRRqtnhs,3207
+mcp_materialize/sql/tools.sql,sha256=D7UXUBYzddqnzY7XEXp9ctfiiN6qYmATgrQLXxJOQuU,9518
+mcp_materialize-0.3.1.dist-info/METADATA,sha256=RnWQ-5Zc_5J2j4xJqRfGpFw3Wk0uxTf8ax71T_IVV0o,4821
+mcp_materialize-0.3.1.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+mcp_materialize-0.3.1.dist-info/entry_points.txt,sha256=uMHHPFhsOULLPYeZFdCKBhK5oeOssr5SYsQLeSrbpyI,57
+mcp_materialize-0.3.1.dist-info/RECORD,,
