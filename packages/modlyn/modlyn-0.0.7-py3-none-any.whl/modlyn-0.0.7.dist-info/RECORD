@@ -1,0 +1,10 @@
+modlyn/__init__.py,sha256=s7YQfpZ4tNEOd-EdZbauPh8FldDqzIdEXMA7hxZvONA,235
+modlyn/eval/__init__.py,sha256=EWNsGrga2vQfzzz35u654cBclzW_N0HIDmLFlf5jU58,164
+modlyn/eval/_jaccard.py,sha256=eFBrAmsX_ohXLilI6vb6tuUsm_n6Y-kZo7v7pdSIrG4,6180
+modlyn/models/__init__.py,sha256=G4o7VaUuQ8n-P0BW8oy4frXPZtpmnNwgWSRvg3gTtvM,113
+modlyn/models/_simple_logreg_datamodule.py,sha256=UP7V6mFQLjvbI_CxdXou7ITH2RXThy_h4ROeDxUvNK0,2759
+modlyn/models/_simple_logreg_model.py,sha256=dBsvbXNd7D93oM3aRI-d8DFJr8QnvFJc15g1XYXQ0oE,8742
+modlyn-0.0.7.dist-info/LICENSE,sha256=UOZ1F5fFDe3XXvG4oNnkL1-Ecun7zpHzRxjp-XsMeAo,11324
+modlyn-0.0.7.dist-info/WHEEL,sha256=CpUCUxeHQbRN5UGRQHYRJorO5Af-Qy_fHMctcQ8DSGI,82
+modlyn-0.0.7.dist-info/METADATA,sha256=7l2Jz2p8QfBDk1pRZchxVSjjFkpx3Lv2Xq24Y6ap91o,911
+modlyn-0.0.7.dist-info/RECORD,,

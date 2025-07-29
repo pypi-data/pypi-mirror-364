@@ -1,0 +1,29 @@
+Metadata-Version: 2.3
+Name: modlyn
+Version: 0.0.7
+Summary: Modlyn.
+Author-email: Lamin Labs <open-source@lamin.ai>
+Requires-Python: >=3.9,<3.13
+Description-Content-Type: text/markdown
+Requires-Dist: anndata>=0.12.0rc1
+Requires-Dist: scikit-learn
+Requires-Dist: matplotlib
+Requires-Dist: lightning
+Requires-Dist: lamindb[jupyter] ; extra == "dev"
+Requires-Dist: seaborn ; extra == "dev"
+Requires-Dist: pre-commit ; extra == "dev"
+Requires-Dist: nox ; extra == "dev"
+Requires-Dist: pytest>=6.0 ; extra == "dev"
+Requires-Dist: pytest-cov ; extra == "dev"
+Requires-Dist: nbproject_test ; extra == "dev"
+Project-URL: Home, https://github.com/laminlabs/modlyn
+Provides-Extra: dev
+
+# Modlyn: Feature selection for large count matrices
+
+Read the [quickstart](https://modlyn.lamin.ai/quickstart).
+
+## Contributing
+
+Please run `pre-commit install` and `gitmoji -i` on the CLI before starting to work on this repository!
+
