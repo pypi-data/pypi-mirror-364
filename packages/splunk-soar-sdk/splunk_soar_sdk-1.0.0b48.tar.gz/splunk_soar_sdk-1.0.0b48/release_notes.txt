@@ -1,0 +1,23 @@
+# [1.0.0-beta.48](https://github.com/phantomcyber/splunk-soar-sdk/compare/1.0.0-beta.47...1.0.0-beta.48) (2025-07-23)
+
+
+### Bug Fixes
+
+* handle encrypted asset fields properly ([97f8946](https://github.com/phantomcyber/splunk-soar-sdk/commit/97f894656c14f9007a063cb8cedd05de5d0c4d2e))
+* pin click dependency <8.2.0 to ensure Py3.9 compat ([9209c27](https://github.com/phantomcyber/splunk-soar-sdk/commit/9209c27ecf4c270bf2b01822db7e964cee21e035))
+
+
+
+
+
+# [1.0.0-beta.48](https://github.com/phantomcyber/splunk-soar-sdk/compare/1.0.0-beta.47...1.0.0-beta.48) (2025-07-23)
+
+
+### Bug Fixes
+
+* handle encrypted asset fields properly ([97f8946](https://github.com/phantomcyber/splunk-soar-sdk/commit/97f894656c14f9007a063cb8cedd05de5d0c4d2e))
+* pin click dependency <8.2.0 to ensure Py3.9 compat ([9209c27](https://github.com/phantomcyber/splunk-soar-sdk/commit/9209c27ecf4c270bf2b01822db7e964cee21e035))
+
+
+
+
