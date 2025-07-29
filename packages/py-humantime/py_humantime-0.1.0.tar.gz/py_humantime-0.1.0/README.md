@@ -1,0 +1,25 @@
+# py-humantime
+
+Convert between seconds and human-readable time in CLI or Python code.
+
+## Installation
+
+```bash
+pip install .
+```
+
+## CLI Usage
+
+```bash
+py-humantime --to-human 4523        # → 1h 15m 23s
+py-humantime --to-seconds "1h 15m"  # → 4500
+```
+
+## Python Usage
+
+```python
+from pyhumantime import seconds_to_human, human_to_seconds
+
+print(seconds_to_human(4523))          # → '1h 15m 23s'
+print(human_to_seconds("1h 15m 23s"))  # → 4523
+```

@@ -1,0 +1,11 @@
+[project]
+name = "py-humantime"
+version = "0.1.0"
+description = "Convert between seconds and human-readable time in CLI or code."
+authors = [{ name = "Your Name", email = "you@example.com" }]
+dependencies = []
+requires-python = ">=3.7"
+readme = "README.md"
+
+[project.scripts]
+py-humantime = "pyhumantime.cli:main"
