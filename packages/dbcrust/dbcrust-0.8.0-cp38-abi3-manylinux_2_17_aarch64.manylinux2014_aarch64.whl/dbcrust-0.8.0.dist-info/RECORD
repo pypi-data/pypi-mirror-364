@@ -1,0 +1,9 @@
+dbcrust-0.8.0.dist-info/METADATA,sha256=IFrgeEXSl327SrkpDyiephlQFb7PWVuuc1EZYrrPo3M,11695
+dbcrust-0.8.0.dist-info/WHEEL,sha256=Fxtqj9cyhJGORzVvbvofQXkYWBSW4MjI7J5bcuB1MfI,129
+dbcrust-0.8.0.dist-info/entry_points.txt,sha256=3dJiok7ijqutFBcgjlaKu-J5n0qY_FCDwGtlBDQsTZs,74
+dbcrust-0.8.0.dist-info/licenses/LICENSE,sha256=TXNPqA5kIJLIF88POXCEK0KE5Yul2DszVmP8Zl_bnMI,1072
+dbcrust/__init__.py,sha256=urXiPFoPvsftmUICFlmU_Lwulmj4WOGs_XqkvHoR_8Q,932
+dbcrust/__main__.py,sha256=rY7w4sPyTCmKMgYhFtIvm0Ovq1_Yf_6guoHaHp3rVzA,1943
+dbcrust/_internal.abi3.so,sha256=ydM2K06uNcLCwpQslfRnrQttXwTTBukEiXN8s8Tfoag,8773840
+dbcrust/client.py,sha256=xuhsCGVIIkp262RhQGL6FHhK9d7Z04B-q8fBGe6YwB8,4248
+dbcrust-0.8.0.dist-info/RECORD,,
