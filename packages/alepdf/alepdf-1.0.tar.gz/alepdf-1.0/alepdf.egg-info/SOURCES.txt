@@ -1,0 +1,8 @@
+LICENCE
+setup.py
+alepdf/__init__.py
+alepdf/pdf2text.py
+alepdf.egg-info/PKG-INFO
+alepdf.egg-info/SOURCES.txt
+alepdf.egg-info/dependency_links.txt
+alepdf.egg-info/top_level.txt
