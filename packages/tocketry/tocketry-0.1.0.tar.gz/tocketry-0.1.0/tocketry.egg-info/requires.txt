@@ -1,0 +1,12 @@
+python-dateutil
+
+[docs]
+sphinx>=1.7.5
+pydata-sphinx-theme
+sphinx_book_theme
+sphinx-copybutton
+sphinx-material
+
+[test]
+pytest
+pytest-asyncio

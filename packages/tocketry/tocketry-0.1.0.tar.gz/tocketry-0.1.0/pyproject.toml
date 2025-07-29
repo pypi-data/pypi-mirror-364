@@ -1,0 +1,110 @@
+[build-system]
+requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["tocketry"]
+
+[project]
+name = "tocketry"
+description = "Advanced scheduling framework"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE*"]
+authors = [
+    {name = "Mikael Koli", email = "koli.mikael@gmail.com"},
+    {name = "Josh Pearson", email = "pearson.josh@outlook.com"},
+]
+requires-python = ">=3.7"
+classifiers = [
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+
+    "Topic :: System",
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+    "Topic :: Office/Business :: Scheduling",
+
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "Intended Audience :: Information Technology",
+]
+dynamic = ["version"]
+dependencies = [
+    'python-dateutil'
+]
+
+[tool.setuptools_scm]
+write_to = "tocketry/_version.py"
+local_scheme = "no-local-version"
+
+[project.urls]
+Homepage = 'https://github.com/jypear/tocketry'
+Documentation = 'https://tocketry.readthedocs.io'
+Source = 'https://github.com/Jypear/tocketry'
+Changelog = 'https://tocketry.readthedocs.io/en/stable/versions.html'
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "pytest-asyncio",
+]
+
+docs = [
+    "sphinx >= 1.7.5",
+    "pydata-sphinx-theme",
+    "sphinx_book_theme",
+    "sphinx-copybutton",
+    "sphinx-material",
+]
+
+[tool.coverage.run]
+source = ["tocketry"]
+branch = false
+omit = [
+    "test/*",
+    "_version.py"
+]
+data_file = "cov_data/.coverage"
+
+[tool.coverage.report]
+omit = [
+    "tocketry/test/*",
+    "tocketry/_version.py",
+    "tocketry/__main__.py"
+]
+# Regexes for lines to exclude from consideration
+exclude_lines = [
+    "pragma: no cover",
+
+    # Don't complain about abstract methods, they aren't run:
+    '''@(abc\.)?abstractmethod''',
+
+    # Ignore type checking imports
+    "if TYPE_CHECKING",
+]
+ignore_errors = true
+
+[tool.coverage.html]
+directory = "htmlcov"
+
+[tool.ruff]
+# match black
+line-length = 120
+target-version = "py311"
+select = [
+    "ALL", # include all the rules, including new ones
+]
+ignore = [
+    #### modules
+    "DJ",  # django
+    "T10", # debugger
+    "FAST" # fastAPI
+]

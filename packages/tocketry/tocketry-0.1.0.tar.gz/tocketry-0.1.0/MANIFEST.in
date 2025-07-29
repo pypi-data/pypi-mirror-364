@@ -1,0 +1,8 @@
+include tocketry/test/test_files/*.ipynb
+include tocketry/test/test_files/*.py
+include tocketry/config/defaults/*.json
+include tocketry/_session.py
+include tocketry/_setup.py
+include tocketry/_pkg.py
+include tocketry/_version.py
+recursive-include tocketry/templates *
