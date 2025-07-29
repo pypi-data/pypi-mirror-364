@@ -1,0 +1,9 @@
+include README.md
+include LICENSE  
+include requirements.txt
+recursive-include docs *
+recursive-include examples *
+recursive-include src/molscraper pyarmor_runtime_*/*
+global-exclude *.pyc
+global-exclude __pycache__
+global-exclude .DS_Store 
