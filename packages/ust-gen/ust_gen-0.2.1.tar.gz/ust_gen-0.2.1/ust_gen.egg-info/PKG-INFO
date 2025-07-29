@@ -1,0 +1,20 @@
+Metadata-Version: 2.4
+Name: ust_gen
+Version: 0.2.1
+Summary: User Story Generator plugin from requirements PDF/Excel using Azure OpenAI
+Author: Samuel Rozario
+Author-email: riosam005@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Requires-Dist: openai
+Requires-Dist: PyPDF2
+Requires-Dist: pandas
+Requires-Dist: openpyxl
+Requires-Dist: python-dotenv
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
