@@ -1,0 +1,9 @@
+Metadata-Version: 2.1
+Name: tap-facebook
+Version: 1.23.0
+Summary: Singer.io tap for extracting data from the Facebook Ads API
+Home-page: https://singer.io
+Author: Stitch
+Classifier: Programming Language :: Python :: 3 :: Only
+Provides-Extra: dev
+License-File: LICENSE
