@@ -1,0 +1,2 @@
+[console_scripts]
+timage = terminal_image.cli:main

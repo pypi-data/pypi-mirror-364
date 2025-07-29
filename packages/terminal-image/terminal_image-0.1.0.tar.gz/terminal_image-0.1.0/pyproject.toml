@@ -1,0 +1,21 @@
+[project]
+name = "terminal-image"
+version = "0.1.0"
+description = "Display images in the terminal using ANSI colors"
+authors = [{ name = "Soundhearddev", email = "letdes50@gmail.com" }]
+license = "Apache-2.0"
+readme = "README.md"
+dependencies = [
+  "opencv-python>=4.0.0",
+]
+requires-python = ">=3.7"
+
+[project.scripts]
+timage = "terminal_image.cli:main"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["terminal_image"]

@@ -1,0 +1,11 @@
+LICENSE.txt
+README.md
+pyproject.toml
+terminal_image/__init__.py
+terminal_image/cli.py
+terminal_image.egg-info/PKG-INFO
+terminal_image.egg-info/SOURCES.txt
+terminal_image.egg-info/dependency_links.txt
+terminal_image.egg-info/entry_points.txt
+terminal_image.egg-info/requires.txt
+terminal_image.egg-info/top_level.txt
