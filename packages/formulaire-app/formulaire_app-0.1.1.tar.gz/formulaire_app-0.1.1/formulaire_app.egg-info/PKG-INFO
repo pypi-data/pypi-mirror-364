@@ -1,0 +1,59 @@
+Metadata-Version: 2.4
+Name: formulaire_app
+Version: 0.1.1
+Summary: A reusable Django app with a dynamic formulaire
+Home-page: https://github.com/tonpseudo/formulaire_app
+Author: soro F M 
+Author-email: soferelaha@gmail.com
+License: MIT
+Classifier: Framework :: Django
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: Django>=3.2
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary
+
+# formulaire_app
+
+Un outil CLI pour générer des applications Django réutilisables dans n’importe quel projet.
+
+
+Quick start
+
+    Add “formulaire_app” to your INSTALLED_APPS setting like this:
+
+    INSTALLED_APPS = [
+        ...,
+        "formulaire_app",
+    ]
+
+    Include the app URLconf in your project urls.py like this:
+
+    path("formulaire_app/", include("formulaire_app.urls")),
+
+
+
+## Installation
+
+```bash
+pip install formulaire_app
+
+## Utulisation
+
+
+formulaire_app nom_de_lapp 
+
+python manage.py migrate 
+
+python manage.py runserver
+
