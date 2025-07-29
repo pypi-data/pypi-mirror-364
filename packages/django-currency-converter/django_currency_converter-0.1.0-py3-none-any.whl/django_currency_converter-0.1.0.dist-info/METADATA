@@ -1,0 +1,6 @@
+Metadata-Version: 2.4
+Name: django-currency-converter
+Version: 0.1.0
+Summary: Formulaire Django pour conversion de devises
+Author: Ton Nom
+Requires-Dist: django
