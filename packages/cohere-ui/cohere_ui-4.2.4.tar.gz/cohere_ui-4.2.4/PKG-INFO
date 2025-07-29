@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: cohere_ui
+Version: 4.2.4
+Home-page: https://github.com/advancedPhotonSource/cohere/cohere-ui
+Author: Barbara Frosik, Ross Harder
+Author-email: bfrosik@anl.gov
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+License-File: LICENSE
+Requires-Dist: pyqt5
+Requires-Dist: scikit-image
+Requires-Dist: xrayutilities
+Requires-Dist: pyvista
+Requires-Dist: scipy==1.14.1
+Requires-Dist: notebook
+Requires-Dist: gputil
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
