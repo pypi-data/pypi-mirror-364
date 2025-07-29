@@ -1,0 +1,40 @@
+permissions:
+  contents: write
+
+name: Create release
+
+on:
+  workflow_dispatch:
+    inputs:
+      pre_release:
+        type: boolean
+        description: "pre-release?"
+        required: true
+
+jobs:
+  release:
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v4"
+      - name: Changelog action
+        id: changelog
+        uses: TriPSs/conventional-changelog-action@v6
+        with:
+          github-token: ${{ secrets.github_token }}
+          output-file: "false"
+          preset: conventionalcommits
+          version-file: pyproject.toml
+          version-path: tool.pysaleryd.version
+          skip-ci: false
+          pre-release: ${{ inputs.pre_release }}
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        if: ${{ steps.changelog.outputs.skipped == 'false' }}
+        with:
+          token: ${{ secrets.github_token }}
+          commit: ${{ github.sha }}
+          tag: ${{ steps.changelog.outputs.tag }}
+          body: ${{ steps.changelog.outputs.clean_changelog }}
+          name: ${{ steps.changelog.outputs.tag }}
+          prerelease: ${{ inputs.pre_release }}
