@@ -1,0 +1,13 @@
+CHANGELOG.md
+LICENSE
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+fastpurge/__init__.py
+fastpurge/_client.py
+fastpurge.egg-info/PKG-INFO
+fastpurge.egg-info/SOURCES.txt
+fastpurge.egg-info/dependency_links.txt
+fastpurge.egg-info/requires.txt
+fastpurge.egg-info/top_level.txt

@@ -1,0 +1,7 @@
+requests
+more-executors>=2.7.0
+six
+edgegrid-python
+
+[:python_version < "3.3"]
+monotonic
