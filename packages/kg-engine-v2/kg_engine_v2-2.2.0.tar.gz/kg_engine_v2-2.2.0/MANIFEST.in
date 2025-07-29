@@ -1,0 +1,11 @@
+include README.md
+include CHANGELOG.md
+include LICENSE
+recursive-include src/kg_engine *.py
+recursive-include docs *
+global-exclude *.pyc
+global-exclude __pycache__
+global-exclude .DS_Store
+global-exclude *.egg-info
+prune examples
+prune tests

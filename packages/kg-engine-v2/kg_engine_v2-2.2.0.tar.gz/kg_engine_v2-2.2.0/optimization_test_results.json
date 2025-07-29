@@ -1,0 +1,148 @@
+{
+  "test_suite": "Knowledge Graph Optimization Tests",
+  "total_tests": 8,
+  "passed_tests": 8,
+  "failed_tests": 0,
+  "success_rate": 100.0,
+  "average_execution_time_ms": 811.2684190273285,
+  "test_results": [
+    {
+      "test_name": "Performance Indexes",
+      "success": true,
+      "execution_time_ms": 3125.082015991211,
+      "indexes_created": true
+    },
+    {
+      "test_name": "Vector Similarity Search",
+      "success": true,
+      "execution_time_ms": 439.777135848999,
+      "results_count": 0,
+      "error": null
+    },
+    {
+      "test_name": "Entity Exploration",
+      "success": true,
+      "test_cases": [
+        {
+          "entity": "Alice",
+          "max_depth": 1,
+          "success": true,
+          "execution_time_ms": 441.8518543243408,
+          "results_count": 10,
+          "expected_min": 2,
+          "error": null
+        },
+        {
+          "entity": "TechCorp",
+          "max_depth": 2,
+          "success": true,
+          "execution_time_ms": 463.06896209716797,
+          "results_count": 17,
+          "expected_min": 1,
+          "error": null
+        },
+        {
+          "entity": "Charlie",
+          "max_depth": 1,
+          "success": true,
+          "execution_time_ms": 401.0469913482666,
+          "results_count": 3,
+          "expected_min": 1,
+          "error": null
+        }
+      ],
+      "total_cases": 3,
+      "passed_cases": 3
+    },
+    {
+      "test_name": "Conflict Detection",
+      "success": true,
+      "execution_time_ms": 472.92613983154297,
+      "conflicts_found": 9,
+      "error": null
+    },
+    {
+      "test_name": "Temporal Analysis",
+      "success": true,
+      "execution_time_ms": 460.70003509521484,
+      "temporal_relationships": 6,
+      "error": null
+    },
+    {
+      "test_name": "Path Finding",
+      "success": true,
+      "test_cases": [
+        {
+          "start_entity": "Alice",
+          "end_entity": "Bob",
+          "success": true,
+          "execution_time_ms": 1056.0886859893799,
+          "paths_found": 1,
+          "expected_path": true,
+          "found_path": true,
+          "error": null
+        },
+        {
+          "start_entity": "Alice",
+          "end_entity": "Photography",
+          "success": true,
+          "execution_time_ms": 436.6738796234131,
+          "paths_found": 1,
+          "expected_path": true,
+          "found_path": true,
+          "error": null
+        },
+        {
+          "start_entity": "David",
+          "end_entity": "Germany",
+          "success": true,
+          "execution_time_ms": 404.5860767364502,
+          "paths_found": 1,
+          "expected_path": true,
+          "found_path": true,
+          "error": null
+        },
+        {
+          "start_entity": "Alice",
+          "end_entity": "NonExistent",
+          "success": true,
+          "execution_time_ms": 401.6270637512207,
+          "paths_found": 0,
+          "expected_path": false,
+          "found_path": false,
+          "error": null
+        }
+      ],
+      "total_cases": 4,
+      "passed_cases": 4
+    },
+    {
+      "test_name": "Query Caching",
+      "success": true,
+      "first_call_ms": 0.028133392333984375,
+      "second_call_ms": 0.008821487426757812,
+      "performance_improvement": true,
+      "results_consistent": true,
+      "cache_stats": {
+        "total_entries": 10,
+        "valid_entries": 10,
+        "expired_entries": 0,
+        "cache_ttl_seconds": 300,
+        "indexes_created": true
+      }
+    },
+    {
+      "test_name": "Optimization Statistics",
+      "success": true,
+      "execution_time_ms": 1991.6620254516602,
+      "stats_available": [
+        "database_stats",
+        "cache_stats",
+        "optimization_recommendations",
+        "available_optimized_methods"
+      ],
+      "error": null
+    }
+  ],
+  "timestamp": "2025-07-23T20:53:59.508673"
+}
