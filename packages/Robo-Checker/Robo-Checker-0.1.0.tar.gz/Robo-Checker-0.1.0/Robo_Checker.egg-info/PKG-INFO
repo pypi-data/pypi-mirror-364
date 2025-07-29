@@ -1,0 +1,7 @@
+Metadata-Version: 2.1
+Name: Robo-Checker
+Version: 0.1.0
+Summary: A package for fine-grained robots.txt URL compliance checking.
+Author: Dongyang Fan
+Author-email: Dongyang Fan <fan1dy97@gmail.com>
+Requires-Python: >=3.7

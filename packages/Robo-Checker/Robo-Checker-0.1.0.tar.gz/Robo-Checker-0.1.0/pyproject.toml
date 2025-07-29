@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Robo-Checker"
+version = "0.1.0"
+description = "A package for fine-grained robots.txt URL compliance checking."
+authors = [
+    { name = "Dongyang Fan", email = "fan1dy97@gmail.com" }
+]
+requires-python = ">=3.7"
+dependencies = [
+    "pandas",
+    "protego"
+]
+
+[tool.setuptools]
+py-modules = ["url_checker"] 
