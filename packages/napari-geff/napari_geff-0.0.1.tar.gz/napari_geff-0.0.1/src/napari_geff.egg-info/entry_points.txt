@@ -1,0 +1,2 @@
+[napari.manifest]
+napari-geff = napari_geff:napari.yaml
