@@ -1,0 +1,17 @@
+README.md
+setup.py
+appligen/__init__.py
+appligen/admin.py
+appligen/apps.py
+appligen/cli.py
+appligen/generator.py
+appligen/models.py
+appligen/run.py
+appligen/tests.py
+appligen/views.py
+appligen.egg-info/PKG-INFO
+appligen.egg-info/SOURCES.txt
+appligen.egg-info/dependency_links.txt
+appligen.egg-info/requires.txt
+appligen.egg-info/top_level.txt
+appligen/migrations/__init__.py
