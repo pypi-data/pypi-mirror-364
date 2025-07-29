@@ -1,0 +1,16 @@
+Requests
+aiohttp
+asyncio
+logging
+numpy
+paho_mqtt==1.6.1
+pandas
+polars
+pymongo
+python_dateutil
+pytz
+requests
+typeguard
+typing_extensions
+urllib3
+wheel
