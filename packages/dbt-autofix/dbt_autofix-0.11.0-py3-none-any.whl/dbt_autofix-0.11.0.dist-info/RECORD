@@ -1,0 +1,11 @@
+dbt_autofix-0.11.0.dist-info/METADATA,sha256=wjd2awLznMKBkmDDkE8mkZfT6Xd_QOE3XS6gdWDGhQ4,7614
+dbt_autofix-0.11.0.dist-info/WHEEL,sha256=9P2ygRxDrTJz3gsagc0Z96ukrxjr-LFBGOgv3AuKlCA,90
+dbt_autofix-0.11.0.dist-info/entry_points.txt,sha256=abiYx1t6Y4FKiRL0mqIp9UdHIJwieGY07GC4mdAEe5o,69
+dbt_autofix/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+dbt_autofix/dbt_api.py,sha256=Vo-taS3UlGNm-YwVdUKftWBTUygizr0mLChtDYSOS70,11067
+dbt_autofix/duplicate_keys.py,sha256=hCmGijLWdUU3PA0FQM2QQMQrbx5T-Tb4FKPQVgOWOww,4646
+dbt_autofix/fields_properties_configs.py,sha256=kSZK9GZDOi_LsJcaTDkAUtTuVZXycPyByMJRKkAKhiM,9742
+dbt_autofix/main.py,sha256=D2YKBd_RF1emzZSKPdgpOjxuliOKscgQ1oOHe7Yup5c,5288
+dbt_autofix/refactor.py,sha256=ZkPfgFaPb8U2XvdO0Qh2dUIB0F3SO8zkZ0oekAjKsdk,60458
+dbt_autofix/retrieve_schemas.py,sha256=woZScuryod9PNc5SPyRMEUTRRl9kEQFRbRU0xr0XJ_U,10749
+dbt_autofix-0.11.0.dist-info/RECORD,,
