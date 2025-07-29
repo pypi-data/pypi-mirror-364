@@ -1,0 +1,72 @@
+Metadata-Version: 2.4
+Name: nlpbasekit
+Version: 0.1.0
+Summary: Simple, scikit-learn-style NLP classifiers with one-liner preprocessing.
+Author-email: Muhammad Talha Sharif <745talha@gmail.com>
+License: =The MIT License (MIT)
+        
+        Copyright (c) 2025 Muhammad Talha Sharif
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+Keywords: nlp,text-classification,machine-learning,scikit-learn
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: scikit-learn>=1.2
+Requires-Dist: pandas>=1.5
+Requires-Dist: numpy>=1.23
+Requires-Dist: nltk>=3.8
+Requires-Dist: gensim>=4.3
+Requires-Dist: contractions>=0.1
+Requires-Dist: joblib>=1.3
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
+Requires-Dist: black; extra == "dev"
+Requires-Dist: build; extra == "dev"
+Requires-Dist: twine; extra == "dev"
+Dynamic: license-file
+
+# NLPkit
+
+A tiny toolkit that wraps several **scikit-learn** models with
+*NLP-aware* preprocessing:
+
+* Tokenisation (NLTK)
+* Stop-word removal
+* Stemming / lemmatisation
+* Contraction expansion
+* Auto Count or TF-IDF vectorisation
+
+```python
+from nlpkit import Classifier
+
+docs = ["I love NLP", "NLP is awesome"]
+labels = [1, 1]
+
+clf = Classifier(embeding="tfidf", normalization_method="L")
+clf.fit(docs, labels)
+
+print(clf.predict(["NLP rocks"]))

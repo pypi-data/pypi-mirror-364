@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+src/NLPkit/__init__.py
+src/NLPkit/_core.py
+src/NLPkit/_version.py
+src/NLPkit/preprocessing.py
+src/NLPkit/utils.py
+src/NLPkit/models/__init__.py
+src/NLPkit/models/classifier.py
+src/nlpbasekit.egg-info/PKG-INFO
+src/nlpbasekit.egg-info/SOURCES.txt
+src/nlpbasekit.egg-info/dependency_links.txt
+src/nlpbasekit.egg-info/requires.txt
+src/nlpbasekit.egg-info/top_level.txt
+tests/test_smoke.py
