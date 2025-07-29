@@ -1,0 +1,11 @@
+toxic_validation_agent/__init__.py,sha256=yGOWvjNT0-dXinuhnkLpi9JFfSU4jlj8E0flJ-UwWLQ,1099
+toxic_validation_agent/cli.py,sha256=tglNbcK3mbQyetDM6x1mmXHlgD6VlAJUJcAlfD_PEAw,5572
+toxic_validation_agent/config.json,sha256=l-t4k9JR8QMzVi-0JLjCcSmDlvCkJSy6NUgUZpSRQpA,940
+toxic_validation_agent/exceptions.py,sha256=ViDrCVq6qAFVKtdSx0OEyYLOiDR7iAW2j3Tty6uqt94,1348
+toxic_validation_agent/message_validator.py,sha256=b8N3fdoFgRP6r9jEqJ7CARS-a0DZ1lP2Cg74Y9uKurg,42433
+toxic_validation_agent/toxicity_words.json,sha256=lcAjiF88Ouvqhc1qBmeF7qGy0a3SGkMa_6SLI-9XVk0,4514
+toxic_detection-1.0.5.dist-info/METADATA,sha256=UOOUxhmn5xYVHd6uK4Hy9axdYTLIF3l3gaegX5cSBIA,29728
+toxic_detection-1.0.5.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+toxic_detection-1.0.5.dist-info/entry_points.txt,sha256=G1Z4XuC24kzRCwmgO_ER-4qSV-FVcG4H6VyvsMQ2HKQ,69
+toxic_detection-1.0.5.dist-info/top_level.txt,sha256=yuIIFCqp83ONud_-0WDldLxdg4fYWS0dLeEaGR14Kio,23
+toxic_detection-1.0.5.dist-info/RECORD,,
