@@ -1,0 +1,19 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "dumpy-numpy"
+version = "0.1.1"
+description = "DumPy: NumPy except it's OK if you're dum"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = ["numpy", "jax"]
+
+[tool.hatch.build]
+include = [
+    "dumpy.py",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
