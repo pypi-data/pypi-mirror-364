@@ -1,0 +1,140 @@
+Metadata-Version: 2.4
+Name: inbox4us_pos_printer
+Version: 0.1.3
+Summary: Inbox4us POS printer service
+Home-page: https://github.com/username/repository
+Author: Daniel
+Author-email: Inbox4us <engineering@inbox4us.xyz>
+License: MIT
+Project-URL: Homepage, https://github.com/Inbox-Team/pos-printer
+Project-URL: Repository, https://github.com/Inbox-Team/pos-printer.git
+Keywords: printer,fastapi,escpos,network-printer
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: fastapi>=0.68.0
+Requires-Dist: uvicorn>=0.15.0
+Requires-Dist: python-escpos>=3.0
+Requires-Dist: Pillow>=8.0.0
+Requires-Dist: pydantic>=1.8.0
+Dynamic: author
+Dynamic: home-page
+Dynamic: requires-python
+
+# Inbox4us POS Printer Service
+
+A FastAPI-based service for handling ESC/POS printer operations. This service allows you to send base64-encoded images to network printers using the ESC/POS protocol.
+
+## Features
+
+- Send images to network printers
+- Support for ESC/POS protocol
+- Simple REST API interface
+- CORS support
+- SSL/TLS support
+
+## Installation
+
+Install using pip:
+
+```bash
+pip install inbox4us-pos-printer
+```
+
+## Usage
+
+### Basic Usage
+
+```python
+from pos_printer import create_app
+import uvicorn
+
+app = create_app()
+
+if __name__ == '__main__':
+    uvicorn.run(
+        app, 
+        host='0.0.0.0', 
+        port=8100
+    )
+```
+
+### With SSL
+
+```python
+from pos_printer import create_app
+import uvicorn
+
+app = create_app()
+
+if __name__ == '__main__':
+    uvicorn.run(
+        app, 
+        host='0.0.0.0', 
+        port=8100, 
+        ssl_certfile="./ssl/certificate.crt",
+        ssl_keyfile="./ssl/private.key",
+        ssl_ca_certs="./ssl/ca_bundle.crt" 
+    )
+```
+
+## API Documentation
+
+### POST /print
+
+Send an image to a network printer.
+
+#### Request Body
+
+```json
+{
+    "printer_ip": "192.168.1.100",
+    "port": 9100,
+    "data": "base64_encoded_image_data"
+}
+```
+
+#### Parameters
+
+- `printer_ip` (string, required): IP address of the network printer
+- `port` (integer, optional, default: 9100): Printer port
+- `data` (string, required): Base64 encoded image data
+
+#### Response
+
+Success:
+```json
+{
+    "status": "success"
+}
+```
+
+Error:
+```json
+{
+    "status": "error",
+    "message": "Error message details"
+}
+```
+
+## Requirements
+
+- Python >= 3.8
+- FastAPI >= 0.68.0
+- python-escpos >= 3.0
+- Pillow >= 8.0.0
+- pydantic >= 1.8.0
+## License
+
+MIT License
+
+## Support
+
+For support, please create an issue on the [GitHub repository](https://github.com/Inbox-Team/pos-printer/issues).
