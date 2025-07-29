@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "losiquant"
+version = "1.0.0.1"
+description = "LOSIQUANT: High-fidelity logarithmic quantization for neural networks"
+readme = "README.md"
+authors = [
+  { name = "Loukmane Hadj Said", email = "loukmanehadjsaid56@gmail.com" }
+]
+license = { text = "Apache-2.0" }
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: Apache Software License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Topic :: Software Development :: Libraries :: Python Modules"
+]
+keywords = ["quantization", "neural-networks", "edge-ai", "tinyml", "compression", "logarithmic"]
+requires-python = ">=3.8"
+dependencies = [
+  "torch>=1.13.0",
+  "numpy>=1.21.0"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest",
+  "mkdocs"
+]
+
+[project.urls]
+Homepage = "https://github.com/MyOptimalNext/losiquant "
+Repository = "https://github.com/MyOptimalNext/losiquant "
+Issues = "https://github.com/MyOptimalNext/losiquant/issues "
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["losiquant*"]
