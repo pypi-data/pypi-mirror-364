@@ -1,0 +1,10 @@
+django_visit_counter/__init__.py,sha256=HRY78RnAK3WBV7nk_i2s9JpgItYwT74Kkcwp9dcN1kw,73
+django_visit_counter/apps.py,sha256=5bwY-IpmDHQO1VvIEvSHJM01uQHU26Uw88MTPcyywQU,152
+django_visit_counter/middleware.py,sha256=2e7nwqzh3lkHzgoDssO1MTrPe_RMI9oRmP0KjP3GkcI,487
+django_visit_counter/urls.py,sha256=A-gL53LhG97IdsQjvpgR1Nim8aNbUOC5DtyfPRzqcYE,186
+django_visit_counter/views.py,sha256=5ugJUOhdUzwFQEh_jF5TaJH4cteyaMzUhS0Xya2KeHk,824
+django_visit_counter/templates/visit_counter/personalized.html,sha256=DQJ7J2uqhVueLB61qHmFdcfxXrZnrk3KKmqzDXRT-l0,1193
+django_visit_counter-0.1.3.dist-info/METADATA,sha256=ufHfySjis20c3dP4yqWrkVY-H0TRge0136NGkd0mnJw,2502
+django_visit_counter-0.1.3.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+django_visit_counter-0.1.3.dist-info/top_level.txt,sha256=CqlV0Jl6WcHZ-1cCIEo-I6VIDIHanfHmhmQSKVC8pRg,21
+django_visit_counter-0.1.3.dist-info/RECORD,,
