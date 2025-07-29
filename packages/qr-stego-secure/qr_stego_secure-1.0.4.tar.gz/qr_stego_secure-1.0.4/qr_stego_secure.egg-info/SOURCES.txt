@@ -1,0 +1,11 @@
+LICENSE
+README.md
+setup.py
+qr_stego/__init__.py
+qr_stego/__main__.py
+qr_stego_secure.egg-info/PKG-INFO
+qr_stego_secure.egg-info/SOURCES.txt
+qr_stego_secure.egg-info/dependency_links.txt
+qr_stego_secure.egg-info/entry_points.txt
+qr_stego_secure.egg-info/requires.txt
+qr_stego_secure.egg-info/top_level.txt
