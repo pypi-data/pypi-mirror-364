@@ -1,0 +1,22 @@
+[project]
+name = "fmscraper"
+version = "0.1.0"
+description = "Scraper for FotMob matches"
+authors = [
+    { name = "Mieszko Pugowski"}
+]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "selenium",
+    "requests",
+    "beautifulsoup4"
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project.urls]
+"Homepage" = "https://github.com/MieszkoPugowski/FMScraper"
