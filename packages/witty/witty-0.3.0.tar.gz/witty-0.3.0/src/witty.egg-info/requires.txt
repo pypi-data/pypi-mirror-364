@@ -1,0 +1,9 @@
+Cython<3.2,>=3.0
+setuptools
+nanobind
+
+[cython]
+Cython<3.2,>=3.0
+
+[nanobind]
+nanobind
