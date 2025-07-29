@@ -1,0 +1,69 @@
+Metadata-Version: 2.4
+Name: micropython-ina228
+Version: 0.1.0
+Summary: TI INA228 library for MicroPython
+Author-email: Avram Lubkin <avylove@rockhopper.net>
+License-Expression: MPL-2.0
+Project-URL: Homepage, https://github.com/Rockhopper-Technologies/micropython-ina228
+Keywords: micropython,TI,Texas Instruments,INA228,current,voltage,power
+Classifier: Programming Language :: Python :: Implementation :: MicroPython
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Embedded Systems
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+
+# TI INA228 library for MicroPython
+
+The INA228 is an 85V precise power monitor from Texas Instruments
+More information can be found at https://www.ti.com/product/INA228
+
+## Basic Usage
+
+```python
+from machine import Pin, I2C
+import ina228
+
+ina = ina228.INA228(
+    I2C(0,sda=Pin(21), scl=Pin(22), freq=400000),
+    shunt_resistance=0.015,
+    max_current=10,
+)
+
+print(f'Bus Voltage: {ina.voltage:.3f} V')
+print(f'Current: {ina.current:.3f} A')
+print(f'Shunt Voltage: {ina.shunt_voltage/ 1000:.3f} mV')
+print(f'Temperature: {ina.temperature:.3f} °C')
+print(f'Power: {ina.power:.3f} W')
+print(f'Energy: {ina.energy:.3f} J')
+print(f'Charge: {ina.charge:.3f} C')
+print(f'Manufacturer: {ina.manufacturer_id}')
+print(f'Device: {ina.device_id}')
+```
+
+There's a lot more you can do and I tried to make it as user-friendly and complete as possible. Just read the datasheet and anything you want to do, you should be able to do it with this library. Most of the calculations are automatic so you can don't have to worry about converting values to fit in the fields.
+
+For example, you may want to configure the adc. Familiarize yourself with this in the
+datasheet and then run something similar to the following.
+```python
+ina.configure_adc(
+    mode=ina228.ADCMode.CONT_VBUS_VSHUNT,
+    vbusct=ina228.CONVERSION_TIME[540],
+    vshct=ina228.CONVERSION_TIME[540],
+    vtct=ina228.CONVERSION_TIME[50],
+    avg=ina228.AVERAGING_COUNT[4]
+)
+```
+
+Or if you want to set a temperature threshold of 50 °C
+```python
+    ina.temp_limit = 50.0
+    print(f'Temperature limit configured for {ina.temp_limit}')
+```
+
+And then to restore the device to the default configuration
+```python
+ina.reset()
+```

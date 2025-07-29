@@ -1,0 +1,89 @@
+[build-system]
+requires = ['setuptools >= 65', 'setuptools_scm[toml] >= 6.2']
+build-backend = 'setuptools.build_meta'
+
+[project]
+name = 'micropython-ina228'
+description = 'TI INA228 library for MicroPython'
+authors = [
+    {name = 'Avram Lubkin', email = 'avylove@rockhopper.net'},
+]
+classifiers = [
+    'Programming Language :: Python :: Implementation :: MicroPython',
+    'Development Status :: 4 - Beta',
+    'Intended Audience :: Developers',
+    'Topic :: Software Development :: Embedded Systems',
+]
+
+dynamic = ['version']
+license = 'MPL-2.0'
+readme = 'README.md'
+keywords = ['micropython', 'TI', 'Texas Instruments', 'INA228', 'current', 'voltage', 'power']
+
+[project.urls]
+Homepage = 'https://github.com/Rockhopper-Technologies/micropython-ina228'
+
+[tool.setuptools]
+py-modules = ['ina228']
+
+[tool.setuptools.dynamic]
+version = {attr = 'ina228.__version__'}
+
+
+[tool.flake8]  # requires flake8-pyproject
+max-line-length = 130  # Pylint is 100, but allows longer strings in some cases
+ignore = ['E222', 'E241', 'W504']
+extend-exclude = []
+
+[tool.pylint.spelling]
+# Spelling dictionary name.
+spelling-dict = 'en_US'
+
+# List of comma separated words that should not be checked.
+spelling-ignore-words = [
+    'Adafruit', 'Args', 'Avram',
+    'LSB', 'Lubkin',
+    'MPL', 'mypy',
+    'Nox',
+    'overvoltage',
+    'RW',
+    'undervoltage',
+    'vbusct', 'vshct', 'vtct',
+    'µs', 'µV',
+]
+
+
+[[tool.mypy.overrides]]
+module = ['machine', 'utime']
+ignore_missing_imports = true
+
+
+[tool.pylint.main]
+
+# List of module names for which member attributes should not be checked and
+# will not be imported (useful for modules/projects where namespaces are
+# manipulated during runtime and thus existing member attributes cannot be
+# deduced by static analysis). It supports qualified module names, as well as
+# Unix pattern matching.
+ignored-modules = ['machine', 'utime']
+
+[tool.pylint.format]
+
+# Maximum number of characters on a single line.
+max-line-length = 100
+
+# Regexp for a line that is allowed to be longer than the limit.
+# URLs and pure strings
+ignore-long-lines = '''^\s*(# )?<?https?://\S+>?$|^\s*[f|r|u]?b?[\"\'\`].+[\"\'\`]$'''
+
+
+[tool.pylint.design]
+
+# Maximum number of positional arguments for function / method.
+max-positional-arguments = 6
+
+# Maximum number of arguments for function / method.
+max-args = 6
+
+[tool.pylint.string]
+check-quote-consistency = true
