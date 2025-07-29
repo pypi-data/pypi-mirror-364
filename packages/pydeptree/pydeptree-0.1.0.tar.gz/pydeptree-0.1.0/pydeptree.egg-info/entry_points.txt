@@ -1,0 +1,2 @@
+[console_scripts]
+pydeptree = pydeptree.cli:main
