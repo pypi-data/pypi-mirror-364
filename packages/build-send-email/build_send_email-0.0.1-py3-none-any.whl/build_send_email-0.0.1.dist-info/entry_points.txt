@@ -1,0 +1,3 @@
+[console_scripts]
+build-send-email=build_send_email.__main__:main
+

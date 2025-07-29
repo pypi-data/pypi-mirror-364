@@ -1,0 +1,11 @@
+build_send_email/__init__.py,sha256=cloKJddl1STZIN3oqf575uDd771tx2-hiEfu0ce4X7w,826
+build_send_email/__main__.py,sha256=sjBrhsZVJYh11psLMhTGBKNZoa_IP-HRpNCHdEVuDFE,8784
+build_send_email/backends.py,sha256=PIwXut6LwbwXhKn0q23S7tcfC1eoGp-v-cJNMoGJftY,5064
+build_send_email/config.py,sha256=cPruRH3g06NbhFqfKffcPy1HkPJ_PSULyVoqpYHj-6s,1702
+build_send_email/send-email-config.yaml,sha256=HkxiGStMwakQTkleUXQt17U-6_8gBe9H0RKelW9K8Qs,1027
+build_send_email/utils.py,sha256=Gt7ICfvXjGmRkMDzRn9kw6wNmrd8gOzbAqcul_-1BAs,5141
+build_send_email-0.0.1.dist-info/entry_points.txt,sha256=QaIR32pwcnhUkhIP1KJhN-uiQMxNvcREmax3MbdIPwM,67
+build_send_email-0.0.1.dist-info/LICENSE,sha256=xpOAiPrRu10puAzowZpI7mLHPieUC6Ta0Dyo1XGudPU,1054
+build_send_email-0.0.1.dist-info/WHEEL,sha256=EZbGkh7Ie4PoZfRQ8I0ZuP9VklN_TvcZ6DSE5Uar4z4,81
+build_send_email-0.0.1.dist-info/METADATA,sha256=uIEkLAJfRLDaKLzSxuOQAb02G_nCnQlSpHO0gsC2bvQ,347
+build_send_email-0.0.1.dist-info/RECORD,,
