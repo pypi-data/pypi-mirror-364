@@ -1,0 +1,3 @@
+[console_scripts]
+dad = dhenara.cli:main
+dhenara = dhenara.cli:main
