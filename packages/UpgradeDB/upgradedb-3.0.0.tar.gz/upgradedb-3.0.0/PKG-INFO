@@ -1,0 +1,16 @@
+Metadata-Version: 2.4
+Name: UpgradeDB
+Version: 3.0.0
+Summary: Banco de dados leve baseado em JSON para Python
+Home-page: https://github.com/???/upgrade_db_py
+Author: Seu Nome
+Author-email: upgradedb@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.6
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: home-page
+Dynamic: requires-python
+Dynamic: summary
