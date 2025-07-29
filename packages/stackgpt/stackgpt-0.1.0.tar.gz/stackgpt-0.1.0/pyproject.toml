@@ -1,0 +1,25 @@
+# pyproject.toml
+
+[project]
+name = "stackgpt"
+version = "0.1.0"
+description = "StackOverflow-style GPT assistant for your terminal"
+authors = [
+    { name = "Ayub Farxaan", email = "a.farxaan@programmer.net" }
+]
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "openai",
+    "click",
+    "python-dotenv",
+    "rich"
+]
+
+[project.scripts]
+stackgpt = "main:run_cli"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
