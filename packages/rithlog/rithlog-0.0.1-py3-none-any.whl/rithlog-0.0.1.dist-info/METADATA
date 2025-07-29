@@ -1,0 +1,30 @@
+Metadata-Version: 2.4
+Name: rithlog
+Version: 0.0.1
+Summary: This is the simplest module to log
+Home-page: https://example.com
+Author: kolyax
+Author-email: abobus050413@gmail.com
+Keywords: log loger rith
+Classifier: Programming Language :: Python :: 3.11
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6,<=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: requests>=2.25.1
+Requires-Dist: rith>=0.0.11
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+## Rith Loger
+
+This is the simplest module to log
+its no big Progect
