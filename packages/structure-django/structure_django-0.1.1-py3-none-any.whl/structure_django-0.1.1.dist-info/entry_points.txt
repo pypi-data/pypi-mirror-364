@@ -1,0 +1,2 @@
+[console_scripts]
+generate-django-app = structure_django.cli:main
