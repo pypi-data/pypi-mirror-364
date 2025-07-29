@@ -1,0 +1,46 @@
+[project]
+name = "sardinecake"
+description = "Manage libvirt VMs via OCI."
+authors = [
+ { name = "IOhannes m zmölnig", email = "zmoelnig@iem.at"}
+]
+license = "AGPL-3.0-or-later"
+license-files = ["LICEN[CS]E*"]
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+  "libvirt-python>=10",
+  "jsonschema>=4",
+  "python-magic>=0.4",
+  "paramiko>=3"
+  #"pyqcow",
+]
+
+dynamic = ["version"]
+
+[project.urls]
+Homepage = "https://git.iem.at/devtools/sardinecake"
+Documentation = "https://sardinecake.readthedocs.io/"
+Repository = "https://git.iem.at/devtools/sardinecake.git"
+Issues = "https://git.iem.at/devtools/sardinecake/-/issues"
+# Changelog = ""
+
+
+[project.scripts]
+sarde = "sardinecake.__main__:_main"
+gitlab-sardinecake-executor = "sardinecake.gitlab_executor:_main"
+
+[build-system]
+requires = ["setuptools>=64", "setuptools_scm>=8"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+# All the following settings are optional:
+where = ["src"]
+
+[tool.setuptools_scm]
+version_file = "src/sardinecake/_version.py"
+
+
+[tool.setuptools.package-data]
+"sardinecake.schema" = ["*.json"]

@@ -1,0 +1,45 @@
+#!/bin/sh
+# preparation script for iem-ci
+
+mywhich() {
+  which $@ 2>/dev/null
+}
+
+wmicos() {
+  wmic os GET "$@" | sed -e 's|\r||g' -e 's|[[:space:]]*$||' -e '2q;d'
+}
+
+prepare_windows() {
+	echo "update gitlab-prebuild-cleanup"
+	/usr/local/bin/gitlab-prebuild-cleanup -u
+	/usr/local/bin/gitlab-prebuild-cleanup -u
+	echo "prepare envvars: ${IEMCI_CONFIGURATIONS}"
+	/usr/local/bin/gitlab-prebuild-cleanup -Uce
+}
+
+cpus=${NUMBER_OF_PROCESSORS}
+: ${cpus:=$(grep -c "^processor[[:space:]]*:" /proc/cpuinfo 2>/dev/null)}
+: ${cpus:=$(sysctl -n hw.ncpu 2>/dev/null)}
+: ${cpus:=(unknown)}
+os=""
+: ${os:=$(mywhich lsb_release -sd 2>/dev/null)}
+if [ -n "$(mywhich sw_vers)" ]; then
+  : ${os:=$(sw_vers -productName) $(sw_vers -productVersion) ($(sw_vers -buildVersion) )}
+fi
+if [ -n "$(mywhich wmic)" ]; then
+  : ${os:=$(wmicos Caption) - $(wmicos CSDVersion) [$(wmicos Version)])}
+fi
+: ${os:=(unknown)}
+
+echo "CPUs  : $cpus"
+echo "kernel: $(uname -a)"
+echo "OS    : ${os}"
+
+uname_s=$(uname -s)
+case "${uname_s}" in
+	MSYS*)
+		prepare_windows
+		;;
+	*)
+		;;
+esac

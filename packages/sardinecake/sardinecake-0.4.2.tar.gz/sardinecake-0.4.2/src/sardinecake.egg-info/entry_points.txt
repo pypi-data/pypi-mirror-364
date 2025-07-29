@@ -1,0 +1,3 @@
+[console_scripts]
+gitlab-sardinecake-executor = sardinecake.gitlab_executor:_main
+sarde = sardinecake.__main__:_main
