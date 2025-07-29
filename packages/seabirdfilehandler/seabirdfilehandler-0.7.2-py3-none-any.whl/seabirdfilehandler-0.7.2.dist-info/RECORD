@@ -1,0 +1,16 @@
+seabirdfilehandler/__init__.py,sha256=PSokwgSgsmpFh-2Xv2T2d3yxmmahLnIq58WLZ51l86I,276
+seabirdfilehandler/bottlefile.py,sha256=qCh506J3MWZXM11243aw_oJRocVB0ZIipXQLEgkD5M0,6046
+seabirdfilehandler/bottlelogfile.py,sha256=MtMmEebdAktO3mk6KbmJC7dfx9sRLbV5qqDQt2qtpJE,4310
+seabirdfilehandler/cnvfile.py,sha256=vq6Yc4DLTbjJkro2yBsLa3Wz9BPEFi3F-6LtumqYBzA,10036
+seabirdfilehandler/datafiles.py,sha256=HQungz24lRw4OiTwWs_curAGhzkI1rPiCmMXXcdQFNE,9423
+seabirdfilehandler/file_collection.py,sha256=oLdjS-Q4_33T0qo_SYxkqg2bsaeg4gLVKBkOPxoTXx4,16111
+seabirdfilehandler/geomar_ctd_file_parser.py,sha256=4eCnkE0mvPKC8Dic8sXP4xpfwnk3K2MQcGFBf6loT8k,2655
+seabirdfilehandler/hexfile.py,sha256=TBplwbWHrTuJzv2qlx6xYNtoX43I2YUabDmaGZuBEDQ,2144
+seabirdfilehandler/parameter.py,sha256=dL-s9dBb7G-upJKIVgMlDhakD3jBznR06OaRMZgk7f0,15937
+seabirdfilehandler/processing_steps.py,sha256=5v6FV5zT7K6flbYLU31fyBRwPwQi4225se8i9WYUTQQ,7101
+seabirdfilehandler/utils.py,sha256=5KXdB8Hdv65dv5tPyXxNMct1mCEOyA3S8XP54AFAnx0,1745
+seabirdfilehandler/xmlfiles.py,sha256=XqqbVNjyINySoe2ZC_qJglkAqshavZxT2-jorDOSj7Y,5084
+seabirdfilehandler-0.7.2.dist-info/LICENSE,sha256=Ifd1VPmYv32oJd2QVh3wIQP9X05vYJlcY6kONz360ws,34603
+seabirdfilehandler-0.7.2.dist-info/METADATA,sha256=FSTwzr4nEca_RscKDP2x064Gx4tY8LZBIhJP_Y3Ovjc,2307
+seabirdfilehandler-0.7.2.dist-info/WHEEL,sha256=b4K_helf-jlQoXBBETfwnf4B04YC67LOev0jo4fX5m8,88
+seabirdfilehandler-0.7.2.dist-info/RECORD,,
