@@ -1,0 +1,24 @@
+Metadata-Version: 2.4
+Name: raySD
+Version: 0.2.5
+Summary: Stable diffusion pipeline for ray
+Author: Nguyen Hong Ky
+Requires-Dist: numpy>=1.26.4
+Requires-Dist: einops
+Requires-Dist: opencv-python>=4.10.0.84
+Requires-Dist: pillow>=9.5.0
+Requires-Dist: torch>=2.3.1
+Requires-Dist: torchvision>=0.18.1
+Requires-Dist: diffusers>=0.33.0
+Requires-Dist: transformers>=4.49.0
+Requires-Dist: peft>=0.15.2
+Requires-Dist: openvino==2025.1.0
+Requires-Dist: ip-adapterv
+Requires-Dist: pydantic
+Requires-Dist: onnx>=1.17.0
+Requires-Dist: onnxruntime>=1.17.1
+Requires-Dist: insightface>=0.7.3
+Requires-Dist: controlnet-aux>=0.0.9
+Dynamic: author
+Dynamic: requires-dist
+Dynamic: summary
