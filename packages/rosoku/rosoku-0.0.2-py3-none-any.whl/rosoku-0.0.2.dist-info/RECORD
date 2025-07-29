@@ -1,0 +1,16 @@
+rosoku/__init__.py,sha256=Fn8_E1JFU4RJVvpbaBSMeXsUvhU-ZUlGkx76259EFKg,165
+rosoku/_deeplearning.py,sha256=v06IfFhxbK9LJo-r1siTtlh8NxopEdt7ZJ0PaAdMu4Y,18851
+rosoku/alias.py,sha256=3JhKU47nP4dPSTLFBFu3JBhWId_6d6c3Dx7UNTWxCo8,469
+rosoku/deeplearning.py,sha256=BW36jE4K4rbEGwcP126wSVU3aHkXurI1VCpWlSEKDG8,33586
+rosoku/riemannian.py,sha256=jfofaU73o1ZXr7g-cQfHG43JgKq5ErpBY7lpCX0-UCc,7352
+rosoku/preprocessing/__init__.py,sha256=1YtomVv5ol9gJb4MHettXWiHQh2lRVdTUXHE3l0KceQ,29
+rosoku/preprocessing/normalization.py,sha256=X4VJQFxhZcPLfq-AU71J5lCCDtrs3FODMmsDbSAV52M,2660
+rosoku/tl/__init__.py,sha256=RQaV2VG0NHmogjMBS7CNIO6Jmk1JkZ7B_HdvFIsKSLw,25
+rosoku/tl/alignment.py,sha256=hPEULrDMiix7S6N4f8WlScsN9QBMf7l-HKHdN_-4Dl8,2370
+rosoku/utils/__init__.py,sha256=alIDGBnxWH4JvP-UW-7N99seBBi0r1GV1h8f1ERFBec,21
+rosoku/utils/utils.py,sha256=PNxa9vyH6rTKwJwZgQhWENnwTy-Bus1XNo4Cw3jycTQ,16080
+rosoku-0.0.2.dist-info/licenses/LICENSE,sha256=U8kV6hAVOneaIUdZEbD6wjPw-n9uX-_neVIG4v8_CEs,1069
+rosoku-0.0.2.dist-info/METADATA,sha256=sb3BcKm7jv7tzawL3RlSGBaWxri7LHikSN_fNHTRvhs,872
+rosoku-0.0.2.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+rosoku-0.0.2.dist-info/top_level.txt,sha256=_LsiQuqhIo1DqjyRDBMJhqoryT2sQF5YzbvwFLrblWo,7
+rosoku-0.0.2.dist-info/RECORD,,
