@@ -1,0 +1,34 @@
+tridesclous release notes 1.0.0
+===============================
+
+**2018-09-04**
+
+Very first official release of tridesclous after 18 month of developpement.
+
+Main core classes:
+  * DataIO
+  * CatalogueConstructor
+  * Peeler
+
+Interactive UI with PyQt5 and pytgraph:
+  * MainWindow
+  * CatalogueWindow
+  * PeelerWindow
+
+Online:
+  * pyacq support with:
+    * OnlinePeeler (processing pyacq Node)
+    * OnlineTraceViewer (viewer pyacq Node)
+    * OnlineWaveformHistViewer (viewer pyacq Node)
+    * OnlineWindow (main online window)
+
+Bonus:
+  * some opencl processing
+  * dataset for testing
+  * interface to neo.rawio
+  * matplotlib plotting
+
+Code care:
+  * circle-ci
+  * appveyor
+  * readthedoc

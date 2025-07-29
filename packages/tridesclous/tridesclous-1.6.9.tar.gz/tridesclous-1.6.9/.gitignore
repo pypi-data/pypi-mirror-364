@@ -1,0 +1,96 @@
+#
+*.raw
+*.zip
+*.prb
+*.dat
+*ns5
+
+tridesclous/tests/locust/*
+tridesclous/tests/olfactory_bulb/*
+tridesclous/gui/tests/test_catalogue*
+tridesclous/online/tests/locust/*
+tridesclous/online/tests/olfactory_bulb/*
+tridesclous/tests/test_DataIO/*
+tridesclous/tests/test_catalogueconstructor/*
+tridesclous/tests/test_peeler/*
+tridesclous/tests/test_export/*
+tridesclous/tests/test_metrics/*
+tridesclous/tests/test_report/*
+tridesclous/tests/test_cluster/*
+tridesclous/online/tests/test_onlinepeeler/*
+tridesclous/online/tests/test_tdconlinewindow/*
+
+
+example/test_onlinepeeler/*
+example/tridesclous_kampff_2014_11_25_Pair_3_0/*
+example/tridesclous_locust/*
+example/tridesclous_olfactory_bulb/*
+example/kampff/*
+example/locust/*
+example/olfactory_bulb/*
+example/.ipynb_checkpoints/*
+example/tridesclous_*
+doc/_build
+example/demo_onlinewindow/*
+
+#test_*
+
+
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*,cover
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/

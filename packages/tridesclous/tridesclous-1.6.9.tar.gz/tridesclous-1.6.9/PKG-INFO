@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: tridesclous
+Version: 1.6.9
+Summary: offline/online spike sorting with french touch that light the barbecue
+Home-page: https://github.com/tridesclous/trisdesclous
+Author: C. Pouzat, S.Garcia
+Author-email: 
+License: MIT
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: pandas
+Requires-Dist: openpyxl
+Requires-Dist: scikit-learn
+Requires-Dist: matplotlib
+Requires-Dist: seaborn
+Requires-Dist: neo
+Requires-Dist: tqdm
+Requires-Dist: pyqtgraph
+Requires-Dist: joblib
+Requires-Dist: numba
+Requires-Dist: hdbscan
+Requires-Dist: loky
+Provides-Extra: online
+Requires-Dist: pyacq; extra == "online"
+Provides-Extra: opencl
+Requires-Dist: pyopencl; extra == "opencl"

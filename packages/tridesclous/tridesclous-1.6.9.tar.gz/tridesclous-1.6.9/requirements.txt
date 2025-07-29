@@ -1,0 +1,18 @@
+numpy<1.22
+scipy
+pandas
+openpyxl
+scikit-learn
+matplotlib
+seaborn
+neo
+tqdm
+numba
+cython
+hdbscan
+loky
+
+# PyQt5
+# pyqtgraph
+
+# sphinx
