@@ -1,0 +1,9 @@
+vat/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+vat/cli.py,sha256=o8Y7ldZS9udAFO7lTCIPFzlveo3IJ4whcb-E6-qMRzU,1223
+vat/platform.py,sha256=7hto_uPgMOIAFLDeeGjVuRGsxQs3YONm2zzfEyeYX40,52154
+vat/stix_taxii.py,sha256=8KtXQju8wzNRToKWxwqUd2mAMN54o0jJAQ5mK99s8g8,2548
+vat/vectra.py,sha256=dV-nSDgBlhIiK3oNiED5DC8pFMvilcISmzmu8J8Ajn8,149450
+vectra_api_tools-3.4.2rc1.dist-info/METADATA,sha256=3cUi-44KOJwEQ2VSLv-sSIkKbbEZ8ukY4jmUuDVhfpY,2022
+vectra_api_tools-3.4.2rc1.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+vectra_api_tools-3.4.2rc1.dist-info/licenses/LICENSE.txt,sha256=TVH06k0M349jOqDGYW1IBgprKqWqOqs_cagsuD061_Y,546
+vectra_api_tools-3.4.2rc1.dist-info/RECORD,,
