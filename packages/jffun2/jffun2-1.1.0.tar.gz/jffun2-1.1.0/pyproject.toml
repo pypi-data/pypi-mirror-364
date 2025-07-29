@@ -1,0 +1,6 @@
+[project]
+name = "jffun2"
+version = "1.1.0"
+
+[project.scripts]
+yuanshen-qidong = "jffun2.hello:EEEEEE"
