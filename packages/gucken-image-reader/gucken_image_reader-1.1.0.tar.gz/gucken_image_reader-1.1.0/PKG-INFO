@@ -1,0 +1,17 @@
+Metadata-Version: 2.4
+Name: gucken-image-reader
+Version: 1.1.0
+Summary: MCP server for image reader using OpenAI vision API (gpt-4o-mini)
+Author: Jay Pak
+Author-email: Jay Pak <jaypark@forestsoft.co.kr>
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: mcp
+Requires-Dist: openai
+Requires-Dist: python-dotenv
+Dynamic: license-file
