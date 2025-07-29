@@ -1,0 +1,21 @@
+[project]
+name = "worldbank_sn_jn"
+version = "0.1.0"
+description = "Package d'analyse des données économiques du Sénégal via l'API World Bank"
+
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.7"
+
+authors = [
+    {name = "Jnanfack", email = "jesonnanfack@groupeisi.com"}
+]
+dependencies=["pandas"]
+
+[project.urls]
+Repository = "https://github.com/ulrichatonfack/"
+Issues = "https://github.com/ulrichatonfack/slugify-fr/issues"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"

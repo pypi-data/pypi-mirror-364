@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: worldbank_sn_jn
+Version: 0.1.0
+Summary: Package d'analyse des données économiques du Sénégal via l'API World Bank
+Author-email: Jnanfack <jesonnanfack@groupeisi.com>
+License: MIT
+Project-URL: Repository, https://github.com/ulrichatonfack/
+Project-URL: Issues, https://github.com/ulrichatonfack/slugify-fr/issues
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: pandas
+
+## Titre: Projet Google Cloud Plateform
+Automatisons de la recuperation  de donnees depuis la base de donnees de la banque mondiale
