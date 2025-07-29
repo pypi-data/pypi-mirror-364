@@ -1,0 +1,7 @@
+[project]
+name = "fluidize"
+authors = [
+    {name = "Henry Bae", email = "henry@fluidize.ai"},
+]
+version = "0.0.0"
+description = "Fluidize Coming Soon"
