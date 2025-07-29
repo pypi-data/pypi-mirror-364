@@ -1,0 +1,80 @@
+Metadata-Version: 2.4
+Name: cirque
+Version: 1.0
+Summary: Python client for the communication with the SDR platform. The client consists of the api to the individual modules on the platform and generates the grpc files. Additionally, some utility files for postprocessing are part of this program.
+Project-URL: Repository, https://gitlab.kit.edu/kit/ipe-sdr/open_source/cirque
+Author-email: Quantum Interface <quantuminterface@ipe.kit.edu>
+License-File: COPYING
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.9
+Requires-Dist: bitarray>=3.4.3
+Requires-Dist: grpcio==1.73.1
+Requires-Dist: matplotlib>=3.7
+Requires-Dist: numpy>=1.24
+Requires-Dist: protobuf==6.31.1
+Requires-Dist: scipy>=1.10
+Requires-Dist: tqdm>=4.67.1
+Requires-Dist: typing-extensions>=4.14.0
+Requires-Dist: wrapt>=1.16
+Requires-Dist: zerorpc>=0.6.3
+Description-Content-Type: text/markdown
+
+# cirque
+Communication Interface to Readout Electronics of QUantum Experiments
+This repository provides a comfortable way of communication with the SDR-Systems developed by KIT-IPE.
+It allows setting up the connection with the ipe-servicehub and abstracts the grpc-Calls for the endpoints.
+
+## Important note
+This package is only useful in combination with the Quantum Interface Controller hardware system developed at KIT-IPE.
+This package is a wrapper around the python stubs auto-generated from the protobuf-messages. It is intended to offer a more user-friendly way of communicating with the Quantum Interface Controller Systems.
+
+## Installation
+
+To install `cirque` use
+
+```shell
+pip install cirque
+```
+
+### Local installation
+
+> [!note]
+> Local installation is only possible with access to the internal gitlab repository at gitlab.kit.edu
+
+To install the package and make it available globally using `import cirque` globally, clone the repository and call
+```shell
+pip install -e .
+```
+from within this directory.
+
+
+## Usage
+
+The connection to the Quantum Interface Controller system can be set up as follows:
+
+```shell
+from cirque import servicehubutils
+
+# Note: currently only IPv4 adresses are supported
+platform_ip = "127.0.0.1"
+con = servicehubutils.FPGAConnection(ip=platform_ip, port=50058)
+```
+
+the `con` object can now be used to communicate with the individual modules, as described in the documentation.
+
+```shell
+from cirque import pimc
+
+# Instantiate platform information and management core
+my_pimc = pimc.PIMC(con)
+platform_ready = my_pimc.get_platform_ready()
+```
+
+
+## LICENSE
+cirque is released under the terms of the **GNU General Public License** as published by the Free Software Foundation, either version 3 of the License, or any later version.
+Please see the [COPYING](COPYING) files for details.

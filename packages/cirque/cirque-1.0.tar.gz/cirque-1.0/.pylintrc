@@ -1,0 +1,13 @@
+[MAIN]
+ignore-paths = src/cirque/deprecated/*, src/cirque/packages/*, src/cirque/_version.py
+ignored-modules = google.protobuf, cirque.packages.grpc
+py-version = 3.9
+fail-under = 9.0
+
+[FORMAT]
+max-line-length=120
+good-names=mu,df,p0
+
+[MESSAGES CONTROL]
+disable=
+  no-else-return,R0801,R0903,R0904,R0913,R0917

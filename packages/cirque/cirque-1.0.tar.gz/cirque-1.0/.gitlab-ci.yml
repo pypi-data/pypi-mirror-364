@@ -1,0 +1,52 @@
+variables:
+    GIT_SUBMODULE_STRATEGY: "recursive"
+    GIT_SUBMODULE_FORCE_HTTPS: "true"
+    GIT_DEPTH: "3"
+
+include:
+  - component: $CI_SERVER_FQDN/kit/ipe-sdr/ipe-sdr-dev/sdr-cicd-catalog/publish-sdr-pypi@v0.0.4
+
+before_script:
+  - pip install -U .
+  - pip install -r requirements-dev.txt
+
+
+stages:
+  - analysis
+  - build
+  - production
+
+check_format:
+  stage: analysis
+  image: python:3.9
+  variables:
+    PRE_COMMIT_HOME: ${CI_PROJECT_DIR}/.cache/pre-commit
+  cache:
+    paths:
+      - ${PRE_COMMIT_HOME}
+  script:
+    - pre-commit run --all-files
+
+
+pylint:
+  stage: analysis
+  image: python:3.9
+  script:
+    - mkdir ./pylint
+    - pylint --output-format=text src | tee ./pylint/pylint.log || pylint-exit $?
+    - PYLINT_SCORE=$(sed -n 's/^Your code has been rated at \([-0-9.]*\)\/.*/\1/p' ./pylint/pylint.log)
+    - anybadge --label=Pylint --file=pylint/pylint.svg --value=$PYLINT_SCORE 2=red 4=orange 8=yellow 10=green
+    - echo "Pylint score is $PYLINT_SCORE"
+  artifacts:
+    paths:
+      - ./pylint/
+
+build-docs:
+  stage: build
+  image: python:3.9
+  script:
+      - cd docs/
+      - ./generate_docs
+  artifacts:
+      paths:
+          - docs/_build/
