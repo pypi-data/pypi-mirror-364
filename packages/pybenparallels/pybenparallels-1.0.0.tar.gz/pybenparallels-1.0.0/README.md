@@ -1,0 +1,74 @@
+# PyBenParallels
+
+![GitHub License](https://img.shields.io/github/license/DarkFlameBEN/pybenparallels)
+[![PyPI - Version](https://img.shields.io/pypi/v/pybenparallels)](https://pypi.org/project/pybenparallels/)
+![python suggested version](https://img.shields.io/badge/python-3.12.5-red.svg)
+![python minimum version](https://img.shields.io/badge/python(min)-3.10+-red.svg)
+![platforms](https://img.shields.io/badge/Platforms-Linux%20|%20Windows%20|%20Mac%20-purple.svg)
+
+## Introduction
+PyBEN Parallels repository is an easy to use python utility class for Parallels server solution
+
+## Installation
+> python -m pip install pybenparallels
+
+## Use
+
+### Cli module activation
+
+Run for a full help printout:
+```bash
+python -m pybenparallels -h
+```
+
+The class can be run on remote location via SSH or Locally by leaving the PARALLELS_HOST empty
+
+ - pybenparallels is the name of the module
+ - pprint is a function to print the returned dict nicely in console
+ - get_vms is a function to return all vms (or request a specific one)
+
+Example use for LOCAL to get all vms and a specific one:
+```bash
+python -m pybenparallels pprint get_vms 
+python -m pybenparallels pprint get_vms vm_name=ventura
+```
+
+Example for REMOTE SERVER use of global variables to get all vms:
+```bash
+set PARALLELS_HOST='1.1.1.1'
+set PARALLELS_HOST_USER='root'
+set PARALLELS_HOST_PASS='1234'
+
+python -m pybenparallels pprint get_vms
+```
+Example for passing variables directly for REMOTE SERVER:
+ - pybenparallels is the name of the module
+ - get_vms is a function to return all vms (or request a specific one)
+```bash
+python -m pybenparallels host=1.1.1.1 host_user=root host_password=1234 get_vms vm_name=ventura
+```
+
+### Python import ProxmoxCls class
+```python
+from pybenparallels import ParallelsCLI
+
+# For remote server (connection via ssh)
+server = ParallelsCLI(host='1.1.1.1', host_user='root', host_password='1234')
+print(server.get_vms())
+
+# For local use, when you are running on the parallel server
+print(ParallelsCLI().get_vms())
+```
+Some of the included functions:
+ - get_vms: Returns a full list of vms, or list with matching vms by uuid or name
+ - run_command: Execute a command on the parallels cli
+ - send_vm_command: prlctl exec ...
+ - send_vm_command_by_ssh
+ - create_vms
+ - delete_vm
+ - start_vm
+ - stop_vm
+ - pause_vm
+ - resume_vm
+ - snapshot handling
+ - and more ...
