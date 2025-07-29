@@ -1,0 +1,11 @@
+gradio_videoslider/__init__.py,sha256=fuqoe-YKAn3_3-4UzDx1MA_2AVhdRw0v27y3ths9p68,69
+gradio_videoslider/videoslider.py,sha256=53DPtOnJ-3VrC3BIr9BGQNSW7xMuZb2u2lWJl7M6Sq0,7233
+gradio_videoslider/videoslider.pyi,sha256=_JHGTs0RN1kP0OsnIxOCTKvpM0CX1q3DQW__GYUr2Lw,26483
+gradio_videoslider/templates/component/index.js,sha256=0O6yqZp_bqpMi7ojCSGQMi15Xl8VF-U4onEa_AIZPMk,1336333
+gradio_videoslider/templates/component/style.css,sha256=VQ81n6Kq9dpiSRUA7aWeGad9RwbtFlsCB2b-soZiBXM,36505
+gradio_videoslider/templates/component/assets/worker-BAOIWoxA.js,sha256=JCkxkzt1eSAXHL39Steggs-qZTegEQ5wfYDRVV6qCJA,2526
+gradio_videoslider/templates/example/index.js,sha256=Ky5ypCsGsUkeLP_AOK_xSaOTVE0GrupnvPDGmzo_Xb0,2548
+gradio_videoslider/templates/example/style.css,sha256=RiaKYr0VV2EzC-8BFof9o82Y22q1uCmU2ayuypp0xyM,864
+gradio_videoslider-0.0.2.dist-info/METADATA,sha256=CUqId1CKzHV_FMyCscGgEDWjan-Szk6nPfnrKScBpHw,11877
+gradio_videoslider-0.0.2.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+gradio_videoslider-0.0.2.dist-info/RECORD,,
