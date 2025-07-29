@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+src/supabase_management/__init__.py
+src/supabase_management/supabase_management.py
+src/supabase_management.egg-info/PKG-INFO
+src/supabase_management.egg-info/SOURCES.txt
+src/supabase_management.egg-info/dependency_links.txt
+src/supabase_management.egg-info/requires.txt
+src/supabase_management.egg-info/top_level.txt
