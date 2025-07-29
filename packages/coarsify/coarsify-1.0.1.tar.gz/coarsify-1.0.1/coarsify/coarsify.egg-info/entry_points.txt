@@ -1,0 +1,2 @@
+[console_scripts]
+coarsify = coarsify.__main__:main
