@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+requirements.txt
+setup.py
+src/privattacks/__init__.py
+src/privattacks/attacks.py
+src/privattacks/data.py
+src/privattacks/sanitization.py
+src/privattacks/util.py
+src/privattacks.egg-info/PKG-INFO
+src/privattacks.egg-info/SOURCES.txt
+src/privattacks.egg-info/dependency_links.txt
+src/privattacks.egg-info/requires.txt
+src/privattacks.egg-info/top_level.txt
+tests/test_Attack.py

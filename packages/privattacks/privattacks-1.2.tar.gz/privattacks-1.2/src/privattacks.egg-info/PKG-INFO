@@ -1,0 +1,60 @@
+Metadata-Version: 2.4
+Name: privattacks
+Version: 1.2
+Summary: Privattacks is a Python package for evaluating privacy risks in tabular datasets. It provides tools to quantify re-identification and attribute inference vulnerabilities based on combinations of quasi-identifiers an adversary knows about a target. The package supports both high-level and granular analysis, including per-record vulnerability distributions, multiprocessing for efficiency, and flexible input handling via pandas DataFrames and other sources.
+Home-page: https://github.com/ramongonze/privattacks
+Author: Ramon Gonçalves Gonze
+Author-email: Ramon Gonçalves Gonze <ramongonze@gmail.com>
+License-Expression: MIT
+Project-URL: Documentation, https://privattacks.readthedocs.io/
+Project-URL: Repository, https://github.com/ramongonze/privattacks.git
+Project-URL: Issues, https://github.com/ramongonze/privattacks/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pandas>=2.2.3
+Requires-Dist: numpy>=2.0.2
+Requires-Dist: tqdm>=4.65.0
+Requires-Dist: pyreadr>=0.5.2
+Dynamic: author
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+
+# privattacks
+Privattacks is a Python package for evaluating privacy risks in tabular datasets. It provides tools to quantify re-identification and attribute inference vulnerabilities based on combinations of quasi-identifiers an adversary knows about a target. The package supports both high-level and granular analysis, including per-record vulnerability distributions, multiprocessing for efficiency, and flexible input handling via pandas DataFrames and other sources.
+
+## Documentation
+The documentation is available at [https://privattacks.readthedocs.io](https://privattacks.readthedocs.io).
+
+## Available tools
+- Prior vulnerability for re-identification and attribute inference.
+- Posterior vulnerability for a given combination of qids and/or sensitive attribute.
+- Posterior vulnerability for a subset of all possible combinations of QIDs.
+- Parellel code.
+- Generate the histogram of vulnerabilities (i.e., vulnerability per record).
+
+## Installation
+You can install via PyPI:
+```
+pip install privattacks
+```
+
+or manuallly by copying this repository to your local machine and running:
+
+```
+pip install path/to/privattacks
+```
+
+To verify if the package was install corretly, you can run tests:
+
+```
+cd path/to/privattacks
+python -m unittest discover tests
+```
+
+## License
+
+This project is licensed under the **MIT License** – see the [LICENSE](LICENSE) file for details.
