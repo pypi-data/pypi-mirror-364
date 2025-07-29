@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: flecs
+Version: 0.0.2
+Summary: A minimal example of flecs Python bindings with pybind11
+Author-Email: Wesley Spacebar <sirwesleybarlow@gmail.com>, Heonae Aeri <heonae@paphos.one>
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Project-URL: Homepage, https://github.com/Wesxdz/pyflecs11
+Requires-Python: >=3.9
+Provides-Extra: test
+Requires-Dist: pytest; extra == "test"
+Description-Content-Type: text/markdown
+
+# flecs
+
+pybind11 bindings for [flecs](https://www.flecs.dev/flecs/)
+
+The bindings are mainly designed for rapid prototyping in Python of ECS oriented software architectures for AI.
+The syntax aims to be Pythonic with implict defaults, and the focus is on supporting arbitrary Python types as components rather than optimized performance.
+
+Checkout the examples/ folder, which contains a subset of some critical flecs example with the new syntax.
