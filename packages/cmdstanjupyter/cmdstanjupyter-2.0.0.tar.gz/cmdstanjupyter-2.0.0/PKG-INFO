@@ -1,0 +1,123 @@
+Metadata-Version: 2.4
+Name: cmdstanjupyter
+Version: 2.0.0
+Summary: A JupyterLab extension for Stan models.
+Project-URL: Homepage, https://github.com/WardBrian/CmdStanJupyter
+Project-URL: Bug Tracker, https://github.com/WardBrian/CmdStanJupyter/issues
+Project-URL: Repository, https://github.com/WardBrian/CmdStanJupyter.git
+Author-email: Brian Ward <bward@flatironinstitute.org>
+License: MIT License
+        
+        Copyright (c) 2016 Aravind
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+License-File: LICENSE
+Keywords: jupyter,jupyterlab,jupyterlab-extension
+Classifier: Framework :: Jupyter
+Classifier: Framework :: Jupyter :: JupyterLab
+Classifier: Framework :: Jupyter :: JupyterLab :: 4
+Classifier: Framework :: Jupyter :: JupyterLab :: Extensions
+Classifier: Framework :: Jupyter :: JupyterLab :: Extensions :: Prebuilt
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Python: >=3.9
+Requires-Dist: humanize
+Description-Content-Type: text/markdown
+
+# cmdstanjupyter
+
+[![Github Actions Status](https://github.com/WardBrian/CmdStanJupyter/workflows/Build/badge.svg)](https://github.com/WardBrian/CmdStanJupyter/actions/workflows/build.yml)
+
+This extension provides syntax highlighting for Stan code in JupyterLab, as well as a `%%stan` magic command
+to define Stan models in Jupyter notebooks and build them with [CmdStanPy](https://github.com/stan-dev/cmdstanpy).
+
+## Requirements
+
+- JupyterLab >= 4.0.0
+
+## Install
+
+To install the extension, execute:
+
+```bash
+pip install cmdstanjupyter
+```
+
+**Note**: this does _not_ install [CmdStanPy](https://github.com/stan-dev/cmdstanpy) for you, in case you are only interested
+in Stan syntax highlighting and not the `%%stan` magic!
+
+Install it separately using `pip` or `conda`!
+
+## Usage
+
+<img width="400" alt="Screenshot of a notebook with Stan highlighting" src="https://github.com/user-attachments/assets/3b59f347-515a-4d30-a1cc-d7de1707c799" />
+
+To use the `magic` in your notebook, you need to lead the extension:
+
+```python
+%load_ext cmdstanjupyter
+```
+
+To define a stan model inside a jupyter notebook, start a cell with the `%%stan`
+magic. You can also provide a variable name, which is the variable name that
+the `cmdstanpy.CmdStanModel` object will be assigned to. For example:
+
+```stan
+%%stan paris_female_births
+data {
+    int male;
+    int female;
+}
+
+parameters {
+    real<lower=0, upper=1> p;
+}
+
+model {
+    female ~ binomial(male + female, p);
+}
+```
+
+When you run this cell, `cmdstanjupyter` will create a cmdstanpy CmdStanModel object,
+which will compile your model and allow you to sample from it.
+
+If the above code was stored in a file `births.stan`, the following is equivalent:
+
+```
+%stanf births.stan paris_female_births
+```
+
+To use your compiled model:
+
+```python
+fit = paris_female_births.sample(
+    data={'male': 251527, 'female': 241945},
+)
+```
+
+## Credits
+
+The %magic is heavily based on the previous [jupyterstan](https://github.com/janfreyberg/jupyterstan) package.
+The highlighting code is inspired by [jupyterlab-stata-highlight](https://github.com/kylebarron/jupyterlab-stata-highlight).
