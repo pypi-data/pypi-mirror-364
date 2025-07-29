@@ -1,0 +1,175 @@
+Metadata-Version: 2.4
+Name: cotyper
+Version: 0.7.1
+Summary: Wrapper around Typer to create command line interfaces for Pydantic models
+Author-email: Lukas Sanner <lukas.sanner@lgln.niedersachsen.de>
+License: MIT
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pydantic-core==2.33.2
+Requires-Dist: pydantic>=2.11.5
+Requires-Dist: typer>=0.15.2
+Requires-Dist: typing-extensions>=4.12.2
+Requires-Dist: click==8.0.0
+Requires-Dist: docstring-parser>=0.16
+Requires-Dist: setuptools>=76.1.0
+Provides-Extra: build
+Requires-Dist: build>=1.2.2.post1; extra == "build"
+Requires-Dist: setuptools>=80.9.0; extra == "build"
+Requires-Dist: wheel>=0.45.1; extra == "build"
+Provides-Extra: test
+Requires-Dist: pytest>=8.0; extra == "test"
+Requires-Dist: pytest-cov>=6.1.1; extra == "test"
+Provides-Extra: deploy
+Requires-Dist: twine>=6.1.0; extra == "deploy"
+Provides-Extra: dev
+Requires-Dist: pre-commit>=4.2.0; extra == "dev"
+Requires-Dist: pytest>=8.4.1; extra == "dev"
+Requires-Dist: ruff>=0.12.4; extra == "dev"
+Requires-Dist: ty>=0.0.1a14; extra == "dev"
+Dynamic: license-file
+
+# CoTyper
+
+[![CI Status](https://gitlab.opencode.de/lgln/cotyper/badges/master/pipeline.svg)](https://gitlab.opencode.de/lgln/cotyper/-/pipelines)
+[![Coverage](https://gitlab.opencode.de/lgln/cotyper/badges/master/coverage.svg)](https://gitlab.opencode.de/lgln/cotyper/-/commits/master)
+[![PyPI](https://img.shields.io/pypi/v/cotyper?label=PyPI%20version)](https://pypi.org/project/cotyper/)
+[![Downloads](https://img.shields.io/pypi/dm/cotyper)](https://pypi.org/project/cotyper/)
+[![Release](https://img.shields.io/github/release-date/lgln/cotyper)](https://pypi.org/project/cotyper/)
+
+Inspired by [Typer](https://github.com/tiangolo/typer)
+and [Pydantic](https://github.com/pydantic/pydantic).
+**Co**Typer since you add a lot of _co_ in category theory.
+
+CoTyper is a wrapper around Typer but with support for (nested) pydantic models as
+function arguments.
+
+❗ Note this project is in early development
+
+## Install
+Install the package via `pip`:
+
+```shell
+pip install cotyper
+```
+
+Or install the package via `uv`:
+```shell
+uv add cotyper
+```
+
+### Build from Source
+Clone the repository and build the package as wheel file
+
+```shell
+git clone https://gitlab.opencode.de/lgln/cotyper
+cd cotyper
+python -m build --wheel # or pip install .
+```
+
+## 🧑‍💻 Examples
+For the examples it is recommended to use the `uv` command line tool, but feel free to
+build the environment with `pip` or `poetry` as well.
+
+```python
+import datetime
+
+from pydantic import BaseModel
+
+from cotyper import App, unfold_cls
+
+app = App()
+
+
+class MetaData(BaseModel):
+    date: datetime.datetime = "2023-10-01T00:00:00"
+
+
+class Config(BaseModel):
+    user_name: str
+    url: str
+    meta: MetaData = MetaData()
+
+    
+class Foo(BaseModel):
+    bar: str = "baz"
+
+
+@app.struct_command("example")
+@unfold_cls(Config) # this will unfold the Config model into command line options, hence, exposing the fields of the model itself
+def example_command(config: Config, foo: Foo = Foo()):
+    """
+    Example command that takes a nested pydantic model as argument.
+
+    Args:
+        config (Config): Configuration model with user_name, url, and meta data.
+        foo (Foo): Another model with a bar attribute.
+    """
+    print(f"User: {config.user_name}, URL: {config.url}, Meta Date: {config.meta.date}")
+    print(f"Foo Bar: {foo.bar}")
+
+
+if __name__ == "__main__":
+    app()
+```
+
+And requesting help will show the nested models as options:
+
+```shell
+uv run examples/readme.py --help
+                                                                               
+Usage: readme.py [OPTIONS]                                                                           
+                                                                                                      
+╭─ Options ──────────────────────────────────────────────────────────────────────────────────────────╮
+│ *  --url                       TEXT  [default: None] [required]                                    │
+│    --install-completion              Install completion for the current shell.                     │
+│    --show-completion                 Show completion for the current shell, to copy it or          │
+│                                      customize the installation.                                   │
+│    --help                            Show this message and exit.                                   │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ User ─────────────────────────────────────────────────────────────────────────────────────────────╮
+│ *  --user-name        TEXT  [default: None] [required]                                             │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Meta ─────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --meta-date        [%Y-%m-%d|%Y-%m-%dT%H:%M:%S|%Y-%m-%d    [default: 2023-10-01 00:00:00]          │
+│                    %H:%M:%S]                                                                       │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Foo ──────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --foo-bar        TEXT  [default: baz]                                                              │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────╯```
+```
+
+🗒️ Note, that the `@unfold_cls(Config)` decorator is used to unfold the `Config` model into
+the fields of the model directly.
+
+
+And running the command with the toy information provides
+
+```shell
+uv run examples/readme.py --url "pydantic.dev" --user-name "Monty Python"
+User: Monty Python, URL: pydantic.dev, Meta Date: 2023-10-01 00:00:00
+Foo Bar: baz
+```
+
+## Extensive Examples
+See `examples/` for more examples. For example
+
+```shell
+uv run examples/extensive.py --help
+```
+
+## 🧑‍🔬 Tests
+Run
+```shell
+uv run pytest
+```
+
+## 📋 ToDo
+-[ ] documentation 
+
+## 🐍 Contributing
+See [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to contribute to this project.
+
+## 🗝️ License
+MIT License
