@@ -1,0 +1,27 @@
+Metadata-Version: 2.4
+Name: monpackage-addition
+Version: 0.2.0
+Summary: Package avec addition et CLI
+Author: ParfaiteSekongo
+Author-email: p88971582@gmail.com
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license
+Dynamic: requires-python
+Dynamic: summary
+
+# monpackage-addition
+
+Un petit package avec une fonction `add(a, b)` et une interface CLI :
+
+```bash
+addition-cli 10 5
+# Résultat : 15.0
+
