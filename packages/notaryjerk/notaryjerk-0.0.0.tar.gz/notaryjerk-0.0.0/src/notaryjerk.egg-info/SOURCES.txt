@@ -1,0 +1,16 @@
+LICENSE.md
+README.md
+pyproject.toml
+src/notaryjerk/LoadCommand.py
+src/notaryjerk/MachO.py
+src/notaryjerk/__init__.py
+src/notaryjerk/__main__.py
+src/notaryjerk/notarize.py
+src/notaryjerk/staple.py
+src/notaryjerk/utilities.py
+src/notaryjerk.egg-info/PKG-INFO
+src/notaryjerk.egg-info/SOURCES.txt
+src/notaryjerk.egg-info/dependency_links.txt
+src/notaryjerk.egg-info/entry_points.txt
+src/notaryjerk.egg-info/requires.txt
+src/notaryjerk.egg-info/top_level.txt
