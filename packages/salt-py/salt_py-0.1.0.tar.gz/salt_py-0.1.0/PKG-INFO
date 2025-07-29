@@ -1,0 +1,159 @@
+Metadata-Version: 2.4
+Name: salt-py
+Version: 0.1.0
+Author-email: ginwakeup <iacopoantonelli@gmail.com>
+License: MIT
+Requires-Python: <3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: typer>=0.16.0
+Requires-Dist: toml>=0.10.2
+Requires-Dist: pex>=2.46.2
+Requires-Dist: setuptools>=80.9.0
+Requires-Dist: loguru<1.0
+Requires-Dist: redis<7.0
+Requires-Dist: build<2.0
+Requires-Dist: grpcio-tools
+Requires-Dist: boto3
+Requires-Dist: PyYaml
+Requires-Dist: apscheduler
+Requires-Dist: pydantic_settings
+Requires-Dist: pika<2
+Requires-Dist: docker
+Provides-Extra: dev
+Requires-Dist: pytest>=8.4.1; extra == "dev"
+Requires-Dist: grpcio-tools; extra == "dev"
+Dynamic: license-file
+
+# Salt
+Salt is a Task Scheduler system with a difference.
+
+You can write dags and tasks in your favourite language (between the supported ones), with a set of unique dependencies, 
+and build them with Salt framework.
+
+After building the tasks, Salt can schedule them in isolated contexts that have all the dependencies needed to run.
+
+## Why Salt over Airflow
+Airflow dependency management is complex. Due to the Pythonic structure, it enforces you to use Python and take care
+of dependencies, docker images and environments, most of the times leading to complex and clashing environments
+that lead to a lot of work to keep organized.
+
+Salt removes all of this. Your DAG is self-contained with its dependencies and does not need anything but Salt framework
+to execute.
+
+## Getting Started
+Salt development requires `pdm` Python Package manager to be installed.
+
+Install the project in editable mode:
+
+>`pip install -e .[dev]`
+
+
+## Core Concepts
+### DAGs and Tasks
+DAGs and Tasks are defined in user packages using Salt framework.
+
+Salt Framework exposes bindings for Python to let users build tasks and dags. 
+The tasks and dags are built into a one-file package using `nuitka` and then simply executed by Salt.
+
+The scheduling logic is completely detached from the task/dag logic and is configured on the side through the Web UI.
+
+When Salt executes the compiled tasks and dags, the underlying framework automatically communicates with Salt backend
+to register the DAG and link it to its configuration, so it can be scheduled by the scheduler.
+
+To register a DAG module, user publishes it using Salt commands. 
+
+TODO
+The publishing process is yet to be defined.
+
+## Feature Considerations
+* Allow cycles and loops in DAGs
+* Add validation features for data computed by tasks, not just task success/failure. 
+* Allow DAGs to change their shape at run-time. Each Task is pushed only at the moment of execution, and never pre-parsed.
+  * This allow for DAGs to change depending on data computed during execution.
+* Provide a solid data driven & event driven integration/approach
+
+## Architecture Notes
+
+Developer
+[Dev's Code: graph.py / graph.cs]
+    → Developer writes code in Python or C# using Salt framework to define Workflows and Tasks.
+    ↓
+
+Workflow Build
+[Salt Build Tool - Python]
+    → Builds PEX/.exe/Docker/.zip
+[Salt Build Tool - C#]
+    → TODO
+
+Workflow Registry
+[Workflow Registry + Metadata DB]
+    → User registers workflow using Salt Workflow-Registry command
+    → Workflow registry stores workflow metadata in Redis backend and binary in S3 storage.
+
+Scheduling
+[Scheduler]
+    → Event/Data change triggers workflows or task runs.
+    → Queues task (task type + binary ref + input data)
+        Queuing happens by publishing ready-to-be-picked tasks on a table (e.g. a Redis backend or any resource that can be locked to avoid race conditions)
+        Workers lock a task and execute it, finally storing returned data in the backend database so the scheduler can access it.
+        Q. how do inputs work for first queued task?
+    ↓
+
+Workflow Pickup & Execution / Workers
+[Generic Worker Fleet (K8s / Celery)]
+    → Locks and picks task on Tasks page
+    → Pull task binary from task resource
+        Caching is vital here so binary is not pulled every time.
+    → Runs it (e.g., `./task.bin --input <args-id>`)
+        Args are stored in a backend resource such as Redis. The Task framework automatically pulls these and passes it to code.
+        XCOM similar approach? A lot of problems with serialization especially with custom types.
+    → Reports status/output
+
+## Build Python Workflows
+> pip install salt
+> salt build <project_path>
+
+The previous command outputs a `main.pex` file built from your python workflow wheel.
+This file is a standalone executable which bakes in all the dependencies needed to execute your workflow.
+
+## Register a Python Workflow
+To register a Python Workflow and Schedule it:
+> pip install salt
+> salt register-workflow <pyproject_path>
+
+The project must have been built already through `salt build`.
+
+### Generate Server gRPC Code
+> pip install salt
+> salt generate-server-code 
+e.g.
+> salt generate-server-code /Users/Iacopo/Documents/PyCharm/Salt/Salt/src/salt/server/grpc/protos /Users/Iacopo/Documents/PyCharm/Salt/Salt/src
+
+Note: Protobuf Python Codegen relies on the protos folder structure to generate python imports.
+Therefore, it's important to keep a mirrored sub-folder tree inside `/grpc/protos` so that folder tree is used to build
+the imports in the generated packages.
+e.g. in `workflow_pb2_grpc` we then get:
+
+```python
+from salt.server import workflow_pb2 as salt_dot_server_dot_workflow__pb2
+```
+instead of 
+```python
+import workflow_pb2
+```
+
+# Workflow Registry
+The workflow registry backend takes care of ingesting, registering and storing workflow binaries.
+
+The workflow metadata are stored in a table registry using Redis as a backend, and their binaries are stored in
+a S3 bucket.
+Both metadata and binaries can be found using the unique `key`.
+
+The workflow registry table is then consulted by the Scheduler, which in conjunction with the scheduling 
+configuration, will take care of executing workflows.
+
+# Scheduler
+Scheduling must be configured through a `salt.yaml` file placed in the workflow folder.
+
+The `salt.yaml` is evaluated and pushed to the Workflow Registry on Workflow Registration (`salt register-workflow` command).
