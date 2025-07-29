@@ -1,0 +1,17 @@
+scythe/__init__.py,sha256=S2sGUQ4pziFE9hmQ1qS158SrFsCa9wttV3PPm5lVyV8,78
+scythe/allocate.py,sha256=sKkGEqEZ42NJLvu6EJhpjrrlIfngJXTTJBkMINwInEE,4124
+scythe/base.py,sha256=T3gELcqlmLyYPNmYwJ-_aoCJL3cHgtfTWXa2l3yGrzA,8050
+scythe/hatchet.py,sha256=L8JvDj-kIeoXoXTH3yofswrHmWYP3Pshsej1JyXKf5I,94
+scythe/py.typed,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+scythe/registry.py,sha256=dhWsS4Z7klv_BHiDFxvTSBT8bSaX657AbXGamGLvvSQ,4857
+scythe/scatter_gather.py,sha256=2LCymiBVByKPG3JwuWiECfRTgDJ7W9CRVko0vNOcosk,13478
+scythe/storage.py,sha256=QaYh86st_Pt7_UbKavoNSkqx3sa7FTbyHqYgzKUZFFM,400
+scythe/worker.py,sha256=J6O7mlWk9P5tBCuyCksv60r9-22Fi-bVAyi3z4YNR10,4700
+scythe/utils/__init__.py,sha256=nFX3gYplg0oNWRdwXpc0uoWLI05QQk48d-Yxg_0rz6Y,48
+scythe/utils/filesys.py,sha256=dtrAJ_tsazdgtCfeuEM1yzaD0zE0h4ehQsuNul6W-oM,2807
+scythe/utils/results.py,sha256=XrhoGSA-PcXDiyHziX4jolQGSQJckFhfPIik7-iMSuM,2520
+scythe/utils/s3.py,sha256=nYyySwoagDzdbdGqLqq6J5OVjtiG8J4kqnf2KvL55GQ,1124
+scythe_engine-0.0.17.dist-info/METADATA,sha256=tanmPYdEEhgwclyj3lb0XVdVeUxb7av6Vr62C9cZlR8,3909
+scythe_engine-0.0.17.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+scythe_engine-0.0.17.dist-info/licenses/LICENSE,sha256=hNp6DmbGMuUcwlnpYS8E-ZHYU7kxfmRUP8pLGQaCnu8,1066
+scythe_engine-0.0.17.dist-info/RECORD,,
