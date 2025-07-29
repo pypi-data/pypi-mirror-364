@@ -1,0 +1,5 @@
+google-auth<3,>=2
+google-cloud-speech<3,>=2
+google-cloud-texttospeech<3,>=2
+google-genai==1.3.0
+livekit-agents<1.0.0,>=0.12.20
