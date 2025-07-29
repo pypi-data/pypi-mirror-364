@@ -1,0 +1,15 @@
+Metadata-Version: 2.4
+Name: django-route-mapper
+Version: 0.1.0
+Summary: Un outil Django pour générer une documentation des routes (URLs) en .txt
+Author: Momo
+Author-email: omomo9414@email.com
+Classifier: Framework :: Django
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: license-file
+Dynamic: summary
