@@ -1,0 +1,7 @@
+setup.py
+ADFoc.egg-info/PKG-INFO
+ADFoc.egg-info/SOURCES.txt
+ADFoc.egg-info/dependency_links.txt
+ADFoc.egg-info/requires.txt
+ADFoc.egg-info/top_level.txt
+adfoc/focal_mechanism_svm.py
