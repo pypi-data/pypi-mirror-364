@@ -1,0 +1,30 @@
+Metadata-Version: 2.4
+Name: SpaMV
+Version: 1.0.14
+Summary: The Python package for a spatial multi-omics integration algorithm called SpaMV.
+Author-email: Yang Liu <yangliu1214@hkbu.edu.hk>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/enderlogic/SpaMV
+Project-URL: Issues, https://github.com/enderlogic/SpaMV/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: pyro-ppl
+Requires-Dist: scanpy
+Requires-Dist: torch_geometric
+Requires-Dist: squidpy==1.6.2
+Requires-Dist: dask[dataframe]==2024.11.2
+
+This is a demo code for Spatial Multi-View representation learning algorithm. Before you run the code, please make sure that you have stored your data in the Data folder.
+
+To run the model for one time without interpretable mode, please use the following code
+```
+python main.py
+```
+
+To run the model for one time with interpretable mode, please use the following code
+```
+python main_interpretable.py
+```
+

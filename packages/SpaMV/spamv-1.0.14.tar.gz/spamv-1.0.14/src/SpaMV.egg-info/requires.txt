@@ -1,0 +1,5 @@
+pyro-ppl
+scanpy
+torch_geometric
+squidpy==1.6.2
+dask[dataframe]==2024.11.2
