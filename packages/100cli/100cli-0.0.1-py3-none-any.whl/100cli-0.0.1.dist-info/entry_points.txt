@@ -1,0 +1,2 @@
+[console_scripts]
+100cli = hundredcli.main:main
