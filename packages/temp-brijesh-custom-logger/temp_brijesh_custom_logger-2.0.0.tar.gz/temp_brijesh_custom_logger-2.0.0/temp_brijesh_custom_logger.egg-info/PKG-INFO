@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: temp_brijesh_custom_logger
+Version: 2.0.0
+Summary: Custom configurable logging utility
+Author-email: Brijesh Turabit <brijesh.turabit@gmail.com>
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+
+# Custom Logger
+
+A custom logger package for your Python applications.
