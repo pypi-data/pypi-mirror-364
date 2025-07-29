@@ -1,0 +1,146 @@
+# Django WooHoo
+
+**Django WooHoo** is a Django-compatible client library to securely integrate with the [WooHoo API](https://woohoo.in/) for initiating Amazon (and Flipkart-ready) coupon-based payouts. This library handles token management, signature generation, transaction processing, and audit logging.
+
+---
+
+## ✨ Features
+
+- 🔐 Secure handling of WooHoo authorization and bearer tokens  
+- 🔁 Automatic token caching with auto-refresh after expiry (6 days)  
+- 📦 Supports Amazon coupon disbursement via API  
+- 🧾 Logs every API request and response for traceability  
+- 🧱 Designed to integrate seamlessly with Django user models  
+
+---
+
+## 📦 Installation
+
+```bash
+pip install django-woohoo  # (when published to PyPI)
+````
+
+Or use it locally:
+
+```bash
+pip install -e /path/to/django_woohoo
+```
+
+---
+
+## ⚙️ Setup
+
+1. **Add to `INSTALLED_APPS`:**
+
+```python
+# settings.py
+INSTALLED_APPS = [
+    ...
+    "django_woohoo",
+]
+```
+
+2. **Set environment variables in your `.env` or system environment:**
+
+```env
+WOOHOO_BASE_URL="https://your-woohoo-api-endpoint.com"
+WOOHOO_CLIENT_ID="your-client-id"
+WOOHOO_CLIENT_SECRET="your-client-secret"
+WOOHOO_USERNAME="your-username"
+WOOHOO_PASSWORD="your-password"
+```
+
+3. **Apply migrations:**
+
+```bash
+python manage.py makemigrations django_woohoo
+python manage.py migrate
+```
+
+---
+
+## 🧩 Usage
+
+### Step 1: Prepare the input data
+
+```python
+from django_woohoo.dataclasses import (
+    PaymentBeneficiaryDetails,
+    PaymentInitiateTransactionDataClass
+)
+
+beneficiary = PaymentBeneficiaryDetails(
+    beneficiary_name="John Doe",
+    beneficiary_email="john@example.com",
+    beneficiary_phone="9999999999"
+)
+
+transaction_data = PaymentInitiateTransactionDataClass(
+    transfer_amount=500,
+    beneficiary_details=beneficiary
+)
+```
+
+### Step 2: Use the AmazonCouponClient to process payment
+
+```python
+from django_woohoo.client import AmazonCouponClient
+
+# `user` should be a Django user instance
+client = AmazonCouponClient(user=user)
+
+status, response = client.process_amount(
+    data=transaction_data,
+    sku_code="AMZ-500"  # example SKU from WooHoo
+)
+
+print(status)    # 200 on success
+print(response)  # Response JSON from WooHoo
+```
+
+---
+
+## 🧠 Internals
+
+### Models
+
+* **PlatformToken**: Caches WooHoo authorization and bearer tokens per platform
+* **PlatformPaymentRequestLog**: Logs every request/response made to WooHoo with user context
+
+### Helpers
+
+* **WoohooSignatureGeneratorHelper**: Generates HMAC SHA512-compliant request signatures
+* **get\_env\_variable**: Robust environment variable loader with `.env` support
+
+---
+
+## 🧪 Admin Usage (Optional)
+
+You may optionally register `PlatformToken` and `PlatformPaymentRequestLog` in the Django admin to monitor token and request data.
+
+---
+
+## ✅ TODO
+
+* [ ] Add Flipkart coupon support
+* [ ] Admin dashboards for logs
+* [ ] Retry support for failed requests
+* [ ] Custom exceptions and error classes
+
+---
+
+## 📝 License
+
+MIT License
+
+---
+
+## 🤝 Contributing
+
+Feel free to fork, enhance, or raise issues. Pull requests welcome!
+
+---
+
+## 📬 Contact
+
+For integration help or issues, open an issue or contact the maintainer.
