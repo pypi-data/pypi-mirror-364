@@ -1,0 +1,12 @@
+README.md
+pyproject.toml
+src/semantic_eq.egg-info/PKG-INFO
+src/semantic_eq.egg-info/SOURCES.txt
+src/semantic_eq.egg-info/dependency_links.txt
+src/semantic_eq.egg-info/requires.txt
+src/semantic_eq.egg-info/top_level.txt
+src/semantic_eq_sdk/__init__.py
+src/semantic_eq_sdk/client.py
+src/semantic_eq_sdk/models.py
+test/test_client.py
+test/test_sdk_openai.py
