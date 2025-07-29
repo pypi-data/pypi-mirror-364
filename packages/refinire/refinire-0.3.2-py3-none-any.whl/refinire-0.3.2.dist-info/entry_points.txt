@@ -1,0 +1,8 @@
+[console_scripts]
+refinire-setup = refinire.cli:main
+
+[oneenv.templates]
+agents = refinire.templates:agents_template
+core = refinire.templates:core_template
+development = refinire.templates:development_template
+tracing = refinire.templates:tracing_template
