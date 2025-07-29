@@ -1,0 +1,17 @@
+LICENSE
+README.md
+pyproject.toml
+argocli/__init__.py
+argocli.egg-info/PKG-INFO
+argocli.egg-info/SOURCES.txt
+argocli.egg-info/dependency_links.txt
+argocli.egg-info/entry_points.txt
+argocli.egg-info/requires.txt
+argocli.egg-info/top_level.txt
+argocli/cli/main.py
+argocli/commands/command.py
+argocli/commands/workflow/__init__.py
+argocli/commands/workflow/list.py
+argocli/commands/workflow/status.py
+argocli/commands/workflow/view.py
+argocli/core/client.py
