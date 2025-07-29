@@ -1,0 +1,9 @@
+websockets
+Pillow
+asyncio
+rustPlusPushReceiver==0.6.1
+http-ece
+requests
+numpy
+scipy
+betterproto==2.0.0b7
