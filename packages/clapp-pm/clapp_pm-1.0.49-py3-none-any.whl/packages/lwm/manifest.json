@@ -1,0 +1,15 @@
+{
+    "name": "lwm",
+    "version": "1.0.0",
+    "language": "lua",
+    "entry": "main.lua",
+    "description": "Modern ve profesyonel Lua pencere yöneticisi",
+    "dependencies": [
+        "awesome",
+        "lua",
+        "vicious",
+        "playerctl",
+        "alacritty",
+        "fonts-jetbrains-mono"
+    ]
+} 
