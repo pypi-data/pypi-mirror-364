@@ -1,0 +1,16 @@
+[project]
+name = "securepasswordgen"
+version = "1.0.1"
+description = "A secure password generator CLI tool."
+authors = [{ name="vishnu gopal", email="pg.vishnugopal@gmail.com" }]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.7"
+keywords = ["password", "generator", "cli", "security"]
+
+[project.scripts]
+securepasswordgen = "securepasswordgen.cli:main"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
