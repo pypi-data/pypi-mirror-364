@@ -1,0 +1,9 @@
+README.md
+setup.cfg
+setup.py
+rithlog/__init__.py
+rithlog.egg-info/PKG-INFO
+rithlog.egg-info/SOURCES.txt
+rithlog.egg-info/dependency_links.txt
+rithlog.egg-info/requires.txt
+rithlog.egg-info/top_level.txt
