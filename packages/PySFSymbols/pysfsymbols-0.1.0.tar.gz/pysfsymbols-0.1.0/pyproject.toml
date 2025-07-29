@@ -1,0 +1,29 @@
+[build-system]
+requires = ["hatchling>=1.26", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "PySFSymbols"
+description = 'A Python package for working with SF Symbols within PyQt.'
+readme = "README.md"
+authors = [
+  { name = "Thom Cummings", email = "thom-cummings@outlook.com" },
+]
+dynamic = ["version"]
+license = "MIT"
+license-files = ["LICENSE"]
+keywords = []
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.9"
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/th0mcumm1ngs/PySFSymbols"
+Documentation = "https://github.com/th0mcumm1ngs/PySFSymbols#readme"
+Issues = "https://github.com/th0mcumm1ngs/PySFSymbols/issues"
+
+[tool.hatch.version]
+path = "src/pysfsymbols/__init__.py"
