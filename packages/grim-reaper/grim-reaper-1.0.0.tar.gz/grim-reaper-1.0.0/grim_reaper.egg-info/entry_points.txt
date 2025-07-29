@@ -1,0 +1,7 @@
+[console_scripts]
+grim = py_grim.grim_gateway:main
+grim-backup = py_grim.backup:main
+grim-health = py_grim.health:main
+grim-monitor = py_grim.monitor:main
+grim-scan = py_grim.scanner:main
+scythe = scythe.scythe:main

@@ -1,0 +1,20 @@
+include README.md
+include LICENSE
+include grim_throne.sh
+include py_grim/requirements.txt
+include py_grim/README.md
+include scythe/README.md
+include scythe/config/*.yaml
+include scythe/core/*.py
+include config/*.conf
+include config/*.tsk
+include ascii/ascii/*.txt
+recursive-include py_grim *.py
+recursive-include scythe *.py
+recursive-exclude * __pycache__
+recursive-exclude * *.pyc
+recursive-exclude * *.pyo
+recursive-exclude * venv
+recursive-exclude * .venv
+recursive-exclude * env
+recursive-exclude * .env 
