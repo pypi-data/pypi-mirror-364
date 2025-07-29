@@ -1,0 +1,72 @@
+
+# Bump version in 
+# /polsartools/version.json
+#  __version__.py
+#  __init__.py
+# conda-recipe/meta.yaml
+# docs/source/conf.py
+
+0.8
+added .tif for all functions 
+added pwg (psuedo geotag) for RGB .png, added optional geotif RGB, optional moving average smoothing
+added rgb function for decomposed powers
+added dprvic, dp_desc, fp_sign (4 types of polarimetric signatures)
+added stokes_parm function
+added risat L11 reader, esar_gtc reader
+update convert_S for full and dual/compact
+update dxpRGB for sxy 
+
+NISAR reader
+	added full-pol support rslc, gslc 
+	updated with chunk-based mem-load
+	parallel processing
+	fix rslc memory issue 
+
+ISRO_ASAR reader 
+	addedLevel-1 .tif support 
+	updated with chunk-based mem-load
+	parallel processing
+
+
+QGIS plugin support
+	replaced h5py package with tables for qgis plugin support
+	added QGIS plugin support for functions 
+
+
+
+# BUILD DOCS
+sphinx-build -M clean docs/source docs/build
+sphinx-build -M html docs/source docs/build
+sphinx-build -M latexpdf docs/source docs/build
+
+# PyPI
+python -m build or 
+python setup.py bdist_wheel
+python setup.py sdist
+
+# build Wheels
+cibuildwheel
+copy the wheels to bdist_wheel folder
+
+# UPLOAD to PyPI
+python -m twine check dist/*
+python -m twine upload dist/*
+enter token
+
+# build Conda packages
+cd conda-recipe
+conda build .
+# conda build --python=3.9 .
+# conda build --python=3.10 .
+
+# UPLOAD to conda
+anaconda upload //AppData/Local/anaconda3/conda-bld/win-64/polsartools-0.6.1-py38_0.conda
+
+
+conda build purge
+
+
+################### REFERNCES
+https://packaging.python.org/en/latest/tutorials/packaging-projects/
+https://realpython.com/pypi-publish-python-package/
+https://betterscientificsoftware.github.io/python-for-hpc/tutorials/python-pypi-packaging/
