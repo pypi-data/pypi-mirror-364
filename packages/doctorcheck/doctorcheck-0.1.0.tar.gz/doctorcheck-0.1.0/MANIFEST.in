@@ -1,0 +1,2 @@
+recursive-include doctorcheck/static *
+recursive-include doctorcheck/templates *
