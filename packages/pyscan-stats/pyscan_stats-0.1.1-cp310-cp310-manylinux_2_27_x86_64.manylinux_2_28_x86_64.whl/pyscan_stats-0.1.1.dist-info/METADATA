@@ -1,0 +1,92 @@
+Metadata-Version: 2.2
+Name: pyscan-stats
+Version: 0.1.1
+Summary: C++ spatial scan wrapper for Python
+Author: Michael Matheny
+License: MIT License
+         
+         Copyright (c) 2018 michaelmathen
+         
+         Permission is hereby granted, free of charge, to any person obtaining a copy
+         of this software and associated documentation files (the "Software"), to deal
+         in the Software without restriction, including without limitation the rights
+         to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+         copies of the Software, and to permit persons to whom the Software is
+         furnished to do so, subject to the following conditions:
+         
+         The above copyright notice and this permission notice shall be included in all
+         copies or substantial portions of the Software.
+         
+         THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+         IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+         FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+         AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+         LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+         OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+         SOFTWARE.
+         
+Requires-Python: >=3.8
+Provides-Extra: dev
+Requires-Dist: scikit-build-core; extra == "dev"
+Requires-Dist: cmake; extra == "dev"
+Requires-Dist: ninja; extra == "dev"
+Requires-Dist: pybind11; extra == "dev"
+Requires-Dist: pybind11-global; extra == "dev"
+Requires-Dist: twine; extra == "dev"
+Requires-Dist: build; extra == "dev"
+Requires-Dist: cibuildwheel; extra == "dev"
+Provides-Extra: utils
+Requires-Dist: geopandas>=0.13.2; extra == "utils"
+Requires-Dist: matplotlib>=3.7.5; extra == "utils"
+Requires-Dist: pandas>=2.0.3; extra == "utils"
+Requires-Dist: pyqt6>=6.7.1; extra == "utils"
+Requires-Dist: shapely>=2.0.7; extra == "utils"
+Description-Content-Type: text/markdown
+
+# pyscan
+This is a python wrapper around a large number of anomaly detection algorithms written in c++. These algorithms are from several papers:
+* [The Kernel Scan Statistic](https://arxiv.org/abs/1906.09381)
+* [Scalable Spatial Scan Statistics for Trajectories](https://arxiv.org/abs/1906.01693)
+* [Computing Approximate Statistical Discrepancy](https://arxiv.org/abs/1804.11287)
+* [Scalable Spatial Scan Statistics through Sampling](https://dl.acm.org/citation.cfm?id=2996939)
+* [Spatial Scan Statistics: Approximations and Performance Studies](http://www.cs.utah.edu/~jeffp/papers/stat-disc-KDD06.pdf)
+* [The Hunting of the Bump: On Maximizing Statistical Discrepancy](http://www.cs.utah.edu/~jeffp/papers/stat-disc-SODA06.pdf)
+
+If you are interested in using any of these for comparison studies, finding disease outbreaks, collaberations, etc please reach out and email me. I am happy to be of assistance.
+
+To compile this you will need:
+
+* python python 3.x
+* cgal
+* gsl
+* cmake
+
+## Instructions
+
+```
+> git submodule update --init
+> mkdir build
+> cd build
+> cmake ..
+> make
+``` 
+You should then be able to use this library as a standard python module by doing:
+import pyscan
+
+### For Mac M1 Chip User
+In CMakeLists.txt, you need to comment out 
+```
+set(CMAKE_CXX_FLAGS_RELEASE "-fPIC -w -O2 -march=native -DNDEBUG")
+set(CMAKE_C_FLAGS_RELEASE "-fPIC -w -O2 -march=native -DNDEBUG")
+```
+and uncomment
+```
+set(CMAKE_CXX_FLAGS_RELEASE "-fPIC -w -O2 -mcpu=apple-m1 -DNDEBUG")
+set(CMAKE_C_FLAGS_RELEASE "-fPIC -w -O2 -mcpu=apple-m1 -DNDEBUG")
+```
+
+Make sure use this library on arm64 running Python with the same Python version that built the library. 
+
+
+## Website
+https://michaelmathen.github.io/pyscan/
