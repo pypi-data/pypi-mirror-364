@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+document_folder_structure/__init__.py
+document_folder_structure/__main__.py
+document_folder_structure/main.py
+document_folder_structure.egg-info/PKG-INFO
+document_folder_structure.egg-info/SOURCES.txt
+document_folder_structure.egg-info/dependency_links.txt
+document_folder_structure.egg-info/entry_points.txt
+document_folder_structure.egg-info/requires.txt
+document_folder_structure.egg-info/top_level.txt
