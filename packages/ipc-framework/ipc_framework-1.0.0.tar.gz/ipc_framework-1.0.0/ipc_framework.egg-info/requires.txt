@@ -1,0 +1,13 @@
+
+[all]
+ipc-framework[dev,examples]
+
+[dev]
+pytest>=6.0.0
+black>=21.0.0
+flake8>=3.8.0
+mypy>=0.910
+isort>=5.0.0
+
+[examples]
+psutil>=5.8.0

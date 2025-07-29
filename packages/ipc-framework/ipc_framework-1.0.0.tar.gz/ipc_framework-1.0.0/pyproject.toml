@@ -1,0 +1,93 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ipc-framework"
+version = "1.0.0"
+description = "Efficient Inter-Process Communication Framework with hierarchical application and channel management"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "ifesol", email = "ifesol@example.com"}
+]
+maintainers = [
+    {name = "ifesol", email = "ifesol@example.com"}
+]
+keywords = ["ipc", "communication", "networking", "client-server", "messaging"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Networking",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.7"
+dependencies = []
+
+[project.optional-dependencies]
+examples = ["psutil>=5.8.0"]
+dev = [
+    "pytest>=6.0.0",
+    "black>=21.0.0",
+    "flake8>=3.8.0",
+    "mypy>=0.910",
+    "isort>=5.0.0",
+]
+all = ["ipc-framework[examples,dev]"]
+
+[project.urls]
+Homepage = "https://github.com/ifesol/ipc-framework"
+Documentation = "https://github.com/ifesol/ipc-framework#readme"
+Repository = "https://github.com/ifesol/ipc-framework.git"
+"Bug Tracker" = "https://github.com/ifesol/ipc-framework/issues"
+
+[project.scripts]
+ipc-server = "ipc_framework.examples.basic_server:main"
+ipc-chat = "ipc_framework.examples.chat_client:main"
+ipc-file = "ipc_framework.examples.file_client:main"
+ipc-monitor = "ipc_framework.examples.monitoring_client:main"
+ipc-demo = "ipc_framework.demo:main"
+
+[tool.setuptools]
+packages = ["ipc_framework", "ipc_framework.examples"]
+
+[tool.setuptools.package-data]
+ipc_framework = ["py.typed"]
+
+[tool.black]
+line-length = 88
+target-version = ['py37']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+
+[tool.mypy]
+python_version = "3.7"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true 
