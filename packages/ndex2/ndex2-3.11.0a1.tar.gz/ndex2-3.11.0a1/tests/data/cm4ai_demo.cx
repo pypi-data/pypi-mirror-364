@@ -1,0 +1,593 @@
+[
+  {
+    "numberVerification": [
+      {
+        "longNumber": 281474976710655
+      }
+    ]
+  },
+  {
+    "metaData": [
+      {
+        "name": "nodes",
+        "elementCount": 23,
+        "idCounter": 23,
+        "version": "1.0",
+        "consistencyGroup": 1,
+        "properties": []
+      },
+      {
+        "name": "edges",
+        "elementCount": 33,
+        "idCounter": 33,
+        "version": "1.0",
+        "consistencyGroup": 1,
+        "properties": []
+      },
+      {
+        "name": "networkAttributes",
+        "elementCount": 3,
+        "idCounter": 3,
+        "version": "1.0",
+        "consistencyGroup": 1,
+        "properties": []
+      },
+      {
+        "name": "edgeAttributes",
+        "elementCount": 33,
+        "idCounter": 33,
+        "version": "1.0",
+        "consistencyGroup": 1,
+        "properties": []
+      }
+    ]
+  },
+  {
+    "nodes": [
+      {
+        "@id": 0,
+        "n": "HDAC1",
+        "r": "HDAC1"
+      },
+      {
+        "@id": 1,
+        "n": "PPP1CC",
+        "r": "PPP1CC"
+      },
+      {
+        "@id": 2,
+        "n": "KMT2A",
+        "r": "KMT2A"
+      },
+      {
+        "@id": 3,
+        "n": "USP7",
+        "r": "USP7"
+      },
+      {
+        "@id": 4,
+        "n": "EHMT1",
+        "r": "EHMT1"
+      },
+      {
+        "@id": 5,
+        "n": "DNMT1",
+        "r": "DNMT1"
+      },
+      {
+        "@id": 6,
+        "n": "PHF6",
+        "r": "PHF6"
+      },
+      {
+        "@id": 7,
+        "n": "BRD7",
+        "r": "BRD7"
+      },
+      {
+        "@id": 8,
+        "n": "KMT2D",
+        "r": "KMT2D"
+      },
+      {
+        "@id": 9,
+        "n": "BAZ1B",
+        "r": "BAZ1B"
+      },
+      {
+        "@id": 10,
+        "n": "ING1",
+        "r": "ING1"
+      },
+      {
+        "@id": 11,
+        "n": "CHD4",
+        "r": "CHD4"
+      },
+      {
+        "@id": 12,
+        "n": "PPP1CB",
+        "r": "PPP1CB"
+      },
+      {
+        "@id": 13,
+        "n": "YWHAE",
+        "r": "YWHAE"
+      },
+      {
+        "@id": 14,
+        "n": "DNMT3B",
+        "r": "DNMT3B"
+      },
+      {
+        "@id": 15,
+        "n": "KMT2C",
+        "r": "KMT2C"
+      },
+      {
+        "@id": 16,
+        "n": "AURKB",
+        "r": "AURKB"
+      },
+      {
+        "@id": 17,
+        "n": "CHD1",
+        "r": "CHD1"
+      },
+      {
+        "@id": 18,
+        "n": "CBX3",
+        "r": "CBX3"
+      },
+      {
+        "@id": 19,
+        "n": "DNMT3A",
+        "r": "DNMT3A"
+      },
+      {
+        "@id": 20,
+        "n": "SMARCA4",
+        "r": "SMARCA4"
+      },
+      {
+        "@id": 21,
+        "n": "PARP1",
+        "r": "PARP1"
+      },
+      {
+        "@id": 22,
+        "n": "MORF4L1",
+        "r": "MORF4L1"
+      }
+    ]
+  },
+  {
+    "edges": [
+      {
+        "@id": 116,
+        "s": 0,
+        "t": 1,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 267,
+        "s": 2,
+        "t": 3,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 269,
+        "s": 2,
+        "t": 1,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 45,
+        "s": 4,
+        "t": 3,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 47,
+        "s": 4,
+        "t": 1,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 319,
+        "s": 5,
+        "t": 1,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 18,
+        "s": 6,
+        "t": 5,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 132,
+        "s": 7,
+        "t": 8,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 32,
+        "s": 4,
+        "t": 9,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 254,
+        "s": 10,
+        "t": 3,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 343,
+        "s": 1,
+        "t": 11,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 111,
+        "s": 0,
+        "t": 8,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 340,
+        "s": 12,
+        "t": 13,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 162,
+        "s": 9,
+        "t": 14,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 271,
+        "s": 2,
+        "t": 11,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 176,
+        "s": 9,
+        "t": 1,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 46,
+        "s": 4,
+        "t": 12,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 222,
+        "s": 15,
+        "t": 8,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 264,
+        "s": 2,
+        "t": 8,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 331,
+        "s": 3,
+        "t": 12,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 318,
+        "s": 5,
+        "t": 12,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 195,
+        "s": 14,
+        "t": 16,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 325,
+        "s": 17,
+        "t": 12,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 165,
+        "s": 9,
+        "t": 18,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 72,
+        "s": 19,
+        "t": 16,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 70,
+        "s": 19,
+        "t": 12,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 194,
+        "s": 14,
+        "t": 1,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 103,
+        "s": 0,
+        "t": 20,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 305,
+        "s": 21,
+        "t": 13,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 293,
+        "s": 22,
+        "t": 16,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 339,
+        "s": 12,
+        "t": 11,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 314,
+        "s": 8,
+        "t": 13,
+        "i": "interacts-with"
+      },
+      {
+        "@id": 36,
+        "s": 4,
+        "t": 18,
+        "i": "interacts-with"
+      }
+    ]
+  },
+  {
+    "networkAttributes": [
+      {
+        "n": "name",
+        "v": "cellmaps_generate_hierarchy PPI 0.1 cutoff",
+        "d": "string"
+      },
+      {
+        "n": "description",
+        "v": "Protein to Protein Interaction\nnetwork generated by cellmaps_generate_hierarchy\ntool from embedding XXX where top 10% of interactions sorted by weight\n"
+      },
+      {
+        "n": "cutoff",
+        "v": "0.1"
+      }
+    ]
+  },
+  {
+    "edgeAttributes": [
+      {
+        "po": 116,
+        "n": "Weight",
+        "v": 0.3748556798876237,
+        "d": "double"
+      },
+      {
+        "po": 267,
+        "n": "Weight",
+        "v": 0.36992769322871755,
+        "d": "double"
+      },
+      {
+        "po": 269,
+        "n": "Weight",
+        "v": 0.3649249910458643,
+        "d": "double"
+      },
+      {
+        "po": 45,
+        "n": "Weight",
+        "v": 0.3618914652907935,
+        "d": "double"
+      },
+      {
+        "po": 47,
+        "n": "Weight",
+        "v": 0.36132646262168816,
+        "d": "double"
+      },
+      {
+        "po": 319,
+        "n": "Weight",
+        "v": 0.36086101609894095,
+        "d": "double"
+      },
+      {
+        "po": 18,
+        "n": "Weight",
+        "v": 0.35895750884222155,
+        "d": "double"
+      },
+      {
+        "po": 132,
+        "n": "Weight",
+        "v": 0.35773836023022876,
+        "d": "double"
+      },
+      {
+        "po": 32,
+        "n": "Weight",
+        "v": 0.3486294491950973,
+        "d": "double"
+      },
+      {
+        "po": 254,
+        "n": "Weight",
+        "v": 0.3457508241570042,
+        "d": "double"
+      },
+      {
+        "po": 343,
+        "n": "Weight",
+        "v": 0.34465660909039175,
+        "d": "double"
+      },
+      {
+        "po": 111,
+        "n": "Weight",
+        "v": 0.34448947495366466,
+        "d": "double"
+      },
+      {
+        "po": 340,
+        "n": "Weight",
+        "v": 0.32911824175133797,
+        "d": "double"
+      },
+      {
+        "po": 162,
+        "n": "Weight",
+        "v": 0.3289484287515706,
+        "d": "double"
+      },
+      {
+        "po": 271,
+        "n": "Weight",
+        "v": 0.3279738182369589,
+        "d": "double"
+      },
+      {
+        "po": 176,
+        "n": "Weight",
+        "v": 0.32601011587428497,
+        "d": "double"
+      },
+      {
+        "po": 46,
+        "n": "Weight",
+        "v": 0.3250640355455926,
+        "d": "double"
+      },
+      {
+        "po": 222,
+        "n": "Weight",
+        "v": 0.32486623374830315,
+        "d": "double"
+      },
+      {
+        "po": 264,
+        "n": "Weight",
+        "v": 0.32473292188621805,
+        "d": "double"
+      },
+      {
+        "po": 331,
+        "n": "Weight",
+        "v": 0.324731872776835,
+        "d": "double"
+      },
+      {
+        "po": 318,
+        "n": "Weight",
+        "v": 0.3228252790792927,
+        "d": "double"
+      },
+      {
+        "po": 195,
+        "n": "Weight",
+        "v": 0.313717736565784,
+        "d": "double"
+      },
+      {
+        "po": 325,
+        "n": "Weight",
+        "v": 0.31226430865681204,
+        "d": "double"
+      },
+      {
+        "po": 165,
+        "n": "Weight",
+        "v": 0.31156249814026293,
+        "d": "double"
+      },
+      {
+        "po": 72,
+        "n": "Weight",
+        "v": 0.31108185816813416,
+        "d": "double"
+      },
+      {
+        "po": 70,
+        "n": "Weight",
+        "v": 0.30836469860553395,
+        "d": "double"
+      },
+      {
+        "po": 194,
+        "n": "Weight",
+        "v": 0.30787891667478234,
+        "d": "double"
+      },
+      {
+        "po": 103,
+        "n": "Weight",
+        "v": 0.3071784373301565,
+        "d": "double"
+      },
+      {
+        "po": 305,
+        "n": "Weight",
+        "v": 0.30541081248761487,
+        "d": "double"
+      },
+      {
+        "po": 293,
+        "n": "Weight",
+        "v": 0.30408966913434543,
+        "d": "double"
+      },
+      {
+        "po": 339,
+        "n": "Weight",
+        "v": 0.3014310971662991,
+        "d": "double"
+      },
+      {
+        "po": 314,
+        "n": "Weight",
+        "v": 0.3010759369798523,
+        "d": "double"
+      },
+      {
+        "po": 36,
+        "n": "Weight",
+        "v": 0.30085316505799453,
+        "d": "double"
+      }
+    ]
+  },
+  {
+    "status": [
+      {
+        "error": "",
+        "success": true
+      }
+    ]
+  }
+]
