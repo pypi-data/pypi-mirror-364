@@ -1,0 +1,12 @@
+LICENSE
+LICENSE-TASKS
+README.md
+pyproject.toml
+requirements.txt
+octotoolkit.egg-info/PKG-INFO
+octotoolkit.egg-info/SOURCES.txt
+octotoolkit.egg-info/dependency_links.txt
+octotoolkit.egg-info/requires.txt
+octotoolkit.egg-info/top_level.txt
+octotools/__init__.py
+octotools/solver.py
