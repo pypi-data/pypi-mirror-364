@@ -1,0 +1,6 @@
+Exscript==2.6.28
+
+[dev]
+python-dotenv==0.20.0
+toml==0.10.2
+yapf==0.40.1
