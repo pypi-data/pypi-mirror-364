@@ -1,0 +1,44 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "kmeruniq"
+dynamic = ["version"]
+description = "Extract uniq kmer into an ondisk efficient datastructure and allows querying"
+readme = "README.md"
+license = "BSD-3-Clause"
+requires-python = ">= 3.9"
+authors = [
+    { name = "Charles Paperman", email = "charles.paperman@univ-lille.fr" },
+    { name = "Camille Marchet", email = "camille.marchet@univ-lille.fr" },
+]
+keywords = [
+   "DNA", "kmer" 
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: BSD License",
+    "Topic :: Scientific/Engineering :: Bio-Informatics"
+]
+dependencies = [
+    "tqdm",
+    "vizibridge",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "mypy",
+    "pytest",
+]
+
+
+[project.urls]
+Repository = "https://gitlab.inria.fr/vizisoft/kmeruniq"
+
+[project.scripts]
+kmeruniq = "kmeruniq.__main__:main"
+
+[tool.hatch.version]
+path = "kmeruniq/__init__.py"
