@@ -1,0 +1,16 @@
+LICENSE
+README.md
+cbr_client.py
+pyproject.toml
+setup.py
+cbr_client.egg-info/PKG-INFO
+cbr_client.egg-info/SOURCES.txt
+cbr_client.egg-info/dependency_links.txt
+cbr_client.egg-info/requires.txt
+cbr_client.egg-info/top_level.txt
+tests/test_client.py
+tests/test_dictionaries.py
+tests/test_get_receipts.py
+tests/test_messages.py
+tests/test_profile.py
+tests/test_tasks.py
