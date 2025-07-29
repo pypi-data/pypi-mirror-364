@@ -1,0 +1,36 @@
+Metadata-Version: 2.3
+Name: agrobiota-sdk
+Version: 0.1.0a0
+Summary: An official SDK library for the AGROBIOTA environment
+License: MIT
+Keywords: Bioinformatics,AGROBIOTA,SDK
+Author: BIOTROP Bioinformatics Team
+Author-email: bioinfo@biotrop.com.br
+Requires-Python: >=3.12
+Classifier: Programming Language :: Python :: 3.12
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Other Audience
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Requires-Dist: aiohttp (>=3.12.14,<4.0.0)
+Requires-Dist: openpyxl (>=3.1.5,<4.0.0)
+Requires-Dist: pandas (>=2.3.1,<3.0.0)
+Requires-Dist: pydantic (>=2.11.7,<3.0.0)
+Requires-Dist: pytest (>=8.4.1,<9.0.0)
+Requires-Dist: pytest-asyncio (>=1.1.0,<2.0.0)
+Requires-Dist: requests (>=2.32.4,<3.0.0)
+Requires-Dist: rich-click (>=1.8.9,<2.0.0)
+Project-URL: Homepage, https://github.com/Biotrop/agb-sdk
+Description-Content-Type: text/markdown
+
+# Agrobiota SDK
+
+This package contains the code for the Agrobiota Environment.
+
+## Installation
+
+```bash
+python3.12 -m pip install agrobiota-sdk
+```
+
