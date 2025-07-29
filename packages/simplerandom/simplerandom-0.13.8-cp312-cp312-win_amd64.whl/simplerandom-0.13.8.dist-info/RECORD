@@ -1,0 +1,16 @@
+simplerandom/__init__.py,sha256=65gXnVnIR7RPknSD7884RhiqfJoxCejsdAw7D80jiBo,396
+simplerandom/_bitcolumnmatrix/__init__.py,sha256=XTNZiUDBramJm_EkMwMLu0U_jAT8D5Yc5dc187K7PQQ,377
+simplerandom/_bitcolumnmatrix/_bitcolumnmatrix_cython.cp312-win_amd64.pyd,sha256=HCdsudTMuvRrfCZf04fYH23r8HKIvxs5DHzQ2WUoG8s,151040
+simplerandom/_bitcolumnmatrix/_bitcolumnmatrix_py.py,sha256=DPzpnHLSX8NwQ-rQq5VSwJjfgIJ5YiJvq_gTHjY9cdU,4738
+simplerandom/_version/__init__.py,sha256=HNvhPulE9CwW5W2U1LpMEy0bu2h45fDbOeE-TpYlfmE,339
+simplerandom/iterators/__init__.py,sha256=0RAConZ0ajVldDQxQUjMFi9pj68HxjdCiio-x2RXnYA,445
+simplerandom/iterators/_iterators_cython.cp312-win_amd64.pyd,sha256=mc3vIq4HieRHVSFCxAq3ZIaurtcHBODQlMYApAom-C4,331264
+simplerandom/iterators/_iterators_py.py,sha256=EJ-m5jDdPTt6E_B2-Wuq1xldzFpYMHpqccn9xxL0Zoc,40922
+simplerandom/iterators/test.py,sha256=763W73X_g4-nwDlLnmkETiKPAf9g9R1SvUPAwId_uh0,8066
+simplerandom/random/__init__.py,sha256=XUpjScEetRpJ_a_UghZfFDLLvGrrgpP9U7myPIfqBvo,488
+simplerandom/random/_random_py.py,sha256=lkAwuHmCFuDgIpr8o12p9zQ_lN7BkKNsvmBALG-qu4A,5828
+simplerandom-0.13.8.dist-info/licenses/LICENSE.txt,sha256=Dwdhh2f3iwkokBG0aH_urVQ_Htb1vY3oyb6outaMwvU,1212
+simplerandom-0.13.8.dist-info/METADATA,sha256=coTQ2w6zQbYO2UM4hhLSfjNrVL-3NSOj7y_xZ0ODknA,9903
+simplerandom-0.13.8.dist-info/WHEEL,sha256=8UP9x9puWI0P1V_d7K2oMTBqfeLNm21CTzZ_Ptr0NXU,101
+simplerandom-0.13.8.dist-info/top_level.txt,sha256=mP62sHn3Uo67h_OKEsKnTBtOymTvr0BHaAnzYU-M0IQ,13
+simplerandom-0.13.8.dist-info/RECORD,,
