@@ -1,0 +1,3 @@
+[console_scripts]
+codeql-wrapper=codeql_wrapper.entrypoints.cli:cli
+
