@@ -1,0 +1,66 @@
+# Ecode CMD💻
+A new vertion of Ecode CMD!
+<br>
+Vertion 0.3!
+
+# Commands
+A command-line tool written in Python that supports commands like:
+- print
+- rannumber
+- run
+- . (credits) 
+- open
+- create
+- env
+- save
+- load
+- create
+- remove
+- makedir
+- say
+- time
+- listfiles
+- edit
+- startfile
+- 
+
+# Credits
+- Amirali
+- Amirali
+- Amirali
+- Batman
+- Amirali
+- Amirali
+
+
+## What was added in this version❓
+commands:
+- htmllocal
+<br>
+Resolved errors:
+<br>
+Fixed an issue where the second word in the print command was considered a color.
+
+## How to use "color" in print command❓
+```bash
+Ecode print <your text> --color <a color for your text> 
+```
+
+## How to use html local❓
+```bash
+Ecode htmllocal <your html file path>
+```
+Or if you want to use file selector:
+```bash
+Ecode htmllocal selector
+```
+
+## ⚙️ Installation
+```bash
+pip install Ecode-cmd==3
+```
+
+## How to use it❓
+```bash
+Ecode
+```
