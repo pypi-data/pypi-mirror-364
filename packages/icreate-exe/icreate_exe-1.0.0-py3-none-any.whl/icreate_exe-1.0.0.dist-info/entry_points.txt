@@ -1,0 +1,2 @@
+[console_scripts]
+icreate-exe = icreateExe.icreateExe:icreateExe
