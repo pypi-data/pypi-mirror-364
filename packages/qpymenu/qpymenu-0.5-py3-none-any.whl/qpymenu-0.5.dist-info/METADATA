@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: qpymenu
+Version: 0.5
+Summary: A simple terminal menu system with ANSI formatting and logging.
+Author: David J. Cartwright
+Author-email: davidcartwright@hotmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: requires-python
+Dynamic: summary
