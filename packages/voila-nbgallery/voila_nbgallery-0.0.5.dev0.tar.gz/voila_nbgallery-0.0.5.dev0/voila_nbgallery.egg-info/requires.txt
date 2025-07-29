@@ -1,0 +1,5 @@
+voila>=0.2.3
+voila-material~=0.4.0
+
+[gridstack]
+voila-gridstack~=0.1.0
