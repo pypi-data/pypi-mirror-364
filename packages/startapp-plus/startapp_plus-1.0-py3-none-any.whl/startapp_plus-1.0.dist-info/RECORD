@@ -1,0 +1,14 @@
+startapp_plus/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+startapp_plus/__main__.py,sha256=FoIkdzOQq33uS0_ygMpMgks-ASIwe649WOgm04oQqcU,385
+startapp_plus/generator.py,sha256=two0jlKC-Ll0OcRXmNI4Ne-CE2HIPziJYFKLG80UxyY,442
+templates/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+templates/base_app/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+templates/base_app/apps.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+templates/base_app/urls.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+templates/base_app/models/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+templates/base_app/views/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+startapp_plus-1.0.dist-info/METADATA,sha256=OTqM7mr4H2x9jYe0uDzjV_Kzd7EXYs5-rE1be8e_PK4,337
+startapp_plus-1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+startapp_plus-1.0.dist-info/entry_points.txt,sha256=7HGVdYL9IqQEHJfXGoqp5N_-8vKouJ_xgDbgn5am8Uc,62
+startapp_plus-1.0.dist-info/top_level.txt,sha256=OE4xZm42T6_ZFY8l2eB-ts2Bi7dHq7aUuybcHQD7xV4,24
+startapp_plus-1.0.dist-info/RECORD,,
