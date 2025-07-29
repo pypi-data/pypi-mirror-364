@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+
+{% block title %}{{ project.name }} - Qpanel{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="mb-0">{{ project.name }}</h1>
+        <small class="text-muted"><code>{{ project.project_path }}</code></small>
+    </div>
+</div>
+
+<ul class="nav nav-tabs" id="projectTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview-pane" type="button" role="tab" aria-controls="overview-pane" aria-selected="true">
+            <i class="bi bi-display me-2"></i>Strategy Overview
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="backtest-tab" data-bs-toggle="tab" data-bs-target="#backtest-pane" type="button" role="tab" aria-controls="backtest-pane" aria-selected="false">
+            <i class="bi bi-clock-history me-2"></i>Backtest Helper
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="logs-tab" data-bs-toggle="tab" data-bs-target="#logs-pane" type="button" role="tab" aria-controls="logs-pane" aria-selected="false">
+            <i class="bi bi-file-text me-2"></i>Log Records
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="config-tab" data-bs-toggle="tab" data-bs-target="#config-pane" type="button" role="tab" aria-controls="config-pane" aria-selected="false">
+            <i class="bi bi-file-earmark-code me-2"></i>Configuration
+        </button>
+    </li>
+</ul>
+
+<div class="tab-content pt-4" id="projectTabContent">
+    <!-- Overview Pane -->
+    <div class="tab-pane fade show active" id="overview-pane" role="tabpanel" aria-labelledby="overview-tab">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="card-title mb-0">Live Instances</h5>
+                    <button class="btn btn-success"
+                            data-bs-toggle="modal"
+                            data-bs-target="#startLiveModal"
+                            hx-get="/api/projects/{{ project.id }}/params"
+                            hx-target="#live-params-form-container"
+                            hx-swap="innerHTML">
+                        <i class="bi bi-play-circle me-2"></i>Start New Live Instance
+                    </button>
+                </div>
+                <div id="live-instances-list"
+                     class="list-group list-group-flush"
+                     hx-get="/api/projects/{{ project.id }}/instances?mode=live"
+                     hx-trigger="load, instanceUpdated from:body"
+                     hx-swap="innerHTML">
+                     <div class="text-center p-3 text-muted"><span class="spinner-border spinner-border-sm me-2"></span>Loading live instances...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Backtest Helper Pane -->
+    <div class="tab-pane fade" id="backtest-pane" role="tabpanel" aria-labelledby="backtest-tab"
+         x-data
+         x-init="
+            $nextTick(() => {
+                const backtestTab = document.getElementById('backtest-tab');
+                
+                const loadBacktestData = () => {
+                    if(backtestTab.classList.contains('active')) {
+                        htmx.ajax('GET', '/api/data/file-options', {target: '#data-file-select-container', swap: 'innerHTML'});
+                        htmx.ajax('GET', '/api/projects/{{ project.id }}/params', {target: '#backtest-params-form-container', swap: 'innerHTML'});
+                        return true;
+                    }
+                    return false;
+                };
+
+                if (!loadBacktestData()) {
+                    const observer = new MutationObserver(() => {
+                        if (loadBacktestData()) {
+                            observer.disconnect();
+                        }
+                    });
+                    observer.observe(backtestTab, { attributes: true, attributeFilter: ['class'] });
+                }
+            });
+         "
+         @dataFilesChanged.window="htmx.ajax('GET', '/api/data/file-options', {target: '#data-file-select-container', swap: 'innerHTML'})">
+        {% include '_backtest_runner.html' %}
+    </div>
+
+    <!-- Log Records Pane -->
+    <div class="tab-pane fade" id="logs-pane" role="tabpanel" aria-labelledby="logs-tab">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Instance Log Viewer</h5>
+                <div class="mb-3">
+                    <select id="log-instance-selector" class="form-select"
+                            hx-get="/api/projects/{{ project.id }}/instances-options"
+                            hx-trigger="load, instanceUpdated from:body, backtestUpdated from:body"
+                            hx-swap="innerHTML">
+                        <option>Loading instances...</option>
+                    </select>
+                </div>
+                <pre id="log-content" class="p-3 rounded" style="min-height: 100px; max-height: 600px; overflow-y: auto; white-space: pre-wrap; word-break: break-all; background-color: #0D1117 !important;">Select an instance to view its logs.</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Configuration Pane -->
+    <div class="tab-pane fade" id="config-pane" role="tabpanel" aria-labelledby="config-tab">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Default Configuration</h5>
+                <p class="text-muted">Configuration viewer/editor will be implemented here.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Starting Live Instance -->
+<div class="modal fade" id="startLiveModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header"><h5 class="modal-title">Start Live Instance</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <form hx-post="/api/projects/{{ project.id }}/live/start" hx-trigger="submit" hx-swap="none" onsubmit="bootstrap.Modal.getInstance(this.closest('.modal')).hide()">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Instance Name</label>
+                        <input type="text" class="form-control" name="name" value="live-{{ now_str }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">API Key</label>
+                        <select class="form-select" name="api_key_id" required>
+                            <option value="" disabled selected>Select a saved API key...</option>
+                            {% for key in api_keys %}
+                            <option value="{{ key.id }}">{{ key.name }} ({{ key.exchange | capitalize }})</option>
+                            {% endfor %}
+                        </select>
+                        <div class="form-text">Add keys in <a href="/trading-settings">Trading Settings</a>.</div>
+                    </div>
+                    <hr>
+                    <h5 class="mb-3">Strategy Parameters</h5>
+                    <div id="live-params-form-container">
+                        <p class="text-center text-muted p-4"><span class="spinner-border spinner-border-sm"></span></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="me-auto form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="runLiveInDockerCheck" name="run_in_docker" value="true">
+                        <label class="form-check-label" for="runLiveInDockerCheck">Run in Docker</label>
+                    </div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-lg me-2"></i>Cancel</button>
+                    <button type="submit" class="btn btn-success"><i class="bi bi-play-fill me-2"></i>Launch</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const logSelector = document.getElementById('log-instance-selector');
+        const logContent = document.getElementById('log-content');
+        let logInterval;
+
+        const startLogPolling = () => {
+            const instanceId = logSelector.value;
+            if (!instanceId) {
+                logContent.textContent = 'Select an instance to view its logs.';
+                clearInterval(logInterval);
+                return;
+            }
+
+            function fetchLogs() {
+                htmx.ajax('GET', `/api/instances/${instanceId}/logs`, { target: logContent, swap: 'innerHTML' });
+            }
+
+            fetchLogs(); // Fetch immediately
+
+            const selectedOption = logSelector.options[logSelector.selectedIndex];
+            const isRunning = selectedOption && (selectedOption.textContent.includes('(running)') || selectedOption.textContent.includes('(starting)'));
+
+            clearInterval(logInterval);
+            if (isRunning) {
+                logInterval = setInterval(fetchLogs, 5000);
+            }
+        };
+
+        logSelector.addEventListener('change', startLogPolling);
+        
+        htmx.on(logSelector, 'htmx:afterSwap', () => {
+            const logTab = document.getElementById('logs-tab');
+            if (logTab && logTab.classList.contains('active')) {
+                startLogPolling();
+            }
+        });
+
+        const tabs = document.querySelectorAll('#projectTab button[data-bs-toggle="tab"]');
+        tabs.forEach(tab => {
+            tab.addEventListener('hide.bs.tab', event => {
+                if (event.target.id === 'logs-tab') {
+                     clearInterval(logInterval);
+                }
+            });
+             tab.addEventListener('shown.bs.tab', event => {
+                if (event.target.id === 'logs-tab') {
+                    startLogPolling();
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

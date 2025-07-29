@@ -1,0 +1,33 @@
+<table class="table table-vcenter card-table">
+    <thead>
+        <tr>
+            <th style="width: 15%;">Timestamp (UTC)</th>
+            <th style="width: 10%;">Level</th>
+            <th style="width: 10%;">Source</th>
+            <th>Message</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for log in logs %}
+        <tr>
+            <td class="text-muted fs-sm">{{ log.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+            <td>
+                {% if log.level == 'CRITICAL' %}
+                <span class="badge text-bg-danger">{{ log.level }}</span>
+                {% elif log.level == 'WARNING' %}
+                <span class="badge text-bg-warning">{{ log.level }}</span>
+                {% else %}
+                <span class="badge text-bg-info">{{ log.level }}</span>
+                {% endif %}
+            </td>
+            <td class="text-muted">{{ log.source }}</td>
+            <td class="fs-sm">{{ log.message }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% if not logs %}
+<div class="card-body text-center">
+    <p class="text-muted">No system messages found.</p>
+</div>
+{% endif %}

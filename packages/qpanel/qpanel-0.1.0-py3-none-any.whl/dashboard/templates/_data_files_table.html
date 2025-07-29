@@ -1,0 +1,33 @@
+<div class="table-responsive">
+    <table class="table table-vcenter card-table table-striped">
+        <thead>
+            <tr>
+                <th>Filename</th>
+                <th>Size</th>
+                <th>Last Modified</th>
+                <th class="w-1"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for file in files %}
+            <tr id="data-file-row-{{ file.name }}">
+                <td><code>{{ file.name }}</code></td>
+                <td class="text-muted">{{ file.size_kb }} KB</td>
+                <td class="text-muted">{{ file.modified_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                <td>
+                    <button class="btn btn-sm btn-outline-danger"
+                            hx-delete="/api/data/files/{{ file.name }}"
+                            hx-target="#data-file-row-{{ file.name }}"
+                            hx-swap="outerHTML"
+                            hx-confirm="Are you sure you want to delete '{{ file.name }}'?">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% if not files %}
+<p class="text-muted text-center p-4">No data files found in the 'market_data' directory.</p>
+{% endif %}

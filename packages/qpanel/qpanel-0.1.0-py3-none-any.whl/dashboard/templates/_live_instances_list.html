@@ -1,0 +1,8 @@
+{% for instance in instances %}
+    <!-- FIX: Explicitly pass the 'instance' variable to the included template -->
+    {% include '_live_instance_item.html' with context %}
+{% else %}
+<div class="list-group-item">
+    <p class="text-muted mb-0">No live instances are currently running for this project.</p>
+</div>
+{% endfor %}

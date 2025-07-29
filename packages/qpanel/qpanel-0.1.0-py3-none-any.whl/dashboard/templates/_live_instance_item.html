@@ -1,0 +1,64 @@
+<div class="list-group-item"
+     {% if instance.status == 'running' or instance.status == 'starting' %}
+     hx-get="/api/instances/{{ instance.id }}/status"
+     hx-trigger="every 2s"
+     hx-swap="outerHTML"
+     {% endif %}>
+    <div class="row align-items-center">
+        <!-- Left Side: Name and Timestamp -->
+        <div class="col">
+            <h5 class="mb-1">{{ instance.name }}</h5>
+            <small class="text-muted">
+                Live | Started: {{ instance.start_time.strftime('%Y-%m-%d %H:%M') if instance.start_time else '...' }}
+            </small>
+        </div>
+        <!-- Right Side: Status and Actions -->
+        <div class="col-auto">
+            <div class="d-flex align-items-center">
+                
+                <!-- FIX: Use variables directly from context -->
+                {% if instance.status == 'running' and cpu_percent is defined %}
+                <div class="me-3 text-muted" style="font-size: 0.75rem;">
+                    <span><i class="bi bi-cpu"></i> {{ '%.1f'|format(cpu_percent) }}%</span>
+                    <span class="ms-2"><i class="bi bi-memory"></i> {{ '%.1f'|format(memory_mb) }} MB</span>
+                </div>
+                {% endif %}
+
+                <!-- Status Badge -->
+                <div class="me-3">
+                    {% if instance.status == 'running' or instance.status == 'starting' %}
+                        <span class="badge bg-primary">
+                            {{ instance.status.capitalize() }} <span class="spinner-border spinner-border-sm" role="status"></span>
+                        </span>
+                    {% elif instance.status == 'stopped' %}
+                        <span class="badge bg-secondary">Stopped</span>
+                    {% elif instance.status == 'error' %}
+                        <span class="badge bg-danger">Error</span>
+                    {% else %}
+                        <span class="badge bg-secondary">{{ instance.status.capitalize() }}</span>
+                    {% endif %}
+                </div>
+                
+                <!-- Action Buttons -->
+                <div>
+                    {% if instance.status == 'running' or instance.status == 'starting' %}
+                        <button class="btn btn-sm btn-outline-danger"
+                                hx-post="/api/instances/{{ instance.id }}/stop"
+                                hx-swap="none">
+                            Stop
+                        </button>
+                    {% else %}
+                         <button class="btn btn-sm btn-outline-info"
+                                hx-get="/api/instances/{{ instance.id }}/logs"
+                                hx-target="#instance-details-{{ instance.id }}"
+                                hx-swap="innerHTML">
+                            Show Log
+                        </button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Details/Log container -->
+    <div id="instance-details-{{ instance.id }}" class="mt-2"></div>
+</div>

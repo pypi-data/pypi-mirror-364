@@ -1,0 +1,39 @@
+<div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+    {% for strategy in strategies %}
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">{{ strategy.name }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">by {{ strategy.author }}</h6>
+                <p class="card-text text-muted fs-sm flex-grow-1">{{ strategy.description }}</p>
+                
+                <div class="mb-3">
+                    {% for tag in strategy.tags %}
+                    <span class="badge text-bg-secondary fw-normal">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+
+                <div class="mt-auto pt-3 border-top text-end">
+                    <div id="clone-status-{{ strategy.repo_id }}">
+                        {% if strategy.is_cloned %}
+                        <div class="d-flex align-items-center justify-content-end text-success">
+                            <i class="bi bi-check-circle-fill me-2"></i>
+                            Cloned
+                        </div>
+                        {% else %}
+                        <form hx-post="/api/market/clone" 
+                              hx-target="#clone-status-{{ strategy.repo_id }}" 
+                              hx-swap="innerHTML">
+                            <input type="hidden" name="repo_url" value="{{ strategy.repo_url }}">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-download me-2"></i> Clone
+                            </button>
+                        </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>

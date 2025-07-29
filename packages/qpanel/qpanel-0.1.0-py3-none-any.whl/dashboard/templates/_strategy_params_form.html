@@ -1,0 +1,33 @@
+{% if error %}
+<div class="alert alert-danger">{{ error }}</div>
+{% else %}
+<div class="alert alert-info">
+    <p class="mb-0">These parameters will override the values in your default config file for this run.</p>
+</div>
+
+{% for param in params %}
+<div class="mb-3">
+    <label for="param-{{ param.name }}" class="form-label">{{ param.label or param.name }}</label>
+    
+    {% if param.type == 'int' %}
+    <input type="number" class="form-control" id="param-{{ param.name }}" name="params:{{ param.name }}" value="{{ param.default }}" {% if param.min is defined %}min="{{ param.min }}"{% endif %} step="1" required>
+           
+    {% elif param.type == 'float' %}
+    <input type="number" class="form-control" id="param-{{ param.name }}" name="params:{{ param.name }}" value="{{ param.default }}" {% if param.min is defined %}min="{{ param.min }}"{% endif %} step="{{ param.step or 'any' }}" required>
+
+    {% elif param.type == 'bool' %}
+    <select class="form-select" id="param-{{ param.name }}" name="params:{{ param.name }}">
+        <option value="True" {% if param.default == True %}selected{% endif %}>True</option>
+        <option value="False" {% if param.default == False %}selected{% endif %}>False</option>
+    </select>
+
+    {% else %}
+    <input type="text" class="form-control" id="param-{{ param.name }}" name="params:{{ param.name }}" value="{{ param.default }}" required>
+    {% endif %}
+
+    {% if param.help %}
+    <small class="form-text text-muted">{{ param.help }}</small>
+    {% endif %}
+</div>
+{% endfor %}
+{% endif %}

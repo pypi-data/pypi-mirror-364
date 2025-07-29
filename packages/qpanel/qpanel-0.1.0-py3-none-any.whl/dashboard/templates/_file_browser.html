@@ -1,0 +1,33 @@
+<!-- FIX: Add a header to select the current folder if selectionType is 'dir' -->
+<div class="list-group-item bg-light-subtle">
+    <div class="d-flex justify-content-between align-items-center">
+        <small class="text-muted text-truncate" title="{{ current_path }}">Current: <code>{{ current_path }}</code></small>
+        {% if request.query_params.get('selectionType') == 'dir' %}
+            <button class="btn btn-sm btn-primary path-selector" 
+                    data-path="{{ current_path }}" 
+                    data-type="dir">Select this folder</button>
+        {% endif %}
+    </div>
+</div>
+
+{% if parent_path %}
+<a href="#" class="list-group-item list-group-item-action"
+   hx-get="/api/files/browse?path={{ parent_path }}&selectionType={{ request.query_params.get('selectionType', 'file') }}" hx-target="#file-browser-body">
+   <i class="bi bi-arrow-up-circle me-2"></i> .. (Up)
+</a>
+{% endif %}
+
+{% for item in items %}
+  {% if item.type == 'dir' %}
+    <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+       hx-get="/api/files/browse?path={{ item.path }}&selectionType={{ request.query_params.get('selectionType', 'file') }}" hx-target="#file-browser-body">
+       <span><i class="bi bi-folder me-2"></i> {{ item.name }}</span>
+    </a>
+  {% else %}
+    <!-- FIX: This item is now a proper selector for files -->
+    <a href="#" class="list-group-item list-group-item-action path-selector"
+       data-path="{{ item.path }}" data-type="file">
+       <i class="bi bi-file-earmark-text me-2"></i> {{ item.name }}
+    </a>
+  {% endif %}
+{% endfor %}

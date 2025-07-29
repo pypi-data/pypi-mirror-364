@@ -1,0 +1,10 @@
+{% for instance in instances %}
+    <!-- FIX: Explicitly pass the 'instance' variable to the included template -->
+    {% include '_backtest_item.html' with context %}
+{% endfor %}
+
+{% if not instances %}
+<div class="list-group-item">
+    <p class="text-muted text-center mb-0">No backtests have been run for this project yet.</p>
+</div>
+{% endif %}

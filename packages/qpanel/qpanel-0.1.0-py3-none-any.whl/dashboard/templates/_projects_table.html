@@ -1,0 +1,52 @@
+<div class="card">
+    <div class="table-responsive">
+        <table class="table table-vcenter card-table table-striped">
+            <thead>
+                <tr>
+                    <th>Project Name</th>
+                    <th>Running Instances</th>
+                    <th>Root Path</th>
+                    <th>Tags</th>
+                    <th class="w-1 text-end">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for project in projects %}
+                <tr id="project-row-{{ project.id }}">
+                    <td>
+                        <a href="/projects/{{ project.id }}">{{ project.name }}</a>
+                    </td>
+                    <td class="text-muted">
+                        {{ project.instances | selectattr('status', 'equalto', 'running') | list | length }}
+                    </td>
+                    <td><code>{{ project.project_path }}</code></td>
+                    <td class="text-muted">
+                        {% for tag in project.tags.split(',') %}
+                          {% if tag.strip() %}
+                            <span class="badge text-bg-secondary fw-normal">{{ tag.strip() }}</span>
+                          {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td class="text-end"> <!-- <-- 改动在这里 -->
+                        <div class="btn-list flex-nowrap justify-content-end">
+                            <a href="/projects/{{ project.id }}" class="btn btn-sm btn-outline-secondary">
+                                <i class="bi bi-search me-2"></i>Details
+                            </a>
+                            <button class="btn btn-sm btn-outline-danger"
+                                    hx-delete="/api/projects/{{ project.id }}"
+                                    hx-target="#project-row-{{ project.id }}"
+                                    hx-swap="outerHTML"
+                                    hx-confirm="Are you sure you want to delete '{{ project.name }}'?">
+                                <i class="bi bi-trash me-2"></i>Delete
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% if not projects %}
+<div class="card"><div class="card-body text-center"><p class="text-muted">No strategy projects found. Click "Add Project" to get started.</p></div></div>
+{% endif %}

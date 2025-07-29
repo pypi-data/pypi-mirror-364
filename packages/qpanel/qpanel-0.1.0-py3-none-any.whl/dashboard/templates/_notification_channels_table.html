@@ -1,0 +1,56 @@
+<table class="table table-vcenter card-table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Config</th>
+            <th class="w-1 text-end">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for channel in channels %}
+        <tr id="channel-row-{{ channel.id }}">
+            <td>{{ channel.name }}</td>
+            <td class="text-muted">{{ channel.channel_type | capitalize }}</td>
+            <td>
+                {% if channel.is_enabled %}
+                <span class="badge text-bg-success">Enabled</span>
+                {% else %}
+                <span class="badge text-bg-secondary">Disabled</span>
+                {% endif %}
+            </td>
+            <td class="text-muted fs-sm">
+                <code>
+                    {% set config = fromjson(channel.config_json) %}
+                    {% if channel.channel_type == 'telegram' %}
+                        Bot Token: {{ config.bot_token[:5] }}... | Chat ID: {{ config.chat_id }}
+                    {% elif channel.channel_type == 'webhook' %}
+                        URL: {{ config.webhook_url[:30] }}...
+                    {% endif %}
+                </code>
+            </td>
+            <td>
+                <div class="btn-list flex-nowrap justify-content-end">
+                    <button class="btn btn-sm btn-outline-secondary"
+                            hx-post="/api/notifications/channels/{{ channel.id }}/test"
+                            hx-indicator="#test-spinner-{{ channel.id }}">
+                        <span id="test-spinner-{{ channel.id }}" class="spinner-border spinner-border-sm htmx-indicator me-1"></span>
+                        Test
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger"
+                            hx-delete="/api/notifications/channels/{{ channel.id }}"
+                            hx-target="#channel-row-{{ channel.id }}"
+                            hx-swap="outerHTML"
+                            hx-confirm="Are you sure you want to delete '{{ channel.name }}'?">
+                        Delete
+                    </button>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% if not channels %}
+<p class="text-muted text-center p-4">No notification channels configured. Click "Add Channel" to start.</p>
+{% endif %}

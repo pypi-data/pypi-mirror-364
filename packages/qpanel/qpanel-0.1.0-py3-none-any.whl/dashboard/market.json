@@ -1,0 +1,16 @@
+[
+  {
+    "repo_url": "https://github.com/eops-quant/example-strategies.git",
+    "name": "Official Example Strategies",
+    "author": "Eops Team",
+    "description": "A collection of official example strategies demonstrating various features of the Eops framework.",
+    "tags": ["Official", "Example", "EMA", "RSI"]
+  },
+  {
+    "repo_url": "https://github.com/some-user/awesome-eops-strategy.git",
+    "name": "Awesome Turtle Strategy",
+    "author": "some-user",
+    "description": "An implementation of the classic Turtle Trading system for crypto futures.",
+    "tags": ["Community", "Trend Following", "Futures"]
+  }
+]

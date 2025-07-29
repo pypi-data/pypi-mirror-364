@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% block title %}Strategy Projects - Qpanel{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Strategy Projects</h1>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProjectModal"><i class="bi bi-plus-lg me-2"></i> Add Project</button>
+</div>
+<div id="tags-filter" class="mb-3" hx-get="/api/projects/tags" hx-trigger="load, projectAdded from:body" hx-swap="innerHTML"></div>
+<div id="project-list" hx-get="/api/projects/list" hx-trigger="load, projectAdded from:body, projectDeleted from:body" hx-swap="innerHTML"></div>
+
+<!-- Add Project Modal -->
+<div class="modal fade" id="addProjectModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header"><h5 class="modal-title">Add New Strategy Project</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <div class="modal-body">
+                <form id="add-project-form" 
+                      hx-post="/api/projects" 
+                      hx-target="#form-feedback" 
+                      hx-swap="innerHTML">
+                    <div class="mb-3"><label class="form-label">Project Name</label><input type="text" class="form-control" name="name" required></div>
+                    <div class="mb-3"><label class="form-label">Project Root Path</label><div class="input-group">
+                        <input type="text" class="form-control" id="project_path_input" name="project_path" required>
+                        <button class="btn btn-outline-secondary browse-btn" type="button" 
+                                data-target-input="#project_path_input" data-selection-type="dir">Browse...</button>
+                    </div></div>
+                    <div class="mb-3"><label class="form-label">Default Config File <span class="text-muted">(Optional, relative to root)</span></label><div class="input-group">
+                        <input type="text" class="form-control" id="config_path_input" name="config_path">
+                        <button class="btn btn-outline-secondary browse-btn" type="button" 
+                                data-target-input="#config_path_input" data-selection-type="file">Browse...</button>
+                    </div></div>
+                    <div class="mb-3"><label class="form-label">Tags (comma-separated)</label><input type="text" class="form-control" name="tags"></div>
+                    <div class="mb-3"><label class="form-label">Description</label><textarea class="form-control" name="description" rows="3"></textarea></div>
+                    <div id="form-feedback"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save Project</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- File Browser Modal -->
+<div class="modal fade" id="fileBrowserModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="file-browser-title">Select Path</h5>
+                <button type="button" class="btn-close" id="fileBrowserCloseBtn"></button>
+            </div>
+            <div class="modal-body p-0">
+                <div id="file-browser-body" class="list-group list-group-flush"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    // --- Logic for closing "Add Project" modal on success ---
+    document.getElementById('add-project-form').addEventListener('htmx:afterRequest', function(evt) {
+        if (evt.detail.successful && evt.detail.xhr.getResponseHeader('HX-Trigger') === 'projectAdded') {
+            const modal = bootstrap.Modal.getInstance(document.getElementById('addProjectModal'));
+            if (modal) modal.hide();
+        }
+    });
+
+    // --- JS control for File Browser modal ---
+    const fileBrowserModalEl = document.getElementById('fileBrowserModal');
+    const fileBrowserModal = new bootstrap.Modal(fileBrowserModalEl, { backdrop: 'static', keyboard: false }); // Important: use static backdrop
+    let targetInput = null;
+    let selectionType = 'file';
+
+    document.querySelectorAll('.browse-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            targetInput = document.querySelector(button.dataset.targetInput);
+            selectionType = button.dataset.selectionType;
+            
+            let startPath = (targetInput.id === 'config_path_input') ? document.getElementById('project_path_input').value : '';
+            document.getElementById('file-browser-title').innerText = `Select ${selectionType === 'dir' ? 'Directory' : 'File'}`;
+            
+            htmx.ajax('GET', `/api/files/browse?path=${startPath}&selectionType=${selectionType}`, '#file-browser-body');
+            fileBrowserModal.show();
+        });
+    });
+
+    fileBrowserModalEl.addEventListener('click', function(e) {
+        if (e.target.closest('.path-selector')) {
+            e.preventDefault();
+            const selector = e.target.closest('.path-selector');
+            const selectedPath = selector.dataset.path;
+            const selectedType = selector.dataset.type;
+
+            if (selectionType === selectedType && targetInput) {
+                let finalPath = selectedPath;
+                if (targetInput.id === 'config_path_input' && selectedType === 'file') {
+                    const rootPath = document.getElementById('project_path_input').value;
+                    if (rootPath && finalPath.startsWith(rootPath)) {
+                        let relativePath = finalPath.substring(rootPath.length).replace(/^\//, '');
+                        finalPath = relativePath;
+                    }
+                }
+                targetInput.value = finalPath;
+                fileBrowserModal.hide();
+            }
+        } else if (e.target.closest('#fileBrowserCloseBtn')) {
+             e.preventDefault();
+             fileBrowserModal.hide();
+        }
+    });
+});
+</script>
+{% endblock %}

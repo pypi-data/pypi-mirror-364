@@ -1,0 +1,33 @@
+<table class="table table-vcenter card-table table-striped">
+    <thead>
+        <tr>
+            <th>Nickname</th>
+            <th>Exchange</th>
+            <th>API Key (Encrypted)</th>
+            <th class="w-1 text-end">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for key in keys %}
+        <tr id="key-row-{{ key.id }}">
+            <td>{{ key.name }}</td>
+            <td class="text-muted">{{ key.exchange | capitalize }}</td>
+            <td class="text-muted"><code>{{ key.api_key[:10] }}...</code></td>
+            <td>
+                <div class="btn-list flex-nowrap justify-content-end">
+                    <button class="btn btn-sm btn-outline-danger"
+                            hx-delete="/api/keys/{{ key.id }}"
+                            hx-target="#key-row-{{ key.id }}"
+                            hx-swap="outerHTML"
+                            hx-confirm="Are you sure you want to delete '{{ key.name }}'?">
+                        Delete
+                    </button>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% if not keys %}
+<p class="text-muted text-center p-4">No API keys saved yet. Click "Add API Key" to get started.</p>
+{% endif %}

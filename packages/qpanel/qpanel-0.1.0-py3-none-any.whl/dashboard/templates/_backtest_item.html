@@ -1,0 +1,79 @@
+<div class="list-group-item"
+     {% if instance.status == 'running' or instance.status == 'starting' %}
+     hx-get="/api/instances/{{ instance.id }}/status"
+     hx-trigger="every 2s"
+     hx-swap="outerHTML"
+     {% endif %}>
+    <div class="row align-items-center">
+        <div class="col">
+            <h5 class="mb-1 fw-semibold">{{ instance.name }}</h5>
+            <small class="text-muted fs-sm">
+                Initiated: {{ instance.start_time.strftime('%Y-%m-%d %H:%M:%S') if instance.start_time else '...' }}
+            </small>
+        </div>
+        <div class="col-auto">
+            <div class="d-flex align-items-center">
+                {% if instance.status == 'running' and cpu_percent is defined %}
+                <div class="me-3 text-muted fs-sm">
+                    <span><i class="bi bi-cpu me-1"></i>{{ '%.1f'|format(cpu_percent) }}%</span>
+                    <span class="ms-2"><i class="bi bi-memory me-1"></i>{{ '%.1f'|format(memory_mb) }} MB</span>
+                </div>
+                {% endif %}
+
+                <div class="me-3">
+                    {% if instance.status == 'running' or instance.status == 'starting' %}
+                        <span class="badge text-bg-primary">
+                            <span class="spinner-border spinner-border-sm me-1" role="status"></span>
+                            {{ instance.status.capitalize() }}
+                        </span>
+                    {% elif instance.status == 'completed' %}
+                        <span class="badge text-bg-success">Completed</span>
+                    {% elif instance.status == 'error' %}
+                        <span class="badge text-bg-danger">Failed</span>
+                    {% else %}
+                        <span class="badge text-bg-secondary">{{ instance.status.capitalize() }}</span>
+                    {% endif %}
+                </div>
+
+                <div class="btn-list flex-nowrap">
+                    {% if instance.status == 'completed' %}
+                        <button class="btn btn-sm btn-outline-secondary"
+                                hx-get="/api/instances/{{ instance.id }}/results"
+                                hx-trigger="click once"
+                                hx-target="#results-{{ instance.id }}"
+                                hx-swap="innerHTML"
+                                onclick="
+                                    const target = document.getElementById('results-{{ instance.id }}');
+                                    const isHidden = target.style.display === 'none';
+                                    target.style.display = isHidden ? 'block' : 'none';
+                                    this.innerHTML = isHidden ? '<i class=\'bi bi-eye-slash me-2\'></i>Hide Results' : '<i class=\'bi bi-graph-up me-2\'></i>Show Results';
+                                ">
+                            <i class="bi bi-graph-up me-2"></i>Show Results
+                        </button>
+                    {% elif instance.status == 'error' %}
+                         <button class="btn btn-sm btn-outline-warning"
+                                hx-get="/api/instances/{{ instance.id }}/logs"
+                                hx-trigger="click once"
+                                hx-target="#results-{{ instance.id }}"
+                                hx-swap="innerHTML"
+                                onclick="
+                                    const target = document.getElementById('results-{{ instance.id }}');
+                                    const isHidden = target.style.display === 'none';
+                                    target.style.display = isHidden ? 'block' : 'none';
+                                    this.innerHTML = isHidden ? '<i class=\'bi bi-eye-slash me-2\'></i>Hide Log' : '<i class=\'bi bi-exclamation-triangle me-2\'></i>Show Log';
+                                ">
+                            <i class="bi bi-exclamation-triangle me-2"></i>Show Log
+                        </button>
+                    {% elif instance.status == 'running' or instance.status == 'starting' %}
+                        <button class="btn btn-sm btn-outline-danger"
+                                hx-post="/api/instances/{{ instance.id }}/stop"
+                                hx-swap="none">
+                            <i class="bi bi-stop-circle me-2"></i>Stop
+                        </button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="results-{{ instance.id }}" class="mt-3" style="display: none;"></div>
+</div>

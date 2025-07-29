@@ -1,0 +1,3 @@
+[console_scripts]
+panel=dashboard.main:run_server
+

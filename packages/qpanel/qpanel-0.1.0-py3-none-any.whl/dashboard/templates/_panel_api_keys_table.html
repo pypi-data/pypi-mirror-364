@@ -1,0 +1,35 @@
+<table class="table table-vcenter card-table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Key Prefix</th>
+            <th>Created</th>
+            <th>Last Used</th>
+            <th class="w-1 text-end">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for key in keys %}
+        <tr id="panel-key-row-{{ key.id }}">
+            <td>{{ key.name }}</td>
+            <td class="text-muted"><code>{{ key.key_prefix }}...</code></td>
+            <td class="text-muted">{{ key.created_at.strftime('%Y-%m-%d') }}</td>
+            <td class="text-muted">{{ key.last_used.strftime('%Y-%m-%d %H:%M') if key.last_used else 'Never' }}</td>
+            <td>
+                <div class="btn-list flex-nowrap justify-content-end">
+                    <button class="btn btn-sm btn-outline-danger"
+                            hx-delete="/api/panel-keys/{{ key.id }}"
+                            hx-target="#panel-key-row-{{ key.id }}"
+                            hx-swap="outerHTML"
+                            hx-confirm="Are you sure you want to delete key '{{ key.name }}'? This action cannot be undone.">
+                        Delete
+                    </button>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% if not keys %}
+<p class="text-muted text-center p-4">No Panel API keys have been created yet.</p>
+{% endif %}
