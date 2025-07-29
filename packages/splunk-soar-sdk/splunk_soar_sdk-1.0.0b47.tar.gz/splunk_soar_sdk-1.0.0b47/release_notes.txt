@@ -1,0 +1,21 @@
+# [1.0.0-beta.47](https://github.com/phantomcyber/splunk-soar-sdk/compare/1.0.0-beta.46...1.0.0-beta.47) (2025-07-22)
+
+
+### Bug Fixes
+
+* remove app_templates symlink as it was causing issues with the build ([068d534](https://github.com/phantomcyber/splunk-soar-sdk/commit/068d5340b5f9580cf559be0480f73b1e2c0d5b28))
+
+
+
+
+
+# [1.0.0-beta.47](https://github.com/phantomcyber/splunk-soar-sdk/compare/1.0.0-beta.46...1.0.0-beta.47) (2025-07-22)
+
+
+### Bug Fixes
+
+* remove app_templates symlink as it was causing issues with the build ([068d534](https://github.com/phantomcyber/splunk-soar-sdk/commit/068d5340b5f9580cf559be0480f73b1e2c0d5b28))
+
+
+
+
