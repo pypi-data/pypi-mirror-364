@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: fastmcp-agents-cli
+Version: 0.5.1
+Summary: CLI for running FastMCP and calling tools on it
+Requires-Python: >=3.13
+Requires-Dist: cyclopts>=3.22.2
+Requires-Dist: fastmcp
+Requires-Dist: pyyaml>=6.0.2
+Requires-Dist: rich>=14.0.0
+Description-Content-Type: text/markdown
+
+
+
+uvx fastmcp-agents-cli mcp call --config config.json --name=get_structure --args.depth=3
