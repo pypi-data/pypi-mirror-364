@@ -1,0 +1,2 @@
+[console_scripts]
+pinocchiout = pinocchiout.main:app
