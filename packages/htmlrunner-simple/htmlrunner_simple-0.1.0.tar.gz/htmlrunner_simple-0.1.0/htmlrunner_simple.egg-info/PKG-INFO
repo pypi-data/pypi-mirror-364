@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: htmlrunner-simple
+Version: 0.1.0
+Summary: A simple package to serve local HTML files with Flask and open them in a browser.
+Author-email: Your Name <you@example.com>
+Project-URL: Homepage, https://github.com/your-username/htmlrunner
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: Flask>=2.0
+Dynamic: license-file
+
+# HTMLRunner
+
+A simple Python package to instantly serve a local HTML file and open it in your browser.
+
+## Installation
+
+```bash
+pip install htmlrunner

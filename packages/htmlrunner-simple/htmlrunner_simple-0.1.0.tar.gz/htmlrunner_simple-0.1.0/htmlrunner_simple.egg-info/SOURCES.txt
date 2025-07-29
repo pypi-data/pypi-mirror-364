@@ -1,0 +1,10 @@
+LICENSE
+README.md
+pyproject.toml
+htmlrunner/__init__.py
+htmlrunner/main.py
+htmlrunner_simple.egg-info/PKG-INFO
+htmlrunner_simple.egg-info/SOURCES.txt
+htmlrunner_simple.egg-info/dependency_links.txt
+htmlrunner_simple.egg-info/requires.txt
+htmlrunner_simple.egg-info/top_level.txt
