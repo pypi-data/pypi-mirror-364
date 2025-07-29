@@ -1,0 +1,2 @@
+[console_scripts]
+airport_test_server = query_farm_airport_test_server:do_server
