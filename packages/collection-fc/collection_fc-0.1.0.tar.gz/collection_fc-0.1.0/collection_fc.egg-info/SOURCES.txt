@@ -1,0 +1,15 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+collection_fc/__init__.py
+collection_fc/__main__.py
+collection_fc/bucket.py
+collection_fc/cli.py
+collection_fc/flexible.py
+collection_fc/simple.py
+collection_fc.egg-info/PKG-INFO
+collection_fc.egg-info/SOURCES.txt
+collection_fc.egg-info/dependency_links.txt
+collection_fc.egg-info/requires.txt
+collection_fc.egg-info/top_level.txt
