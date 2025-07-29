@@ -1,0 +1,16 @@
+MANIFEST.in
+README.md
+setup.py
+structure_django/__init__.py
+structure_django/admin.py
+structure_django/apps.py
+structure_django/models.py
+structure_django/tests.py
+structure_django/views.py
+structure_django.egg-info/PKG-INFO
+structure_django.egg-info/SOURCES.txt
+structure_django.egg-info/dependency_links.txt
+structure_django.egg-info/entry_points.txt
+structure_django.egg-info/requires.txt
+structure_django.egg-info/top_level.txt
+structure_django/migrations/__init__.py
