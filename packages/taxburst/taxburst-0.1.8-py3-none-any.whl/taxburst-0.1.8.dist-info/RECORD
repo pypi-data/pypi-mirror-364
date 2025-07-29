@@ -1,0 +1,14 @@
+taxburst/__init__.py,sha256=_YMTtSlVj1L60ywGu2jK9qBGZotLtff3OYNBUqR3m_E,1958
+taxburst/__main__.py,sha256=l5nKMtyQ_S_WCmYupvXc0yRqrM_bG3zYa0De_zGRugA,79
+taxburst/checks.py,sha256=jAS6yA-gJUQfb-50XDEnIYxFa68HACgFiN03Yedk_4Q,3087
+taxburst/output.py,sha256=Htv5vzfmxDcG2b16tngsi-kLRi80vxcNsLzGm32RrBo,1903
+taxburst/parsers.py,sha256=uQ9LKz5g4MT4Aa3_XhvkdUZDKDGc089J4G45dZ7Sh8g,8357
+taxburst/taxinfo.py,sha256=aI83pkbDgPINu6gMqgGVV3snQJcZhumNO33kbKtxX24,142
+taxburst/tree_utils.py,sha256=vbvEG844YLk4FFGzZ4g39HnWJwsbSShgpnFJewbGv3I,3548
+taxburst/templates/krona-fill.html,sha256=j_YNbpECoAd5W7-T2eFFyBrFLsN0cwT3Ds1rPNUDHPg,634
+taxburst/templates/krona-template.html,sha256=bf6SzoWNnfYQeC0CyAe_MtcX-jY2WPLqdmL0xQqpdAY,225474
+taxburst-0.1.8.dist-info/METADATA,sha256=X0IFFcURCHl4wjtaerQ96lwea2penUNBzk5icxNvGkU,4137
+taxburst-0.1.8.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+taxburst-0.1.8.dist-info/entry_points.txt,sha256=1GBbnoPw2Gb3510jw_maa_9EzfZA4hOLknbA2VCj9rU,52
+taxburst-0.1.8.dist-info/top_level.txt,sha256=7iZlq6d7XEmgYteIQ2ttjB-9rZMnrjI9E75XnLKFhNw,9
+taxburst-0.1.8.dist-info/RECORD,,
