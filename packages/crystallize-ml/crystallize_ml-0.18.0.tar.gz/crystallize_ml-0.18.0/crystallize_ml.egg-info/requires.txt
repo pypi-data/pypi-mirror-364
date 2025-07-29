@@ -1,0 +1,15 @@
+pyyaml<7,>=6.0.2
+networkx<4,>=3.4.2
+tqdm
+rich<14,>=13.8.1
+
+[dev]
+
+[extras]
+crystallize-extras
+
+[ray]
+ray
+
+[vllm]
+vllm
