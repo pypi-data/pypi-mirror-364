@@ -1,0 +1,6 @@
+qiskit>=2.1.0
+qiskit-aer>=0.17.1
+qiskit-ibm-runtime>=0.40.1
+qrisp>=0.7.7
+numba>=0.57.0
+quark-framework>=0.1.9
