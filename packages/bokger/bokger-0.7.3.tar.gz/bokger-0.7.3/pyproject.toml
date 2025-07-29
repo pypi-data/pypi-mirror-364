@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bokger"
+version = "0.7.3"
+description = "A logging package that generates debugging information in html."
+authors = [{ name = "chaoweichen26@gmail.com" }]
+license = { text = "" }
+requires-python = ">=3.0"
+dependencies = [
+    "bokeh",
+    "numpy",
+    "pydecor",
+    "rich"
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "junit2html"
+]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+exclude = []
+
+[tool.setuptools.package-data]
+"bokger.models" = [
+    "DownloadCsv.js",
+    "DownloadFile.js",
+    "CopyToClipboard.js"
+]

@@ -1,0 +1,8 @@
+bokeh
+numpy
+pydecor
+rich
+
+[test]
+pytest
+junit2html
