@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: newsoc-arxiv-bot
+Version: 0.2
+Requires-Dist: requests
+Requires-Dist: python-telegram-bot
+Requires-Dist: pydantic
+Requires-Dist: beautifulsoup4
+Requires-Dist: lxml
+Dynamic: requires-dist
