@@ -1,0 +1,18 @@
+Metadata-Version: 2.4
+Name: satel_ethm
+Version: 0.0.0
+Summary: Interface for SATEL Integra ETHM
+Project-URL: Homepage, https://github.com/sim0nx/pysatel
+Project-URL: Source, https://github.com/sim0nx/pysatel
+Project-URL: Tracker, https://github.com/sim0nx/pysatel/issues
+Author-email: Georges Toth <georges@trypill.org>
+License-Expression: MIT
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Home Automation
+Requires-Python: >=3.13
+Requires-Dist: async-timeout~=4.0
+Requires-Dist: pyserial-asyncio-fast~=0.14
+Description-Content-Type: text/markdown
+
+# pysatel
+Python library to interact with SATEL Integra ETH.
