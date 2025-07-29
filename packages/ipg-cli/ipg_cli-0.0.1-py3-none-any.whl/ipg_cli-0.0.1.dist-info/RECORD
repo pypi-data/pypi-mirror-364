@@ -1,0 +1,13 @@
+ipg_cli/__init__.py,sha256=OLD6u0rGKK3GxQMZQjnEiwZg9vCB0oL_sQ_DHRX42eA,218
+ipg_cli/cli.py,sha256=piKSEO_9X6aB1c4cqapgZppWWZp-TLd7wIBM3M__Drg,452
+ipg_cli/main.py,sha256=vo88puQZQVg7X0QSlmIFAFUvY-D5oo03c0yTDhnvSuA,258
+ipg_cli/bin/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+ipg_cli/bin/test,sha256=vpxhz4ICxagRmsCvdY56xrnCqwU8bgdc0T_HBsaik84,35
+ipg_cli/include/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+ipg_cli/lib/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+ipg_cli-0.0.1.dist-info/licenses/LICENSE,sha256=a3tsz3B-T5ksNT7rm7gkp72n7Wr5OGqVqWc1Jg6UNAE,1066
+ipg_cli-0.0.1.dist-info/METADATA,sha256=MUICyS02P4UGQkT6G7nbnd_0gd4snKpkGa2O3j6FFX4,630
+ipg_cli-0.0.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+ipg_cli-0.0.1.dist-info/entry_points.txt,sha256=TwJfJS26idsFWpA6J9l3GDTQeqgfe5xNjvH9Mv2yiO4,46
+ipg_cli-0.0.1.dist-info/top_level.txt,sha256=tloibstNWtjKC9XDBShuigLIsQgad09n-5TjRDhpu7Y,8
+ipg_cli-0.0.1.dist-info/RECORD,,

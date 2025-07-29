@@ -1,0 +1,2 @@
+[console_scripts]
+ipg-cli = ipg_cli.main:main
