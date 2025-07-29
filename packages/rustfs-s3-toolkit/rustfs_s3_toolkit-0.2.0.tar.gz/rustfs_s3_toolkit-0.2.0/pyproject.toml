@@ -1,0 +1,47 @@
+[project]
+name = "rustfs-s3-toolkit"
+version = "0.2.0"
+description = "RustFS S3 Storage Toolkit - A simple and powerful toolkit for RustFS and other S3-compatible object storage operations"
+readme = "README.md"
+authors = [
+    { name = "mm644706215", email = "ze.ga@qq.com" }
+]
+requires-python = ">=3.9"
+dependencies = [
+    "boto3>=1.39.0",
+]
+keywords = ["rustfs", "s3", "object-storage", "file-management", "cloud-storage", "toolkit"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Archiving",
+    "Topic :: Internet :: File Transfer Protocol (FTP)",
+    "Topic :: System :: Filesystems",
+]
+
+[project.urls]
+Homepage = "https://github.com/mm644706215/rustfs-s3-toolkit"
+Repository = "https://github.com/mm644706215/rustfs-s3-toolkit"
+Documentation = "https://github.com/mm644706215/rustfs-s3-toolkit#readme"
+Issues = "https://github.com/mm644706215/rustfs-s3-toolkit/issues"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+]
+
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"

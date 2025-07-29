@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+src/rustfs_s3_toolkit/__init__.py
+src/rustfs_s3_toolkit/s3_client.py
+src/rustfs_s3_toolkit.egg-info/PKG-INFO
+src/rustfs_s3_toolkit.egg-info/SOURCES.txt
+src/rustfs_s3_toolkit.egg-info/dependency_links.txt
+src/rustfs_s3_toolkit.egg-info/requires.txt
+src/rustfs_s3_toolkit.egg-info/top_level.txt
+tests/test_toolkit.py
