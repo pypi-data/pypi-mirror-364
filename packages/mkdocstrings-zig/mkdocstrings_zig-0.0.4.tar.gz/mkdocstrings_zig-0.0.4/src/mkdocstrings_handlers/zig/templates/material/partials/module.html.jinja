@@ -1,0 +1,25 @@
+{% block logs scoped %}
+  {{ log.debug("Rendering " + data.path) }}
+{% endblock logs %}
+
+<div class="doc doc-object doc-data">
+  {% with obj = data, html_id = data.path %}
+    {% include "partials/heading.html.jinja" %}
+    
+    {% with heading_level=heading_level+1 %}
+    <div class="doc doc-contents {% if root %}first{% endif %}">
+      {% block contents scoped %}
+        {% include "partials/docstring.html.jinja" %}
+        {% for child in data.children %}
+          {% with parent=child %}
+            {% include "partials/fields.html.jinja" %}
+            {% include "partials/constant.html.jinja" %}
+            {% include "partials/struct.html.jinja" %}
+            {% include "partials/function.html.jinja" %}
+          {% endwith %}
+        {% endfor %}
+      {% endblock contents %}
+    </div>
+    {% endwith %}
+  {% endwith %}
+</div>
