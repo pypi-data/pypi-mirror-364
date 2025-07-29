@@ -1,0 +1,84 @@
+Metadata-Version: 2.4
+Name: mkdocstrings-zig
+Version: 0.0.3
+Summary: A Zig handler for mkdocstrings.
+Author-Email: insolor <insolor@gmail.com>
+License-Expression: ISC
+License-File: LICENSE
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Documentation
+Classifier: Topic :: Software Development
+Classifier: Topic :: Utilities
+Classifier: Typing :: Typed
+Project-URL: Documentation, https://insolor.github.io/mkdocstrings-zig
+Project-URL: Repository, https://github.com/insolor/mkdocstrings-zig
+Project-URL: Issues, https://github.com/insolor/mkdocstrings-zig/issues
+Project-URL: Discussions, https://github.com/insolor/mkdocstrings-zig/discussions
+Requires-Python: >=3.10
+Requires-Dist: mkdocstrings>=0.18
+Requires-Dist: tree-sitter>=0.25.0
+Requires-Dist: tree-sitter-zig>=1.1.2
+Description-Content-Type: text/markdown
+
+# mkdocstrings-zig
+
+[![ci](https://github.com/insolor/mkdocstrings-zig/workflows/ci/badge.svg)](https://github.com/insolor/mkdocstrings-zig/actions?query=workflow%3Aci)
+[![documentation](https://img.shields.io/badge/docs-mkdocs-708FCC.svg?style=flat)](https://insolor.github.io/mkdocstrings-zig/)
+[![pypi version](https://img.shields.io/pypi/v/mkdocstrings-zig.svg)](https://pypi.org/project/mkdocstrings-zig/)
+
+A Zig handler for [mkdocstrings](https://mkdocstrings.github.io). Makes it possible to create documentation from code in Zig language using [mkdocs](https://github.com/mkdocs/mkdocs).
+
+## Demo
+
+See [demo documentation](https://insolor.github.io/mkdocstrings-zig/demo) generated from [test_zig_project](https://github.com/insolor/mkdocstrings-zig/tree/main/test_zig_project).
+
+## Usage
+
+### Installation
+
+```bash
+pip install 'mkdocstrings[zig]'
+pip install mkdocs-material
+pip install typing-extensions
+```
+
+[mkdocs-material](https://github.com/squidfunk/mkdocs-material) theme installation is optional, but recommended for better look and feel.
+
+### mkdocs.yml example
+
+```yaml
+site_name: Example of zig project documentation using mkdocstrings
+
+# remove if you are not using mkdocs-material theme
+# or replace it with the theme of your choice
+theme:
+  name: material
+
+plugins:
+- mkdocstrings:
+    default_handler: zig
+```
+
+### docs/index.md example
+
+```markdown
+# Project Documentation
+
+::: src/main.zig
+
+::: src/root.zig
+```
+
+In the future it's planned to add a possibility to specify just a parent directory, like that:
+
+```markdown
+::: src
+```
