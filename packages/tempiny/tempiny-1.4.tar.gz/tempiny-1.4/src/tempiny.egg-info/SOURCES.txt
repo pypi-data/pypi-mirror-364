@@ -1,0 +1,9 @@
+LICENSE.txt
+README.md
+pyproject.toml
+requirements.txt
+src/tempiny/__init__.py
+src/tempiny.egg-info/PKG-INFO
+src/tempiny.egg-info/SOURCES.txt
+src/tempiny.egg-info/dependency_links.txt
+src/tempiny.egg-info/top_level.txt
