@@ -1,0 +1,2 @@
+[console_scripts]
+rest-encrypt = rest_encrypt.cli:main

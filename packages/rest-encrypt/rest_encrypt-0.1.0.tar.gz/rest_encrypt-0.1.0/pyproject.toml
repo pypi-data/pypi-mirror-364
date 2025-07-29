@@ -1,0 +1,26 @@
+[project]
+name = "rest-encrypt"
+version = "0.1.0"
+requires-python = ">=3.11"
+description = "Lightweight encryption-at-rest for application secrets"
+readme = "README.md"
+license         = "Apache-2.0"
+license-files   = ["LICENSE"]
+keywords        = ["Encrypt at rest"]  
+dependencies = [
+  "cryptography>=42.0.0",
+  "pywin32>=306; sys_platform == 'win32'",
+  "python-dotenv>=1.0.1",
+  "tomli>=2.0.1; python_version<'3.11'",
+  "tomli-w>=1.2.0",
+]
+
+[project.scripts]
+rest-encrypt = "rest_encrypt.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["rest_encrypt*"]
