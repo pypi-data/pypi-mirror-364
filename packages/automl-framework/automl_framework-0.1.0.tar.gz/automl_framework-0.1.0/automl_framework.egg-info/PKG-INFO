@@ -1,0 +1,297 @@
+Metadata-Version: 2.4
+Name: automl-framework
+Version: 0.1.0
+Summary: A comprehensive, modular framework for automated machine learning with overfitting detection and mitigation
+Home-page: https://github.com/nandarizkika/automl-framework
+Author: Nanda Rizkika Ruanawijaya
+Author-email: Nanda Rizkika Ruanawijayae <nandarizky52@gmail.com>
+Maintainer-email: Nanda Rizkika Ruanawijayae <nandarizky52@gmail.com>
+License: MIT License
+        
+        Copyright (c) 2024 Your Name
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: Homepage, https://github.com/nandarizkika/automl-framework
+Project-URL: Documentation, https://github.com/nandarizkika/automl-framework/docs
+Project-URL: Repository, https://github.com/nandarizkika/automl-framework
+Project-URL: Bug Tracker, https://github.com/nandarizkika/automl-framework/issues
+Project-URL: Changelog, https://github.com/nandarizkika/automl-framework/blob/main/CHANGELOG.md
+Keywords: machine learning,automl,automated machine learning,overfitting,hyperparameter tuning,model selection,scikit-learn
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy>=1.21.0
+Requires-Dist: pandas>=1.3.0
+Requires-Dist: scikit-learn>=1.0.0
+Requires-Dist: matplotlib>=3.3.0
+Requires-Dist: seaborn>=0.11.0
+Requires-Dist: joblib>=1.0.0
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0.0; extra == "dev"
+Requires-Dist: pytest-cov>=2.12.0; extra == "dev"
+Requires-Dist: black>=21.0.0; extra == "dev"
+Requires-Dist: flake8>=3.9.0; extra == "dev"
+Requires-Dist: isort>=5.9.0; extra == "dev"
+Provides-Extra: docs
+Requires-Dist: sphinx>=4.0.0; extra == "docs"
+Requires-Dist: sphinx-rtd-theme>=0.5.0; extra == "docs"
+Provides-Extra: jupyter
+Requires-Dist: jupyter>=1.0.0; extra == "jupyter"
+Requires-Dist: ipykernel>=6.0.0; extra == "jupyter"
+Requires-Dist: notebook>=6.4.0; extra == "jupyter"
+Provides-Extra: advanced
+Requires-Dist: scikit-optimize>=0.9.0; extra == "advanced"
+Requires-Dist: hyperopt>=0.2.7; extra == "advanced"
+Provides-Extra: all
+Requires-Dist: pytest>=6.0.0; extra == "all"
+Requires-Dist: pytest-cov>=2.12.0; extra == "all"
+Requires-Dist: black>=21.0.0; extra == "all"
+Requires-Dist: flake8>=3.9.0; extra == "all"
+Requires-Dist: isort>=5.9.0; extra == "all"
+Requires-Dist: sphinx>=4.0.0; extra == "all"
+Requires-Dist: sphinx-rtd-theme>=0.5.0; extra == "all"
+Requires-Dist: jupyter>=1.0.0; extra == "all"
+Requires-Dist: ipykernel>=6.0.0; extra == "all"
+Requires-Dist: notebook>=6.4.0; extra == "all"
+Requires-Dist: scikit-optimize>=0.9.0; extra == "all"
+Requires-Dist: hyperopt>=0.2.7; extra == "all"
+Dynamic: author
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+
+# AutoML Framework: Intelligent Machine Learning Automation 🤖🧠
+
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PyPI version](https://img.shields.io/badge/pypi-v0.1.0-blue)](https://pypi.org/project/automl-framework/)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/nandarizkika/automl-framework/ci.yml)](https://github.com/nandarizkika/automl-framework/actions)
+[![Coverage](https://img.shields.io/codecov/c/github/nandarizkika/automl-framework)](https://codecov.io/gh/nandarizkika/automl-framework)
+
+## 🌟 Project Overview
+
+AutoML Framework is a cutting-edge, comprehensive machine learning library designed to simplify and automate the entire machine learning workflow. Our mission is to democratize machine learning by providing an intelligent, easy-to-use solution that handles complex model selection, optimization, and evaluation.
+
+### 🚀 Key Differentiators
+
+- **Intelligent Model Selection**: Automatically tries and evaluates multiple algorithms
+- **Advanced Overfitting Detection**: Sophisticated techniques to prevent model overfitting
+- **Comprehensive Hyperparameter Optimization**: Finds optimal model configurations
+- **Detailed Performance Reporting**: In-depth insights into model performance
+
+## 📦 Installation
+
+### Quick Install
+```bash
+# Install stable version
+pip install automl-framework
+
+# Install latest development version
+pip install git+https://github.com/nandarizkika/automl-framework.git
+```
+
+### Installation Options
+```bash
+# Install with all optional dependencies
+pip install automl-framework[all]
+
+# For specific use cases
+pip install automl-framework[visualization]  # Visualization tools
+pip install automl-framework[tuning]         # Advanced hyperparameter tuning
+```
+
+## 🧠 Quick Start Examples
+
+### Classification Example
+```python
+from automl import AutoML
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+
+# Load dataset
+X, y = load_iris(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+# Initialize AutoML
+automl = AutoML(problem_type='classification')
+
+# Train and evaluate models
+automl.fit(X_train, y_train)
+results = automl.evaluate(X_test, y_test)
+
+# Get best model and predictions
+best_model = automl.predict(X_test)
+leaderboard = automl.get_leaderboard()
+print(leaderboard)
+```
+
+### Regression Example
+```python
+from automl import AutoML
+from sklearn.datasets import load_boston
+from sklearn.model_selection import train_test_split
+
+# Load dataset
+X, y = load_boston(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+# Initialize AutoML for regression
+automl = AutoML(problem_type='regression')
+automl.fit(X_train, y_train)
+results = automl.evaluate(X_test, y_test)
+```
+
+## 🔧 Advanced Features
+
+### Overfitting Detection
+```python
+# Enable advanced overfitting control
+automl.pipeline.set_overfitting_control(
+    detection_enabled=True,
+    auto_mitigation=True,
+    threshold=0.3
+)
+
+# Get overfitting assessment
+assessment = automl.get_overfitting_assessment()
+suggestions = automl.get_improvement_suggestions()
+```
+
+### Hyperparameter Tuning
+```python
+from automl import TuningIntegrator
+
+# Create tuning integrator
+tuner = TuningIntegrator(automl)
+
+# Advanced model tuning
+summary = tuner.tune_models(
+    X_train, y_train,
+    search_type='bayesian',
+    n_iter=50,
+    register_best=True
+)
+```
+
+## 🌈 Key Features
+
+### 1. Automated Machine Learning
+- Automatic algorithm selection
+- Intelligent model ranking
+- Performance optimization
+
+### 2. Overfitting Management
+- Multi-metric overfitting detection
+- Automatic and manual mitigation strategies
+- Comprehensive model fit assessment
+
+### 3. Hyperparameter Optimization
+- Grid Search
+- Random Search
+- Bayesian Optimization
+- Hyperopt Integration
+
+### 4. Comprehensive Reporting
+- Detailed performance leaderboards
+- Feature importance analysis
+- Training logs and insights
+
+## 🧪 Supported Models
+
+### Classification
+- Random Forest
+- Logistic Regression
+- Gradient Boosting
+- Support Vector Machines
+- Decision Trees
+- K-Nearest Neighbors
+- Neural Networks
+
+### Regression
+- Linear Regression
+- Ridge Regression
+- Random Forest Regressor
+- Gradient Boosting Regressor
+- Support Vector Regression
+
+## 📊 Performance Benchmarks
+
+| Dataset | Models | Best Accuracy | Training Time | Overfitting Detected |
+|---------|--------|--------------|---------------|----------------------|
+| Iris | 5 | 97.8% | 2.3s | None |
+| Wine | 7 | 94.4% | 4.1s | 1 model |
+| Breast Cancer | 8 | 96.5% | 8.7s | 2 models |
+
+## 🛣️ Roadmap
+
+### v0.2.0
+- [ ] Deep Learning Integration
+- [ ] Time Series Support
+- [ ] Advanced Feature Engineering
+- [ ] Enhanced Visualization
+
+### v0.3.0
+- [ ] Distributed Training
+- [ ] Model Deployment Tools
+- [ ] Advanced NLP Support
+
+## 🤝 Contributing
+
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+
+### Ways to Contribute
+- 🐛 Report Bugs
+- 💡 Suggest Features
+- 📝 Improve Documentation
+- 🔧 Submit Pull Requests
+
+## 📄 License
+
+MIT License - See [LICENSE](LICENSE) for details
+
+## 📞 Support
+
+- 📧 Email: nandarizky52@gmail.com
+- 🐞 Issues: [GitHub Issues](https://github.com/nandarizkika/automl-framework/issues)
+- 💬 Discussions: [GitHub Discussions](https://github.com/nandarizkika/automl-framework/discussions)
+
+## 🌟 Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=nandarizkika/automl-framework&type=Date)](https://star-history.com/#nandarizkika/automl-framework&Date)
+
+---
+
+<div align="center">
+🚀 Empowering Machine Learning for Everyone 🚀
+
+**AutoML Framework: Where Intelligence Meets Automation**
+</div>
