@@ -1,0 +1,3 @@
+[console_scripts]
+openapi-to-httpx = openapi_to_httpx.cli:main
+update-test-fixtures = openapi_to_httpx.__tests__.fixture_generator:main

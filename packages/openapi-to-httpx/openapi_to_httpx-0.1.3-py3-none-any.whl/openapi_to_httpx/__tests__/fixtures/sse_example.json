@@ -1,0 +1,154 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "SSE Example API",
+    "version": "1.0.0",
+    "description": "Example API demonstrating Server-Sent Events endpoints"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000"
+    }
+  ],
+  "paths": {
+    "/api/v1/events/stream": {
+      "get": {
+        "summary": "Stream Events",
+        "description": "Stream real-time events via Server-Sent Events",
+        "operationId": "streamEvents",
+        "responses": {
+          "200": {
+            "description": "Event stream",
+            "content": {
+              "text/event-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "event-stream"
+                },
+                "examples": {
+                  "events": {
+                    "value": "data: {\"type\": \"connected\", \"timestamp\": \"2023-01-01T00:00:00Z\"}\n\ndata: {\"type\": \"message\", \"content\": \"Hello\", \"timestamp\": \"2023-01-01T00:00:01Z\"}\n\ndata: {\"type\": \"ping\"}\n"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/execute/{sessionId}/stdout_stream": {
+      "get": {
+        "summary": "Stream Stdout",
+        "description": "Stream stdout/stderr output via Server-Sent Events (SSE).\n\nThe stream will contain JSON-encoded events with the following types:\n- connected: Initial connection event\n- stdout/stderr/system/error/result: Command output\n- ping: Keepalive events\n- error: Error events",
+        "operationId": "streamStdout",
+        "parameters": [
+          {
+            "name": "sessionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The session ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "SSE stream of stdout/stderr events",
+            "content": {
+              "text/event-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "event-stream"
+                },
+                "examples": {
+                  "stdout_events": {
+                    "value": "data: {\"type\": \"connected\", \"session_id\": \"123\"}\n\ndata: {\"type\": \"stdout\", \"content\": \"Hello World\\n\", \"timestamp\": \"2023-01-01T00:00:00Z\"}\n\ndata: {\"type\": \"stderr\", \"content\": \"Error: Something went wrong\\n\", \"timestamp\": \"2023-01-01T00:00:01Z\"}\n\ndata: {\"type\": \"result\", \"exit_code\": 0}\n"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Session not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/data/changes": {
+      "get": {
+        "summary": "Stream Data Changes",
+        "description": "Stream real-time data changes with filtering",
+        "operationId": "streamDataChanges",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter expression"
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Only stream changes after this timestamp"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Stream of data change events",
+            "content": {
+              "text/event-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "event-stream"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Event": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["connected", "message", "data", "error", "ping", "close"]
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      }
+    }
+  }
+}

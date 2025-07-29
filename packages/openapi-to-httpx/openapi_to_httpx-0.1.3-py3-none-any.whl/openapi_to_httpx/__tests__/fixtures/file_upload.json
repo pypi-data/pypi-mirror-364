@@ -1,0 +1,578 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "File Upload API",
+    "description": "API for testing various file upload scenarios",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.fileupload.example.com/v1"
+    }
+  ],
+  "paths": {
+    "/upload/single": {
+      "post": {
+        "tags": ["uploads"],
+        "summary": "Upload a single file",
+        "description": "Upload a single file with no additional parameters",
+        "operationId": "uploadSingleFile",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "The file to upload"
+                  }
+                },
+                "required": ["file"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "File uploaded successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/upload/with-metadata": {
+      "post": {
+        "tags": ["uploads"],
+        "summary": "Upload file with metadata",
+        "description": "Upload a file along with additional form fields",
+        "operationId": "uploadFileWithMetadata",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "The file to upload"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Title for the file"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Description of the file"
+                  },
+                  "tags": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Tags for categorization"
+                  },
+                  "public": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Whether the file should be publicly accessible"
+                  }
+                },
+                "required": ["file", "title"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "File created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileMetadata"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/upload/multiple": {
+      "post": {
+        "tags": ["uploads"],
+        "summary": "Upload multiple files",
+        "description": "Upload multiple files in a single request",
+        "operationId": "uploadMultipleFiles",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "files": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    },
+                    "description": "Multiple files to upload"
+                  },
+                  "folder": {
+                    "type": "string",
+                    "description": "Target folder for the files"
+                  }
+                },
+                "required": ["files"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Files uploaded successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "uploaded": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/UploadResponse"
+                      }
+                    },
+                    "failed": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "filename": {
+                            "type": "string"
+                          },
+                          "error": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/upload/profile-image/{user_id}": {
+      "post": {
+        "tags": ["uploads"],
+        "summary": "Upload profile image",
+        "description": "Upload a user profile image with size restrictions",
+        "operationId": "uploadProfileImage",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Profile image (JPEG or PNG, max 5MB)"
+                  },
+                  "crop_data": {
+                    "type": "string",
+                    "description": "JSON string with crop coordinates"
+                  }
+                },
+                "required": ["image"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Profile image uploaded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileImageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/upload/document": {
+      "post": {
+        "tags": ["uploads"],
+        "summary": "Upload document with validation",
+        "description": "Upload a document with specific validation rules",
+        "operationId": "uploadDocument",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "document": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Document file (PDF, DOC, DOCX)"
+                  },
+                  "document_type": {
+                    "type": "string",
+                    "enum": ["contract", "invoice", "report", "other"],
+                    "description": "Type of document"
+                  },
+                  "expiry_date": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Document expiry date"
+                  },
+                  "confidential": {
+                    "type": "boolean",
+                    "default": false
+                  }
+                },
+                "required": ["document", "document_type"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Document uploaded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/upload/mixed": {
+      "post": {
+        "tags": ["uploads"],
+        "summary": "Upload with mixed content",
+        "description": "Upload files along with JSON data",
+        "operationId": "uploadMixedContent",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "attachment": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "thumbnail": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "metadata": {
+                    "type": "string",
+                    "description": "JSON string containing metadata"
+                  },
+                  "options": {
+                    "type": "object",
+                    "properties": {
+                      "compress": {
+                        "type": "boolean"
+                      },
+                      "encrypt": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                },
+                "required": ["attachment"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Content uploaded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MixedContentResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/download/file/{file_id}": {
+      "get": {
+        "operationId": "downloadFile",
+        "summary": "Download a file",
+        "description": "Download a file by its ID",
+        "parameters": [
+          {
+            "name": "file_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "File content",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/download/report": {
+      "post": {
+        "operationId": "generateReport",
+        "summary": "Generate and download a report",
+        "description": "Generate a PDF report based on the provided data",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "PDF report",
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/download/archive": {
+      "get": {
+        "operationId": "downloadArchive",
+        "summary": "Download archive",
+        "description": "Download a zip archive of all files",
+        "responses": {
+          "200": {
+            "description": "Zip archive",
+            "content": {
+              "application/zip": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UploadResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "filename": {
+            "type": "string"
+          },
+          "size": {
+            "type": "integer",
+            "description": "File size in bytes"
+          },
+          "mime_type": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "uploaded_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": ["id", "filename", "size", "mime_type", "url", "uploaded_at"]
+      },
+      "FileMetadata": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/UploadResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "public": {
+                "type": "boolean"
+              }
+            }
+          }
+        ]
+      },
+      "ReportRequest": {
+        "type": "object",
+        "required": ["title", "format"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Report title"
+          },
+          "format": {
+            "type": "string",
+            "enum": ["pdf", "excel"],
+            "description": "Report format"
+          },
+          "include_charts": {
+            "type": "boolean",
+            "default": true,
+            "description": "Whether to include charts"
+          }
+        }
+      },
+      "ProfileImageResponse": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string"
+          },
+          "image_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "thumbnail_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "dimensions": {
+            "type": "object",
+            "properties": {
+              "width": {
+                "type": "integer"
+              },
+              "height": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      },
+      "DocumentResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/UploadResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "document_type": {
+                "type": "string"
+              },
+              "expiry_date": {
+                "type": "string",
+                "format": "date"
+              },
+              "confidential": {
+                "type": "boolean"
+              },
+              "pages": {
+                "type": "integer",
+                "description": "Number of pages (for PDFs)"
+              }
+            }
+          }
+        ]
+      },
+      "MixedContentResponse": {
+        "type": "object",
+        "properties": {
+          "attachment_id": {
+            "type": "string"
+          },
+          "thumbnail_id": {
+            "type": "string"
+          },
+          "processed_metadata": {
+            "type": "object"
+          },
+          "applied_options": {
+            "type": "object",
+            "properties": {
+              "compressed": {
+                "type": "boolean"
+              },
+              "encrypted": {
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

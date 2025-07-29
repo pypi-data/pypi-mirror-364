@@ -1,0 +1,229 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Edge Cases Test API",
+    "version": "1.0.0",
+    "description": "API for testing edge cases in code generation"
+  },
+  "servers": [
+    {
+      "url": "https://api.example.com/v1"
+    }
+  ],
+  "paths": {
+    "/snake_case_endpoint": {
+      "get": {
+        "operationId": "getSnakeCaseModel",
+        "summary": "Get a model with snake_case name",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/snake_case_model"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/polymorphic": {
+      "get": {
+        "operationId": "getPolymorphicResponse",
+        "summary": "Get a polymorphic response",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/polymorphic_response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/with-dashes": {
+      "get": {
+        "operationId": "getModelWithDashes",
+        "summary": "Get a model with dashes in name",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/model-with-dashes"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/upload": {
+      "post": {
+        "operationId": "uploadFile",
+        "summary": "Upload a file",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FILEUPLOADRESPONSE"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/sessions/": {
+      "post": {
+        "summary": "Create a new session (no operationId)",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/{user_id}/sessions/": {
+      "post": {
+        "summary": "Create a user session (no operationId)",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "snake_case_model": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "snake_case_field": {
+            "type": "string"
+          }
+        },
+        "required": ["id"]
+      },
+      "camelCaseModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "camelCaseField": {
+            "type": "string"
+          }
+        }
+      },
+      "model-with-dashes": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "field-with-dashes": {
+            "type": "string"
+          }
+        }
+      },
+      "polymorphic_response": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/snake_case_model"
+          },
+          {
+            "$ref": "#/components/schemas/camelCaseModel"
+          }
+        ]
+      },
+      "union_type_model": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["cat"]
+              },
+              "meow": {
+                "type": "boolean"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["dog"]
+              },
+              "bark": {
+                "type": "boolean"
+              }
+            }
+          }
+        ]
+      },
+      "FILEUPLOADRESPONSE": {
+        "type": "object",
+        "properties": {
+          "fileId": {
+            "type": "string"
+          },
+          "fileName": {
+            "type": "string"
+          },
+          "uploadedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": ["fileId", "fileName", "uploadedAt"]
+      }
+    }
+  }
+}

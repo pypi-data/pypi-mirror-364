@@ -1,0 +1,46 @@
+openapi: 3.0.0
+info:
+  title: Basic CRUD API
+  version: 1.0.0
+servers:
+  - url: https://api.example.com/v1
+paths:
+  /pets/{pet_id}:
+    get:
+      operationId: getPetById
+      summary: Get a pet by ID
+      parameters:
+        - name: pet_id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: include_details
+          in: query
+          required: false
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'
+        '404':
+          description: Pet not found
+components:
+  schemas:
+    Pet:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        tag:
+          type: string
