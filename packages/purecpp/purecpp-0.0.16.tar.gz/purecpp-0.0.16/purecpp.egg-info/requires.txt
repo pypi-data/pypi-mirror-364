@@ -1,0 +1,7 @@
+purecpp_libs
+auditwheel
+build
+requests
+wheel
+pybind11
+setuptools
