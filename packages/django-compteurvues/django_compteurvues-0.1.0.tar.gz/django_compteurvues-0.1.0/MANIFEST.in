@@ -1,0 +1,3 @@
+recursive-include compteurvues/templates *
+recursive-include compteurvues/migrations *.py
+
