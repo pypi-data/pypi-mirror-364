@@ -1,0 +1,13 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: 2024.08.19
+_src_path: gh:scientific-python/cookie
+backend: skbuild
+email: mjerdee@umich.edu
+full_name: Max Jerdee
+license: MIT
+org: maxjerdee
+project_name: matrix-count
+project_short_description: Counting and sampling non-negative integer matrices given
+    margin sums.
+url: https://github.com/maxjerdee/matrix-count
+vcs: true

@@ -1,0 +1,1 @@
+Going to do most of these calculations on the cluster, but the goal is to compare the performance of our estimates to the exact counts. We will run the SIS until the inferred count is at least 5 sigma away from either estimate before making a comparison. 
