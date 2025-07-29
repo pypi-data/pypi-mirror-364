@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+aiforecast/__init__.py
+aiforecast/ai_clients.py
+aiforecast/api_service.py
+aiforecast/config.py
+aiforecast/core.py
+aiforecast/data_processing.py
+aiforecast.egg-info/PKG-INFO
+aiforecast.egg-info/SOURCES.txt
+aiforecast.egg-info/dependency_links.txt
+aiforecast.egg-info/requires.txt
+aiforecast.egg-info/top_level.txt
