@@ -1,0 +1,11 @@
+{
+    "name": "clapp-store",
+    "version": "1.0.0",
+    "language": "python",
+    "entry": "main.py",
+    "description": "Clapp paket yöneticisinin grafiksel kullanıcı arayüzü",
+    "dependencies": [
+        "flet",
+        "requests"
+    ]
+} 

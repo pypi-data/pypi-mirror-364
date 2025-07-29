@@ -1,0 +1,8 @@
+{
+    "name": "cloud-finder",
+    "version": "1.0.0",
+    "language": "python",
+    "entry": "main.py",
+    "description": "MacOS Finder'a benzeyen modern dosya gezgini",
+    "dependencies": []
+} 

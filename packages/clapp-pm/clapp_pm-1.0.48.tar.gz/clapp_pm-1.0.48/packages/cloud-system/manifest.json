@@ -1,0 +1,11 @@
+{
+    "name": "cloud-system",
+    "version": "1.0.0",
+    "language": "python",
+    "entry": "main.py",
+    "description": "Modern sistem yöneticisi ve görev yöneticisi uygulaması",
+    "dependencies": [
+        "flet",
+        "psutil"
+    ]
+} 
