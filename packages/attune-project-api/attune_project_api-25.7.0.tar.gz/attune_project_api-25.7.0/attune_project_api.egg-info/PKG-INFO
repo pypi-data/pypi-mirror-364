@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: attune-project-api
+Version: 25.7.0
+Author: AttuneOps
+Author-email: support@attuneops.io
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: twisted
+Requires-Dist: pygit2==1.18.*
+Requires-Dist: vortexpy>=4.0.0
+Requires-Dist: pytz
+Requires-Dist: pathvalidate
+Requires-Dist: py7zr
+Requires-Dist: markdown
+Requires-Dist: alembic
+Requires-Dist: mako
+Requires-Dist: sphinx
+Requires-Dist: sphinx-rtd-theme
+Requires-Dist: sphinx-autobuild
+Requires-Dist: pytmpdir
