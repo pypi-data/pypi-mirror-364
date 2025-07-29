@@ -1,0 +1,2 @@
+[console_scripts]
+hypothesis-scout = hypothesis_scout.main:main
