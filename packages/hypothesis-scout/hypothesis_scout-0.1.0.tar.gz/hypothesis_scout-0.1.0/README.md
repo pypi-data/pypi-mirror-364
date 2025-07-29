@@ -1,0 +1,83 @@
+# hypothesis-scout
+
+A tool for discovering valid candidates for hypothesis tests.
+
+## Installation
+
+```bash
+pip install hypothesis-scout
+```
+
+## Usage
+
+```bash
+hypothesis-scout
+```
+
+## Development
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Mockapapella/hypothesis-scout.git
+   cd hypothesis-scout
+   ```
+
+2. Install in development mode:
+   ```bash
+   uv pip install -e .
+   ```
+
+## Releasing
+
+This package uses manual releases with PyPI Trusted Publishers for security.
+
+### Prerequisites
+
+1. **PyPI Trusted Publisher** (one-time setup):
+   - Go to https://pypi.org/manage/account/publishing/
+   - Add pending publisher for "hypothesis-scout"
+   - Repository: `Mockapapella/hypothesis-scout`
+   - Workflow: `publish.yml`
+   - Environment: `pypi`
+
+2. **GitHub Environment** (one-time setup):
+   - Repository Settings � Environments
+   - Create environment named `pypi`
+   - Add protection rule requiring manual approval
+
+### Release Steps
+
+1. **Create and push tag** (version is automatically determined from tag):
+   ```bash
+   git tag v0.2.0
+   git push origin master --tags
+   ```
+
+2. **Approve publication** in GitHub Actions:
+   - Go to Actions tab
+   - Click on the running workflow
+   - Approve the deployment to `pypi` environment
+
+3. **Verify** on https://pypi.org/project/hypothesis-scout/
+
+### Version Numbering
+
+Follow semantic versioning:
+- Patch (0.1.0 � 0.1.1): Bug fixes only
+- Minor (0.1.0 � 0.2.0): New features, backwards compatible
+- Major (0.1.0 � 1.0.0): Breaking changes
+
+### Troubleshooting Releases
+
+If something goes wrong:
+1. Delete the tag locally and remotely:
+   ```bash
+   git tag -d v0.2.0
+   git push origin :refs/tags/v0.2.0
+   ```
+2. Fix the issue
+3. Try again with a new version number
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
