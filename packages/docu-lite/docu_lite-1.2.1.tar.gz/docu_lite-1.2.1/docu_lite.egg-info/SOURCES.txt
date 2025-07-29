@@ -1,0 +1,10 @@
+LICENSE
+MANIFEST.in
+README.md
+doculite.py
+pyproject.toml
+docu_lite.egg-info/PKG-INFO
+docu_lite.egg-info/SOURCES.txt
+docu_lite.egg-info/dependency_links.txt
+docu_lite.egg-info/entry_points.txt
+docu_lite.egg-info/top_level.txt
