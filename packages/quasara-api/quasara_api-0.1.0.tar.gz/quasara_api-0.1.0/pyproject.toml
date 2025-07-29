@@ -1,0 +1,33 @@
+# pyproject.toml
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+# --- CORE METADATA ---
+name = "quasara-api"
+version = "0.1.0"
+authors = [
+  { name = "Indrah Thelaganathan", email = "indrah.thelaganathan@quasara.io" },
+]
+description = "A Python SDK for interacting with the Quasara API"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License", # Or your chosen license
+    "Operating System :: OS Independent",
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries",
+]
+
+# --- DEPENDENCIES ---
+dependencies = [
+    "requests >= 2.20.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/your-username/your-repo" # Optional
+"Bug Tracker" = "https://github.com/your-username/your-repo/issues" # Optional

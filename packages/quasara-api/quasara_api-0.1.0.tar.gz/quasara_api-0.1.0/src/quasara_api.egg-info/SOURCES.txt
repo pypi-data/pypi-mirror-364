@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+src/quasara_api.egg-info/PKG-INFO
+src/quasara_api.egg-info/SOURCES.txt
+src/quasara_api.egg-info/dependency_links.txt
+src/quasara_api.egg-info/requires.txt
+src/quasara_api.egg-info/top_level.txt
+src/quasara_api_sdk/__init__.py
+src/quasara_api_sdk/client.py
