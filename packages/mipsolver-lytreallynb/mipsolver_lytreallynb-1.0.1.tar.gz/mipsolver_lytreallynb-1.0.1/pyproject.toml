@@ -1,0 +1,42 @@
+# pyproject.toml
+
+[build-system]
+# These are the packages needed to build your project.
+# pip will install them in an isolated environment before running setup.py.
+requires = [
+    "setuptools>=61.0",
+    "wheel",
+    "cmake>=3.12",
+    "pybind11>=2.6"
+]
+build-backend = "setuptools.build_meta"
+
+# Configuration for building cross-platform wheels
+[tool.cibuildwheel]
+# Build for these Python versions
+build = "cp38-* cp39-* cp310-* cp311-* cp312-*"
+
+# Skip 32-bit builds and PyPy
+skip = "*-win32 *-manylinux_i686 pp*"
+
+# Build for these platforms
+# - Linux: x86_64
+# - macOS: x86_64 and arm64 (Intel and Apple Silicon)  
+# - Windows: x64
+build-verbosity = 1
+
+# Environment variables for the build
+[tool.cibuildwheel.environment]
+CMAKE_BUILD_PARALLEL_LEVEL = "4"
+
+# Linux-specific settings
+[tool.cibuildwheel.linux]
+before-all = "yum install -y cmake3 && ln -sf /usr/bin/cmake3 /usr/bin/cmake"
+
+# macOS-specific settings
+[tool.cibuildwheel.macos]
+before-all = "brew install cmake"
+
+# Windows-specific settings
+[tool.cibuildwheel.windows]
+before-all = "choco install cmake --installargs 'ADD_CMAKE_TO_PATH=System'"
