@@ -1,0 +1,29 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "dozersim"                   # Replace with your package name
+version =  "0.2.7" #   # Package version
+description = "Simulation and optmization framework for drives"
+authors = ["Cor Meijneke <c.meijneke@tudelft.nl>"]
+readme = "README.md"
+packages = [{include = "dozersim"}]
+include = [
+    "data/*.json",
+    "data/*.db",
+]
+
+
+[tool.poetry.dependencies]
+python = "^3.12"
+numpy = "^2.3.1"
+scipy= "^1.11.4"
+SQLAlchemy= "^2.0.23"
+sympy= "^1.12.1"
+pandas= "^2.1.3"
+Pint= "^0.22"
+matplotlib= "^3.8.2"
+PyQt6 = "^6.7.1"
+prettytable= "^3.9.0"
+
