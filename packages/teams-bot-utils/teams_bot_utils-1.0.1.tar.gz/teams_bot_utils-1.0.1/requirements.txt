@@ -1,0 +1,4 @@
+mixpanel>=2.2.0
+httpx>=0.24.0
+botbuilder-core>=4.14.0
+pydantic>=1.8.0
