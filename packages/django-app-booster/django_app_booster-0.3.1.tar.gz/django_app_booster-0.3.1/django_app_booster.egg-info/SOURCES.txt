@@ -1,0 +1,8 @@
+setup.py
+app_booster/__init__.py
+app_booster/cli.py
+django_app_booster.egg-info/PKG-INFO
+django_app_booster.egg-info/SOURCES.txt
+django_app_booster.egg-info/dependency_links.txt
+django_app_booster.egg-info/entry_points.txt
+django_app_booster.egg-info/top_level.txt
