@@ -1,0 +1,12 @@
+setuptools
+future
+plone.api
+plone.app.contenttypes
+plone.protect
+plone.restapi
+python-dateutil
+
+[test]
+mock
+plone.app.testing
+plone.testing
