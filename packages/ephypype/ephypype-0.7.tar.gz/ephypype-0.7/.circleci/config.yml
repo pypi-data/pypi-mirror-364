@@ -1,0 +1,45 @@
+version: 2
+jobs:
+    build:
+        docker:
+            - image: circleci/python:3.7-stretch
+        steps:
+            - checkout
+            - run:
+                name: Clean CircleCI
+                command: |
+                    rm -rf ~/.pyenv;
+                    rm -rf ~/virtualenvs;
+            - run:
+                name: Spin up Xvfb
+                command: |
+                    /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1400x900x24 -ac +extension GLX +render -noreset;
+                    echo "export DISPLAY=:99" >> $BASH_ENV;
+            - run: sudo apt-get update        
+            - run: sudo apt-get install libxcb-xinerama0 libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6 qt5-default graphviz;
+            - run:
+                name: Setup Python environment
+                command: |
+                  pip install -U pip;
+                  pip install --upgrade mne
+                  pip install sphinx sphinx-gallery==0.4.0 sphinx_bootstrap_theme lxml;
+                  pip install numpydoc;
+                  pip install scikit-learn
+                  pip install nipype
+                  pip install h5py
+                  pip install visbrain
+                  python setup.py develop --user
+            - run:
+                name: Build the documentation
+                command: |
+                    cd doc
+                    make clean
+                    make html
+                no_output_timeout: 35m
+            - store_artifacts:
+                path: doc/_build/html/
+                destination: html
+            - add_ssh_keys:
+                fingerprints:
+                    - "7f:6f:31:22:7d:5f:6f:80:70:43:f4:6c:14:ef:15:ed"
+

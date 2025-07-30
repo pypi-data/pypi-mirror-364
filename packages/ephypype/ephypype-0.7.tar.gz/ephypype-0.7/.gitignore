@@ -1,0 +1,27 @@
+*.pyc
+*.mat
+*.bak
+*~
+crash*
+*.egg-info/*
+.coverage
+.coverage.*
+.pytest*
+.cache
+
+# Sphinx documentation
+build/
+dist/
+doc/_build/
+doc/auto_examples/
+doc/auto_tutorials/
+doc/auto_workshop/
+doc/generated/
+
+# Examples data files
+examples/sample_BIDS_omega
+examples/ieeg
+examples/*ipynb
+examples/_ERP_CORE
+doc/workshop/ERP_CORE
+doc/workshop/.*
