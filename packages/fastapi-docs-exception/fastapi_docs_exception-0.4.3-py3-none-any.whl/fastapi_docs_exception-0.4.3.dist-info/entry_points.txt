@@ -1,0 +1,5 @@
+[console_scripts]
+lint = fastapi_docs_exception:lint
+lint_ci = fastapi_docs_exception:lint_ci
+test = fastapi_docs_exception:test
+test_ci = fastapi_docs_exception:test_ci
