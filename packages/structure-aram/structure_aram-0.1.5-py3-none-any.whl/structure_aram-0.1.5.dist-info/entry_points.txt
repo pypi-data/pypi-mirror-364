@@ -1,0 +1,2 @@
+[console_scripts]
+generate-app = structure_aram.cli:main
