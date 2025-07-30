@@ -1,0 +1,9 @@
+fastapi[all]
+sqlalchemy[asyncio]
+aiomysql
+pydantic-settings
+python-multipart
+python-jose[cryptography]
+passlib[bcrypt]
+structlog
+colorama
