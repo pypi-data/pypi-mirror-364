@@ -1,0 +1,7 @@
+aiohttp
+
+[test]
+pytest
+python-dotenv
+envparse
+pytest-asyncio
