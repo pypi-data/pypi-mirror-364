@@ -1,0 +1,3 @@
+[console_scripts]
+nolang-mcp = nolang_mcp.server:main
+
