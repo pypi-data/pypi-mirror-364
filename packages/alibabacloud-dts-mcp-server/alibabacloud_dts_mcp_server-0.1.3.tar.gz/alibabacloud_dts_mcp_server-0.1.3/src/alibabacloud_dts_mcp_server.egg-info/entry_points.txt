@@ -1,0 +1,2 @@
+[console_scripts]
+alibabacloud-dts-mcp-server = alibabacloud_dts_mcp_server.server:main
