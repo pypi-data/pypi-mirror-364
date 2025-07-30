@@ -1,0 +1,114 @@
+# Edgar Financial Analysis Toolkit
+
+A Python package for extracting and analyzing financial statement data from SEC filings using XBRL data and Yahoo Finance. 
+
+## Key Features
+
+- Extract financial data from SEC filings using `edgartools`
+- Support for balance sheet, income statement, and cash flow statement items
+- Calculate annual, quarterly, and trailing twelve month (TTM) metrics
+- Flexible matching of accounting concepts with regex patterns
+- Integration with Yahoo Finance in order to find correct accounting items
+- Clean, standardized output in pandas DataFrames
+
+## Installation
+
+```bash
+pip install edgartools==3.15.1
+pip install yfinance pandas
+```
+
+## Dependencies
+* Python 3.7+ 
+* edgartools (3.15.1)
+* yfinance 
+* pandas 
+* numpy 
+* pydantic
+
+## Core Components
+### Accounting Item Configuration
+* AccountingItem class defines how to match and process financial statement items 
+* Pre-configured items for common metrics (Revenue, Total Assets)
+* Flexible matching strategies (concept, label, union, intersection)
+
+### Data Extraction
+* Uses edgartools to download and parse XBRL filings 
+* Caches filings for efficient repeated analysis 
+* Handles both instant (balance sheet) and duration (income statement) items
+
+### Analysis Features
+* Calculate trailing twelve month (TTM) metrics from quarterly data
+* Standardize reporting frequencies (annual, quarterly, TTM)
+* Combine SEC data with Yahoo Finance data when available
+
+## Configuration
+# EDGAR Identity
+You must set your [identity](https://www.sec.gov/os/accessing-edgar-data) before making requests to EDGAR
+
+```
+from edgar import set_identity
+set_identity('your.name@example.com')
+```
+
+## Usage Example
+```ruby
+# Download trailing twelve months Revenue data for the past six quarters 
+# and last four annual Total Asset figures for Wallmart, Inc.
+
+from edgar import set_identity
+from edgar_analysis.company_analysis import CompanyAnalysis
+
+# Set your identity for SEC EDGAR access
+set_identity('your.email@example.com')
+
+# Analyze a company
+analyst = CompanyAnalysis(ticker='WMT')
+
+# Get revenue data
+revenues = analyst.get_revenues(periods=6, frequency='ttm')
+print(revenues)
+
+# Get total assets
+assets = analyst.get_total_assets(periods=4, frequency='annual')
+print(assets)
+```
+
+## Plotting Example
+```ruby
+# Plot last eight quarterly Revenues for Apple, Inc.
+import matplotlib.pyplot as plt
+from edgar_analysis.company_analysis import CompanyAnalysis
+
+analyst = CompanyAnalysis(ticker='AAPL')
+revenues = analyst.get_revenues(periods=8, frequency='quarterly')
+
+revenues.T.plot()  # Transpose for dates on x-axis
+plt.title('Apple Quarterly Revenue')
+plt.ylabel('Revenue ($)')
+plt.show()
+```
+
+## Available Accounting Items
+Currently configured items are:
+* Revenue (Income Statement)
+* Total Assets (Balance Sheet)
+
+The system is designed to be easily extended with additional accounting items.
+
+## SEC EDGAR & Yahoo Finance Data Matching
+The SEC EDGAR API provides financial data for companies, but accounting item names (labels and contexts) can vary across companies and even change over time for the same company.
+
+To standardize this data, I use regular expressions (regex) to identify accounting items that likely match a desired concept (e.g., "Revenues").
+
+How It Works:
+1) **Yahoo Finance Data**:  The script retrieves the latest 4 years and 4 quarters of financial data for free.
+
+2) **Matching Process**: When reporting dates overlap between SEC EDGAR and Yahoo Finance, the script aligns the data to map the correct accounting line items.
+
+3) **Historical Consistency**: Since companies often report current and prior-period results, this mapping ensures the correct labels and concepts are linked to their values.
+
+This approach improves accuracy when extracting financial metrics from SEC filings.
+
+
+
