@@ -1,0 +1,15 @@
+.gitignore
+.venv/
+venv.command
+temp/
+sandbox/
+REFACTOR.md
+ARCHITECTURE.md
+CONSIDERATIONS.md
+pyrightconfig.json
+NOTES/
+devcheck/
+*_report.json
+.coverage
+coverage.xml
+.zed/
