@@ -1,0 +1,12 @@
+[project]
+name = "traffyapi"
+version = "0.1.0"
+description = "Async wrapper for Traffy API"
+authors = [{ name = "Azizbek", email = "jumaevazizbeluz@gmail.com" }]
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = ["aiohttp"]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"

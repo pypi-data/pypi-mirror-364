@@ -1,0 +1,40 @@
+# TraffyAPI
+
+Asynchronous Python wrapper for the [Traffy API](https://api.traffy.site).  
+This library is designed to simplify integration with Traffy task-based systems, especially for Telegram bots and automation platforms.
+
+## Features
+
+- Check if a task is completed  
+- Fully asynchronous using `aiohttp`  
+- Easy to use, with `resource_id` set once in the client
+
+## Installation
+
+Install directly from GitHub:
+
+```bash
+pip install git+https://github.com/laymi0/traffy.git
+```
+
+## Usage
+
+```bash
+import asyncio
+from traffyapi import TraffyAPI
+
+async def main():
+    api = TraffyAPI("your_resource_id")
+
+    # Get available tasks for a user
+    tasks = await api.get_tasks("123456789")
+    print("Tasks:", tasks)
+
+    # Check if a task was completed
+    result = await api.check_task("123456789", task_id="task_id_here")
+    print("Check result:", result)
+
+    await api.close()
+
+asyncio.run(main())
+```
