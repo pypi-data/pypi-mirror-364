@@ -1,0 +1,84 @@
+{#
+  Page: Full vendored page.html template from sphinx-basic-ng to avoid
+  circular references.
+#}
+
+{% extends "layout.html" %}
+
+{% block html_tag_attrs %}
+data-theme="light" data-mode="auto"
+{% endblock %}
+
+{% block head_extra %}
+{{ super() }}
+{% if technote.abstract %}
+<meta name="description" content="{{ technote.abstract }}">
+{% endif %}
+{% if technote.canonical_url %}
+<link rel="canonical" href="{{ technote.canonical_url }}">
+{% endif %}
+{{ technote.generator_tag }}
+{{ technote.opengraph_metadata_tags }}
+{{ technote.highwire_metadata_tags }}
+{% endblock head_extra %}
+
+{% block body %}
+
+{% block icon_sprites %}
+{% include "partials/octicons.html" %}
+{% endblock icon_sprites %}
+
+{% block announcement %}
+<aside class="technote-announcement-container">
+  {% include "sections/announcement.html" %}
+</aside>
+{% endblock announcement %}
+
+{% block header %}
+<header class="technote-banner-container">
+  {% include "sections/header.html" %}
+</header>
+{% endblock header %}
+
+<aside class="technote-contents-toggle-container">
+  <button id="technote-contents-toggle" class="technote-contents-toggle" aria-label="Toggle Table of Contents">
+      <svg class="technote-svg-icon">
+        <use href="#svg-octicon-three-bars-16">
+      </svg> Contents
+  </button>
+</aside>
+
+{% block container %}
+<main class="technote-container h-entry">
+
+  <header class="technote-logo-container">
+    {% include "sections/logo.html" %}
+  </header>
+
+  <aside class="technote-outline-container">
+    {% include "sections/content-outline.html" %}
+  </aside>
+
+  <article role="main" class="technote-article-container e-content">
+    <header class="technote-article-header-container">
+      {% include "sections/article-header.html" %}
+    </header>
+
+    {% include "sections/article.html" %}
+
+    <footer class="technote-article-footer-container">
+      {% include "sections/article-footer.html" %}
+    </footer>
+  </article>
+
+</main>
+
+{% endblock container %}
+
+{% block footer %}
+<footer class="technote-footer-container">
+  {% include "sections/footer.html" %}
+</footer>
+{% endblock footer %}
+
+{% endblock body %}

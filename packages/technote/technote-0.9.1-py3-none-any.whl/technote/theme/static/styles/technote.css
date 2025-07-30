@@ -1,0 +1,1074 @@
+/*!********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[0].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[0].use[3]!./src/assets/styles/technote.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************/
+html {
+  box-sizing: border-box;
+  /*
+   * Maintain the user's default font size. Rems are relative to this.
+   */
+  font-size: 100%;
+}
+
+/*
+ * Inherit border-box sizing from html
+ * https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+ */
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+:root {
+  /*
+   * Color design tokens.
+   *
+   * These are based on GitHub Primer.
+   * https://primer.style/prism/local/a4751264-de23-430e-a2fc-669488065638/scale/c2a0938a-e1dc-4b20-a07b-e2778ae57f41
+   */
+  --tn-color-black: #1b1f24;
+  --tn-color-white: #ffffff;
+  --tn-color-neutral-000: #f6f8fa;
+  --tn-color-neutral-100: #eaeef2;
+  --tn-color-neutral-200: #d0d7de;
+  --tn-color-neutral-300: #afb8c1;
+  --tn-color-neutral-400: #8c959f;
+  --tn-color-neutral-500: #6e7781;
+  --tn-color-neutral-600: #57606a;
+  --tn-color-neutral-700: #424a53;
+  --tn-color-neutral-800: #32383f;
+  --tn-color-neutral-900: #24292f;
+  --tn-color-blue-000: #ddf4ff;
+  --tn-color-blue-100: #b6e3ff;
+  --tn-color-blue-200: #80ccff;
+  --tn-color-blue-300: #54aeff;
+  --tn-color-blue-400: #218bff;
+  --tn-color-blue-500: #0969da;
+  --tn-color-blue-600: #0550ae;
+  --tn-color-blue-700: #033d8b;
+  --tn-color-blue-800: #0a3069;
+  --tn-color-blue-900: #002155;
+  --tn-color-green-000: #dafbe1;
+  --tn-color-green-100: #aceebb;
+  --tn-color-green-200: #6fdd8b;
+  --tn-color-green-300: #4ac26b;
+  --tn-color-green-400: #2da44e;
+  --tn-color-green-500: #1a7f37;
+  --tn-color-green-600: #116329;
+  --tn-color-green-700: #044f1e;
+  --tn-color-green-800: #003d16;
+  --tn-color-green-900: #002d11;
+  --tn-color-yellow-000: #fff8c5;
+  --tn-color-yellow-100: #fae17d;
+  --tn-color-yellow-200: #eac54f;
+  --tn-color-yellow-300: #d4a72c;
+  --tn-color-yellow-400: #bf8700;
+  --tn-color-yellow-500: #9a6700;
+  --tn-color-yellow-600: #7d4e00;
+  --tn-color-yellow-700: #633c01;
+  --tn-color-yellow-800: #4d2d00;
+  --tn-color-yellow-900: #3b2300;
+  --tn-color-orange-000: #fff1e5;
+  --tn-color-orange-100: #ffd8b5;
+  --tn-color-orange-200: #ffb77c;
+  --tn-color-orange-300: #fb8f44;
+  --tn-color-orange-400: #e16f24;
+  --tn-color-orange-500: #bc4c00;
+  --tn-color-orange-600: #953800;
+  --tn-color-orange-700: #762c00;
+  --tn-color-orange-800: #5c2200;
+  --tn-color-orange-900: #471700;
+  --tn-color-red-000: #ffebe9;
+  --tn-color-red-100: #ffcecb;
+  --tn-color-red-200: #ffaba8;
+  --tn-color-red-300: #ff8182;
+  --tn-color-red-400: #fa4549;
+  --tn-color-red-500: #cf222e;
+  --tn-color-red-600: #a40e26;
+  --tn-color-red-700: #82071e;
+  --tn-color-red-800: #660018;
+  --tn-color-red-900: #4c0014;
+  --tn-color-purple-000: #fbefff;
+  --tn-color-purple-100: #ecd8ff;
+  --tn-color-purple-200: #d8b9ff;
+  --tn-color-purple-300: #c297ff;
+  --tn-color-purple-400: #a475f9;
+  --tn-color-purple-500: #8250df;
+  --tn-color-purple-600: #6639ba;
+  --tn-color-purple-700: #512a97;
+  --tn-color-purple-800: #3e1f79;
+  --tn-color-purple-900: #2e1461;
+  --tn-color-pink-000: #ffeff7;
+  --tn-color-pink-100: #ffd3eb;
+  --tn-color-pink-200: #ffadda;
+  --tn-color-pink-300: #ff80c8;
+  --tn-color-pink-400: #e85aad;
+  --tn-color-pink-500: #bf3989;
+  --tn-color-pink-600: #99286e;
+  --tn-color-pink-700: #772057;
+  --tn-color-pink-800: #611347;
+  --tn-color-pink-900: #4d0336;
+  --tn-color-coral-000: #fff0eb;
+  --tn-color-coral-100: #ffd6cc;
+  --tn-color-coral-200: #ffb4a1;
+  --tn-color-coral-300: #fd8c73;
+  --tn-color-coral-400: #ec6547;
+  --tn-color-coral-500: #c4432b;
+  --tn-color-coral-600: #9e2f1c;
+  --tn-color-coral-700: #801f0f;
+  --tn-color-coral-800: #691105;
+  --tn-color-coral-900: #510901;
+  --tn-color-primary: var(--tn-color-neutral-900);
+  --tn-color-primary-000: var(--tn-color-neutral-000);
+  --tn-color-primary-100: var(--tn-color-neutral-100);
+  --tn-color-primary-200: var(--tn-color-neutral-200);
+  --tn-color-primary-300: var(--tn-color-neutral-300);
+  --tn-color-primary-400: var(--tn-color-neutral-400);
+  --tn-color-primary-500: var(--tn-color-neutral-500);
+  --tn-color-primary-600: var(--tn-color-neutral-600);
+  --tn-color-primary-700: var(--tn-color-neutral-700);
+  --tn-color-primary-800: var(--tn-color-neutral-800);
+  --tn-color-primary-900: var(--tn-color-neutral-900);
+}
+
+/* Shadow tokens. */
+/*
+  https://www.joshwcomeau.com/shadow-palette/
+
+  oomph: 0.7
+  crispy: 0.33
+  resolution: 0.75
+*/
+:root {
+  --shadow-color: 0deg 0% 56%;
+  --shadow-elevation-low: 0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.27),
+    0.5px 0.9px 1.3px -0.8px hsl(var(--shadow-color) / 0.37),
+    1.1px 2.2px 3.1px -1.6px hsl(var(--shadow-color) / 0.46);
+  --shadow-elevation-medium: 0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.29),
+    1px 2.1px 2.9px -0.5px hsl(var(--shadow-color) / 0.36),
+    2.4px 4.8px 6.7px -1.1px hsl(var(--shadow-color) / 0.44),
+    5.5px 11px 15.4px -1.6px hsl(var(--shadow-color) / 0.51);
+  --shadow-elevation-high: 0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.27),
+    2.2px 4.3px 6px -0.2px hsl(var(--shadow-color) / 0.3),
+    4px 8px 11.2px -0.5px hsl(var(--shadow-color) / 0.34),
+    6.3px 12.5px 17.5px -0.7px hsl(var(--shadow-color) / 0.37),
+    9.5px 18.9px 26.5px -0.9px hsl(var(--shadow-color) / 0.4),
+    14.1px 28.3px 39.6px -1.2px hsl(var(--shadow-color) / 0.44),
+    20.8px 41.6px 58.3px -1.4px hsl(var(--shadow-color) / 0.47),
+    30px 60px 84px -1.6px hsl(var(--shadow-color) / 0.51);
+}
+
+:root {
+  /*
+   * Spacing values in em units
+   */
+  --tn-space-unit: 1em;
+  --tn-space-xxxs: calc(0.25 * var(--tn-space-unit));
+  --tn-space-xxs: calc(0.375 * var(--tn-space-unit));
+  --tn-space-xs: calc(0.5 * var(--tn-space-unit));
+  --tn-space-sm: calc(0.75 * var(--tn-space-unit));
+  --tn-space-md: calc(1.25 * var(--tn-space-unit));
+  --tn-space-lg: calc(2 * var(--tn-space-unit));
+  --tn-space-xl: calc(3.25 * var(--tn-space-unit));
+  --tn-space-xxl: calc(5.25 * var(--tn-space-unit));
+  --tn-space-xxxl: calc(8.5 * var(--tn-space-unit));
+  /*
+    * Fixed spacing
+    * These aren't affected by --space-unit or the root font size
+    */
+  --tn-space-unit-fixed: 1rem;
+  --tn-space-xxxs-fixed: calc(0.25 * var(--tn-space-unit-fixed));
+  --tn-space-xxs-fixed: calc(0.375 * var(--tn-space-unit-fixed));
+  --tn-space-xs-fixed: calc(0.5 * var(--tn-space-unit-fixed));
+  --tn-space-sm-fixed: calc(0.75 * var(--tn-space-unit-fixed));
+  --tn-space-md-fixed: calc(1.25 * var(--tn-space-unit-fixed));
+  --tn-space-lg-fixed: calc(2 * var(--tn-space-unit-fixed));
+  --tn-space-xl-fixed: calc(3.25 * var(--tn-space-unit-fixed));
+  --tn-space-xxl-fixed: calc(5.25 * var(--tn-space-unit-fixed));
+  --tn-space-xxxl-fixed: calc(8.5 * var(--tn-space-unit-fixed));
+}
+
+:root {
+  /*
+   * Border radius
+   */
+  --tn-border-radius-0: 0px;
+  --tn-border-radius-1: 4px;
+  --tn-border-radius-2: 7px;
+}
+
+:root {
+  /*
+   * Typographic design tokens.
+   */
+  --tn-component-h1-size: 3.052rem;
+  --tn-component-h2-size: 2.441rem;
+  --tn-component-h3-size: 1.563rem;
+  --tn-component-h4-size: 1.25rem;
+  --tn-component-h5-size: 1.1rem;
+  --tn-component-h6-size: 1rem;
+  --tn-component-h1-weight: normal;
+  --tn-component-h2-weight: normal;
+  --tn-component-h3-weight: bold;
+  --tn-component-h4-weight: bold;
+  --tn-component-h5-weight: bold;
+  --tn-component-h6-weight: bold;
+  --tn-component-text-font-size: 1.1rem;
+  --tn-component-text-color: var(--tn-color-black);
+  --tn-component-link-color: var(--tn-color-blue-500);
+  --tn-component-text-background-color: var(--tn-color-white);
+  --tn-component-text-font-family: -apple-system, ui-sans-serif,
+    BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
+    Droid Sans, Helvetica Neue, sans-serif;
+  --tn-component-text-line-height: 1.5;
+  --tn-component-code-font-family: ui-monospace, monospace;
+}
+
+html[data-theme=dark] {
+  --tn-component-text-color: var(--tn-color-white);
+  --tn-component-link-color: var(--tn-color-blue-300);
+  --tn-component-text-background-color: var(--tn-color-black);
+}
+
+/* Properties for the layout. */
+:root {
+  --tn-sidebar-width: 30ch;
+  --tn-content-max-width: 72ch;
+  --tn-layout-column-gap: 4em;
+  --tn-layout-container-padding: 10px;
+}
+
+/* Properties for Sphinx components. */
+:root {
+  --tn-sphinx-block-border-color: var(--tn-color-primary);
+  --tn-sphinx-block-border-thickness: 1px;
+  --tn-sphinx-block-border-radius: var(--tn-border-radius-1);
+  --tn-sphinx-block-caption-background-color: var(--tn-color-primary-000);
+  --tn-sphinx-block-padding-x: var(--tn-space-xs-fixed);
+  --tn-sphinx-code-block-border-color: var(--tn-sphinx-block-border-color);
+  --tn-sphinx-code-block-border-thickness: var(
+    --tn-sphinx-block-border-thickness
+  );
+  --tn-sphinx-code-block-border-radius: var(--tn-sphinx-block-border-radius);
+  --tn-sphinx-code-block-caption-background-color: var(
+    --tn-sphinx-block-border-radius
+  );
+  --tn-sphinx-footnote-label-background-color: var(--tn-color-blue-000);
+  --tn-sphinx-footnote-label-border-color: var(--tn-color-blue-100);
+  --tn-sphinx-footnote-label-background-hover-color: var(--tn-color-blue-100);
+  --tn-sphinx-footnote-label-border-hover-color: var(--tn-color-blue-200);
+}
+
+html[data-theme=dark] {
+  --tn-sphinx-code-block-border-color: var(--tn-color-primary-700);
+  --tn-sphinx-code-block-caption-background-color: var(--tn-color-primary-900);
+  --tn-sphinx-footnote-label-background-color: var(--tn-color-blue-900);
+  --tn-sphinx-footnote-label-border-color: var(--tn-color-blue-800);
+  --tn-sphinx-footnote-label-background-hover-color: var(--tn-color-blue-800);
+  --tn-sphinx-footnote-label-border-hover-color: var(--tn-color-blue-700);
+}
+
+/*
+ * Styles that affect the overall layout. Since Technote is built on
+ * sphinx-basic-ng as the base theme, these styles primarily work with
+ * the base theme's sb- classes.
+ *
+ * This builds on the skeleton.css from sphinx-basic-ng.
+ * https://github.com/pradyunsg/sphinx-basic-ng/blob/main/src/sphinx_basic_ng/theme/basic-ng/static/skeleton.css
+ *
+ */
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+/* Basic reset for the full-width banners */
+.technote-announcement-container,
+.technote-banner-container,
+.technote-footer-container {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.technote-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+  padding: var(--tn-layout-container-padding);
+  gap: 2em 2em;
+}
+
+.technote-article-container {
+  /* Make the technote container a queryable container */
+  container-type: inline-size;
+  container-name: technote-article;
+  /* Add breathing room to the end of the article */
+  padding-bottom: 2em;
+}
+
+/* Contents outline (mobile) */
+.technote-outline-container {
+  position: fixed;
+  background: var(--tn-component-text-background-color);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s, height 0s;
+}
+.technote-outline-container.technote-outline-container--visible {
+  opacity: 0.98;
+  visibility: visible;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  padding: 1em;
+  z-index: 10;
+  display: flex;
+  align-items: center; /* Vertically centers the content */
+  height: 100vh;
+  transition: opacity 0s, visibility 0s, height 0s;
+}
+
+.technote-contents-toggle-container {
+  --height: 3em;
+  position: fixed;
+  height: var(--height);
+  top: calc(100vh - var(--height));
+  width: 100vw;
+  z-index: 100;
+}
+
+.technote-contents-toggle {
+  --border-width: 2px;
+  display: block;
+  margin-left: auto;
+  margin-bottom: 10px;
+  margin-right: 1em;
+  text-align: center;
+  font-size: 1.4rem;
+  cursor: pointer;
+  border-radius: 0.5em;
+  padding: 3px 5px;
+  border: var(--border-width) solid transparent;
+  box-shadow: var(--shadow-elevation-medium);
+}
+.technote-contents-toggle:hover {
+  box-shadow: var(--shadow-elevation-high);
+}
+
+@media screen and (max-width: 768px) {
+  figure.technote-table:has(.technote-wide-content),
+.technote-wide-content {
+    margin-right: 0;
+    overflow-x: auto;
+    max-width: 100%;
+    /* Getting reliable overflow scroll in the mobile view is reliable
+     * when a specific width is set on the container.
+     */
+    width: calc(100vw - 2 * var(--tn-layout-container-padding));
+  }
+  .technote-wide-content img,
+img.technote-wide-content,
+.technote-wide-content.figure img,
+.technote-table:has(.technote-wide-content),
+table.technote-wide-content {
+    max-width: 100%;
+  }
+}
+/* Desktop layout */
+@media screen and (min-width: 768px) {
+  .technote-container {
+    grid-template-columns: var(--tn-sidebar-width) 1fr;
+    grid-template-rows: auto 1fr;
+    height: 100vh; /* Full height to allow for sticky sidebar */
+  }
+  .technote-logo-container {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+  .technote-outline-container {
+    grid-column: 1/2;
+    grid-row: 2/3;
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+    /* to let the outline scroll independently */
+    height: 100%;
+    overflow-y: auto;
+  }
+  .technote-article-container {
+    grid-column: 2/3;
+    grid-row: 1/3;
+    /* This padding to the left allows space for the block elements (e.g.
+       admonitions and code blocks) to have their borders extend to the left.
+       This allows the text content of the block to line up with the body.
+     */
+    padding-left: calc(var(--tn-sphinx-block-padding-x) + var(--tn-sphinx-block-border-thickness));
+    /* Allow overflow because .technote-container is full height */
+    overflow-y: auto;
+    /* Create a grid within article to constrain content but allow
+       full-bleed blocks.
+     */
+    display: grid;
+    /* The content width is re-used when calculating the negative-margin
+       and max-width for the full-bleed blocks.
+     */
+    --tn-content-width: calc(min(100%, var(--tn-content-max-width)));
+    grid-template-columns: var(--tn-content-width) 1fr;
+  }
+  /* Constrain content to a readable column. */
+  .technote-article-container > * {
+    grid-column: 1/2;
+  }
+  /* Full-bleed blocks
+   *
+   * When a table is marked with a table-wide-content rst-class, that class
+   * actually applies to the table inside the figure, but we need the entire
+   * figure to to be full bleed. The :has selector lets us select the
+   * figure that contains a table.technote-wide-content.
+   */
+  figure.technote-table:has(.technote-wide-content),
+.technote-wide-content {
+    /* This negative margin extends the container for wide content out by the
+       width of the right whitespace. This is calculated as the viewport
+       width that's left over after removing the widths of the left sidebar,
+       the grid column gap, the main content column width, and the padding.
+     */
+    margin-right: calc(-100vw + var(--tn-sidebar-width) + var(--tn-layout-column-gap) + var(--tn-content-width) + 2 * var(--tn-layout-container-padding) + var(--tn-sphinx-block-padding-x) + var(--tn-sphinx-block-border-thickness));
+  }
+  figure.technote-table:has(.technote-wide-content) {
+    /* Allow tables that are wider than the viewport to scroll.
+
+      Only tables use this rule; not code-blocks. The .highlight class
+      already provides overflow-x.
+    */
+    overflow-x: auto;
+  }
+  /* Reset the max-width for full-bleed images. Normally they're 100% of the container. */
+  .technote-wide-content img,
+img.technote-wide-content,
+.technote-wide-content.figure img,
+.technote-table:has(.technote-wide-content),
+table.technote-wide-content {
+    max-width: calc(100vw - var(--tn-sidebar-width) - var(--tn-layout-column-gap) - var(--tn-layout-container-padding));
+  }
+  /* The contents toggle button isn't available on desktop. */
+  .technote-contents-toggle-container {
+    visibility: hidden;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .technote-container {
+    -moz-column-gap: 4em;
+         column-gap: 4em;
+  }
+}
+/*
+ * Typography.
+ */
+body {
+  font-family: var(--tn-component-text-font-family);
+  line-height: var(--tn-component-text-line-height);
+  font-size: var(--tn-component-text-font-size);
+  color: var(--tn-component-text-color);
+  background: var(--tn-component-text-background-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  /* Put header vertically closer to its own section. */
+  margin: 1.5em 0 0.8em;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: var(--tn-component-h1-size);
+  font-weight: var(--tn-component-h1-weight);
+  margin: 0 0 1em;
+}
+
+h2 {
+  font-size: var(--tn-component-h2-size);
+  font-weight: var(--tn-component-h2-weight);
+}
+
+h3 {
+  font-size: var(--tn-component-h3-size);
+  font-weight: var(--tn-component-h3-weight);
+}
+
+h4 {
+  font-size: var(--tn-component-h4-size);
+  font-weight: var(--tn-component-h4-weight);
+}
+
+h5 {
+  font-size: var(--tn-component-h5-size);
+  font-weight: var(--tn-component-h5-weight);
+}
+
+h6 {
+  font-size: var(--tn-component-h6-size);
+  font-weight: var(--tn-component-h6-weight);
+}
+
+/* Tweaks to typography in mobile views */
+@container technote-article (max-width: 768px) {
+  h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-bottom: 0.5em;
+  }
+}
+/* Handle Sphinx's built-in permalink icon. */
+h1 .headerlink,
+h2 .headerlink,
+h3 .headerlink,
+h4 .headerlink,
+h5 .headerlink,
+h6 .headerlink {
+  visibility: hidden;
+  text-decoration: none;
+}
+
+h1:hover .headerlink,
+h2:hover .headerlink,
+h3:hover .headerlink,
+h4:hover .headerlink,
+h5:hover .headerlink,
+h6:hover .headerlink {
+  visibility: visible;
+}
+
+a {
+  color: var(--tn-component-link-color);
+}
+
+pre,
+xmp,
+plaintext,
+listing {
+  font-family: var(--tn-component-code-font-family);
+  font-size: 1rem;
+}
+
+tt,
+code,
+kbd,
+samp {
+  font-family: var(--tn-component-code-font-family);
+  /* Making inline code slightly smaller seems to help with baseline alignment
+   * some monospace fonts seems bigger that Source Sans.
+   */
+  font-size: 0.9em;
+}
+
+/* Styles Sphinx-generated content classes */
+a.headerlink {
+  opacity: 0;
+  font-size: 0.9em;
+  margin-left: var(--tn-space-xxs);
+  text-decoration: none;
+  transition: all 0.2s ease-out;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+h1:hover a.headlink,
+h2:hover a.headerlink,
+h3:hover a.headerlink,
+h4:hover a.headerlink,
+h5:hover a.headerlink,
+h6:hover a.headerlink,
+.code-block-caption:hover a.headerlink {
+  opacity: 0.5;
+}
+
+a.headerlink:hover {
+  opacity: 1;
+}
+
+.highlight {
+  margin: 0;
+  margin-left: calc(-1 * var(--tn-sphinx-block-padding-x));
+  padding: var(--tn-sphinx-block-padding-x);
+  overflow-x: auto;
+  border: var(--tn-sphinx-code-block-border-thickness) solid var(--tn-sphinx-code-block-border-color);
+  border-radius: var(--tn-sphinx-code-block-border-radius);
+}
+
+.literal-block-wrapper {
+  margin-left: calc(-1 * var(--tn-sphinx-block-padding-x));
+  padding-left: var(--tn-sphinx-block-padding-x);
+  border: var(--tn-sphinx-code-block-border-thickness) solid var(--tn-sphinx-code-block-border-color);
+  border-radius: var(--tn-sphinx-code-block-border-radius);
+}
+
+.literal-block-wrapper .highlight {
+  border: none;
+}
+
+.code-block-caption {
+  background-color: var(--tn-sphinx-code-block-caption-background-color);
+  border-bottom: var(--tn-sphinx-code-block-border-thickness) solid var(--tn-sphinx-code-block-border-color);
+  border-radius: var(--tn-sphinx-code-block-border-radius) var(--tn-sphinx-code-block-border-radius) 0 0;
+  padding: var(--tn-space-xxxs-fixed) var(--tn-sphinx-block-padding-x);
+  margin-left: calc(-1 * var(--tn-sphinx-block-padding-x));
+}
+
+.technote-wide-content .code-block-caption,
+.technote-wide-content figcaption {
+  /* Add padding to constrain the caption to the width of the
+     text column.
+   */
+  padding-right: calc(100vw - var(--tn-content-width) - var(--tn-sidebar-width) - var(--tn-layout-column-gap));
+}
+
+.admonition {
+  border: var(--tn-sphinx-code-block-border-thickness) solid var(--tn-sphinx-code-block-border-color);
+  border-radius: var(--tn-sphinx-code-block-border-radius);
+  padding: var(--tn-sphinx-block-padding-x);
+  margin-bottom: 1rem;
+}
+
+.admonition :last-child {
+  margin-bottom: 0;
+}
+
+.admonition-title {
+  font-weight: bold;
+  margin: calc(-1 * var(--tn-sphinx-block-padding-x));
+  padding: var(--tn-sphinx-block-padding-x);
+  border-radius: var(--tn-sphinx-code-block-border-radius) var(--tn-sphinx-code-block-border-radius) 0 0;
+  font-size: 0.9rem;
+}
+
+.admonition.attention .admonition-title,
+.admonition.caution .admonition-title,
+.admonition.warning .admonition-title,
+.admonition.important .admonition-title {
+  background-color: var(--tn-color-yellow-100);
+}
+
+.admonition.attention,
+.admonition.caution,
+.admonition.warning,
+.admonition.important {
+  border-color: var(--tn-color-yellow-500);
+}
+
+.admonition.danger .admonition-title,
+.admonition.error .admonition-title {
+  background-color: var(--tn-color-red-100);
+}
+
+.admonition.danger,
+.admonition.error {
+  border-color: var(--tn-color-red-500);
+}
+
+.admonition.tip .admonition-title,
+.admonition.note .admonition-title,
+.admonition.hint .admonition-title {
+  background-color: var(--tn-color-blue-100);
+}
+
+.admonition.tip,
+.admonition.note,
+.admonition.hint {
+  border-color: var(--tn-color-blue-500);
+}
+
+.footnote-list .footnote {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.footnote-list .footnote .label {
+  display: block;
+  min-width: 1.5rem;
+}
+
+.footnote-list .footnote .label a,
+.footnote-reference {
+  background-color: var(--tn-sphinx-footnote-label-background-color);
+  border: 1px solid var(--tn-sphinx-footnote-label-border-color);
+  border-radius: 4px;
+  padding: 2px 4px;
+  text-decoration: none;
+  transition: all 0.2s ease-out;
+}
+
+.footnote-list .footnote .label a:hover,
+.footnote-reference:hover {
+  background-color: var(--tn-sphinx-footnote-label-background-hover-color);
+  border: 1px solid var(--tn-sphinx-footnote-label-border-hover-color);
+}
+
+.footnote .fn-bracket,
+.footnote-reference .fn-bracket {
+  display: none;
+}
+
+.citation p {
+  display: inline;
+}
+
+.citation .label a {
+  text-decoration: none;
+  transition: all 0.2s ease-out;
+}
+
+.citation .label a:hover {
+  text-decoration: underline;
+}
+
+blockquote {
+  border-left: 0.25rem solid var(--tn-color-primary);
+  margin-left: 0;
+  padding-left: 1rem;
+}
+
+blockquote .attribution {
+  font-style: italic;
+}
+
+main li p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.block-list p {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-left: 2rem;
+}
+
+dd p:first-of-type {
+  margin-top: 0.2rem;
+}
+
+img {
+  max-width: 100%;
+}
+
+figure {
+  margin-left: 0;
+}
+
+figcaption {
+  width: 100%;
+  background-color: var(--tn-sphinx-code-block-caption-background-color);
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  border: none;
+}
+
+figcaption p {
+  margin-top: 0;
+  margin-bottom: 1em;
+  padding: 0;
+}
+
+figcaption p:last-child {
+  margin-bottom: 0;
+}
+
+table {
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  margin: 0 auto 0 0;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  font-variant-numeric: lining-nums tabular-nums;
+  border-collapse: collapse;
+}
+
+th {
+  font-weight: normal;
+}
+
+thead {
+  border-bottom: 1px solid var(--tn-component-text-color);
+}
+
+td,
+th {
+  padding: 0.125em 0.5em 0.25em 0.5em;
+  line-height: 1;
+  text-align: inherit;
+}
+
+td {
+  text-align: "." center;
+}
+
+table caption {
+  caption-side: bottom;
+}
+
+.technote-article-header-id {
+  font-size: var(--tn-component-h4-size);
+  font-weight: bold;
+}
+
+/*
+ * Icon Metadata Lists consist of a an icon paired with a metadata value.
+ * The value can span multiple lines, but will always be indented beside
+ * the icon.
+ */
+.technote-icon-metadata {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: baseline;
+  gap: var(--tn-space-xxs-fixed);
+}
+
+.technote-icon-metadata__icon {
+  width: 1em;
+  flex-grow: 0;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.technote-icon-metadata__value {
+  flex-grow: 1;
+  margin: 0;
+}
+
+/*
+ * Styles for the author list that appears below the title.
+ */
+.technote-status + .technote-inline-authors {
+  margin-top: 2rem;
+}
+
+/* The container for the primary sidebar */
+@media (min-width: 76rem) {
+  .technote-sidebar-container {
+    position: sticky;
+    top: 1rem;
+    overflow-y: auto;
+    max-height: 100vh;
+  }
+}
+:root {
+  --tn-component-sidebar-header-color: var(--tn-color-neutral-600);
+}
+
+html[data-theme=dark] {
+  --tn-component-sidebar-header-color: var(--tn-color-neutral-200);
+}
+
+.technote-sidebar-section {
+  margin: 0 0 var(--tn-space-lg-fixed);
+}
+
+.technote-sidebar-section:first-of-type {
+  margin-top: var(--tn-space-lg-fixed);
+}
+
+.technote-sidebar-section__heading {
+  font-size: var(--tn-component-h6-size);
+  font-weight: bold;
+  color: var(--tn-component-sidebar-header-color);
+  margin-bottom: 0.5rem;
+}
+
+.technote-sidebar-section__heading + * {
+  margin-top: var(--tn-space-xs-fixed);
+}
+
+.technote-sidebar-author-list {
+  margin-top: var(--tn-space-xs-fixed);
+}
+
+.technote-sidebar-metadata-list {
+  margin-top: var(--tn-space-xs-fixed);
+  margin-bottom: var(--tn-space-xs-fixed);
+  list-style-type: none;
+  padding: 0;
+}
+
+/*
+ * Styles for the sidebar-logo component.
+ */
+.technote-sidebar-logo__picture {
+  max-width: 12rem;
+}
+
+/* Styles for the document status aside */
+.technote-status {
+  border: 1px solid var(--tn-component-text-color);
+  padding: 1rem;
+  border-radius: var(--tn-border-radius-1);
+}
+
+.technote-status--deprecated {
+  border-color: var(--tn-color-red-500);
+}
+
+.technote-status p:first-of-type {
+  margin-top: 0;
+}
+
+.technote-status *:last-child {
+  margin-bottom: 0;
+}
+
+.technote-svg-icon {
+  width: 0.85em;
+  height: 0.85em;
+  display: inline;
+  fill: currentColor;
+}
+
+a .technote-svg-icon {
+  fill: var(--tn-component-text-color);
+}
+
+/*
+ * Local TOC styling.
+ */
+:root {
+  --tn-component-toc-header-color: var(--tn-color-neutral-600);
+  --tn-component-toc-level-border-color: var(--tn-color-neutral-600);
+}
+
+html[data-theme=dark] {
+  --tn-component-toc-header-color: var(--tn-color-neutral-200);
+  --tn-component-toc-level-border-color: var(--tn-color-neutral-200);
+}
+
+.technote-toc-header {
+  margin: 0 0 1rem;
+  font-size: var(--tn-component-h4-size);
+  font-weight: bold;
+  color: var(--tn-component-toc-header-color);
+}
+
+.technote-toc-container {
+  line-height: 1.2;
+  /* Spacing between items in the toc */
+  --technote-toc-container-spacing: var(--tn-space-xs-fixed);
+}
+
+.technote-toc-container a {
+  text-decoration: none;
+}
+
+.technote-toc-container a:hover {
+  text-decoration: underline;
+}
+
+.technote-toc-container ul {
+  list-style-type: none;
+  padding-left: var(--tn-space-xs-fixed);
+  margin-left: var(--tn-space-xxs-fixed);
+  border-left: 2px solid var(--tn-component-toc-level-border-color);
+  margin-top: var(--technote-toc-container-spacing);
+}
+
+/* Root-level sections aren't indented */
+.technote-toc-container > ul {
+  margin-left: 0;
+  padding-left: 0;
+  border-left: none;
+  margin-top: 0;
+}
+
+.technote-toc-container li {
+  margin-bottom: var(--technote-toc-container-spacing);
+}
+
+/*
+ * Utilities for displaying different elements based on the current theme.
+ */
+html[data-theme=light] .technote-themed-dark {
+  display: none;
+}
+
+html[data-theme=dark] .technote-themed-light {
+  display: none;
+}
+
+.technote-icon-pair-list {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+/*
+ * comma-list makes a ul an inline list with grammatical comma separated
+ * items.
+ */
+.technote-inline-comma-list {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.technote-inline-comma-list li {
+  display: inline;
+}
+
+.technote-inline-comma-list li:after {
+  content: ", ";
+}
+
+.technote-inline-comma-list li:last-child:after {
+  content: "";
+}
+
+.technote-inline-comma-list li:nth-last-child(2):after {
+  content: " and ";
+}
+
+.technote-inline-comma-list li:nth-last-child(3) ~ li:nth-last-child(2):after {
+  content: ", and ";
+}
+
+/*
+ * Hiding class, making content visible only to screen readers but not visually
+ * "sr" meaning "screen-reader"
+ * https://css-tricks.com/inclusively-hidden/
+ */
+.sr-only:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/*# sourceMappingURL=technote.css.map*/
