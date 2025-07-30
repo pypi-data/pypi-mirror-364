@@ -1,0 +1,68 @@
+Metadata-Version: 2.4
+Name: FLImagingClrPy
+Version: 6.8.5
+Summary: FLImaging(R) CLR for Python
+Author: Fourth Logic Incorporated
+Author-email: Fourth Logic Incorporated <support@fourthlogic.co.kr>
+License: MIT
+Requires-Python: >=3.8.0
+Description-Content-Type: text/markdown
+Requires-Dist: pythonnet>=3.0.5
+Dynamic: author
+Dynamic: requires-python
+
+# FLImagingClrPy  
+FLImaging CLR for Python  
+---
+
+**FLImagingClrPy** is a lightweight helper package that automatically sets up the initial environment to seamlessly import the **.NET CLR wrapper (FLImagingCLR.dll)**—built on top of the **commercial machine vision library FLImaging®**'s native C++ engine—directly into Python.  
+It simplifies the use of `clr.AddReference()` through `pythonnet` (or `pythonnet_win64`), and minimizes common barriers to entry such as version or architecture mismatches, DLL search paths, and license dongle detection.
+
+---
+
+## 🖥️ Supported Environment
+
+### 🧩 Operating System
+* Supports **Windows 7 SP1** through **Windows 11 24H2** (both x86 and x64).  
+  Linux is not supported at this time.  
+  :contentReference[oaicite:0]{index=0}
+
+### 🧪 Development Tools
+* **Python 3.7 ~ 3.12** (64-bit recommended)  
+* **.NET Framework 4.8** or **.NET 6/7 Runtime**  
+* **Microsoft Visual C++ Redistributable 2015–2022** (required for native DLL execution)
+
+---
+
+## ⚡ Optional: Deep Learning Hardware Acceleration
+
+To accelerate the **FLImaging® AI modules** with GPU, the following additional system requirements apply:
+
+| Category | Minimum Specification | Recommended Specification |
+|---------|------------------------|----------------------------|
+| CPU     | x64 with 4+ cores      | x64 with 32+ cores         |
+| RAM     | 32 GB for training / 16 GB for inference | 256 GB for training / 64 GB for inference |
+| RAM Type | DDR4 or higher        | DDR5 or higher             |
+| NVIDIA GPU | **Ampere** (e.g., RTX 3000, A100) | **Ada Lovelace** (e.g., RTX 4000/5000, H100) |
+| NVIDIA Driver | Setup Package 572.61+, internal version 32.0.15.7261+ | Latest Game Ready / Studio Driver |
+| OS | Windows 10 or higher | Windows 11 or higher |  
+:contentReference[oaicite:1]{index=1}
+
+> 💡 **TIP**: Even without a GPU, CPU-only inference is possible.  
+> However, for large model training or real-time processing, the recommended specs are strongly advised.
+
+---
+
+## 🚀 Installation & Usage
+
+1. Download the latest version of **FLImaging®** from  
+   👉 [https://flimaging.fourthlogic.co.kr](https://flimaging.fourthlogic.co.kr)  
+2. After installation, run the following command to install `FLImagingClrPy`:  
+   ```bash
+   pip install FLImagingClrPy
+   ```
+3. In your Python code, add the following at the top:  
+   ```python
+   from FLImagingClrPy import *
+   ```
+   Then, you're ready to begin developing software using the FLImaging® algorithms.
