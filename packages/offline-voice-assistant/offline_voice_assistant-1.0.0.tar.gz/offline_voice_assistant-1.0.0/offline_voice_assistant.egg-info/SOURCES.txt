@@ -1,0 +1,10 @@
+LICENSE
+README.md
+pyproject.toml
+offline_voice_assistant.egg-info/PKG-INFO
+offline_voice_assistant.egg-info/SOURCES.txt
+offline_voice_assistant.egg-info/dependency_links.txt
+offline_voice_assistant.egg-info/requires.txt
+offline_voice_assistant.egg-info/top_level.txt
+voiceassistant/__init__.py
+voiceassistant/__main__.py
