@@ -1,0 +1,2 @@
+[console_scripts]
+gcodegen = gcodegen.cli:app
