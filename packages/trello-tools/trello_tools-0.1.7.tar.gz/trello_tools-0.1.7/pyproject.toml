@@ -1,0 +1,65 @@
+[project]
+name = "trello-tools"
+version = "0.1.7"
+description = "A CLI for interacting with Trello."
+requires-python = ">=3.11"
+authors = [{ name = "Jordan Haisley", email = "jordanhaisley@google.com" }]
+readme = "README.md"
+license = { text = "MIT" }
+keywords = ["trello", "cli", "productivity", "project-management"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Office/Business",
+    "Topic :: Utilities",
+    "Environment :: Console",
+]
+dependencies = [
+    "py-trello",
+    "typer",
+    "rich",
+    "sqlalchemy",
+    "alembic",
+    "google-generativeai",
+]
+
+[project.urls]
+Homepage = "https://github.com/jhaisley/trello-tools"
+Repository = "https://github.com/jhaisley/trello-tools"
+Issues = "https://github.com/jhaisley/trello-tools/issues"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.4.1",
+    "bandit>=1.8.6",
+    "detect-secrets>=1.5.0",
+    "ruff>=0.12.3",
+    "bump2version>=1.0.1",
+]
+
+[project.scripts]
+trello-tools = "trello_cli.main:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/trello_cli"]
+
+[tool.uv]
+package = true
+
+[dependency-groups]
+dev = [
+    "bump2version>=1.0.1",
+    "pyinstaller>=6.14.2",
+    "twine>=6.1.0",
+]
