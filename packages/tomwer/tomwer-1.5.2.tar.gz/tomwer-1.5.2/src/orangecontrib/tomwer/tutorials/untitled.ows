@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<scheme version="2.0" title="" description="">
+	<nodes>
+		<node id="0" name="nabu slice reconstruction" qualified_name="orangecontrib.tomwer.widgets.reconstruction.NabuOW.NabuOW" project_name="tomwer" version="" title="nabu slice reconstruction" position="(234.0, 102.0)" />
+	</nodes>
+	<links />
+	<annotations />
+	<thumbnail />
+	<node_properties>
+		<properties node_id="0" format="literal">{'_ewoks_default_inputs': {'data': None, 'nabu_params': {'preproc': {'flatfield': 1, 'double_flatfield': 0, 'dff_sigma': 0.0, 'ccd_filter_enabled': 0, 'ccd_filter_threshold': 0.04, 'take_logarithm': True, 'log_min_clip': 1e-06, 'log_max_clip': 10.0, 'sino_rings_correction': 'None', 'sino_rings_options': 'sigma=1.0 ; levels=10 ; padding=False', 'tilt_correction': '', 'autotilt_options': '', 'normalize_srcurrent': 1, 'rotate_projections_center': '', 'flat_distortion_correction_enabled': True, 'flat_distortion_params': "tile_size=100; interpolation_kind='linear'; padding_mode='edge'; correction_spike_threshold=None", 'detector_distortion_correction': False, 'detector_distortion_correction_options': {'map_x': '', 'map_z': ''}}, 'reconstruction': {'method': 'FBP', 'slice_plane': 'XY', 'angles_file': '', 'axis_correction_file': '', 'angle_offset': 0.0, 'fbp_filter_type': 'ramlak', 'padding_type': 'edges', 'iterations': 200, 'optim_algorithm': 'chambolle-pock', 'weight_tv': 0.01, 'preconditioning_filter': 1, 'positivity_constraint': 1, 'rotation_axis_position': '', 'translation_movements_file': '', 'clip_outer_circle': 1, 'centered_axis': 1, 'start_x': 0, 'end_x': -1, 'start_y': 0, 'end_y': -1, 'start_z': 0, 'end_z': -1, 'enable_halftomo': 0}, 'dataset': {'binning': 1, 'binning_z': 1, 'projections_subsampling': 1, 'exclude_projections': ''}, 'tomwer_slices': 'middle', 'output': {'file_format': 'hdf5', 'location': '', 'output_dir_mode': 'same folder as scan'}, 'phase': {'method': 'None', 'unsharp_coeff': 0, 'unsharp_sigma': 0, 'ctf_geometry': ' z1_v=None; z1_h=None; detec_pixel_size=None; magnification=True', 'beam_shape': 'parallel', 'ctf_advanced_params': ' length_scale=1e-05; lim1=1e-05; lim2=0.2; normalize_by_mean=True'}, 'gpu_mem_fraction': 0.9, 'cpu_mem_fraction': 0.9, 'configuration_level': 'advanced', 'mode_locked': False, 'cluster_config': None}}, 'controlAreaVisible': True, 'savedWidgetGeometry': b'\x01\xd9\xd0\xcb\x00\x03\x00\x00\x00\x00\t\xb8\x00\x00\x00\xdb\x00\x00\x0c\xb4\x00\x00\x03!\x00\x00\t\xb8\x00\x00\x00\xdb\x00\x00\x0c\xb4\x00\x00\x03!\x00\x00\x00\x01\x00\x00\x00\x00\x07\x80\x00\x00\t\xb8\x00\x00\x00\xdb\x00\x00\x0c\xb4\x00\x00\x03!', '__version__': 1}</properties>
+	</node_properties>
+	<session_state>
+		<window_groups />
+	</session_state>
+</scheme>
