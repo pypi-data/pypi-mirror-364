@@ -1,0 +1,13 @@
+kmeruniq/.build.py.swp,sha256=RJf8nKOe4jtAlATbvrIchM5fa5UKm20qqoV-TLrlZyk,16384
+kmeruniq/.query.py.swp,sha256=DvLQAuYHpiDCFIBcPHHWPH3-CnH3AJzeMdMDjCkwXxs,12288
+kmeruniq/__init__.py,sha256=oNXE6Kx8LmjXqkAz5t9KWLT4jFQsYKoHeXPCR6znjRA,249
+kmeruniq/__main__.py,sha256=SpmIn9Df-9Be5qVy9786Yq11CShBC7FZg2qzAsd7cC4,160
+kmeruniq/build.py,sha256=R19Dtb-WGA3xJ45uBaiIURuq-9pVaXECxGQfycaYWsI,5154
+kmeruniq/cli.py,sha256=RL1rGXIj06w0Ik6f846GSXcifsR9VIXBW6VAo4scE20,303
+kmeruniq/index.py,sha256=7QXCzPYwqByK2mdzk_2OatMQq1aUjOC_flFeTKW8FbU,1288
+kmeruniq/parsing.py,sha256=VzPt8YKQhlsvPeNgJ5f6XArlECaKb6IvWEaGgvZ6v8A,631
+kmeruniq/query.py,sha256=E635me_0EAKmXFU6WgazZxN64VmJcxXcvoPqdjdhGyE,2406
+kmeruniq-0.5b0.dist-info/METADATA,sha256=AP1pZA33Yy4A-6QeJpkGnHlpitkCOuqtXCzsfTyWQL8,2370
+kmeruniq-0.5b0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+kmeruniq-0.5b0.dist-info/entry_points.txt,sha256=Qv8GiTab85OKUKArw2S2-z1yUFhND6m3ztQWm69qsfU,52
+kmeruniq-0.5b0.dist-info/RECORD,,
