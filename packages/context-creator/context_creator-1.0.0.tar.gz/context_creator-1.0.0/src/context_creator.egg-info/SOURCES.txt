@@ -1,0 +1,12 @@
+README.md
+pyproject.toml
+src/context_creator/__init__.py
+src/context_creator/cli.py
+src/context_creator/generator.py
+src/context_creator.egg-info/PKG-INFO
+src/context_creator.egg-info/SOURCES.txt
+src/context_creator.egg-info/dependency_links.txt
+src/context_creator.egg-info/entry_points.txt
+src/context_creator.egg-info/requires.txt
+src/context_creator.egg-info/top_level.txt
+tests/test_generator.py
