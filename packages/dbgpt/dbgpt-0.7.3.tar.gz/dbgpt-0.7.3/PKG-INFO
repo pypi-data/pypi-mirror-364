@@ -1,0 +1,119 @@
+Metadata-Version: 2.4
+Name: dbgpt
+Version: 0.7.3
+Summary: DB-GPT is an experimental open-source project that uses localized GPT large models to interact with your data and environment. With this solution, you can beassured that there is no risk of data leakage, and your data is 100% private and secure.
+Project-URL: Homepage, https://github.com/eosphoros-ai/DB-GPT
+Project-URL: Documentation, http://docs.dbgpt.cn/docs/overview
+Project-URL: Repository, https://github.com/eosphoros-ai/DB-GPT.git
+Project-URL: Issues, https://github.com/eosphoros-ai/DB-GPT/issues
+Author-email: csunny <cfqcsunny@gmail.com>
+License-Expression: MIT
+Requires-Python: >=3.10
+Requires-Dist: aiohttp==3.8.4
+Requires-Dist: cachetools
+Requires-Dist: chardet==5.1.0
+Requires-Dist: importlib-resources==5.12.0
+Requires-Dist: pydantic>=2.6.0
+Requires-Dist: snowflake-id
+Requires-Dist: tomli>=2.2.1
+Requires-Dist: typeguard
+Requires-Dist: typing-inspect
+Provides-Extra: agent
+Requires-Dist: auto-gpt-plugin-template>=0.0.3; extra == 'agent'
+Requires-Dist: mcp>=1.4.1; extra == 'agent'
+Requires-Dist: numpy<2.0.0,>=1.21.0; extra == 'agent'
+Requires-Dist: pandas==2.2.3; extra == 'agent'
+Requires-Dist: termcolor; extra == 'agent'
+Provides-Extra: cli
+Requires-Dist: click; extra == 'cli'
+Requires-Dist: colorama==0.4.6; extra == 'cli'
+Requires-Dist: prettytable; extra == 'cli'
+Requires-Dist: psutil==5.9.4; extra == 'cli'
+Requires-Dist: rich; extra == 'cli'
+Requires-Dist: tomlkit; extra == 'cli'
+Provides-Extra: client
+Requires-Dist: fastapi<0.113.0,>=0.100.0; extra == 'client'
+Requires-Dist: httpx; extra == 'client'
+Requires-Dist: tenacity<=8.3.0; extra == 'client'
+Provides-Extra: code
+Requires-Dist: cloudpickle; extra == 'code'
+Requires-Dist: lyric-component-ts-transpiling>=0.1.7; extra == 'code'
+Requires-Dist: lyric-js-worker>=0.1.7; extra == 'code'
+Requires-Dist: lyric-py-worker>=0.1.7; extra == 'code'
+Requires-Dist: lyric-py>=0.1.7; extra == 'code'
+Requires-Dist: msgpack; extra == 'code'
+Provides-Extra: framework
+Requires-Dist: aiofiles; extra == 'framework'
+Requires-Dist: alembic==1.12.0; extra == 'framework'
+Requires-Dist: auto-gpt-plugin-template; extra == 'framework'
+Requires-Dist: coloredlogs; extra == 'framework'
+Requires-Dist: cryptography; extra == 'framework'
+Requires-Dist: gitpython; extra == 'framework'
+Requires-Dist: graphviz; extra == 'framework'
+Requires-Dist: gtts==2.3.1; extra == 'framework'
+Requires-Dist: jsonschema; extra == 'framework'
+Requires-Dist: openpyxl==3.1.2; extra == 'framework'
+Requires-Dist: pymysql; extra == 'framework'
+Requires-Dist: python-jsonpath; extra == 'framework'
+Requires-Dist: pyzmq; extra == 'framework'
+Requires-Dist: seaborn; extra == 'framework'
+Requires-Dist: tokenizers>=0.14; extra == 'framework'
+Requires-Dist: xlrd==2.0.1; extra == 'framework'
+Provides-Extra: hf
+Requires-Dist: sentence-transformers; extra == 'hf'
+Requires-Dist: sentencepiece; extra == 'hf'
+Requires-Dist: transformers>=4.46.0; extra == 'hf'
+Provides-Extra: hf-glm4
+Requires-Dist: transformers>=4.51.3; extra == 'hf-glm4'
+Provides-Extra: hf-glm4-1vl
+Requires-Dist: transformers>=4.53.0; extra == 'hf-glm4-1vl'
+Provides-Extra: hf-kimi
+Requires-Dist: blobfile; extra == 'hf-kimi'
+Requires-Dist: tiktoken; extra == 'hf-kimi'
+Requires-Dist: transformers<4.51.3; extra == 'hf-kimi'
+Provides-Extra: hf-qwen-omni
+Provides-Extra: hf-qwen2vl
+Requires-Dist: transformers>=4.34.0; extra == 'hf-qwen2vl'
+Provides-Extra: hf-qwen3
+Requires-Dist: transformers>=4.51.0; extra == 'hf-qwen3'
+Provides-Extra: llama-cpp
+Requires-Dist: llama-cpp-python; extra == 'llama-cpp'
+Provides-Extra: llama-cpp-server
+Requires-Dist: llama-cpp-server-py-core>=0.1.4; extra == 'llama-cpp-server'
+Requires-Dist: llama-cpp-server-py>=0.1.4; extra == 'llama-cpp-server'
+Provides-Extra: model-vl
+Requires-Dist: librosa; extra == 'model-vl'
+Requires-Dist: pillow; extra == 'model-vl'
+Provides-Extra: proxy-anthropic
+Requires-Dist: anthropic; extra == 'proxy-anthropic'
+Provides-Extra: proxy-ollama
+Requires-Dist: ollama; extra == 'proxy-ollama'
+Provides-Extra: proxy-openai
+Requires-Dist: httpx[socks]; extra == 'proxy-openai'
+Requires-Dist: openai>=1.59.6; extra == 'proxy-openai'
+Requires-Dist: tiktoken>=0.8.0; extra == 'proxy-openai'
+Provides-Extra: proxy-qianfan
+Requires-Dist: qianfan; extra == 'proxy-qianfan'
+Provides-Extra: proxy-tongyi
+Requires-Dist: dashscope; extra == 'proxy-tongyi'
+Requires-Dist: openai; extra == 'proxy-tongyi'
+Provides-Extra: proxy-zhipuai
+Requires-Dist: zhipuai>=2.1.5; extra == 'proxy-zhipuai'
+Provides-Extra: simple-framework
+Requires-Dist: cloudpickle; extra == 'simple-framework'
+Requires-Dist: duckdb; extra == 'simple-framework'
+Requires-Dist: duckdb-engine==0.9.1; extra == 'simple-framework'
+Requires-Dist: jinja2; extra == 'simple-framework'
+Requires-Dist: msgpack; extra == 'simple-framework'
+Requires-Dist: pympler; extra == 'simple-framework'
+Requires-Dist: python-multipart; extra == 'simple-framework'
+Requires-Dist: schedule; extra == 'simple-framework'
+Requires-Dist: shortuuid; extra == 'simple-framework'
+Requires-Dist: sqlalchemy<2.0.29,>=2.0.25; extra == 'simple-framework'
+Requires-Dist: sqlparse==0.4.4; extra == 'simple-framework'
+Requires-Dist: uvicorn; extra == 'simple-framework'
+Description-Content-Type: text/markdown
+
+# dbgpt-core
+
+Package that contains modules and utilities that can be used across packages and services.
