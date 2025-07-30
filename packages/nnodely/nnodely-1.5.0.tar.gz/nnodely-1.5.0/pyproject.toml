@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nnodely"
+description = "Model-structured neural network framework for the modeling and control of physical systems"
+readme = "README.md"
+requires-python = ">=3.10, <3.13"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Gastone Pietro Rosati Papini", email = "tonegas@gmail.com"}
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+dependencies = [
+    "numpy == 1.26.4; platform_machine == 'x86_64' and python_version == '3.10'",
+    "torch == 2.2.2; platform_machine == 'x86_64' and python_version == '3.10'",
+    "torch==2.6.0; platform_machine != 'x86_64' or python_version != '3.10'",
+    "numpy",
+    "onnx",
+    "pandas",
+    "reportlab",
+    "matplotlib",
+    "onnxruntime",
+    "graphviz"
+]
+dynamic = ["version"]
+
+[project.urls]
+"Homepage" = "https://github.com/tonegas/nnodely"
+
+[tool.setuptools]
+packages = ["nnodely",
+            "nnodely.basic",
+            "nnodely.exporter",
+            "nnodely.layers",
+            "nnodely.operators",
+            "nnodely.support",
+            "nnodely.visualizer",
+            "nnodely.visualizer.dynamicmpl",
+            "mplplots"]
+
+#[tool.setuptools.data-files]
+#"imgs" = ["imgs/*"]
+#"data" = ["tests/data/*","tests/test_data/*","tests/val_data/*","tests/vector_data/*"]
