@@ -1,0 +1,14 @@
+include README.md
+include LICENSE
+recursive-include localgenius *.py
+global-exclude *.pyc
+global-exclude __pycache__
+global-exclude .DS_Store
+global-exclude *.pycache
+exclude requirements.txt
+exclude run-mcp-server.sh
+exclude CLAUDE.md
+exclude .env
+exclude test_*.py
+prune mcp-admin-interface
+prune .git
