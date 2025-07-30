@@ -1,0 +1,16 @@
+LineageTree/__init__.py,sha256=DBw4aJTm7ttYYm6FuL9b_Q1108W9YU_dox0oIoDiLUU,749
+LineageTree/lineageTree.py,sha256=3es3wPN9O0Eaqw-YC-uMq4tukpQPkW7DbTl9ujvZkXs,125993
+LineageTree/lineageTreeManager.py,sha256=kyHeoQ3EKMNnlSJG-v0K67j8RHECNIk-dUzdP0za3as,32406
+LineageTree/loaders.py,sha256=lcLEvLGA4Jn0QwBId__kHpQ3i4axDT5VEyACGnDNrBg,30255
+LineageTree/tree_approximation.py,sha256=61Omn0gUaRiNTDcIucDM4DUPBW5voXRxCZQ0uYGRDSg,16170
+LineageTree/utils.py,sha256=EOH2MGlBH3cFs8DVOX-3fJRwoj0ZmiE_nPkAjzWXK48,5124
+LineageTree/legacy/export_csv.py,sha256=cJ1R3GCGEy9Oey73jbFhoKRGTonNbqg229fVnGm_FuU,2009
+LineageTree/legacy/to_lineajea.py,sha256=iZyZTsrvWYHkGJ8npf91lQPrXPgKouiy7Zrywx5Lkkw,926
+LineageTree/legacy/to_motile.py,sha256=4AC9BmGa-hpqt8_x6HTR_XqCrTERlKo9WwYHUFtheM0,860
+LineageTree/test/test_lineageTree.py,sha256=d5uucokzE7OWQirsW7XxaGEgeRszQ5KICbAYhriXEQo,16492
+LineageTree/test/test_uted.py,sha256=Vl7uNGZp57XUD3v3SHRJtXhb0Lte8mDjpOtEKp_dxt0,6496
+lineagetree-2.0.3.dist-info/licenses/LICENSE,sha256=IKncNCNpq93Kq7Ywg1V4I9Bu_99VMK-mX1EJyjTKLyc,1068
+lineagetree-2.0.3.dist-info/METADATA,sha256=GOrhmJPx3qWTCqszjsjHQ2vS-43DZ0gDurjfpUZ8US8,4081
+lineagetree-2.0.3.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+lineagetree-2.0.3.dist-info/top_level.txt,sha256=CCqPCTX76zPTEUagUgTWbLaZun8752n59iOOwfUlvxs,12
+lineagetree-2.0.3.dist-info/RECORD,,
