@@ -1,0 +1,96 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "download-toolbox"
+dynamic = ["version", "readme"]
+requires-python = ">=3.8"
+description = "Library for downloading and preprocessing data"
+license = { file = "LICENSE" }
+authors = [{name = "British Antarctic Survey / Alan Turing Institute"}]
+maintainers = [
+  { email = "jambyr@bas.ac.uk" }
+]
+dependencies = [
+	"boto3",
+    "cdsapi",
+    "cfgrib",
+	"dask[distributed]",
+    "eccodes",
+    "ecmwf-api-client",
+    "esgf-pyclient",
+    "motuclient",
+    "orjson",
+    "pandas",
+    "pip",
+    "pydap",
+    "setuptools",
+    "wheel",
+	"urllib3<2.0.0",
+    "xarray[io]"
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Operating System :: POSIX",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+
+[project.scripts]
+download_aws = "download_toolbox.data.aws:main"
+download_cds = "download_toolbox.data.cds:cds_main"
+download_cmip = "download_toolbox.data.esgf:main"
+download_era5 = "download_toolbox.data.cds:cds_main"
+download_oras5 = "download_toolbox.data.cmems:main"
+download_mars = "download_toolbox.data.mars:mars_main"
+download_osisaf = "download_toolbox.data.osisaf:main"
+download_amsr2 = "download_toolbox.data.amsr:main"
+
+[tool.setuptools.dynamic]
+version = {attr = "download_toolbox.__version__"}
+readme = {file = ["README.md"]}
+
+[project.optional-dependencies]
+dev = [
+  "watchdog",
+  "flake8",
+  "tox",
+  "coverage",
+  "twine",
+  "pytest",
+  "black",
+  "build",
+  "importlib_metadata",
+  "pre-commit",
+  "fsspec",
+]
+docs = [
+  "mkdocs",
+  "mkdocstrings[python]",
+  "markdown-include",
+  "mkdocs-material"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["download_toolbox*"]
+exclude = ["download_toolbox.tests*"]
+
+[project.urls]
+"Homepage" = "https://icenet.ai/"
+"Source" = "https://github.com/antarctica/download-toolbox"
+"Issue tracker" = "https://github.com/antarctica/download-toolbox/issues"
+
+[tool.pytest.ini_options]
+addopts = "-ra --ignore=setup.py"
+testpaths = [
+    "download_toolbox",
+]
