@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "Snipe_Bot_Argyraspide"
+version = "0.0.1"
+authors = [
+  { name=" Argyraspide", email="louisonbost@gmail.com" },
+]
+description = "A small twitch chatbot producing countdowns, see Readme for more info"
+readme = "readme.txt"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "time",
+    "asyncio",
+    "twitchAPI"
+]
+license = "CC-BY-NC-SA-2.0-FR"
+license-files = ["['./License.txt']"]
+
+[project.urls]
