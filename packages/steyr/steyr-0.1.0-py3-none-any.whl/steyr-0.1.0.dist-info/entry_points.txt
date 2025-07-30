@@ -1,0 +1,6 @@
+[console_scripts]
+steyr = steyr.cli:main
+
+[pygments.styles]
+everforest-dark = steyr.styles:EverforestDarkStyle
+everforest-light = steyr.styles:EverforestLightStyle
