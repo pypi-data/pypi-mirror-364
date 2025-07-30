@@ -1,0 +1,15 @@
+LICENCE
+README.md
+pyproject.toml
+convert_aram/__init__.py
+convert_aram/admin.py
+convert_aram/apps.py
+convert_aram/models.py
+convert_aram/urls.py
+convert_aram/views.py
+convert_aram/migrations/__init__.py
+convert_aran.egg-info/PKG-INFO
+convert_aran.egg-info/SOURCES.txt
+convert_aran.egg-info/dependency_links.txt
+convert_aran.egg-info/requires.txt
+convert_aran.egg-info/top_level.txt
