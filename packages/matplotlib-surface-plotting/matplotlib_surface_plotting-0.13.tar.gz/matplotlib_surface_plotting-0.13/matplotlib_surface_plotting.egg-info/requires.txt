@@ -1,0 +1,6 @@
+nibabel
+matplotlib>=3.3.2
+
+[test]
+pytest
+pytest-cov
