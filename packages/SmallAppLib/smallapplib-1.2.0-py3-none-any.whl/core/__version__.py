@@ -1,0 +1,6 @@
+__title__ = "SmallAppLib"
+__description__ = "Small lib for console apps"
+__version__ = "1.2.0"
+__author__ = "Cupcake_wrld"
+__author_email__ = "evilprog@yandex.ru"
+__license__ = "Apache-2.0"
