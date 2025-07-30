@@ -1,0 +1,17 @@
+autostartx/__init__.py,sha256=WchvMPlCrknDKCdPotx5S5ySBCtcfllsgTUYW7aypeo,184
+autostartx/cli.py,sha256=xIZdjqSYaBY6OVMYv2rLyVduHrtHTX-o7-y7Fx9h784,15785
+autostartx/config.py,sha256=ayk_49DlJjf2-HeSGAzCGfIFOhPNsAuEqTufOIFQsPw,4514
+autostartx/daemon.py,sha256=EJot_4_JAOYbTBsQFbOTcePw03Y6t7y3WA2AVbBFc_A,4729
+autostartx/interactive.py,sha256=-yKv9c2bWe-MVtX7lGkd56d6OMOmcd1_fewp-xnymGY,1982
+autostartx/logger.py,sha256=jHr9a8zXcqxA2l8cMXTXYoVxIogcgYiNKZABowBL-ik,8788
+autostartx/models.py,sha256=ESkSXqiyq45R4xnl3RPIIXpSYfke8YSkPbmFCo3TNQk,2242
+autostartx/monitor.py,sha256=LlURYRZnJ61vXpRtn85LjfixqrlbPikS--xNgFtIIlU,6863
+autostartx/process_manager.py,sha256=lQVASPx4dRKx3b2BFlMKU7hy-_5JASwtR_4gDkIVmzc,7555
+autostartx/service_manager.py,sha256=ZeDZDEJHeptLSmnZJ0AyGjf138Di-aoonIk_xAHsxxQ,7002
+autostartx/storage.py,sha256=TUj2_WmBQYHQZzTHolV-nRHot163WJ9WKxmnlGzUMSw,4659
+autostartx-0.1.0.dist-info/licenses/LICENSE,sha256=WSSvkhhtDAdSwyKByiRqOz8KAbRBAktXQUwQTbNW8yo,1066
+autostartx-0.1.0.dist-info/METADATA,sha256=Byv2Kpf3aB5JJK4V1h_SHsYzz-luQPrIR26jXNJ3cvA,3295
+autostartx-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+autostartx-0.1.0.dist-info/entry_points.txt,sha256=K29G9zFsslSxsCoWj-HT9B94PzP7qRZ7QWtChIZvCWw,51
+autostartx-0.1.0.dist-info/top_level.txt,sha256=-GMVGmRNTTBHSBlXBBrFYUmX__ZhHilLjQ6gPv1yewk,11
+autostartx-0.1.0.dist-info/RECORD,,
