@@ -1,0 +1,7 @@
+[console_scripts]
+fandango = fandango.scripts.fandango_cli:main
+tango2csv = fandango.scripts.tango2csv:main
+tango2json = fandango.scripts.tango2json:main
+tango_host = fandango.scripts.tango_host:main
+tango_monitor = fandango.scripts.tango_monitor:main
+tango_servers = fandango.scripts.tango_servers:main
