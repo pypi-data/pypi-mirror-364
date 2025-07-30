@@ -1,0 +1,15 @@
+pythonLogs/.env.example,sha256=L4ndSpalHvFB9XIB1h4fvwUHzFs0KJvWNivGFy0_p5c,979
+pythonLogs/__init__.py,sha256=YickWV4VtG7_BFUTp2Qsd-m3m0xoV5prjBfx-drV-Qs,2333
+pythonLogs/basic_log.py,sha256=GK9q-SaYjr_4tWSsJYy1U9DD2sR7ZqTpVDU9P-PIJFw,2635
+pythonLogs/constants.py,sha256=W-8QBuSI7YT82A6kJNbxMH-UtI-4YaQfK1Gdnb54ooc,1235
+pythonLogs/factory.py,sha256=EfjPWjGTNntjeMu6bEUlF92PxfT-PA8ETWizGN9tJfE,16871
+pythonLogs/log_utils.py,sha256=-UuCgtbl5tni8w6GtsD9C8Ljh4v2Tz3ZyP1VJsrnCZQ,12185
+pythonLogs/memory_utils.py,sha256=vfmJekCKMsVghSL9CfrQ2GQMlNmURJoqRxD6uZ13C2Q,5807
+pythonLogs/settings.py,sha256=eImViQO3J7Gy_akB46Ov1vtJTSGYLsqb0zlwwnXdSBw,1945
+pythonLogs/size_rotating.py,sha256=rpc3_9vO3KiifMp3tFEDyR5b2wPFRVuH8xniQY8TJmc,5262
+pythonLogs/thread_safety.py,sha256=GABu-QVMdQN4fo3cMUPae9SqSekG-q4vBNYY-QEHLoE,5188
+pythonLogs/timed_rotating.py,sha256=Avsf0qWYAbzNSp3YOxcYsjDpBFPdK_S0HyXqfLtl6eM,4736
+pythonlogs-5.0.1.dist-info/LICENSE,sha256=3fEBeO1ARuqTVV1QJzrGVVmXZz_okGweH0a-MeA0Qpc,1068
+pythonlogs-5.0.1.dist-info/METADATA,sha256=nIqt7bh_EnKELNlBmXL5w0_q1nSHudWdnQRfJRh-pOQ,18182
+pythonlogs-5.0.1.dist-info/WHEEL,sha256=RIwhYyGqIGMhS650U98BIs6-48PJns6Kz_z6Q3A3o2U,106
+pythonlogs-5.0.1.dist-info/RECORD,,
