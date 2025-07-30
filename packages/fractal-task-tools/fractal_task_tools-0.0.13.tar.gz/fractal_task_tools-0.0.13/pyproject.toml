@@ -1,0 +1,67 @@
+[project]
+name = "fractal-task-tools"
+version = "0.0.13"
+description = "Shared tools for Fractal tasks"
+authors = [
+    {name="Tommaso Comparin", email="tommaso.comparin@exact-lab.it"},
+]
+readme = "README.md"
+license = {text ="BSD-3-Clause"}
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "pydantic >=2.0.0,<=2.11.7",
+    "docstring-parser >=0.15,<=0.16",
+    "packaging",
+]
+[project.optional-dependencies]
+dev = [
+    "bumpver ==2024.1130",
+    "devtools ==0.12.2",
+    "pytest >=8.3.0, <9.0.0",
+    "coverage >=7.6.0,<7.7.0",
+]
+docs = [
+    "mkdocs >=1.6.0,<1.7.0",
+    "mkdocs-material >=9.6.0,<9.7.0",
+    "mkdocs-literate-nav >=0.6.2,<0.7.0",
+    "mkdocs-gen-files >=0.5.0,<0.6.0",
+    "mkdocs-section-index >=0.3.9,<0.4.0",
+    "mkdocstrings[python] >=0.29.0,<0.30.0",
+    "mkdocs-include-markdown-plugin >=7.0.0,<8.0.0",
+]
+
+[project.urls]
+homepage = "https://github.com/fractal-analytics-platform/fractal-task-tools"
+repository = "https://github.com/fractal-analytics-platform/fractal-task-tools"
+changelog = "https://github.com/fractal-analytics-platform/fractal-task-tools/blob/main/CHANGELOG.md"
+
+
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project.scripts]
+fractal-manifest = "fractal_task_tools._cli:main"
+
+[tool.bumpver]
+current_version = "0.0.13"
+version_pattern = "MAJOR.MINOR.PATCH[PYTAGNUM]"
+commit_message = "bump version {old_version} -> {new_version}"
+commit = true
+tag = true
+push = true
+
+[tool.bumpver.file_patterns]
+"pyproject.toml" = ['version = "{version}"$']
+"src/fractal_task_tools/__init__.py" = ['__VERSION__ = "{version}"$']
+
+
+[tool.coverage.run]
+branch = true
+parallel = true
+relative_files = true
+source = ["src"]
+omit = ["tests/*", "*/.venv/*"]
+
+[tool.coverage.report]
+omit = ["tests/*", "*/.venv/*"]
