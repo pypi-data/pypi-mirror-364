@@ -1,0 +1,3 @@
+[console_scripts]
+ze-prompter = ze_prompter.cli:cli
+zeprompter = ze_prompter.cli:cli
