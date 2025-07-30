@@ -1,0 +1,138 @@
+Metadata-Version: 2.3
+Name: hanzo-dev
+Version: 1.22.0
+Summary: Hanzo Dev: Unified AI Development Environment
+License: MIT
+Author: Hanzo Industries Inc
+Author-email: dev@hanzo.ai
+Requires-Python: >=3.13,<3.14
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.13
+Provides-Extra: third-party-runtimes
+Requires-Dist: PyPDF2
+Requires-Dist: aiohttp (>=3.9.0,!=3.11.13)
+Requires-Dist: anthropic[vertex]
+Requires-Dist: anyio (==4.9.0)
+Requires-Dist: bashlex (>=0.18,<0.19)
+Requires-Dist: boto3
+Requires-Dist: browsergym-core (==0.13.3)
+Requires-Dist: daytona (==0.22.0) ; extra == "third-party-runtimes"
+Requires-Dist: dirhash
+Requires-Dist: docker
+Requires-Dist: e2b (>=1.0.5,<1.6.0) ; extra == "third-party-runtimes"
+Requires-Dist: fastapi
+Requires-Dist: fastmcp (>=2.5.2,<3.0.0)
+Requires-Dist: google-api-python-client (>=2.164.0,<3.0.0)
+Requires-Dist: google-auth-httplib2
+Requires-Dist: google-auth-oauthlib
+Requires-Dist: google-cloud-aiplatform
+Requires-Dist: google-generativeai
+Requires-Dist: hanzo-aci (>=0.3.1,<0.4.0)
+Requires-Dist: hanzo-agents (>=0.1.0,<0.2.0)
+Requires-Dist: hanzo-mcp (>=0.7.0,<0.8.0)
+Requires-Dist: hanzo-mcp-client (>=0.1.0,<0.2.0)
+Requires-Dist: hanzo-memory (>=1.0.0,<2.0.0)
+Requires-Dist: html2text
+Requires-Dist: ipywidgets (>=8.1.5,<9.0.0)
+Requires-Dist: jinja2 (>=3.1.3,<4.0.0)
+Requires-Dist: joblib
+Requires-Dist: json-repair
+Requires-Dist: jupyter_kernel_gateway
+Requires-Dist: kubernetes (>=33.1.0,<34.0.0)
+Requires-Dist: libtmux (>=0.37,<0.40)
+Requires-Dist: litellm (>=1.60.0,<2.0.0,!=1.64.4,!=1.67.*)
+Requires-Dist: memory-profiler (>=0.61.0,<0.62.0)
+Requires-Dist: minio (>=7.2.8,<8.0.0)
+Requires-Dist: modal (>=0.66.26,<1.1.0) ; extra == "third-party-runtimes"
+Requires-Dist: numpy
+Requires-Dist: opentelemetry-api (>=1.33.1,<2.0.0)
+Requires-Dist: opentelemetry-exporter-otlp-proto-grpc (>=1.33.1,<2.0.0)
+Requires-Dist: pathspec (>=0.12.1,<0.13.0)
+Requires-Dist: pexpect
+Requires-Dist: poetry (>=2.1.2,<3.0.0)
+Requires-Dist: prompt-toolkit (>=3.0.50,<4.0.0)
+Requires-Dist: protobuf (>=5.0.0,<6.0.0)
+Requires-Dist: psutil
+Requires-Dist: pygithub (>=2.5.0,<3.0.0)
+Requires-Dist: pyjwt (>=2.9.0,<3.0.0)
+Requires-Dist: pylatexenc
+Requires-Dist: python-docx
+Requires-Dist: python-dotenv
+Requires-Dist: python-frontmatter (>=1.1.0,<2.0.0)
+Requires-Dist: python-json-logger (>=3.2.1,<4.0.0)
+Requires-Dist: python-multipart
+Requires-Dist: python-pptx
+Requires-Dist: python-socketio (>=5.11.4,<6.0.0)
+Requires-Dist: pythonnet
+Requires-Dist: pyyaml (>=6.0.2,<7.0.0)
+Requires-Dist: qtconsole (>=5.6.1,<6.0.0)
+Requires-Dist: rapidfuzz (>=3.9.0,<4.0.0)
+Requires-Dist: redis (>=5.2,<7.0)
+Requires-Dist: runloop-api-client (==0.43.0) ; extra == "third-party-runtimes"
+Requires-Dist: shellingham (>=1.5.4,<2.0.0)
+Requires-Dist: sse-starlette (>=2.1.3,<3.0.0)
+Requires-Dist: stripe (>=11.5,<13.0)
+Requires-Dist: tenacity (>=8.5,<10.0)
+Requires-Dist: termcolor
+Requires-Dist: toml
+Requires-Dist: tornado
+Requires-Dist: types-toml
+Requires-Dist: uvicorn
+Requires-Dist: whatthepatch (>=1.0.6,<2.0.0)
+Requires-Dist: zope-interface (==7.2)
+Project-URL: Repository, https://github.com/hanzoai/ide
+Description-Content-Type: text/markdown
+
+# Hanzo Dev
+
+Unified AI Development Environment combining IDE functionality, Agent-Computer Interface (ACI), and Model Context Protocol (MCP) tools.
+
+## Features
+
+- **Multi-Agent System**: Various specialized agents for different tasks
+- **70+ Tools**: Via integrated hanzo-mcp server
+- **Advanced File Editing**: AST-aware code modifications via ACI
+- **Runtime Flexibility**: Docker, Kubernetes, Local, Remote execution
+- **Browser Automation**: Full browser control for web tasks
+- **MCP Integration**: Connect to any MCP server for additional tools
+
+## Installation
+
+```bash
+pip install hanzo-dev
+```
+
+## Usage
+
+```bash
+# Start the development environment
+hanzo-dev
+
+# With specific configuration
+hanzo-dev --enable-all-tools --allow-path /path/to/project
+
+# Run with a specific task
+hanzo-dev --file task.md
+```
+
+## Architecture
+
+Hanzo Dev integrates:
+- **IDE Backend**: Agent orchestration and runtime management
+- **ACI Library**: Advanced file editing and code analysis
+- **MCP Server**: 70+ tools for file operations, search, git, etc.
+- **MCP Client**: Connect to external MCP servers
+
+## Development
+
+```bash
+# Install in development mode
+poetry install
+
+# Run tests
+poetry run pytest
+
+# Run the CLI
+poetry run hanzo-dev
+```
