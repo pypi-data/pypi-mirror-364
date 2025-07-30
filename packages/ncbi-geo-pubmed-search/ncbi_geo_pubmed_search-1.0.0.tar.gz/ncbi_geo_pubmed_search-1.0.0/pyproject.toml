@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ncbi-geo-pubmed-search"
+version = "1.0.0"
+description = "A powerful Python package for searching NCBI GEO and PubMed databases with advanced filtering"
+readme = "README.md"
+authors = [
+    {name = "Your Name", email = "your.email@example.com"}
+]
+license = {text = "MIT"}
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+requires-python = ">=3.7"
+dependencies = [
+    "biopython>=1.79",
+    "pandas>=1.3.0",
+    "openpyxl>=3.0.9",
+    "requests>=2.25.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "pytest-cov>=2.0",
+    "black>=22.0",
+    "flake8>=4.0",
+    "mypy>=0.910",
+    "sphinx>=4.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/ncbi-geo-pubmed-search"
+Documentation = "https://github.com/yourusername/ncbi-geo-pubmed-search#readme"
+Repository = "https://github.com/yourusername/ncbi-geo-pubmed-search"
+Issues = "https://github.com/yourusername/ncbi-geo-pubmed-search/issues"
+
+[project.scripts]
+ncbi-search = "ncbi_geo_pubmed.cli:main"
+
+[tool.setuptools]
+packages = ["ncbi_geo_pubmed"]
+
+[tool.setuptools.package-data]
+ncbi_geo_pubmed = ["*.txt", "*.md"]
+
+[tool.black]
+line-length = 100
+target-version = ["py37", "py38", "py39", "py310", "py311"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]

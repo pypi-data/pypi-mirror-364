@@ -1,0 +1,2 @@
+[console_scripts]
+ncbi-search = ncbi_geo_pubmed.cli:main
