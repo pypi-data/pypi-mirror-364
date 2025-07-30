@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: lzl_pytools
+Version: 0.2.1
+Summary: a multi run http req tool
+Home-page: https://gitee.com/lzlcodex/lzl-pytools.git
+Author: lzlcodex
+Author-email: yishikong@163.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# lzl_pytools
+
+```shell
+python3 -m venv .pyenv
+pip install --upgrade setuptools wheel twine
+
+rm -rf build
+rm -rf dist
+
+python3 setup.py sdist bdist_wheel
+twine upload --repository testpypi dist/*
+pip install --index-url https://test.pypi.org/simple/ your-package-name
+
+# 测试发布
+twine upload --config-file ~/.pypirc --repository testpypi dist/*
+pip install --index-url https://test.pypi.org/simple/ lzl-pytools
+
+# 正式发布
+twine upload --config-file ~/.pypirc dist/*
+https://pypi.org/project/lzl-pytools/0.1.0/
+pip install lzl-pytools --index-url https://pypi.org/simple/
+```
