@@ -1,0 +1,2 @@
+[console_scripts]
+django-app-creator = creator.__main__:run
