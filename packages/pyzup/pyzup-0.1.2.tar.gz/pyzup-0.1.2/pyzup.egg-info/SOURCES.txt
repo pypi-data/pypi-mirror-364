@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+setup.py
+pyzup/__init__.py
+pyzup/pyzup.py
+pyzup.egg-info/PKG-INFO
+pyzup.egg-info/SOURCES.txt
+pyzup.egg-info/dependency_links.txt
+pyzup.egg-info/requires.txt
+pyzup.egg-info/top_level.txt
