@@ -1,0 +1,2 @@
+[console_scripts]
+pointr-agent = pointr_cloud_v8_mcp_server.PointrAgent:main
