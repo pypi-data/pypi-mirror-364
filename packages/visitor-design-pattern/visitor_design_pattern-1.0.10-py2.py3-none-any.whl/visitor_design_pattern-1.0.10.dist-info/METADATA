@@ -1,0 +1,72 @@
+Metadata-Version: 2.4
+Name: visitor_design_pattern
+Version: 1.0.10
+Summary: Radiative Transfer Model template
+Home-page: https://gitlab.rayference.dansaert.be/project-x01/drivers/the_visitors
+Author: Nicolas Misk
+Author-email: nicolas.misk@rayference.eu
+Keywords: visitor_design_pattern
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.5
+License-File: AUTHORS.rst
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license-file
+Dynamic: requires-python
+Dynamic: summary
+
+======================
+Visitor Design Pattern
+======================
+
+
+Flexible and complete pytonic implementation of the visitor design pattern
+
+
+Features
+--------
+
+ - Implement a visitor design pattern for any data structure
+ - Convenient decorator API
+ - Ready to use accept method for tree-like data structures
+ - Compatible with Attrs
+
+
+Links
+-----
+
+ - Access the sphinx Documentation_ and Usage_
+ - See the Pypi_ package
+
+
+Credits
+-------
+
+This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+.. _Documentation: https://visitor-design-pattern.readthedocs.io/en/latest/index.html
+.. _Pypi: https://pypi.org/project/visitor-design-pattern/
+.. _Usage: https://visitor-design-pattern.readthedocs.io/en/latest/usage.html
+
+
+=======
+History
+=======
+
+0.1.0 (2021-04-14)
+------------------
+
+* First version.
