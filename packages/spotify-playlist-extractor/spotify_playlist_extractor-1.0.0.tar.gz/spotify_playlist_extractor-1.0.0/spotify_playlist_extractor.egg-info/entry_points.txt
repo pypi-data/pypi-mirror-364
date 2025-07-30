@@ -1,0 +1,2 @@
+[console_scripts]
+spotify-extract = spotify_extractor.cli:main
