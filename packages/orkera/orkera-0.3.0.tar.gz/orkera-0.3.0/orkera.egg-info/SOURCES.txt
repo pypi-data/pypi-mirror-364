@@ -1,0 +1,7 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+orkera/__init__.py
+orkera/client.py
+orkera/models.py
