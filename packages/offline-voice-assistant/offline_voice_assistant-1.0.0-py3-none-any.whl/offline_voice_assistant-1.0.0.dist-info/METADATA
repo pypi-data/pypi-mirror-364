@@ -1,0 +1,15 @@
+Metadata-Version: 2.4
+Name: offline_voice_assistant
+Version: 1.0.0
+Summary: A simple GUI voice assistant with TTS and scraping
+Author-email: Priyanshu Raj <prmahatha@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/Priyanshu-1477/voiceassistant
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: PyQt5
+Requires-Dist: coqui-tts
+Requires-Dist: requests
+Requires-Dist: beautifulsoup4
+Dynamic: license-file
