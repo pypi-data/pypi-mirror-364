@@ -1,0 +1,114 @@
+Metadata-Version: 2.4
+Name: tecton-client
+Version: 0.4.0
+Summary: A Python Client for the Tecton FeatureService API
+Project-URL: Source, https://github.com/tecton-ai/tecton-http-client-python
+Project-URL: Documentation, https://tecton-ai.github.io/tecton-http-client-python/html/index.html
+License-Expression: Apache-2.0
+License-File: LICENSE.md
+Requires-Python: >=3.8
+Requires-Dist: httpx>=0.23.0
+Provides-Extra: dev
+Requires-Dist: pytest-asyncio; extra == 'dev'
+Requires-Dist: pytest-httpx; extra == 'dev'
+Requires-Dist: pytest>=6.2.5; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: alabaster==0.7.16; extra == 'docs'
+Requires-Dist: babel==2.14.0; extra == 'docs'
+Requires-Dist: certifi==2024.2.2; extra == 'docs'
+Requires-Dist: charset-normalizer==3.3.2; extra == 'docs'
+Requires-Dist: docutils==0.20.1; extra == 'docs'
+Requires-Dist: idna==3.7; extra == 'docs'
+Requires-Dist: imagesize==1.4.1; extra == 'docs'
+Requires-Dist: importlib-metadata==7.1.0; extra == 'docs'
+Requires-Dist: jinja2==3.1.3; extra == 'docs'
+Requires-Dist: markupsafe==2.1.5; extra == 'docs'
+Requires-Dist: pygments==2.17.2; extra == 'docs'
+Requires-Dist: snowballstemmer==2.2.0; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme==2.0.0; extra == 'docs'
+Requires-Dist: sphinx==7.2.6; extra == 'docs'
+Requires-Dist: sphinxcontrib-applehelp==1.0.8; extra == 'docs'
+Requires-Dist: sphinxcontrib-devhelp==1.0.6; extra == 'docs'
+Requires-Dist: sphinxcontrib-htmlhelp==2.0.5; extra == 'docs'
+Requires-Dist: sphinxcontrib-jquery==4.1; extra == 'docs'
+Requires-Dist: sphinxcontrib-jsmath==1.0.1; extra == 'docs'
+Requires-Dist: sphinxcontrib-qthelp==1.0.7; extra == 'docs'
+Requires-Dist: sphinxcontrib-serializinghtml==1.1.10; extra == 'docs'
+Description-Content-Type: text/markdown
+
+# Python Client Library for Tecton Online Feature Store
+
+A simple Python client for the Feature Server HTTP API that helps customers integrate with Tecton easily.
+
+
+## Documentation
+
+* [Tecton Python Client API Reference](https://tecton-ai.github.io/tecton-http-client-python/index.html)
+
+* [Tecton Python Client Example Code](/examples)
+
+* [FeatureServer API Reference](https://docs.tecton.ai/rest-swagger/docs.html)
+
+* [Fetching Online Features](https://docs.tecton.ai/latest/examples/fetch-real-time-features.html)
+
+
+## Troubleshooting
+
+
+If you have any questions or need help, please contact us using the instructions in the
+[Tecton Docs](https://docs.tecton.ai/creating-a-tecton-support-ticket).
+
+## Installing the client
+
+The client can be installed using `pip`.
+
+```bash
+pip install tecton-client
+```
+
+The client can then be used as below:
+
+
+```python
+from tecton_client import TectonClient
+
+url = "https://explore.tecton.ai/"
+workspace = "prod"
+api_key = "my-secret-key"
+
+client = TectonClient(url=url, default_workspace_name=workspace, api_key=api_key)
+
+resp = client.get_features(
+    feature_service_name="fraud_detection_feature_service:v2",
+    join_key_map={"user_id": "user_4407104885"},
+    request_context_map={"amount": 500.00},
+)
+
+print(resp.get_features_dict())
+```
+
+For more information, please refer to Tecton documentation on the Python Client Library.
+
+## Filing Issues and Feature Requests
+
+### Python Client Issues
+If you encounter a problem specifically related to the Python client, please file a but using the instructions in the
+[Tecton Docs](https://docs.tecton.ai/creating-a-tecton-support-ticket). Please include the following information:
+
+   - Description of the problem.
+   - Steps to reproduce the issue.
+   - Any relevant error messages or stack traces.
+   - Versions of Python and the Python client you are using.
+
+Please provide as much detail as possible when filing a support ticket to help us understand and resolve the issue efficiently.
+
+Thank you for helping us improve our platform!
+
+## Contributing
+
+If you would like to contribute to the client, see [CONTRIBUTING.md](CONTRIBUTING.md)
+
+## License
+
+The project is licensed
+under [Apache License 2.0](https://github.com/tecton-ai/tecton-http-client-python/blob/main/LICENSE.md)
