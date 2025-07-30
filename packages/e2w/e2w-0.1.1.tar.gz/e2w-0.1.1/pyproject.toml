@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "e2w"
+version = "0.1.1"
+description = "Support exporting template with HTML tag to Word file"
+authors = [
+    { name="Alan", email="mr.ngtruong@gmail.com" }
+]
+readme = "README.md"
+license = { file="LICENSE" }
+requires-python = ">=3.9"
+dependencies = [
+    "requests",  
+    "lxml",
+    "pandas",
+    "docx",
+    "python-docx",
+    "beautifulsoup4"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/rethat/e2w"
+"Bug Tracker" = "https://github.com/rethat/e2w/issues"
