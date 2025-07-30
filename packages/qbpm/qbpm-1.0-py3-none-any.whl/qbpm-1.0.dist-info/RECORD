@@ -1,0 +1,16 @@
+qbpm/__init__.py,sha256=hKKBzqBqlC4j9ccNniA-fuDyvxKhTWe12fu1sCtzPcE,899
+qbpm/__main__.py,sha256=Vdhw8YA1K3wPMlbJQYL5WqvRzAKVeZ16mZQFO9VRmCo,62
+qbpm/choose.py,sha256=6mMDutf-HK_uxDcQlErMHzJR5TtXlIE8yehfkMWgYbw,1220
+qbpm/desktop.py,sha256=XmtHe3ooxMHS3aW_mylxoYI492wFxtm1XIhK7bIqnCU,1393
+qbpm/launch.py,sha256=3kWLh413zlRBYDaqYkT3QF485WhwTmFPh_gA-T6tpDc,954
+qbpm/log.py,sha256=lQLGvIobG-EKCnpkjWwpGnJe-GUPk3IPE2K5UmY7VDY,454
+qbpm/main.py,sha256=VXt4vFDz9pSlszL17csUJB48q3W7l4trfsyRwh2SJPQ,7935
+qbpm/menus.py,sha256=dvnTGl8Z-LLCkJPDwo_SI6XkdR4GZm_FoBCjKjyxP1E,3469
+qbpm/operations.py,sha256=D_zWEQ2cVj3MCXoJ7o7H46wtyRqMUFyqWIuv3v_h7gY,727
+qbpm/paths.py,sha256=i6c5bf_DEmlIrgZAysm5ST4xyrcUdxVDe0h0XWFtPN4,1221
+qbpm/profiles.py,sha256=jm7n_nBRL8q9SsbDLFDZz1B0nAP6zkF0nv7iJg0s-ts,3009
+qbpm-1.0.dist-info/entry_points.txt,sha256=aWvyfC749tqxWqvlf8yUjG1FJEmLni2nmQKzPY_I_oI,39
+qbpm-1.0.dist-info/licenses/LICENSE,sha256=OXLcl0T2SZ8Pmy2_dmlvKuetivmyPd5m1q-Gyd-zaYY,35149
+qbpm-1.0.dist-info/WHEEL,sha256=G2gURzTEtmeR8nrdXUJfNiB3VYVxigPQ-bEQujpNiNs,82
+qbpm-1.0.dist-info/METADATA,sha256=BFWbdZLQ2mNX5_sbSuuf_GThwxvkMy3by3iQHYTTbAY,4623
+qbpm-1.0.dist-info/RECORD,,
