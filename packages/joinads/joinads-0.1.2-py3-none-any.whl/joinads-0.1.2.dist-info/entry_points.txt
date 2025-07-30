@@ -1,0 +1,2 @@
+[console_scripts]
+joinads = joinads.cli:main
