@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>PyCalculatrice</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body class="bg-light">
+
+<div class="container mt-5" style="max-width: 400px;">
+    <h1 class="text-center mb-4">🧮 Calculatrice</h1>
+
+    <div class="card shadow p-4">
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="a" class="form-label">Nombre A</label>
+                <input type="number" step="any" class="form-control" id="a" name="a" placeholder="Entrez un nombre" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="operation" class="form-label">Opération</label>
+                <select id="operation" name="operation" class="form-select" required>
+                    <option value="add">Addition (+)</option>
+                    <option value="sub">Soustraction (−)</option>
+                    <option value="mul">Multiplication (×)</option>
+                    <option value="div">Division (÷)</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="b" class="form-label">Nombre B</label>
+                <input type="number" step="any" class="form-control" id="b" name="b" placeholder="Entrez un nombre" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Calculer</button>
+        </form>
+    </div>
+
+    {% if resultat is not None %}
+        <div class="alert alert-success mt-4" role="alert">
+            <strong>Résultat :</strong> {{ resultat }}
+        </div>
+    {% elif erreur %}
+        <div class="alert alert-danger mt-4" role="alert">
+            <strong>Erreur :</strong> {{ erreur }}
+        </div>
+    {% endif %}
+</div>
+
+</body>
+</html>

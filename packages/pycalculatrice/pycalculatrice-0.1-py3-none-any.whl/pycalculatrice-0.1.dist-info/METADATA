@@ -1,0 +1,20 @@
+Metadata-Version: 2.4
+Name: pycalculatrice
+Version: 0.1
+Summary: Une simple calculatrice Python/Django
+Author: Monique Reine
+Author-email: ton.email@example.com
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: Framework :: Django
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Requires-Dist: django>=3.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary

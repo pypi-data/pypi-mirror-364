@@ -1,0 +1,10 @@
+pycalculatrice/__init__.py,sha256=5DIEIiU8wmNs0x0cOeMkQgUL6G-5XwlaeWjNHQllSk4,73
+pycalculatrice/apps.py,sha256=xJ3hee3dSqqX_xIuuB4wpoxCrc9phCafADxFIkZ9h3w,102
+pycalculatrice/operations.py,sha256=82mxzsXKzYtc2f3qXCm9w7xR1bkTifoM9A_uiQN66-A,233
+pycalculatrice/urls.py,sha256=uioCLQOSsGkh38DaX9dWXHfH76adYpKPz2tjPQ-jGC4,117
+pycalculatrice/views.py,sha256=L92XovvUpgWuQx29UZTAEXqFCqkVFEzIFWFNXxAFGWo,936
+pycalculatrice/templates/pycalculatrice/index.html,sha256=uy8uUmrYJrhSDeiorRgdVxTnW97ONXAVHbDIJ6lDxiA,1939
+pycalculatrice-0.1.dist-info/METADATA,sha256=dPJJ8p6d7PTvvYg-pxuXTR6RledMk6qtc0LWUk1eM6E,542
+pycalculatrice-0.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+pycalculatrice-0.1.dist-info/top_level.txt,sha256=_Lvn03va--S-tht-PzWb6eaoKHvxcb20fKq-ejLfUco,15
+pycalculatrice-0.1.dist-info/RECORD,,
