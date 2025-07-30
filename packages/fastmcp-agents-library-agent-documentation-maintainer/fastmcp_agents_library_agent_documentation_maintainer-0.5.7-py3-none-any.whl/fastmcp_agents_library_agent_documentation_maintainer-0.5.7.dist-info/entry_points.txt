@@ -1,0 +1,3 @@
+[console_scripts]
+maintain-documentation = fastmcp_agents.library.agent.documentation.maintainer:run
+
