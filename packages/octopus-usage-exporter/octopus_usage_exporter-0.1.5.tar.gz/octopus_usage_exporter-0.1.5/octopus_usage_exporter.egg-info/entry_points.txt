@@ -1,0 +1,2 @@
+[octopus_usage_exporter.main]
+main = app.octopus_usage_exporter:main
