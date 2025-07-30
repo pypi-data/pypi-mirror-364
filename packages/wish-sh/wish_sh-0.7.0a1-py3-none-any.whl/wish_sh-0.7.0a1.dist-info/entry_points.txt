@@ -1,0 +1,2 @@
+[console_scripts]
+wish = wish_cli.main:main
