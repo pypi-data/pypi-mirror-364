@@ -1,0 +1,15 @@
+sb3/SbSessionEx.py,sha256=WFtlPmEuf9ZZLYDXGiklXzeqM3nidkaA2aGVByBjYSw,7104
+sb3/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+sb3/auth.py,sha256=nXJpp0oVmXMDtf1yiZMkALkVf-1B0gtP_1HTubgWoLI,7581
+sb3/client.py,sha256=qi6ksgBp5HTs1pCv7IC2Uwi3hM2Lz8nMHyZXB-g2fhs,12575
+sb3/querys.py,sha256=kW9z_dkSZv4iJHsV0lUR8Gc_5iswYLB4ga6lfHm4OGg,1175
+sciencebasepy/SbSession.py,sha256=nSnb9H6VxLjIzdg5BmOAKrSGxfAYfvFrwK8r36Z2WOM,89857
+sciencebasepy/__init__.py,sha256=oHnCkIG842KqA2rT98KwbAoFnlX6Eq4LQJjkXSuI2u0,292
+sciencebasepy-2.0.20.dist-info/licenses/LICENSE.md,sha256=VKA576XV7LjnY1OK25Iq8ymxo7hj283t2TX1ofFUKLg,19318
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/test_auth.py,sha256=2--yXOUAxIfDXWM0R4B__B6z3ujSZeZWqtLmm5AznqA,4849
+tests/test_sbsessionex.py,sha256=b3jtbqu5EiZz-rV1VG80VEUSsoHuujVCwLp1jp1-H_0,1522
+sciencebasepy-2.0.20.dist-info/METADATA,sha256=Ycwui9NaCSM0fRWPrIbXMBAVe4taNr96DPXAnFa1d44,1431
+sciencebasepy-2.0.20.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+sciencebasepy-2.0.20.dist-info/top_level.txt,sha256=BVY4lGHVwH3GqwZuOsVEJLJiw2yi-kcd5dFCmmwuWew,24
+sciencebasepy-2.0.20.dist-info/RECORD,,
