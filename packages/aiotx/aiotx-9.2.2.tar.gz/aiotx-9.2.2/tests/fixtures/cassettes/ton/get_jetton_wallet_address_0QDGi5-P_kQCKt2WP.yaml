@@ -1,0 +1,45 @@
+interactions:
+- request:
+    body: '{"address": "kQCKt2WPGX-fh0cIAz38Ljd_OKQjoZE_cqk7QrYGsNP6wfP0", "method":
+      "get_wallet_address", "stack": [["tvm.Slice", "te6cckEBAQEAJAAAQ4AY0XPx9Duahjny2d5vYt+uViqlLlYC+uJS3orzerGyofCiOb+H"]]}'
+    headers:
+      Content-Type:
+      - application/json
+    method: POST
+    uri: https://testnet.toncenter.com/api/v2/runGetMethod
+  response:
+    body:
+      string: '{"ok":true,"result":{"@type":"smc.runResult","gas_used":4479,"stack":[["cell",{"bytes":"te6cckEBAQEAJAAAQ4AUPxYjNoBGJgQowtZECOkLKQCe/cVpWemwI+V/uxSgQpCPmf6J","object":{"data":{"b64":"gBQ/FiM2gEYmBCjC1kQI6QspAJ79xWlZ6bAj5X+7FKBCgA==","len":267},"refs":[],"special":false}}]],"exit_code":0,"@extra":"1735468320.124919:0:0.10557905882158358","block_id":{"@type":"ton.blockIdExt","workchain":-1,"shard":"-9223372036854775808","seqno":26510771,"root_hash":"oP2QECLXKleGHtQxp6VYGkjygfGAiS0Q0nIezulXX98=","file_hash":"NB7AZuBFO+zY0Emmcv+0QWL4f3d0BMcrExiBb9qXnR0="},"last_transaction_id":{"@type":"internal.transactionId","lt":"25276366000001","hash":"MTfXYDFwr2lQYJh5QVzuxKGWs/vaFFUDqZAftbkMQj4="}}}'
+    headers:
+      Access-Control-Allow-Headers:
+      - User-Agent,Keep-Alive,Content-Type,X-API-Key,X-Ton-Client-Version
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS
+      Access-Control-Allow-Origin:
+      - '*'
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8f991f6988d394a0-LHR
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 29 Dec 2024 10:31:50 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=y5zwNe%2Ff58l2FNqmAotJhWvdYPM6Xk4FBQiql0ZPa0YNYhxt4NbOkER7qA0GPOIKVqDOqsFcl7I2zRMzKIivkA%2B5B%2Bu1Eh73xPFl8dMAb0JqRZydKabyBQfeXHz7LBMCCWdU4E5IqA%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      server-timing:
+      - cfL4;desc="?proto=TCP&rtt=22591&min_rtt=21953&rtt_var=8688&sent=4&recv=7&lost=0&retrans=0&sent_bytes=2414&recv_bytes=1040&delivery_rate=131918&cwnd=227&unsent_bytes=0&cid=41b8c4ce12c65e8b&ts=185&x=0"
+    status:
+      code: 200
+      message: OK
+version: 1
