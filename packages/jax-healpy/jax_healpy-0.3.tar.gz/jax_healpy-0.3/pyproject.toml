@@ -1,0 +1,107 @@
+[build-system]
+build-backend = 'setuptools.build_meta'
+requires = [
+    'setuptools==75.8.0',
+    'setuptools_scm[toml]==8.1.0',
+    'wheel',
+]
+
+[project]
+name = 'jax-healpy'
+authors = [
+    {name = 'Pierre Chanial', email = 'pierre.chanial@gmail.com'},
+    {name = 'Simon Biquard', email = 'sbiquard@gmail.com'},
+    {name = 'Wassim Kabalan'},
+]
+maintainers = [
+    {name = 'Pierre Chanial', email = 'pierre.chanial@gmail.com'},
+]
+description = 'Healpix JAX implementation.'
+readme = 'README.md'
+keywords = [
+    'scientific computing',
+]
+classifiers = [
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Intended Audience :: Science/Research',
+    'Operating System :: OS Independent',
+    'Topic :: Scientific/Engineering',
+]
+requires-python = '>=3.8'
+license = {file = 'LICENSE'}
+dependencies = [
+    'jax',
+    'jaxtyping',
+    'typing-extensions; python_version < "3.11"',
+
+]
+dynamic = ['version']
+
+[project.optional-dependencies]
+test = [
+    'healpy',
+    'matplotlib',
+    'mypy',
+    'pandas',
+    'pytest',
+    'pytest-cov',
+    'pytest-mock',
+    'setuptools_scm',
+    'typer',
+    'PyYAML',
+    'chex',
+]
+recommended = [
+    's2fft',
+]
+
+[project.urls]
+homepage = 'https://pchanial.github.io/jax-healpy'
+repository = 'https://github.com/pchanial/jax-healpy'
+
+[tool.coverage.report]
+exclude_lines = [
+    'pragma: no cover',
+    'except ImportError:',
+    'raise NotImplementedError',
+    'if typing.TYPE_CHECKING:',
+]
+show_missing = true
+skip_covered = true
+
+[tool.pytest.ini_options]
+addopts = '-rfEX --cov=jax_healpy --doctest-modules'
+testpaths = [
+    'tests',
+]
+markers = [
+    "slow: marks tests as slow (deselected by default in CI)",
+]
+
+[tool.setuptools_scm]
+version_scheme = 'post-release'
+fallback_version = '0.0.0'
+
+[tool.ruff]
+line-length = 120
+fix = true
+
+[tool.ruff.lint]
+select = [
+    # pycodestyle
+    'E',
+    # pyflakes
+    'F',
+    # pyupgrade
+    'UP',
+    # flake8-debugger
+    'T10',
+    # isort
+    'I',
+]
+
+[tool.ruff.format]
+quote-style = 'single'
