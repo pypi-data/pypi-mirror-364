@@ -1,0 +1,4 @@
+include netapp_ontap/py.typed
+include netapp_ontap/README.md
+graft netapp_ontap/docs
+global-exclude *.py[cod] __pycache__ *.so

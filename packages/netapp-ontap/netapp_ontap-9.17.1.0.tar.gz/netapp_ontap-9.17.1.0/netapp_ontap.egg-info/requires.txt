@@ -1,0 +1,5 @@
+marshmallow<4.0.0,>=3.21.3
+requests<3.0.0,>=2.32.3
+requests-toolbelt<2.0.0,>=1.0.0
+urllib3<3.0.0,>=1.26.7
+certifi>=2022.12.7
