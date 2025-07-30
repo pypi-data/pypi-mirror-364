@@ -1,0 +1,2 @@
+[console_scripts]
+build_server = huster.server:build_server
