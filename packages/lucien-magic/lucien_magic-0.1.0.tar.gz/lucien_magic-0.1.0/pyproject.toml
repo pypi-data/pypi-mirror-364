@@ -1,0 +1,16 @@
+[project]
+name = "lucien-magic"
+version = "0.1.0"
+description = "Lucien jupyter magic"
+readme = "README.md"
+authors = [
+    { name = "todd zhang", email = "toddzhang@pathintegral.xyz" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "jsonrpc>=3.0.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
