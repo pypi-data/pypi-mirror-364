@@ -1,0 +1,14 @@
+sprockets.http-2.5.1-py3.10-nspkg.pth,sha256=TI6UyHwm6_e5TYHwbNAXii8JPwTUkt0-T-i4nMZVYNQ,554
+sprockets/http/__init__.py,sha256=bN2P8LRaD5P4njHh3rKMIVV0df5-lTa9cL21eYl-yuc,6596
+sprockets/http/app.py,sha256=RDa21hYGd1YnJpxREFh6GHB2VJrOYcFTss3uZQNZkkA,12440
+sprockets/http/mixins.py,sha256=4lJGm8gxH1ozuup6bGIGHHHDSOPgDPw5nNoIE-27l44,4816
+sprockets/http/runner.py,sha256=cqD2bs8Ya3xVvmOfRDotK0_cmp3IE6WIKvpz200wEjo,8085
+sprockets/http/testing.py,sha256=x0Lb6-jNOH2V-msgaD1iF2hWESSocJGQ0v4akK0Hcxs,1906
+sprockets.http-2.5.1.dist-info/LICENSE,sha256=znVSOEDjaosxkcuJLPtRmZMpFruYo9-z31vWhZoM8NI,1498
+sprockets.http-2.5.1.dist-info/METADATA,sha256=mLmSQBnmmE_bnF0VVe_UQzXokt3sM0fR9e9LN3dznIU,1090
+sprockets.http-2.5.1.dist-info/WHEEL,sha256=Kh9pAotZVRFj97E15yTA4iADqXdQfIVTHcNaZTjxeGM,110
+sprockets.http-2.5.1.dist-info/entry_points.txt,sha256=Co5kiljhXUEIzh_rjJz5H18rGCpDqy4cnjZhssUWirI,64
+sprockets.http-2.5.1.dist-info/namespace_packages.txt,sha256=hxvegseOKoU7plA5DzgBS2blbFiGozhGBGIDu4ZIPrI,10
+sprockets.http-2.5.1.dist-info/top_level.txt,sha256=hxvegseOKoU7plA5DzgBS2blbFiGozhGBGIDu4ZIPrI,10
+sprockets.http-2.5.1.dist-info/zip-safe,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
+sprockets.http-2.5.1.dist-info/RECORD,,
