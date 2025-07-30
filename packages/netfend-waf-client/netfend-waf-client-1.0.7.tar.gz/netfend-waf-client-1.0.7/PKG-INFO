@@ -1,0 +1,10 @@
+Metadata-Version: 2.1
+Name: netfend-waf-client
+Version: 1.0.7
+Summary: WAF Client SDK for Python - Netfend
+Home-page: https://github.com/Shieldhaus/netfend_waf_client
+Author: Seu Nome
+Author-email: support@netfend.emailsbit.com
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
