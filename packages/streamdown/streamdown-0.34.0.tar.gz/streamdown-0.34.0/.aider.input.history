@@ -1,0 +1,69 @@
+
+# 2025-03-11 17:24:55.336617
++y
+
+# 2025-03-11 17:25:31.184691
++n
+
+# 2025-03-11 17:25:53.385602
++let's make a streaming markdown parser. For now let's support h1-h6, ul, ol, and li. 
+
+# 2025-03-11 17:27:04.476996
++y
+
+# 2025-03-11 17:32:39.699210
++so i want it as a tui output, not HTML
+
+# 2025-03-11 17:37:28.724435
++d
+
+# 2025-03-11 17:39:41.287285
++/models
+
+# 2025-03-11 17:39:44.395801
++/models free
+
+# 2025-03-11 17:39:49.271900
++models gemini
+
+# 2025-03-11 17:39:55.332323
++/models gemini
+
+# 2025-03-11 17:40:01.137444
++/modesl free
+
+# 2025-03-11 17:40:03.710259
++/models :free
+
+# 2025-03-11 17:40:39.712154
++/model openrouter/google/gemini-2.0-pro-exp-02-05:free
+
+# 2025-03-11 17:41:12.296680
++D
+
+# 2025-03-11 17:41:15.793921
++/models free
+
+# 2025-03-11 17:41:21.594545
++/model openrouter/google/gemini-2.0-pro-exp-02-05:free
+
+# 2025-03-11 17:41:41.084520
++so i want it as a tui output, not HTML
+
+# 2025-03-11 17:42:55.369210
++so rich doesn't cut it because it can't do streaming in a reasonable way. It shows an elipses and it's terrible. textual looks wrong too. I just want streaming output. 
+
+# 2025-03-11 17:43:08.437643
++y
+
+# 2025-03-11 17:43:46.132551
++example.py still outputs html
+
+# 2025-03-11 17:43:47.919569
++y
+
+# 2025-03-11 18:42:31.450867
++D
+
+# 2025-03-11 18:43:20.839676
++look at tui_parser.py and example.md ... write a test to make sure that the example.md works correctly

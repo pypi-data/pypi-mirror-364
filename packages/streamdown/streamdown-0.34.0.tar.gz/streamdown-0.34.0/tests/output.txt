@@ -1,0 +1,19 @@
+
+Your current structure:
+```html
+<div class="hero-content">
+  <div class="logo-wrapper">
+```
+
+Would you like me to:
+1. Suggest adjustments for text alignment in the same breakpoint?
+1. Suggest adjustments for text alignment in the same breakpoint?
+```html
+<div class="hero-content">
+</div>
+```
+
+Wham bam alakzam
+```html
+<div class="hero-content">
+</div>
