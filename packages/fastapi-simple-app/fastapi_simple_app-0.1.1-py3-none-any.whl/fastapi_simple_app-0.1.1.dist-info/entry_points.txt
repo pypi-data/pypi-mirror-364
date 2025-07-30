@@ -1,0 +1,2 @@
+[console_scripts]
+fastapi-app = fastapi_app.app:app
