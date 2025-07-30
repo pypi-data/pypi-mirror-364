@@ -1,0 +1,2 @@
+ConnectionError: Publisher not found for subscriber turtle2/cmd_vel in turtlesim_node
+ConnectionError: Publisher not found for subscriber turtle1/pose in turtle1_tf_broadcast

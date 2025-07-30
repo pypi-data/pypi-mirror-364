@@ -1,0 +1,2 @@
+ConnectionError: Connection property count(publishers(camera/depth/points)) == 1 not satisfied in: publishes to camera/depth/points: sensor_msgs/PointCloud2 where {count(publishers(camera/depth/points)) == 1}
+ConnectionError: Connection property count(publishers(camera/depth/points)) == 1 not satisfied in: publishes to camera/depth/points: sensor_msgs/PointCloud2 where {count(publishers(camera/depth/points)) == 1}

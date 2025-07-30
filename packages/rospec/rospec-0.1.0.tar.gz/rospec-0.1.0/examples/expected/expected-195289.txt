@@ -1,0 +1,1 @@
+ConnectionError: Provider not found for consumes service static_map: nav_msgs/GetMap in amcl

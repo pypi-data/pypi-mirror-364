@@ -1,0 +1,2 @@
+ConnectionError: Connection property count(publishers(joint_states)) == 1 not satisfied in: publishes to joint_states: sensor_msgs/JointState where {count(publishers(joint_states)) == 1}
+ConnectionError: Connection property count(publishers(joint_states)) == 1 not satisfied in: publishes to joint_states: sensor_msgs/JointState where {count(publishers(joint_states)) == 1}

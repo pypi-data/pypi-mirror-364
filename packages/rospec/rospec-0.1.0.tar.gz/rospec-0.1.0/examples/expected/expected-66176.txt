@@ -1,0 +1,1 @@
+ParameterDependencyError: node instance configurations for hector_mapping do not respect the dependency defined in the node type: is_simulation -> use_sim_time

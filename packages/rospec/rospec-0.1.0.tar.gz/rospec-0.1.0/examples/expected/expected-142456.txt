@@ -1,0 +1,2 @@
+QoSError: Mismatch in quality of service for reliability, consumer value Reliable does not match provider value BestEffort
+PolicyError: Color format policy for consumer (RGB8) does not match the format for provider (Grayscale)

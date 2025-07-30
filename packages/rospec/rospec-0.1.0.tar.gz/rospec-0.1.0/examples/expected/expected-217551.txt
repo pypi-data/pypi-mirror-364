@@ -1,0 +1,2 @@
+ConnectionError: Connection property count(publishers(/mico_arm_driver/in/cartesian_velocity)) == 1 not satisfied in: publishes to /mico_arm_driver/in/cartesian_velocity: geometry_msgs/TwistStamped where {count(publishers(/mico_arm_driver/in/cartesian_velocity)) == 1}
+ConnectionError: Connection property count(publishers(/mico_arm_driver/in/cartesian_velocity)) == 1 not satisfied in: publishes to /mico_arm_driver/in/cartesian_velocity: geometry_msgs/TwistStamped where {count(publishers(/mico_arm_driver/in/cartesian_velocity)) == 1}

@@ -1,0 +1,1 @@
+ParameterDependencyError: plugin instance configurations for teb_local_planner do not respect the dependency defined in the plugin type: exists(orientation_mode) -> global_plan_overwrite_orientation
