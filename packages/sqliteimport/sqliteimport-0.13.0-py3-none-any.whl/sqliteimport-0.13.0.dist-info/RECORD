@@ -1,0 +1,16 @@
+sqliteimport/__init__.py,sha256=9Jxc8X2jNmpEBPZEs-DW6yJHkb0f4slO9vpienCQBhM,422
+sqliteimport/__main__.py,sha256=G7e6Rk8eqAnE-KV6Tqh4eWl_sYjMpDplelin5jta7Do,204
+sqliteimport/accessor.py,sha256=3dtFGaMUbouOFrOxvjyx85knXnPSzeQ0Xb0G6qdGplI,12476
+sqliteimport/bundler.py,sha256=Z3h14hcq-m2KZbceSzyYQlchWGG_Uk3fIo4ybm4QYls,1525
+sqliteimport/cli.py,sha256=2AnvPAn7lkWco2-aNbCyA3fyF856LOXp7Knm6UEZRJ4,5593
+sqliteimport/compat.py,sha256=Omg_gNB-SQOmVk3ae8moRmstOvihHiSZQom6X2aBxfU,3141
+sqliteimport/compiler.py,sha256=MmShMTb6ZQc1KxajUI_u-OFeH8YiXwStJCugTiR8VEQ,886
+sqliteimport/errors.py,sha256=6JZMtJpLVZrC7wwLHGClIlgfiaO7WROToLl0Jl-NSE0,486
+sqliteimport/importer.py,sha256=33EfKxDNrFaM4zMcB9KCI_YLESXxT_k-Na7f8yuS7UM,6551
+sqliteimport/py.typed,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+sqliteimport/util.py,sha256=Tb-jAp8xeNaTPvcE9Dcz1qg-Sx_xVhW4qe3J4180Kvg,1034
+sqliteimport-0.13.0.dist-info/LICENSE.txt,sha256=kES5ctMZGX_IHgR3vRIJ4PL6JfYpbuwzLfX0LSqqu6o,1094
+sqliteimport-0.13.0.dist-info/METADATA,sha256=DDkp3aOaLTL8_G-95MInZ7rOoSRcZXRjV66EGd4rgzU,2200
+sqliteimport-0.13.0.dist-info/WHEEL,sha256=b4K_helf-jlQoXBBETfwnf4B04YC67LOev0jo4fX5m8,88
+sqliteimport-0.13.0.dist-info/entry_points.txt,sha256=MbShJFpViREPXkPMAk_rP160qpEwpl_3Lg8yM5S5Ciw,81
+sqliteimport-0.13.0.dist-info/RECORD,,
