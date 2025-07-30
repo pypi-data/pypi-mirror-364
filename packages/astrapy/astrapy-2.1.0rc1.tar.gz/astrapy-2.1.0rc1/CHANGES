@@ -1,0 +1,510 @@
+v 2.1.0rc1
+==========
+Switch default encode_maps_as_lists_in_tables to "DATAAPIMAPS" (no observable changes w.r.t. previous releases)
+Bugfix: fix paykload encoding for empty maps/DataAPIMaps
+User-defined types in tables:
+    - type management: `CreateTypeDefinition`, `ListTypeDescriptor`, `AlterTypeOperation`, `AlterTypeAddFields` and `AlterTypeRenameFields` classes
+    - type management: Database's `create_type`, `list_type_names`, `list_types`, `alter_type` and `drop_type` methods
+    - full support for UDTs in table ddl: `Database.create_table()`/`Database.list_tables()`/`table.definition()`
+    - UDT support in tables: introduced `serializer_by_class` and `deserializer_by_udt` serdes options
+    - UDT support in tables: introduced `DataAPIDictUDT` default dict-wrapper type
+Tables, all index creation methods support a `definition` parameter, alternatively to the "column[+options]" call pattern
+Tables, support for "text indexes":
+    - classes `TableTextIndexDefinition` and `TableTextIndexOptions` (e.g. for `list_indexes()` method)
+    - tables got a `.create_text_index()` method
+Tables, introduced method `list_indexes()`
+Cursors (all types): introduced the "pagination API":
+    - `.fetch_next_page()` method
+    - `initial_page_state` cursor constructor parameter / builder interface method
+Admin, renamed 'region_name' ==> `name` in `AstraDBAdminDatabaseRegionInfo` and `AstraDBAvailableRegionInfo` (the old name kept as a deprecated alias)
+Introduced the notion of 'passthrough columns' to cover all of the cql-only partially/completely unsupported columns in the read/schema-read path
+Fix: methods `drop_[collection|table]` of `[Async]Database`, and their Collection/Table sugar methods, now consistently return None.
+AstraDBAdmin: introduced `[async_]find_available_regions()` method (and related response objects)
+embedding/reranking models' "API support status":
+    - db admins' `.find_[embedding|reranking]_providers()` methods have a `filter_model_status` parameter, with values in `astrapy.constants.ModelStatus`;
+    - returned `*Model` objects have an appropriate "API Support" attribute.
+allow sending `"$vector": None` when inserting into collections
+support for modelSupport in findRerankingProviders
+CollectionDefinition fluent interface: set_lexical and set_rerank accept also just 'enabled'
+find_and_rerank scores' type enlarged to: `float|int|null`
+maintenance: improve integration test coverage for:
+    - collection-columns in tables: indexing, collection-specific DML commands ($push, $pullAll and so on)
+    - collections, lexical/BM25-related DDL operations (various analyzer configurations for)
+    - collections, lexical/BM25-related DML operations (filtering, sorting based on $lexical)
+    - tables, lexical/BM25-related DML
+    - tables, logical filtering (i.e. $and, $or between clauses)
+    - multiple vectorize columns in a Table
+maintenance: subsumed the specific testing opt-in env. var 'ASTRAPY_TEST_MAP2TUPLES=y' into the catch-all 'cutting-edge main' `ASTRAPY_TEST_LATEST_MAIN=y`
+maintenance: simplified SerdesOptions management in unit testing; some rationalization/refactoring of pre- and post-processing logic for tables in unit tests
+maintenance: switched to uv (from poetry)
+maintenance: promoted findAndRerank testing to the 'regular' IT (adjusted readme and env templates accordingly)
+maintenance: pin h11 to 0.16.0 or higher (after a vulnerability report)
+maintenance: switch to latest HCD for non-Astra CI github action
+maintenance: introduce CQL-driven testing for low/no-support table columns. `LOCAL_DATA_API_APPLICATION_TOKEN` local test auth not supported anymore.
+
+v 2.0.1
+=======
+bugfix: receiving `'$vector': null` caused response parsing to break
+
+v 2.0.0
+=======
+Collections admit `DataAPIMap` in writing and support `DataAPIDate` as well (the latter coming with the same timezone caveats as `datetime.date`)
+(plus all of the v2 pre-releases below)
+
+
+v 2.0.0rc2
+==========
+Cursors (class hierarchy revised to accommodate `find_and_rerank`, plus other changes):
+    - renamed the 'FindCursorState' enum to `CursorState`
+    - renamed the abstract ur-class 'FindCursor' => `AbstractCursor`
+    - `clone` method does not strip the mapping anymore, rather retains it
+    - removed the `alive` sugar property (use `cursors.state != CursorState.CLOSED`)
+Support for reranker header-based authentication:
+    - new authentication classes `RerankingHeadersProvider`, `RerankingAPIKeyHeaderProvider`
+    - introduced `reranking_api_key` parameter for APIOptions, `{get|create}_{table|collection}` database methods, collection/table `with_options` and `to_[a]sync` methods
+Support for "findRerankingProviders" API command in Database Admin classes:
+    - classes class hierarchy: `RerankingProviderParameter`, `RerankingProviderModel`, `RerankingProviderToken`, `RerankingProviderAuthentication`, `RerankingProvider`, `FindRerankingProvidersResult` to express the response
+    - database admin `find_reranking_providers`/`async_find_reranking_providers` methods implemented.
+Support for findAndRerank in collections:
+    - new classes `CollectionLexicalOptions`, `CollectionRerankOptions`, `RerankServiceOptions` for create_collection
+    - new `lexical` and `rerank` entries in CollectionDefinition (+builder interface management)
+    - `find_and_rerank` method for collections
+    - cursor classes `[Async]CollectionFindAndRerankCursor` added
+    - findAndRerank cursors return the new `RerankedResult` construct by default (modulo custom mappings)
+Maps for tables expressed as list of pairs (association lists):
+    - support for automatic handling of DataAPIMaps (+possibly dicts) in the proper table payload portions
+    - introduced serdes option `encode_maps_as_lists_in_tables` (default to "NEVER") to control this
+Exceptions, major rework of `[Table|Collection]InsertManyException`, `CollectionUpdateManyException` and `CollectionDeleteManyException` ("bulk operations")
+    - All astrapy exceptions derive directly from `Exception` (and not 'ValueError` anymore)
+    - better string representation of `DataAPIDetailedErrorDescriptor`
+    - `DataAPIDetailedErrorDescriptor` removed.
+    - 'CumulativeOperationException` removed.
+    - The four `CollectionInsertManyException`, `CollectionUpdateManyException`, `CollectionDeleteManyException`, `TableInsertManyException` classes now inherit directly from `DataAPIResponseException`.
+    - New semantics and structure for `[Collection|Table]InsertManyException`: they have members `inserted_ids`(/`inserted_id_tuples`) and an `exceptions` list for the root cause(s)
+    - New semantics and structure for `Collection[Update|Delete]ManyException`: they have members `partial_result` and a single-exception `cause`. They are now raised consistently for API exceptions occurring during the respective methods.
+Arbitrary field names and dot-escaping:
+    - offering utilities `astrapy.utils.document_paths.escape_field_names/unescape_field_path`
+    - `distinct` methods can accept a list of (literal) str|int as well as a(n escaped) identifier string
+Improved StrEnum matching for e.g. better coercion of TableIndexType (and future enum with e.g. dashes in values)
+Spawner methods for databases/admins standardized; they don't issue DevOps API calls.
+    - removed `normalize_region_for_id` utility method, not used anymore.
+    - `AstraDBAdmin.get_[async]_database()`:
+        - does not run DevOps API calls anymore (for missing keyspace/region);
+        - defers defaults to the [Async]Database class consistently;
+        - removed `database_admin_timeout_ms`, `request_timeout_ms`, `timeout_ms` parameters;
+        - `region` now required if `id` passed instead of endpoint.
+    - `AstraDBDatabaseAdmin.get[_async]_database()`:
+        - removed `database_admin_timeout_ms`, `request_timeout_ms`, `timeout_ms` parameters.
+    - `AstraDBDatabaseAdmin.get_database_admin()` standardized and simplified:
+        - does not run DevOps API calls anymore (for missing keyspace/region);
+        - removed `database_admin_timeout_ms`, `request_timeout_ms`, `timeout_ms` parameters;
+        - `region` now required if `id` passed instead of endpoint.
+Support for Astra DB "custom domain" endpoints for database
+    - in which case: `.id`, `.region`, `.get_database_admin()`, `.info()` and `.name()` aren't available.
+Table indexes:
+    - Support for the `indexType` field to describe table indexes (for compatibility, said field is not mandatory).
+    - 'column' argument for create[Vector]Index table metods is now positional (after index name)
+Collections write path now obeys the binary-encoding API Option (which in turn defaults to True. Formerly bin-encoding was always turned off.)
+DataAPITime: support for "hh:mm" no-seconds format.
+DataAPIDuration: improved parse performance by caching regexpes.
+DataAPIDuration: support for "P4W"-type strings and for zeroes such as "P", "-PR".
+Replaced the ValueErrors not directly coming from function calls/constructors with more appropriate exceptions.
+Collection and Table `insert_many` methods employ returnDocumentResponses under the hood.
+maintenance: switch to DSE6.9 for local non-Astra testing.
+
+
+v 2.0.0rc1
+==========
+Support for TIMEUUID and COUNTER columns:
+    - enlarged ColumnType enum (used by the API to describe non-creatable columns)
+    - readable through find/find_one operations (now returned by the API when reading)
+shortened string representation of table column descriptors for improved readability
+added 'filter' to the `TableAPISupportDescriptor` structure (now returned by the Data API)
+added optional `api_support` member to all column descriptor (as the Data API returns it for various columns)
+restore support for Python 3.8, 3.9
+maintenance: full restructuring of tests and CI (tables+collections on same footing+other)
+maintenance: adopt `blockbuster` in async tests to detect (and bust) any blocking call
+
+
+v 2.0.0-preview
+===============
+Introduction of full Tables support.
+Major revision of overall interface including Collection support.
+
+Introduced new astrapy-specific data types for full expressivity (see `serdes_options` below):
+    - `DataAPIVector` data type
+    - `DataAPIDate`, `DataAPITime`, `DataAPITimestamp`, `DataAPIDuration`
+    - `DataAPISet`, `DataAPIMap`
+
+Typing support for Collections (optional):
+    - `get_collection` and `create_collection` get a `document_type` parameter to go with the type hint `Collection[MyType]`
+    - if unspecified fall back to `DefaultCollection = Collection[DefaultDocumentType]` (where `DefaultDocumentType = dict[str, Any]`)
+    - cursors from `find` also allow strict typechecking
+
+Introduced a consistent API Options system:
+    - an APIOptions object inherited at each "spawn" operation, with overrides
+    - environment-dependent defaults if nothing supplied
+    - `serdes_options` to control data types accepted for writes and to select data types for reads
+    - `serdes_options`: Collections default to using custom types for lossless and full-range expression of database content
+        - `serdes_options.binary_encode_vectors`, to control usage of binary-encoding for writing vectors.
+        - e.g. instead of 'datetime.datetime', instances of `DataAPITimestamp` are returned
+        - Exception: numbers are treated by default as ints and floats. To have them all Decimal, set serdes_option.use_decimals_in_collections to True.
+        - Use the options' serdes_option to opt out and revert to non-custom data types
+        - For datetimes, fine control over naive-datetime tolerance and timezone is introduced. Usage of naive datetime is now OPT-IN.
+    - Support for arbitrary 'database' and 'admin' headers throughout the object chain
+    - Fully reworked timeout options through all abstractions:
+        - `TimeoutOptions` has six classes of timeouts, applying differently to various methods according to the kind of method. Timeouts can be overridden per-method-call
+        - removal of the 'max_time_ms` parameter ==> still a quick migration path is to replace it with `timeout_ms` throughout
+        - timeout of 0 means that timeout is disabled
+
+Reworked and enriched `FindCursor` interface:
+    - Cursors are typed, similarly to Tables and Collections. The `find` method has an optional `document_type` parameter for typechecking.
+    - Cursor classes renamed to `[Async]CollectionCursor`
+    - Base class for all (find) cursors renamed to `FindCursor`
+    - introduced `map` and `to_list` methods
+    - `cursor.state` now has values in `CursorState` enum (take `cursor.state.value` for a string)
+    - 'cursor.address' is removed from the API
+    - `cursor.rewind()` returns None, mutates cursor in-place
+    - removed 'cursor.distinct()': use the  corresponding collection(/table) method.
+    - removed cursor '.keyspace' property
+    - removed 'retrieved' for cursors: use `consumed`
+    - added many cursor management methods (see docstrings for details)
+
+Other changes to existing API:
+    - `Database.create_collection`: signature change (now accepts a single "collection definition")
+        - added parameter `definition` to method (a CollectionDefinition, plain dictionary or None)
+        - (support for `source_model` vector index setting within the `definition` parameter)
+        - removed 'dimension', 'metric', 'source_model', 'service', 'indexing', 'default_id_type' (all of them subsumed in `definition`)
+        - removed parameters 'additional_options' and 'timeout_ms' as part of the broader timeout rework
+    - renamed 'CollectionOptions' class to `CollectionDefinition` (return type of `Collection.options()`):
+        - renamed its 'options' attribute into `definition` (although the API payload calls it "options")
+        - removed its 'raw_options' attribute (redundant w.r.t `CollectionDescriptor.raw_descriptor`)
+        - `CollectionDefinition`: implemented fluent interface to build collection definition objects
+    - renamed `CollectionVectorServiceOptions` class to `VectorServiceOptions`
+    - renamed `astrapy.constants.SortDocuments` to `SortMode`
+    - renamed (collection-specific) "Result" classes like this:
+        - 'DeleteResult' ==> `CollectionDeleteResult`
+        - 'InsertOneResult' ==> `CollectionInsertOneResult`
+        - 'InsertManyResult' ==> `CollectionInsertManyResult`
+        - 'UpdateResult' ==> `CollectionUpdateResult`
+    - signature change from `-> {"ok": 1}` to `-> None` for some admin and schema methods:
+        - `AstraDBAdmin`: `drop_database` (+ async)
+        - `AstraDBDatabaseAdmin`, `DataAPIDatabaseAdmin`: `create_keyspace`, `drop_keyspace`, `drop` (+ async)
+        - `Database`, `AsyncDatabase`: `drop_collection`, `drop_table`
+        - `Collection`, `AsyncCollection`: `drop`
+    - renamed parameter 'collection_name' to `collection_or_table_name` and allow for `keyspace=None` in database `command()` method
+    - [Async]Database `drop_collection` method now accepts a keyspace parameter.
+    - `AsyncDatabase` methods `get_collection` and `get_table` are not async functions anymore (remove the await when calling them)
+    - the following "info" methods are made async (= awaitable): `AsyncDatabase.info`, `AsyncDatabase.name`, `AsyncCollection.info`, `AsyncTable.info`, `AsyncDatabase.list_collections`, `AsyncDatabase.list_tables`
+    - Database info structure: changed class name and reworked attributes of `AstraDBAdminDatabaseInfo` (formerly 'AdminDatabaseInfo') and `AstraDBDatabaseInfo` (formerly 'DatabaseInfo')
+    - `[Async]Collection` and `[Async]Database`: `info` method now accepts the relevant timeout parameters
+    - remove 'check_exists' from `[Async]Database.create_collection` method (the client does no checks now)
+    - removed AstraDBDatabaseAdmin's `from_api_endpoint` static method (reason: unused)
+    - remove 'database' parameter to the `to_sync()` and `to_async()` conversion methods for collections
+    - `[Async]Database.drop_collection` method accepts only the string name of the target to drop (no collection objects anymore)
+    - removed the 'CommandCursor'/'AsyncCommandCursor' classes:
+        - `AstraDBAdmin`: `list_databases`, `async_list_databases` methods return regular lists
+        - `[Async]Database`: `list_collections`, `list_tables` methods return regular lists
+    - `[Async]Database`: added a `.region` property
+
+Exceptions hierarchy reworked:
+    - removed 'CursorIsStartedException': now `CursorException` raised for all state-related illegal calls in cursors
+    - removed 'CollectionNotFoundException', replaced by a ValueError in the few cases it's needed
+    - removed `CollectionAlreadyExistsException` class (not used anymore without `check_exists`)
+    - introduced `InvalidEnvironmentException` for operations invalid on some Data API environments.
+    - renamed 'InsertManyException' ==> `CollectionInsertManyException`
+    - renamed 'DeleteManyException' ==> `CollectionDeleteManyException`
+    - renamed 'UpdateManyException' ==> `CollectionUpdateManyException`
+    - renamed 'DevOpsAPIFaultyResponseException' ==> `UnexpectedDevOpsAPIResponseException`
+    - renamed 'DataAPIFaultyResponseException' ==> `UnexpectedDataAPIResponseException`
+    - (improved string representation of DataAPIResponseException cases with multiple error descriptors)
+
+Removal of deprecated modules, objects, patterns and parameters:
+    - 'core' (i.e. pre-1.0) library
+    - 'collection.bulk_write' and the associated result and exception classes
+    - 'vector=', 'vectorize=' and 'vectors=' parameters from collection methods
+    - 'set_caller' method of `DataAPIClient`, `AstraDBAdmin`, `DataAPIDatabaseAdmin`, `AstraDBDatabaseAdmin`, `[Async]Database`, `[Async]Collection`
+    - 'caller_name' and 'caller_version' parameters. A single list-of-pairs `callers` is now expected
+    - 'id' and 'region' to DataAPIClient's 'get_database' (and async version). Use `api_endpoint` which is now the one positional parameter.
+    - Accordingly, the syntax `client[api_endpoint]` also does not accept a database ID anymore.
+    - 'region' parameter of `AstraDBDatabaseAdmin.get[_async]_database` (was ignored already in the method)
+    - 'namespace' parameter of several methods of: DataAPIClient, admin objects, Database and Collection (use `keyspace`)
+    - 'namespace' property of CollectionInfo, DatabaseInfo, CollectionNotFoundException, CollectionAlreadyExistsException (use `keyspace`)
+    - 'namespace' property of `Database` and `Collection` (switch to `keyspace`)
+    - 'update_db_namespace' parameter for keyspace admin methods (use `update_db_keyspace`)
+    - 'use_namespace' for `Databases` (switch to `use_keyspace`)
+    - 'delete_all' method of `Collection` and `AsyncCollection` (use `delete_many({})`)
+
+API payloads are encoded with full Unicode (not encoded in ASCII anymore) for HTTP requests
+
+- Revision of all "spawning and copying" methods for abstractions. Parameters added/removed/renamed (switch to the corresponding parameters inside the APIOptions instead of the removed keyword parameters):
+    - All the client/admin/database/table/collection classes have an `api_options` parameter in their `with_options/to_[a]sync` method
+    - `DataAPIClient`
+        - `_copy()`, `with_options()`: removed 'callers'
+        - `get_..._database...()`: removed 'api_path', 'api_version'
+        - `get_admin()`: removed 'dev_ops_url', 'dev_ops_api_version'
+    - `AstraDBAdmin`
+        - `(_copy)`: removed 'environment', 'dev_ops_url', 'dev_ops_api_version', 'callers'
+        - `(with_options)`: removed 'callers'
+        - `(create..._database)`: added `token`, `spawn_api_options`
+        - `(get..._database)`: removed 'api_path', 'api_version', 'database_request_timeout_ms', 'database_timeout_ms'; renamed 'database_api_options' => `spawn_api_options`
+        - `(get_database_admin)`: added `token`, `spawn_api_options`
+    - `AstraDBDatabaseAdmin`
+        - `_copy()`: removed 'api_endpoint', 'environment', 'dev_ops_url', 'dev_ops_api_version', 'api_path', 'api_version', 'callers'
+        - `with_options()`: removed 'api_endpoint', 'callers'
+        - `get..._database()`: removed 'api_path', 'api_version', 'database_request_timeout_ms', 'database_timeout_ms'; renamed 'database_api_options' => `spawn_api_options`
+    - `DataAPIDatabaseAdmin`
+        - `_copy()`: removed 'api_endpoint', 'environment', 'api_path', 'api_version', 'callers'
+        - `with_options()`: removed 'api_endpoint', 'callers'
+        - `get..._database()`: removed 'api_path', 'api_version', 'database_request_timeout_ms', 'database_timeout_ms'; renamed 'database_api_options' => `spawn_api_options`
+    - `[Async]Database`
+        - `_copy()`: removed 'api_endpoint', 'callers', 'environment', 'api_path', 'api_version'
+        - `with_options()`: removed 'callers'; added `token`
+        - `to_[a]sync()`: removed 'api_endpoint', 'callers', 'environment', 'api_path', 'api_version', 
+        - `get_collection()`: removed 'collection_request_timeout_ms', 'collection_timeout_ms'; renamed 'collection_api_options' => `spawn_api_options`
+        - `get_table()`: removed 'table_request_timeout_ms', 'table_timeout_ms'; renamed 'table_api_options' => `spawn_api_options`
+        - `create_collection()`: removed 'collection_request_timeout_ms', 'collection_timeout_ms'; renamed 'collection_api_options' => `spawn_api_options`
+        - `create_table()`: removed 'table_request_timeout_ms', 'table_timeout_ms'; renamed 'table_api_options' => `spawn_api_options`
+        - `get_database_admin()`: removed 'dev_ops_url', 'dev_ops_api_version'
+    - `[Async]Collection`
+        - `_copy()`: removed 'request_timeout_ms', 'collection_timeout_ms', 'callers'
+        - `with_options`: removed 'request_timeout_ms', 'collection_timeout_ms', 'name', 'callers'
+        - `to_[a]sync()`: removed 'request_timeout_ms', 'collection_timeout_ms', 'keyspace', 'name', 'callers'
+    - `[Async]Table`
+        - `_copy()`: removed 'database', 'name', 'keyspace', 'request_timeout_ms', 'table_timeout_ms', 'callers'
+        - `with_options`: removed 'name', 'request_timeout_ms', 'table_timeout_ms', 'callers'
+        - `to_[a]sync()`: removed 'database', 'name', 'keyspace', 'request_timeout_ms', 'table_timeout_ms', 'callers'
+
+Internal restructuring/maintenance things:
+    - (not user-facing) classes in the hierarchy other than `DataAPIClient` have breaking changes in their constructor (now options-first and keyword-arg-only)
+    - Token and Embedding API key coercion into `*Provider` now happens at the Options' init layer
+    - `[Async]Collection.find_one` method uses the actual findOne API command
+    - rename main branch from 'master' ==> `main`
+    - major restructuring of the codebase in directories (some internal-only imports changed; reduced the scope of `test_imports`)
+    - removal of unused imports from toplevel `__init__.py` (ids, constants, cursors)
+    - simplified timeout management classes and representations
+
+
+v. 1.5.2
+========
+Bugfix: `Database.get_collection` uses callers inheritance (same for async)
+
+
+v. 1.5.1
+========
+Switching to endpoint as the only/primary way of specifying databases:
+    - AstraDBClient tolerates (deprecated, removal in 2.0) id[/region] in get_database
+    - (internal-use constructors and utilities only accept API Endpoint)
+    - AstraDBAdmin is the only place where id[/region] will remain an allowed path in 2.0
+    - all tests adapted to reflect this simplification
+Admins: resilience against DevOps responses omitting 'keyspace'/'keyspaces'
+AstraDBAdmin: added filters and automatic pagination to [async_]list_databases
+Consistent handling of deletedCount=-1 from the API (always returned as-is)
+Cursors: alignment and rework
+    - states are an enum; state names reworked for clarity (better cursor `__repr__`)
+    - _copy and _to_sync methods always return a clean pristine cursor
+    - "retrieved" property deprecated (removal 2.0). Use `consumed`.
+    - "collection" property deprecated (removal 2.0). Use `data_source`.
+Deprecation of all `set_caller` (=> to be set at constructor-time) (removal in 2.0)
+Callers and user-agent string:
+    - remove RAGStack automatic detection
+    - Deprecate caller_name/caller_version parameters in favour of "callers" pair list
+    - (minor) breaking change: passing only one of caller_name/caller_version to _copy/with_options will override the whole one-item callers pair list
+Repo housekeeping
+    - using ruff for imports and formatting (instead of isort+black) by @cbornet
+    - add ruff rules UP(pyupgrade) by @cbornet
+    - remove `cassio` unused dependency
+
+
+v. 1.5.0
+========
+Deprecation of "namespace-" terminology, replaced by "keyspace-" (removal in 2.0)
+    - deprecation of all *namespace* method names
+    - deprecation of the `namespace=` named argument to all methods
+    - deprecation of the `update_db_namespace` parameter to create_*space
+Deprecation of collection bulk_write method (removal in 2.0)
+APICommander logs warnings received from the Data API
+Full removal of "core library" from the current API:
+    - DevOps API accessed through APICommander everywhere
+    - Admin objects use APICommander consistently
+    - [Async]Database and [Async]Collection directly use APICommander
+    - Cursor library uses APICommander directly
+    - Core library imports triggers a submodule-wide deprecation warning
+    - (simplification of the vector/vectorize deprecator utility)
+Widened exception hierarchy with:
+    - DevOpsAPIHttpException
+    - DevOpsAPITimeoutException
+    - DevOpsAPIFaultyResponseException
+Rearrangement into separate modules for:
+    - constants, strings, magic numbers and settings
+    - request low-level tools
+    - payload/response transformations
+    - (sometimes with temporary duplication to avoid depending on 'core')
+Testing:
+    - testing on HCD targets Data API v 1.0.16
+    - added tests for APICommander
+    - improved tests for admin classes
+Logging of API requests made more uniform and easier to read
+Replaced collections.abc.Iterator => typing.Iterator for python3.8 compatibility
+
+
+v. 1.4.2
+========
+Method 'update_one' of [Async]Collection: now invokes the corresponding API command.
+Better URL-parsing error messages for the API endpoint (with guidance on expected format)
+Improved __repr__ for: token/auth-related items, Database/Client classes, response+info objects
+DataAPIErrorDescriptor can parse 'extend error' in the responses
+Introduced DataAPIHttpException (subclass of both httpx.HTTPStatusError and DataAPIException)
+testing on HCD:
+    - DockerCompose tweaked to invoke `docker compose`
+    - HCD 1.0.0 and Data API 1.0.15 as test targets
+relaxed dependency on "uuid6" to most recent releases
+core:
+    - prefetched find iterators: fix second-thread hangups in some cases (by @cbornet)
+    - added 'options' parameter to [Async]AstraDBCollection.update_one
+
+
+v. 1.4.1
+========
+FindEmbeddingProvidersResult and descendant dataclasses:
+    - add handling of optional 'hint' and 'displayName' fields for parameters
+    - knowedge of optional-as-null vs optional-as-possibly-absent ancillary fields
+Replace bson dependency with pymongo (#297, by @caseyclements)
+
+
+v. 1.4.0
+========
+DatabaseAdmin classes retain a reference to the Async/Database instance that spawned it, if any
+    - introduced a spawner_database parameter to database admin constructors
+    - database admin can retroactively set the db's working namespace upon creation of same
+    - Idiom `database = client.get_database(...); database.get_database_admin().create_namespace("the_namespace", update_db_namespace=True)`
+Database (and AsyncDatabase) classes admit null namespace:
+    - default to "default_keyspace" only for Astra, otherwise null
+    - as long as null, most operations are unavailable and error out
+    - a `use_namespace` method to (mutably) set the working namespace on a database instance
+AstraDBDatabaseAdmin class is fully region-aware:
+    - can be instantiated with an endpoint (also `id` parameter aliased to `api_endpoint`)
+    - requires a region to be specified with an ID, unless auto-guess can be done
+VectorizeOps: support for find_embedding_providers Database method
+Support for multiple-header embedding api keys:
+    - `EmbeddingHeadersProvider` classes for `embedding_api_key` parameter
+    - AWS header provider in addition to the regular one-header one
+    - adapt CI to cover this setup
+Testing:
+    - restructure CI to fully support HCD alongside Astra DB
+    - add details for testing new embedding providers
+
+
+v. 1.3.1
+========
+Fixed bug in parsing endpoint domain names containing hyphens (#287), by @bradfordcp
+Added isort for source code formatting
+Updated abstractions diagram in README for non-Astra environments
+
+
+v. 1.3.0
+========
+Integration testing covers Astra and nonAstra smoothly:
+    - idiomatic library
+    - vectorize_idiomatic
+    - nonAstra admin, i.e. namespace crud
+Add the TokenProvider abstract class => and StaticTokenProvider, UsernamePasswordTokenProvider
+Introduce CHANGES file.
+Add __eq__ and _copy methods to APICommander class
+Allow delete_many({}) with empty filter
+Implement include_sort_vector option to Collection.find and get_sort_vector to cursors
+Add Content-Type header to all API requests
+Added HCD and CASSANDRA Environment values (besides the other non-Astra DSE and OTHER)
+Clearer string repr of cursors ('retrieved' => 'yielded so far')
+Deprecation of collection delete_all method in favour of delete_many(filter={})
+    Introduction of a custom deprecation decorator for async method removal tests
+Deprecation of vector,vectors and vectorize params from collections and Operations
+Remove several long-deprecated methods from **core API** (i.e. internal changes):
+    AstraDBCollection.delete          => delete_one
+    AstraDBCollection.upsert          => upsert_one
+    AsyncAstraDBCollection.upsert     => upsert_one
+    AstraDB.truncate_collection       => AstraDBCollection.clear
+    AsyncAstraDB.truncate_collection  => AsyncAstraDBCollectionclear
+Add support for null tokens in the core library
+
+
+v. 1.2.1
+========
+Raise default chunk size for insert_many to 50
+Improvements in docstrings, testing, support for latest responses from vectorize.
+
+
+v. 1.2.0
+========
+Non-Astra environment awareness:
+    astrapy.constants.Environment enum for the "environment" parameter to client, etc
+    flexibility and adaptive defaults for data api url
+    environment knowledge trickles throughout all classes (client, admins, databases)
+    DataAPIDatabaseAdmin class (i.e. for namespace CRUD)
+(internal) astrapy.api_commander.APICommander
+(internal) astrapy.api_options.{BaseAPIOptions, CollectionAPIOptions}
+$vectorize support:
+    "service options" for creating/retrieving collections, covering $vectorize needs
+    embedding_api_key parameter to collection (for "header" usage)
+collection-level timeout parameter (overridable in single method calls)
+expand "projection" type to include slice projections
+client.get_database can accept an API endpoint directly
+insert_many and bulk_write default to ordered=False
+
+
+v. 1.1.0
+========
+Adds estimated_document_count method to Collection class.
+
+
+v. 1.0.0
+========
+(Introduction of the "idiomatic API", relegating "core" to become non-user-facing.)
+
+Split classes, modules, tests to keep the "idiomatic" layer well separate and not touch the "astrapy" layer
+DDL and some DML methods to m1
+Passing secondary keyspace to action workflows
+Fix bug in copy and to_[a]sync when set_caller is later used
+Full cross-namespace management in DDL
+More DDL methods and signature adjustments for Database
+Sl overridable copy methods
+Cursor/AsyncCursor, find and distinct
+Remove all 'unsupported' clutter; implement find_one (a/sync)
+DML for idiomatic + necessary changes around
+Bulk_write method
+More management methods
+Sl collateral commands
+Commandcursor (+async), used in list_collections
+Sl collection options + cap-aware count_documents
+Fix #245: Delete CHANGES.md
+Collection.drop + database/collection info and related methods/properties (metadata)
+Adapt to latest choices in API semantics
+More syntax changes as discussed + all docstrings
+Full support for dotted key names in distinct
+Refactor to feature 'idiomatic' first, with full back-compat with 'astrapy'
+Add sorting in hashing for distinct and factor it away
+Exception management with a hierarchy of Exception classes
+Full timeout support
+Sl api refinements
+ObjectIDs and UUIDs handled throughout (+ tests)
+Admin interfaces and classes
+Docstrings for all the admin/client parts + minor improvements to docstrings around
+Readme overhaul
+Exporting logger for back-compatibility
+Sl adjustments
+Custom payload serialization for httpx to block NaNs
+Improved docstrings (minor stuff)
+Methods repr/str to all objects for graceful display
+Full test suite on client/admin classes
+Abstract DatabaseAdmin, admin standard utility conversion/methods + tests thereof
+Collection options is a dataclass and not a dict anymore
+Pdoc annotations to control auto-docs
+Logging, create_database signature
+Added async support for admin, as alternate methods on original classes
+Use MultiCallTimeoutManager in create_collection methods
+V1.0.0 ("pm convergenge m1") gets to master
+
+
+(prior to 1.0.0)
+================
+What is now dubbed the "core API" and is not supposed to be used directly at all.

@@ -1,0 +1,96 @@
+[project]
+requires-python = ">=3.8,<4.0"
+name = "astrapy"
+version = "2.1.0rc1"
+description = "A Python client for the Data API on DataStax Astra DB"
+authors = [
+    {"name" = "Stefano Lottini", "email" = "stefano.lottini@datastax.com"},
+    {"name" = "Eric Hare", "email" = "eric.hare@datastax.com"},
+]
+readme = "README.md"
+
+keywords = ["DataStax", "Astra DB", "Astra"]
+dependencies = [
+    "deprecation ~= 2.1.0",
+    "httpx[http2]>=0.25.2,<1",
+    "h11 >= 0.16.0",
+    "pymongo >= 3",
+    "toml >= 0.10.2,<1.0.0",
+    "typing-extensions >= 4.0",
+    "uuid6 >= 2024.1.12"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Build Tools"
+]
+
+[project.urls]
+Homepage = "https://github.com/datastax/astrapy"
+Documentation = "https://docs.datastax.com/en/astra-db-serverless/api-reference/dataapiclient.html"
+Repository = "https://github.com/datastax/astrapy"
+Issues = "https://github.com/datastax/astrapy/issues"
+Changelog = "https://github.com/datastax/astrapy/blob/main/CHANGES"
+
+[dependency-groups]
+dev = [
+    "blockbuster ~= 1.5.5",
+    "build >= 1.0.0",
+    "cassio ~= 0.1.10; python_version >= '3.9'",
+    "faker ~= 23.1.0",
+    "mypy ~= 1.9.0",
+    "ruff >= 0.11.9,<0.12",
+    "pre-commit ~= 3.5.0",
+    "pytest ~= 8.0.0",
+    "pytest-asyncio ~= 0.23.5",
+    "pytest-cov ~= 4.1.0",
+    "pytest-testdox ~= 3.1.0",
+    "python-dotenv ~= 1.0.1",
+    "pytest-httpserver ~= 1.0.8",
+    "setuptools >= 61.0",
+    "testcontainers ~= 3.7.1",
+    "types-toml >= 0.10.8.7,<1.0.0"
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["astrapy"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.setuptools.packages.find]
+include = ["astrapy*"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "FA", "I", "UP"]
+
+[tool.mypy]
+disallow_any_generics = true
+disallow_incomplete_defs = true
+disallow_untyped_calls = true
+disallow_untyped_decorators = true
+disallow_untyped_defs = true
+follow_imports = "normal"
+ignore_missing_imports = true
+no_implicit_reexport = true
+show_error_codes = true
+show_error_context = true
+strict_equality = true
+strict_optional = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unused_ignores = true
+
+[tool.pytest.ini_options]
+filterwarnings = "ignore::DeprecationWarning"
+addopts = "-v --cov=astrapy --testdox --cov-report term-missing"
+asyncio_mode = "auto"
+log_cli = 1
+log_cli_level = "INFO"
