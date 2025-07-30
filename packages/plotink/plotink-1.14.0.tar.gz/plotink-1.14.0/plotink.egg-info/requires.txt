@@ -1,0 +1,8 @@
+ink_extensions>=2.2.0
+packaging>=21.0
+pyserial>=3.5
+
+[dev]
+coverage
+
+[test]
