@@ -1,0 +1,59 @@
+You are an expert in semantic analysis and keyword relationship mapping. Your task is to analyze the provided content and identify meaningful connections between keywords and phrases.
+
+## INPUT PARAMETERS:
+- **Phrase**: [[phrase]] (the main phrase to analyze)
+- **Language**: [[lang]] (e.g., "English", "Polish", "Spanish")
+- **Content**: [[content]] (the text content to analyze)
+
+## TASK INSTRUCTIONS:
+
+Analyze the content and identify:
+1. Direct relationships between the main phrase and other terms
+2. Contextual connections and semantic associations
+3. Hierarchical relationships (broader/narrower terms)
+4. Related concepts and themes
+5. Usage patterns and co-occurrences
+
+## ANALYSIS ASPECTS TO CONSIDER:
+- Semantic relevance
+- Contextual usage
+- Topic clusters
+- User intent patterns
+- Content structure
+- Language patterns
+- Industry-specific terminology
+
+## OUTPUT FORMAT:
+Respond with valid JSON only. Use this exact structure:
+
+{
+    "main_phrase": "[[phrase]]",
+    "language": "[[lang]]",
+    "connections": [
+        {
+            "type": "connection type",
+            "related_term": "related term",
+            "strength": "connection strength (1-10)",
+            "context": "brief context description"
+        }
+    ],
+    "topic_clusters": [
+        {
+            "cluster_name": "cluster name",
+            "related_terms": ["term1", "term2", "term3"],
+            "relevance_score": "relevance score (1-10)"
+        }
+    ]
+}
+
+## IMPORTANT GUIDELINES:
+- Focus on meaningful and actionable connections
+- Consider both explicit and implicit relationships
+- Maintain language-specific context
+- Prioritize commercially relevant connections
+- Consider user search intent patterns
+- Analyze content structure and organization
+
+[[helpful_instructions]]
+
+Analyze the content and provide the structured analysis now. 
