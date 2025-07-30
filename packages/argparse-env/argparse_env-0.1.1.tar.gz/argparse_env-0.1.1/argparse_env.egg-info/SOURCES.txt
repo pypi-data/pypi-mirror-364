@@ -1,0 +1,8 @@
+README.md
+pyproject.toml
+argparse_env/__init__.py
+argparse_env/envparser.py
+argparse_env.egg-info/PKG-INFO
+argparse_env.egg-info/SOURCES.txt
+argparse_env.egg-info/dependency_links.txt
+argparse_env.egg-info/top_level.txt

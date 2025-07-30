@@ -1,0 +1,59 @@
+Metadata-Version: 2.4
+Name: argparse-env
+Version: 0.1.1
+Summary: An argpase that can take values from the environment.
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+
+# argparse-env - argparse with environment
+
+Use this package when you want to be able to set
+arguments wither at the command line or through 
+environment variables.
+
+```
+from argparse_env import EnvArgumentParser
+
+parser = EnvArgumentParser(env_prefix="MYAPP")
+parser.add_argument
+>>> from argparse_env import EnvArgumentParser
+>>> parser = EnvArgumentParser(env_prefix='MYAPP')
+>>> parser.add_argument("--hello", type=str, default="Alex" help="Say hello to.")
+>>> parser.parse_args(["--hello", "Jane"])
+Namespace(hello='Jane')
+>>> parser.parse_args([])
+Namespace(hello=Alex)
+>>> import os
+>>> os.environ["MYAPP_HELLO"] = "Jim"
+>>> parser.parse_args([])
+Namespace(hello='Jim')
+>>> parser.parse_args(["--hello", "Jane"])
+Namespace(hello='Jane')
+```
+
+## argparse Feature Support
+
+There are some extras added to the class to support argparse features
+from environment variables.
+
+## nargs
+
+Provide arguments with nargs != 1 using a comma-separated list
+in an environment variable.
+
+```
+MYAPP_NARGS_MANY=arg1,arg2,arg3
+```
+
+## store true/false
+
+Use `true`, `1`, or `on` for `True` or `false`, `0`, or `off`
+for `False`.
+
+```
+MYAPP_STORE_FALSE=false
+MYAPP_STORE_FALSE=off
+MYAPP_STORE_TRUE=true
+MYAPP_STORE_TRUE=1
+```
+
