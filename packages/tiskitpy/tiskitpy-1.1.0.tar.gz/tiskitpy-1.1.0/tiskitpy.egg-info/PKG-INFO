@@ -1,0 +1,91 @@
+Metadata-Version: 2.2
+Name: tiskitpy
+Version: 1.1.0
+Summary: TIme Series toolKIT
+Home-page: https://github.com/WayneCrawford/tiskitpy
+Author: Wayne Crawford
+Author-email: crawford@ipgp.fr
+Keywords: oceanography,marine,OBS
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Physics
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown; charset=UTF-8
+License-File: LICENSE.txt
+Requires-Dist: obspy>=1.3.0
+Requires-Dist: PyYAML
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: matplotlib
+Requires-Dist: xarray
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# TiSKitPy
+
+Routines for time series data processing
+
+Uses the [obspy](https://docs.obspy.org) Stream (data) and Inventory (metadata)
+classes
+
+
+[Documentation](https://tiskitpy.readthedocs.io)
+
+
+## Classes
+
+- `CleanRotator`: rotate data to minimize noise on vertical channel
+- `DataCleaner`: Transfer_Function-based data cleaning
+- `Decimator`: Decimate time series and update metadata with the decimator's
+  response
+- `SpectralDensity`: Calculate and manipulate spectral density functions.
+- `TimeSpans`: Specify time spans to be removed, kept, zeroed, etc.
+- `ResponseFunctions`: Frequency response functions for a given input channel.
+            
+               
+## Functions
+
+- `FIR_corr`: transform zero-phase data to minimum phase (only works for
+              LCHEAPO loggers, need to update to calculate/work for any
+              zero-phase filter)
+- `readMSEED`: read in MSEED data, including if the file is too big (> 2 GB)
+               for obspy's read() function
+- `rptransient`: calculate and remove periodic transient (VERY manual!).  
+ 	Based on Matlab code by E Wielandt, used in Deen et al., 2017
+
+- `PetersonNoiseModel`: return the Peterson High and Low Noise Models
+
+
+## Installation
+
+First, install `obspy` using the instructions on their webpage.
+Then, in the pip/conda environment that contains obspy...
+
+### From this repository
+
+Clone or download this repository, then from within the main repository directory, run:
+
+`pip install .`
+
+You can also install in editable mode (for developers), with:
+
+`pip install -e .`
+
+### Using `pip`
+
+Type `pip install tiskitpy`
