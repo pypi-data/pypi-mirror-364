@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    
+    <!-- Primary Meta Tags -->
+    <title>AUTO-blogger - AI-Powered WordPress Automation Tool | OpenAI & Gemini Integration</title>
+    <meta name="title" content="AUTO-blogger - AI-Powered WordPress Automation Tool | OpenAI & Gemini Integration">
+    <meta name="description" content="Professional WordPress automation tool with AI content generation, Getty Images integration, SEO optimization, and auto-updates. Supports OpenAI DALL-E, Google Gemini, and multi-domain management.">
+    <meta name="keywords" content="wordpress automation, ai content generation, blog automation, openai dalle, google gemini, getty images, seo optimization, wordpress tool, content management, auto blogger">
+    <meta name="author" content="AryanVBW">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aryanvbw.github.io/AUTO-blogger/website/">
+    <meta property="og:title" content="AUTO-blogger - AI-Powered WordPress Automation Tool">
+    <meta property="og:description" content="Professional WordPress automation tool with AI content generation, Getty Images integration, and SEO optimization. Transform your content strategy with intelligent automation.">
+    <meta property="og:image" content="https://aryanvbw.github.io/AUTO-blogger/website/assets/icon.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="AUTO-blogger">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://aryanvbw.github.io/AUTO-blogger/website/">
+    <meta property="twitter:title" content="AUTO-blogger - AI-Powered WordPress Automation Tool">
+    <meta property="twitter:description" content="Professional WordPress automation tool with AI content generation, Getty Images integration, and SEO optimization.">
+    <meta property="twitter:image" content="https://aryanvbw.github.io/AUTO-blogger/website/assets/icon.png">
+    <meta property="twitter:creator" content="@AryanVBW">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="theme-color" content="#2563eb">
+    <meta name="msapplication-TileColor" content="#2563eb">
+    <meta name="application-name" content="AUTO-blogger">
+    <meta name="apple-mobile-web-app-title" content="AUTO-blogger">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://aryanvbw.github.io/AUTO-blogger/website/">
+    
+    <!-- Favicon and Icons -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="assets/icon.png">
+    <link rel="apple-touch-icon" href="assets/icon.png">
+    <link rel="shortcut icon" href="assets/icon.png">
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "AUTO-blogger",
+        "description": "Professional WordPress automation tool with AI content generation, Getty Images integration, SEO optimization, and auto-updates. Supports OpenAI DALL-E, Google Gemini, and multi-domain management.",
+        "url": "https://aryanvbw.github.io/AUTO-blogger/website/",
+        "downloadUrl": "https://github.com/AryanVBW/AUTO-blogger",
+        "author": {
+            "@type": "Person",
+            "name": "AryanVBW",
+            "url": "https://github.com/AryanVBW"
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": "AryanVBW"
+        },
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": ["Windows", "macOS", "Linux"],
+        "programmingLanguage": "Python",
+        "softwareVersion": "2.1.0",
+        "datePublished": "2025-01-27",
+        "dateModified": "2025-01-27",
+        "license": "https://opensource.org/licenses/MIT",
+        "codeRepository": "https://github.com/AryanVBW/AUTO-blogger",
+        "keywords": "wordpress automation, ai content generation, blog automation, openai dalle, google gemini, getty images, seo optimization",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+        },
+        "featureList": [
+            "AI-powered content generation with OpenAI and Google Gemini",
+            "Getty Images integration for professional photography",
+            "Automated SEO optimization",
+            "Multi-domain WordPress management",
+            "Auto-update system",
+            "Real-time progress monitoring"
+        ]
+    }
+    </script>
+    
+    <!-- Immediate theme application to prevent flash -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            const theme = savedTheme || systemTheme;
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html" class="logo-link">
+                        <img src="assets/icon.png" alt="AUTO-blogger" class="logo-icon">
+                        <h1>AUTO-blogger</h1>
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link active">
+                            <i data-feather="home" style="width: 16px; height: 16px;"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#features" class="nav-link">
+                            <i data-feather="star" style="width: 16px; height: 16px;"></i>
+                            Features
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="installation.html" class="nav-link">
+                            <i data-feather="download" style="width: 16px; height: 16px;"></i>
+                            Installation
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="documentation.html" class="nav-link">
+                            <i data-feather="book" style="width: 16px; height: 16px;"></i>
+                            Documentation
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#support" class="nav-link">
+                            <i data-feather="help-circle" style="width: 16px; height: 16px;"></i>
+                            Support
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://github.com/AryanVBW/AUTO-blogger" class="nav-link github-link" target="_blank">
+                            <img src="assets/github.png" alt="GitHub" class="nav-icon">
+                            GitHub
+                        </a>
+                    </li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                        <i data-feather="sun" class="theme-icon" id="theme-icon"></i>
+                    </button>
+                    <div class="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <img src="assets/icon.png" alt="AUTO-blogger" class="hero-icon">
+                        <span class="badge-text">Professional WordPress Automation</span>
+                    </div>
+                    <h1 class="hero-title">AI-Powered WordPress Automation</h1>
+                    <p class="hero-subtitle">Automate your blog posting with advanced AI content generation, Getty Images integration, and comprehensive SEO optimization. Transform your content strategy with intelligent automation.</p>
+                    <div class="hero-buttons">
+                        <a href="installation.html" class="btn btn-primary">Get Started</a>
+                        <a href="#features" class="btn btn-secondary">Learn More</a>
+                        <a href="documentation.html" class="btn btn-outline">Documentation</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="hero-graphic">
+                        <div class="main-hero-image">
+                            <img src="assets/icon.png" alt="AUTO-blogger" class="hero-main-icon">
+                        </div>
+                        <div class="floating-card">
+                            <div class="card-icon">
+                                <img src="assets/ai.png" alt="AI" class="card-icon-img">
+                            </div>
+                            <div class="card-content">
+                                <div class="card-header">AI Content</div>
+                                <div class="card-body">Generating...</div>
+                            </div>
+                        </div>
+                        <div class="floating-card delay-1">
+                            <div class="card-icon">
+                                <img src="assets/speed.png" alt="Speed" class="card-icon-img">
+                            </div>
+                            <div class="card-content">
+                                <div class="card-header">WordPress</div>
+                                <div class="card-body">Publishing...</div>
+                            </div>
+                        </div>
+                        <div class="floating-card delay-2">
+                            <div class="card-icon">
+                                <img src="assets/update.png" alt="SEO" class="card-icon-img">
+                            </div>
+                            <div class="card-content">
+                                <div class="card-header">SEO</div>
+                                <div class="card-body">Optimizing...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="container">
+                <h2 class="section-title">Powerful Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon image-icon">
+                            <img src="assets/ai.png" alt="AI Content Generation" class="feature-image">
+                        </div>
+                        <h3>AI Content Generation</h3>
+                        <p>Advanced AI-powered content creation using OpenAI and <img src="assets/google.png" alt="Google" class="inline-icon"> Google Gemini for high-quality, engaging blog posts.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon image-icon">
+                            <img src="assets/image.png" alt="Getty Images Integration" class="feature-image">
+                        </div>
+                        <h3>Getty Images Integration</h3>
+                        <p>Professional stock photos from Getty Images editorial collection with proper attribution and licensing.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon image-icon">
+                            <img src="assets/seo.png" alt="SEO Optimization" class="feature-image">
+                        </div>
+                        <h3>SEO Optimization</h3>
+                        <p>Automated meta tags, focus keyphrases, and SEO-optimized content structure for better search rankings.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon image-icon">
+                            <img src="assets/update.png" alt="Auto-Update System" class="feature-image">
+                        </div>
+                        <h3>Auto-Update System</h3>
+                        <p>Automatic updates from GitHub repository ensure you always have the latest features and security patches.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <img src="assets/domain.png" alt="Multi-Domain Support" class="feature-image">
+                        </div>
+                        <h3>Multi-Domain Support</h3>
+                        <p>Manage multiple WordPress sites from a single interface with domain-specific configurations.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon image-icon">
+                            <img src="assets/speed.png" alt="Real-time Monitoring" class="feature-image">
+                        </div>
+                        <h3>Real-time Monitoring</h3>
+                        <p>Comprehensive logging and progress tracking with detailed reports and error handling.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="installation-preview" class="installation-preview">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">
+                        <div class="badge-icon">
+                            <i data-feather="rocket"></i>
+                        </div>
+                        <span class="badge-text">One-Click Installation</span>
+                    </div>
+                    <h2 class="section-title">Get Started in Seconds</h2>
+                    <p class="section-subtitle">Deploy AUTO-blogger with our intelligent installer that handles everything automatically</p>
+                </div>
+                
+                <div class="installation-showcase">
+                    <div class="showcase-content">
+                        <div class="platform-selector">
+                            <h3 class="selector-title">Choose Your Platform</h3>
+                            <div class="os-tabs-modern">
+                                <button class="os-tab active" data-os="linux" onclick="switchToOS('linux')">
+                                    <div class="tab-icon">
+                                        <img src="assets/linux.png" alt="Linux" class="os-icon">
+                                    </div>
+                                    <div class="tab-info">
+                                        <span class="tab-name">Linux</span>
+                                        <span class="tab-desc">Ubuntu, Debian, CentOS, Arch</span>
+                                    </div>
+                                    <div class="tab-indicator"></div>
+                                </button>
+                                <button class="os-tab" data-os="macos" onclick="switchToOS('macos')">
+                                    <div class="tab-icon">
+                                        <img src="assets/macos.png" alt="macOS" class="os-icon">
+                                    </div>
+                                    <div class="tab-info">
+                                        <span class="tab-name">macOS</span>
+                                        <span class="tab-desc">Intel & Apple Silicon</span>
+                                    </div>
+                                    <div class="tab-indicator"></div>
+                                </button>
+                                <button class="os-tab" data-os="windows" onclick="switchToOS('windows')">
+                                    <div class="tab-icon">
+                                        <img src="assets/windows.png" alt="Windows" class="os-icon">
+                                    </div>
+                                    <div class="tab-info">
+                                        <span class="tab-name">Windows</span>
+                                        <span class="tab-desc">PowerShell/WSL, Windows 10/11</span>
+                                    </div>
+                                    <div class="tab-indicator"></div>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="install-hero">
+                            <div class="install-stats">
+                                <div class="stat-item">
+                                    <div class="stat-number">60</div>
+                                    <div class="stat-label">Seconds Setup</div>
+                                </div>
+                                <div class="stat-divider"></div>
+                                <div class="stat-item">
+                                    <div class="stat-number">0</div>
+                                    <div class="stat-label">Configuration</div>
+                                </div>
+                                <div class="stat-divider"></div>
+                                <div class="stat-item">
+                                    <div class="stat-number">100%</div>
+                                    <div class="stat-label">Automated</div>
+                                </div>
+                            </div>
+                            
+                            <div class="install-features">
+                                <div class="feature-highlight">
+                                    <div class="highlight-icon">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 2L15.09 8.26L22 9L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9L8.91 8.26L12 2Z" fill="currentColor"/>
+                                        </svg>
+                                    </div>
+                                    <span>Intelligent OS Detection</span>
+                                </div>
+                                <div class="feature-highlight">
+                                    <div class="highlight-icon">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <span>Automatic Dependencies</span>
+                                </div>
+                                <div class="feature-highlight">
+                                    <div class="highlight-icon">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
+                                            <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <span>Verified & Secure</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="terminal-showcase">
+                        <div class="terminal-window">
+                            <div class="terminal-header">
+                                <div class="terminal-controls">
+                                    <span class="control control-close"></span>
+                                    <span class="control control-minimize"></span>
+                                    <span class="control control-maximize"></span>
+                                </div>
+                                <div class="terminal-title">
+                                    <span class="title-text">Terminal</span>
+                                    <div class="title-status">
+                                        <div class="status-dot"></div>
+                                        <span>Ready to Install</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="terminal-content">
+                                <div class="command-line">
+                                    <span class="prompt">$</span>
+                                    <span class="command" id="install-command">curl -fsSL https://raw.githubusercontent.com/AryanVBW/AUTO-blogger/main/install_autoblog.sh | bash</span>
+                                </div>
+                                <div class="terminal-output">
+                                    <div class="output-line">
+                                        <span class="output-prefix">→</span>
+                                        <span class="output-text">Detecting system environment...</span>
+                                        <span class="output-status success">✓</span>
+                                    </div>
+                                    <div class="output-line">
+                                        <span class="output-prefix">→</span>
+                                        <span class="output-text">Installing dependencies...</span>
+                                        <span class="output-status success">✓</span>
+                                    </div>
+                                    <div class="output-line">
+                                        <span class="output-prefix">→</span>
+                                        <span class="output-text">Configuring AUTO-blogger...</span>
+                                        <span class="output-status success">✓</span>
+                                    </div>
+                                    <div class="output-line final">
+                                        <span class="output-prefix">
+                                            <i data-feather="check-circle"></i>
+                                        </span>
+                                        <span class="output-text">Installation complete! AUTO-blogger is ready to use.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="terminal-footer">
+                                <button class="copy-command-btn" onclick="copyInstallCommand()">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M5 15H4C2.895 15 2 14.105 2 13V4C2 2.895 2.895 2 4 2H13C14.105 2 15 2.895 15 4V5" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                    Copy & Run
+                                </button>
+                                <div class="terminal-actions">
+                                    <a href="installation.html" class="action-link">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <polyline points="14,2 14,8 20,8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        Full Guide
+                                    </a>
+                                    <a href="installation.html#manual" class="action-link">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M14.7 6.3C15.1 5.9 15.1 5.3 14.7 4.9C14.3 4.5 13.7 4.5 13.3 4.9L8.7 9.5C8.3 9.9 8.3 10.5 8.7 10.9L13.3 15.5C13.7 15.9 14.3 15.9 14.7 15.5C15.1 15.1 15.1 14.5 14.7 14.1L11.4 10.8H20C20.6 10.8 21 10.4 21 9.8C21 9.2 20.6 8.8 20 8.8H11.4L14.7 6.3Z" fill="currentColor"/>
+                                        </svg>
+                                        Manual Setup
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="installation-badges">
+                            <div class="badge-row">
+                                <div class="info-badge">
+                                    <div class="badge-icon-small">
+                                        <i data-feather="zap"></i>
+                                    </div>
+                                    <span>60 second setup</span>
+                                </div>
+                                <div class="info-badge">
+                                    <div class="badge-icon-small">
+                                        <i data-feather="shield"></i>
+                                    </div>
+                                    <span>Secure & verified</span>
+                                </div>
+                            </div>
+                            <div class="badge-row">
+                                <div class="info-badge">
+                                    <div class="badge-icon-small">
+                                        <i data-feather="target"></i>
+                                    </div>
+                                    <span>Zero configuration</span>
+                                </div>
+                                <div class="info-badge">
+                                    <div class="badge-icon-small">
+                                        <i data-feather="rocket"></i>
+                                    </div>
+                                    <span>Instant deployment</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="support" class="support">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">
+                        <div class="badge-icon">
+                            <i data-feather="users"></i>
+                        </div>
+                        <span class="badge-text">Support & Community</span>
+                    </div>
+                    <h2 class="section-title">We're Here to Help</h2>
+                    <p class="section-subtitle">Get expert support, connect with the community, and access comprehensive resources</p>
+                </div>
+                
+                <div class="support-showcase">
+                    <div class="support-stats">
+                        <div class="stat-card">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Support Available</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">< 2h</div>
+                            <div class="stat-label">Response Time</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">98%</div>
+                            <div class="stat-label">Issue Resolution</div>
+                        </div>
+                    </div>
+                    
+                    <div class="support-grid">
+                        <div class="support-card primary">
+                            <div class="card-header">
+                                <div class="support-icon">
+                                    <img src="assets/mail.png" alt="Email Support" class="support-image">
+                                </div>
+                                <div class="card-badge">Priority</div>
+                            </div>
+                            <div class="card-content">
+                                <h3>Direct Email Support</h3>
+                                <p>Get personal assistance from the developer. We respond to all inquiries within 2 hours during business hours.</p>
+                                <div class="support-features">
+                                    <div class="feature-item">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        <span>Priority support</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        <span>Detailed troubleshooting</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        <span>Custom solutions</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <a href="mailto:AryanVBW@gmail.com" class="support-link primary">
+                                    <span>Contact Developer</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M7 7H17V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="support-card">
+                            <div class="card-header">
+                                <div class="support-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 19C4 20.5 4 16.5 2 16M22 16V22C22 22 18 20 15 22V16C15.13 15.5 15.13 14.5 15 14C18 13.5 22 12 22 6C22 5 21.5 4 21 3.5C21.5 2.5 21.5 1.5 21 1C21 1 20 1 18 2.5C16.5 2 13.5 2 12 2.5C10 1 9 1 9 1C8.5 1.5 8.5 2.5 9 3.5C8.5 4 8 5 8 6C8 12 12 13.5 15 14C14.87 14.5 14.87 15.5 15 16V22C12 20 8 22 8 22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="card-badge">Community</div>
+                            </div>
+                            <div class="card-content">
+                                <h3>GitHub Issues</h3>
+                                <p>Report bugs, request features, and collaborate with the community. All issues are tracked and prioritized.</p>
+                                <div class="support-features">
+                                    <div class="feature-item">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        <span>Bug tracking</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        <span>Feature requests</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        <span>Community discussions</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <a href="https://github.com/AryanVBW/AUTO-blogger/issues" class="support-link" target="_blank">
+                                    <span>Open GitHub Issues</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M7 7H17V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="support-card">
+                            <div class="card-header">
+                                <div class="support-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M6.5 2H20V22H6.5A2.5 2.5 0 0 1 4 19.5V4.5A2.5 2.5 0 0 1 6.5 2Z" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </div>
+                                <div class="card-badge">Resource</div>
+                            </div>
+                            <div class="card-content">
+                                <h3>Comprehensive Docs</h3>
+                                <p>Detailed guides, tutorials, and API reference. Everything you need to master AUTO-blogger.</p>
+                                <div class="support-features">
+                                    <div class="feature-item">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        <span>Step-by-step guides</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        <span>API documentation</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        <span>Troubleshooting</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <a href="documentation.html" class="support-link">
+                                    <span>View Documentation</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M7 7H17V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="community-section">
+                        <div class="community-header">
+                            <h3>Join Our Community</h3>
+                            <p>Connect with other AUTO-blogger users, share experiences, and get community support</p>
+                        </div>
+                        
+                        <div class="community-links">
+                            <a href="https://github.com/AryanVBW/AUTO-blogger" class="community-link" target="_blank">
+                                <div class="link-icon">
+                                    <img src="assets/github.png" alt="GitHub" class="community-icon">
+                                </div>
+                                <div class="link-content">
+                                    <span class="link-title">GitHub Repository</span>
+                                    <span class="link-desc">Source code, issues, and discussions</span>
+                                </div>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="link-arrow">
+                                    <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M7 7H17V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                            
+                            <a href="https://github.com/AryanVBW/AUTO-blogger/discussions" class="community-link" target="_blank">
+                                <div class="link-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="link-content">
+                                    <span class="link-title">Community Discussions</span>
+                                    <span class="link-desc">Share ideas and get help from users</span>
+                                </div>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="link-arrow">
+                                    <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M7 7H17V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section footer-brand">
+                    <div class="footer-logo">
+                        <img src="assets/icon.png" alt="AUTO-blogger" class="footer-icon">
+                        <h3>AUTO-blogger</h3>
+                    </div>
+                    <p>Professional WordPress automation tool with AI integration, Getty Images, and comprehensive SEO optimization.</p>
+                    <div class="footer-social">
+                        <a href="https://github.com/AryanVBW/AUTO-blogger" target="_blank" class="social-link">
+                            <img src="assets/github.png" alt="GitHub" class="social-icon">
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="installation.html">Installation</a></li>
+                        <li><a href="documentation.html">Documentation</a></li>
+                        <li><a href="https://github.com/AryanVBW/AUTO-blogger" target="_blank">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li>
+                            <a href="mailto:AryanVBW@gmail.com">
+                                <img src="assets/mail.png" alt="Email" class="footer-link-icon">
+                                Email Support
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/AryanVBW/AUTO-blogger/issues" target="_blank">
+                                <img src="assets/github.png" alt="GitHub" class="footer-link-icon">
+                                Report Issues
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AryanVBW. All rights reserved. Licensed under MIT License.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/terminal.js"></script>
+    <script src="js/homepage.js"></script>
+    <script>
+        // Initialize Feather icons
+        feather.replace();
+    </script>
+</body>
+</html>

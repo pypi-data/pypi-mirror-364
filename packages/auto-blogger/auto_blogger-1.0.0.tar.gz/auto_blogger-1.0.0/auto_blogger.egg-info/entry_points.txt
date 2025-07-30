@@ -1,0 +1,3 @@
+[console_scripts]
+auto-blogger = auto_blogger.gui_blogger:main
+autoblog = auto_blogger.gui_blogger:main

@@ -1,0 +1,29 @@
+{
+  "source_url": "https://tbrfootball.com/topic/english-premier-league/",
+  "article_selector": "article.article h2 a",
+  "wp_base_url": "https://example-sports-site.com/wp-json/wp/v2",
+  "wp_username": "",
+  "wp_password": "",
+  "gemini_api_key": "",
+  "openai_api_key": "",
+  "max_articles": 2,
+  "timeout": 10,
+  "headless_mode": true,
+  "seo_plugin_version": "new",
+  "internal_links": {},
+  "external_links": {},
+  "style_prompt": "",
+  "category_keywords": {},
+  "tag_synonyms": {},
+  "static_clubs": [],
+  "stop_words": [],
+  "do_follow_urls": [],
+  "source_urls": [
+    {
+      "name": "Default Source",
+      "url": "https://tbrfootball.com/topic/english-premier-league/",
+      "selector": "article.article h2 a",
+      "active": true
+    }
+  ]
+}

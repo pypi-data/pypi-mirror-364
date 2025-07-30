@@ -1,0 +1,379 @@
+#!/bin/bash
+# AUTO-blogger Enhanced Launcher Script with Command-Line Support
+# This script provides robust cross-platform launching with OS detection and CLI support
+
+# Colors for output
+RED='[0;31m'
+GREEN='[0;32m'
+YELLOW='[1;33m'
+CYAN='[0;36m'
+NC='[0m'
+
+# Show help function
+show_help() {
+    echo -e "${CYAN}AUTO-blogger - Automated WordPress Blog Posting Tool${NC}"
+    echo -e "${GREEN}Usage: autoblog [OPTIONS]${NC}"
+    echo ""
+    echo -e "${YELLOW}Options:${NC}"
+    echo -e "  -h, --help     Show this help message"
+    echo -e "  -v, --version  Show version information"
+    echo -e "  --no-update    Skip update check"
+    echo -e "  --gui          Launch GUI (default)"
+    echo -e "  --status       Show installation status"
+    echo ""
+    echo -e "${YELLOW}Examples:${NC}"
+    echo -e "  autoblog              # Launch GUI with update check"
+    echo -e "  autoblog --no-update  # Launch GUI without update check"
+    echo -e "  autoblog --status     # Show installation status"
+    echo ""
+    echo -e "${CYAN}For more information, visit: https://github.com/AryanVBW/AUTO-blogger${NC}"
+}
+
+# Show version function
+show_version() {
+    echo -e "${CYAN}AUTO-blogger${NC}"
+    echo -e "${GREEN}Version: 2.0.0${NC}"
+    echo -e "${YELLOW}Copyright © 2025 AryanVBW${NC}"
+    echo -e "${YELLOW}GitHub: https://github.com/AryanVBW/AUTO-blogger${NC}"
+}
+
+# Show status function
+show_status() {
+    echo -e "${CYAN}🔍 AUTO-blogger Installation Status${NC}"
+    echo ""
+    
+    # Check script location
+    SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    echo -e "${YELLOW}Installation Directory:${NC} $SCRIPT_DIR"
+    
+    # Check virtual environment
+    VENV_FOUND=false
+    for dir in "$SCRIPT_DIR"/auto_blogger_venv_*; do
+        if [ -d "$dir" ] && [ -f "$dir/bin/activate" ]; then
+            echo -e "${GREEN}✅ Virtual Environment:${NC} $(basename "$dir")"
+            VENV_FOUND=true
+            break
+        fi
+    done
+    
+    if [ "$VENV_FOUND" = false ]; then
+        echo -e "${RED}❌ Virtual Environment: Not found${NC}"
+    fi
+    
+    # Check main application files
+    if [ -f "$SCRIPT_DIR/autoblog_launcher.py" ]; then
+        echo -e "${GREEN}✅ Main Launcher: autoblog_launcher.py${NC}"
+    elif [ -f "$SCRIPT_DIR/gui_blogger.py" ]; then
+        echo -e "${GREEN}✅ Main Application: gui_blogger.py${NC}"
+    else
+        echo -e "${RED}❌ Main Application: Not found${NC}"
+    fi
+    
+    # Check system command
+    if [ -L "/usr/local/bin/autoblog" ]; then
+        echo -e "${GREEN}✅ System Command: /usr/local/bin/autoblog${NC}"
+        echo -e "${YELLOW}   Target:${NC} $(readlink /usr/local/bin/autoblog)"
+    else
+        echo -e "${YELLOW}⚠️  System Command: Not installed${NC}"
+    fi
+    
+    # Check git repository
+    if [ -d "$SCRIPT_DIR/.git" ]; then
+        echo -e "${GREEN}✅ Git Repository: Available${NC}"
+        if command -v git >/dev/null 2>&1; then
+            cd "$SCRIPT_DIR"
+            CURRENT_BRANCH=$(git branch --show-current 2>/dev/null || echo "unknown")
+            echo -e "${YELLOW}   Branch:${NC} $CURRENT_BRANCH"
+        fi
+    else
+        echo -e "${YELLOW}⚠️  Git Repository: Not available${NC}"
+    fi
+    
+    echo ""
+    echo -e "${CYAN}Use 'autoblog --help' for usage information${NC}"
+}
+
+# Parse command line arguments
+SKIP_UPDATE=false
+SHOW_HELP=false
+SHOW_VERSION=false
+SHOW_STATUS=false
+
+for arg in "$@"; do
+    case $arg in
+        -h|--help)
+            SHOW_HELP=true
+            ;;
+        -v|--version)
+            SHOW_VERSION=true
+            ;;
+        --no-update)
+            SKIP_UPDATE=true
+            ;;
+        --gui)
+            # Default behavior, do nothing
+            ;;
+        --status)
+            SHOW_STATUS=true
+            ;;
+        *)
+            echo -e "${RED}❌ Unknown option: $arg${NC}"
+            echo -e "${YELLOW}Use 'autoblog --help' for usage information${NC}"
+            exit 1
+            ;;
+    esac
+done
+
+# Handle help, version, and status requests
+if [ "$SHOW_HELP" = true ]; then
+    show_help
+    exit 0
+fi
+
+if [ "$SHOW_VERSION" = true ]; then
+    show_version
+    exit 0
+fi
+
+if [ "$SHOW_STATUS" = true ]; then
+    show_status
+    exit 0
+fi
+
+# Enhanced OS detection function
+detect_os() {
+    local os="unknown"
+    
+    # Check for Windows first (multiple methods)
+    if [[ "$OSTYPE" == "cygwin" ]] || [[ "$OSTYPE" == "msys" ]] || [[ "$OSTYPE" == "win32" ]] || [[ -n "$WINDIR" ]] || [[ -n "$COMSPEC" ]]; then
+        os="windows"
+    # Check for macOS (multiple methods)
+    elif [[ "$OSTYPE" == "darwin"* ]] || [[ "$(uname -s 2>/dev/null)" == "Darwin" ]] || [[ -d "/Applications" && -d "/System" ]]; then
+        os="macos"
+    # Check for Linux (multiple methods)
+    elif [[ "$OSTYPE" == "linux-gnu"* ]] || [[ "$(uname -s 2>/dev/null)" == "Linux" ]] || [[ -f "/etc/os-release" ]]; then
+        os="linux"
+    # Additional checks using uname if available
+    elif command -v uname >/dev/null 2>&1; then
+        case "$(uname -s 2>/dev/null)" in
+            Linux*)     os="linux";;
+            Darwin*)    os="macos";;
+            CYGWIN*)    os="windows";;
+            MINGW*)     os="windows";;
+            MSYS*)      os="windows";;
+            *NT*)       os="windows";;
+        esac
+    # Final fallback checks
+    elif [[ -f "/proc/version" ]]; then
+        os="linux"
+    elif [[ -d "/System/Library" ]]; then
+        os="macos"
+    fi
+    
+    echo "$os"
+}
+
+# Get the directory where this script is located
+if [ -L "${BASH_SOURCE[0]}" ]; then
+    SCRIPT_DIR="$(cd "$(dirname "$(readlink "${BASH_SOURCE[0]}")")" && pwd)"
+else
+    SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+fi
+
+# Change to the installation directory
+cd "$SCRIPT_DIR" || {
+    echo -e "${RED}❌ Failed to access installation directory: $SCRIPT_DIR${NC}"
+    echo -e "${YELLOW}💡 Please check if the directory exists and you have permissions${NC}"
+    exit 1
+}
+
+# Detect operating system
+OS=$(detect_os)
+echo -e "${CYAN}🖥️  Detected OS: $OS${NC}"
+
+# Find virtual environment directory dynamically based on OS
+VENV_DIR=""
+for dir in "$SCRIPT_DIR"/auto_blogger_venv_*; do
+    if [ -d "$dir" ]; then
+        if [[ "$OS" == "windows" ]] && [ -f "$dir/Scripts/activate" ]; then
+            VENV_DIR="$dir"
+            break
+        elif [[ "$OS" != "windows" ]] && [ -f "$dir/bin/activate" ]; then
+            VENV_DIR="$dir"
+            break
+        fi
+    fi
+done
+
+# Determine Python executable based on OS
+PYTHON_EXE=""
+ACTIVATE_SCRIPT=""
+
+if [ -n "$VENV_DIR" ] && [ -d "$VENV_DIR" ]; then
+    echo -e "${CYAN}🔧 Using virtual environment: $(basename "$VENV_DIR")${NC}"
+    
+    if [[ "$OS" == "windows" ]]; then
+        PYTHON_EXE="$VENV_DIR/Scripts/python.exe"
+        ACTIVATE_SCRIPT="$VENV_DIR/Scripts/activate"
+        # Fallback for different Windows Python installations
+        if [ ! -f "$PYTHON_EXE" ]; then
+            PYTHON_EXE="$VENV_DIR/Scripts/python"
+        fi
+    else
+        PYTHON_EXE="$VENV_DIR/bin/python"
+        ACTIVATE_SCRIPT="$VENV_DIR/bin/activate"
+        # Fallback for different Python installations
+        if [ ! -f "$PYTHON_EXE" ]; then
+            PYTHON_EXE="$VENV_DIR/bin/python3"
+        fi
+    fi
+else
+    echo -e "${RED}❌ Virtual environment not found in $SCRIPT_DIR${NC}"
+    echo -e "${YELLOW}💡 Looking for virtual environment directories...${NC}"
+    ls -la "$SCRIPT_DIR"/auto_blogger_venv_* 2>/dev/null || echo -e "${YELLOW}   No virtual environment directories found${NC}"
+    echo -e "${YELLOW}💡 Please run the installer again to create virtual environment${NC}"
+    exit 1
+fi
+
+# Verify Python executable exists
+if [ ! -f "$PYTHON_EXE" ]; then
+    echo -e "${RED}❌ Python executable not found: $PYTHON_EXE${NC}"
+    echo -e "${YELLOW}💡 Virtual environment may be corrupted${NC}"
+    echo -e "${YELLOW}💡 Please run the installer again${NC}"
+    exit 1
+fi
+
+# Function to check for updates with enhanced error handling
+check_for_updates() {
+    if [ "$SKIP_UPDATE" = true ]; then
+        echo -e "${YELLOW}⏭️  Skipping update check (--no-update flag)${NC}"
+        return 0
+    fi
+    
+    echo -e "${CYAN}🔍 Checking for updates...${NC}"
+    
+    # Check if git is available
+    if ! command -v git >/dev/null 2>&1; then
+        echo -e "${YELLOW}⚠️ Git not found - skipping update check${NC}"
+        return 0
+    fi
+    
+    # Check if we're in a git repository
+    if ! git rev-parse --git-dir >/dev/null 2>&1; then
+        echo -e "${YELLOW}⚠️ Not a git repository - skipping update check${NC}"
+        return 0
+    fi
+    
+    # Check internet connectivity
+    if ! ping -c 1 github.com >/dev/null 2>&1 && ! ping -c 1 8.8.8.8 >/dev/null 2>&1; then
+        echo -e "${YELLOW}⚠️ No internet connection - skipping update check${NC}"
+        return 0
+    fi
+    
+    # Fetch latest changes with timeout
+    echo -e "${CYAN}📡 Fetching latest changes...${NC}"
+    if ! timeout 30 git fetch origin >/dev/null 2>&1; then
+        echo -e "${YELLOW}⚠️ Failed to fetch updates (timeout/network issue) - continuing with current version${NC}"
+        return 0
+    fi
+    
+    # Get current and remote commit hashes
+    local current_commit=$(git rev-parse HEAD 2>/dev/null)
+    local remote_commit=""
+    
+    # Try main branch first, then master
+    if git rev-parse origin/main >/dev/null 2>&1; then
+        remote_commit=$(git rev-parse origin/main 2>/dev/null)
+    elif git rev-parse origin/master >/dev/null 2>&1; then
+        remote_commit=$(git rev-parse origin/master 2>/dev/null)
+    fi
+    
+    if [ "$current_commit" != "$remote_commit" ] && [ -n "$remote_commit" ]; then
+        echo -e "${GREEN}🆕 Updates available! Updating...${NC}"
+        
+        # Stash any local changes
+        if git status --porcelain | grep -q .; then
+            echo -e "${CYAN}💾 Stashing local changes...${NC}"
+            git stash push -m "Auto-stash before update $(date)" >/dev/null 2>&1
+        fi
+        
+        # Pull updates
+        local update_success=false
+        if git pull origin main >/dev/null 2>&1; then
+            update_success=true
+        elif git pull origin master >/dev/null 2>&1; then
+            update_success=true
+        fi
+        
+        if $update_success; then
+            echo -e "${GREEN}✅ Successfully updated to latest version${NC}"
+            
+            # Check if requirements.txt was updated
+            if git diff HEAD~1 HEAD --name-only 2>/dev/null | grep -q "requirements.txt"; then
+                echo -e "${YELLOW}📦 Dependencies updated - reinstalling...${NC}"
+                if [ -f "$ACTIVATE_SCRIPT" ]; then
+                    source "$ACTIVATE_SCRIPT" 2>/dev/null || true
+                fi
+                
+                if command -v pip >/dev/null 2>&1; then
+                    pip install -r requirements.txt >/dev/null 2>&1 || echo -e "${YELLOW}⚠️ Failed to update dependencies${NC}"
+                elif [ -f "$PYTHON_EXE" ]; then
+                    "$PYTHON_EXE" -m pip install -r requirements.txt >/dev/null 2>&1 || echo -e "${YELLOW}⚠️ Failed to update dependencies${NC}"
+                fi
+            fi
+        else
+            echo -e "${YELLOW}⚠️ Failed to pull updates - continuing with current version${NC}"
+        fi
+    else
+        echo -e "${GREEN}✅ Already up to date${NC}"
+    fi
+}
+
+# Check for updates first
+check_for_updates
+
+# Check for main application files
+MAIN_APP=""
+if [ -f "autoblog_launcher.py" ]; then
+    MAIN_APP="autoblog_launcher.py"
+elif [ -f "gui_blogger.py" ]; then
+    MAIN_APP="gui_blogger.py"
+elif [ -f "launch_blogger.py" ]; then
+    MAIN_APP="launch_blogger.py"
+else
+    echo -e "${RED}❌ No launcher application found${NC}"
+    echo -e "${YELLOW}💡 Looking for application files...${NC}"
+    ls -la "$SCRIPT_DIR"/*.py 2>/dev/null | head -5 || echo -e "${YELLOW}   No Python files found${NC}"
+    echo -e "${YELLOW}💡 Please run the installer again${NC}"
+    exit 1
+fi
+
+echo -e "${CYAN}🚀 Starting AUTO-blogger ($MAIN_APP)...${NC}"
+
+# Set application icon (macOS)
+if [[ "$OS" == "macos" ]]; then
+    osascript -e 'tell application "System Events" to set the dock tile of application "Terminal" to "🤖"' 2>/dev/null || true
+fi
+
+# Activate virtual environment if activation script exists
+if [ -f "$ACTIVATE_SCRIPT" ]; then
+    echo -e "${CYAN}🔧 Activating virtual environment...${NC}"
+    source "$ACTIVATE_SCRIPT" || {
+        echo -e "${YELLOW}⚠️ Failed to activate virtual environment, continuing anyway...${NC}"
+    }
+fi
+
+# Launch the application with error handling
+echo -e "${CYAN}🚀 Launching AUTO-blogger...${NC}"
+if "$PYTHON_EXE" "$MAIN_APP"; then
+    echo -e "${GREEN}✅ AUTO-blogger exited successfully${NC}"
+else
+    echo -e "${RED}❌ AUTO-blogger exited with errors${NC}"
+    echo -e "${YELLOW}💡 Check the application logs for details${NC}"
+    exit 1
+fi
+
+# Deactivate virtual environment if it was activated
+if [ -n "$VIRTUAL_ENV" ]; then
+    deactivate 2>/dev/null || true
+fi

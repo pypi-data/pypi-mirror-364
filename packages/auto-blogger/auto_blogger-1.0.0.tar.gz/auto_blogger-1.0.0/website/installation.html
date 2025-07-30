@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    
+    <!-- Primary Meta Tags -->
+    <title>Installation Guide - AUTO-blogger | Easy Setup for Windows, macOS & Linux</title>
+    <meta name="title" content="Installation Guide - AUTO-blogger | Easy Setup for Windows, macOS & Linux">
+    <meta name="description" content="Complete installation guide for AUTO-blogger with one-command setup for all platforms. Get AI-powered WordPress automation running in minutes with our intelligent installer.">
+    <meta name="keywords" content="auto blogger installation, wordpress automation setup, ai tool install, openai gemini setup, python installation guide, cross platform installer">
+    <meta name="author" content="AryanVBW">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://aryanvbw.github.io/AUTO-blogger/website/installation.html">
+    <meta property="og:title" content="Installation Guide - AUTO-blogger">
+    <meta property="og:description" content="Complete installation guide for AUTO-blogger with one-command setup for all platforms. Get AI-powered WordPress automation running in minutes.">
+    <meta property="og:image" content="https://aryanvbw.github.io/AUTO-blogger/website/assets/icon.png">
+    <meta property="og:site_name" content="AUTO-blogger">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:url" content="https://aryanvbw.github.io/AUTO-blogger/website/installation.html">
+    <meta property="twitter:title" content="Installation Guide - AUTO-blogger">
+    <meta property="twitter:description" content="Complete installation guide for AUTO-blogger with one-command setup for all platforms.">
+    <meta property="twitter:image" content="https://aryanvbw.github.io/AUTO-blogger/website/assets/icon.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://aryanvbw.github.io/AUTO-blogger/website/installation.html">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/docs.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- Immediate theme application to prevent flash -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            const theme = savedTheme || systemTheme;
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html" class="logo-link">
+                        <img src="assets/icon.png" alt="AUTO-blogger" class="logo-icon">
+                        <h1>AUTO-blogger</h1>
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">
+                            <i data-feather="home" style="width: 16px; height: 16px;"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#features" class="nav-link">
+                            <i data-feather="star" style="width: 16px; height: 16px;"></i>
+                            Features
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="installation.html" class="nav-link active">
+                            <i data-feather="download" style="width: 16px; height: 16px;"></i>
+                            Installation
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="documentation.html" class="nav-link">
+                            <i data-feather="book" style="width: 16px; height: 16px;"></i>
+                            Documentation
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#support" class="nav-link">
+                            <i data-feather="help-circle" style="width: 16px; height: 16px;"></i>
+                            Support
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://github.com/AryanVBW/AUTO-blogger" class="nav-link github-link" target="_blank">
+                            <img src="assets/github.png" alt="GitHub" class="nav-icon">
+                            GitHub
+                        </a>
+                    </li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                        <i data-feather="sun" class="theme-icon" id="theme-icon"></i>
+                    </button>
+                    <div class="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="docs-main">
+        <div class="docs-container">
+            <aside class="docs-sidebar">
+                <nav class="docs-nav">
+                    <h3>Installation Guide</h3>
+                    <ul>
+                        <li><a href="#quick-install">Quick Installation</a></li>
+                        <li><a href="#requirements">System Requirements</a></li>
+                        <li><a href="#automated-install">Automated Installation</a></li>
+                        <li><a href="#manual-install">Manual Installation</a></li>
+                        <li><a href="#verification">Verification</a></li>
+                        <li><a href="#troubleshooting">Troubleshooting</a></li>
+                        <li><a href="#next-steps">Next Steps</a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <div class="docs-content">
+                <div class="docs-header">
+                    <h1>
+                        <i data-feather="rocket" style="display: inline; width: 32px; height: 32px; vertical-align: middle; margin-right: 8px;"></i>
+                        Installation Guide
+                    </h1>
+                    <p class="docs-subtitle">Get AUTO-blogger up and running in minutes with our comprehensive installation guide.</p>
+                </div>
+
+                <section id="quick-install" class="docs-section">
+                    <h2>
+                        <i data-feather="zap" style="display: inline; width: 24px; height: 24px; vertical-align: middle; margin-right: 6px;"></i>
+                        One-Command Setup
+                    </h2>
+                    <p>Get AUTO-blogger running in minutes with our intelligent installation script that automatically detects your operating system and handles everything for you.</p>
+                    
+                    <div class="os-tabs">
+                        <div class="tab-buttons">
+                            <button class="tab-btn active" onclick="showOSTab('linux')">
+                                <img src="assets/linux.png" alt="Linux" class="os-icon"> Linux
+                            </button>
+                            <button class="tab-btn" onclick="showOSTab('macos')">
+                                <img src="assets/macos.png" alt="macOS" class="os-icon"> macOS
+                            </button>
+                            <button class="tab-btn" onclick="showOSTab('windows')">
+                                <img src="assets/windows.png" alt="Windows" class="os-icon"> Windows
+                            </button>
+                        </div>
+                        
+                        <div id="linux" class="tab-content active">
+                            <div class="terminal-block">
+                                <div class="terminal-header">
+                                    <span class="terminal-title">Linux Terminal</span>
+                                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                </div>
+                                <pre><code class="language-bash">curl -fsSL https://raw.githubusercontent.com/AryanVBW/AUTO-blogger/main/install_autoblog.sh | bash</code></pre>
+                            </div>
+                            <div class="os-features">
+                                <h4><i data-feather="check" style="display: inline; width: 16px; height: 16px; vertical-align: middle; margin-right: 4px;"></i> Supports:</h4>
+                                <ul>
+                                    <li>Ubuntu 18.04+ / Debian 10+</li>
+                                    <li>CentOS 7+ / RHEL 7+ / Fedora 30+</li>
+                                    <li>Arch Linux / Manjaro</li>
+                                    <li>openSUSE Leap 15+</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div id="macos" class="tab-content">
+                            <div class="terminal-block">
+                                <div class="terminal-header">
+                                    <span class="terminal-title">macOS Terminal</span>
+                                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                </div>
+                                <pre><code class="language-bash">curl -fsSL https://raw.githubusercontent.com/AryanVBW/AUTO-blogger/main/install_autoblog.sh | bash</code></pre>
+                            </div>
+                            <div class="os-features">
+                                <h4><i data-feather="check" style="display: inline; width: 16px; height: 16px; vertical-align: middle; margin-right: 4px;"></i> Supports:</h4>
+                                <ul>
+                                    <li>macOS 10.14+ (Mojave and later)</li>
+                                    <li>Intel and Apple Silicon (M1/M2) Macs</li>
+                                    <li>Automatic Homebrew installation</li>
+                                    <li>Native .app bundle creation</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div id="windows" class="tab-content">
+                            <div class="terminal-block">
+                                <div class="terminal-header">
+                                    <span class="terminal-title">Windows PowerShell/WSL</span>
+                                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                </div>
+                                <pre><code class="language-powershell"># Option 1: Windows Subsystem for Linux (Recommended)
+wsl curl -fsSL https://raw.githubusercontent.com/AryanVBW/AUTO-blogger/main/install_autoblog.sh | bash
+
+# Option 2: Git Bash
+curl -fsSL https://raw.githubusercontent.com/AryanVBW/AUTO-blogger/main/install_autoblog.sh | bash</code></pre>
+                            </div>
+                            <div class="os-features">
+                                <h4><i data-feather="check" style="display: inline; width: 16px; height: 16px; vertical-align: middle; margin-right: 4px;"></i> Supports:</h4>
+                                <ul>
+                                    <li>Windows 10/11 with WSL2</li>
+                                    <li>Git Bash environment</li>
+                                    <li>Native Windows batch files</li>
+                                    <li>PowerShell integration</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="terminal-action-section">
+                        <div class="action-header">
+                            <h3>
+                                <i data-feather="download" style="display: inline; width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"></i>
+                                Smart Installation Helper
+                            </h3>
+                            <p>Download ready-to-run installation scripts tailored for your operating system with step-by-step guidance.</p>
+                        </div>
+                        <div class="terminal-action-buttons">
+                            <button id="openTerminalBtn" class="btn-terminal-action" onclick="openTerminalWithCommand()">
+                                <i data-feather="download" style="width: 18px; height: 18px; vertical-align: middle; margin-right: 8px;"></i>
+                                Download Installation Scripts
+                            </button>
+                            <div class="action-info">
+                                <small>
+                                    <i data-feather="info" style="width: 14px; height: 14px; vertical-align: middle; margin-right: 4px;"></i>
+                                    Downloads ready-to-run installation scripts for your operating system with detailed instructions
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-success">
+                        <strong>
+                            <i data-feather="rocket" style="display: inline; width: 16px; height: 16px; vertical-align: middle; margin-right: 4px;"></i>
+                            What this intelligent script does:
+                        </strong>
+                        <ul>
+                            <li><strong>🔍 Smart OS Detection:</strong> Automatically identifies your operating system and architecture</li>
+                            <li><strong><i data-feather="package" style="display: inline; width: 14px; height: 14px; vertical-align: middle; margin-right: 4px;"></i> Dependency Management:</strong> Installs Git, Python 3.8+, and Chrome/Chromium using your system's package manager</li>
+                            <li><strong><i data-feather="settings" style="display: inline; width: 14px; height: 14px; vertical-align: middle; margin-right: 4px;"></i> Environment Setup:</strong> Creates an isolated Python virtual environment with all required packages</li>
+                            <li>
+                                <strong>
+                                    <i data-feather="rocket" style="display: inline; width: 14px; height: 14px; vertical-align: middle; margin-right: 4px;"></i>
+                                    Launcher Creation:
+                                </strong> Sets up system-wide <code>autoblog</code> command and desktop shortcuts
+                            </li>
+                            <li><strong><i data-feather="check-circle" style="display: inline; width: 14px; height: 14px; vertical-align: middle; margin-right: 4px;"></i> Verification:</strong> Tests the installation and provides detailed success/error reporting</li>
+                            <li><strong><i data-feather="refresh-cw" style="display: inline; width: 14px; height: 14px; vertical-align: middle; margin-right: 4px;"></i> Auto-Update:</strong> Configures automatic updates from the GitHub repository</li>
+                        </ul>
+                    </div>
+
+                    <div class="installation-options">
+                        <h3>
+                            <i data-feather="settings" style="display: inline; width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"></i>
+                            Advanced Installation Options
+                        </h3>
+                        <p class="options-intro">Customize your AUTO-blogger installation with these advanced configuration options for specific deployment scenarios.</p>
+                        
+                        <div class="options-grid">
+                            <div class="option-card featured">
+                                <div class="option-header">
+                                    <i data-feather="terminal" style="width: 20px; height: 20px;" class="option-icon"></i>
+                                    <h4>Non-Interactive Mode</h4>
+                                    <span class="option-badge ci-cd">CI/CD</span>
+                                </div>
+                                <p>Perfect for automated deployments, Docker containers, and CI/CD pipelines. Skips all user prompts and uses default configurations.</p>
+                                <div class="code-block">
+                                    <div class="code-header">
+                                        <span class="code-title">Automated Deployment</span>
+                                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                    </div>
+                                    <pre><code>export NON_INTERACTIVE=true
+curl -fsSL https://raw.githubusercontent.com/AryanVBW/AUTO-blogger/main/install_autoblog.sh | bash</code></pre>
+                                </div>
+                                <div class="option-features">
+                                    <ul>
+                                        <li><i data-feather="check" style="width: 12px; height: 12px;"></i> No user prompts</li>
+                                        <li><i data-feather="check" style="width: 12px; height: 12px;"></i> Default configurations</li>
+                                        <li><i data-feather="check" style="width: 12px; height: 12px;"></i> Docker-friendly</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="option-card">
+                                <div class="option-header">
+                                    <i data-feather="refresh-cw" style="width: 20px; height: 20px;" class="option-icon"></i>
+                                    <h4>Force Update Mode</h4>
+                                    <span class="option-badge update">UPDATE</span>
+                                </div>
+                                <p>Automatically update existing installations without confirmation. Preserves user configurations while updating core components.</p>
+                                <div class="code-block">
+                                    <div class="code-header">
+                                        <span class="code-title">Force Update</span>
+                                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                    </div>
+                                    <pre><code>export AUTO_UPDATE=true
+curl -fsSL https://raw.githubusercontent.com/AryanVBW/AUTO-blogger/main/install_autoblog.sh | bash</code></pre>
+                                </div>
+                                <div class="option-features">
+                                    <ul>
+                                        <li><i data-feather="check" style="width: 12px; height: 12px;"></i> Preserves configurations</li>
+                                        <li><i data-feather="check" style="width: 12px; height: 12px;"></i> Updates dependencies</li>
+                                        <li><i data-feather="check" style="width: 12px; height: 12px;"></i> No confirmation prompts</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="option-card">
+                                <div class="option-header">
+                                    <i data-feather="folder" style="width: 20px; height: 20px;" class="option-icon"></i>
+                                    <h4>Custom Installation Directory</h4>
+                                    <span class="option-badge custom">CUSTOM</span>
+                                </div>
+                                <p>Install AUTO-blogger to a specific location on your system. Useful for shared systems or custom deployment structures.</p>
+                                <div class="code-block">
+                                    <div class="code-header">
+                                        <span class="code-title">Custom Directory</span>
+                                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                    </div>
+                                    <pre><code>export INSTALL_DIR="/opt/autoblogger"
+curl -fsSL https://raw.githubusercontent.com/AryanVBW/AUTO-blogger/main/install_autoblog.sh | bash</code></pre>
+                                </div>
+                                <div class="option-features">
+                                    <ul>
+                                        <li><i data-feather="check" style="width: 12px; height: 12px;"></i> Custom path support</li>
+                                        <li><i data-feather="check" style="width: 12px; height: 12px;"></i> Multi-user friendly</li>
+                                        <li><i data-feather="check" style="width: 12px; height: 12px;"></i> Organized deployment</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="option-card">
+                                <div class="option-header">
+                                    <i data-feather="shield" style="width: 20px; height: 20px;" class="option-icon"></i>
+                                    <h4>Development Mode</h4>
+                                    <span class="option-badge dev">DEV</span>
+                                </div>
+                                <p>Install the latest development version with debug features enabled. Perfect for contributors and testers.</p>
+                                <div class="code-block">
+                                    <div class="code-header">
+                                        <span class="code-title">Development Install</span>
+                                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                    </div>
+                                    <pre><code>export INSTALL_BRANCH="develop"
+export DEBUG_MODE=true
+curl -fsSL https://raw.githubusercontent.com/AryanVBW/AUTO-blogger/main/install_autoblog.sh | bash</code></pre>
+                                </div>
+                                <div class="option-features">
+                                    <ul>
+                                        <li><i data-feather="check" style="width: 12px; height: 12px;"></i> Latest features</li>
+                                        <li><i data-feather="check" style="width: 12px; height: 12px;"></i> Debug logging</li>
+                                        <li><i data-feather="check" style="width: 12px; height: 12px;"></i> Development tools</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="option-card">
+                                <div class="option-header">
+                                    <i data-feather="download" style="width: 20px; height: 20px;" class="option-icon"></i>
+                                    <h4>Offline Installation</h4>
+                                    <span class="option-badge offline">OFFLINE</span>
+                                </div>
+                                <p>Install from a pre-downloaded package for air-gapped systems or limited internet connectivity environments.</p>
+                                <div class="code-block">
+                                    <div class="code-header">
+                                        <span class="code-title">Offline Install</span>
+                                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                    </div>
+                                    <pre><code># Download package first
+wget https://github.com/AryanVBW/AUTO-blogger/releases/latest/download/autoblogger-offline.tar.gz
+
+# Extract and install
+tar -xzf autoblogger-offline.tar.gz
+cd autoblogger-offline && ./install.sh</code></pre>
+                                </div>
+                                <div class="option-features">
+                                    <ul>
+                                        <li><i data-feather="check" style="width: 12px; height: 12px;"></i> No internet required</li>
+                                        <li><i data-feather="check" style="width: 12px; height: 12px;"></i> Pre-bundled dependencies</li>
+                                        <li><i data-feather="check" style="width: 12px; height: 12px;"></i> Air-gapped compatible</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="option-card">
+                                <div class="option-header">
+                                    <i data-feather="layers" style="width: 20px; height: 20px;" class="option-icon"></i>
+                                    <h4>Minimal Installation</h4>
+                                    <span class="option-badge minimal">MINIMAL</span>
+                                </div>
+                                <p>Install only core components without optional features. Reduces disk usage and installation time.</p>
+                                <div class="code-block">
+                                    <div class="code-header">
+                                        <span class="code-title">Minimal Install</span>
+                                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                    </div>
+                                    <pre><code>export MINIMAL_INSTALL=true
+export SKIP_OPTIONAL=true
+curl -fsSL https://raw.githubusercontent.com/AryanVBW/AUTO-blogger/main/install_autoblog.sh | bash</code></pre>
+                                </div>
+                                <div class="option-features">
+                                    <ul>
+                                        <li><i data-feather="check" style="width: 12px; height: 12px;"></i> Smaller footprint</li>
+                                        <li><i data-feather="check" style="width: 12px; height: 12px;"></i> Faster installation</li>
+                                        <li><i data-feather="check" style="width: 12px; height: 12px;"></i> Core features only</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="combined-options">
+                            <h4>
+                                <i data-feather="git-merge" style="display: inline; width: 18px; height: 18px; vertical-align: middle; margin-right: 6px;"></i>
+                                Combined Configuration Examples
+                            </h4>
+                            <div class="combined-grid">
+                                <div class="combined-card">
+                                    <h5>🐳 Docker Deployment</h5>
+                                    <div class="code-block">
+                                        <pre><code>export NON_INTERACTIVE=true
+export INSTALL_DIR="/app/autoblogger"
+export MINIMAL_INSTALL=true
+curl -fsSL https://raw.githubusercontent.com/AryanVBW/AUTO-blogger/main/install_autoblog.sh | bash</code></pre>
+                                    </div>
+                                </div>
+                                <div class="combined-card">
+                                    <h5>🔄 CI/CD Pipeline</h5>
+                                    <div class="code-block">
+                                        <pre><code>export NON_INTERACTIVE=true
+export AUTO_UPDATE=true
+export DEBUG_MODE=false
+curl -fsSL https://raw.githubusercontent.com/AryanVBW/AUTO-blogger/main/install_autoblog.sh | bash</code></pre>
+                                    </div>
+                                </div>
+                                <div class="combined-card">
+                                    <h5>🖥️ Server Deployment</h5>
+                                    <div class="code-block">
+                                        <pre><code>export INSTALL_DIR="/opt/autoblogger"
+export NON_INTERACTIVE=true
+export SKIP_DESKTOP_SHORTCUTS=true
+curl -fsSL https://raw.githubusercontent.com/AryanVBW/AUTO-blogger/main/install_autoblog.sh | bash</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="installation-tips">
+                            <h4>
+                                <i data-feather="lightbulb" style="display: inline; width: 18px; height: 18px; vertical-align: middle; margin-right: 6px;"></i>
+                                Installation Tips
+                            </h4>
+                            <div class="tips-grid">
+                                <div class="tip-item">
+                                    <i data-feather="info" style="width: 16px; height: 16px;" class="tip-icon"></i>
+                                    <div>
+                                        <strong>Environment Variables</strong>
+                                        <p>All options can be combined and set before running the installation script.</p>
+                                    </div>
+                                </div>
+                                <div class="tip-item">
+                                    <i data-feather="shield-check" style="width: 16px; height: 16px;" class="tip-icon"></i>
+                                    <div>
+                                        <strong>Security</strong>
+                                        <p>Always verify the script source and use HTTPS URLs for secure downloads.</p>
+                                    </div>
+                                </div>
+                                <div class="tip-item">
+                                    <i data-feather="file-text" style="width: 16px; height: 16px;" class="tip-icon"></i>
+                                    <div>
+                                        <strong>Logging</strong>
+                                        <p>Set <code>DEBUG_MODE=true</code> to enable detailed installation logging.</p>
+                                    </div>
+                                </div>
+                                <div class="tip-item">
+                                    <i data-feather="refresh-ccw" style="width: 16px; height: 16px;" class="tip-icon"></i>
+                                    <div>
+                                        <strong>Recovery</strong>
+                                        <p>Failed installations can be resumed by re-running the same command.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="requirements" class="docs-section">
+                    <h2><i data-feather="clipboard" style="display: inline; width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"></i> System Requirements</h2>
+                    
+                    <div class="requirements-grid">
+                        <div class="requirement-card">
+                            <h3>🐍 Python</h3>
+                            <p><strong>Version:</strong> 3.8 or higher</p>
+                            <p><strong>Required packages:</strong> pip, venv</p>
+                        </div>
+                        
+                        <div class="requirement-card">
+                            <h3>🌐 Web Browser</h3>
+                            <p><strong>Supported:</strong> Chrome, Chromium</p>
+                            <p><strong>Purpose:</strong> Web automation and scraping</p>
+                        </div>
+                        
+                        <div class="requirement-card">
+                            <h3>🔗 Git</h3>
+                            <p><strong>Purpose:</strong> Repository cloning and updates</p>
+                            <p><strong>Auto-install:</strong> Yes (if missing)</p>
+                        </div>
+                        
+                        <div class="requirement-card">
+                            <h3>💾 Storage</h3>
+                            <p><strong>Required:</strong> ~500MB free space</p>
+                            <p><strong>Includes:</strong> Dependencies and cache</p>
+                        </div>
+                    </div>
+
+                    <h3>🖥️ Supported Operating Systems</h3>
+                    <div class="os-support">
+                        <div class="os-item">
+                            <img src="assets/linux.png" alt="Linux" class="os-icon">
+                            <div>
+                                <strong>Linux</strong>
+                                <p>Ubuntu, Debian, CentOS, Fedora, Arch Linux</p>
+                            </div>
+                        </div>
+                        <div class="os-item">
+                            <img src="assets/macos.png" alt="macOS" class="os-icon">
+                            <div>
+                                <strong>macOS</strong>
+                                <p>macOS 10.14+ (Mojave and later)</p>
+                            </div>
+                        </div>
+                        <div class="os-item">
+                            <img src="assets/windows.png" alt="Windows" class="os-icon">
+                            <div>
+                                <strong>Windows</strong>
+                                <p>Windows 10/11 with WSL or native support</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="automated-install" class="docs-section">
+                    <h2>🤖 Automated Installation</h2>
+                    
+                    <h3>Standard Installation</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Standard Install</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>curl -fsSL https://raw.githubusercontent.com/AryanVBW/AUTO-blogger/main/install_autoblog.sh | bash</code></pre>
+                    </div>
+
+                    <h3>Non-Interactive Installation</h3>
+                    <p>For automated deployments or CI/CD environments:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Non-Interactive Install</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>export NON_INTERACTIVE=true
+curl -fsSL https://raw.githubusercontent.com/AryanVBW/AUTO-blogger/main/install_autoblog.sh | bash</code></pre>
+                    </div>
+
+                    <h3>Auto-Update Mode</h3>
+                    <p>Automatically update existing installations:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Auto-Update</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>export AUTO_UPDATE=true
+curl -fsSL https://raw.githubusercontent.com/AryanVBW/AUTO-blogger/main/install_autoblog.sh | bash</code></pre>
+                    </div>
+
+                    <div class="installation-steps">
+                        <h3><i data-feather="clipboard" style="display: inline; width: 18px; height: 18px; vertical-align: middle; margin-right: 6px;"></i> Installation Process</h3>
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>System Verification</h4>
+                                <p>Checks OS compatibility, internet connection, and disk space</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Installation Check</h4>
+                                <p>Detects existing installations and offers update options</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Git Setup</h4>
+                                <p>Installs Git if missing and configures repository access</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Repository Setup</h4>
+                                <p>Clones or updates the AUTO-blogger repository</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <h4>Python Setup</h4>
+                                <p>Verifies Python 3.8+ installation and pip availability</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">6</div>
+                            <div class="step-content">
+                                <h4>Browser Setup</h4>
+                                <p>Installs Chrome/Chromium for web automation</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">7</div>
+                            <div class="step-content">
+                                <h4>Virtual Environment</h4>
+                                <p>Creates isolated Python environment for dependencies</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">8</div>
+                            <div class="step-content">
+                                <h4>Dependencies Installation</h4>
+                                <p>Installs all required Python packages from requirements.txt</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">9</div>
+                            <div class="step-content">
+                                <h4>Launcher Creation</h4>
+                                <p>Creates system launchers and desktop shortcuts</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">10</div>
+                            <div class="step-content">
+                                <h4>Testing Installation</h4>
+                                <p>Verifies all components and provides usage instructions</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="manual-install" class="docs-section">
+                    <h2><i data-feather="tool" style="display: inline; width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"></i> Manual Installation Guide</h2>
+                    <p>Complete step-by-step manual installation for all operating systems. Choose your platform below:</p>
+
+                    <div class="manual-os-tabs">
+                        <div class="tab-buttons">
+                            <button class="tab-btn active" onclick="showManualTab('linux-manual')">
+                                <img src="assets/linux.png" alt="Linux" class="os-icon"> Linux Manual
+                            </button>
+                            <button class="tab-btn" onclick="showManualTab('macos-manual')">
+                                <img src="assets/macos.png" alt="macOS" class="os-icon"> macOS Manual
+                            </button>
+                            <button class="tab-btn" onclick="showManualTab('windows-manual')">
+                                <img src="assets/windows.png" alt="Windows" class="os-icon"> Windows Manual
+                            </button>
+                        </div>
+                        
+                        <!-- Linux Manual Installation -->
+                        <div id="linux-manual" class="tab-content active">
+                            <h3><img src="assets/linux.png" alt="Linux" class="os-icon"> Linux Manual Installation</h3>
+                            
+                            <div class="step-container">
+                                <div class="step-header">
+                                    <span class="step-number">1</span>
+                                    <h4>Install Prerequisites</h4>
+                                </div>
+                                <div class="step-content">
+                                    <div class="distro-tabs">
+                                        <div class="tab-buttons small">
+                                            <button class="tab-btn active" onclick="showDistroTab('ubuntu')">Ubuntu/Debian</button>
+                                            <button class="tab-btn" onclick="showDistroTab('centos')">CentOS/RHEL</button>
+                                            <button class="tab-btn" onclick="showDistroTab('fedora')">Fedora</button>
+                                            <button class="tab-btn" onclick="showDistroTab('arch')">Arch Linux</button>
+                                        </div>
+                                        
+                                        <div id="ubuntu" class="tab-content active">
+                                            <div class="code-block">
+                                                <div class="code-header">
+                                                    <span class="code-title">Ubuntu/Debian Prerequisites</span>
+                                                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                                </div>
+                                                <pre><code># Update package list
+sudo apt update
+
+# Install essential packages
+sudo apt install -y git python3 python3-pip python3-venv curl wget
+
+# Install Chrome
+wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+sudo apt update
+sudo apt install -y google-chrome-stable</code></pre>
+                                            </div>
+                                        </div>
+                                        
+                                        <div id="centos" class="tab-content">
+                                            <div class="code-block">
+                                                <div class="code-header">
+                                                    <span class="code-title">CentOS/RHEL Prerequisites</span>
+                                                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                                </div>
+                                                <pre><code># Install EPEL repository (if needed)
+sudo yum install -y epel-release
+
+# Install essential packages
+sudo yum install -y git python3 python3-pip curl wget
+
+# Install Chromium
+sudo yum install -y chromium</code></pre>
+                                            </div>
+                                        </div>
+                                        
+                                        <div id="fedora" class="tab-content">
+                                            <div class="code-block">
+                                                <div class="code-header">
+                                                    <span class="code-title">Fedora Prerequisites</span>
+                                                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                                </div>
+                                                <pre><code># Install essential packages
+sudo dnf install -y git python3 python3-pip curl wget
+
+# Install Chromium
+sudo dnf install -y chromium</code></pre>
+                                            </div>
+                                        </div>
+                                        
+                                        <div id="arch" class="tab-content">
+                                            <div class="code-block">
+                                                <div class="code-header">
+                                                    <span class="code-title">Arch Linux Prerequisites</span>
+                                                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                                </div>
+                                                <pre><code># Update package database
+sudo pacman -Sy
+
+# Install essential packages
+sudo pacman -S git python python-pip curl wget
+
+# Install Chromium
+sudo pacman -S chromium</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="step-container">
+                                <div class="step-header">
+                                    <span class="step-number">2</span>
+                                    <h4>Clone Repository</h4>
+                                </div>
+                                <div class="step-content">
+                                    <div class="code-block">
+                                        <div class="code-header">
+                                            <span class="code-title">Git Clone</span>
+                                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                        </div>
+                                        <pre><code>git clone https://github.com/AryanVBW/AUTO-blogger.git
+cd AUTO-blogger</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="step-container">
+                                <div class="step-header">
+                                    <span class="step-number">3</span>
+                                    <h4>Setup Virtual Environment</h4>
+                                </div>
+                                <div class="step-content">
+                                    <div class="code-block">
+                                        <div class="code-header">
+                                            <span class="code-title">Virtual Environment</span>
+                                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                        </div>
+                                        <pre><code># Create virtual environment
+python3 -m venv auto_blogger_venv
+
+# Activate virtual environment
+source auto_blogger_venv/bin/activate
+
+# Upgrade pip
+pip install --upgrade pip</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="step-container">
+                                <div class="step-header">
+                                    <span class="step-number">4</span>
+                                    <h4>Install Dependencies</h4>
+                                </div>
+                                <div class="step-content">
+                                    <div class="code-block">
+                                        <div class="code-header">
+                                            <span class="code-title">Python Dependencies</span>
+                                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                        </div>
+                                        <pre><code># Install from requirements.txt
+pip install -r requirements.txt
+
+# Verify installation
+python -c "import requests, selenium, openai; print('All packages installed successfully!')"
+</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="step-container">
+                                <div class="step-header">
+                                    <span class="step-number">5</span>
+                                    <h4>Create Launcher</h4>
+                                </div>
+                                <div class="step-content">
+                                    <div class="code-block">
+                                        <div class="code-header">
+                                            <span class="code-title">System Launcher</span>
+                                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                        </div>
+                                        <pre><code># Make autoblog script executable
+chmod +x autoblog
+
+# Create system-wide symlink (optional)
+sudo ln -sf "$(pwd)/autoblog" /usr/local/bin/autoblog
+
+# Test launcher
+./autoblog --test</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- macOS Manual Installation -->
+                        <div id="macos-manual" class="tab-content">
+                            <h3><img src="assets/macos.png" alt="macOS" class="os-icon"> macOS Manual Installation</h3>
+                            
+                            <div class="step-container">
+                                <div class="step-header">
+                                    <span class="step-number">1</span>
+                                    <h4>Install Prerequisites</h4>
+                                </div>
+                                <div class="step-content">
+                                    <div class="code-block">
+                                        <div class="code-header">
+                                            <span class="code-title">macOS Prerequisites</span>
+                                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                        </div>
+                                        <pre><code># Install Homebrew (if not already installed)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Install essential packages
+brew install git python@3.11
+
+# Install Chrome
+brew install --cask google-chrome
+
+# Verify installations
+python3 --version
+git --version
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --version</code></pre>
+                                    </div>
+                                    <div class="alert alert-info">
+                                        <strong><i data-feather="lightbulb" style="display: inline; width: 14px; height: 14px; vertical-align: middle; margin-right: 4px;"></i> Alternative for Python:</strong> You can also download Python from <a href="https://www.python.org/downloads/macos/" target="_blank">python.org</a> if you prefer not to use Homebrew.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="step-container">
+                                <div class="step-header">
+                                    <span class="step-number">2</span>
+                                    <h4>Clone Repository</h4>
+                                </div>
+                                <div class="step-content">
+                                    <div class="code-block">
+                                        <div class="code-header">
+                                            <span class="code-title">Git Clone</span>
+                                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                        </div>
+                                        <pre><code># Clone to Applications folder (recommended)
+cd ~/Applications
+git clone https://github.com/AryanVBW/AUTO-blogger.git
+cd AUTO-blogger</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="step-container">
+                                <div class="step-header">
+                                    <span class="step-number">3</span>
+                                    <h4>Setup Virtual Environment</h4>
+                                </div>
+                                <div class="step-content">
+                                    <div class="code-block">
+                                        <div class="code-header">
+                                            <span class="code-title">Virtual Environment</span>
+                                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                        </div>
+                                        <pre><code># Create virtual environment
+python3 -m venv auto_blogger_venv
+
+# Activate virtual environment
+source auto_blogger_venv/bin/activate
+
+# Upgrade pip
+pip install --upgrade pip</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="step-container">
+                                <div class="step-header">
+                                    <span class="step-number">4</span>
+                                    <h4>Install Dependencies</h4>
+                                </div>
+                                <div class="step-content">
+                                    <div class="code-block">
+                                        <div class="code-header">
+                                            <span class="code-title">Python Dependencies</span>
+                                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                        </div>
+                                        <pre><code># Install from requirements.txt
+pip install -r requirements.txt
+
+# Verify installation
+python -c "import requests, selenium, openai; print('All packages installed successfully!')"
+</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="step-container">
+                                <div class="step-header">
+                                    <span class="step-number">5</span>
+                                    <h4>Create macOS App Bundle</h4>
+                                </div>
+                                <div class="step-content">
+                                    <div class="code-block">
+                                        <div class="code-header">
+                                            <span class="code-title">App Bundle Creation</span>
+                                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                        </div>
+                                        <pre><code># Make autoblog script executable
+chmod +x autoblog
+
+# Create system-wide symlink
+sudo ln -sf "$(pwd)/autoblog" /usr/local/bin/autoblog
+
+# Add to PATH (add to ~/.zshrc or ~/.bash_profile)
+echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+
+# Test launcher
+autoblog --test</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Windows Manual Installation -->
+                        <div id="windows-manual" class="tab-content">
+                            <h3><img src="assets/windows.png" alt="Windows" class="os-icon"> Windows Manual Installation</h3>
+                            
+                            <div class="step-container">
+                                <div class="step-header">
+                                    <span class="step-number">1</span>
+                                    <h4>Install Prerequisites</h4>
+                                </div>
+                                <div class="step-content">
+                                    <div class="windows-options">
+                                        <div class="option-tabs">
+                                            <div class="tab-buttons small">
+                                                <button class="tab-btn active" onclick="showWindowsTab('wsl')">WSL2 (Recommended)</button>
+                                                <button class="tab-btn" onclick="showWindowsTab('native')">Native Windows</button>
+                                            </div>
+                                            
+                                            <div id="wsl" class="tab-content active">
+                                                <h4><img src="assets/linux.png" alt="Linux" class="os-icon"> Windows Subsystem for Linux (WSL2)</h4>
+                                                <div class="code-block">
+                                                    <div class="code-header">
+                                                        <span class="code-title">WSL2 Setup</span>
+                                                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                                    </div>
+                                                    <pre><code># In PowerShell (Run as Administrator)
+wsl --install -d Ubuntu
+
+# Restart computer, then open Ubuntu terminal
+# Update packages
+sudo apt update
+sudo apt upgrade -y
+
+# Install prerequisites
+sudo apt install -y git python3 python3-pip python3-venv curl wget
+
+# Install Chrome
+wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+sudo apt update
+sudo apt install -y google-chrome-stable</code></pre>
+                                                </div>
+                                            </div>
+                                            
+                                            <div id="native" class="tab-content">
+                                                <h4><img src="assets/windows.png" alt="Windows" class="os-icon"> Native Windows Installation</h4>
+                                                <div class="prerequisite-list">
+                                                    <div class="prereq-item">
+                                                        <h5>1. Install Python 3.8+</h5>
+                                                        <p>Download from <a href="https://www.python.org/downloads/windows/" target="_blank">python.org</a></p>
+                                                        <p><strong>Important:</strong> Check "Add Python to PATH" during installation</p>
+                                                    </div>
+                                                    <div class="prereq-item">
+                                                        <h5>2. Install Git</h5>
+                                                        <p>Download from <a href="https://git-scm.com/download/win" target="_blank">git-scm.com</a></p>
+                                                        <p><strong>Recommended:</strong> Use Git Bash as terminal</p>
+                                                    </div>
+                                                    <div class="prereq-item">
+                                                        <h5>3. Install Google Chrome</h5>
+                                                        <p>Download from <a href="https://www.google.com/chrome/" target="_blank">google.com/chrome</a></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="step-container">
+                                <div class="step-header">
+                                    <span class="step-number">2</span>
+                                    <h4>Clone Repository</h4>
+                                </div>
+                                <div class="step-content">
+                                    <div class="code-block">
+                                        <div class="code-header">
+                                            <span class="code-title">Git Clone (Git Bash/WSL)</span>
+                                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                        </div>
+                                        <pre><code># WSL/Git Bash
+git clone https://github.com/AryanVBW/AUTO-blogger.git
+cd AUTO-blogger</code></pre>
+                                    </div>
+                                    <div class="code-block">
+                                        <div class="code-header">
+                                            <span class="code-title">PowerShell Alternative</span>
+                                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                        </div>
+                                        <pre><code># PowerShell
+git clone https://github.com/AryanVBW/AUTO-blogger.git
+Set-Location AUTO-blogger</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="step-container">
+                                <div class="step-header">
+                                    <span class="step-number">3</span>
+                                    <h4>Setup Virtual Environment</h4>
+                                </div>
+                                <div class="step-content">
+                                    <div class="code-block">
+                                        <div class="code-header">
+                                            <span class="code-title">Virtual Environment (WSL/Git Bash)</span>
+                                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                        </div>
+                                        <pre><code># Create virtual environment
+python3 -m venv auto_blogger_venv
+
+# Activate virtual environment
+source auto_blogger_venv/bin/activate
+
+# Upgrade pip
+pip install --upgrade pip</code></pre>
+                                    </div>
+                                    <div class="code-block">
+                                        <div class="code-header">
+                                            <span class="code-title">Virtual Environment (PowerShell)</span>
+                                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                        </div>
+                                        <pre><code># Create virtual environment
+python -m venv auto_blogger_venv
+
+# Activate virtual environment
+auto_blogger_venv\Scripts\Activate.ps1
+
+# Upgrade pip
+pip install --upgrade pip</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="step-container">
+                                <div class="step-header">
+                                    <span class="step-number">4</span>
+                                    <h4>Install Dependencies</h4>
+                                </div>
+                                <div class="step-content">
+                                    <div class="code-block">
+                                        <div class="code-header">
+                                            <span class="code-title">Python Dependencies</span>
+                                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                        </div>
+                                        <pre><code># Install from requirements.txt
+pip install -r requirements.txt
+
+# Verify installation
+python -c "import requests, selenium, openai; print('All packages installed successfully!')"
+</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="step-container">
+                                <div class="step-header">
+                                    <span class="step-number">5</span>
+                                    <h4>Create Windows Launcher</h4>
+                                </div>
+                                <div class="step-content">
+                                    <div class="code-block">
+                                        <div class="code-header">
+                                            <span class="code-title">Batch File Launcher</span>
+                                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                        </div>
+                                        <pre><code># Create autoblog.bat file
+echo @echo off > autoblog.bat
+echo cd /d "%~dp0" >> autoblog.bat
+echo call auto_blogger_venv\Scripts\activate.bat >> autoblog.bat
+echo python autoblog_launcher.py %* >> autoblog.bat
+
+# Test launcher
+autoblog.bat --test</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="verification" class="docs-section">
+                    <h2><i data-feather="check-circle" style="display: inline; width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"></i> Verification</h2>
+                    <p>After installation, verify that everything is working correctly:</p>
+
+                    <h3>Test Installation</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Test Command</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code># From installation directory
+python3 gui_blogger.py --test
+
+# Or using the launcher
+autoblog --test</code></pre>
+                    </div>
+
+                    <h3>Launch Application</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Launch</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-bash"># System-wide launcher (if installed)
+$ autoblog
+
+# Local launcher
+$ ./autoblog
+
+# Direct Python execution
+$ python3 gui_blogger.py</code></pre>
+                    </div>
+
+                    <div class="alert alert-success">
+                        <strong><i data-feather="check-circle" style="display: inline; width: 16px; height: 16px; vertical-align: middle; margin-right: 4px;"></i> Success Indicators:</strong>
+                        <ul>
+                            <li>GUI application opens without errors</li>
+                            <li>All tabs are accessible</li>
+                            <li>No import errors in the console</li>
+                            <li>Browser automation test passes</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="troubleshooting" class="docs-section">
+                    <h2><i data-feather="tool" style="display: inline; width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"></i> Troubleshooting</h2>
+                    
+                    <div class="troubleshooting-grid">
+                        <div class="troubleshooting-item">
+                            <h3><i data-feather="x-circle" style="display: inline; width: 18px; height: 18px; vertical-align: middle; margin-right: 6px;"></i> Python Version Error</h3>
+                            <p><strong>Problem:</strong> "Python 3.8+ required" error</p>
+                            <p><strong>Solution:</strong></p>
+                            <div class="code-block">
+                                <pre><code># Check Python version
+python3 --version
+
+# Install Python 3.8+ if needed
+# Ubuntu/Debian
+sudo apt install python3.8 python3.8-venv python3.8-pip
+
+# macOS
+brew install python@3.11
+
+# Windows
+# Download from https://www.python.org/downloads/</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="troubleshooting-item">
+                            <h3><i data-feather="x-circle" style="display: inline; width: 18px; height: 18px; vertical-align: middle; margin-right: 6px;"></i> OS Detection Failed</h3>
+                            <p><strong>Problem:</strong> "Unsupported operating system" error</p>
+                            <p><strong>Solution:</strong></p>
+                            <div class="code-block">
+                                <pre><code># Force OS detection
+export FORCE_OS="linux"  # or "macos" or "windows"
+./install_autoblog.sh
+
+# Manual installation
+# Follow the manual installation guide above</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="troubleshooting-item">
+                            <h3><i data-feather="x-circle" style="display: inline; width: 18px; height: 18px; vertical-align: middle; margin-right: 6px;"></i> Network/Proxy Issues</h3>
+                            <p><strong>Problem:</strong> Download failures or timeout errors</p>
+                            <p><strong>Solution:</strong></p>
+                            <div class="code-block">
+                                <pre><code># Configure proxy (if needed)
+export http_proxy="http://proxy.company.com:8080"
+export https_proxy="http://proxy.company.com:8080"
+
+# Use alternative download method
+wget https://github.com/AryanVBW/AUTO-blogger/archive/main.zip
+unzip main.zip
+cd AUTO-blogger-main</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="troubleshooting-item">
+                            <h3><i data-feather="x-circle" style="display: inline; width: 18px; height: 18px; vertical-align: middle; margin-right: 6px;"></i> Package Manager Issues</h3>
+                            <p><strong>Problem:</strong> Package installation failures</p>
+                            <p><strong>Solution:</strong></p>
+                            <div class="code-block">
+                                <pre><code># Update package lists
+# Ubuntu/Debian
+sudo apt update && sudo apt upgrade
+
+# CentOS/RHEL
+sudo yum update
+
+# macOS
+brew update && brew upgrade
+
+# Clear package cache
+sudo apt clean  # Ubuntu/Debian
+brew cleanup    # macOS</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="troubleshooting-item">
+                        <h3>❌ Permission Denied</h3>
+                        <p><strong>Problem:</strong> Permission errors during installation</p>
+                        <p><strong>Solution:</strong></p>
+                        <div class="code-block">
+                            <pre><code># Make script executable
+chmod +x install_autoblog.sh
+
+# Run with proper permissions
+sudo ./install_autoblog.sh</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="troubleshooting-item">
+                        <h3>❌ Chrome/Chromium Not Found</h3>
+                        <p><strong>Problem:</strong> Browser automation fails</p>
+                        <p><strong>Solution:</strong></p>
+                        <div class="code-block">
+                            <pre><code># Install Chrome manually
+wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+sudo apt update
+sudo apt install google-chrome-stable</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="troubleshooting-item">
+                        <h3>❌ Virtual Environment Issues</h3>
+                        <p><strong>Problem:</strong> Virtual environment creation fails</p>
+                        <p><strong>Solution:</strong></p>
+                        <div class="code-block">
+                            <pre><code># Remove existing venv and recreate
+rm -rf venv
+python3 -m pip install --user virtualenv
+python3 -m venv venv</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="troubleshooting-resources">
+                        <h3>🆘 Additional Help Resources</h3>
+                        <div class="help-grid">
+                            <div class="help-card">
+                                <h4>📚 Documentation</h4>
+                                <p>Comprehensive guides and API documentation</p>
+                                <a href="documentation.html" class="btn btn-outline">View Docs</a>
+                            </div>
+                            <div class="help-card">
+                                <h4>🐛 Report Issues</h4>
+                                <p>Found a bug? Report it on GitHub</p>
+                                <a href="https://github.com/AryanVBW/AUTO-blogger/issues" class="btn btn-outline" target="_blank">GitHub Issues</a>
+                            </div>
+                            <div class="help-card">
+                                <h4>💬 Get Support</h4>
+                                <p>Direct email support for installation help</p>
+                                <a href="mailto:AryanVBW@gmail.com" class="btn btn-outline">Email Support</a>
+                            </div>
+                            <div class="help-card">
+                                <h4>🔧 System Diagnostics</h4>
+                                <p>Run built-in diagnostic tools</p>
+                                <div class="code-block small">
+                                    <pre><code>python3 -c "import sys; print(f'Python: {sys.version}'); import platform; print(f'OS: {platform.system()} {platform.release()}')"
+</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-warning">
+                        <strong>⚠️ Common Installation Pitfalls:</strong>
+                        <ul>
+                            <li><strong>Python Version:</strong> Ensure you're using Python 3.8 or higher</li>
+                            <li><strong>Virtual Environment:</strong> Always activate the virtual environment before running commands</li>
+                            <li><strong>Permissions:</strong> Some commands may require sudo/administrator privileges</li>
+                            <li><strong>Network:</strong> Ensure stable internet connection for downloads</li>
+                            <li><strong>Disk Space:</strong> Ensure at least 1GB free space for installation</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="next-steps" class="docs-section">
+                    <h2>🎯 Next Steps</h2>
+                    <p>After successful installation, here's what to do next:</p>
+
+                    <div class="next-steps-grid">
+                        <div class="next-step-card">
+                            <h3>🔐 Configure Authentication</h3>
+                            <p>Set up your WordPress, OpenAI, and other API credentials</p>
+                            <a href="documentation.html#authentication" class="btn btn-primary">Setup Guide</a>
+                        </div>
+                        
+                        <div class="next-step-card">
+                            <h3>⚙️ Configure Settings</h3>
+                            <p>Customize automation preferences and SEO settings</p>
+                            <a href="documentation.html#configuration" class="btn btn-primary">Configuration</a>
+                        </div>
+                        
+                        <div class="next-step-card">
+                            <h3>
+                                <i data-feather="rocket" style="display: inline; width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;"></i>
+                                Start Automating
+                            </h3>
+                            <p>Begin automating your blog posting workflow</p>
+                            <a href="documentation.html#usage" class="btn btn-primary">Usage Guide</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section footer-brand">
+                    <div class="footer-logo">
+                        <img src="assets/icon.png" alt="AUTO-blogger" class="footer-icon">
+                        <h3>AUTO-blogger</h3>
+                    </div>
+                    <p>Professional WordPress automation tool with AI integration, Getty Images, and comprehensive SEO optimization.</p>
+                    <div class="footer-social">
+                        <a href="https://github.com/AryanVBW/AUTO-blogger" target="_blank" class="social-link">
+                            <img src="assets/github.png" alt="GitHub" class="social-icon">
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="installation.html">Installation</a></li>
+                        <li><a href="documentation.html">Documentation</a></li>
+                        <li><a href="https://github.com/AryanVBW/AUTO-blogger" target="_blank">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="mailto:AryanVBW@gmail.com">Email Support</a></li>
+                        <li><a href="https://github.com/AryanVBW/AUTO-blogger/issues" target="_blank">Report Issues</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AryanVBW. All rights reserved. Licensed under MIT License.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/docs.js"></script>
+    <script src="js/terminal.js"></script>
+    <script src="js/installation.js"></script>
+    <script>
+        // Initialize Feather icons
+        feather.replace();
+    </script>
+</body>
+</html>

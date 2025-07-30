@@ -1,0 +1,119 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "auto-blogger"
+version = "1.0.0"
+authors = [
+    {name = "AryanVBW", email = "AryanVBW@gmail.com"},
+]
+description = "Automated WordPress Blog Posting Tool with AI Integration"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content :: Content Management System",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+]
+keywords = ["wordpress", "blog", "automation", "ai", "content", "posting", "seo"]
+dependencies = [
+    "requests>=2.31.0",
+    "beautifulsoup4>=4.12.0",
+    "lxml>=4.9.0",
+    "selenium>=4.15.0",
+    "webdriver-manager>=3.8.0",
+    "openai>=1.3.0",
+    "google-generativeai>=0.3.0",
+    "Pillow>=10.0.0",
+    "python-dotenv>=1.0.0",
+    "colorama>=0.4.6",
+    "tqdm>=4.66.0",
+    "validators>=0.22.0",
+    "requests-toolbelt>=0.10.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.9.0",
+    "flake8>=6.1.0",
+    "mypy>=1.6.0",
+    "pre-commit>=3.5.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/AryanVBW/AUTO-blogger"
+"Bug Reports" = "https://github.com/AryanVBW/AUTO-blogger/issues"
+"Source" = "https://github.com/AryanVBW/AUTO-blogger"
+"Documentation" = "https://aryanvbw.github.io/AUTO-blogger/website/"
+"Website" = "https://aryanvbw.github.io/AUTO-blogger/website/"
+
+[project.scripts]
+autoblog = "auto_blogger.gui_blogger:main"
+auto-blogger = "auto_blogger.gui_blogger:main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."] 
+include = ["auto_blogger*"]
+exclude = ["tests*", "docs*", "scripts*"]
+
+[tool.setuptools.package-data]
+"auto_blogger" = [
+    "*.json",
+    "*.md", 
+    "*.txt",
+    "*.png",
+    "*.ico",
+    "*.svg",
+    "configs/*.json",
+    "website/**/*",
+    "scripts/**/*",
+    "docs/**/*",
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+extend-exclude = '''
+(
+  /(
+      \.eggs
+    | \.git
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+)
+'''
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q --strict-markers"
+testpaths = [
+    "tests",
+]
+python_files = [
+    "test_*.py",
+    "*_test.py",
+]
