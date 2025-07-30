@@ -1,0 +1,3 @@
+[console_scripts]
+ll2cz = ll2cz.cli:app
+
