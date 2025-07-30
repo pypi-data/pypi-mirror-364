@@ -1,0 +1,1 @@
+Library for GhostOS, providing common class and functions.

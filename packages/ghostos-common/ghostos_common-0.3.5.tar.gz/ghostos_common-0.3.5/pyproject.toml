@@ -1,0 +1,40 @@
+[project]
+name = "ghostos-common"
+version = "0.3.5"
+description = "common library for GhostOS project"
+authors = [
+    { name = "thirdgerb", email = "thirdgerb@gmail.com" },
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "ghostos-container>=0.2.4",
+    "pydantic<3.0.0,>=2.7.0",
+    "pyyaml<7.0.0,>=6.0.1",
+    "tree-sitter-language-pack>=0.9.0",
+]
+
+[project.license]
+text = "MIT"
+
+[tool.setuptools]
+packages = [
+    { include = "src" },
+]
+
+[tool.uv.sources.ghostos-container]
+workspace = true
+
+[tool.pdm.build]
+includes = []
+
+[build-system]
+requires = [
+    "pdm-backend",
+]
+build-backend = "pdm.backend"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+]
