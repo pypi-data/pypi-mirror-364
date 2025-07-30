@@ -1,0 +1,3 @@
+[console_scripts]
+qstone=qstone.__main__:main
+
