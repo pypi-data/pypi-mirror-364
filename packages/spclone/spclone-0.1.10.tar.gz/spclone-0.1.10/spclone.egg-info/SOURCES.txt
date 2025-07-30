@@ -1,0 +1,14 @@
+LICENSE
+README.md
+pyproject.toml
+spclone/__init__.py
+spclone/cli.py
+spclone/clone_.py
+spclone.egg-info/PKG-INFO
+spclone.egg-info/SOURCES.txt
+spclone.egg-info/dependency_links.txt
+spclone.egg-info/entry_points.txt
+spclone.egg-info/requires.txt
+spclone.egg-info/top_level.txt
+spclone/tests/__init__.py
+spclone/tests/test_install.py
