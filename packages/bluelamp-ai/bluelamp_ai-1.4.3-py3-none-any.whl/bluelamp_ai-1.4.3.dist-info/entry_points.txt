@@ -1,0 +1,4 @@
+[console_scripts]
+ブルーランプ=extensions.cli.bluelamp_public:main
+ブルーランプ拡張=extensions.cli.bluelamp_extension_public:main
+
