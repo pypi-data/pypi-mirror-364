@@ -1,0 +1,2 @@
+[console_scripts]
+keyslide.encrypt = keyslide:cli_encrypt
