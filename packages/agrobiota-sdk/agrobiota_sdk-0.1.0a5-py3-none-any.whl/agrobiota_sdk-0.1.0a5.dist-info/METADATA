@@ -1,0 +1,80 @@
+Metadata-Version: 2.3
+Name: agrobiota-sdk
+Version: 0.1.0a5
+Summary: An official SDK library for the AGROBIOTA environment
+License: MIT
+Keywords: Bioinformatics,AGROBIOTA,SDK
+Author: BIOTROP Bioinformatics Team
+Author-email: bioinfo@biotrop.com.br
+Requires-Python: >=3.12,<4.0
+Classifier: Programming Language :: Python :: 3.12
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Other Audience
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Requires-Dist: aiohttp (>=3.12.14,<4.0.0)
+Requires-Dist: openpyxl (>=3.1.5,<4.0.0)
+Requires-Dist: pandas (>=2.3.1,<3.0.0)
+Requires-Dist: pydantic (>=2.11.7,<3.0.0)
+Requires-Dist: pynput (>=1.8.1,<2.0.0)
+Requires-Dist: pytest (>=8.4.1,<9.0.0)
+Requires-Dist: pytest-asyncio (>=1.1.0,<2.0.0)
+Requires-Dist: requests (>=2.32.4,<3.0.0)
+Requires-Dist: rich (>=14.1.0,<15.0.0)
+Requires-Dist: rich-click (>=1.8.9,<2.0.0)
+Project-URL: Homepage, https://github.com/Biotrop/agb-sdk
+Description-Content-Type: text/markdown
+
+# AGROBIOTA SDK
+
+This package contains the code for the Agrobiota Environment.
+
+## Usage
+
+The AGROBIOTA SDK simplifies the integration and transformation of AGROBIOTA data.
+It is available for Python 3.12+ and can be installed using pip:
+
+```bash
+python3.12 -m pip install agrobiota-sdk
+```
+
+It can be used through a CLI or as a Python library.
+
+### CLI
+
+The AGROBIOTA SDK CLI can be used to convert data between formats and
+perform other tasks. To do this, run the following command:
+
+```bash
+agb-sdk convert bioindex-to-tabular \ 
+    --input-path input.json \ 
+    --output-path output.xlsx
+```
+
+### Python
+
+The AGROBIOTA SDK can also be used as a Python library. To do this,
+import the SDK and use the available functions.
+
+```python
+from agb_sdk.core.use_cases import convert_bioindex_to_tabular
+
+convert_bioindex_to_tabular(
+    input_path="input.json",
+    output_path="output.xlsx",
+    resolve_taxonomies=True,
+)
+```
+
+The library is constantly evolving and new features are being
+added. If you have any suggestions or feedback, please open
+an [issue](https://github.com/agrobiota/agrobiota-sdk/issues) or contact us
+via email at [bioinfo@biotrop.com.br](mailto:bioinfo@biotrop.com.br).
+
+---
+
+This SDK was tested in Linux. It may work in other operating systems, but
+this is not guaranteed. For windows, we recommend using WSL (Windows Subsystem
+for Linux).
+
