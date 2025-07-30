@@ -1,0 +1,9 @@
+setuptools
+pathlib
+numpy
+pyssian>=1.1
+platformdirs
+
+[plotting]
+matplotlib
+plotly

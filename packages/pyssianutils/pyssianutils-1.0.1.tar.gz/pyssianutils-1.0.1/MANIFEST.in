@@ -1,0 +1,16 @@
+# Setup file and LICENSE
+include setup.py
+include LICENSE
+
+# include the scripts
+include pyssianutils/pyssianutils
+
+# include the resources
+include pyssianutils/resources/defaults.ini
+include pyssianutils/resources/templates/slurm/example.txt
+include pyssianutils/resources/templates/slurm/example.json
+
+# Exclude Files
+global-exclude *.pyc
+global-exclude .git
+global-exclude .vscode
