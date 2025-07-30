@@ -1,0 +1,8 @@
+setup.py
+easyfileio.egg-info/PKG-INFO
+easyfileio.egg-info/SOURCES.txt
+easyfileio.egg-info/dependency_links.txt
+easyfileio.egg-info/requires.txt
+easyfileio.egg-info/top_level.txt
+simplefile/__init__.py
+simplefile/main.py
