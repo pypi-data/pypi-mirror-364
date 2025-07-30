@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: dayamlchecker
+Version: 0.1.0
+Summary: An LSP for Docassemble YAML interviews
+Author-email: Bryce Willey <bryce.steven.willey@gmail.com>
+License-Expression: MIT
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: mako>=1.3.10
+Requires-Dist: pyyaml>=6.0.2
+Dynamic: license-file
+
+# DAYamlChecker
+
+An LSP for Docassemble YAML Interviews
+
+## How to run
+
+```bash
+pip install .
+python3 -m dayamlchecker `find . -name "*.yml" -path "*/questions/*" snot -path "*/.venv/*" -not -path "*/build/*"` # i.e. a space separated list of files
+```
