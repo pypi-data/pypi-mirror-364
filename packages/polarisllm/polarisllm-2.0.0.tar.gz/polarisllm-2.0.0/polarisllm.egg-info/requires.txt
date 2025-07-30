@@ -1,0 +1,15 @@
+ms-swift
+fastapi
+uvicorn[standard]
+aiohttp
+pydantic
+pyyaml
+psutil
+python-multipart
+rich
+requests
+
+[dev]
+pytest
+black
+flake8
