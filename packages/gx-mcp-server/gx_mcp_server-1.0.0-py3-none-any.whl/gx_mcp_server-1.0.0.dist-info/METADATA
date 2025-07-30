@@ -1,0 +1,245 @@
+Metadata-Version: 2.4
+Name: gx-mcp-server
+Version: 1.0.0
+Summary: Expose Great Expectations data-quality checks via MCP
+Project-URL: Homepage, https://github.com/dfront/gx-mcp-server
+Project-URL: Repository, https://github.com/dfront/gx-mcp-server
+Project-URL: Issues, https://github.com/dfront/gx-mcp-server/issues
+Project-URL: Documentation, https://github.com/dfront/gx-mcp-server#readme
+Author-email: David Front <dfront@gmail.com>
+License: MIT License
+        
+        Copyright (c) 2025 David Front
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+License-File: LICENSE
+Keywords: data validation,great-expectations,mcp
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.11
+Requires-Dist: fastapi>=0.116.1
+Requires-Dist: fastmcp>=2.8
+Requires-Dist: great-expectations>=0.17
+Requires-Dist: opentelemetry-exporter-otlp>=1
+Requires-Dist: opentelemetry-instrumentation-fastapi>=0.46
+Requires-Dist: opentelemetry-sdk>=1
+Requires-Dist: pandas>=1.5
+Requires-Dist: polars>=0.20
+Requires-Dist: prometheus-fastapi-instrumentator>=7
+Requires-Dist: pydantic>=1
+Requires-Dist: requests>=2.28
+Requires-Dist: slowapi>=0.1.9
+Provides-Extra: bigquery
+Requires-Dist: google-cloud-bigquery; extra == 'bigquery'
+Provides-Extra: dev
+Requires-Dist: bump-my-version; extra == 'dev'
+Requires-Dist: colorama; extra == 'dev'
+Requires-Dist: fastapi; extra == 'dev'
+Requires-Dist: mypy; extra == 'dev'
+Requires-Dist: openai; extra == 'dev'
+Requires-Dist: pandas-stubs; extra == 'dev'
+Requires-Dist: pre-commit; extra == 'dev'
+Requires-Dist: pytest; extra == 'dev'
+Requires-Dist: pytest-asyncio; extra == 'dev'
+Requires-Dist: python-dotenv; extra == 'dev'
+Requires-Dist: ruff; extra == 'dev'
+Requires-Dist: types-requests; extra == 'dev'
+Provides-Extra: snowflake
+Requires-Dist: snowflake-connector-python; extra == 'snowflake'
+Description-Content-Type: text/markdown
+
+# Great Expectations MCP Server
+
+> Expose Great Expectations data-quality checks as MCP tools for LLM agents.
+
+[![PyPI version](https://img.shields.io/pypi/v/gx-mcp-server)](https://pypi.org/project/gx-mcp-server) 
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/gx-mcp-server)](https://pypi.org/project/gx-mcp-server) 
+[![Docker Hub](https://img.shields.io/docker/pulls/davidf9999/gx-mcp-server.svg)](https://hub.docker.com/r/davidf9999/gx-mcp-server) 
+[![License](https://img.shields.io/github/license/davidf9999/gx-mcp-server)](LICENSE) 
+[![CI](https://github.com/davidf9999/gx-mcp-server/actions/workflows/ci.yaml/badge.svg?branch=dev)](https://github.com/davidf9999/gx-mcp-server/actions/workflows/ci.yaml) 
+[![Publish](https://github.com/davidf9999/gx-mcp-server/actions/workflows/publish.yaml/badge.svg)](https://github.com/davidf9999/gx-mcp-server/actions/workflows/publish.yaml)
+
+## Motivation
+
+Large Language Model (LLM) agents often need to interact with and validate data. Great Expectations is a powerful open-source tool for data quality, but it's not natively accessible to LLM agents. This server bridges that gap by exposing core Great Expectations functionality through the Model Context Protocol (MCP), allowing agents to:
+
+- Programmatically load datasets from various sources.
+- Define data quality rules (Expectations) on the fly.
+- Run validation checks and interpret the results.
+- Integrate robust data quality checks into their automated workflows.
+
+## TL;DR
+
+- **Install:** `just install`
+- **Run server:** `just serve`
+- **Try examples:** `just run-examples`
+- **Test:** `just test`
+- **Lint and type-check:** `just ci`
+- **Default CSV limit:** 50 MB (`MCP_CSV_SIZE_LIMIT_MB` to change)
+
+## Features
+
+- Load CSV data from file, URL, or inline (up to 1 GB, configurable)
+- Load tables from Snowflake or BigQuery using URI prefixes
+- Define and modify ExpectationSuites (profiler flag is **deprecated**)
+- Validate data and fetch detailed results (sync or async)
+- Choose **in-memory** (default) or **SQLite** storage for datasets & results
+- Optional **Basic** or **Bearer** token authentication for HTTP clients
+- Configure **HTTP rate limiting** per minute
+- Restrict origins with `--allowed-origins`
+- **Prometheus** metrics on `--metrics-port`
+- **OpenTelemetry** tracing via `--trace` (OTLP exporter)
+- Multiple transport modes: **STDIO**, **HTTP**, **Inspector (GUI)**
+
+## Quickstart
+
+```bash
+just install
+cp .env.example .env  # optional: add your OpenAI API key
+just run-examples
+```
+
+## Usage
+
+
+**Help**
+```bash
+uv run python -m gx_mcp_server --help
+```
+
+**STDIO mode** (default for AI clients):
+```bash
+uv run python -m gx_mcp_server
+```
+
+**HTTP mode** (for web / API clients):
+```bash
+just serve
+# Add basic auth
+uv run python -m gx_mcp_server --http --basic-auth user:pass
+# Add rate limiting
+uv run python -m gx_mcp_server --http --rate-limit 30
+```
+
+**Inspector GUI** (development):
+```bash
+uv run python -m gx_mcp_server --inspect
+# Then in another shell:
+npx @modelcontextprotocol/inspector
+```
+
+## Configuring Maximum CSV File Size
+
+Default limit is **50 MB**. Override via environment variable:
+```bash
+export MCP_CSV_SIZE_LIMIT_MB=200  # 1–1024 MB allowed
+just serve
+```
+
+## Warehouse Connectors
+
+Install extras:
+```bash
+uv pip install -e .[snowflake]
+uv pip install -e .[bigquery]
+```
+
+Use URI prefixes:
+```python
+load_dataset("snowflake://user:pass@account/db/schema/table?warehouse=WH")
+load_dataset("bigquery://project/dataset/table")
+```
+`load_dataset` automatically detects these prefixes and delegates to the appropriate connector.
+
+## Metrics and Tracing
+
+- Prometheus metrics endpoint: `http://localhost:9090/metrics`
+- OpenTelemetry: `uv run python -m gx_mcp_server --http --trace`
+
+## Docker
+
+Build and run the server in Docker:
+
+```bash
+# Build the production image
+just docker-build
+
+# Run the server
+just docker-run
+```
+
+The server will be available at `http://localhost:8000`.
+
+For development, you can build a development image that includes test dependencies and run tests or examples:
+
+```bash
+# Build the development image
+just docker-build-dev
+
+# Run tests
+just docker-test
+
+# Run examples (requires OPENAI_API_KEY in .env file)
+just docker-run-examples
+```
+
+## Development
+
+### Quickstart
+
+```bash
+just install
+cp .env.example .env  # optional: add your OpenAI API key
+just run-examples
+```
+
+
+## Telemetry
+
+Great Expectations sends anonymous usage data to `posthog.greatexpectations.io` by default. Disable:
+```bash
+export GX_ANALYTICS_ENABLED=false
+```
+
+## Current Limitations
+
+- Stores last 100 datasets / results only
+- Concurrency is **in-process** (`asyncio`) – no external queue
+- Expect API evolution while the project stabilises
+
+## Security
+
+- Run behind a reverse proxy (Nginx, Caddy, cloud LB) in production
+- Supply `--ssl-certfile` / `--ssl-keyfile` only if the proxy cannot terminate TLS
+- Anonymous sessions use UUIDv4; persistent apps should use `secrets.token_urlsafe(32)`
+
+## Project Roadmap
+
+See [ROADMAP-v2.md](ROADMAP-v2.md) for upcoming sprints.
+
+## License & Contributing
+
+MIT License – see [CONTRIBUTING.md](CONTRIBUTING.md) for how to help!
+
+## Author
+
+David Front – dfront@gmail.com | GitHub: [davidf9999](https://github.com/davidf9999)
