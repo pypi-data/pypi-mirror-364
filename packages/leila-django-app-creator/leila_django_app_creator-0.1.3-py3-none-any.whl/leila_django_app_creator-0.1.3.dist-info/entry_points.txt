@@ -1,0 +1,2 @@
+[console_scripts]
+django_app = app_creator.cli:main
