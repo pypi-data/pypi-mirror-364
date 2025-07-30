@@ -1,0 +1,3 @@
+[console_scripts]
+p123dav=p123dav.__main__:main
+
