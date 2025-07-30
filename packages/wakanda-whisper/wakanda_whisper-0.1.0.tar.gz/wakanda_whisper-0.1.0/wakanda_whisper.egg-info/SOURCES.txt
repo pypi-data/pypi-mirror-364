@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+wakanda_whisper/__init__.py
+wakanda_whisper/base.py
+wakanda_whisper/languages.py
+wakanda_whisper/version.py
+wakanda_whisper.egg-info/PKG-INFO
+wakanda_whisper.egg-info/SOURCES.txt
+wakanda_whisper.egg-info/dependency_links.txt
+wakanda_whisper.egg-info/requires.txt
+wakanda_whisper.egg-info/top_level.txt
