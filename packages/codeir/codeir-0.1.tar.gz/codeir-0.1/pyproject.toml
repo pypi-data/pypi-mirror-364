@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools", "wheel"]      # ابزارهای لازم برای بیلد
+build-backend = "setuptools.build_meta"
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+[project]
+name = "codeir"
+version = "0.1"
+description = "check codeit.ir"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+  { name = "Codeit", email = "Amir.z.nine.three@gmail.com" }
+]
+dependencies = [
+  # "mcpi",
+  # "pillow"
+  # "opencv-python"
+  # "mediapipe"
+  # "mouse"
+]
+license = { text = "MIT" }
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+[project.urls]
+"Homepage" = "https://codeit.ir"
