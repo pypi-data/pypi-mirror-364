@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "baltech-sdk"
+version = "3.19.04"
+description = "SDK to communicate with Baltech RFID readers."
+authors = ["Baltech AG <info@baltech.de>"]
+readme = "README.md"
+license = "MIT"
+include = [
+    "baltech_sdk/brp_lib/brp_lib.*",
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+typing-extensions = "*"
+
+[tool.mypy]
+strict = true
+python_version = "3.9"
+
+[[tool.mypy.overrides]]
+module = "baltech_sdk.baltech_api"
+warn_unused_ignores = false
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
