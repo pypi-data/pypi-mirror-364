@@ -1,0 +1,2 @@
+[console_scripts]
+dbc2dbf = dbctodbf.__main__:main

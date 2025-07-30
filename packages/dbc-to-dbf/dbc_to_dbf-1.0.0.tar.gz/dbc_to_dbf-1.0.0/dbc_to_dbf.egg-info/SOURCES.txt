@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+dbc_to_dbf.egg-info/PKG-INFO
+dbc_to_dbf.egg-info/SOURCES.txt
+dbc_to_dbf.egg-info/dependency_links.txt
+dbc_to_dbf.egg-info/entry_points.txt
+dbc_to_dbf.egg-info/top_level.txt
+dbctodbf/__init__.py
+dbctodbf/__main__.py
+dbctodbf/blast_decompress.py
+dbctodbf/dbc_decompress.py
