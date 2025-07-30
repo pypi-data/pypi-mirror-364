@@ -1,0 +1,9 @@
+README.md
+setup.py
+keyslide/__init__.py
+keyslide/main.py
+keyslide.egg-info/PKG-INFO
+keyslide.egg-info/SOURCES.txt
+keyslide.egg-info/dependency_links.txt
+keyslide.egg-info/entry_points.txt
+keyslide.egg-info/top_level.txt
