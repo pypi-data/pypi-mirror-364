@@ -1,0 +1,25 @@
+Metadata-Version: 2.4
+Name: caffeinated-whale-cli
+Version: 0.2.3
+Summary: A CLI tool to help manage Frappe Docker instances.
+Author-email: Christopher McKay <mckay.christopher73@outlook.com>
+License: MIT
+Project-URL: Homepage, https://github.com/karotkriss/caffeinated-whale-cli
+Project-URL: Issues, https://github.com/karotkriss/caffeinated-whale-cli/issues
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: System :: Systems Administration
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Intended Audience :: Developers
+Classifier: Environment :: Console
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: docker>=7.1.0
+Requires-Dist: typer>=0.16.0
+Requires-Dist: rich>=14.0.0
+Requires-Dist: questionary>=2.1.0
+Requires-Dist: toml>=0.10.2
+Requires-Dist: peewee>=3.17.0
+Requires-Dist: platformdirs>=4.2.0
