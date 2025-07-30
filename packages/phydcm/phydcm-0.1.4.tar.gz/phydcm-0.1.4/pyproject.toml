@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "phydcm"
+version = "0.1.4"
+description = "A Python package for medical image analysis"
+readme = "README.md"
+license = "MIT"
+authors = [
+    {name = "PhyDCM Team", email = "phydcm.team@outlook.com"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Healthcare Industry", 
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent"
+]
+requires-python = ">=3.8"
+dependencies = [
+    "huggingface_hub>=0.21.4",  # ← لتحميل النموذج تلقائيًا
+    "tensorflow>=2.8.0",        # ← حسب ما كنت تستخدمه في النماذج
+    "numpy>=1.20.0",            # ← غالبًا تستخدمها في المعالجة
+]
+
+[project.urls]
+Documentation = "https://github.com/phydcm/phydcm/wiki"
+"Bug Tracker" = "https://github.com/phydcm/phydcm/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["phydcm*"]
+
+[tool.setuptools.package-data]
+phydcm = [
+    "*.json", 
+    "*.keras",
+    "configs/*.json",
+    "models/*"
+]
