@@ -1,0 +1,30 @@
+Metadata-Version: 2.4
+Name: puzzleandy
+Version: 1.0.16
+License: MIT
+Requires-Dist: numpy
+Requires-Dist: opencv-python
+Description-Content-Type: text/markdown
+
+## Getting Started
+```
+pip install puzzleandy
+```
+
+## Example: Black and White
+```
+import puzzleandy as pa
+
+im = pa.read('example.png')
+im = pa.rgb_to_gray(im)
+pa.show(im)
+```
+
+## Example: Black to Red Gradient Map
+```
+import puzzleandy as pa
+
+im = pa.read('example.png')
+im = pa.black_to_red(im)
+pa.show(im)
+```
