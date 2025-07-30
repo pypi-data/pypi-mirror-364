@@ -1,0 +1,2 @@
+[console_scripts]
+os-flip = os_flip.__main__:main
