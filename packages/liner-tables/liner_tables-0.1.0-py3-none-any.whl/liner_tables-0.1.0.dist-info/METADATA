@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: liner_tables
+Version: 0.1.0
+Summary: Print table
+Author: MrSanZz
+Author-email: drownedmrsanzz@proton.me
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: requires-python
+Dynamic: summary
