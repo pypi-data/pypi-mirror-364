@@ -1,0 +1,114 @@
+OceanCrow Feedback Portal
+
+The `oceancrow-feedback` package is a Python application that provides a feedback portal for the OceanCrow project. It features a graphical user interface (GUI) built with Pygame for displaying feedback and a file-based system to manage feedback stored in JSON files. The package supports updating feedback with replies and is cross-platform, working on Windows, macOS, and Linux.
+
+## Features
+
+- **Graphical Interface**: Launches a Pygame-based UI to display feedback (basic blue screen, customizable for further UI development).
+- **Feedback Management**: Updates feedback entries in JSON files with replies and status changes, using cross-platform file locking to ensure safe concurrent access.
+- **Command-Line Access**: Run the portal or manage feedback via Python scripts.
+- **Scalability**: Designed to handle multiple feedback files and support scalability (e.g., adjustable `player_count`).
+
+## Installation
+
+Install the package from PyPI:
+
+```bash
+pip install oceancrow-feedback
+Requirements
+Python 3.8 or higher
+Dependencies (automatically installed):
+pygame>=2.5.0
+filelock>=3.15.0
+Usage
+Running the Feedback Portal
+Launch the Pygame-based feedback portal:
+oceancrow-feedback
+This opens a window (currently a blue screen) where you can view or interact with feedback. Customize the UI by modifying the display_ui function in feedback.py.
+Managing Feedback Programmatically
+Update feedback in a JSON file using Python:
+from oceancrow_feedback.feedback import update_feedback
+
+# Example: Update feedback with ID 1 in feedback.json
+update_feedback(["feedback.json"], 1, "Thank you for your feedback!")
+The JSON file (feedback.json) should have a structure like:
+[
+    {
+        "id": 1,
+        "text": "User feedback here",
+        "status": "new"
+    },
+    {
+        "id": 2,
+        "text": "Another feedback",
+        "status": "new"
+    }
+]
+Running update_feedback adds a reply field and sets status to "replied" for the specified ID.
+For Non-Python Developers (C++/C#)
+This is a Python package distributed via PyPI, so C++/C# developers cannot directly import it. However, you can interact with it in two ways:
+Command-Line Interface (CLI): Run the portal or Python scripts via system calls. Example in C++:
+#include <cstdlib>
+int main() {
+    system("oceancrow-feedback");
+    return 0;
+}
+Example in C#:
+using System.Diagnostics;
+class Program {
+    static void Main() {
+        Process.Start("oceancrow-feedback");
+    }
+}
+Embedded Python: Embed a Python interpreter to call package functions. This requires Python installed and oceancrow-feedback installed via pip. Example in C# using Python.NET:
+using Python.Runtime;
+class Program {
+    static void Main() {
+        using (Py.GIL()) {
+            dynamic feedback = Py.Import("oceancrow_feedback.feedback");
+            feedback.update_feedback(new[] { "feedback.json" }, 1, "Thank you!");
+        }
+    }
+}
+See Python.NET (C#) or Python.h (C++) for setup details.
+Development
+Project Structure
+oceancrow_feedback/
+├── oceancrow_feedback/
+│ ├── __init__.py
+│ ├── feedback.py
+│ └── __main__.py
+├── tests/
+│ ├── __init__.py
+│ └── test_feedback.py
+├── LICENSE
+├── README.md
+├── pyproject.toml
+├── setup.cfg
+├── .pytest.ini
+└── MANIFEST.in
+feedback.py: Core logic for the feedback portal and file management.
+test_feedback.py: Unit tests for feedback functionality.
+LICENSE: MIT License for open-source usage.
+Running Tests
+Install pytest:
+pip install pytest
+Run tests:
+pytest tests/
+Building and Publishing
+To build and publish to PyPI (for maintainers):
+pip install build twine
+python -m build
+twine check dist/*
+twine upload --repository testpypi dist/* # TestPyPI
+twine upload dist/* # PyPI
+Contributing
+Contributions are welcome! Please:
+Fork the repository at github.com/OceanCrow-TT/oceancrow_feedback.
+Create a feature branch (git checkout -b feature/your-feature).
+Submit a pull request with clear descriptions.
+Report issues at github.com/OceanCrow-TT/oceancrow_feedback/issues.
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
+Contact
+For questions, contact Sheldon Kenny Salmon at your x : oceancrowtt 

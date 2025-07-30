@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "oceancrow-feedback"
+version = "0.1.0"
+description = "A feedback portal for OceanCrow using Pygame"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [
+    { name = "Sheldon Kenny Salmon", email = "OceanCrowtt@gmail.com" }
+]
+license = "MIT"
+dependencies = [
+    "pygame>=2.5.0",
+    "filelock>=3.15.0",
+]
+dynamic = ["urls"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+[project.scripts]
+oceancrow-feedback = "oceancrow_feedback.src.feedback:run_feedback_portal"
+
+[tool.setuptools.packages.find]
+where = ["oceancrow_feedback/src"] # Look for packages only in src under oceancrow_feedback
+exclude = ["tests*"] # Exclude the tests directory from being treated as a package
+
+[tool.setuptools.package-data]
+"oceancrow_feedback" = ["*.py"] # Include Python files in the package

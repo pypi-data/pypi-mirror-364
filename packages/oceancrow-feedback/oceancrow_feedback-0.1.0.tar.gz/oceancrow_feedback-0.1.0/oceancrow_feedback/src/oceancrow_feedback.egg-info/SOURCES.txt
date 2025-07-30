@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+oceancrow_feedback/src/oceancrow_feedback.egg-info/PKG-INFO
+oceancrow_feedback/src/oceancrow_feedback.egg-info/SOURCES.txt
+oceancrow_feedback/src/oceancrow_feedback.egg-info/dependency_links.txt
+oceancrow_feedback/src/oceancrow_feedback.egg-info/entry_points.txt
+oceancrow_feedback/src/oceancrow_feedback.egg-info/requires.txt
+oceancrow_feedback/src/oceancrow_feedback.egg-info/top_level.txt
+oceancrow_feedback/src/oceancrow_feedback.egg-info/PKG-INFO
+oceancrow_feedback/src/oceancrow_feedback.egg-info/SOURCES.txt
+oceancrow_feedback/src/oceancrow_feedback.egg-info/dependency_links.txt
+oceancrow_feedback/src/oceancrow_feedback.egg-info/entry_points.txt
+oceancrow_feedback/src/oceancrow_feedback.egg-info/requires.txt
+oceancrow_feedback/src/oceancrow_feedback.egg-info/top_level.txt
+tests/test_feedback.py
