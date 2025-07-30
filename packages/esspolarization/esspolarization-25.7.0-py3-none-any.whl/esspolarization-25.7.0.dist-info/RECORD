@@ -1,0 +1,14 @@
+ess/polarization/__init__.py,sha256=LBE4gywSLl-xKBx5p-Xw2iw3uy2BofuPZF3-xfenc24,2078
+ess/polarization/base.py,sha256=Er4Y0qDdIFufOVcH_G0-YEXY8pG5-gh0f9n_l2QEUZo,7664
+ess/polarization/correction.py,sha256=We6ojGv7d8pmTAD3W3hpIh42QgHmwp_SzJo-0suUZLM,10659
+ess/polarization/data.py,sha256=5Ulxf27FBrcro8ixNVGCSaSM6gF7VS0rZl4_8eL7dHc,665
+ess/polarization/he3.py,sha256=OYweCl8kFFsjUNeNOXo-hM8z7qVCGZM3GHAkvw8QP2E,19802
+ess/polarization/py.typed,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+ess/polarization/supermirror.py,sha256=iMhwBAotMtuPIzcT_0PmdoiRh05o3a7FKA2dM8rnRdU,4354
+ess/polarization/types.py,sha256=06BG2rbE748bdr_ZP7i0UF9LjLg1PSDyipoxb2ZZa2U,3331
+ess/polarization/zoom.py,sha256=3kAMETNEnA7ZtKCYWhMXOIq8-lt0gkRrHQO24Q3uDWs,7710
+esspolarization-25.7.0.dist-info/licenses/LICENSE,sha256=fCqnkzCwkGneGtgOidkO2b3ed6SGZT0yhuworuJG0K0,1553
+esspolarization-25.7.0.dist-info/METADATA,sha256=r75cCmkCquAFXlkXI_HwQM2eTKj-UcCo4tphMP8uG70,1970
+esspolarization-25.7.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+esspolarization-25.7.0.dist-info/top_level.txt,sha256=0JxTCgMKPLKtp14wb1-RKisQPQWX7i96innZNvHBr-s,4
+esspolarization-25.7.0.dist-info/RECORD,,
