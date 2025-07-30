@@ -1,0 +1,15 @@
+anomalytda_client/__init__.py,sha256=Jn95d_M5kD-A_q9kcWZFgbeGOceIlDR7uDLEzixCN6E,336
+anomalytda_client/constants.py,sha256=UyUB43mCrFkKifs10CVP-HkR9lOMvAp9yWou_HPnuQ0,391
+anomalytda_client/files.py,sha256=Ib79GGymQqY2TfBFBM2wm8DCO1lr7exfTM1DQPtk0TY,513
+anomalytda_client/internal/__init__.py,sha256=kHBQt6m3GQp9pemWAFleP0QGitwq-ty-EuIMrO0HJoM,428
+anomalytda_client/internal/_anomaly.py,sha256=uIBRIugG4D_Pf0GKoqE3lVs6lTMwr-vJV1VlYEBblhs,10511
+anomalytda_client/internal/_anomaly_v2.py,sha256=X_7a73XKoWCcQC9T9piXm8aRHrFWAUxP28k4qvQ-Q90,8304
+anomalytda_client/internal/_detection.py,sha256=itqZplo644EI9M2d6ZcO8TwLRHc6f3UJ-VzObzEVggg,9579
+anomalytda_client/internal/_grid_crop.py,sha256=dZS3WDXzvaSmMmWqDZe8_slgBkdon0HTajdVe-npR-U,843
+anomalytda_client/internal/_logging.py,sha256=EqkYC64KINzvYIteoj_H2jDldBB05_Wvz-IqH5II3S8,742
+anomalytda_client/internal/_model.py,sha256=J_GBME6FocvjYWOt-wpBske3YaiYrbvlb_swwMCAxvY,654
+anomalytda_client/internal/_transforms.py,sha256=GN27IsxouTIkckvR41jPIOGVOsvBYV0za8SXqIHGQuA,3367
+anomalytda_client/tools.py,sha256=xN7K4VDdBcsTKdEyGLMuznuZC0UyZ4Z4Qq08g7Vnm1w,3391
+anomalytda_client-0.2.1.dist-info/METADATA,sha256=NNmacIu0N8jOBMsA57IjD015AzqxAzYqKPorPv9SMT8,5449
+anomalytda_client-0.2.1.dist-info/WHEEL,sha256=Zb28QaM1gQi8f4VCBhsUklF61CTlNYfs9YAZn-TOGFk,88
+anomalytda_client-0.2.1.dist-info/RECORD,,
