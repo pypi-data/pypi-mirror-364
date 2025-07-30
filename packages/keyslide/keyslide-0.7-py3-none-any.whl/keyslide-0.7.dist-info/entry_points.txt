@@ -1,0 +1,3 @@
+[console_scripts]
+keyslide.decrypt = keyslide:cli_decrypt
+keyslide.encrypt = keyslide:cli_encrypt
