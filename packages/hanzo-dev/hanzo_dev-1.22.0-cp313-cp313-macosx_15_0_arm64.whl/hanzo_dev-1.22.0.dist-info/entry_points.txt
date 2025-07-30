@@ -1,0 +1,3 @@
+[console_scripts]
+hanzo-dev=ide.cli.main:main
+
