@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: dj-set-downloader
+Version: 0.1.1
+Summary: Python client for DJ Set Downloader API
+Project-URL: Homepage, https://github.com/jaki95/dj-set-downloader
+Project-URL: Repository, https://github.com/jaki95/dj-set-downloader.git
+Requires-Python: >=3.10
+Requires-Dist: pydantic>=2.11.7
+Requires-Dist: python-dateutil
+Requires-Dist: typing-extensions>=4.0.0
+Requires-Dist: urllib3>=1.25.3
