@@ -1,0 +1,2 @@
+[console_scripts]
+memetextgen = memetextgen.__main__:main

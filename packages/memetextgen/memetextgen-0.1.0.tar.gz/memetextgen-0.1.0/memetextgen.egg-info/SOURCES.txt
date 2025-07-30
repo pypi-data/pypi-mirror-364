@@ -1,0 +1,13 @@
+LICENSE
+README.md
+setup.py
+memetextgen/__init__.py
+memetextgen/__main__.py
+memetextgen/meme.py
+memetextgen.egg-info/PKG-INFO
+memetextgen.egg-info/SOURCES.txt
+memetextgen.egg-info/dependency_links.txt
+memetextgen.egg-info/entry_points.txt
+memetextgen.egg-info/top_level.txt
+tests/__init__.py
+tests/test_meme.py
