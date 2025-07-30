@@ -1,0 +1,8 @@
+Metadata-Version: 2.4
+Name: mseep-cli
+Version: 0.1.0
+Summary: MCP (Model Context Protocol) server that proxies requests to the MseeP AI Helper app
+Project-URL: Homepage, https://mseep.ai/
+Project-URL: Repository, https://github.com/skydeckai/mseep-cli
+Requires-Python: >=3.8
+Requires-Dist: mcp>=1.12.2

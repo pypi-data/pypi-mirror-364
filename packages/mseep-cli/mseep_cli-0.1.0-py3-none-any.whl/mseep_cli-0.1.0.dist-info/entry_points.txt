@@ -1,0 +1,2 @@
+[console_scripts]
+mseep-cli = mseep_cli.server:main
