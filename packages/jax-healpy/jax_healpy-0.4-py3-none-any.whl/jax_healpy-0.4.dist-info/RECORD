@@ -1,0 +1,12 @@
+jax_healpy/__init__.py,sha256=Y2AkQQ2C81lbC9GLkYad2FxLhQYVsS6AecZ90SSpaOE,2521
+jax_healpy/_query_disc.py,sha256=XA4ErV8F3iVq-xmzuSi_tR-huCwRBmIdLJsvLhqti3E,9505
+jax_healpy/pixelfunc.py,sha256=_3KAytE74TzbaMth_C6ZrAGtSbayBLhpmexYbEe9Q48,65501
+jax_healpy/sphtfunc.py,sha256=fDBgTypGI7wAEu8yc1Ygii7YLUaw3Wv5bYQmsTf36bc,11654
+jax_healpy/clustering/__init__.py,sha256=tJ2aCdwhVcMdbT8cZyMcK-k_2CROEdH0QXO4hvn9AsY,710
+jax_healpy/clustering/_clustering.py,sha256=sMa3P6TO0iYrnG5EwDj8LCEUYyFZR1s1hcZyjYi3b30,10400
+jax_healpy/clustering/_kmeans.py,sha256=l38VTZEXK6sJw-4pX1j4O2OYiyRert-LBgL4DnXKNmY,12289
+jax_healpy-0.4.dist-info/LICENSE,sha256=OXLcl0T2SZ8Pmy2_dmlvKuetivmyPd5m1q-Gyd-zaYY,35149
+jax_healpy-0.4.dist-info/METADATA,sha256=aoDxQt-ZPp4v8t43y30dR58Ip3h4esMr6nsDQJyPetk,47117
+jax_healpy-0.4.dist-info/WHEEL,sha256=In9FTNxeP60KnTkGw7wk6mJPYd_dQSjEZmXdBdMCI-8,91
+jax_healpy-0.4.dist-info/top_level.txt,sha256=2KVOM8NNn2pObd_FjV7TloHIAWxwTGnde65uEuUt124,11
+jax_healpy-0.4.dist-info/RECORD,,
