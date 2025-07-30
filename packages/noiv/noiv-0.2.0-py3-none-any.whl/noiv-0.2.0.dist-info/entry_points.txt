@@ -1,0 +1,2 @@
+[console_scripts]
+noiv = cli:app
