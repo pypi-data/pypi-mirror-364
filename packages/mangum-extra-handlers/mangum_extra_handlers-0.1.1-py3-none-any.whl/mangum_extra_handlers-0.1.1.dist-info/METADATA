@@ -1,0 +1,37 @@
+Metadata-Version: 2.4
+Name: mangum_extra_handlers
+Version: 0.1.1
+Summary: Extra handlers for Mangum
+Author-email: SirPaulO <me@sirpauloliver.com>
+License: MIT License
+Project-URL: Homepage, https://github.com/SirPaulO/mangum_extra_handlers
+Project-URL: Bug Tracker, https://github.com/SirPaulO/mangum_extra_handlers/issues
+Project-URL: Repository, https://github.com/SirPaulO/mangum_extra_handlers.git
+Keywords: fastapi,mangum,hamdler,sqs,sns,eventbridge,websocket
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: mangum~=0.19.0
+
+# Mangum extra handlers
+
+An extra set of [Mangum](https://github.com/jordaneremieff/mangum) handlers for AWS SQS, SNS and EventBridge services. 
+
+## Installation
+
+```console
+$ pip install mangum-extra-handlers
+```
+
+
+## Example
+
+```python
+from mangum_extra_handlers import EventBridgeHandler, SNSHandler, SQSHandler
+
+...
+
+handler = Mangum(app, lifespan="off", custom_handlers=[SNSHandler, SQSHandler, EventBridgeHandler])
+```
