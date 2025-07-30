@@ -1,0 +1,145 @@
+Metadata-Version: 2.4
+Name: bbox-annotation-tools
+Version: 1.0.1
+Summary: Bounding Box Annotation Editing and Analysis Tools
+Home-page: https://github.com/LEEYH205/bbox-annotation-tools
+Author: LEEYH205
+Author-email: LEEYH205 <ejrdkachry@gmail.com>
+Maintainer-email: LEEYH205 <ejrdkachry@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/LEEYH205/bbox-annotation-tools
+Project-URL: Repository, https://github.com/LEEYH205/bbox-annotation-tools
+Project-URL: Bug Tracker, https://github.com/LEEYH205/bbox-annotation-tools/issues
+Keywords: bbox,annotation,computer-vision,image-processing,drug-detection
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Scientific/Engineering :: Image Processing
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: opencv-python>=4.5.0
+Requires-Dist: numpy>=1.19.0
+Requires-Dist: matplotlib>=3.3.0
+Requires-Dist: Pillow>=8.0.0
+Dynamic: author
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+
+# Bounding Box Annotation Editing Tools
+
+A GUI tool for editing and analyzing bounding box annotations of drug images.
+
+## Main Features
+
+### 1. Bounding Box Editor (BBoxEditor)
+- Edit COCO format annotation files
+- Draw bounding boxes with mouse drag
+- Compare and analyze existing annotations
+- Manage annotations grouped by drug codes
+
+### 2. Drug Code Viewer (DrugCodeViewer)
+- View images and annotations by drug codes
+- Analyze bounding box overlaps
+- Analyze annotation mismatches
+
+## Installation
+
+### 1. Install from Git
+```bash
+git clone https://github.com/LEEYH205/bbox-annotation-tools.git
+cd drug_obj_detection
+pip install -e .
+```
+
+### 2. Install from PyPI (after release)
+```bash
+pip install bbox-annotation-tools
+```
+
+## Usage
+
+### Run GUI Tools
+```bash
+# Bounding Box Editor
+bbox-editor
+
+# Drug Code Viewer
+drug-viewer
+```
+
+### Use in Python
+```python
+from bbox_tools import BBoxEditor, DrugCodeViewer
+import tkinter as tk
+
+# Bounding Box Editor
+root = tk.Tk()
+editor = BBoxEditor(root)
+root.mainloop()
+
+# Drug Code Viewer
+root = tk.Tk()
+viewer = DrugCodeViewer(root)
+root.mainloop()
+```
+
+## Project Structure
+
+```
+drug_obj_detection/
+├── bbox_tools/                    # Main package
+│   ├── __init__.py               # Package initialization
+│   ├── bbox_gui_editor.py        # Bounding box editor
+│   ├── drug_code_viewer.py       # Drug code viewer
+│   └── config.py                 # Configuration management
+├── tests/                        # Test files
+│   ├── __init__.py
+│   └── test_imports.py
+├── .github/workflows/            # GitHub Actions
+│   └── build-and-test.yml
+├── setup.py                      # Package configuration
+├── pyproject.toml                # Modern package configuration
+├── requirements.txt              # Dependencies
+├── README.md                     # Project description
+├── LICENSE                       # MIT License
+├── .gitignore                    # Git ignore file
+├── MANIFEST.in                   # Package include file
+├── build_and_distribute.py       # Distribution script
+```
+
+## Dependencies
+
+- Python 3.7+
+- OpenCV (opencv-python)
+- NumPy
+- Matplotlib
+- Pillow (PIL)
+- tkinter (Python built-in library)
+
+## License
+
+MIT License
+
+## Contributing
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## Contact
+
+- Email: ejrdkachry@gmail.com
+- Project Link: https://github.com/LEEYH205/bbox-annotation-tools 
