@@ -1,0 +1,10 @@
+README.md
+setup.py
+evatygram/__init__.py
+evatygram/bot.py
+evatygram/session_generator.py
+evatygram.egg-info/PKG-INFO
+evatygram.egg-info/SOURCES.txt
+evatygram.egg-info/dependency_links.txt
+evatygram.egg-info/requires.txt
+evatygram.egg-info/top_level.txt

@@ -1,0 +1,25 @@
+Metadata-Version: 2.4
+Name: evatygram
+Version: 0.1.0
+Summary: مكتبة توليد جلسات تيليجرام مثل Telethon و Pyrogram
+Home-page: https://github.com/marwan123/evatygram
+Author: Извращенец
+Author-email: marwanalknah017@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: Telethon
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# evatygram
+
+مكتبة لتوليد string session من Telegram باستخدام Telethon.
