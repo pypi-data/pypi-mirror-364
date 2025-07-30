@@ -1,0 +1,560 @@
+Metadata-Version: 2.4
+Name: physionet-mcp
+Version: 0.1.0.dev20
+Summary: PhysioNet MCP Server for accessing physiological databases
+Project-URL: Homepage, https://github.com/yourusername/physionetmcp
+Project-URL: Repository, https://github.com/yourusername/physionetmcp
+Project-URL: Issues, https://github.com/yourusername/physionetmcp/issues
+Author-email: Your Name <your.email@example.com>
+License: MIT License
+        
+        Copyright (c) 2025 Pedro Moreira
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+License-File: LICENSE
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Python: >=3.10
+Requires-Dist: aiofiles>=23.2.0
+Requires-Dist: boto3>=1.34.0
+Requires-Dist: duckdb>=0.9.0
+Requires-Dist: fastmcp>=0.2.0
+Requires-Dist: httpx>=0.26.0
+Requires-Dist: polars>=0.20.0
+Requires-Dist: pyarrow>=14.0.0
+Requires-Dist: pydantic>=2.5.0
+Requires-Dist: requests>=2.31.0
+Requires-Dist: rich>=13.7.0
+Requires-Dist: typer>=0.9.0
+Requires-Dist: wfdb>=4.1.0
+Provides-Extra: dev
+Requires-Dist: black>=23.0.0; extra == 'dev'
+Requires-Dist: mypy>=1.7.0; extra == 'dev'
+Requires-Dist: pytest-asyncio>=0.21.0; extra == 'dev'
+Requires-Dist: pytest>=7.4.0; extra == 'dev'
+Requires-Dist: ruff>=0.1.0; extra == 'dev'
+Description-Content-Type: text/markdown
+
+# PhysioNet MCP Server
+
+A comprehensive Model Context Protocol (MCP) server for accessing and querying PhysioNet's 200+ physiological databases. Automatically downloads datasets, converts them to efficient storage formats (DuckDB/Parquet), and provides high-level query tools through Claude Desktop.
+
+## 🚨 **Important: Development vs Production Setup**
+
+This repository provides the **code blueprint** for a PhysioNet MCP server. There are two ways to use it:
+
+### 📦 **Production Setup** (Simple - after PyPI publishing)
+Once published to PyPI, users get the streamlined experience:
+```json
+{
+  "command": "uv",
+  "args": ["run", "--with", "physionetmcp", "physionetmcp", "run"]
+}
+```
+✅ **Pros**: One-line installation, automatic updates, no local setup  
+❌ **Cons**: Requires PyPI publishing first
+
+### 🛠️ **Development Setup** (More steps - for testing/development)
+Before PyPI publishing, or for custom modifications:
+```json
+{
+  "command": "python", 
+  "args": ["/path/to/your/physionetmcp/cli.py", "run"]
+}
+```
+✅ **Pros**: Full control, immediate testing, no publishing needed  
+❌ **Cons**: Manual setup, absolute paths required
+
+**📚 See [DEVELOPMENT.md](DEVELOPMENT.md) for development setup and [PUBLISHING.md](PUBLISHING.md) for PyPI publishing steps.**
+
+---
+
+## 🚀 Quick Start
+
+### 1. Installation
+
+**Production (after PyPI publishing):**
+```bash
+# Once published to PyPI, users can install with:
+uv add physionetmcp
+# Or: pip install physionetmcp
+```
+
+**Development/Testing (before PyPI):**
+```bash
+# Clone and install locally for development
+git clone https://github.com/yourusername/physionetmcp
+cd physionetmcp
+uv venv && uv sync
+uv pip install -e .
+```
+
+### 2. Generate MCP Configuration
+
+```bash
+physionetmcp init-config
+```
+
+This creates a `claude_config.json` file with example MCP configuration.
+
+### 3. Configure Claude Desktop
+
+Add the configuration to your Claude Desktop MCP settings file:
+
+**Location:**
+- **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+
+**Basic Configuration (Production - requires PyPI publishing):**
+```json
+{
+  "mcpServers": {
+    "physionetmcp": {
+      "command": "uv", 
+      "args": ["run", "--with", "physionetmcp", "physionetmcp", "run"],
+      
+      "db": ["aumc", "mitdb", "ptb-xl"],
+      "dataRoot": "~/physionet_data",
+      "storageFormat": "duckdb"
+    }
+  }
+}
+```
+
+**Development Configuration (before PyPI publishing):**
+```json
+{
+  "mcpServers": {
+    "physionet-dev": {
+      "command": "python",
+      "args": ["/full/path/to/physionetmcp/cli.py", "run"],
+      
+      "db": ["aumc", "mitdb", "ptb-xl"],
+      "dataRoot": "~/physionet_data",
+      "storageFormat": "duckdb"
+    }
+  }
+}
+```
+
+**With Authentication (for MIMIC-IV, eICU, etc.):**
+```json
+{
+  "mcpServers": {
+    "physionetmcp": {
+      "command": "uv",
+      "args": ["run", "--with", "physionetmcp", "physionetmcp", "run"],
+      
+      "db": ["mimic-iv", "aumc", "eicu"],
+      "dataRoot": "~/physionet_data", 
+      "storageFormat": "duckdb",
+      
+      "env": {
+        "PHYSIONET_USERNAME": "your_physionet_username",
+        "PHYSIONET_PASSWORD": "your_physionet_password"
+      }
+    }
+  }
+}
+```
+
+**Advanced Configuration:**
+```json
+{
+  "mcpServers": {
+    "physionetmcp": {
+      "command": "uv",
+      "args": ["run", "--with", "physionetmcp", "physionetmcp", "run"],
+      
+      "db": ["mimic-iv", "aumc", "eicu", "mitdb", "ptb-xl"],
+      "dataRoot": "~/physionet_data",
+      "storageFormat": "duckdb",
+      
+      "maxConcurrentDownloads": 2,
+      "queryTimeoutSeconds": 300,
+      "maxResultRows": 5000,
+      "enableQueryCache": true,
+      "compressData": true,
+      
+      "databaseConfigs": {
+        "mimic-iv": {
+          "downloadOptions": {
+            "includeNotes": false,
+            "sampleSize": 1000
+          }
+        }
+      },
+      
+      "env": {
+        "PHYSIONET_USERNAME": "your_username",
+        "PHYSIONET_PASSWORD": "your_password"
+      }
+    }
+  }
+}
+```
+
+> **How it works (Production)**: Claude Desktop spawns `uv` as a child process, which automatically downloads the `physionetmcp` package from PyPI, creates an isolated environment in `~/.cache/uv`, and runs the server. All communication happens over stdio using JSON-RPC 2.0 messages.
+
+> **Development**: Before PyPI publishing, use direct Python execution with absolute paths to your local development directory.
+
+### 4. Testing with Claude Desktop
+
+**Step 1: Restart Claude Desktop**
+After updating the configuration file, completely restart Claude Desktop.
+
+**Step 2: Verify Connection**
+Look for a 🔨 (hammer) icon in the message input box, indicating MCP tools are available.
+
+**Step 3: Test with Sample Queries**
+
+Start with **open-access databases** (no credentials needed):
+```
+List available PhysioNet databases and their status
+```
+
+```
+Show me the schema for the AUMC database
+```
+
+```
+Query the MIT-BIH database: SELECT * FROM records LIMIT 5
+```
+
+For **testing with MIMIC demo data**:
+```json
+{
+  "db": ["mimic-iv-demo", "aumc"],
+  "dataRoot": "~/physionet_data"
+}
+```
+
+```
+Analyze patient demographics in the MIMIC-IV demo dataset
+```
+
+```
+Compare admission types between MIMIC demo and AUMC: 
+SELECT 'MIMIC' as source, admission_type, COUNT(*) FROM admissions GROUP BY admission_type
+UNION ALL  
+SELECT 'AUMC' as source, admission_type, COUNT(*) FROM aumc_admissions GROUP BY admission_type
+```
+
+**Step 4: Check Logs (if issues occur)**
+- **macOS**: `tail -f ~/Library/Logs/Claude/mcp*.log`
+- **Windows**: Check `%LOCALAPPDATA%\Claude\Logs\mcp.log`
+
+## 🏗️ Architecture
+
+### Core Components
+
+1. **Database Registry** (`database_registry.py`)
+   - Comprehensive metadata for 200+ PhysioNet databases
+   - Access requirements, download methods, file structures
+   - Extensible for new databases
+
+2. **Download Manager** (`download_manager.py`)
+   - Multi-method downloading: wget, AWS S3, WFDB
+   - Concurrent downloads with progress tracking
+   - Resume support and error recovery
+
+3. **Storage Converter** (`storage_converter.py`)
+   - Converts raw data to DuckDB/Parquet
+   - Efficient columnar storage with compression
+   - Schema detection and optimization
+
+4. **MCP Server** (`server.py`)
+   - FastMCP-based tools for querying
+   - SQL interface with safety limits
+   - Predefined analysis templates
+
+### Key Features
+
+- **Universal Database Support**: Works with all PhysioNet database types
+- **Efficient Storage**: Converts CSV/text to optimized formats
+- **Secure Credentials**: Environment variable authentication
+- **Smart Caching**: Only download/convert once
+- **Query Safety**: Built-in limits and timeouts
+- **Rich CLI**: Standalone tools for database management
+
+## 🗄️ Supported Databases
+
+### 🟢 Open Access (No Credentials Required)
+Perfect for testing and getting started:
+- **AUMC**: 23K Amsterdam UMC patients, 12.5GB
+- **MIT-BIH Arrhythmia**: Classic arrhythmia database, 48 records  
+- **PTB-XL**: 21K ECG records, 13.8GB
+- **PTB Diagnostic**: Clinical ECG database, 549 records
+
+### 🧪 Demo/Sample Datasets
+For quick testing without large downloads:
+- **MIMIC-IV Demo**: Small subset of MIMIC-IV (100 patients, ~50MB)
+- **MIMIC-III Demo**: Sample from MIMIC-III (100 patients, ~20MB)
+
+### 🔐 Credentialed Access (PhysioNet Account Required)
+- **MIMIC-IV**: 300K+ ICU patients, 45GB
+- **MIMIC-III**: 46K ICU patients, 6.3GB  
+- **eICU**: 200K+ multi-center ICU data, 23GB
+- **MIMIC-IV Waveforms**: High-resolution signals, 18TB
+
+### 🔒 Protected Access (Special Approval Required)
+- Various research-restricted datasets
+
+### 📈 Specialized Collections
+- Sleep studies (SLPDB)
+- Maternal-fetal (ADFECGDB) 
+- Pediatric datasets
+- **200+ databases total** in registry
+
+> **Start with open-access databases** like AUMC or MIT-BIH to test your setup before configuring credentials for larger datasets.
+
+## 🛠️ CLI Tools
+
+Beyond the MCP server, includes standalone tools:
+
+```bash
+# List available databases
+physionetmcp list-dbs --access-type open --max-size 5
+
+# Download a database
+physionetmcp download aumc --data-root ~/physionet
+
+# Convert to efficient format
+physionetmcp convert aumc --format duckdb
+
+# Test queries
+physionetmcp test-query aumc "SELECT COUNT(*) FROM patients"
+
+# Get database info
+physionetmcp info mimic-iv
+```
+
+## 🔧 Configuration Options
+
+### Basic Configuration
+```json
+{
+  "db": ["mimic-iv", "aumc"],           // Databases to enable
+  "dataRoot": "~/physionet_data",       // Storage location
+  "storageFormat": "duckdb",            // duckdb, parquet, or both
+  "auth": {
+    "username": "physionet_user",
+    "password": "secret"
+  }
+}
+```
+
+### Advanced Options
+```json
+{
+  "maxConcurrentDownloads": 2,          // Parallel downloads
+  "queryTimeoutSeconds": 300,           // Query timeout
+  "maxResultRows": 10000,               // Result limit
+  "enableQueryCache": true,             // Cache results
+  "compressData": true,                 // Enable compression
+  
+  "databaseConfigs": {
+    "mimic-iv": {
+      "downloadOptions": {
+        "includeNotes": false,          // Skip large note tables
+        "sampleSize": 1000              // Download subset
+      }
+    }
+  }
+}
+```
+
+## 🔐 Authentication
+
+### Getting PhysioNet Credentials
+
+1. **Create Account**: Visit [PhysioNet.org](https://physionet.org) and register
+2. **Complete Training**: Required for credentialed databases
+3. **Request Access**: Apply for specific databases (approval may take days)
+
+### Setting Up Authentication
+
+**Method 1: Environment Variables (Recommended)**
+```json
+{
+  "mcpServers": {
+    "physionetmcp": {
+      "command": "uv",
+      "args": ["run", "--with", "physionetmcp", "physionetmcp", "run"],
+      "db": ["mimic-iv", "aumc"],
+      "env": {
+        "PHYSIONET_USERNAME": "your_username", 
+        "PHYSIONET_PASSWORD": "your_password"
+      }
+    }
+  }
+}
+```
+
+**Method 2: System Environment Variables**
+```bash
+# Add to ~/.bashrc, ~/.zshrc, etc.
+export PHYSIONET_USERNAME="your_username"
+export PHYSIONET_PASSWORD="your_password"
+```
+
+### Access Types
+- **🟢 Open**: No credentials (AUMC, MIT-BIH) - start here!
+- **🔐 Credentialed**: PhysioNet account (MIMIC, eICU) - ~3-5 days approval
+- **🔒 Protected**: Special approval (restricted datasets) - weeks/months approval
+
+### Troubleshooting Authentication
+- Credentials are only used when downloading credentialed databases
+- Open databases work without any setup
+- Check the logs if downloads fail: credential issues show specific error messages
+
+## 📊 MCP Tools
+
+The server provides these tools to Claude:
+
+### `query_sql`
+Execute SQL queries against databases
+```sql
+SELECT admission_type, COUNT(*) 
+FROM admissions 
+GROUP BY admission_type
+```
+
+### `list_databases`
+Get status and metadata for all configured databases
+
+### `get_database_schema`
+Retrieve table and column information
+
+### `prepare_database`
+Download and convert a database for querying
+
+### `run_analysis`
+Execute predefined analyses:
+- `patient_summary`: Demographics overview
+- `admission_stats`: Hospital admission patterns
+- `vital_trends`: Vital sign measurements
+
+### `get_patient_info`
+Retrieve comprehensive patient records
+
+## 🏃‍♂️ Development
+
+### Project Structure
+```
+physionetmcp/
+├── __init__.py           # Package initialization
+├── server.py             # Main MCP server
+├── cli.py                # Command-line interface
+├── config.py             # Configuration management
+├── database_registry.py  # Database metadata
+├── download_manager.py   # Download handling
+└── storage_converter.py  # Format conversion
+```
+
+### Adding New Databases
+
+1. Add entry to `DATABASE_REGISTRY` in `database_registry.py`:
+```python
+"new-database": DatabaseInfo(
+    name="new-database",
+    title="New Database Title",
+    description="Description of the database",
+    access_type=AccessType.OPEN,
+    download_method=DownloadMethod.WGET,
+    base_url="https://physionet.org/files/newdb/1.0/",
+    size_gb=2.5,
+    main_tables=["patients", "records"]
+)
+```
+
+2. Test download and conversion:
+```bash
+physionetmcp download new-database
+physionetmcp convert new-database
+```
+
+### Custom Download Methods
+
+For databases requiring special handling, implement custom download logic in `download_manager.py`:
+
+```python
+async def _download_custom(self, db_info: DatabaseInfo, target_path: Path) -> None:
+    # Custom download implementation
+    pass
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Add tests for new functionality
+4. Update documentation
+5. Submit a pull request
+
+### Database Additions Welcome!
+We especially welcome contributions to expand database coverage. PhysioNet has 200+ databases - help us support them all!
+
+## 📄 License
+
+MIT License - see LICENSE file for details.
+
+## 🙋‍♂️ Support
+
+- GitHub Issues: [Report bugs or request features](https://github.com/yourusername/physionetmcp/issues)
+- Documentation: [Full API documentation](https://physionetmcp.readthedocs.io)
+- PhysioNet: [Database documentation](https://physionet.org)
+
+## 🔗 Related Projects
+
+- [PhysioNet](https://physionet.org): The source of all databases
+- [WFDB Python](https://github.com/MIT-LCP/wfdb-python): Waveform database tools
+- [FastMCP](https://github.com/jlowin/fastmcp): MCP framework used
+- [DuckDB](https://duckdb.org): Analytical database engine
+
+---
+
+**Happy analyzing! 📈**
+
+## Features
+
+### 🔥 **Real-time Download Progress**
+- Visual progress bars showing download percentage, speed, and ETA
+- File-by-file progress tracking for large datasets
+- Smart progress estimation based on dataset size and file counts
+
+### 💾 **Intelligent Caching System**
+- Persistent dataset storage with automatic cache validation
+- Cache integrity verification and management tools
+- Efficient reuse of previously downloaded data
+- Cache statistics and cleanup utilities
+
+### 🚀 **Enhanced MCP Tools**
+- `get_download_progress()` - Monitor real-time download status
+- `get_cache_info()` - View cache statistics and disk usage
+- `manage_cache()` - Clear, verify, or get info about cached datasets
+- `download_database()` - Download with progress tracking
+
+### 📊 **Multi-Database Support**
