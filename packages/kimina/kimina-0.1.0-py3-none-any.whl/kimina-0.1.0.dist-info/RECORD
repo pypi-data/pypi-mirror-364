@@ -1,0 +1,11 @@
+kimina/__init__.py,sha256=N5LjUbI_Uu5MV_jfCFdSlDsHKYIkyYF57SICbsUYIVU,678
+kimina/client.py,sha256=VRpyKcoVvVYXoDZ95H9Wy5kNC9AVWAlxsd8Kx8ZjUFw,7078
+kimina/client_old.py,sha256=Y0bniAxkxIQrErDXY6buYFa7MEA0SQTRe3k_MnRzdWo,4250
+kimina/infotree.py,sha256=wWqrwg5ZRwLWPYs0Ln6k3f2lVRm1lw6dnGq7uImANLA,26388
+kimina/models.py,sha256=CWZ-1DqlcXnPPmO86RFWznAy7U_un21kW-YC4ffxuaU,6863
+kimina/proof_utils.py,sha256=Sf6HVS2Fa3tQdukZvhbZ4u_-pYx6xZActHMlpaYeNfc,8174
+kimina/py.typed,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+kimina-0.1.0.dist-info/METADATA,sha256=Kh0S9jWTohMoySBsotAIVOzN_xe2xC8jRHyJeL6H8sk,1328
+kimina-0.1.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+kimina-0.1.0.dist-info/licenses/LICENSE,sha256=-fLbrdEvBGwD-MKQjOiLcdMXPKrc4OItGf1TVSiUUOc,1081
+kimina-0.1.0.dist-info/RECORD,,
