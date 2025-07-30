@@ -1,0 +1,21 @@
+scenario:
+  sequence:
+    name: "Test Sequence Prefix Suffix"
+    code: "ssi.test.sequence"
+    number_next: 1
+    number_increment: 1
+    padding: 6
+  template:
+    name: "Template with Prefix Suffix"
+    initial_string: "xxx"
+    computation_method: "use_python"
+    python_code: "result = document.value > 30"
+    sequence_selection_method: "use_sequence"
+    add_custom_prefix: True
+    prefix_python_code: "result = 'TEST-PREFIX/'"
+    add_custom_suffix: True
+    suffix_python_code: "result = '/TEST-SUFFIX'"
+    sequence: 1000
+  test_model:
+    name: "xxx"
+    value: 35
