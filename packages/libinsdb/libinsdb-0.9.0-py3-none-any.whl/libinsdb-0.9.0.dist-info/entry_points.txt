@@ -1,0 +1,2 @@
+[console_scripts]
+insdb = libinsdb.__main__:main
