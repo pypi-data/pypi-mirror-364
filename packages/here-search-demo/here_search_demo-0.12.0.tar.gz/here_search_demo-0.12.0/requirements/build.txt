@@ -1,0 +1,10 @@
+ipyleaflet==0.20.0
+ipywidgets==8.1.7
+jupyterlab
+jupyterlab_widgets
+jupyterlab-filesystem-access
+jupyterlite~=0.6.3
+jupyterlite-core
+jupyterlite-pyodide-kernel
+jupyterlite-javascript-kernel
+libarchive-c
