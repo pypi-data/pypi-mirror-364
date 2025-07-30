@@ -1,0 +1,16 @@
+Metadata-Version: 2.4
+Name: mathplootIib
+Version: 0.1.0
+Summary: mathplotlib
+Home-page: https://github.com/elegantShock2258/mathplotlib
+Author: Ayush Chadha
+Author-email: Ayush Chadha <elegantShock3307@gmail.com>
+Project-URL: Homepage, https://github.com/elegantShock2258/mathplotlib
+Keywords: math,simulator
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: home-page
+Dynamic: requires-python
+
+hi
