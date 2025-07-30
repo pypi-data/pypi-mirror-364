@@ -1,0 +1,16 @@
+ruminant/__main__.py,sha256=Ipm-KZJB7V1CFJ96iF1-pN8CBfK7qdsykjsmt4hl7LQ,32
+ruminant/buf.py,sha256=0zCf88BTMw6hzWqNbpmC45W-nJ4u3P4oNCycf2rBjYo,9679
+ruminant/main.py,sha256=oiKAMN2nn2DHI6duCWJ78n15WhVFlh48O6joYO9y1O4,3853
+ruminant/module.py,sha256=p0yZV9hdRsRFWbz-obixUNLggfSmdt4Wxu-fxkstNV0,236
+ruminant/utils.py,sha256=GIJjaZN97LrN08Q0b8ZD0fE0Z8GqWmTDp4VnwAJJZN4,1365
+ruminant/modules/__init__.py,sha256=m_71cFkAXuOlwzr2eHfbtHIE2750Daz2DuFoJ6XUt8Q,2938
+ruminant/modules/containers.py,sha256=J9S3fDqHUa-q2_nJVI69Xb4JgnBhTThsoYjfatld5gg,1294
+ruminant/modules/documents.py,sha256=lWMV3Gg0Lj4phJzX1oljX0Ylec08ddugGNEuY5jenDE,14582
+ruminant/modules/images.py,sha256=sstph_pZFI_Jj2za_6RdkmoQKSa5yjYaUi9QC2Vl8ko,54970
+ruminant/modules/videos.py,sha256=frMRR-0ExBXnXxrhaSocAoyfPrQbyu-mzVdYv7yNt5U,35476
+ruminant-0.0.7.dist-info/licenses/LICENSE,sha256=46mU2C5kSwOnkqkw9XQAJlhBL2JAf1_uCD8lVcXyMRg,7652
+ruminant-0.0.7.dist-info/METADATA,sha256=N2KRyIpyNyr5V1zt9UVDb0BxiWPdjfX-S-f5eVrJT90,3348
+ruminant-0.0.7.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+ruminant-0.0.7.dist-info/entry_points.txt,sha256=l50tazDbfYibnWAkGt1AG3qFBxVnp0m8GDTA7Ec5DvQ,48
+ruminant-0.0.7.dist-info/top_level.txt,sha256=rhMoUQk4Pjhp80tPRh_zJOjTQitdMgTfBu8HpimtuXo,9
+ruminant-0.0.7.dist-info/RECORD,,
