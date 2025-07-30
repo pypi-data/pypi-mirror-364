@@ -1,0 +1,10 @@
+tencentcloud/__init__.py,sha256=THtEC9RVjjpuxEAztaLa_v8rp_IiC7HNUqE3juB28bE,631
+tencentcloud/dnspod/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tencentcloud/dnspod/v20210323/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tencentcloud/dnspod/v20210323/dnspod_client.py,sha256=gbZc7OMXE2HKlZIZLxrA5554m4HA0HzXj4bpf3J_hUw,84274
+tencentcloud/dnspod/v20210323/errorcodes.py,sha256=Mjopp_g2RTUdO1KROPoiOcVQqIRGmkeo2crE050jbt0,30180
+tencentcloud/dnspod/v20210323/models.py,sha256=QXnGdtRHMbcTvuXOpVAEFgLGBYxcT2wLypYsyS4JV6w,588442
+tencentcloud_sdk_python_dnspod-3.0.1430.dist-info/METADATA,sha256=XbjwOoSo1vqRsmYOCz8SVwOtydcdDqnKpIc1wI7YzOI,1518
+tencentcloud_sdk_python_dnspod-3.0.1430.dist-info/WHEEL,sha256=z9j0xAa_JmUKMpmz72K0ZGALSM_n-wQVmGbleXx2VHg,110
+tencentcloud_sdk_python_dnspod-3.0.1430.dist-info/top_level.txt,sha256=g-8OyzoqI6O6LiS85zkeNzhB-osEnRIPZMdyRd_0eL0,13
+tencentcloud_sdk_python_dnspod-3.0.1430.dist-info/RECORD,,
