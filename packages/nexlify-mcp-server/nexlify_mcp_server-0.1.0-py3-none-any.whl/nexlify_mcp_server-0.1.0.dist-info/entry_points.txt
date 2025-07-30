@@ -1,0 +1,2 @@
+[console_scripts]
+nexlify_mcp_server = nexlify_mcp_server.main:run
