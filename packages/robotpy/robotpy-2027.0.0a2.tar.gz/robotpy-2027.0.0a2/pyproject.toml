@@ -1,0 +1,139 @@
+[build-system]
+requires = [
+    "setuptools>=45",
+    "wheel",
+    "setuptools_scm>=6.2,<8",
+    "tomli",
+]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+
+#
+# Dependencies are built from the following data
+#
+
+[tool.meta.extras]
+default = [
+    "robotpy-wpiutil",
+    "robotpy-wpilog",
+    "robotpy-wpinet",
+    "robotpy-wpimath",
+    "pyntcore",
+    "robotpy-hal",
+    "wpilib",
+
+    "robotpy-halsim-gui",
+    "robotpy-wpilib-utilities",
+    "robotpy-installer",
+    "pyfrc",
+    "robotpy-cli",
+]
+
+apriltag = ["robotpy-apriltag", "numpy"]
+
+commands2 = ["robotpy-commands-v2"]
+
+#cscore = ["robotpy-cscore", "numpy", "robotpy-opencv"]
+
+romi = ["robotpy-romi"]
+
+sim = ["robotpy-halsim-ds-socket", "robotpy-halsim-ws"]
+
+xrp = ["robotpy-xrp"]
+
+#
+# mostrobotpy packages
+#
+
+[tool.meta.packages."mostrobotpy"]
+version = "==2027.0.0a2"
+
+[tool.meta.packages."pyntcore"]
+version = "mostrobotpy"
+
+[tool.meta.packages."robotpy-apriltag"]
+version = "mostrobotpy"
+
+[tool.meta.packages."robotpy-hal"]
+version = "mostrobotpy"
+
+[tool.meta.packages."robotpy-halsim-ds-socket"]
+version = "mostrobotpy"
+constraint = 'platform_machine != "systemcore" and platform_machine != "armv7l" and platform_machine != "aarch64"'
+
+[tool.meta.packages."robotpy-halsim-gui"]
+version = "mostrobotpy"
+constraint = 'platform_machine != "systemcore"'
+
+[tool.meta.packages."robotpy-halsim-ws"]
+version = "mostrobotpy"
+constraint = 'platform_machine != "systemcore" and platform_machine != "armv7l" and platform_machine != "aarch64"'
+
+[tool.meta.packages."robotpy-cscore"]
+version = "mostrobotpy"
+
+[tool.meta.packages."robotpy-romi"]
+version = "mostrobotpy"
+constraint = 'platform_machine != "systemcore"'
+
+[tool.meta.packages."robotpy-wpilog"]
+version = "mostrobotpy"
+
+[tool.meta.packages."robotpy-wpimath"]
+version = "mostrobotpy"
+
+[tool.meta.packages."robotpy-wpinet"]
+version = "mostrobotpy"
+
+[tool.meta.packages."robotpy-wpiutil"]
+version = "mostrobotpy"
+
+[tool.meta.packages."robotpy-xrp"]
+version = "mostrobotpy"
+constraint = 'platform_machine != "systemcore"'
+
+[tool.meta.packages."wpilib"]
+version = "mostrobotpy"
+
+#
+# Other RobotPy packages
+#
+
+[tool.meta.packages."pyfrc"]
+max_version = "2028.0.0"
+min_version = "2027.0.0a1"
+constraint = 'platform_machine != "systemcore" and platform_machine != "armv7l" and platform_machine != "aarch64"'
+
+[tool.meta.packages."robotpy-cli"]
+max_version = "2028.0.0"
+min_version = "2024.0.0"
+
+[tool.meta.packages."robotpy-commands-v2"]
+max_version = "2028.0.0"
+min_version = "2027.0.0a1"
+
+[tool.meta.packages."robotpy-installer"]
+max_version = "2028.0.0"
+min_version = "2027.0.0a1"
+constraint = 'platform_machine != "systemcore" and platform_machine != "armv7l" and platform_machine != "aarch64"'
+
+[tool.meta.packages."robotpy-wpilib-utilities"]
+max_version = "2028.0.0"
+min_version = "2027.0.0a1"
+
+
+#
+# Third party ]
+#
+
+[tool.meta.packages."numpy"]
+version = ""
+constraint = "platform_machine == 'systemcore'" # only require on systemcore
+
+#[tool.meta.packages."robotpy-opencv"]
+#version = ""
+#constraint = "platform_machine == 'systemcore'" # only require on systemcore
+
+[tool.meta.packages."invalid"]
+available = false
