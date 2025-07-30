@@ -1,0 +1,3 @@
+[submodule "external/anyode"]
+	path = external/anyode
+	url = https://github.com/bjodah/anyode
