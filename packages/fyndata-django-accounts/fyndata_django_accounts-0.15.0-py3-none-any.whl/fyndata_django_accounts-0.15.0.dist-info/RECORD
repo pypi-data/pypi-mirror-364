@@ -1,0 +1,15 @@
+fd_dj_accounts/__init__.py,sha256=AaysCUU7_r5eClKjhnsyvPvQ1DsWaVFo8r8XfjbdmSs,2958
+fd_dj_accounts/apps.py,sha256=QyDCRiI1bj7Y70BRsiSQTu4Y7EsqfIWJhdcyc7Kf5Vs,2227
+fd_dj_accounts/auth_backends.py,sha256=XAZ27P-qPeL3bbKo0rwbuZQpzcY2KOQW04dMqfvXn3k,5174
+fd_dj_accounts/base_models.py,sha256=SMR_sDnAIUCPQJ7Ctsv-ix5tjiJeyOiqleH-0yqGSKo,7770
+fd_dj_accounts/models.py,sha256=_zoUjXbNG2c7FmtAC5jB7kiS6Aa7A20mBvSKrWrFIY8,6459
+fd_dj_accounts/py.typed,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+fd_dj_accounts/urls.py,sha256=DQNcU6EZe3cfyNyz10OXJentu5oy4LgFeuFjVZXWjsU,804
+fd_dj_accounts/views.py,sha256=iUHiaD9RBMArMLbROdt0p4LYFTU5VRorMP5MLkWSRDc,460
+fd_dj_accounts/migrations/0001_initial.py,sha256=Bv_YcxDb8lKdynJd-6gdBklYoK-euAalwFjICiWSIfg,3549
+fd_dj_accounts/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+fyndata_django_accounts-0.15.0.dist-info/licenses/LICENSE,sha256=T_4XWYEi4AKL8z4B5i4Tr-ogcutvPWvq_RDGxYYtl-A,1078
+fyndata_django_accounts-0.15.0.dist-info/METADATA,sha256=px1z6OW92vj2iGigpJpdbUpAJfUtKBfO7xyzqoQ877Y,3956
+fyndata_django_accounts-0.15.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+fyndata_django_accounts-0.15.0.dist-info/top_level.txt,sha256=oxwZtlw6H9hYh07j35oqWsjcwHfA73EOqcYbHPHIqzo,15
+fyndata_django_accounts-0.15.0.dist-info/RECORD,,
