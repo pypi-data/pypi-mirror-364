@@ -1,0 +1,3 @@
+[console_scripts]
+gfetch = gfetch.app:main
+
