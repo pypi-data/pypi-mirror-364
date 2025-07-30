@@ -1,0 +1,37 @@
+Metadata-Version: 2.4
+Name: tools4rdf
+Version: 0.3.5
+Summary: python tool for working with ontologies and data models
+Home-page: https://pyscal.org
+Download-URL: https://github.com/ocdo/tools4rdf
+Author: Abril Azocar Guzman, Sarath Menon
+Author-email: sarath.menon@pyscal.org
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: rdflib
+Requires-Dist: pyyaml
+Requires-Dist: graphviz
+Requires-Dist: networkx
+Requires-Dist: pandas
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: download-url
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary
+
+# tools4RDF
+
+python tool for working with ontologies and data models
+
+## Acknowledgements
+This work is supported by the [NFDI-Matwerk](https://nfdi-matwerk.de/) consortia.
+
+Funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) under the National Research Data Infrastructure – NFDI 38/1 – project number 460247524
+
