@@ -1,0 +1,133 @@
+Metadata-Version: 2.2
+Name: pystrano
+Version: 1.1.2
+Summary: A Python package for managing deploying Django applications (like Capistrano for Ruby)
+Home-page: https://github.com/lexpank/pystrano
+License: MIT License
+        
+        Copyright (c) 2024 lexpank
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: homepage, https://github.com/lexpank/pystrano
+Project-URL: issues, https://github.com/lexpank/pystrano/issues
+Keywords: pystrano
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: fabric<4.0,>=3.2.2
+Requires-Dist: click<9.0,>=8.1.7
+Requires-Dist: pyyaml<7.0,>=6.0.2
+Requires-Dist: python-dotenv<2.0,>=1.0.1
+Dynamic: home-page
+Dynamic: requires-python
+
+# Pystrano
+
+Pystrano is a simple deployment tool for Python projects.
+It is inspired by Capistrano, a popular deployment tool for
+Ruby projects.
+
+## Disclaimer
+
+This is a work in progress. It is not ready for production use
+just yet. Proceed with caution. Currently used with Ubuntu
+by yours truly. If someone finds it useful and wants to use it
+in any capacity, don't hesitate.
+
+## Installation
+
+```bash
+pip install pystrano
+```
+
+### Configuration
+
+Pystrano uses a YAML file to configure the deployment. It contains two sections: `common` and `servers`. Variables in `common` section are shared across all servers, while in `servers` section you define a list of servers to deploy to. It is also possible to define server-specific variables, which will override the common ones (if defined).
+
+Here is a description of variables you can set in the config file:
+
+- `source_code_url`: The URL of the git repository;
+- `project_root`: The directory where the project is located;
+- `project_user`: The user that will be used to deploy the project;
+- `venv_dir`: The directory where the virtual environment is located (in the `project_user` home);
+- `keep_releases`: The number of releases to keep on the server. If set to 0 or less, all releases will be kept;
+- `system_packages`: A list of system packages to install on the server (during setup);
+- `env_file`: The path to the environment file to use for the deployment;
+- `ssh_known_hosts`: The path to the known hosts file to use for the deployment  (during setup; separated by semicolons);
+- `service_file`: The path to the service file to set up/use in deployment (optional);
+- `secrets`: List of secrets to set up on the server (during setup only for now; separated by semicolons);
+- `branch`: The name of the branch to deploy.
+
+Server-specific variables:
+
+- `host`: The hostname of the server;
+- `port`: The port to use for SSH connection (optional, default is 22);
+- `run_migrations`: Whether to run migrations on deployment (optional, default is false);
+- `run_collectstatic`: Whether to run collectstatic on deployment (optional, default is false);
+
+Default directory structure for the configs is as follows:
+
+```commandline
+deploy/
+    app_name/
+        environment_name/
+            deployment.yml
+```
+
+## Usage
+
+Pystrano is a command line tool. To deploy a project, you need
+to create a config for the environment you want to deploy to.
+General  syntax for usage is as follows:
+
+```bash
+pystrano <command> <environment> <project>
+```
+
+Available commands are:
+
+- `setup`: Set up the server for deployment;
+- `deploy`: Deploy the project to the server.
+
+Optional arguments:
+
+- `--deploy-config-dir`: The directory where the deployment configs are located (default is `deploy`);
+- `--config-file-name`: The name of the config file to use (default is `deployment.yml`);
+
+### Example usage
+
+To set up deployment for a project, run the following command:
+
+```bash
+pystrano setup production api
+```
+
+This will set up your production server to be ready for deployment.
+
+To deploy your project, run the following command:
+
+```bash
+pystrano deploy production api
+```
