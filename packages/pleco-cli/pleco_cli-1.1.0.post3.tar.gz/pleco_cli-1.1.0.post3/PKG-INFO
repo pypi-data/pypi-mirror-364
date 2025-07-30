@@ -1,0 +1,28 @@
+Metadata-Version: 2.4
+Name: pleco-cli
+Version: 1.1.0.post3
+Summary: Read in and clean ROV serial data from serial ports
+Author-email: Robert Ward II <robert.ward@noaa.gov>
+License: 'Software code created by U.S. Government employees is not subject to copyright in the United States (17 U.S.C.§105). The United States/Department of Commerce reserve all rights to seek and obtain copyright protection in countries other than the United States for Software authored in its entirety by the Department of Commerce. To this end, the Department of Commerce hereby grants to Recipient a royalty-free, nonexclusive license to use,copy, and create derivative works of the Software outside of the United States.'
+License-File: LICENSE
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.13
+Requires-Dist: pandas
+Requires-Dist: pyserial
+Description-Content-Type: text/markdown
+
+# 🐟 pleco
+
+**pleco** is a minimal Python CLI tool for ingesting and cleaning ROV serial data from NMEA sentences.
+
+It reads from a serial port (e.g. `/dev/ttyUSB0`, `COM3`, `COM5` etc.), writes the raw feed to a CSV, and periodically extracts structured data from specified NMEA sentences into a cleaned CSV file.
+
+---
+
+## 🚀 Installation
+
+
+Install with [`pip`](https://pipx.pypa.io/) (recommended):
+
+```bash
+pip install pleco-cli
