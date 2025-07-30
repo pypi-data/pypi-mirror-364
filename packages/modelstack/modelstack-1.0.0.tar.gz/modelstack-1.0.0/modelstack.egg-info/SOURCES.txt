@@ -1,0 +1,13 @@
+LICENSE
+pyproject.toml
+setup.py
+modelstack/__init__.py
+modelstack/cli.py
+modelstack/db.py
+modelstack/utils.py
+modelstack.egg-info/PKG-INFO
+modelstack.egg-info/SOURCES.txt
+modelstack.egg-info/dependency_links.txt
+modelstack.egg-info/entry_points.txt
+modelstack.egg-info/requires.txt
+modelstack.egg-info/top_level.txt

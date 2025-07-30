@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: modelstack
+Version: 1.0.0
+Summary: ModelStack - Lightweight Local Model Registry
+Home-page: https://github.com/Aniruddh-k/modelstack
+Author: Aniruddha
+Author-email: aniruddhakide16@example.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# ModelStack
+
+ModelStack is a lightweight, local-first model registry designed for data scientists and machine learning engineers. It allows efficient storage, versioning, and retrieval of ML models along with their associated metadata, without requiring any cloud services or external infrastructure.
+
+## Features
+
+- Local registry to manage models directly on your machine  
+- Command Line Interface (CLI) for intuitive interaction  
+- Version control for models  
+- Support for PyTorch, Joblib, and Pickle formats  
+- Metadata tracking (accuracy, metrics, timestamp, etc.)
+
+## Installation
+
+To install ModelStack locally, run:
+
+``` pip install modelstack ```
+
+## Usage
+After installation, you can use the modelstack CLI.
+
+To register a model in db
+
+``` modelstack register "name_of_model metadata" ```
+
+To list all models in db 
+
+``` modelstack list ```
+
+To delete a model 
+
+``` modelstack delete "name_of_model" ```
+
+To delete all 
+
+``` modelstack delete --all ```
