@@ -1,0 +1,59 @@
+lcvtoolbox.core.schemas.gps.BaseModel
+=====================================
+
+.. currentmodule:: lcvtoolbox.core.schemas.gps
+
+.. autoclass:: BaseModel
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __init__, __str__, __repr__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~BaseModel.__init__
+      ~BaseModel.construct
+      ~BaseModel.copy
+      ~BaseModel.dict
+      ~BaseModel.from_orm
+      ~BaseModel.json
+      ~BaseModel.model_construct
+      ~BaseModel.model_copy
+      ~BaseModel.model_dump
+      ~BaseModel.model_dump_json
+      ~BaseModel.model_json_schema
+      ~BaseModel.model_parametrized_name
+      ~BaseModel.model_post_init
+      ~BaseModel.model_rebuild
+      ~BaseModel.model_validate
+      ~BaseModel.model_validate_json
+      ~BaseModel.model_validate_strings
+      ~BaseModel.parse_file
+      ~BaseModel.parse_obj
+      ~BaseModel.parse_raw
+      ~BaseModel.schema
+      ~BaseModel.schema_json
+      ~BaseModel.update_forward_refs
+      ~BaseModel.validate
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~BaseModel.model_computed_fields
+      ~BaseModel.model_config
+      ~BaseModel.model_extra
+      ~BaseModel.model_fields
+      ~BaseModel.model_fields_set
+   
+   
