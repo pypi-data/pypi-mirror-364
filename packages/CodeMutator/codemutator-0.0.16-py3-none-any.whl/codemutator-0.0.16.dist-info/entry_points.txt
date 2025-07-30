@@ -1,0 +1,2 @@
+[console_scripts]
+mutator = mutator.cli:main
