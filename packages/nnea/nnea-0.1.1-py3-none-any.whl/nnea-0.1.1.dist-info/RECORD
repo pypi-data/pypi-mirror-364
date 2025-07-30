@@ -1,0 +1,13 @@
+nnea/__init__.py,sha256=63lm5SIJdNKG6YL6GGdkl6yb-9VWpPzE3Fs5XSN9mzo,40
+nnea/hello.py,sha256=JbTT31KAFVQTcM9OXDTM-lgMbBpr3FzWBj0IUtmHepc,40
+nnea/logging.py,sha256=DMFHdd-2FF_gajAUYHH3ZPmXoIJx10V8u6Fw9lqMrpY,754
+nnea/datasets/__init__.py,sha256=x5JpEFVCMadcBjFHATdxWOuVqlSkKDDhqam8lVD8F2w,31
+nnea/datasets/_download.py,sha256=AVZv0wd3De3VP_DkTkCVMxomoLu3eZuPKO2iYBNyYEY,5357
+nnea/io/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+nnea/io/_load.py,sha256=9cnh2H44XqHjQa92k1g2qg8Wge0F93mPk1gfsTWdfuY,49
+nnea/io/_nadata.py,sha256=Byc_FXk5SjaRUPRUn5dV2StcVmbyTyFktk3T9_gmHt4,193
+nnea-0.1.1.dist-info/licenses/LICENSE.txt,sha256=rDhoEraowLG02nBPrXTDgYOZLnNbYVv910gYo22_S_0,1083
+nnea-0.1.1.dist-info/METADATA,sha256=Wbq1EjirZoiqo60GXgPi8cudKxdAD78mWACDXYCweas,1436
+nnea-0.1.1.dist-info/WHEEL,sha256=lTU6B6eIfYoiQJTZNc-fyaR6BpL6ehTzU3xGYxn2n8k,91
+nnea-0.1.1.dist-info/top_level.txt,sha256=5Kzz0SUJJinz7GqPl7HNH0pPlLasY4uhCA8uXyntLyM,5
+nnea-0.1.1.dist-info/RECORD,,
