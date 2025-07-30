@@ -1,0 +1,19 @@
+[project]
+name = "crawl-agent"
+version = "0.1.1"
+description = ""
+authors = [
+    {name = "gaozhe",email = "gaozhe@baiwang.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12,<3.15"
+dependencies = [
+    "drissionpage (>=4.1.0.18,<5.0.0.0)",
+    "jsonpath-ng (>=1.7.0,<2.0.0)",
+    "dataflow-sdk (>=0.1.9,<0.2.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
