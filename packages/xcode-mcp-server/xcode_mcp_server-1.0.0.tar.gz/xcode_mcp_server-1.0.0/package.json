@@ -1,0 +1,21 @@
+{
+  "name": "xcode-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for Xcode integration",
+  "bin": {
+    "xcode-mcp-server": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "mcp",
+    "xcode",
+    "server"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
