@@ -1,0 +1,10 @@
+
+[:python_version < "3.11"]
+tomli
+
+[test]
+pytest
+pytest-mock
+pytest-cov
+ruff
+mypy
