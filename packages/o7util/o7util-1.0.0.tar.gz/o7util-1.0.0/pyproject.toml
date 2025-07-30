@@ -1,0 +1,130 @@
+
+# https://packaging.python.org/en/latest/guides/writing-pyproject-toml/
+
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "o7util"
+version = "1.0.0" # This will be updated by semantic-release
+
+description = "A collection of utility functions for Python"
+readme = "README.md"
+license = {file = "LICENSE"}
+keywords = ["python", "utility", "o7conseils"]
+classifiers = [
+  # https://pypi.org/classifiers/
+  # How mature is this project? Common values are
+  #   3 - Alpha
+  #   4 - Beta
+  #   5 - Production/Stable
+  "Development Status :: 4 - Beta",
+
+  # Indicate who your project is intended for
+  # "Intended Audience :: Developers",
+  # "Topic :: Software Development :: Build Tools",
+
+  "License :: OSI Approved :: Apache Software License",
+
+  # Specify the Python versions you support here.
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13"
+]
+
+
+authors = [
+    {name = "Philippe Gosselin", email = "phil@o7conseils.com"}
+]
+maintainers = []
+
+requires-python = ">= 3.10"
+dependencies = [
+    "sty>=1.0.6"
+]
+
+#------------------------------------------------
+# OTHER REQUIREMENTS
+#------------------------------------------------
+[project.optional-dependencies]
+pandas = ["pandas>=2.2","openpyxl>=3.1"]
+dev = [
+  "pandas>=2.2",
+  "openpyxl>=3.1",
+  "pytest",
+  "pytest-cov",
+  "pytest-mock",
+  "ruff"
+]
+
+#------------------------------------------------
+# SETUP TOOLS
+#------------------------------------------------
+[tool.setuptools.packages.find]
+where = ["src"]
+
+#------------------------------------------------
+# PYTEST
+# https://docs.pytest.org/en/stable/reference/reference.html#ini-options-ref
+#------------------------------------------------
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+    "integration",
+]
+addopts = "--cov=o7util --cov-report=term --cov-report=html --cov-fail-under=99"
+
+#------------------------------------------------
+# SEMANTIC RELEASE
+# https://python-semantic-release.readthedocs.io/en/latest/configuration.html#
+#------------------------------------------------
+[tool.semantic_release]
+# https://python-semantic-release.readthedocs.io/en/latest/configuration.html#
+version_variables = [
+  "pyproject.toml:version",
+  "./src/o7util/__init__.py:__version__"
+]
+
+[tool.semantic_release.commit_parser_options]
+allowed_tags = [
+    "build",
+    "chore",
+    "ci",
+    "docs",
+    "feat",
+    "fix",
+    "perf",
+    "style",
+    "refactor",
+    "test",
+]
+minor_tags = ["feat"]
+patch_tags = ["fix", "perf"]
+
+#------------------------------------------------
+# RUFF
+# https://docs.astral.sh/ruff/configuration/
+#------------------------------------------------
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+# Read more here https://beta.ruff.rs/docs/rules/
+# By default, Ruff enables Flake8's E and F rules
+# Pyflakes - F, pycodestyle - E, W
+# pep8-naming (N) - N
+# flake8-builtins - A
+# Pylint - PLC, PLE, PLW
+# isort - I
+# flake8-BugBear - B
+# flake8-Bandit - S
+# pandas-vet - PD
+# NumPy-specific rules (NPY)
+select = ['E', 'F', 'W', 'N' ,'A', 'PLC', 'PLE', 'PLW', 'I', 'B', 'S', 'PD','NPY']
+# ignore = ['E501']
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["E402"]
+"**/{tests,docs,tools}/*" = ["E402", "S101"]
