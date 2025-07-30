@@ -1,0 +1,13 @@
+philately/__init__.py,sha256=kUR5RAFc7HCeiqdlX36dZOHkUI5wI6V_43RpEcD8b-0,22
+philately/analyze_collection.py,sha256=KYw4YTlCnN94SpJSgvN97KvselkApDefOvEEgm2DXms,6961
+philately/llm_caller.py,sha256=h_1fgssgFKLQ0TeDSusPXfra7tZNAKL3rpH2pwonS_k,20941
+philately/main.py,sha256=MIGrOSp3dHhWS16BcB4PlfBuf5IpDBjj7bNH4kXh-pg,111
+philately/philately_objects.py,sha256=dZNDs8FUU7HncQQjFLXac9aJoEr__hX4sHt2V4vlxn0,4571
+philately/philately_ui.py,sha256=U-2GiEL8fEK7bnNi-_3wIu_uRd2sbo6iYhtcOPXDae4,10900
+philately/processor_v2.py,sha256=a0kHV7sZAmfWsBL1EzoXdMK77iJCRyXRyyDxHWjSHpo,81825
+philately_will_get_you_everywhere-0.1.0.dist-info/licenses/LICENSE,sha256=vwce-rHHGNpx5mxrVMTdUupUdgIyIwS9V3R6xzt8_X4,1071
+philately_will_get_you_everywhere-0.1.0.dist-info/METADATA,sha256=dXoS5zd896qrdtxklR_qjonBk7bdS2XBywe4YMnuop8,11653
+philately_will_get_you_everywhere-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+philately_will_get_you_everywhere-0.1.0.dist-info/entry_points.txt,sha256=cv6Y_qx4rmgIQHWajDvDF8kwcqWGVqdzeloIpMzek60,116
+philately_will_get_you_everywhere-0.1.0.dist-info/top_level.txt,sha256=2qnn6kaDLCGZRkcGfd_W6mvz5n0ZWHnpFWJdhrGxpkk,10
+philately_will_get_you_everywhere-0.1.0.dist-info/RECORD,,
