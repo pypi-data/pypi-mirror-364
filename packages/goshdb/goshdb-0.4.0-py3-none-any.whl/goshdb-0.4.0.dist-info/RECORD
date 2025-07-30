@@ -1,0 +1,14 @@
+goshdb/__init__.py,sha256=vXD58c4auzIFimPUPC88ACO5th6foinlpRDLQSi1QRw,102
+goshdb/api_wrap/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+goshdb/api_wrap/auth.py,sha256=gKrJIo_zK1JzooY5AtoxFaGj6cV-GAb9EQOjxn9Ss4w,1442
+goshdb/api_wrap/sheet.py,sha256=m93nik6Npl2f2Ev6vOOOMut5iLWrmhrxSF03QeZeu58,4358
+goshdb/api_wrap/spreadsheet.py,sha256=QB0Hgor6GPgsr8QLGXlIwlZBumnoC6RcDevEeUvTyVs,2190
+goshdb/db.py,sha256=nev5CUwYeQxlLd5MqcNK7pEJ7iN7ts2Xisin19tfyuU,1564
+goshdb/table.py,sha256=KCMdKc5cB-1uiCgOLGBtJkj54Ecn9ov5xtPjX2prg8g,7102
+goshdb/test/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+goshdb/test_utils/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+goshdb/test_utils/test_utils.py,sha256=YuziKSwbGzHN9u3Q2KXXgTkbvPTjGA3RDCuYXvshcGo,234
+goshdb-0.4.0.dist-info/LICENSE,sha256=ts1paRpHX1o9KRl_NZ7masAzlK2CE7f0brmqhGLzm7w,1063
+goshdb-0.4.0.dist-info/METADATA,sha256=FN2tDhBEFRw16sS2djVBUvEdqRdIH47Q8Xseoi1_buY,5174
+goshdb-0.4.0.dist-info/WHEEL,sha256=sP946D7jFCHeNz5Iq4fL4Lu-PrWrFsgfLXbbkciIZwg,88
+goshdb-0.4.0.dist-info/RECORD,,
