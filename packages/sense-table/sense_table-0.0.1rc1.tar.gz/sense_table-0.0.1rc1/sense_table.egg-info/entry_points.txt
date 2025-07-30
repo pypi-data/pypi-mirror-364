@@ -1,0 +1,2 @@
+[console_scripts]
+sense-table = sense_table.cli:main
