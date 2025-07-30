@@ -1,0 +1,14 @@
+kurigram<=2.2.7
+click
+pydantic
+openai
+croniter
+json_repair
+typing-extensions
+httpx
+
+[speedup]
+tgcrypto
+
+[tgcrypto]
+tgcrypto
