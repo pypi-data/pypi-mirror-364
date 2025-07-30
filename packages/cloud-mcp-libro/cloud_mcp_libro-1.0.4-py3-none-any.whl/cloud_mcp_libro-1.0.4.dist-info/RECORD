@@ -1,0 +1,13 @@
+./.gitignore,sha256=LVh819QLiwF0VD3WSzQysaEH9DcPKVsCv7S-vwUzhX8,558
+./LICENSE,sha256=_ZumGZh-tOPmY7BfUvVNTK6kl_foU8mLGY_DcdyuCjw,1081
+./PKG-INFO,sha256=1MTgVV5Bv_QPochmc6QHs7s46oudCP-dlwtmHbCtMco,6624
+./README.md,sha256=CMEfRZa0c6Wi32OzROKAT_S3usI9iIExZfVvG9LLc-0,3628
+./config.json,sha256=_bjwi7XO6Cgiku1pu0gCN2ZmWtGejJup23IwmPwdwVI,380
+./pyproject.toml,sha256=iZzbXbibeeIW6NTokL7BdrTPgch8xZXJf3z5tDwDEhg,2455
+./requirements.txt,sha256=5ajrvZJxInqF82k4SxQnIIMGcvFHq4P4VydrdOOEnjE,42
+./server.py,sha256=lB1RCD_B21M4cm3mZ9xmfIZfxEGQsqtfGCJlLQIP3PI,26777
+cloud_mcp_libro-1.0.4.dist-info/METADATA,sha256=1MTgVV5Bv_QPochmc6QHs7s46oudCP-dlwtmHbCtMco,6624
+cloud_mcp_libro-1.0.4.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+cloud_mcp_libro-1.0.4.dist-info/entry_points.txt,sha256=37zAqTTQTNbDvsCko6Q1PTwCU1zULnL0u6osbJcKNWw,53
+cloud_mcp_libro-1.0.4.dist-info/licenses/LICENSE,sha256=_ZumGZh-tOPmY7BfUvVNTK6kl_foU8mLGY_DcdyuCjw,1081
+cloud_mcp_libro-1.0.4.dist-info/RECORD,,
