@@ -1,0 +1,15 @@
+Metadata-Version: 2.4
+Name: mpui
+Version: 0.1.0
+Summary: Universal UI
+Home-page: https://github.com/xeroxmy
+Author: XeroxMy
+Author-email: xeregypt@gmail.com
+Keywords: None
+Requires-Dist: tkinter
+Dynamic: author
+Dynamic: author-email
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: requires-dist
+Dynamic: summary
