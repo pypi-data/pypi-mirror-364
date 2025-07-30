@@ -1,0 +1,34 @@
+Metadata-Version: 2.4
+Name: django-login-activity
+Version: 0.0.5
+Summary: Package Django pour enregistrer les connexions et déconnexions des utilisateurs.
+Home-page: https://github.com/tonprofil/django-login-activity
+Author: Ton Nom
+Author-email: ton.email@example.com
+Classifier: Framework :: Django
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: django>=3.2
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# django-login-activity
+
+Suivi simple et efficace des connexions utilisateurs dans Django.
+
+## Installation
+
+```bash
+pip install django-login-activity
