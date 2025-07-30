@@ -1,0 +1,46 @@
+Metadata-Version: 2.4
+Name: deepeye
+Version: 0.1.14
+Summary: Utility tools for image enhancement.
+Home-page: https://github.com/ImagineersHub/deepeye
+Author: esunvoteb
+Author-email: esun@voteb.com
+License: MIT
+Keywords: python,blender
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: torch
+Requires-Dist: torchaudio
+Requires-Dist: torchvision
+Requires-Dist: numpy>=1.24.2
+Requires-Dist: opencv-contrib-python==4.7.0.72
+Requires-Dist: pydantic
+Requires-Dist: colorlog
+Requires-Dist: matplotlib
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary
+
+
+# DeepEye
+Utility tools for image enhancement
+
+
+### Install pytorch (support GPU)
+
+- pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+
+- pip install -r requirements.txt
