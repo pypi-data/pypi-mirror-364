@@ -1,0 +1,20 @@
+Metadata-Version: 2.4
+Name: ryo
+Version: 0.1.8
+Summary: A personal CLI tool using YAML and schema validation.
+Author: Ana Victoria de Oliveira Silva
+Author-email: anavictoriaavos@gmail.com
+License: MIT
+Requires-Python: >=3.7
+License-File: LICENSE
+Requires-Dist: PyYAML
+Requires-Dist: yamale
+Requires-Dist: boto3
+Requires-Dist: tenacity
+Dynamic: author
+Dynamic: author-email
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
