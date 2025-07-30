@@ -1,0 +1,13 @@
+Metadata-Version: 2.3
+Name: wintree
+Version: 0.1.0
+Summary: A lightweight Python library and CLI tool for displaying visually structured directory trees with optional emoji and exclusion filters.
+Author: harumiWeb
+Author-email: ganaharumi@outlook.jp
+Requires-Python: >=3.12
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Description-Content-Type: text/markdown
+
+
