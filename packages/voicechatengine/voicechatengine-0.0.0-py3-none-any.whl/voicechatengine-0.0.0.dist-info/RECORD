@@ -1,0 +1,17 @@
+voicechatengine/__init__.py,sha256=FBi9vpsiodwVfGAQs0-bcXsdjcIDMztHy6k0Yu7bKuc,2848
+voicechatengine/base_engine.py,sha256=7-2Hh33c0whaxGX1oH5U4YxuPfzlVDFXDrnZM3RqTwM,30418
+voicechatengine/config.py,sha256=YxRSdQWBe6HfjyC91Ioo3yz5l7zUcXuGY_XmodINDms,3773
+voicechatengine/old_2base_engine.py,sha256=b7zf37PlLP4Wn2Ams-zl76KZNPOT7YgBswhN_AGc7oc,18124
+voicechatengine/old_voice_engine.py,sha256=1OqxjMWzoihdYtL_MC3yg_GBiymEqX02nCr1SefSgd0,27177
+voicechatengine/voice_engine.py,sha256=o50do1fTmcEaVGyAPDk7wA5a8zIDAayhzdwlyd4azdU,22602
+voicechatengine/session/__init__.py,sha256=b_InsPNtBLTBIaz0yEIoTNurtl1-rH4gw_QuEWLo0PM,92
+voicechatengine/session/persistence.py,sha256=zO3OdJ0OJzDKzsO3XcPoujoq1Qfj4z7VRGX_In4UJqE,948
+voicechatengine/session/session.py,sha256=U5gZALrPtfffmJDOnbysLDH9RS3Jv2Kuxc-GIv6xsPA,18482
+voicechatengine/session/session_manager.py,sha256=2xKzUioKUx7e31LVxL421CBsmEBet_EopzMhSWdc-BI,4507
+voicechatengine/utils/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+voicechatengine/utils/audio_analysis.py,sha256=ADl4mKTzRoWge0RW2fORht9AUXHaOLQi-qS8Gzg2vmY,24001
+voicechatengine/utils/audio_file_io.py,sha256=6QE2iKjYezSFi4ZHWaBxzhPSfhVJHbWpJHaLiHfQ-Gw,21207
+voicechatengine-0.0.0.dist-info/METADATA,sha256=80F6T93QSRy0qyzmoeUtnCmB9RHKqTfhrvUSvm5l0iM,8316
+voicechatengine-0.0.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+voicechatengine-0.0.0.dist-info/top_level.txt,sha256=gt7dZs-p6Oexq4owmF3W75ilwFxjxrvJ1tUTctY_tAw,16
+voicechatengine-0.0.0.dist-info/RECORD,,
