@@ -1,0 +1,43 @@
+Metadata-Version: 2.3
+Name: bschlorinator
+Version: 0.4.1
+Summary: Package to send and recieve data from bs pools chlorinator unit and controlling ralays(On, off, programm time).
+License: MIT
+Author: Vaclav Silhan
+Author-email: Katamave@gmail.com
+Requires-Python: >=3.11
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: pyserial (>=3.5,<4.0)
+Requires-Dist: rpi-gpio (>=0.7.1,<0.8.0)
+Description-Content-Type: text/markdown
+
+# Chlorinator Control System with Raspberry Pi and Telit LE50-433
+
+This project provides a Python-based control and monitoring system for a chlorinator device, using a Raspberry Pi and a Telit LE50-433 RF module. The system communicates with the chlorinator over a serial interface, reads real-time sensor data (pH, ORP, temperature, salinity, etc.), and can control relays for various automation tasks.
+
+## Features
+
+- Communicates with a chlorinator over UART serial
+- RF communication via Telit LE50-433 module
+- Relay control for switching devices
+- Collects and logs sensor data (pH, ORP, PPM, Temperature, etc.)
+- Compatible with Raspberry Pi 3 and 4
+
+## Hardware
+
+- Raspberry Pi 3 or 4 (tested)
+- Telit LE50-433 radio module (Was packaged with my BS Pool Evolink 35 on raspberry PI)
+- Chlorinator with serial protocol (BS Pool Evolink 35 Tested)
+- Relays connected via GPIO
+
+## Usage
+
+- pip install bschlorinator
+
+## Contributions
+
+Feel free to open issues or submit pull requests!

@@ -1,0 +1,24 @@
+[project]
+name = "bschlorinator"
+version = "0.4.1"
+description = "Package to send and recieve data from bs pools chlorinator unit and controlling ralays(On, off, programm time)."
+authors = [
+    {name = "Vaclav Silhan",email = "Katamave@gmail.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pyserial (>=3.5,<4.0)",
+    "rpi-gpio (>=0.7.1,<0.8.0)",
+
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+gpiozero = "^2.0.1"
+
