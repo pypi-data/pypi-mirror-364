@@ -1,0 +1,7 @@
+[console_scripts]
+repo-on-fire = repo_on_fire.__main__:main
+repo_on_fire = repo_on_fire.__main__:main
+rof = repo_on_fire.__main__:main
+
+[gui_scripts]
+
