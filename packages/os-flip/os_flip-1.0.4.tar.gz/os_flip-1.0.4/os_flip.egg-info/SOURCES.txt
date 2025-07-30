@@ -1,0 +1,11 @@
+LICENSE
+README.md
+setup.py
+os_flip/__init__.py
+os_flip/__main__.py
+os_flip.egg-info/PKG-INFO
+os_flip.egg-info/SOURCES.txt
+os_flip.egg-info/dependency_links.txt
+os_flip.egg-info/entry_points.txt
+os_flip.egg-info/requires.txt
+os_flip.egg-info/top_level.txt
