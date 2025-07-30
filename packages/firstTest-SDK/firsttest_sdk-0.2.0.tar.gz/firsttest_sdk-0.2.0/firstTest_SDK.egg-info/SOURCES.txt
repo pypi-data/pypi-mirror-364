@@ -1,0 +1,8 @@
+setup.py
+firstTest_SDK.egg-info/PKG-INFO
+firstTest_SDK.egg-info/SOURCES.txt
+firstTest_SDK.egg-info/dependency_links.txt
+firstTest_SDK.egg-info/requires.txt
+firstTest_SDK.egg-info/top_level.txt
+my_ai_sdk/__init__.py
+my_ai_sdk/client.py

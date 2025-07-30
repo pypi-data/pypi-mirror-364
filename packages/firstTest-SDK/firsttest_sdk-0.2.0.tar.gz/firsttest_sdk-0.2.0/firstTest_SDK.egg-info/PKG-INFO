@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: firstTest_SDK
+Version: 0.2.0
+Summary: AI图像分类模型的Python SDK
+Home-page: https://github.com/desaiot/firstTest_SDK
+Author: desaiot
+Author-email: 2607074788@qq.com
+Requires-Dist: requests>=2.25.1
+Dynamic: author
+Dynamic: author-email
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: summary
