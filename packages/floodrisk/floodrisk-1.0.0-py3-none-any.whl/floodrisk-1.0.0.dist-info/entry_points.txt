@@ -1,0 +1,2 @@
+[console_scripts]
+floodrisk = floodrisk.floodrisk_cli:main
