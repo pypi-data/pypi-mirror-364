@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+authors:
+- family-names: "Cruz-Martinez"
+  given-names: "Juan M."
+  orcid: "https://orcid.org/0000-0002-8061-1965"
+title: "lhapdf-management"
+version: 0.5
+date-released: 2023-11-12
+url: "https://github.com/scarlehoff/lhapdf_management"

@@ -1,0 +1,30 @@
+name: test_against_lhapdf
+
+on: [push]
+
+jobs:
+  lhatest:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python-version: ["3.12"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: conda-incubator/setup-miniconda@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+          auto-update-conda: true
+          use-mamba: true
+          activate-environment: lhconda
+          channels: conda-forge
+      - name: Install both lhapdf and lhapdf_management
+        shell: bash -l {0}
+        run: |
+          conda install -y lhapdf
+          python -m pip install .[tests]
+      - name: Test with pytest against lhapdf
+        shell: bash -l {0}
+        run: |
+          lhapdf-management update --init
+          pytest tests/lhapdf_testing

@@ -1,0 +1,21 @@
+name: Check we can read many PDFs
+
+on: [push]
+
+jobs:
+  pdftest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11' 
+      - name: Install lhapdf-management
+        shell: bash -l {0}
+        run: |
+          pip install .
+          lhapdf-management update --init
+      - name: Test a random assortment of 100 PDFs
+        shell: bash -l {0}
+        run: |
+          python tests/test_itall.py --yes --verbose -n 200
