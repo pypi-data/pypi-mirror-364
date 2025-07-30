@@ -1,0 +1,39 @@
+Metadata-Version: 2.4
+Name: pysvc2
+Version: 2.0.2
+Summary: IBM Spectrum Virtualize Python Client
+Home-page: https://github.com/IBM/pysvc
+Author: CSI Block
+Author-email: CSI.Block1@il.ibm.com
+Maintainer: CSI Block
+License: Apache License, Version 2.0
+Keywords: IBM,Spectrum Virtualize Family Storage
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires: munch
+Requires: paramiko
+Provides: pysvc
+License-File: LICENSE.txt
+Requires-Dist: munch
+Requires-Dist: paramiko
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: license-file
+Dynamic: maintainer
+Dynamic: provides
+Dynamic: requires
+Dynamic: requires-dist
+Dynamic: summary
+
+CLI Python Client for IBM Spectrum Virtualize Family Storage.
