@@ -1,0 +1,5 @@
+cbor2
+pyhanko_certvalidator
+pyjwt
+python-jose[cryptography]
+cryptography
