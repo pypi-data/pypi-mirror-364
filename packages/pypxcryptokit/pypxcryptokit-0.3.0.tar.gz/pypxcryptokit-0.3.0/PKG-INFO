@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: pypxcryptokit
+Version: 0.3.0
+Summary: Python cryptographic library implementing Double Ratchet and X3DH protocols
+Home-page: https://github.com/UNSHD-X7/PROJECT-PX1
+Author: UNSHD-X7
+Author-email: 
+Keywords: cryptography double-ratchet x3dh signal python end-to-end encryption
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Security :: Cryptography
+Requires-Python: >=3.8
+
+A Python cryptographic library providing modern secure messaging primitives, including Double Ratchet and X3DH, designed for end-to-end encryption and forward secrecy.
