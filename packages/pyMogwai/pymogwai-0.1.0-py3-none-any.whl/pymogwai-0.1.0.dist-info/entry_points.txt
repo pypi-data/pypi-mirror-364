@@ -1,0 +1,2 @@
+[console_scripts]
+mogwai = mogwai.mogwai_cmd:main
