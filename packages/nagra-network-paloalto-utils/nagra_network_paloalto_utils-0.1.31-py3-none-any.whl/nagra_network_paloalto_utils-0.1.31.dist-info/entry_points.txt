@@ -1,0 +1,4 @@
+[console_scripts]
+paloalto_utils=nagra_network_paloalto_utils.__main__:main
+pautils=nagra_network_paloalto_utils.__main__:main
+
