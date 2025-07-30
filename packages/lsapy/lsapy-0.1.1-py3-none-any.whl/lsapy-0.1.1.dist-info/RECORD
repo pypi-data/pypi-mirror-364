@@ -1,0 +1,17 @@
+lsapy/__init__.py,sha256=TkFmT3KpZ773EJvM8Z3pRQlbxs2pmid74hV80BC69g8,280
+lsapy/criteria.py,sha256=le64EqzfNqqukhu4gV1O0R-HVlv_aydc8yslRfhxD8s,6679
+lsapy/lsa.py,sha256=addj4OQEU4e_H1sAqYu8mz8mAOfKWQyX6tZrOvSchH8,24074
+lsapy/statistics.py,sha256=NWEMxQ4DtdUs5MXf6vrSIf0RAStCRH3qAxSuLjmKd_g,8544
+lsapy/utils.py,sha256=zujNpB_M_5sDdvr5Z7WZtvxnWjmb9EPxzkgL025ohHw,1157
+lsapy/core/__init__.py,sha256=esb5kpoZnntCfYqSQ4Eh5SvB1It-JPyHsI-g2Bajxlo,19
+lsapy/core/functions.py,sha256=n5luztSPWrT6nLwsRAcSHLoWxf6gHjIXWlEYPOSUT1I,1293
+lsapy/data/climate_sample.nc,sha256=ng2o7BxKLgzQWIl5fdiGWvdCQSeHeOO5-X3ciyD72Xo,52687793
+lsapy/data/soil_sample.nc,sha256=y7NpYV9VZKXwiYExynA0vF1KAn5rhsWqzwGJ4tFE-TQ,2535031
+lsapy/functions/__init__.py,sha256=x5SoYovupqXyUYVeFAONX-CkTsF5EMMAdvwgI9AHtLk,215
+lsapy/functions/_discrete.py,sha256=9avHdPJB-oe6kMv5pYcKOupbR65Ym5g428f3euqBSr4,802
+lsapy/functions/_suitability.py,sha256=F6i7s8KiuyEyPNVcYAMH8CedWNv2sCY_xJyG6E6vzL4,4956
+lsapy/functions/membership.py,sha256=_ll3I6l8f0pX0Tna1bkOPC5RfAgC8zj4JSMr9asrOSE,9663
+lsapy-0.1.1.dist-info/licenses/LICENSE,sha256=7EI8xVBu6h_7_JlVw-yPhhOZlpY9hP8wal7kHtqKT_E,1074
+lsapy-0.1.1.dist-info/WHEEL,sha256=G2gURzTEtmeR8nrdXUJfNiB3VYVxigPQ-bEQujpNiNs,82
+lsapy-0.1.1.dist-info/METADATA,sha256=y3yhyG8v6Skp-ydENLaB3ueKU6bG-46EFftbB56TlDI,7214
+lsapy-0.1.1.dist-info/RECORD,,
