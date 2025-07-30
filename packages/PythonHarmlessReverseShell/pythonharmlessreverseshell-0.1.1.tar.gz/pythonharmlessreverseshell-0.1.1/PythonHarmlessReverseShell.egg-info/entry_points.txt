@@ -1,0 +1,2 @@
+[console_scripts]
+reverse-shell-client = pythonharmlessreverseshell.main:reverse_shell_client

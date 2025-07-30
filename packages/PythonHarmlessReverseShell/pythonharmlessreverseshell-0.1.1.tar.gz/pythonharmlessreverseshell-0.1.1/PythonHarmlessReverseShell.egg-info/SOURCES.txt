@@ -1,0 +1,9 @@
+LICENSE
+setup.py
+PythonHarmlessReverseShell.egg-info/PKG-INFO
+PythonHarmlessReverseShell.egg-info/SOURCES.txt
+PythonHarmlessReverseShell.egg-info/dependency_links.txt
+PythonHarmlessReverseShell.egg-info/entry_points.txt
+PythonHarmlessReverseShell.egg-info/top_level.txt
+python-harmless-reverse-shell/__init__.py
+python-harmless-reverse-shell/main.py
