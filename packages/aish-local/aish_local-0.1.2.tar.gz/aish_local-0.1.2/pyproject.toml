@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aish-local"
+version = "0.1.2"
+description = "Talk to your terminal in natural language, get safe Linux commands (Ollama LLMs only)."
+authors = [
+  { name = "Penumala Nani", email = "pnani18dec@gmail.com" }
+]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+  "requests"
+]
+
+[project.scripts]
+aish = "aish.cli:main" 
