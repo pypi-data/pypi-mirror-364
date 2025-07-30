@@ -1,0 +1,3 @@
+[console_scripts]
+generateur-django = generateur_app_django.main:create_app_structure
+
