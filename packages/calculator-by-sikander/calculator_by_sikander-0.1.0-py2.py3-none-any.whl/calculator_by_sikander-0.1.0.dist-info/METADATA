@@ -1,0 +1,18 @@
+Metadata-Version: 2.4
+Name: calculator_by_sikander
+Version: 0.1.0
+Summary: A simple calculator by Sikander
+Author-email: Sikander Mukhtar <sikandarmukhtar5@gmail.com>
+License: MIT
+License-File: LICENSE
+Description-Content-Type: text/markdown
+
+# mylib
+
+A small Python library to add, subtract, multiply and divide.
+
+## Example
+
+```python
+from calculator_by_sikander import add
+print(add(1, 2))  #  3
