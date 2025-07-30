@@ -1,0 +1,17 @@
+okit/__init__.py,sha256=hGl_Pcv2w69SFW7KsfJnnBZxGT1SBVyHN9HmRE24A7U,86
+okit/cli/__init__.py,sha256=8_1nBwCCWHn1MtpsNOx2mEdxc-Vy5ZhnodwzOK_4ZTU,137
+okit/cli/autoreg.py,sha256=DPDU4EFPzXNDccVWb3CKNrRMN0kYH66DWnkqCv14cds,1547
+okit/cli/completion.py,sha256=FqzpvL_q_9r5WN8RGWwb-sDl31qDbcLm1SVolhdFBck,8718
+okit/cli/main.py,sha256=xn3F0Ts39yOYR1i4sZGRGvubt-A8vPz1jgz6tnzs4qI,918
+okit/fs/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+okit/fs/pedump.py,sha256=YejW8i__fRPTjra2yNu8nGbXl-cIjquJSmBnmbOkCS4,8154
+okit/net/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+okit/net/clonerepos.py,sha256=UeH1OxKtyzADRLXSG8bRQPDlcp2H0TNml23qqvPeFJM,2376
+okit/net/gitdiffsync.py,sha256=IuDFvMDQhUPzXnIk88bGBiEUTqFMGW2NZOLQcbqRMc8,13635
+okit/utils/log.py,sha256=boe_4sYM9rjspAsKlkralXx9AZefBQLWEBP0PxvZNLc,1822
+okit/utils/version.py,sha256=WoMcCdb0Spjt3-LtvfFeuY90L8HhUXVl8bD_uOBx2yE,935
+okit-1.1.1.dist-info/METADATA,sha256=QDmt9I7KV8DaVvi0x_2I0UE8AgN3tT050yh7-lY_Shs,5993
+okit-1.1.1.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+okit-1.1.1.dist-info/entry_points.txt,sha256=k11X9V0tg9mhewQqaN_wA7m9_RCrj03QKGCSNsQSUH4,81
+okit-1.1.1.dist-info/licenses/LICENSE,sha256=71XtCjBX7m-RgAM8okeC2bXNvgDXIrmJgfgmAziNXHw,1066
+okit-1.1.1.dist-info/RECORD,,
