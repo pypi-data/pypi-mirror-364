@@ -1,0 +1,14 @@
+numpy
+matplotlib
+seaborn
+pandas
+tqdm
+
+[docs]
+sphinx
+sphinxawesome-theme
+
+[full]
+torch>=2.0.0
+sphinx
+sphinxawesome-theme
