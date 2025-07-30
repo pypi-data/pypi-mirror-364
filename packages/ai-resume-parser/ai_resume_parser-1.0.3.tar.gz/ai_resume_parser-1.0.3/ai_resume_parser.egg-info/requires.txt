@@ -1,0 +1,16 @@
+pydantic>=2.0.0
+langchain-core>=0.1.0
+python-dateutil>=2.8.0
+pdfminer.six>=20221105
+python-docx>=0.8.11
+PyMuPDF>=1.23.0
+phonenumbers>=8.13.0
+email-validator>=2.2.0
+
+[dev]
+pytest>=7.0.0
+black>=22.0.0
+flake8>=4.0.0
+mypy>=0.950
+
+[full]
