@@ -1,0 +1,10 @@
+wikipedia_mcp/__init__.py,sha256=jy9d4RcWSkpoS4fpLq3CMApstVGdnKcPSYxFApUAyiI,113
+wikipedia_mcp/__main__.py,sha256=ZhtOU_SRzhlGAye8EY3cB-ibp_w5CWfjzp9ZDAtRWn4,5480
+wikipedia_mcp/server.py,sha256=O6H-7N7eAF0otckLNviagF9JW_STc-GKuuO6WSi4MVI,7985
+wikipedia_mcp/wikipedia_client.py,sha256=3E7zHlN4PN0Sme0HIPjZPwF-khyXG-z51hH8Lnez8nw,24519
+wikipedia_mcp-1.5.5.dist-info/licenses/LICENSE,sha256=qyKzHykQZ29Z_FJJ4gZPYjQQGYThyoVYedlJubbpguU,1066
+wikipedia_mcp-1.5.5.dist-info/METADATA,sha256=vDeVyf1vvi6FlLyN1I3KeaCG-4hzOEdarDrrpzt6YXU,22459
+wikipedia_mcp-1.5.5.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+wikipedia_mcp-1.5.5.dist-info/entry_points.txt,sha256=r1zAaLMBtk65cj8humQpEZDoLgfameYBd1edyfF1NTk,62
+wikipedia_mcp-1.5.5.dist-info/top_level.txt,sha256=1ub67a3G-5UJCdunwvkvJTmvS4j4ibsX3Dtm-y6ws8c,14
+wikipedia_mcp-1.5.5.dist-info/RECORD,,
