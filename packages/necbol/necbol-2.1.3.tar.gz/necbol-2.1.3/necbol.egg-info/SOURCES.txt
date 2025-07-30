@@ -1,0 +1,35 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+examples/example_G1OJS_contraspiral_with_optimiser.py
+examples/example_circular_slot_cube_with_optimiser.py
+examples/example_dipole_with_detailed_comments.py
+examples/example_dipole_with_dielectric_or_conducting_sheet.py
+examples/example_dipole_with_end_loading_plates.py
+examples/example_handheld_in_a_car.py
+examples/example_hentenna_with_supported_reflector.py
+examples/nec_wkg/A
+examples/nec_wkg/B
+examples/nec_wkg/Car.nec
+examples/nec_wkg/Car.out
+examples/nec_wkg/Circular slot cube.nec
+examples/nec_wkg/Circular slot cube.out
+examples/nec_wkg/Hentenna with reflector rectangle and nearby metal sheet.nec
+examples/nec_wkg/Hentenna with reflector rectangle and nearby metal sheet.out
+examples/nec_wkg/Horizontal Dipole with end loading plates.nec
+examples/nec_wkg/Horizontal Dipole with end loading plates.out
+examples/nec_wkg/Vertical Dipole.nec
+examples/nec_wkg/Vertical Dipole.out
+examples/nec_wkg/files.txt
+examples/nec_wkg/nec.bat
+necbol/__init__.py
+necbol/components.py
+necbol/gui.py
+necbol/modeller.py
+necbol/optimisers.py
+necbol.egg-info/PKG-INFO
+necbol.egg-info/SOURCES.txt
+necbol.egg-info/dependency_links.txt
+necbol.egg-info/requires.txt
+necbol.egg-info/top_level.txt
