@@ -1,0 +1,10 @@
+bdscore/__init__.py,sha256=XSKxJUHjvsPd1xkrAQ9GJAKfHT7l_Papu6Yz4PCf5S4,15710
+bdscore/services/__init__.py,sha256=Fp8l5IuZoxv1mH_mnFGeJ15WbIfIuiFMJ0Wzxp5xbNQ,821
+bdscore/services/datamanagement.py,sha256=vwHWMdANPDrHIk9m77Pl-Gqu9-H8gAC00WmtadwFZ14,14342
+bdscore/services/datapack.py,sha256=WVbFY8g3ik4BIs-vRQlyUaFf63szuYJcionqZ1zHzjg,11762
+pyarmor_runtime_000000/__init__.py,sha256=Zt9Nng0R6jGvM18tU6Xt63OkXCaql8RvVTZaEbyeuC0,101
+pyarmor_runtime_000000/pyarmor_runtime.so,sha256=XOdnCT1BWqrqLwr3Ehl8p1nU3yI8qS1YHXzPKDg0B70,788264
+bdscore-0.0.1b6.dist-info/METADATA,sha256=V29ZfSKS6sgdDU_uw1tKc7ulDZwsM2UDyZ7UvbPj_2M,2096
+bdscore-0.0.1b6.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+bdscore-0.0.1b6.dist-info/top_level.txt,sha256=i__dqD2hUmwpvpPsHJ5bXSM0VHjDyabCGkeGPXx_8pk,31
+bdscore-0.0.1b6.dist-info/RECORD,,
