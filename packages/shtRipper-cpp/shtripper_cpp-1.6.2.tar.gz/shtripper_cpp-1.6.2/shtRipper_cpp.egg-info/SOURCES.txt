@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+shtRipper/__init__.py
+shtRipper/debug_read.py
+shtRipper/debug_write.py
+shtRipper/shtRipper_entry.py
+shtRipper/binary/libripperForPython.so
+shtRipper/binary/libripperForPythonFor___.so
+shtRipper/binary/ripperForPython_32.dll
+shtRipper/binary/ripperForPython_64.dll
+shtRipper_cpp.egg-info/PKG-INFO
+shtRipper_cpp.egg-info/SOURCES.txt
+shtRipper_cpp.egg-info/dependency_links.txt
+shtRipper_cpp.egg-info/entry_points.txt
+shtRipper_cpp.egg-info/top_level.txt
