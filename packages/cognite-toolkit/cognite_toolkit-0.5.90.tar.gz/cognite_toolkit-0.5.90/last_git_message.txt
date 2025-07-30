@@ -1,0 +1,24 @@
+[CDF-25241] 🦾	 Interactive selection cdf profile raw/transformations (#1742)
+
+# Description
+
+<img width="755" height="201" alt="image"
+src="https://github.com/user-attachments/assets/f58555db-47b7-4d0a-9af8-b6ff16d3a447"
+/>
+
+## Changelog
+
+- [x] Patch
+- [ ] Minor
+- [ ] Skip
+
+## cdf
+
+### Added
+
+- [alpha] The `cdf profile raw/transformations` will now prompt an
+interactive select if you do not set destination.
+
+## templates
+
+No changes.
