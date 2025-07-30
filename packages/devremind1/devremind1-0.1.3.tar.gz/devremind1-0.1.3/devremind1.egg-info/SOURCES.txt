@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+setup.py
+devremind1/__init__.py
+devremind1/__main__.py
+devremind1/alarm.mp3
+devremind1/remind.py
+devremind1.egg-info/PKG-INFO
+devremind1.egg-info/SOURCES.txt
+devremind1.egg-info/dependency_links.txt
+devremind1.egg-info/entry_points.txt
+devremind1.egg-info/requires.txt
+devremind1.egg-info/top_level.txt
+tests/test_remind.py
