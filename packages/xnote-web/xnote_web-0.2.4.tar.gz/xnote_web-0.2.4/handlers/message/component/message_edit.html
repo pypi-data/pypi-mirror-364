@@ -1,0 +1,61 @@
+
+<script type="text/javascript">
+
+$(function () {
+    $("#updateMessageBtn").click(function () {
+        var id = $("#messageEditId").val();
+        var content = $("#messageEditContent").val();
+
+        var params = {
+            id: id,
+            content: content
+        }
+
+        xnote.http.post("/message/update", params, function (resp) {
+            if (resp.code == "success") {
+                xnote.toast("更新成功");
+
+                // 更新节点
+                var msg = {type: "message.updated"};
+                xnote.fire("message.updated", msg);
+            } else {
+                xnote.alert("更新失败:" + resp.message);
+            }
+        });
+    });
+
+    function onFileUploaded(event) {
+        var inputText = event.target;
+        var oldText = $(".input-box").val();
+        var newText = oldText + "\n" + inputText + "\n";
+        $(".input-box").val(newText);
+    }
+
+    /**
+     * @param {string} text
+     * @param {string} topic
+     */
+    function insertTopicToText(text, topic) {
+        text = text.trim();
+        topic = topic.trim();
+
+        if (text[0] == "#") {
+            // TODO 已经有标签了,调服务器parse?
+            return text + topic;
+        } else {
+            return topic + " " + text;
+        }
+    }
+
+    function onTopicSelected(event) {
+        xnote.closeAllDialog();
+        var topic = event.target;
+        var oldText = $(".input-box").val();
+        var newText = insertTopicToText(oldText, topic);
+        $(".input-box").val(newText);
+    }
+
+    xnote.on("message.upload", onFileUploaded);
+    xnote.on("message.topic.selected", onTopicSelected);
+});
+</script>
