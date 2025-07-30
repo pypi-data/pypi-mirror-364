@@ -1,0 +1,105 @@
+Metadata-Version: 2.4
+Name: ddx-python-notebooks
+Version: 0.1.0
+Summary: A curated collection of Jupyter notebooks for analysis and diagnostics using the ddx-python client.
+Author: DEX Labs
+Keywords: ddx,notebooks,jupyter,analytics,diagnostics
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Requires-Python: <4.0,>=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: ddx-python<1.0.0,>=0.0.0
+Requires-Dist: jupyterlab<5.0,>=4.0
+Requires-Dist: ipykernel
+Requires-Dist: matplotlib<4.0,>=3.5
+Requires-Dist: pydantic>=2.0
+Requires-Dist: websockets<13,>=12.0
+Requires-Dist: 0x-contract-wrappers<3,>=2.0.0
+Requires-Dist: aiohttp<4,>=3.10.3
+Requires-Dist: asyncpg<1,>=0.30.0
+Requires-Dist: attrs<25,>=24.2.0
+Requires-Dist: cattrs<24,>=23.2.3
+Requires-Dist: coloredlogs<16,>=15.0.1
+Requires-Dist: configargparse<2,>=1.7
+Requires-Dist: monsterui<2,>=1.0.21
+Requires-Dist: numpy<3,>=2.2.6
+Requires-Dist: python-fasthtml<1,>=0.12.18
+Requires-Dist: pandas<3,>=2.2.2
+Requires-Dist: path<18,>=17.0.0
+Requires-Dist: pathlib<2,>=1.0.1
+Requires-Dist: plotly<6,>=5.23.0
+Requires-Dist: psutil<7,>=6.0.0
+Requires-Dist: requests<3,>=2.32.3
+Requires-Dist: simplejson<4,>=3.19.2
+Requires-Dist: sphinx<9,>=8.0.2
+Requires-Dist: verboselogs<2,>=1.7
+Requires-Dist: btrees<7,>=6.0
+Requires-Dist: ccxt<5,>=4.3.79
+Requires-Dist: coincurve<21,>=20.0.0
+Requires-Dist: dash-bootstrap-components<2,>=1.6.0
+Requires-Dist: python-dotenv<2,>=1.0.1
+Requires-Dist: sexpdata<2,>=1.0.2
+Requires-Dist: web3<7,>=6.20.1
+Requires-Dist: werkzeug<4,>=3.0.3
+Requires-Dist: gevent<25,>=24.2.1
+Requires-Dist: sortedcontainers<3,>=2.4.0
+Requires-Dist: aioresponses<0.8,>=0.7.6
+Requires-Dist: colorama<0.5,>=0.4.6
+
+# ddx-python-notebooks
+
+A curated collection of Jupyter notebooks for exploring on-chain state, performance metrics, and frontend analytics via the `ddx-python` client.
+
+## Prerequisites
+
+- Python 3.10+  
+- A local checkout of `ddx-python` (sibling directory)  
+- JupyterLab or Jupyter Notebook
+
+## Installation
+
+From this `notebooks/` folder:
+
+```bash
+# installs notebook deps and links in the local ddx-python package
+python3 -m pip install -e .
+```
+
+## Launch
+
+```bash
+jupyter lab
+# or
+jupyter notebook
+```
+
+Open any `.ipynb` from the list below.
+
+## Available Notebooks
+
+- **auditor_replay.ipynb**  
+  Replay & validate SMT-based state transitions.  
+- **performance_dashboard.ipynb**  
+  Visualize throughput, latency, and resource metrics.  
+- **exchange_dashboard.ipynb**  
+  Inspect trade history and on-chain order-book snapshots.  
+- **frontend_dashboard.ipynb**  
+  Analyze user‐level metrics: positions, PnL, fees.  
+- **multi_node_diverge.ipynb**  
+  Detect state divergences across node instances.  
+- **state_root_mismatch.ipynb**  
+  Debug mismatched state roots in forked/lagging nodes.
+
+## Usage
+
+1. Start your DDX node(s) or point at a public RPC endpoint.  
+2. In each notebook’s first cell, configure RPC URLs and paths.  
+3. Run cells sequentially to regenerate charts, tables, and alerts.
+
+## Contributing
+
+1. Add new notebooks under this directory.  
+2. List them in **Available Notebooks**.  
+3. Open a PR—ensure all cells run cleanly.  
+

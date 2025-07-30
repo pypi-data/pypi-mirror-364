@@ -1,0 +1,66 @@
+Metadata-Version: 2.4
+Name: ddx-python-fuzzing
+Version: 0.1.0
+Summary: Whitebox fuzzing tools for DerivaDEX components (market‐maker, market‐taker, auditor, chaos bots…).
+Author: DEX Labs
+Keywords: ddx,fuzzing,testing,blockchain
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Testing
+Requires-Python: <4.0,>=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: ddx-python<1.0.0,>=0.0.0
+Requires-Dist: pydantic>=2.0
+Requires-Dist: websockets<13,>=12.0
+Requires-Dist: 0x-contract-wrappers<3,>=2.0.0
+Requires-Dist: aiohttp<4,>=3.10.3
+Requires-Dist: asyncpg<1,>=0.30.0
+Requires-Dist: attrs<25,>=24.2.0
+Requires-Dist: cattrs<24,>=23.2.3
+Requires-Dist: coloredlogs<16,>=15.0.1
+Requires-Dist: configargparse<2,>=1.7
+Requires-Dist: numpy<3,>=2.2.6
+Requires-Dist: pandas<3,>=2.2.2
+Requires-Dist: path<18,>=17.0.0
+Requires-Dist: pathlib<2,>=1.0.1
+Requires-Dist: plotly<6,>=5.23.0
+Requires-Dist: psutil<7,>=6.0.0
+Requires-Dist: requests<3,>=2.32.3
+Requires-Dist: simplejson<4,>=3.19.2
+Requires-Dist: sphinx<9,>=8.0.2
+Requires-Dist: verboselogs<2,>=1.7
+Requires-Dist: btrees<7,>=6.0
+Requires-Dist: ccxt<5,>=4.3.79
+Requires-Dist: coincurve<21,>=20.0.0
+Requires-Dist: dash-bootstrap-components<2,>=1.6.0
+Requires-Dist: python-dotenv<2,>=1.0.1
+Requires-Dist: sexpdata<2,>=1.0.2
+Requires-Dist: web3<7,>=6.20.1
+Requires-Dist: werkzeug<4,>=3.0.3
+Requires-Dist: gevent<25,>=24.2.1
+Requires-Dist: sortedcontainers<3,>=2.4.0
+Requires-Dist: aioresponses<0.8,>=0.7.6
+Requires-Dist: colorama<0.5,>=0.4.6
+
+# ddx-python-fuzzing
+
+Whitebox fuzzing suite for DerivaDEX components (market-maker, market-taker, auditor, chaos bots…).
+
+## Installation
+
+First, ensure that the `ddx-python` dependency is correctly configured.
+
+From this `fuzzing/` folder:
+
+```bash
+python3 -m pip install .
+```
+
+## Configuration
+
+Copy and customize any `.conf.json.template`:
+
+```bash
+cp whitebox_fuzzing/strategy.conf.json.template ./strategy.conf.json
+# edit RPC URL, initial balances, etc.
+```
