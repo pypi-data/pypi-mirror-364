@@ -1,0 +1,71 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ main ]
+
+env:
+  PYTHON_VERSION: "3.11"
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Generate proto files
+        run: |
+          python proto/pull_proto.py
+          python -m grpc_tools.protoc -Iproto --python_out=tektii_sdk/proto --grpc_python_out=tektii_sdk/proto proto/strategy.proto
+          touch tektii_sdk/proto/__init__.py
+
+      - name: Run pre-commit
+        uses: pre-commit/action@v3.0.0
+
+  test:
+    name: Test Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install system dependencies (Ubuntu)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y protobuf-compiler
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Generate proto files
+        run: |
+          python proto/pull_proto.py
+          python -m grpc_tools.protoc -Iproto --python_out=tektii_sdk/proto --grpc_python_out=tektii_sdk/proto proto/strategy.proto
+          touch tektii_sdk/proto/__init__.py
+          # Fix the relative import in the generated gRPC file
+          sed -i 's/import strategy_pb2/from . import strategy_pb2/' tektii_sdk/proto/strategy_pb2_grpc.py
+
+      - name: Run tests
+        run: |
+          pytest tests/ -v --cov=tektii_sdk --cov-report=xml --cov-report=term-missing
