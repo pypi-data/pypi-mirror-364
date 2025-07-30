@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "radiocarbon"
+version = "0.5.0"
+description = "A package for calibrating radiocarbon dates, calculating summed probability distributions, and testing their significance against a null hypothesis."
+authors = [{ name = "Jonas Gregorio" }]
+readme = "README.md"
+license = { text = "GNU General Public License v3.0 only" }
+requires-python = ">=3.8"
+dependencies = [
+    "numpy>=1.23.0",
+    "scipy>=1.9.0"
+]
