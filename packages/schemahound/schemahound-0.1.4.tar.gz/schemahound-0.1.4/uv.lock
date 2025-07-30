@@ -1,0 +1,7 @@
+version = 1
+requires-python = ">=3.12"
+
+[[package]]
+name = "schemahound"
+version = "0.1.4.dev2+g38c1b13.d20250724"
+source = { editable = "." }
