@@ -1,0 +1,10 @@
+MANIFEST.in
+setup.py
+generateur_app_django/__init__.py
+generateur_app_django/__main__.py
+generateur_app_django/main.py
+generateur_app_django.egg-info/PKG-INFO
+generateur_app_django.egg-info/SOURCES.txt
+generateur_app_django.egg-info/dependency_links.txt
+generateur_app_django.egg-info/entry_points.txt
+generateur_app_django.egg-info/top_level.txt

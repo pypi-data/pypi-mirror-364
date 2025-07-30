@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: generateur-app-django
+Version: 0.1.0
+Summary: Un outil pour générer une app Django avec une arborescence personnalisée.
+Home-page: UNKNOWN
+Author: Mar
+Author-email: mar12@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Framework :: Django
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+
+UNKNOWN
+
