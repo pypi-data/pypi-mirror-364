@@ -1,0 +1,24 @@
+[browser_agent.ai_providers]
+anthropic = browser_agent.ai.anthropic_provider:AnthropicProvider
+local = browser_agent.ai.local_provider:LocalProvider
+openai = browser_agent.ai.openai_provider:OpenAIProvider
+
+[browser_agent.browsers]
+playwright = browser_agent.browsers.playwright_browser:PlaywrightBrowser
+selenium = browser_agent.browsers.selenium_browser:SeleniumBrowser
+
+[browser_agent.plugins]
+accessibility = browser_agent.plugins.accessibility:AccessibilityPlugin
+default = browser_agent.plugins.default:DefaultPlugin
+form_filler = browser_agent.plugins.form_filler:FormFillerPlugin
+performance = browser_agent.plugins.performance:PerformancePlugin
+screenshot = browser_agent.plugins.screenshot:ScreenshotPlugin
+web_scraper = browser_agent.plugins.web_scraper:WebScraperPlugin
+
+[console_scripts]
+ba = browser_agent.cli_main:main
+browser-agent = browser_agent.cli_main:main
+browser-agent-gui = browser_agent.gui_main:main
+
+[gui_scripts]
+browser-agent-gui = browser_agent.gui_main:main

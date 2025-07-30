@@ -1,0 +1,1 @@
+"""Browser management and detection modules"""
