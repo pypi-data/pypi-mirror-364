@@ -1,0 +1,16 @@
+Metadata-Version: 2.4
+Name: port-history-plugin
+Version: 1.0.5
+Summary: Check the relevance of inventory on switches
+Home-page: 
+Author: Nikolay Gimozdinov
+Author-email: 
+License: MIT
+Keywords: netbox,netbox-plugin,plugin
+Requires-Dist: aiosnmp
+Requires-Dist: netutils
+Dynamic: author
+Dynamic: keywords
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: summary
