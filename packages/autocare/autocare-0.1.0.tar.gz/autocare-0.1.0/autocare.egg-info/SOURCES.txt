@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+autocare/__init__.py
+autocare/client.py
+autocare.egg-info/PKG-INFO
+autocare.egg-info/SOURCES.txt
+autocare.egg-info/dependency_links.txt
+autocare.egg-info/requires.txt
+autocare.egg-info/top_level.txt
+tests/test_client.py
