@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: PuzzleAndy
+Version: 1.0.13
+Requires-Dist: numpy
+Description-Content-Type: text/markdown
+
+## Example: Black and White
+```
+import puzzleandy as pa
+
+im = pa.read('example.png')
+im = pa.rgb_to_gray(im)
+pa.show(im)
+```
+
+## Example: Black to Red Gradient Map
+```
+import puzzleandy as pa
+
+im = pa.read('example.png')
+im = pa.black_red_gmap(im)
+pa.show(im)
+```
