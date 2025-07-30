@@ -1,0 +1,13 @@
+gaccode_monitor-0.1.1.dist-info/licenses/LICENSE,sha256=daPBoVi3a75o9JO1heYG5uqNYHVLc3Ce_CP4UQ8cYXs,1097
+py/__init__.py,sha256=Q_9AFrJm_V6xs5Sacra2ssvwTyZAhexM--PSoelYO0s,95
+py/fetch_gaccode_balance.py,sha256=v_AUHQtDJp943RPijdLxKTJP28DDQmd3hupJ9rFHFxU,1767
+py/gaccode_tray_icon.py,sha256=9uCwqND0GYTwP21a2sbLKj7dsUjIWS-UW5-Rn40dnuE,5297
+py/utils/__init__.py,sha256=ntNp3hsZoqQV65BoXMOBeBKjrrVOS3q7-BiciEpFXGs,40
+py/utils/constants.py,sha256=JSNqsWVy6SwSP50ZTHPljZ4gVx35x6bEsb8giMegegE,1409
+py/utils/log_util.py,sha256=YG0m7bhnYg1TS-nPldX13Qn4kM5vZzX45N3c6RtlmlU,4160
+py/utils/unique_id_generator.py,sha256=DgBLvrReJUTyy57R-HpD3iZNt0fbKUG4uIFdI2z89Bo,3086
+gaccode_monitor-0.1.1.dist-info/METADATA,sha256=gNiqMiSBHW_v3K66sBzWkE_m6pqzpnKySSo5BsYN08I,2719
+gaccode_monitor-0.1.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+gaccode_monitor-0.1.1.dist-info/entry_points.txt,sha256=FZDNRgkCY5L-tlIk8eKbi6CucDrIl4wMdQfStPug5OE,115
+gaccode_monitor-0.1.1.dist-info/top_level.txt,sha256=rwh8_ukTaGscjyhGkBVcsGOMdc-Cfdz2QH7BKGENv-4,3
+gaccode_monitor-0.1.1.dist-info/RECORD,,
