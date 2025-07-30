@@ -1,0 +1,17 @@
+README.md
+setup.py
+src/niiprep/__init__.py
+src/niiprep/clean_background.py
+src/niiprep/cli.py
+src/niiprep/crop.py
+src/niiprep/denoise_mp2rage.py
+src/niiprep/nii2mp4.py
+src/niiprep/registration.py
+src/niiprep/resample.py
+src/niiprep/round.py
+src/niiprep.egg-info/PKG-INFO
+src/niiprep.egg-info/SOURCES.txt
+src/niiprep.egg-info/dependency_links.txt
+src/niiprep.egg-info/entry_points.txt
+src/niiprep.egg-info/requires.txt
+src/niiprep.egg-info/top_level.txt
