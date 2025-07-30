@@ -1,0 +1,101 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sfn_llm_client"
+description = "SDK for using LLM"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+    { name = "Rajesh Darak", email = "rajesh@stepfuction.ai" },
+]
+classifiers = [
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+    "aiohttp >=3.0.0,<4.0.0",
+    "dataclasses_json >= 0.5.0",
+    "openai >=1.54.3",
+    "tiktoken >=0.3.3",
+    "anthropic >= 0.39.0",
+    "snowflake-connector-python >=3.12.3",
+    "snowflake-ml-python==1.7.0",
+    "snowflake-snowpark-python==1.23.0",
+    "transformers >= 4.46.2",
+    "langchain-openai >= 0.3.28",
+    "snowflake-snowpark-python >=1.0.0",
+    "langchain-community >= 0.0.30",
+    "pydantic >=2.6.0, <3.0.0",
+    "langchain-core>=0.3,<0.4",
+]
+dynamic = ["version"]
+
+[project.urls]
+Homepage = "https://github.com/iamrajeshdaraksfn/llm-client-sdk.git"
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "pytest-aiohttp",
+    "pytest-asyncio",
+    "pytest-mock",
+    "aioresponses"
+]
+openai = [
+    "openai >=1.54.3",
+    "tiktoken >=0.3.3",
+]
+huggingface = [
+    "transformers >= 4.0.0"
+]
+anthropic = [
+    "anthropic >= 0.39.0"
+]
+arctic = [
+    "snowflake-connector-python >=3.12.3",
+    "snowflake-ml-python==1.7.0",
+    "snowflake-snowpark-python==1.23.0",
+    "transformers >= 4.46.2"
+]
+openai_langchain = [
+    "langchain-openai >= 0.3.28",
+    "langchain-community >= 0.0.30",
+]
+cortex_langchain = [
+    "snowflake-snowpark-python >=1.0.0",
+    "langchain-community >= 0.0.30",
+    "pydantic >=2.6.0, <3.0.0",
+    "langchain-core>=0.3,<0.4",
+]
+google = [
+    "google-generativeai >= 0.1.0"
+]
+api = [
+    "sfn_llm_client[openai,huggingface,anthropic,google,arctic]"
+]
+local = [
+    "transformers >= 4.0.0"
+]
+sync =  [
+    "async_to_sync >= 0.2.0"
+]
+all = [
+    "sfn_llm_client[api,local,sync]"
+]
+
+[tool.hatch.version]
+path = "sfn_llm_client/__init__.py"
+
+[tool.coverage.run]
+parallel = true
+source = [
+    "sfn_llm_client"
+]
+context = '${CONTEXT}'
