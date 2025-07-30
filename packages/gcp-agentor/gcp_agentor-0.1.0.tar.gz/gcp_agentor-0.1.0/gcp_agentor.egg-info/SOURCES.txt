@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+setup.py
+gcp_agentor.egg-info/PKG-INFO
+gcp_agentor.egg-info/SOURCES.txt
+gcp_agentor.egg-info/dependency_links.txt
+gcp_agentor.egg-info/requires.txt
+gcp_agentor.egg-info/top_level.txt
+tests/test_registry.py
