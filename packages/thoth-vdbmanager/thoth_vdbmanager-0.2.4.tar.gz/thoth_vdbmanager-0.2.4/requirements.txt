@@ -1,0 +1,28 @@
+# Core dependencies
+pydantic>=2.0.0
+typing-extensions>=4.0.0
+
+# Haystack framework
+haystack-ai>=2.13.0
+sentence-transformers>=2.2.0
+
+# Vector store integrations
+qdrant-haystack>=9.0.0
+weaviate-haystack>=2.0.0
+chroma-haystack>=1.0.0
+pgvector-haystack>=1.0.0
+milvus-haystack>=1.0.0
+pinecone-haystack>=1.0.0
+
+# Database drivers (optional, install as needed)
+psycopg2-binary>=2.9.0  # For pgvector
+pymilvus>=2.3.0  # For Milvus
+pinecone-client>=3.0.0  # For Pinecone
+
+# Development dependencies
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.0.0
+
+# Optional dependencies for specific backends
+# Install with: pip install vdbmanager[qdrant] or vdbmanager[all]
