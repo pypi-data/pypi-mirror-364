@@ -1,0 +1,3 @@
+[console_scripts]
+spclone = spclone.cli:clone
+spinstall = spclone.cli:main
