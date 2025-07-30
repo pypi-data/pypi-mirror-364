@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "thorcast_api_client"
+version = "0.1.4.1"
+description = "Un client Python pour interagir avec l'API ThorCast"
+authors = ["JBCAYRE <jcayre@mint.eco>"]
+readme = "README.md"  
+
+[tool.poetry.dependencies]
+python = "^3.8"
+requests = "^2.26.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

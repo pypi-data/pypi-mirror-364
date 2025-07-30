@@ -1,0 +1,60 @@
+# ThorCast API Client V0.1
+
+## 📌 Description (je suis nul en Markdown , j'espère que ce sera lisible)
+
+`thorcast_api_client` est un client Python permettant d'interagir avec l'API **ThorCast** mise en place par Holmium pour MINT.
+
+Il prend en charge (normalement) :
+- L'**authentification JWT**
+- La récupération des **courbes de charge prévues**
+- La récupération des **courbes de charge historiques**
+- La gestion des **erreurs API**
+
+## 🚀 Installation
+
+### Via `pip`
+```sh
+pip install thorcast_api_client
+```
+
+### Via `poetry` pour les amateurs de Baudelaire
+```sh
+poetry add thorcast_api_client
+```
+
+## 📜 Utilisation 
+
+### 🔒 Authentification : 
+
+L'authentification passe par la requête d'un token JWS en injectant un MDP/Username :
+
+```sh
+from thorcast_api_client.client import ThorCastClient
+
+client = ThorCastClient("mon_user", "mon_mdp")
+```
+#### Lister les versions disponibles pour une ou plusieurs courbes LT
+
+```sh
+versions = client.get_lt_curves_versions(["prm1", "prm2"])
+print(versions)
+```
+#### Récupérer les courbes de charge LT
+
+```sh
+courbes = client.get_lt_curves(["prm1", "prm2"], "2023-01-01T00:00:00Z", "2025-01-01T00:00:00Z")
+print(courbes)
+```
+
+#### Récupérer les versions des courbes de catalogue 🤷 (rien compris à ce que ça remonte)
+
+```sh
+version_catalogues = client.get_catalog_versions(["catalogue1", "catalogue2"], "2023-01-01T00:00:00Z", "2025-01-01T00:00:00Z")
+print(version_catalogues)
+```
+#### Récupérer les courbes de charge historiques
+
+```sh
+courbes_catalogue = client.get_catalog_curves(["id_catalogue1", "id_catalogue2"])
+print(courbes_catalogue)
+```
