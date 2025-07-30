@@ -1,0 +1,42 @@
+Metadata-Version: 2.4
+Name: test_simple_math
+Version: 0.1.1
+Summary: A simple math utility package
+Home-page: https://github.com/your_username/simple_math
+Author: Your Name
+Author-email: your_email@example.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: summary
+
+# Simple Math Package
+
+A simple Python package to perform basic math operations like addition and subtraction.
+
+## Installation
+
+You can install the package with pip:
+
+```bash
+pip install simple_math
+```
+
+## Usage
+
+```python
+from simple_math import add, subtract
+
+print(add(3, 5))        # Outputs: 8
+print(subtract(10, 4))  # Outputs: 6
+```
+
