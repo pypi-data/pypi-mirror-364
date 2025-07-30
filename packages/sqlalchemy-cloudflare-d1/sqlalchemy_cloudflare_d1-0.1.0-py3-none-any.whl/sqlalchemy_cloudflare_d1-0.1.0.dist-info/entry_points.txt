@@ -1,0 +1,2 @@
+[sqlalchemy.dialects]
+cloudflare_d1 = sqlalchemy_cloudflare_d1.dialect:CloudflareD1Dialect
