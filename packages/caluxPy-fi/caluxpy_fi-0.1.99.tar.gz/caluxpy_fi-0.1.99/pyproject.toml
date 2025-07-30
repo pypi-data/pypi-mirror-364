@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=69.2.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "caluxPy_fi"
+version = "0.1.99"
+description = "Fixed Income Valuation and Analysis"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11.4"
+authors = [
+  { name = "Luis Manuel Tavarez Valenzuela", email = "luima2494@gmail.com" }
+]
+maintainers = [
+  { name = "Luis Manuel Tavarez Valenzuela", email = "luima2494@gmail.com" }
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent"
+]
+dependencies = [
+  "datetime>=5.3",
+  "matplotlib>=3.8.2",
+  "numpy>=1.26.4",
+  "pandas>=2.2.0",
+  "pyodbc>=5.0.1",
+  "scipy>=1.11.4"
+]

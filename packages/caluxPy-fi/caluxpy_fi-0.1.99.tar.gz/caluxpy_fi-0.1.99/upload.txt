@@ -1,0 +1,5 @@
+python -m pip install --upgrade build
+python -m build
+python -m pip install --upgrade twine
+
+python -m twine upload -u __token__ -p pypi-AgEIcHlwaS5vcmcCJGZmMWRmOWI4LWQ0OTQtNGU2Ny1iYmU0LWYzYWRjNzYzZjY4ZAACElsxLFsiY2FsdXhweS1maSJdXQACLFsyLFsiNzE1MzYwOGMtNjNmZS00NmEwLWE2MWEtMWIyODI2ZWY3MWNmIl1dAAAGIDDM1z2QUeKyTTUG4FeA_e4QtejbgXxJtmmT2vKSRj67 dist/*
