@@ -1,0 +1,4 @@
+click
+numpy
+scikit-rf>=0.29
+typing_extensions
