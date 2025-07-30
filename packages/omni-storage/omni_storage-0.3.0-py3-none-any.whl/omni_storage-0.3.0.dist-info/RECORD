@@ -1,0 +1,14 @@
+omni_storage/__init__.py,sha256=aRaDd3ZlSjgyngA979OJtI_aRIzbtNY4viYoUTvw6nU,37
+omni_storage/base.py,sha256=ZHoYsyNQX5pr-jP7HoTxQeaMX7IxC9-ewkwqEIdG5GQ,4672
+omni_storage/factory.py,sha256=wJR20V5ATQDXZjSJLakmRq2EbJG86eclKcw7XaL2xdw,3323
+omni_storage/gcs.py,sha256=wDX1jf5fedbwcKSOtitDrxhOupTsIb4OY2qUspFYkns,13668
+omni_storage/local.py,sha256=niYvM0GHeQ7nm0yOeKSCCTnMKvTJpxmzwOxD7WxQnIM,5398
+omni_storage/manifest.py,sha256=TbUYLIJei3VRPKGbgfTC0zFDHoU_mJvesn2DPWmgQrQ,5345
+omni_storage/py.typed,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
+omni_storage/s3.py,sha256=8lzhpNmyJkjBnp1LwEKwIlQCmQp1yMAIaFHlSd1VjFI,13792
+omni_storage/types.py,sha256=XknZjBn2JlqhXK_nM7j0jYTVQUkwXiFhvRBH9QhUvh4,577
+omni_storage-0.3.0.dist-info/METADATA,sha256=LXwCTEpnh-XZgC-Jh57q46ZMg39C5q1GVLObfUg9xHk,11205
+omni_storage-0.3.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+omni_storage-0.3.0.dist-info/entry_points.txt,sha256=rVk8aITUTykaJM1ovz4p2lY25SXVs-xAG-h4oUNmwU0,51
+omni_storage-0.3.0.dist-info/licenses/LICENSE,sha256=5MfgQnuuXWOy4xtCV0XWWPDIQ9gG_aA7zYI_mhtndwc,1066
+omni_storage-0.3.0.dist-info/RECORD,,
