@@ -1,0 +1,14 @@
+[workspace]
+resolver = "2"
+members = ["bindings/python/gqlitepy", "crates/*"]
+
+[workspace.package]
+version = "0.5.2"
+edition = "2021"
+license = "MIT"
+homepage = "https://gqlite.org"
+repository = "https://gitlab.com/gqlite/gqlite"
+
+[workspace.dependencies]
+# versions have to be specified with path: https://github.com/rust-lang/cargo/issues/11133
+gqlitedb = { version = "0.5.2", path = "crates/gqlitedb" }
