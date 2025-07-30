@@ -1,0 +1,14 @@
+LICENSE
+README.md
+pyproject.toml
+src/pointr_cloud_v8_mcp_server/PointrAgent.py
+src/pointr_cloud_v8_mcp_server/__init__.py
+src/pointr_cloud_v8_mcp_server/__main__.py
+src/pointr_cloud_v8_mcp_server/app.py
+src/pointr_cloud_v8_mcp_server/server.py
+src/pointr_cloud_v8_mcp_server.egg-info/PKG-INFO
+src/pointr_cloud_v8_mcp_server.egg-info/SOURCES.txt
+src/pointr_cloud_v8_mcp_server.egg-info/dependency_links.txt
+src/pointr_cloud_v8_mcp_server.egg-info/entry_points.txt
+src/pointr_cloud_v8_mcp_server.egg-info/requires.txt
+src/pointr_cloud_v8_mcp_server.egg-info/top_level.txt
