@@ -1,0 +1,2 @@
+[console_scripts]
+mcp-server-mdf = mdfmcp.server:main
