@@ -1,0 +1,5 @@
+[console_scripts]
+intracktive = intracktive.main:main
+
+[napari.manifest]
+intracktive = intracktive:napari.yaml
