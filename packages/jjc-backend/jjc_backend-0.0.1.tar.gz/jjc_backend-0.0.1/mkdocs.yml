@@ -1,0 +1,52 @@
+site_name: jjc-backend
+repo_url: https://github.com/makanu/jjc-backend
+site_url: https://makanu.github.io/jjc-backend
+site_description: This is the django-backend of JourneyJinks Canvas.
+site_author: MaKaNu
+edit_uri: edit/main/docs/
+repo_name: makanu/jjc-backend
+copyright: Maintained by <a href="https://makanu.com">makanu</a>.
+
+nav:
+  - Home: index.md
+  - Modules: modules.md
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: ["src/jjc_backend"]
+theme:
+  name: material
+  feature:
+    tabs: true
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: deep orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: deep orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/makanu/jjc-backend
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/jjc-backend
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
