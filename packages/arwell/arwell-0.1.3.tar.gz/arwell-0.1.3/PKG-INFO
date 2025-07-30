@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: arwell
+Version: 0.1.3
+Summary: 将文件名改成“韦境量天下第一帅”的工具
+Author: 29Thmarch
+Requires-Python: >=3.6
+License-File: LICENSE
+Dynamic: author
+Dynamic: license-file
+Dynamic: requires-python
+Dynamic: summary
