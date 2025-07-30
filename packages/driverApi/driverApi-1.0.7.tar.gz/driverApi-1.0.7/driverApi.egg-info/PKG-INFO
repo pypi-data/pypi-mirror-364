@@ -1,0 +1,69 @@
+Metadata-Version: 2.1
+Name: driverApi
+Version: 1.0.7
+Summary: 外设驱动接口
+Author: NanYuan
+Author-email: 28766392428@qq.com
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+## 驱动接口下载方式
+
+     pip install driverApi -i https://www.pypi.org/simple/
+
+## 驱动接口规范说明
+
+### 1、driverApi 相关包说明：
+
+- `common`    基本常量以及基本工具的定义
+- `device` 基本设备功能及信息定义
+- `driver` 驱动接口规范
+- `logger` 日志输出工具
+
+### 2、driverApi 使用说明
+
+#### （1）、目录结构定义
+
+```text
+|-- your_project/
+    |--package_name/
+        |--module1.py
+        |--module2.py
+        |--your_driver.dll
+    |--package_name/
+        |--module3.py
+        |--dll/
+            |--your_driver.dll
+```
+
+- **package_name**：符合变量命名规范，推荐使用设备型号命名，例如 `CentA10`
+- **module1.py**：设备功能模块
+- **your_driver.dll**：该设备的驱动文件,可为文件或目录
+
+#### （2）、加载驱动方式
+
+```text
+示例目录
+|-- ExtDriver/
+    |--A10/
+        |--__init__.py
+        |--A10_keypad.py
+        |--A10_multi_func_screen.py
+        |--CENT_GWQ.dll
+```
+
+- 示例：**A10_keypad.py** 模块中使用以下方式加载dll驱动文件:
+
+```python
+import ctypes
+from common import get_absolute_path
+
+dll_GWQ = ctypes.WinDLL(get_absolute_path("plugin/A10/CENT_GWQ.dll"))
+```
+
+- **get_absolute_path**为`common`包中的获取路径工具，**plugin**为外设应用中已有的插件目录
+
+#### （3）、插件导入方式
+
+- 将所有 `package_name `包复制到外设工具的`plugin`目录下即可
