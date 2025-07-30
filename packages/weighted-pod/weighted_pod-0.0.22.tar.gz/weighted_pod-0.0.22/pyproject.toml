@@ -1,0 +1,12 @@
+[project]
+name = "weighted_pod"
+version = "0.1.0"
+description = "POD with weighted inner products for CFD"
+authors = [
+    {name = "Hakan", email = "hakan@example.com"}
+]
+dependencies = [
+    "numpy>=1.21.0",
+    "scipy>=1.7.0",
+    "matplotlib>=3.5.0"
+]

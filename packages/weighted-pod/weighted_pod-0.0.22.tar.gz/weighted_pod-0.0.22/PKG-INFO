@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: weighted_pod
+Version: 0.0.22
+Summary: Proper Orthogonal Decomposition with weighted inner products for CFD analysis
+Home-page: https://github.com/XXXXXXXXXX/weighted-pod
+Author: Hakan Demir
+Author-email: muhammet.demir@ruhr-uni-bochum.de
+License: UNKNOWN
+Description: # WeightedPOD
+        
+        A Python library for Proper Orthogonal Decomposition (POD) with weighted inner products, specifically designed for CFD analysis with non-uniform meshes.
+        
+        ## Features
+        
+        - Volume-weighted POD for non-uniform meshes
+        - Memory-efficient implementation using float32
+        - Both snapshot method and SVD approaches
+        - Comprehensive visualization tools
+        - Easy-to-use API
+        
+        ## Installation
+        
+        ```bash
+        pip install weighted-pod
+        
+Platform: UNKNOWN
+Classifier: Topic :: Scientific/Engineering
+Description-Content-Type: text/markdown
