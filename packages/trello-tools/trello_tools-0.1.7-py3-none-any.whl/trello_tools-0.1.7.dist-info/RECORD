@@ -1,0 +1,10 @@
+trello_cli/__init__.py,sha256=wXsQgsvIV6qVr0ZLeJ0qOm9D-Ppm_CUEIyasJ034DHg,497
+trello_cli/database.py,sha256=13ahgeTwuRViTy-WFrpWqRMX3-pbYJLqJZ18JIzswS8,344
+trello_cli/main.py,sha256=d81PEMFVo-g5gGKhB6bUCFQZCVeF_bKATCkiXLdEjOE,30870
+trello_cli/models.py,sha256=eqvREBAw7tj3xLfPEhKOZSvQZ8NmiDE39HR2VpSGdPU,312
+trello_cli/trello.py,sha256=gCDoG8vkQIwu_iMek4jJDmOriZxL5kYyymwpvJ9c1UU,942
+trello_tools-0.1.7.dist-info/METADATA,sha256=r_JuYA8y0pgtfjYyZbSqLguV3Kbwsxt4AtlJlK3SswM,12193
+trello_tools-0.1.7.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+trello_tools-0.1.7.dist-info/entry_points.txt,sha256=3Xlv8a_VycD1XipXqz226DpFe47G5C9159ftazbpF30,53
+trello_tools-0.1.7.dist-info/licenses/LICENSE,sha256=QecRWWIEkSG6Ma46Gz80NRlyhJvkb1u1xf_JPHgc-VU,1092
+trello_tools-0.1.7.dist-info/RECORD,,
