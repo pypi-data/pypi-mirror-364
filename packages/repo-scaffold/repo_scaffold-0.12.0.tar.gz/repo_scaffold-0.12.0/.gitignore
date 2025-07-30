@@ -1,0 +1,16 @@
+/.idea
+# Coverage output
+.coverage
+/.nox/
+/build/
+/coverage.xml
+/.zip/
+/venv/
+/dist/
+**/__pycache__/
+*.pyc
+# MkDocs build output
+/site/
+htmlcov/
+.env
+test-output/
