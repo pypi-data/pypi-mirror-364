@@ -1,0 +1,60 @@
+version: '3'
+# usage:
+# sudo docker-compose up
+services:
+  mongodb:
+    # Using the official MongoDB image 7
+    image: mongo:7
+    container_name: mongodb
+    networks:
+      - pmatcher-net
+    ports:
+      - '27013:27017'
+    expose:
+      - '27017'
+
+    restart: always
+
+  cli:
+    container_name: cli-app
+    build: .
+    environment:
+      MONGODB_HOST: mongodb
+      MONGODB_PORT: 27017
+      PMATCHER_CONFIG: '/home/worker/app/patientMatcher/patientMatcher/instance/config.py'
+    depends_on:
+      - mongodb
+    networks:
+      - pmatcher-net
+    command: add demodata
+
+  web:
+    container_name: web-app
+    build:
+      context: .
+      dockerfile: Dockerfile-server
+    environment:
+      MONGODB_HOST: mongodb
+      MONGODB_PORT: 27017
+      MAX_GT_SCORE: 0.75
+      MAX_PHENO_SCORE: 0.25
+      MAX_RESULTS: 10
+      DISCLAIMER: "This is a test PatientMatcher server"
+      ADMINS: '["test@mail.se"]'
+      TESTING: "True"
+      GUNICORN_WORKERS: 1
+      GUNICORN_THREADS: 1
+      GUNICORN_BIND: 0.0.0.0:8000
+      GUNICORN_TIMEOUT: 400
+    depends_on:
+      - mongodb
+    networks:
+      - pmatcher-net
+    ports:
+      - '8000:8000'
+    expose:
+      - '8000'
+
+networks:
+  pmatcher-net:
+    driver: bridge

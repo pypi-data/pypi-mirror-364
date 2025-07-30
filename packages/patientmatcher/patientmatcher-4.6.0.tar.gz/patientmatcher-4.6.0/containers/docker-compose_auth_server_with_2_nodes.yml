@@ -1,0 +1,102 @@
+version: '3'
+# usage:
+# Go to file instance/config.py and uncomment the DB_URI with authentication
+# (sudo) docker-compose up
+# (sudo) docker-compose down
+services:
+  mongodb:
+    # Using the official MongoDB image 4.4.9
+    image: mongo:4.4.9
+    container_name: mongodb
+    networks:
+      - pmatcher-net
+    ports:
+      - '27013:27017'
+    expose:
+      - '27017'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root123
+      MONGO_INITDB_DATABASE: admin
+    volumes: # Invoke an init script that creates an authenticated user for the database
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    restart: always
+
+  pmatcher-cli:
+    container_name: pmatcher-cli
+    build: ../.
+    environment:
+      MONGODB_HOST: mongodb
+      PMATCHER_CONFIG: '/home/worker/app/patientMatcher/patientMatcher/instance/config.py'
+    depends_on:
+      - mongodb
+    networks:
+      - pmatcher-net
+    command: bash -c "pmatcher add demodata"
+
+  # Simulate an external MME server connected to pmatcher-web
+  mme-server-1:
+    container_name: server-1
+    build: ../.
+    environment:
+      MONGODB_HOST: mongodb
+      PMATCHER_CONFIG: '/home/worker/app/patientMatcher/patientMatcher/instance/config.py'
+    depends_on:
+      - mongodb
+    networks:
+      - pmatcher-net
+    ports:
+      - '9021:9021'
+    expose:
+      - '9021'
+    command: bash -c "
+      pmatcher add client -id pmatcher_demo -token pmatcher_token1 -url pmatcher_url
+      && pmatcher run --host 0.0.0.0 -p 9021"
+
+  # Simulate a second external MME server connected to pmatcher-web
+  mme-server-2:
+    container_name: server-2
+    build: ../.
+    environment:
+      MONGODB_HOST: mongodb
+      PMATCHER_CONFIG: '/home/worker/app/patientMatcher/patientMatcher/instance/config.py'
+    depends_on:
+      - mongodb
+    networks:
+      - pmatcher-net
+    ports:
+      - '9022:9022'
+    expose:
+      - '9022'
+    command: bash -c "
+      pmatcher add client -id pmatcher_demo2 -token pmatcher_token2 -url pmatcher_url2
+      && pmatcher run --host 0.0.0.0 -p 9022"
+
+  pmatcher-web:
+    container_name: pmatcher-web
+    build: ../.
+    environment:
+      MONGODB_HOST: mongodb
+      PMATCHER_CONFIG: '/home/worker/app/patientMatcher/patientMatcher/instance/config.py'
+    depends_on:
+      - mongodb
+      - mme-server-1
+      - mme-server-2
+    networks:
+      - pmatcher-net
+    ports:
+      - '9020:9020'
+    expose:
+      - '9020'
+    command: bash -c "
+      pmatcher add node -id server1 -label 'Demo Server 1' -token pmatcher_token1 -matching_url http://mme-server-1:9021/match -accepted_content application/vnd.ga4gh.matchmaker.v1.0+json
+      && pmatcher add node -id server2 -label 'Demo Server 2' -token pmatcher_token2 -matching_url http://mme-server-2:9022/match -accepted_content application/vnd.ga4gh.matchmaker.v1.0+json
+      && pmatcher run --host 0.0.0.0 -p 9020"
+
+networks:
+  pmatcher-net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.24.0.0/24
