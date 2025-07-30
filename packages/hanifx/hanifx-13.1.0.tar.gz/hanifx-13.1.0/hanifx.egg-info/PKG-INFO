@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: hanifx
+Version: 13.1.0
+Summary: Twine alternative: PyPI uploader with auto-build
+Author: Hanif
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.6
+Requires-Dist: requests
+Dynamic: author
+Dynamic: classifier
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
