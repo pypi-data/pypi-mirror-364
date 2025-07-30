@@ -1,0 +1,16 @@
+django_bulk_hooks/__init__.py,sha256=EAWve4HjrrIuPbl8uc1s1ISDM3RPDtwCvTOPRwFpX8w,1392
+django_bulk_hooks/conditions.py,sha256=wDtY90Kv3xjWx8HEA4aAjva8fDDaYegJhn0Eu6G0F60,12150
+django_bulk_hooks/constants.py,sha256=3x1H1fSUUNo0DZONN7GUVDuySZctTR-jtByBHmAIX5w,303
+django_bulk_hooks/context.py,sha256=HVDT73uSzvgrOR6mdXTvsBm3hLOgBU8ant_mB7VlFuM,380
+django_bulk_hooks/decorators.py,sha256=zstmb27dKcOHu3Atg7cauewCTzPvUmq03mzVKJRi56o,7230
+django_bulk_hooks/engine.py,sha256=qSBvBel3pBWVE92ZzgKjMn2ceQpA7FMws2uMXes1MkA,3626
+django_bulk_hooks/enums.py,sha256=Zo8_tJzuzZ2IKfVc7gZ-0tWPT8q1QhqZbAyoh9ZVJbs,381
+django_bulk_hooks/handler.py,sha256=tdDolHAJ_Nd7-RT4s9HRyLtM1UWGjRjP1Y_U6Af32Gg,5325
+django_bulk_hooks/manager.py,sha256=DcVosEA4RS79KSYgw3Z14_a9Sd8CfxNNc5F3eSb8xc0,11459
+django_bulk_hooks/models.py,sha256=a9XoGgIG4Sfi_kvGnPBbG2DlvgZDz6Qck4VG-DGqFT0,4981
+django_bulk_hooks/queryset.py,sha256=7lLqhZ-XOYsZ1I3Loxi4Nhz79M8HlTYE413AW8nyeDI,1330
+django_bulk_hooks/registry.py,sha256=Vh78exKYcdZhM27120kQm-iXGOjd_kf9ZUYBZ8eQ2V0,683
+django_bulk_hooks-0.1.98.dist-info/LICENSE,sha256=dguKIcbDGeZD-vXWdLyErPUALYOvtX_fO4Zjhq481uk,1088
+django_bulk_hooks-0.1.98.dist-info/METADATA,sha256=KLEuzqcEjYRTaH3rhRfoyQIGkbNQwhA0KL1HniVfHzM,15414
+django_bulk_hooks-0.1.98.dist-info/WHEEL,sha256=Nq82e9rUAnEjt98J6MlVmMCZb-t9cYE2Ir1kpBmnWfs,88
+django_bulk_hooks-0.1.98.dist-info/RECORD,,
