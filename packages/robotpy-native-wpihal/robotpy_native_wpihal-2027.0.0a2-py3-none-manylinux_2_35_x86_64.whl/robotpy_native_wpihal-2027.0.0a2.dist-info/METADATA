@@ -1,0 +1,7 @@
+Metadata-Version: 2.4
+Name: robotpy-native-wpihal
+Version: 2027.0.0a2
+Summary: WPILib HAL implementation
+License-Expression: BSD-3-Clause
+Requires-Dist: robotpy-native-ntcore==2027.0.0a2
+Requires-Dist: robotpy-native-wpiutil==2027.0.0a2
