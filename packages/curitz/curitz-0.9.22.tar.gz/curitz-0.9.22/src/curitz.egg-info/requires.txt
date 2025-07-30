@@ -1,0 +1,8 @@
+zinolib<1.0,>=0.10.1
+dnspython
+
+[test]
+tox
+mypy
+flake8
+coverage

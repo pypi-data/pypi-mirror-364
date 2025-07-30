@@ -1,0 +1,13 @@
+*.pyc
+*.conf
+*.log
+*.bak
+*.egg-info
+.coverage*
+
+__pycache__
+.mypy_cache
+src/curitz/version.py
+build
+dist
+htmlcov
