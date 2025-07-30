@@ -1,0 +1,16 @@
+oceanum/cli/prax/__init__.py,sha256=RaANGbRu5e-vehwXI1-Qe2ggPPfs1TQaZj072JdbLk4,22
+oceanum/cli/prax/client.py,sha256=DtvUPI-lcKKIviMDte5AdjFaOp1IVllguwVCROkAH6Q,34465
+oceanum/cli/prax/main.py,sha256=ixC4pSV4LlSqVVvW-f2yMqGrnozOpSBErYUPsOpl7uw,1154
+oceanum/cli/prax/models.py,sha256=KFwYkZTyFwc3zSUWmtiHJlpL4LJXsUCyoseyY-M6iHI,125253
+oceanum/cli/prax/project.py,sha256=uQ0IK9RMQ6xIAcs-UrNcgLZG9XyctMjGeRN0bmoCtsE,18072
+oceanum/cli/prax/route.py,sha256=f2gLmlk7vFW30sAm3jUy5NmGNuvblIqsA5h4yR6JTig,8773
+oceanum/cli/prax/user.py,sha256=ryau4JcTcbhhXxQAHFhCh3qUl2uhJqb0hmtyU4an-IU,4037
+oceanum/cli/prax/utils.py,sha256=sNWs7tGRi5sLL7m0HK-W5qc-OebQkuFVQPLhb1JH9co,4222
+oceanum/cli/prax/workflows.py,sha256=V8bCRsQsbmUEq8RNF9Sd0U8Vmw1Ca3oAvj8BZ--wRhA,25269
+oceanum_prax-0.7.0.dist-info/licenses/AUTHORS.rst,sha256=owq2ru6N7W01DQVcyuCK-KPqGi1c4JnUT1Mtows-GYk,151
+oceanum_prax-0.7.0.dist-info/licenses/LICENSE,sha256=oPa3njPXS6TngVZuLSrLeOznwsWUl4Hsspw3TtGWsmY,1067
+oceanum_prax-0.7.0.dist-info/METADATA,sha256=LTxIjYPs0RppgbAEpH8tFYJFhZvA3bTE2fahr8OAmEQ,2912
+oceanum_prax-0.7.0.dist-info/WHEEL,sha256=JNWh1Fm1UdwIQV075glCn4MVuCRs0sotJIq-J6rbxCU,109
+oceanum_prax-0.7.0.dist-info/entry_points.txt,sha256=66CAPS8obny7jYvtsNUDNnHUZIvtABD6kYwirWP_75s,481
+oceanum_prax-0.7.0.dist-info/top_level.txt,sha256=hjYhBBCT0VB5fev15dXZL8ClSL4SKid0AmPTPJgv514,8
+oceanum_prax-0.7.0.dist-info/RECORD,,
