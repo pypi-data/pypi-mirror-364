@@ -1,0 +1,37 @@
+Metadata-Version: 2.4
+Name: opsmith-cli
+Version: 0.2.0b0
+Summary: Opsmith is an AI devops engineer in your terminal
+License-Expression: GPL-3.0-only
+License-File: LICENSE.txt
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Software Development
+Requires-Python: >=3.10
+Requires-Dist: ansible>=10.7.0
+Requires-Dist: black>=25.1.0
+Requires-Dist: boto3-stubs==1.38.36
+Requires-Dist: gitpython>=3.1.44
+Requires-Dist: google-api-python-client>=2.175.0
+Requires-Dist: google-cloud-compute>=1.31.0
+Requires-Dist: google-cloud-resource-manager>=1.14.2
+Requires-Dist: google-cloud-storage>=3.2.0
+Requires-Dist: grep-ast>=0.9.0
+Requires-Dist: inquirer>=3.4.0
+Requires-Dist: jinja2>=3.1.6
+Requires-Dist: networkx>=3.4.2
+Requires-Dist: pick>=2.4.0
+Requires-Dist: pydantic-ai[logfire]==0.4.2
+Requires-Dist: pydantic>=2.11.5
+Requires-Dist: python-dotenv>=1.1.0
+Requires-Dist: pyyaml>=6.0.2
+Requires-Dist: tqdm>=4.67.1
+Requires-Dist: tree-sitter-language-pack>=0.7.3
+Requires-Dist: typer>=0.16.0
