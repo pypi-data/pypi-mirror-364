@@ -1,0 +1,4 @@
+robotframework==6.1.1
+requests
+rpaframework==27.7.0
+robotframework-pythonlibcore
