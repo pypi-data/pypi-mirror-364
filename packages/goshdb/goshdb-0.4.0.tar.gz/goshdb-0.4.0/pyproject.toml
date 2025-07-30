@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "goshdb"
+version = "0.4.0"
+description = "GOogle SHeets DataBase - Python client to key-value database based on Google Sheets"
+authors = ["Artyom Vorobyov <artyom.vorobyov@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/artoby/goshdb"
+keywords = ["google", "sheets", "spreadsheet", "database", "key-value", "free", "nosql"]
+classifiers = [
+    "Topic :: Database",
+]
+
+[tool.poetry.dependencies]
+python = ">=3.10"
+
+google-api-python-client = ">= 2.128.0"
+google-auth-httplib2 = ">= 0.2.0"
+google-auth-oauthlib = ">= 1.2.0"
+openpyxl = ">= 3.1.0"
+
+pytest = ">= 7.4.0"
+
+[build-system]
+requires = [
+    "poetry-core"
+]
+build-backend = "poetry.core.masonry.api"
