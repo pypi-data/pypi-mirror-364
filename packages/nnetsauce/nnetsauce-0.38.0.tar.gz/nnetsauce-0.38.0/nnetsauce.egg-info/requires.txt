@@ -1,0 +1,13 @@
+jax
+jaxlib
+joblib
+matplotlib
+numpy
+optax
+pandas
+requests
+scipy
+scikit-learn
+statsmodels
+threadpoolctl
+tqdm
