@@ -1,0 +1,13 @@
+elecboltz/__init__.py,sha256=X_BESkTTVhaZsIiJfrDewQiFsTB7pdfIUULHD21dqks,164
+elecboltz/bandstructure.py,sha256=L7pWlSt5VbSF1LJr-3K0-3pobKFi8_UpF5CqebeYqMM,18035
+elecboltz/conductivity.py,sha256=ArrNuo2mCzSiohUESwMSdBWVRvvUHxnxBjyF1z20yzg,20920
+elecboltz/fit.py,sha256=3NZHHI3F7gFtKRdq1TbyqaJNuWJGTQGwPvXPXsNf6U0,29807
+elecboltz/integrate.py,sha256=fNqEFzLVYR6o5t36TR5swTNRQtXpcFAhETc_4J6Il8k,3428
+elecboltz/load.py,sha256=PnzCJJBG5rQJbiJ-BjBoXN1ovjmI9fU6andz8BwYaTc,20810
+elecboltz/params.py,sha256=Cd3tSC-bRDtL2jmEbALz7Hlm1rTuLfLHKzXOBCidQ48,5285
+elecboltz/scattering.py,sha256=tIlSc7J1HICZDV9mnMcDLe_c02HfDUVJ7Iz0z1yjKA8,5387
+elecboltz-0.3.6.dist-info/licenses/LICENSE,sha256=DmzwBEA3jvJr7YWaMnDwmgCQtoqxF2q_zjSdKSWewZg,1070
+elecboltz-0.3.6.dist-info/METADATA,sha256=jwapwoqlJMeoNAIIXXY5IvoXniCA75bFfmeqnp9W7hM,1595
+elecboltz-0.3.6.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+elecboltz-0.3.6.dist-info/top_level.txt,sha256=m922FkgdAYxsfg5fcF7vfBDZ6I_HKSEsVwL2dsl7oCA,10
+elecboltz-0.3.6.dist-info/RECORD,,
