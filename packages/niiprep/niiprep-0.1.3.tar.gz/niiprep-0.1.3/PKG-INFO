@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: niiprep
+Version: 0.1.3
+Summary: A CLI wrapper for TorchIO and ANTsPyX for NIfTI image processing
+Author: Jinghang Li
+Author-email: jinghang.li@pitt.edu
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.7
+Requires-Dist: torchio>=0.18.0
+Requires-Dist: antspyx>=0.3.0
+Requires-Dist: nibabel>=3.0.0
+Requires-Dist: numpy>=1.19.0
+Requires-Dist: opencv-python
+Requires-Dist: rembg
