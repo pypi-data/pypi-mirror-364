@@ -1,0 +1,28 @@
+[build-system]
+requires = ["hatchling >=1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "chaosinjector"
+version = "0.1.0"
+authors = [{ name = "Vladislav Proyaev", email = "farmfilok@gmail.com" }]
+description = "Probabilistic proxy for injecting randomness into Python objects"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+license = { file = "LICENSE" }
+
+[project.urls]
+Homepage = "https://github.com/vproyaev/chaosinjector"
+Issues = "https://github.com/vproyaev/chaosinjector/issues"
+Documentation = "https://chaosinjector.readthedocs.io"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/chaosinjector"]
+
+[project.optional-dependencies]
+dev = ["pytest"]
