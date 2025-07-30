@@ -1,0 +1,81 @@
+{
+  "sessionId": "session-1753244606046-hwadu65zx",
+  "checkpointId": "checkpoint-1753244636047-236eqvl9y",
+  "checkpointName": "auto-save-1753244636047",
+  "timestamp": "2025-07-23T04:23:56.049Z",
+  "data": {
+    "timestamp": "2025-07-23T04:23:56.047Z",
+    "changeCount": 5,
+    "changesByType": {
+      "swarm_created": [
+        {
+          "type": "swarm_created",
+          "data": {
+            "swarmId": "swarm-1753244606046-80oa9sdcm",
+            "swarmName": "hive-1753244606041",
+            "objective": "Let's make the final preparations for publishing the package to pypi, we'll use the openid connect workflow with github actions, and test with test.pypi.org before publishing to the production environment, I've already published v0.1.1 of aceiot-models to the index, so we should change our requirments to reference it, and test that it's resolved correctly, be sure to update the readme and make it clear and understandable. The author will be Andrew Rodgers andrew@aceiotsolutions.com and the repo details can be read from the local repos origin remote",
+            "workerCount": 8
+          },
+          "timestamp": "2025-07-23T04:23:26.046Z"
+        }
+      ],
+      "agent_activity": [
+        {
+          "type": "agent_activity",
+          "data": {
+            "agentId": "worker-swarm-1753244606046-80oa9sdcm-0",
+            "activity": "spawned",
+            "data": {
+              "type": "researcher",
+              "name": "Researcher Worker 1"
+            }
+          },
+          "timestamp": "2025-07-23T04:23:26.047Z"
+        },
+        {
+          "type": "agent_activity",
+          "data": {
+            "agentId": "worker-swarm-1753244606046-80oa9sdcm-1",
+            "activity": "spawned",
+            "data": {
+              "type": "coder",
+              "name": "Coder Worker 2"
+            }
+          },
+          "timestamp": "2025-07-23T04:23:26.047Z"
+        },
+        {
+          "type": "agent_activity",
+          "data": {
+            "agentId": "worker-swarm-1753244606046-80oa9sdcm-2",
+            "activity": "spawned",
+            "data": {
+              "type": "analyst",
+              "name": "Analyst Worker 3"
+            }
+          },
+          "timestamp": "2025-07-23T04:23:26.047Z"
+        },
+        {
+          "type": "agent_activity",
+          "data": {
+            "agentId": "worker-swarm-1753244606046-80oa9sdcm-3",
+            "activity": "spawned",
+            "data": {
+              "type": "tester",
+              "name": "Tester Worker 4"
+            }
+          },
+          "timestamp": "2025-07-23T04:23:26.047Z"
+        }
+      ]
+    },
+    "statistics": {
+      "tasksProcessed": 0,
+      "tasksCompleted": 0,
+      "memoryUpdates": 0,
+      "agentActivities": 4,
+      "consensusDecisions": 0
+    }
+  }
+}
