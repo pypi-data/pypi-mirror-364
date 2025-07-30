@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+energydiagram/__init__.py
+energydiagram/box_notation.py
+energydiagram/energydiagram.py
+energydiagram.egg-info/PKG-INFO
+energydiagram.egg-info/SOURCES.txt
+energydiagram.egg-info/dependency_links.txt
+energydiagram.egg-info/requires.txt
+energydiagram.egg-info/top_level.txt
+tests/test_energydiagram.py
