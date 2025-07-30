@@ -1,0 +1,5 @@
+plyer
+playsound
+
+[:python_version < "3.9"]
+importlib_resources
