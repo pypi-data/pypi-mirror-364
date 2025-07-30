@@ -1,0 +1,5 @@
+office365-rest-python-client>=2.6.2
+
+[dev]
+build
+twine
