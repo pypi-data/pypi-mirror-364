@@ -1,0 +1,2 @@
+[console_scripts]
+uupt-mcp-freight-server = uupt_mcp_freight_server:main
