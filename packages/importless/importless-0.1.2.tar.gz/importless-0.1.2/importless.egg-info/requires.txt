@@ -1,0 +1,4 @@
+importless
+rich>=14.0.0
+toml>=0.10.2
+typer>=0.16.0
