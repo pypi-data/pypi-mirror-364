@@ -1,0 +1,3 @@
+[console_scripts]
+eraXplor-aws = eraXplor_aws.__main__:main
+eraXplor-azure = eraXplor_azure.__main__:main
