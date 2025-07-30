@@ -1,0 +1,17 @@
+Metadata-Version: 2.3
+Name: morningstreams
+Version: 0.2.3
+Summary: 
+License: MIT
+Author: S1M0N38
+Author-email: bertolottosimone@gmail.com
+Requires-Python: >=3.9,<4.0
+Classifier: Development Status :: 1 - Planning
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: click (>=8.1.3,<9.0.0)
