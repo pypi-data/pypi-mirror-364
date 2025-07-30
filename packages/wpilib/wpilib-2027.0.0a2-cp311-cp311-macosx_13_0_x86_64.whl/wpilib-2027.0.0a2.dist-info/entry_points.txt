@@ -1,0 +1,9 @@
+[robotpy]
+run = wpilib._impl.start:Main
+
+[pkg_config]
+wpilib_event = wpilib.event
+wpilib = wpilib
+wpilib_counter = wpilib.counter
+wpilib_drive = wpilib.drive
+wpilib_simulation = wpilib.simulation
