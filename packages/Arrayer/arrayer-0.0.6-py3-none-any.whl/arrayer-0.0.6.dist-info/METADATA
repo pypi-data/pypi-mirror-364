@@ -1,0 +1,8 @@
+Metadata-Version: 2.4
+Name: Arrayer
+Version: 0.0.6
+Requires-Python: >=3.10
+Requires-Dist: numpy
+Requires-Dist: jax
+Requires-Dist: beartype
+Requires-Dist: jaxtyping
