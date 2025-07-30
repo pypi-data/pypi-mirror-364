@@ -1,0 +1,49 @@
+name: 📦 Container Release
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+  push:
+    branches: [main, master]
+    paths:
+      - 'container/**'
+      - '.github/workflows/container-release.yaml'
+  push:
+    branches: [main, master]
+    paths:
+      - 'container/**'
+      - '.github/workflows/container-release.yaml'
+jobs:
+  push_to_registry:
+    name: Push Container image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Login to GitHub Container Registry
+        uses: redhat-actions/podman-login@v1
+        with:
+          registry: ghcr.io
+          username: ${% raw %}{{ github.actor }}{% endraw %}
+          password: ${% raw %}{{ secrets.PERSONAL_ACCESS_TOKEN }}{% endraw %}
+      - name: Build Image
+        id: build-image
+        uses: redhat-actions/buildah-build@v2
+        with:
+          image: ${% raw %}{{ github.repository }}{% endraw %}
+          tags: latest ${% raw %}{{ github.sha }}{% endraw %} ${% raw %}{{ github.ref_name }}{% endraw %}
+          containerfiles: ./container/Containerfile
+          platforms: linux/amd64,linux/arm64
+          {% if cookiecutter.use_private_pypi == "true" -%}
+          build-args: |
+            PYPI_SERVER_USERNAME=${% raw %}{{ secrets.PYPI_SERVER_USERNAME }}{% endraw %}
+            PYPI_SERVER_PASSWORD=${% raw %}{{ secrets.PYPI_SERVER_PASSWORD }}{% endraw %}
+          {% endif -%}
+      - name: Push To Registry
+        uses: redhat-actions/push-to-registry@v2
+        with:
+          image: ${% raw %}{{ steps.build-image.outputs.image }}{% endraw %}
+          tags: ${% raw %}{{ steps.build-image.outputs.tags }}{% endraw %}
+          registry: ghcr.io
