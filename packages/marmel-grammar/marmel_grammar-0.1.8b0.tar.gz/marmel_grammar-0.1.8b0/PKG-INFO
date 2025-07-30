@@ -1,0 +1,681 @@
+Metadata-Version: 2.4
+Name: marmel-grammar
+Version: 0.1.8b0
+Summary: Самая мощная библиотека русской морфологии и транслитерации для Python
+Home-page: https://t.me/dev_marmel
+Author: Dev-Marmel
+Author-email: marmelgpt@gmail.com
+Project-URL: Bug Reports, https://t.me/dev_marmel
+Project-URL: Source, https://t.me/dev_marmel
+Project-URL: Documentation, https://t.me/dev_marmel
+Project-URL: Telegram, https://t.me/dev_marmel
+Keywords: russian,morphology,declension,grammar,transliteration,names,verbs,linguistic
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Text Processing :: Linguistic
+Classifier: Natural Language :: Russian
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0; extra == "dev"
+Requires-Dist: black; extra == "dev"
+Requires-Dist: isort; extra == "dev"
+Provides-Extra: telegram
+Requires-Dist: python-telegram-bot>=20.0; extra == "telegram"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: project-url
+Dynamic: provides-extra
+Dynamic: requires-python
+Dynamic: summary
+
+# 🚀 MARMEL-GRAMMAR v0.1.8b
+
+**Самая мощная библиотека русской морфологии и транслитерации для Python!**
+
+[![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://python.org)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-TOP%201%20🏆-gold.svg)](https://replit.com)
+[![Version](https://img.shields.io/badge/Version-0.1.8b-orange.svg)](https://pypi.org/project/marmel-grammar)
+
+---
+
+## 📞 Контакты
+
+**Создатель:** Dev-Marmel  
+**Telegram:** [@dev_marmel](https://t.me/dev_marmel)  
+**Библиотека:** marmel_grammar  
+**Email:** marmelgpt@gmail.com
+
+> 💫 Мы работаем только через **Telegram** и **PyPI** - никаких GitHub'ов!
+
+---
+
+## 🔧 Установка
+
+### Через pip:
+```bash
+pip install marmel-grammar
+```
+
+### Быстрая проверка:
+```python
+from marmel_grammar import MarmelGrammar
+grammar = MarmelGrammar()
+print(grammar.asc("Мария", "танцевать"))  # Мария танцевала
+```
+
+---
+
+## ⚡ Основные фишки
+
+- 🎯 **УМНАЯ ФУНКЦИЯ `asc()`** - автоматическое склонение по роду!
+- 🌍 **Транслитерация** - английские имена в русские
+- 📚 **Склонение имён** по всем 6 падежам
+- 🔄 **Спряжение глаголов** с определением рода
+- 🤖 **Умное определение рода** по окончаниям
+- ✨ **Создание стихов** и предложений
+- 📊 **Анализ контекста** - категоризация объектов
+- ⚡ **Высокая производительность** с кэшированием
+- 🎪 **Поддержка любых глаголов** - даже тех, что не в базе!
+
+---
+
+## 🚀 Быстрый старт
+
+```python
+from marmel_grammar import MarmelGrammar
+
+# Создаём экземпляр
+grammar = MarmelGrammar()
+
+# 🎯 ГЛАВНАЯ ФИШКА - функция asc()!
+print(grammar.asc("Мария", "пукнуть"))     # Мария пукнула
+print(grammar.asc("Иван", "танцевать"))    # Иван танцевал  
+print(grammar.asc("Саша", "работать"))     # Саша работал (унисекс→муж)
+
+# Транслитерация
+print(grammar.transliterate_to_russian("Alexander"))  # Александр
+print(grammar.transliterate_to_russian("Gazenvagen")) # Газенваген
+
+# Склонение
+print(grammar.decline("Иван", "gen"))    # Ивана
+print(grammar.decline("Мария", "dat"))   # Марии
+print(grammar.decline("Саша", "acc"))    # Сашу (унисекс)
+
+# Создание предложений
+print(grammar.make_sentence("Мария", "читать", "книга"))  
+# Мария читала книгу.
+```
+
+---
+
+## 🎯 Функция `asc()` - ГЛАВНАЯ ФИШКА!
+
+Самая крутая функция библиотеки! Автоматически склоняет имя + глагол по роду:
+
+```python
+# Основные примеры
+grammar.asc("Мария", "танцевать")      # Мария танцевала
+grammar.asc("Иван", "петь")            # Иван пел
+grammar.asc("Саша", "работать")        # Саша работал
+grammar.asc("Анна", "пукнуть")         # Анна пукнула
+
+# С любыми глаголами (даже если их нет в базе!)
+grammar.asc("Елена", "программировать")  # Елена программировала
+grammar.asc("Максим", "кодить")         # Максим кодил
+grammar.asc("Дарья", "стримить")        # Дарья стримила
+
+# Настоящее время
+grammar.asc("Мария", "танцевать", "present")  # Мария танцует
+grammar.asc("Иван", "работать", "present")    # Иван работает
+```
+
+### Синтаксис:
+```python
+asc(name: str, verb: str, tense: str = 'past') -> str
+```
+
+---
+
+## 📖 Классы и методы
+
+### 🏗️ Класс `MarmelGrammar`
+
+Основной класс библиотеки для работы с русской морфологией.
+
+#### Инициализация:
+```python
+grammar = MarmelGrammar()
+```
+
+#### Основные переменные класса:
+- `GENDER_EXCEPTIONS: Dict[str, str]` - исключения для определения рода
+- `NAMES: Dict[str, Dict[str, str]]]` - словарь имён с падежами
+- `VERBS: Dict[str, Dict[str, Dict[str, str]]]` - глаголы с формами
+- `TRANSLATIONS: Dict[str, str]` - словарь переводов
+- `SPECIAL_NAMES: Dict[str, str]` - специальные имена для транслитерации
+- `TRANSLIT_MAP: Dict[str, str]` - карта транслитерации
+
+---
+
+### 📝 Методы транслитерации
+
+#### `transliterate_to_russian(text: str) -> str`
+Преобразует английский текст в русский.
+
+```python
+grammar.transliterate_to_russian("John")      # Джон
+grammar.transliterate_to_russian("Vladimir")  # Владимир
+grammar.transliterate_to_russian("Alexander") # Александр
+```
+
+#### `transliterate_to_english(text: str) -> str`
+Преобразует русский текст в английский.
+
+```python
+grammar.transliterate_to_english("Владимир")  # Vladimir
+```
+
+---
+
+### 📚 Методы склонения
+
+#### `detect_gender(name: str) -> str`
+Определяет род имени: 'male', 'female', 'unisex'.
+
+```python
+grammar.detect_gender("Иван")     # male
+grammar.detect_gender("Мария")    # female  
+grammar.detect_gender("Саша")     # unisex
+```
+
+#### `decline(name: str, case: str, gender: str = None) -> str`
+Склоняет имя по падежам.
+
+**Падежи:**
+- `nom` - именительный (кто? что?)
+- `gen` - родительный (кого? чего?)
+- `dat` - дательный (кому? чему?)
+- `acc` - винительный (кого? что?)
+- `ins` - творительный (кем? чем?)
+- `prep` - предложный (о ком? о чём?)
+
+```python
+grammar.decline("Александр", "gen")   # Александра
+grammar.decline("Анна", "dat")        # Анне
+grammar.decline("Саша", "ins")        # Сашей
+```
+
+#### `get_all_forms(name: str) -> Dict[str, str]`
+Возвращает все падежные формы имени.
+
+```python
+forms = grammar.get_all_forms("Иван")
+# {'nom': 'Иван', 'gen': 'Ивана', 'dat': 'Ивану', ...}
+```
+
+---
+
+### 🔄 Методы спряжения
+
+#### `conjugate(verb: str, tense: str, subject: str) -> str`
+Спрягает глагол по временам и лицам.
+
+**Времена:**
+- `past` - прошедшее время
+- `present` - настоящее время
+
+```python
+# Прошедшее время
+grammar.conjugate("делать", "past", "Он")    # делал
+grammar.conjugate("делать", "past", "Она")   # делала
+grammar.conjugate("писать", "past", "Саша")  # писал (унисекс→муж)
+
+# Настоящее время
+grammar.conjugate("работать", "present", "я")    # работаю
+grammar.conjugate("читать", "present", "ты")     # читаешь
+grammar.conjugate("говорить", "present", "они")  # говорят
+```
+
+#### `smart_conjugate(verb: str, subject: str, tense: str = 'past') -> str`
+Умное спряжение - работает даже с глаголами, которых нет в базе!
+
+```python
+grammar.smart_conjugate("программировать", "Мария")  # программировала
+grammar.smart_conjugate("кодить", "Иван")            # кодил
+```
+
+---
+
+### 💬 Создание предложений
+
+#### `make_sentence(subj: str, verb: str, obj: str, tense: str = 'past') -> str`
+Создаёт грамматически правильное предложение.
+
+```python
+grammar.make_sentence("Мария", "читать", "книга")    # Мария читала книгу.
+grammar.make_sentence("Иван", "покупать", "машина")  # Иван покупал машину.
+```
+
+#### `advanced_sentence(subj: str, verb: str, obj: str, adjective: str = None, tense: str = 'past') -> str`
+Расширенная версия с прилагательными.
+
+```python
+grammar.advanced_sentence("Анна", "читать", "книга", "интересная")
+# Анна читала интересная книгу.
+```
+
+---
+
+### 🎨 Творческие методы
+
+#### `create_poem(name: str, verb: str) -> str`
+Создаёт стихотворение с использованием всех падежей.
+
+```python
+print(grammar.create_poem("Мария", "танцевать"))
+```
+
+```
+Стихотворение про Мария:
+
+У Марии есть мечта,
+К Марии приходит вдохновение,
+Все видят Марию в деле,
+С Марией работать - наслаждение,
+О Марии говорят с восхищением!
+
+Мария танцует каждый день!
+```
+
+#### `smart_verb_suggestion(name: str) -> List[str]`
+Предлагает варианты фраз с популярными глаголами.
+
+```python
+suggestions = grammar.smart_verb_suggestion("Анна")
+# ['Анна танцевала', 'Анна пела', 'Анна читала', ...]
+```
+
+---
+
+### 🔧 Утилиты
+
+#### `batch_transliterate(names: List[str]) -> Dict[str, str]`
+Массовая транслитерация имён.
+
+```python
+names = ["Alexander", "Maria", "John"]
+result = grammar.batch_transliterate(names)
+# {'Alexander': 'Александр', 'Maria': 'Мария', 'John': 'Джон'}
+```
+
+#### `name_statistics() -> Dict[str, int]`
+Статистика по базе данных имён.
+
+```python
+stats = grammar.name_statistics()
+# {'male_names': 15, 'female_names': 15, 'unisex_names': 4, ...}
+```
+
+#### `add_name(name: str, gender: str, cases: Dict[str, str])`
+Добавляет новое имя в базу данных.
+
+```python
+cases = {
+    'nom': 'Максим', 'gen': 'Максима', 'dat': 'Максиму',
+    'acc': 'Максима', 'ins': 'Максимом', 'prep': 'Максиме'
+}
+grammar.add_name('Максим', 'male', cases)
+```
+
+---
+
+## 🤖 Использование в Telegram боте
+
+### Простейший пример:
+
+```python
+import asyncio
+from telegram import Update
+from telegram.ext import Application, CommandHandler, MessageHandler, filters
+from marmel_grammar import MarmelGrammar
+
+# Инициализация грамматики
+grammar = MarmelGrammar()
+
+async def start(update: Update, context):
+    await update.message.reply_text(
+        "🚀 Привет! Я бот с MARMEL-GRAMMAR!\n"
+        "Отправь имя и глагол через пробел, например:\n"
+        "Мария танцевать"
+    )
+
+async def handle_message(update: Update, context):
+    text = update.message.text.strip()
+
+    try:
+        parts = text.split()
+        if len(parts) >= 2:
+            name = parts[0]
+            verb = parts[1]
+            result = grammar.asc(name, verb)
+            await update.message.reply_text(f"✨ {result}")
+        else:
+            await update.message.reply_text("Пришли имя и глагол через пробел!")
+    except Exception as e:
+        await update.message.reply_text(f"Ошибка: {e}")
+
+async def transliterate_command(update: Update, context):
+    if context.args:
+        english_name = " ".join(context.args)
+        russian_name = grammar.transliterate_to_russian(english_name)
+        await update.message.reply_text(f"🌍 {english_name} → {russian_name}")
+    else:
+        await update.message.reply_text("Пример: /translit Alexander")
+
+def main():
+    application = Application.builder().token("YOUR_BOT_TOKEN").build()
+
+    application.add_handler(CommandHandler("start", start))
+    application.add_handler(CommandHandler("translit", transliterate_command))
+    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
+
+    application.run_polling()
+
+if __name__ == '__main__':
+    main()
+```
+
+### Продвинутый бот с меню:
+
+```python
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, filters
+from marmel_grammar import MarmelGrammar
+
+grammar = MarmelGrammar()
+
+async def start(update: Update, context):
+    keyboard = [
+        [InlineKeyboardButton("🎯 Склонение (asc)", callback_data='asc')],
+        [InlineKeyboardButton("🌍 Транслитерация", callback_data='translit')],
+        [InlineKeyboardButton("📚 Все падежи", callback_data='decline')],
+        [InlineKeyboardButton("🎨 Стих", callback_data='poem')]
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    await update.message.reply_text(
+        "🚀 MARMEL-GRAMMAR BOT\n\nВыбери функцию:",
+        reply_markup=reply_markup
+    )
+
+async def button_handler(update: Update, context):
+    query = update.callback_query
+    await query.answer()
+
+    if query.data == 'asc':
+        await query.edit_message_text(
+            "🎯 Отправь имя и глагол:\nПример: Мария танцевать"
+        )
+        context.user_data['mode'] = 'asc'
+    elif query.data == 'translit':
+        await query.edit_message_text(
+            "🌍 Отправь английское имя:\nПример: Alexander"
+        )
+        context.user_data['mode'] = 'translit'
+    elif query.data == 'decline':
+        await query.edit_message_text(
+            "📚 Отправь имя для склонения:\nПример: Иван"
+        )
+        context.user_data['mode'] = 'decline'
+    elif query.data == 'poem':
+        await query.edit_message_text(
+            "🎨 Отправь имя и глагол для стиха:\nПример: Мария танцевать"
+        )
+        context.user_data['mode'] = 'poem'
+
+async def handle_text(update: Update, context):
+    mode = context.user_data.get('mode', 'asc')
+    text = update.message.text.strip()
+
+    try:
+        if mode == 'asc':
+            parts = text.split()
+            if len(parts) >= 2:
+                result = grammar.asc(parts[0], parts[1])
+                await update.message.reply_text(f"✨ {result}")
+            else:
+                await update.message.reply_text("Нужно имя и глагол!")
+
+        elif mode == 'translit':
+            result = grammar.transliterate_to_russian(text)
+            await update.message.reply_text(f"🌍 {text} → {result}")
+
+        elif mode == 'decline':
+            forms = grammar.get_all_forms(text)
+            result = "\n".join([f"{case}: {form}" for case, form in forms.items()])
+            await update.message.reply_text(f"📚 Склонение {text}:\n\n{result}")
+
+        elif mode == 'poem':
+            parts = text.split()
+            if len(parts) >= 2:
+                poem = grammar.create_poem(parts[0], parts[1])
+                await update.message.reply_text(f"🎨\n{poem}")
+            else:
+                await update.message.reply_text("Нужно имя и глагол!")
+
+    except Exception as e:
+        await update.message.reply_text(f"❌ Ошибка: {e}")
+
+def main():
+    application = Application.builder().token("YOUR_BOT_TOKEN").build()
+
+    application.add_handler(CommandHandler("start", start))
+    application.add_handler(CallbackQueryHandler(button_handler))
+    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_text))
+
+    application.run_polling()
+
+if __name__ == '__main__':
+    main()
+```
+
+---
+
+## 📊 База данных
+
+### Имена в базе:
+
+**Мужские имена (15+):**
+- Иван, Пётр, Александр, Михаил, Сергей, Дмитрий, Андрей
+- Максим, Владимир, Николай, Алексей, Артём, Денис, Антон, Виктор, Евгений
+
+**Женские имена (15+):**
+- Мария, Анна, Елена, Ольга, Татьяна, Екатерина, Светлана
+- Ирина, Наталья, Юлия, Виктория, Анастасия, Дарья, Полина, Алина
+
+**Унисекс имена (4+):**
+- Саша, Женя, Валя, Шура
+
+### Глаголы в базе (20+):
+
+- **Базовые:** делать, писать, читать, говорить, работать, изучать
+- **Движение:** танцевать, петь, бегать, плавать
+- **Состояние:** спать, смеяться, плакать, думать, мечтать
+- **Действия:** кушать, играть, любить, учить, покупать, готовить
+- **Особые:** пукнуть 😄
+
+---
+
+## 🔥 Примеры использования
+
+### Простые примеры:
+
+```python
+from marmel_grammar import MarmelGrammar
+grammar = MarmelGrammar()
+
+# Основное использование
+print(grammar.asc("Мария", "танцевать"))    # Мария танцевала
+print(grammar.asc("Иван", "программировать")) # Иван программировал
+print(grammar.asc("Саша", "петь", "present"))  # Саша поёт
+
+# Транслитерация
+english_names = ["Alexander", "Maria", "John", "Gazenvagen"]
+for name in english_names:
+    russian = grammar.transliterate_to_russian(name)
+    print(f"{name} → {russian}")
+
+# Склонение
+name = "Анна"
+for case in ['nom', 'gen', 'dat', 'acc', 'ins', 'prep']:
+    form = grammar.decline(name, case)
+    print(f"{case}: {form}")
+```
+
+### Для разработчиков:
+
+```python
+# Добавление нового имени
+grammar.add_name("Богдан", "male", {
+    'nom': 'Богдан', 'gen': 'Богдана', 'dat': 'Богдану',
+    'acc': 'Богдана', 'ins': 'Богданом', 'prep': 'Богдане'
+})
+
+# Статистика
+stats = grammar.name_statistics()
+print(f"Всего имён: {stats['total_names']}")
+print(f"Глаголов: {stats['verbs']}")
+
+# Анализ контекста
+context = grammar.analyze_context("Кот играет с собакой")
+print(context)  # {'animal': 1.7, 'person': 0, 'object': 0}
+```
+
+---
+
+## 🎮 Интерактивные примеры
+
+### Генератор фраз:
+
+```python
+from marmel_grammar import MarmelGrammar
+import random
+
+grammar = MarmelGrammar()
+
+names = ["Мария", "Иван", "Саша", "Анна", "Максим"]
+verbs = ["танцевать", "петь", "работать", "играть", "смеяться", "мечтать"]
+
+print("🎲 Случайные фразы:")
+for _ in range(5):
+    name = random.choice(names)
+    verb = random.choice(verbs)
+    phrase = grammar.asc(name, verb)
+    print(f"• {phrase}")
+```
+
+### Склонение по всем падежам:
+
+```python
+def show_all_cases(name):
+    print(f"\n📚 Склонение имени '{name}':")
+    print("-" * 30)
+
+    cases_names = {
+        'nom': 'Именительный', 'gen': 'Родительный', 
+        'dat': 'Дательный', 'acc': 'Винительный',
+        'ins': 'Творительный', 'prep': 'Предложный'
+    }
+
+    for case, case_name in cases_names.items():
+        form = grammar.decline(name, case)
+        print(f"{case_name:12} ({case}): {form}")
+
+# Пример использования
+show_all_cases("Александр")
+show_all_cases("Мария")
+show_all_cases("Саша")
+```
+
+---
+
+## 🚀 Производительность
+
+MARMEL-GRAMMAR оптимизирован для высокой производительности:
+
+- **LRU Cache** для часто используемых операций
+- **Быстрый поиск** в словарях
+- **Минимальное потребление памяти**
+- **Отсутствие зависимостей** от внешних библиотек
+
+```python
+import time
+from marmel_grammar import MarmelGrammar
+
+grammar = MarmelGrammar()
+
+# Тест производительности
+start_time = time.time()
+for i in range(1000):
+    grammar.asc("Мария", "танцевать")
+    grammar.decline("Иван", "gen")
+    grammar.transliterate_to_russian("Alexander")
+
+end_time = time.time()
+print(f"1000 операций выполнено за {end_time - start_time:.4f} секунд")
+```
+
+---
+
+## 🐛 Сообщение об ошибках
+
+Нашли баг? Есть предложения? Пишите создателю:
+
+**Telegram:** [@dev_marmel](https://t.me/dev_marmel)  
+**Email:** marmelgpt@gmail.com
+
+---
+
+## 📄 Лицензия
+
+MIT License - используйте свободно в любых проектах!
+
+---
+
+## 🔮 Планы развития
+
+- 🌟 Поддержка прилагательных
+- 🔤 Расширение словаря имён и глаголов  
+- 🌍 Поддержка других языков
+- 🤖 AI-генерация стихов
+- 📱 GUI интерфейс
+
+---
+
+## 💎 Заключение
+
+**MARMEL-GRAMMAR** - это самая продвинутая библиотека для работы с русской морфологией! 
+
+🎯 **Главная фишка** - функция `asc()` которая умно склоняет любые имена с любыми глаголами!
+
+Используйте в своих проектах и наслаждайтесь! 🚀
+
+---
+
+**Создано с ❤️ by Dev-Marmel**  
+**Telegram:** [@dev_marmel](https://t.me/dev_marmel)
