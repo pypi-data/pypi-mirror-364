@@ -1,0 +1,38 @@
+Metadata-Version: 2.4
+Name: ezpp
+Version: 0.3.3
+Summary: Easy to process picturse
+Home-page: https://github.com/ovotop/ezpp
+Author: JeffreyCao
+Author-email: je255reycao@outlook.com
+License: MIT Licence
+Keywords: pip,ezpp,resize,reformat,recolor,shadow,icon,logo,yaml render,photoshop,ps
+Platform: any
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Requires-Dist: pillow
+Requires-Dist: ezutils
+Requires-Dist: aggdraw
+Requires-Dist: imgcat
+Requires-Dist: freetype-py
+Requires-Dist: pydash
+Requires-Dist: pyaml
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: platform
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+
+    Easy Process Picturse.
+    Easy to make  and resize  icons for apps.
+    Resize,recolor,frosted,shadow pictures by one command line.
+    
