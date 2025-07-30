@@ -1,0 +1,13 @@
+README.md
+pyproject.toml
+src/text2kgh_prompts/__init__.py
+src/text2kgh_prompts/asserts.py
+src/text2kgh_prompts/core.py
+src/text2kgh_prompts/postprocessors.py
+src/text2kgh_prompts/utils.py
+src/text2kgh_prompts.egg-info/PKG-INFO
+src/text2kgh_prompts.egg-info/SOURCES.txt
+src/text2kgh_prompts.egg-info/dependency_links.txt
+src/text2kgh_prompts.egg-info/requires.txt
+src/text2kgh_prompts.egg-info/top_level.txt
+tests/test_main.py
