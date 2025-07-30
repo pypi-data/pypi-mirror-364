@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: CoolTool_library
+Version: 1.0
+Summary: Simple library with many function to help you with consol project
+Author: Quadzeco
+Author-email: example@example.com
+License: MIT
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+License-File: LICENSE.txt
+
+This is a simple library with a bunch of function to use with project in the consol and not graphic.

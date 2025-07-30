@@ -1,0 +1,1 @@
+This is a simple library with a bunch of function to use with project in the consol and not graphic.
