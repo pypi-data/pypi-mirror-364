@@ -1,0 +1,14 @@
+[fsleyes_controls]
+FSL-MRS Results = fsleyes_plugin_mrs.tools:FSLMRSResultsControl
+MRS control = fsleyes_plugin_mrs.controls:MRSControlPanel
+MRS toolbar = fsleyes_plugin_mrs.controls:MRSToolBar
+NIfTI-MRS = fsleyes_plugin_mrs.controls:MRSDimControl
+
+[fsleyes_layouts]
+mrs = fsleyes_plugin_mrs.layouts:mrs_fsleyes_layout
+
+[fsleyes_tools]
+Load FSL-MRS fit = fsleyes_plugin_mrs.tools:FSLFitTool
+
+[fsleyes_views]
+MRS view = fsleyes_plugin_mrs.views:MRSView
