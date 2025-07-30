@@ -1,0 +1,8 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+pandas_tabulate/__init__.py
+pandas_tabulate/core.py
+pandas_tabulate/results.py
+pandas_tabulate/stats.py
