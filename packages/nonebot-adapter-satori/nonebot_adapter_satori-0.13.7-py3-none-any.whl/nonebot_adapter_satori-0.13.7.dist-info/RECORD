@@ -1,0 +1,15 @@
+nonebot/adapters/satori/__init__.py,sha256=jQsRwha5afmrfBQ2US8DLS8UP9zQ2L1ir7_AXZEl2a0,210
+nonebot/adapters/satori/adapter.py,sha256=g1ssg6RCH0G_0FVq-QZhbhglKH70hiDalYEVTditXAw,13664
+nonebot/adapters/satori/bot.py,sha256=uwLM5T9U6COAodp6a6yDmeyb4yipnxqzX86hQ9Z2E8w,26849
+nonebot/adapters/satori/config.py,sha256=DvSRWer8odxfn8dIRwmaqt148aCywN0GikkjeHz3zsc,794
+nonebot/adapters/satori/element.py,sha256=0l_NC_hkANLGiKJYQ05fCWc5w5QPAdxg2EYp0uQfoQE,13350
+nonebot/adapters/satori/event.py,sha256=lmjWBZLFFNYm5DwqtvYBC046b5NszCqcWfazyhGo0LM,17873
+nonebot/adapters/satori/exception.py,sha256=_X4RayeLYrryg-2eBbhwH7PmZTqjAuGvLoOhKnc-u9c,1735
+nonebot/adapters/satori/message.py,sha256=-FvTtBNYJ1XsjmJRvaTjf2GVunlFLqHwRrY7QXmMrIU,27287
+nonebot/adapters/satori/models.py,sha256=fNaWJgdghQnxNGa_TRWaN_A7P6o2sjHyxJ6cGlz2Ptc,10037
+nonebot/adapters/satori/utils.py,sha256=FX2eL6lhh0iogxMGI5N8dNE955fFZev2UAQwux29b3Q,1188
+nonebot_adapter_satori-0.13.7.dist-info/METADATA,sha256=E9pt2O7YImvBHtwVPDY_jNDJSIMKxC2SjaPGZfbYzpU,4204
+nonebot_adapter_satori-0.13.7.dist-info/WHEEL,sha256=9P2ygRxDrTJz3gsagc0Z96ukrxjr-LFBGOgv3AuKlCA,90
+nonebot_adapter_satori-0.13.7.dist-info/entry_points.txt,sha256=6OYgBcLyFCUgeqLgnvMyOJxPCWzgy7se4rLPKtNonMs,34
+nonebot_adapter_satori-0.13.7.dist-info/licenses/LICENSE,sha256=jMiFNgdj9WzNhHT_Xm-N9O-xv5VA5rbCFVnVlNPfxT8,1064
+nonebot_adapter_satori-0.13.7.dist-info/RECORD,,
