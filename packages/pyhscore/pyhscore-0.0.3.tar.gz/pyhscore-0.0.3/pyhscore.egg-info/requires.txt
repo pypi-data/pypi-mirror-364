@@ -1,0 +1,11 @@
+fastcore
+numpy
+matplotlib
+scikit-image
+
+[dev]
+fastcore
+numpy
+matplotlib
+scikit-image
+twine

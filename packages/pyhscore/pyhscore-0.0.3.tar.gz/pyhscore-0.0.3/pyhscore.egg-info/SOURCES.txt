@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+settings.ini
+setup.py
+pyhscore/__init__.py
+pyhscore/_modidx.py
+pyhscore/score.py
+pyhscore.egg-info/PKG-INFO
+pyhscore.egg-info/SOURCES.txt
+pyhscore.egg-info/dependency_links.txt
+pyhscore.egg-info/entry_points.txt
+pyhscore.egg-info/not-zip-safe
+pyhscore.egg-info/requires.txt
+pyhscore.egg-info/top_level.txt
