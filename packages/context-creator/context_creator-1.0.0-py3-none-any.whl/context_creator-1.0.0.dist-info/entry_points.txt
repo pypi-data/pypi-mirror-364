@@ -1,0 +1,2 @@
+[console_scripts]
+context = context_creator.cli:main
