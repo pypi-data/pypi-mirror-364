@@ -1,0 +1,62 @@
+Metadata-Version: 2.1
+Name: crl.interactivesessions
+Version: 1.4.0b5
+Summary: Robot Framework test library collection on top of pexpect
+Home-page: https://github.com/nokia/crl-interactivesessions
+Author: Petri Huovinen
+Author-email: petri.huovinen@nokia.com
+License: BSD-3-Clause
+Keywords: robotframework
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development
+License-File: LICENSE
+Requires-Dist: pexpect>=4.0
+Requires-Dist: six
+Requires-Dist: paramiko
+Requires-Dist: ipaddress
+Requires-Dist: monotonic
+
+.. Copyright (C) 2019, Nokia
+
+.. image:: https://travis-ci.org/nokia/crl-interactivesessions.svg?branch=master
+    :target: https://travis-ci.org/nokia/crl-interactivesessions
+
+README
+======
+
+``crl.interactivesession`` is a library for interactive shell commands via
+*pexpect*. It also provides plug-in interface for tailoring shells.
+
+Documentation
+-------------
+
+Documentation for ``crl.interactivesessions`` can be found from `Read The Docs`_.
+
+.. _Read The Docs: http://crl-interactivesessions.readthedocs.io/
+
+Installation
+------------
+
+The package can be installed with pip::
+
+  # pip install crl.interactivesessions
+
+Contributing
+------------
+
+Please see contributing_ for development and contribution practices.
+
+The code_ and the issues_ are hosted on GitHub.
+
+The project is licensed under BSD-3-Clause_.
+
+.. _contributing: https://github.com/nokia/crl-interactivesessions/blob/master/CONTRIBUTING.rst
+.. _code: https://github.com/nokia/crl-interactivesessions
+.. _issues: https://github.com/nokia/crl-interactivesessions/issues
+.. _BSD-3-Clause:  https://github.com/nokia/crl-interactivesessions/blob/master/LICENSE

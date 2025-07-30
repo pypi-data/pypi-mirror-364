@@ -1,0 +1,5 @@
+pexpect>=4.0
+six
+paramiko
+ipaddress
+monotonic

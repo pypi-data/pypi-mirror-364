@@ -1,0 +1,10 @@
+include tox.ini
+recursive-include tests/ *.py
+include atests/*.py
+include robottests/*
+include stability-tests/*
+include .coveragerc
+include .pylintrc
+include README.rst
+include .flake8
+recursive-include docker-robottests-targets/ *robottests *.yaml Dockerfile
