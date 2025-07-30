@@ -1,0 +1,15 @@
+authservice_django/__init__.py,sha256=xllJ2dH1d6h1L8G6vUb3e5Lr11fJT1Wn8BEvRLtoxB4,1368
+authservice_django/backends.py,sha256=C3NK-a0xD-kkt4vA-5qSzkOLhUq5nNIq8dj9BGYiwyA,10690
+authservice_django/client.py,sha256=t6xk2aq-P4NF_z_Iua-jFfB_MQwxMazj-56KaRjWzOg,14580
+authservice_django/config.py,sha256=m35S_Nil00G8neSA1JqW8oCcaDdf8uyYkVQlcPtV1y0,4490
+authservice_django/decorators.py,sha256=nEAHnsx2cuB4dUqeIMOTzud7tiRS73cAEVgMrJd_ruA,14362
+authservice_django/exceptions.py,sha256=hhP5s94nTXS7sWLooMw3iYi_QNGBB8bjDc-0mfR51pw,2814
+authservice_django/middleware.py,sha256=gWZKXxNF7NxmIU6S6SiOaNe4_9MPl-e8cmkqdb84Jzs,9982
+authservice_django/mixins.py,sha256=zKR0qgL8IljFe5ovucC49QJ18tCcqNKyCSubtNpRU6I,9480
+authservice_django/drf/__init__.py,sha256=cqvy5rFlVsLmIo3NJxhj65UG2q2osQdh67vLnk9KHOo,705
+authservice_django/drf/authentication.py,sha256=wp8aIudCYddjJNNOCITr8SX6-NEMJXmK4hThZY8heTg,6545
+authservice_django/drf/permissions.py,sha256=Ts6f2NVg922gPPncAEHTLCyVRruFjSnViJ6BOGsuZLE,11577
+authservice_django-1.0.0.dist-info/METADATA,sha256=go6MnZLExDqFOBj-nkFTX1UbCiUgTvR1bvhh5dwqNB4,18428
+authservice_django-1.0.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+authservice_django-1.0.0.dist-info/top_level.txt,sha256=EKl1a169YcwbRVlQLVVdpO0bkS4M8Vm2tRZ3Lb6LnMk,19
+authservice_django-1.0.0.dist-info/RECORD,,
