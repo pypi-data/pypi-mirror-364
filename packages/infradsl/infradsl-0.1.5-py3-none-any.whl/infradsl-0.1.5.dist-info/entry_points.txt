@@ -1,0 +1,3 @@
+[console_scripts]
+infra = infradsl.cli.main:main
+infradsl = infradsl.cli.main:main
