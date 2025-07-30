@@ -1,0 +1,80 @@
+Metadata-Version: 2.4
+Name: pybae
+Version: 0.1.6
+Summary: Core utilities for backend applications
+Author-email: zangico <zangico@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/zangico/pybae
+Project-URL: Repository, https://github.com/zangico/pybae
+Project-URL: Documentation, https://github.com/zangico/pybae#readme
+Project-URL: Bug Tracker, https://github.com/zangico/pybae/issues
+Keywords: backend,configuration,utilities,pydantic,dotenv
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: python-dotenv>=1.0.0
+Provides-Extra: dev
+Requires-Dist: black; extra == "dev"
+Requires-Dist: isort; extra == "dev"
+Requires-Dist: mypy; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
+Dynamic: license-file
+
+# pybae
+A backend library for your application
+
+## Description
+`pybae` is a Python library designed to simplify configuration and backend management in your applications. It provides tools to faster new deployments of backend services.
+
+
+## Installation
+
+Clone the repository and install the dependencies:
+```bash
+pip install pybae
+```
+
+## Usage
+
+Example usage:
+```python
+from pybae import config
+
+class Foo(config.ConfigSection):
+    bar: str
+   
+class Config(config.BaseConfig)
+    foo: Foo
+
+cfg = Config.load('path/to/config.yaml')
+print(cfg.foo.bar)
+```
+
+## Project Structure
+
+- `pybae/`: library source code
+  - `config.py`: configuration management
+- `example/`: usage examples
+  - `config.yaml`: sample configuration file
+  - `example_test.py`: example test
+
+## Testing
+
+To run the tests:
+```bash
+python example/example_test.py
+```
+
+## Contributing
+
+Contributions are welcome! Open an issue or submit a pull request for suggestions, bug reports, or new features.
+
+## License
+
+This project is licensed under the MIT License.
+
