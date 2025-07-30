@@ -1,0 +1,13 @@
+LICENSE.txt
+README.md
+pyproject.toml
+setup.py
+topsis/__init__.py
+topsis/__main__.py
+topsis/topsis.py
+topsis_nandini.egg-info/PKG-INFO
+topsis_nandini.egg-info/SOURCES.txt
+topsis_nandini.egg-info/dependency_links.txt
+topsis_nandini.egg-info/entry_points.txt
+topsis_nandini.egg-info/requires.txt
+topsis_nandini.egg-info/top_level.txt
