@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: ktoolkits
+Version: 0.1.8
+Summary: 一个AI智能体的工具库,帮助你在智能体构建中快速调用各种实用的工具
+Home-page: https://apifox.com/apidoc/shared-2b306df6-5d22-423f-83ba-ed07415b13d5
+Author: kpai
+Author-email: ktool-ai@qq.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.10
+License-File: LICENSE
+Requires-Dist: requests>=2.20
+Requires-Dist: tqdm>=4.67.1
+Requires-Dist: pydantic>=2.11.7
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
