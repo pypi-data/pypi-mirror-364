@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KittenGen | CYaRon 文档</title>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/github-dark.min.css">
+    <script src="/static/js/highlight.min.js"></script>
+    <script src="/static/js/highlight-python.min.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #5e35b1;
+            --secondary-color: #7e57c2;
+            --accent-color: #ff6f00;
+            --light-bg: #f8f9fa;
+            --dark-bg: #1a1a1a;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7f4 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .card-header {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 25px 30px;
+            border-bottom: none;
+            font-weight: 600;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .section-title {
+            position: relative;
+            padding-left: 20px;
+            margin: 30px 0 20px;
+            font-weight: 700;
+            color: var(--primary-color);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border: none;
+            padding: 14px 36px;
+            font-weight: 600;
+            font-size: 18px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(94, 53, 177, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(94, 53, 177, 0.4);
+        }
+
+        .list-group-item {
+            border-radius: 8px !important;
+            margin-bottom: 10px;
+            border: 1px solid rgba(0,0,0,0.05);
+            padding: 15px 20px;
+            transition: all 0.2s;
+        }
+
+        .list-group-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        pre {
+            border-radius: 12px;
+            border: 1px solid rgba(0,0,0,0.1);
+            box-shadow: inset 0 1px 10px rgba(0,0,0,0.05);
+            padding: 20px !important;
+            margin: 20px 0;
+            overflow: auto;
+            max-height: 500px;
+        }
+
+        .nav-tabs {
+            border: none;
+            margin-bottom: 25px;
+            background: white;
+            border-radius: 12px;
+            padding: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-tabs .nav-link {
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            color: #555;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .nav-tabs .nav-link.active {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            box-shadow: 0 5px 15px rgba(94, 53, 177, 0.3);
+        }
+
+        .feature-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(to bottom right, #e0e7ff, #d1e0ff);
+            border-radius: 10px;
+            margin-right: 15px;
+            color: var(--primary-color);
+            font-size: 18px;
+        }
+
+        .logo-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(94, 53, 177, 0.3);
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+
+        .header-subtitle {
+            font-size: 18px;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 0;
+        }
+
+        .example-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0 15px;
+        }
+
+        .example-title {
+            font-weight: 700;
+            color: #444;
+            font-size: 20px;
+        }
+
+        .lang-badge {
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .python-badge {
+            background: linear-gradient(to right, #3776ab, #4b8bbe);
+            color: white;
+        }
+
+        .cpp-badge {
+            background: linear-gradient(to right, #649ad2, #00599c);
+            color: white;
+        }
+
+        .info-box {
+            background: rgba(94, 53, 177, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .info-box h5 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .container {
+            max-width: 1000px;
+        }
+
+        .back-btn-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #343a40;
+            padding: 10px 15px;
+            border-radius: 8px 8px 0 0;
+            color: white;
+            font-size: 14px;
+        }
+
+        .copy-btn {
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: white;
+            border-radius: 6px;
+            padding: 4px 12px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        .tab-content {
+            background: white;
+            border-radius: 0 0 12px 12px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .hljs {
+            background: #1e1e1e !important;
+            border-radius: 0 0 8px 8px;
+            padding: 20px !important;
+        }
+    </style>
+</head>
+<body>
+<div class="container py-5">
+    <div class="card-header">
+        <div class="logo-header">
+            <div class="logo-icon">KG</div>
+            <h1 class="logo-text">KittenGen</h1>
+        </div>
+        <p class="header-subtitle">CYaRon 文档</p>
+    </div>
+    <div class="tab-pane fade show active" id="python" role="tabpanel">
+        <h3 class="section-title">
+             <i class="fab fa-python text-primary me-2"></i>CYaRon 文档
+        </h3>
+    </div>
+    <div class="info-box">
+        <h5><i class="fas fa-lightbulb me-2"></i>CYaRon 是什么</h5>
+        <p class="mb-0">
+            CYaRon 是洛谷团队开发的 OI 数据生成器，可以快速生成图、树等特殊数据，
+            参见
+            <a href="https://www.luogu.com.cn/discuss/11410"> CYaRon：测试数据生成利器</a>
+        </p>
+        <p class="mb-0">
+            本文档摘自
+            <a href="https://www.luogu.me/paste/woylvw96"> https://www.luogu.me/paste/woylvw96</a>
+        </p>
+    </div>
+
+    <div>
+        <div class="example-header">
+             <h4 class="section-title">图 / 树</h4>
+             <span class="lang-badge cpp-badge">Python</span>
+        </div>
+
+        <div class="border rounded overflow-hidden">
+            <div class="code-header">
+                <button class="copy-btn" onclick="copyCode(this, 'code1')">
+                    <i class="fas fa-copy me-1"></i>复制代码
+                </button>
+            </div>
+            <pre class="m-0"><code class="language-python" id="code1">graph = Graph.graph(n, m)  # 生成一个n点，m边的无向图，边权均为1
+graph = Graph.graph(n, m, directed=True, weight_limit=(5, 300))  # 生成一个n点，m边的有向图，边权范围是5到300
+graph = Graph.graph(n, m, weight_limit=20)  # 生成一个n点，m边的无向图，边权范围是1到20
+graph = Graph.graph(n, m, weight_gen=my_func)  # 生成一个n点，m边的无向图，使用自定义随机函数my_func的返回值作为边权
+graph = Graph.graph(n, m, self_loop=False, repeated_edges=False)  # 生成一个n点，m边的无向图，禁止重边和自环
+# 以上的directed, weight_limit, weight_gen参数，对如下的所有函数都有效。
+
+chain = Graph.chain(n)  # 生成一条n个节点的链，是Graph.tree(n, 1, 0)的别名
+flower = Graph.flower(n)  # 生成一朵n个节点的菊花图，是Graph.tree(n, 0, 1)的别名
+tree = Graph.tree(n)  # 生成一棵n个节点的随机树
+tree = Graph.tree(n, 0.4, 0.35)  # 生成一棵n个节点的树，其中40%的节点呈现链状，35%的节点呈现菊花图状，剩余25%的节点随机加入
+binary_tree = Graph.binary_tree(n)  # 生成一棵n个节点的随机二叉树
+binary_tree = Graph.binary_tree(n, 0.4, 0.35)  # 生成一棵n个节点的二叉树，其中节点有40%的概率是左儿子，35%的概率是右儿子，25%的概率被随机选择
+forest = Graph.forest(n, m)  # 生成一个n点，m棵树的森林，其余参数与Graph.tree相同
+graph = Graph.hack_spfa(n)  # 生成一个n点，1.5*n(下取整)边的图，具有卡SPFA的特点
+graph = Graph.hack_spfa(n, extra_edge=m)  # 生成一个n点，1.5*n+m(下取整)边的图，具有卡SPFA的特点
+# 下列方法生成的图保证连通
+# 支持 self_loop, repeated_edges, weight_limit, weight_gen 参数，但不支持 directed，DAG 的 self_loop 默认为 False
+graph = Graph.DAG(n, m)  # 生成一个 n 点，m 边的有向无环图
+graph = Graph.DAG(n, m, loop=True)  # 生成一个 n 点，m 边的有向有环图
+graph = Graph.UDAG(n, m)  # 生成一个 n 点，m 边的无向联通图
+
+print(graph.to_str())   # 输出这个图，以每条边u v w一行的格式
+print(graph.to_str(shuffle=True))   # 打乱边的顺序并输出这个图
+print(graph.to_str(output=Edge.unweighted_edge))   # 输出无权图，以每条边u v一行的格式</code></pre>
+        </div>
+    </div>
+
+    <div>
+        <div class="example-header">
+             <h4 class="section-title">多边形</h4>
+             <span class="lang-badge cpp-badge">Python</span>
+        </div>
+
+        <div class="border rounded overflow-hidden">
+            <div class="code-header">
+                <button class="copy-btn" onclick="copyCode(this, 'code2')">
+                    <i class="fas fa-copy me-1"></i>复制代码
+                </button>
+            </div>
+            <pre class="m-0"><code class="language-python" id="code2">p = Polygon([(0, 0), (0, 4), (4, 4), (4 ,0)])  # 以这四个点生成四边形，注意点需要按照连线顺序
+p.perimeter()  # 周长
+p.area()  # 面积
+print(p)   # 输出多边形
+
+p = Polygon.convex_hull(n)  # 生成一个n个点的凸包
+p = Polygon.simple_polygon(n)  # 生成一个n个点的简单多边形</code></pre>
+        </div>
+    </div>
+
+    <div>
+        <div class="example-header">
+             <h4 class="section-title">向量</h4>
+             <span class="lang-badge cpp-badge">Python</span>
+        </div>
+
+        <div class="border rounded overflow-hidden">
+            <div class="code-header">
+                <button class="copy-btn" onclick="copyCode(this, 'code3')">
+                    <i class="fas fa-copy me-1"></i>复制代码
+                </button>
+            </div>
+            <pre class="m-0"><code class="language-python" id="code3">Vector.random(num=5, position_range=[10], mode=0)
+# 参数 num：生成的向量个数。
+# 参数 position_range：一个list。内有几个元素那么就是输出几维向量。
+# 每个元素可以是一个二维整数（或实数）元组(min, max)表示每一维的取值是[min, max]，
+# 也可以是可以是一个整数（或实数）k，则范围是[0, k]。当该参数只有一个元素时，则生成的是一组数列而不是向量。
+# 参数 mode：模式选择。0 为互相不重复的整数向量，1 为允许出现重复的整数向量（各维完全独立随机），2 为实数向量。
+
+output = Vector.random()
+# 默认值，随机生成5个[0, 10]的不重复数字的数列。
+
+output = Vector.random(10, [(10,50)])
+# 生成10个范围在[10, 50]之间的不重复数字数列。
+
+output = Vector.random(30, [(10,50), 20])
+# 生成30个第一维范围[10, 50]之间、第二维范围在[0, 20]之间的不重复的二维向量。
+
+output = Vector.random(30, [(1,10), (1,10), (1,10)], 2)
+# 生成30个每一维范围[1, 10]之间的三维实数向量。
+
+output = Vector.random(30, [10], 1)
+# 生成30个[0, 10]之间的随机数，当然肯定会有重复咯。</code></pre>
+        </div>
+    </div>
+
+    <div>
+        <div class="example-header">
+             <h4 class="section-title">字符串</h4>
+             <span class="lang-badge cpp-badge">Python</span>
+        </div>
+
+        <div class="border rounded overflow-hidden">
+            <div class="code-header">
+                <button class="copy-btn" onclick="copyCode(this, 'code4')">
+                    <i class="fas fa-copy me-1"></i>复制代码
+                </button>
+            </div>
+            <pre class="m-0"><code class="language-python" id="code4">s = String.random(5)  # 生成一个5个字母的单词，从小写字母中随机选择
+s = String.random((10, 20), charset="abcd1234")  # 生成一个10到20个字母之间的单词，从abcd1234共8个字符中随机选择
+s = String.random(10, charset="#######...")  # 生成一个10个字母的只有'#'和'.'组成的字符串，'#'的可能性是70%，'.'可能30%。
+s = String.random(None, charset=["foo", "bar"])  # 从foo、bar两个单词中随机选择一个返回
+# charset参数对于以下所有指令也有效。
+
+s = String.random_sentence(5)  # 生成一个5个单词的句子，以空格分割，第一个单词首字母自动大写，结尾有句号或感叹号，每个单词3到8个字母长
+s = String.random_sentence((10, 20), word_separators=",;", sentence_terminators=None, first_letter_uppercase=False, word_length_range=(2, 10), charset="abcdefg")
+# 生成一个10到20个单词的句子，以逗号或分号随机分割，第一个单词首字母不大写，结尾没有任何符号，每个单词2到10字母长，从abcdefg共7个字符中随机选择
+# 以上所有参数，对于以下所有指令也有效
+
+s = String.random_paragraph((3, 10))
+# 生成一个3到10个句子的段落，句子之间以句号或感叹号分割，小句之间以逗号或分号分割，句子和小句结束后均接有一个空格，句子开头首字母大写而小句开头首字母不大写。生成句子的可能性为30%而小句的可能性为70%。
+s = String.random_paragraph(6, sentence_joiners="|", sentence_separators=",", sentence_terminators=".?", termination_percentage=0.1)
+# 生成一个6个句子的段落，句子之间以句号或问号号分割，小句之间以逗号分割，句子和小句结束后均接有一个"|"号，句子开头首字母大写而小句开头首字母不大写。生成句子的可能性为10%而小句的可能性为90%。
+
+# 注意：如果您需要以两个空格分割单词，应该使用如下写法：
+s = String.random_sentence(5, word_separators=["  "])  # 以两个空格分割单词
+# 而不是：
+s = String.random_sentence(5, word_separators="  ")  # 这会导致从两个空格中随机选择一个，也就是只有一个空格。</code></pre>
+        </div>
+    </div>
+
+    <div>
+        <div class="example-header">
+             <h4 class="section-title">字符串</h4>
+             <span class="lang-badge cpp-badge">Python</span>
+        </div>
+
+        <div class="border rounded overflow-hidden">
+            <div class="code-header">
+                <button class="copy-btn" onclick="copyCode(this, 'code5')">
+                    <i class="fas fa-copy me-1"></i>复制代码
+                </button>
+            </div>
+            <pre class="m-0"><code class="language-python" id="code5">s = String.random(5)  # 生成一个5个字母的单词，从小写字母中随机选择
+s = String.random((10, 20), charset="abcd1234")  # 生成一个10到20个字母之间的单词，从abcd1234共8个字符中随机选择
+s = String.random(10, charset="#######...")  # 生成一个10个字母的只有'#'和'.'组成的字符串，'#'的可能性是70%，'.'可能30%。
+s = String.random(None, charset=["foo", "bar"])  # 从foo、bar两个单词中随机选择一个返回
+# charset参数对于以下所有指令也有效。
+
+s = String.random_sentence(5)  # 生成一个5个单词的句子，以空格分割，第一个单词首字母自动大写，结尾有句号或感叹号，每个单词3到8个字母长
+s = String.random_sentence((10, 20), word_separators=",;", sentence_terminators=None, first_letter_uppercase=False, word_length_range=(2, 10), charset="abcdefg")
+# 生成一个10到20个单词的句子，以逗号或分号随机分割，第一个单词首字母不大写，结尾没有任何符号，每个单词2到10字母长，从abcdefg共7个字符中随机选择
+# 以上所有参数，对于以下所有指令也有效
+
+s = String.random_paragraph((3, 10))
+# 生成一个3到10个句子的段落，句子之间以句号或感叹号分割，小句之间以逗号或分号分割，句子和小句结束后均接有一个空格，句子开头首字母大写而小句开头首字母不大写。生成句子的可能性为30%而小句的可能性为70%。
+s = String.random_paragraph(6, sentence_joiners="|", sentence_separators=",", sentence_terminators=".?", termination_percentage=0.1)
+# 生成一个6个句子的段落，句子之间以句号或问号号分割，小句之间以逗号分割，句子和小句结束后均接有一个"|"号，句子开头首字母大写而小句开头首字母不大写。生成句子的可能性为10%而小句的可能性为90%。
+
+# 注意：如果您需要以两个空格分割单词，应该使用如下写法：
+s = String.random_sentence(5, word_separators=["  "])  # 以两个空格分割单词
+# 而不是：
+s = String.random_sentence(5, word_separators="  ")  # 这会导致从两个空格中随机选择一个，也就是只有一个空格。</code></pre>
+        </div>
+    </div>
+
+    <div class="back-btn-container">
+        <a href="/help/" class="btn btn-primary btn-lg px-5">
+            <i class="fas fa-arrow-left me-2"></i>返回帮助页面
+        </a>
+    </div>
+</div>
+
+<script>
+    // 初始化代码高亮
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre code').forEach((el) => {
+            hljs.highlightElement(el);
+        });
+    });
+
+    // 复制代码功能
+    function copyCode(button, elementId) {
+        const codeElement = document.getElementById(elementId);
+        const textArea = document.createElement('textarea');
+        textArea.value = codeElement.textContent;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+
+        // 显示复制成功反馈
+        const originalText = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check me-1"></i>已复制';
+        button.style.background = 'rgba(40, 167, 69, 0.8)';
+
+        setTimeout(() => {
+            button.innerHTML = originalText;
+            button.style.background = '';
+        }, 2000);
+    }
+</script>
+</body>
+</html>
