@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+longppl/__init__.py
+longppl/longppl.py
+longppl.egg-info/PKG-INFO
+longppl.egg-info/SOURCES.txt
+longppl.egg-info/dependency_links.txt
+longppl.egg-info/requires.txt
+longppl.egg-info/top_level.txt
