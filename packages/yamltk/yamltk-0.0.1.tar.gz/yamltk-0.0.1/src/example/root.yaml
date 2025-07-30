@@ -1,0 +1,108 @@
+Root:
+    title: YAML Tkinter Example
+    geometry: 400x400
+    children:
+        # Branch with args and kwargs for the post_init method
+        - TitleFrame:
+            post_build_args:    # putting the list [] here would be equivalent
+                - 'YAML Tkinter Example'
+                - red
+            post_build_kwargs:  # same with the dict {}
+                foo: bar
+                quz: 1
+        - Frame:
+            children:
+                - Frame:
+                    highlightbackground: black
+                    highlightthickness: 1
+                    children:
+                        - Label:
+                            text: type something
+                            pack: top
+                        - Entry:
+                            name: entry
+                            text_variable:
+                                name: entry_var
+                                type: string
+                            pack: top
+                        - Label:
+                            name: entry_label
+                            text_variable:
+                                name: entry_var
+                                type: string
+                            pack: top
+                    pack: left
+                - Frame:
+                    children:
+                        - Checkbutton:
+                            text: foo
+                            # this method must then be defined in the application class
+                            app_command: on_checkbutton_foobar
+                            variable:
+                                name: check_foo_var
+                                type: boolean
+                            pack: true
+                        - Checkbutton:
+                            text: bar
+                            # this method must then be defined in the application class
+                            app_command: on_checkbutton_foobar
+                            variable:
+                                name: check_bar_var
+                                type: boolean
+                            pack: yes
+                        - Label:
+                            text_variable:
+                                name: check_foobar_var
+                                type: string
+                            pack: []
+                    pack:
+                        side: left
+                        expand: true
+                - Frame:
+                    children:
+                        - Radiobutton:
+                            text: coffee
+                            value: coffee
+                            # the variable radio_var will capture the value coffee
+                            variable:
+                                name: radio_var
+                                type: string
+                            pack: []
+                        - Radiobutton:
+                            text: tea
+                            value: tea
+                            # the variable radio_var will capture the value tea
+                            variable:
+                                name: radio_var
+                                type: string
+                            pack: []
+                        - Label:
+                            # label then uses the variable here
+                            # (notice this is a text_variable, and not a variable)
+                            text_variable:
+                                name: radio_var
+                                type: string
+                            pack: []
+                    pack:
+                        side: left
+                - Frame:
+                    children:
+                        - Button:
+                            name: button_add
+                            text: +
+                            font: ['', 16, bold]
+                            width: 3
+                            pack: right
+                    pack:
+                        side: left
+                        expand: true
+                        fill: both
+            pack:
+                side: top
+                fill: x
+        - Frame:
+            name: bottom_frame
+            pack:
+                side: top
+                expand: true
+                fill: both

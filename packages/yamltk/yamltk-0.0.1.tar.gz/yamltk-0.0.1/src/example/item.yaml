@@ -1,0 +1,36 @@
+Item:
+    children:
+        - Label:
+            text: 'Item name'
+            pack: top
+        - Entry:
+            pack: top
+        - Label:
+            text: 'Price'
+            pack: top
+        - Entry:
+            pack: top
+        - Frame:
+            children:
+                - Radiobutton:
+                    text: discount
+                    value: true
+                    variable:
+                        name: discount
+                        type: boolean
+                    pack: left
+                - Radiobutton:
+                    text: full price
+                    value: false
+                    variable:
+                        name: discount
+                        type: boolean
+                    pack: left
+            pack: top
+        # Example of inserting 3rd party widgets
+        - DoubleScale:
+            init_kwargs:
+                to: 1
+                decimals: 2
+            pack: top
+    pack: left
