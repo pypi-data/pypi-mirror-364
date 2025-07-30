@@ -1,0 +1,41 @@
+[build-system]
+requires = ['setuptools>=42']
+build-backend = 'setuptools.build_meta'
+
+[project]
+name = "Silicrop"
+version = "1.0.6"
+authors = [
+  { name = "Thibaut Meyer", email = "thibaut.meyer3@gmail.com" },
+  { name = "Thomas Blumet", email = "xxx@gmail.com" }
+]
+description = "Package for Raman TMD data processing and visualization"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+keywords = ["Silicrop"]
+dependencies = [
+    "opencv_python",
+    "matplotlib",
+    "numpy",
+    "Pillow",
+    "PyQt5==5.15.11",
+    "PyQt5_sip==12.17.0",
+    "psutil",
+    "torch",
+    "torchvision",
+    "segmentation_models_pytorch"
+]
+
+[project.urls]
+Homepage = "https://github.com/thi-mey/silicrop"
+
+[project.scripts]
+silicrop = "silicrop.main:main"
+
+[tool.setuptools.package-data]
+"silicrop" = ["assets/*.pth", "assets/*.png"]
