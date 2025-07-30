@@ -1,0 +1,31 @@
+import numpy as np
+import pytest
+
+from pygmm import GulerceAbrahamson2011 as GA11
+
+from . import load_tests
+
+TESTS = load_tests("gulerce_abrahamson_2011.json.gz")
+
+
+def idfn(test):
+    if isinstance(test, dict):
+        p = test["params"]
+        return f"M={p['mag']}, Rjb={['dist_rup']} km"
+    else:
+        return test
+
+
+@pytest.mark.parametrize("test", TESTS, ids=idfn)
+@pytest.mark.parametrize("key", ["ratio", "ln_std"])
+def test_calc_cond_spectrum(test, key):
+    m = GA11(test["params"])
+    actual = getattr(m, key)
+    expected = test["output"][key]
+    np.testing.assert_allclose(actual, expected, atol=0.001, rtol=0.005)
+
+
+@pytest.mark.parametrize("method", ["interp_ratio", "interp_ln_std"])
+def test_interp(method):
+    m = GA11(TESTS[0]["params"])
+    getattr(m, method)(np.geomspace(0.01, 10))
