@@ -1,0 +1,13 @@
+meridianalgo/__init__.py,sha256=KfnSLDoquVGEQK9ove-p0l2w855EHxb-Bjia2z6O98U,368
+meridianalgo/smarttrader/__init__.py,sha256=JGYPZ94_Y7oZZNz28t13PWGOB80Hc6w5f5VIt0x6jk4,4122
+meridianalgo/smarttrader/analysis.py,sha256=FgdPjfBg3yPUfdy3kDMgy6OkThKFqHg9AOeALsmnmCw,10878
+meridianalgo/smarttrader/cli.py,sha256=LhCLLB7OLoPJSCrnduJaMd1t3BLheQMIpgJZqbOF0Ac,1036
+meridianalgo/smarttrader/core.py,sha256=DEeOYLHyH-Z51mpnLrw8_3TbpJaR-Hz1ZRugbtV9ETk,10517
+meridianalgo/smarttrader/gpu.py,sha256=heqiQfqFYfdV_2zpXnH5v9dO1QGE0TasvgIwss2RP0A,7255
+meridianalgo/smarttrader/models.py,sha256=tGdEqgreRYd7SBr-gHxWF3Nk-d2-RUZpdeouOs-tv5w,8540
+meridianalgo_smarttrader-1.0.0.dist-info/licenses/LICENSE,sha256=nXOoCg5L4dcUB6cW0TwZC4grT308u4tbzRpSL19JG08,1088
+meridianalgo_smarttrader-1.0.0.dist-info/METADATA,sha256=J86aC7hKdc8OUR0XJ7RIr-Z2_v5Lgu1-8IL_uh-2qAA,9627
+meridianalgo_smarttrader-1.0.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+meridianalgo_smarttrader-1.0.0.dist-info/entry_points.txt,sha256=JMTxvmJuYZpBaohayb5k-bfMRJU4a7ekZa1oASD2RR0,115
+meridianalgo_smarttrader-1.0.0.dist-info/top_level.txt,sha256=WIINyMzqpamOl_Po9dwbaAzYCpFSif7ag-W8HLcLzaU,13
+meridianalgo_smarttrader-1.0.0.dist-info/RECORD,,

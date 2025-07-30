@@ -1,0 +1,3 @@
+[console_scripts]
+smart-trader = meridianalgo.smarttrader.cli:main
+smarttrader = meridianalgo.smarttrader.cli:main
