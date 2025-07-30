@@ -1,0 +1,15 @@
+cli.py,sha256=bS7a41BToLWL3A5wcXCk3c9_MP-pVyNfsH60QqsHe18,2642
+semantic_firewall.py,sha256=KhuL72j2Vr-zasiXuv0uUEvANVVkZ5ONPyHVy4T4r8k,7673
+aegis_semantic_firewall-0.1.1.dist-info/licenses/LICENSE,sha256=GlHwayvLfbLVeofsc01cdO1FMFNdi6Du4buBlHqopYo,1070
+api/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+api/app.py,sha256=ieo0_VNXaCZkDBw3Kt-6RMsOKbFrnNzFOIOeu61iYVw,4023
+detectors/__init__.py,sha256=9NnY7mAXM-JDgiUw3vTObi_uDdOZtEkY08DEt0uagkw,375
+detectors/echo_chamber.py,sha256=8C1dRvbQmkw0QgY6I5IrTXzgpA_nkQGzGlFmgjlwoDo,14646
+detectors/heuristic_detector.py,sha256=t5pK5V5a-ZHfiLgW4WtG-zCo2Li9EO-SGzMm7l0vGV4,4680
+detectors/injection_detector.py,sha256=1aCXSq5IcHQQitxxP4ywwE5lUGE_HD4F7sHnWWQjFRs,2226
+detectors/rule_based.py,sha256=AUEqwIlmep8QqmF9gdSgK33qg_Y3biEdMbmHPkiaT0A,5950
+aegis_semantic_firewall-0.1.1.dist-info/METADATA,sha256=p4yFcBiHzl3d7KyvAA9BPenCyfEtX_9fwpN844BjycQ,20915
+aegis_semantic_firewall-0.1.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+aegis_semantic_firewall-0.1.1.dist-info/entry_points.txt,sha256=uSziCTag_IcAYzhUcPfXfayMvZ8fFgV1rPKmwvYCrd4,35
+aegis_semantic_firewall-0.1.1.dist-info/top_level.txt,sha256=I6CYWrXUo8hbC5-P4bV3bfPlT-HfpFkiQ_4w5E3vPuQ,36
+aegis_semantic_firewall-0.1.1.dist-info/RECORD,,
