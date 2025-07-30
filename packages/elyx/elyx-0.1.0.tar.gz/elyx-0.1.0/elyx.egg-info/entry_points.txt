@@ -1,0 +1,2 @@
+[console_scripts]
+elyx = elyx.main:main
