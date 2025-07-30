@@ -1,0 +1,2 @@
+[console_scripts]
+dropit = dropit.main:run_app
