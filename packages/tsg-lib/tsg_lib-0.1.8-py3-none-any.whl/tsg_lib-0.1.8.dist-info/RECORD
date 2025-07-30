@@ -1,0 +1,10 @@
+tests/test_generators.py,sha256=cfFvz0jFe2fBX1U3PlHMRz9qEWcvg7puB__-jJrpqtA,4446
+tests/test_meta_generators.py,sha256=ak4795LPCExLQBBSGA9yL1NZh--dOK4NtkxXVkJDyLo,4307
+tsg/__init__.py,sha256=aIRJ9ZMfr9tvTOuFprGarbnWlavUrjj9z1Eg3YlRZiw,82
+tsg/generators.py,sha256=KFQh7ksfnrYuSmohrhqI26ToQ_pgKkhxXT3BjXRaEok,4308
+tsg/meta_generators.py,sha256=FSh9wytl0FvyfpElNC8ySbiP5c4fF578s5veq77C56E,3945
+tsg/modifiers.py,sha256=-VUkbdnMjUrqkKyAfLF4lBbgulnrIUMwyCQg86Nf7uQ,588
+tsg_lib-0.1.8.dist-info/METADATA,sha256=wmChfyG6cmCm_UsidN_R3FLKI57JnX8rKonViGFffV8,4782
+tsg_lib-0.1.8.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+tsg_lib-0.1.8.dist-info/top_level.txt,sha256=bNaf2nW1367cNza8G7nXc1E0dX33D1c24nn-djwomz8,10
+tsg_lib-0.1.8.dist-info/RECORD,,
