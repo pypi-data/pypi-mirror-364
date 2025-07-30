@@ -1,0 +1,13 @@
+{% verbatim %}{% extends 'base.html' %}{% endverbatim %}
+
+{% verbatim %}{% block head %}{% endverbatim %}
+<!-- This heading is from index.html  -->
+{% verbatim %}{% endblock %}{% endverbatim %}
+
+{% verbatim %}{% block content %}{% endverbatim %}
+<h1>This is index page of {{project_name}}</h1>
+{% verbatim %}{% endblock %}{% endverbatim %}
+
+{% verbatim %}{% block script %}{% endverbatim %}
+<!-- This Script is from index.html  -->
+{% verbatim %}{% endblock %}{% endverbatim %}
