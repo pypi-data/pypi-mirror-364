@@ -1,0 +1,71 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "context-overflow-mcp"
+version = "1.0.0"
+description = "MCP server for Context Overflow Q&A platform"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [
+    { name = "Venkatesh", email = "venkatesh@contextoverflow.com" },
+]
+keywords = ["mcp", "stackoverflow", "qa", "programming", "questions", "answers"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "mcp>=1.0.0",
+    "httpx>=0.25.0",
+    "pydantic>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "mypy>=1.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/venkateshtata/context-overflow-mcp"
+Repository = "https://github.com/venkateshtata/context-overflow-mcp"
+Documentation = "https://github.com/venkateshtata/context-overflow-mcp#readme"
+
+[project.scripts]
+context-overflow-mcp = "context_overflow_mcp.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/context_overflow_mcp"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/README.md",
+    "/LICENSE",
+]
+
+[tool.black]
+line-length = 100
+target-version = ['py38']
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
