@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: rapidocr-web
+Version: 0.1.11
+Summary: A cross platform OCR Library based on OnnxRuntime.
+Home-page: https://github.com/RapidAI/RapidOCR
+Download-URL: https://github.com/RapidAI/RapidOCR.git
+Author: SWHL
+Author-email: liekkaskono@163.com
+License: Apache-2.0
+Keywords: ocr,text_detection,text_recognition,db,onnxruntime,paddleocr,openvino,rapidocr
+Platform: Any
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Requires-Dist: Flask>=2.1.0
+Requires-Dist: rapidocr-onnxruntime
+
+### See [Documentation](https://rapidai.github.io/RapidOCRDocs/install_usage/rapidocr_web/rapidocr_web/)
