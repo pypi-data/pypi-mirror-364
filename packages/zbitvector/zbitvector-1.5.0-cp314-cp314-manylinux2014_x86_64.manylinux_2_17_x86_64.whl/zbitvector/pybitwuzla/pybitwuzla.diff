@@ -1,0 +1,272 @@
+1. Remove the termination callback features from pybitwuzla. They depend on a
+   private header file, utils/bzlaabort.h, that isn't available to standalone
+   Cython builds.
+
+2. Correct errors in the type annotations.
+
+3. Avoid using array.array, which is incompatible with PyPy.
+
+--- pybitwuzla.pyx	2024-10-26 01:08:32.601596674 +0000
++++ pybitwuzla.pyx	2024-10-26 01:55:56.923044836 +0000
+@@ -18,9 +18,7 @@
+ from libc.stdint cimport int32_t, uint32_t, uint64_t
+ from libcpp cimport bool as cbool
+ from cpython.ref cimport PyObject
+-from cpython cimport array
+ from collections import defaultdict
+-import array
+ import math, os, sys
+ import tempfile
+
+@@ -74,6 +72,14 @@
+         raise MemoryError()
+     return terms
+
++cdef uint32_t* _alloc_indices_const(size):
++    cdef uint32_t *indices = \
++        <uint32_t *> \
++            malloc(size * sizeof(uint32_t))
++    if not indices:
++        raise MemoryError()
++    return indices
++
+ cdef const bitwuzla_api.BitwuzlaSort** _alloc_sorts_const(size):
+     cdef const bitwuzla_api.BitwuzlaSort **sorts = \
+         <const bitwuzla_api.BitwuzlaSort **> \
+@@ -250,7 +256,7 @@
+            Get string representation of term in format ``fmt``.
+
+            :param fmt: Output format. Available formats: "btor", "smt2"
+-           :type: str
++           :type fmt: str = "smt2"
+
+            :return: String representation of the term in format ``fmt``.
+            :rtype: str
+@@ -297,7 +303,7 @@
+
+     def get_symbol(self):
+         """:return: The symbol of the term.
+-           :rtype: str
++           :rtype: str or None
+
+            .. seealso::
+                :func:`~pybitwuzla.BitwuzlaTerm.set_symbol`
+@@ -479,69 +485,12 @@
+
+     def __dealloc__(self):
+         if self._c_bitwuzla is not NULL:
+-            bitwuzla_api.pybitwuzla_delete(self._c_bitwuzla)
++            bitwuzla_api.bitwuzla_delete(self._c_bitwuzla)
+
+     cdef bitwuzla_api.Bitwuzla* ptr(self):
+         return self._c_bitwuzla
+
+     # ------------------------------------------------------------------------
+-    # Termination callback
+-    # ------------------------------------------------------------------------
+-
+-    def set_term(self, fun, args):
+-        """set_term(fun, args)
+-
+-           Set a termination callback function.
+-
+-           Use this function to force Bitwuzla to prematurely terminate if
+-           callback function ``fun`` returns True. Arguments ``args`` to
+-           ``fun`` may be passed as a single Python object (in case that
+-           ``fun`` takes only one argument), a tuple, or a list of arguments.
+-
+-           E.g., ::
+-
+-             import time
+-
+-             def fun1 (arg):
+-                 # timeout after 1 sec.
+-                 return time.time() - arg > 1.0
+-
+-             def fun2 (arg0, arg1):
+-                 # do something and return True/False
+-                 ...
+-
+-             bitwuzla = Bitwuzla()
+-
+-             bitwuzla.set_term(fun1, time.time())
+-             bitwuzla.set_term(fun1, (time.time(),))
+-             bitwuzla.set_term(fun1, [time.time()])
+-
+-             bitwuzla.set_term(fun2, (arg0, arg1))
+-             bitwuzla.set_term(run2, [arg0, arg1])
+-
+-           :param fun: A python function.
+-           :param args: A function argument or a list or tuple of function
+-                        arguments.
+-        """
+-        cdef PyObject* funptr = <PyObject*>fun
+-        cdef PyObject* argsptr = <PyObject*>args
+-        bitwuzla_api.pybitwuzla_set_term(self.ptr(), funptr, argsptr)
+-
+-    def terminate(self):
+-        """Call terminate callback that was set via
+-           :func:`~pybitwuzla.Bitwuzla.set_term`.
+-
+-           :return: True if termination condition is fulfilled, else False.
+-           :rtype: bool
+-
+-           .. seealso::
+-                :func:`~pybitwuzla.Bitwuzla.set_term`.
+-        """
+-        cdef int32_t res
+-        res = bitwuzla_api.bitwuzla_terminate(self.ptr())
+-        return res > 0
+-
+-    # ------------------------------------------------------------------------
+     # Bitwuzla API functions (general)
+     # ------------------------------------------------------------------------
+
+@@ -575,7 +524,7 @@
+            Push new context levels.
+
+            :param levels: Number of context levels to create.
+-           :type levels: int
++           :type levels: int = 1
+
+            .. note::
+              Assumptions added via :func:`~pybitwuzla.Bitwuzla.assume_formula`
+@@ -594,7 +543,7 @@
+            Pop context levels.
+
+            :param levels: Number of levels to pop.
+-           :type levels: int
++           :type levels: int = 1
+
+            .. note::
+              Assumptions added via :func:`~pybitwuzla.Bitwuzla.assume_formula`
+@@ -689,6 +638,7 @@
+            Requires that the last :func:`~pybitwuzla.Bitwuzla.check_sat` call
+            returned `~pybitwuzla.Result.SAT`.
+
++           :type term: BitwuzlaTerm
+            :return: Term representing the model value of `term`.
+            :rtype: BitwuzlaTerm
+         """
+@@ -703,6 +653,8 @@
+            Requires that the last :func:`~pybitwuzla.Bitwuzla.check_sat` call
+            returned :class:`~pybitwuzla.Result.SAT`.
+
++           :type term: BitwuzlaTerm
++           :rtype: Any
+            :return:
+                - arrays: dictionary mapping indices to values
+                - bit-vectors: bit string
+@@ -778,7 +730,7 @@
+            Get the model as a string in format ``fmt``.
+
+            :param fmt: Model format. Available formats: "btor", "smt2"
+-           :type: str
++           :type fmt: str = "smt2"
+
+            :return: String representation of model in format ``fmt``.
+            :rtype: str
+@@ -797,7 +749,7 @@
+            Dump the current formula as a string in format ``fmt``.
+
+            :param fmt: Model format. Available formats: "btor", "smt2"
+-           :type: str
++           :type fmt: str = "smt2"
+
+            :return: String representation of formula in format ``fmt``.
+            :rtype: str
+@@ -917,6 +869,7 @@
+            :param opt:   Option.
+            :type opt:    BitwuzlaOption
+            :param value: Option value.
++           :type value:  str or BitwuzlaOption or int
+
+            .. seealso::
+                 For a list of available options see :class:`~pybitwuzla.Option`
+@@ -1337,7 +1290,7 @@
+            :param sort: The sort of the constant.
+            :type sort: BitwuzlaSort
+            :param symbol: The symbol of the constant.
+-           :type symbol: str
++           :type symbol: str or None = None
+
+            :return: A term representing the constant.
+            :rtype: BitwuzlaTerm
+@@ -1374,7 +1327,7 @@
+            :param sort: The sort of the variable.
+            :type sort: BitwuzlaSort
+            :param symbol: The symbol of the variable.
+-           :type symbol: str
++           :type symbol: str or None = None
+
+            :return: A term representing the variable.
+            :rtype: BitwuzlaTerm
+@@ -1395,10 +1348,10 @@
+
+            :param kind: The operator kind.
+            :type kind: Kind
+-           :param terms: The number of argument terms.
+-           :type terms: list(BitwuzlaTerm)
+-           :param indices: The argument terms.
+-           :type indices: list(int)
++           :param terms: The argument terms.
++           :type terms: list(BitwuzlaTerm) or tuple(BitwuzlaTerm, ...)
++           :param indices: The argument indices.
++           :type indices: list(int) or tuple(int, ...) or None = None
+
+            :return: A term representing an operation of given kind.
+            :rtype: BitwuzlaTerm
+@@ -1422,21 +1375,25 @@
+                                  'not of type BitwuzlaTerm'.format(i))
+             c_terms[i] = (<BitwuzlaTerm> terms[i]).ptr()
+
+-        term = BitwuzlaTerm(self)
++        num_indices = 0
++        if indices is not None:
++            num_indices = len(indices)
++        cdef uint32_t *c_indices =\
++                _alloc_indices_const(num_indices)
+
+-        cdef array.array c_indices
+-        if indices:
+-            c_indices = array.array('I', indices)
+-            term.set(bitwuzla_api.bitwuzla_mk_term_indexed(
+-                            self.ptr(),
+-                            kind.value,
+-                            num_terms,
+-                            c_terms,
+-                            len(indices),
+-                            c_indices.data.as_uints))
+-        else:
++        term = BitwuzlaTerm(self)
++        if indices is None:
+             term.set(bitwuzla_api.bitwuzla_mk_term(
+                         self.ptr(), kind.value, num_terms, c_terms))
++        else:
++            for i in range(num_indices):
++                if not isinstance(indices[i], int):
++                    raise ValueError('Index at position {} is ' \
++                                     'not of type int'.format(i))
++                c_indices[i] = <uint32_t>indices[i]
++
++            term.set(bitwuzla_api.bitwuzla_mk_term_indexed(
++                        self.ptr(), kind.value, num_terms, c_terms, num_indices, c_indices))
+         free(c_terms)
+         return term
+
+@@ -1448,13 +1405,13 @@
+            substitutions in ``subst_map``.
+
+            :param terms: List of terms to apply substitutions.
+-           :type terms: list(BitwuzlaTerm)
++           :type terms: list(BitwuzlaTerm) or tuple(BitwuzlaTerm, ...) or BitwuzlaTerm
+            :param subst_map: The substitution map mapping constants or
+                              variables to terms.
+            :type subst_map: dict(BitwuzlaTerm,BitwuzlaTerm)
+
+            :return: List of terms with substitutions applied.
+-           :rtype: list(BitwuzlaTerm)
++           :rtype: list(BitwuzlaTerm) or BitwuzlaTerm
+         """
+         if not isinstance(terms, BitwuzlaTerm) and not isinstance(terms, list):
+             raise ValueError('Expected BitwuzlaTerm or list of ' \
