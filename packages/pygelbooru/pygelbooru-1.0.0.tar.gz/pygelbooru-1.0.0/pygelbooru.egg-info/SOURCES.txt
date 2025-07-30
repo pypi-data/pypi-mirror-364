@@ -1,0 +1,11 @@
+LICENSE
+README.md
+setup.cfg
+setup.py
+pygelbooru/__init__.py
+pygelbooru/gelbooru.py
+pygelbooru.egg-info/PKG-INFO
+pygelbooru.egg-info/SOURCES.txt
+pygelbooru.egg-info/dependency_links.txt
+pygelbooru.egg-info/requires.txt
+pygelbooru.egg-info/top_level.txt
