@@ -1,0 +1,14 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+DIY_NLA.egg-info/PKG-INFO
+DIY_NLA.egg-info/SOURCES.txt
+DIY_NLA.egg-info/dependency_links.txt
+DIY_NLA.egg-info/requires.txt
+DIY_NLA.egg-info/top_level.txt
+tests/test_basic_ops.py
+tests/test_decomposition.py
+tests/test_direct_solvers.py
+tests/test_eigen.py
+tests/test_iterative_solvers.py
