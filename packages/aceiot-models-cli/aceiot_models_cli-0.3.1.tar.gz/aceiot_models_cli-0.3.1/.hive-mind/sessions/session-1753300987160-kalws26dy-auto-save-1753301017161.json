@@ -1,0 +1,81 @@
+{
+  "sessionId": "session-1753300987160-kalws26dy",
+  "checkpointId": "checkpoint-1753301017161-cjlx0eh28",
+  "checkpointName": "auto-save-1753301017161",
+  "timestamp": "2025-07-23T20:03:37.162Z",
+  "data": {
+    "timestamp": "2025-07-23T20:03:37.161Z",
+    "changeCount": 5,
+    "changesByType": {
+      "swarm_created": [
+        {
+          "type": "swarm_created",
+          "data": {
+            "swarmId": "swarm-1753300987159-mqvn9ns0m",
+            "swarmName": "hive-1753300987155",
+            "objective": "Evaluate the codebase architecture, identify any functionality that would be better placed in the upstream aceiot_models package, and generate a requirements doc to pass to the aceiot_models team to implement",
+            "workerCount": 8
+          },
+          "timestamp": "2025-07-23T20:03:07.160Z"
+        }
+      ],
+      "agent_activity": [
+        {
+          "type": "agent_activity",
+          "data": {
+            "agentId": "worker-swarm-1753300987159-mqvn9ns0m-0",
+            "activity": "spawned",
+            "data": {
+              "type": "researcher",
+              "name": "Researcher Worker 1"
+            }
+          },
+          "timestamp": "2025-07-23T20:03:07.161Z"
+        },
+        {
+          "type": "agent_activity",
+          "data": {
+            "agentId": "worker-swarm-1753300987159-mqvn9ns0m-1",
+            "activity": "spawned",
+            "data": {
+              "type": "coder",
+              "name": "Coder Worker 2"
+            }
+          },
+          "timestamp": "2025-07-23T20:03:07.161Z"
+        },
+        {
+          "type": "agent_activity",
+          "data": {
+            "agentId": "worker-swarm-1753300987159-mqvn9ns0m-2",
+            "activity": "spawned",
+            "data": {
+              "type": "analyst",
+              "name": "Analyst Worker 3"
+            }
+          },
+          "timestamp": "2025-07-23T20:03:07.161Z"
+        },
+        {
+          "type": "agent_activity",
+          "data": {
+            "agentId": "worker-swarm-1753300987159-mqvn9ns0m-3",
+            "activity": "spawned",
+            "data": {
+              "type": "tester",
+              "name": "Tester Worker 4"
+            }
+          },
+          "timestamp": "2025-07-23T20:03:07.161Z"
+        }
+      ]
+    },
+    "statistics": {
+      "tasksProcessed": 0,
+      "tasksCompleted": 0,
+      "memoryUpdates": 0,
+      "agentActivities": 4,
+      "consensusDecisions": 0
+    }
+  }
+}
