@@ -1,0 +1,9 @@
+README.md
+setup.py
+lxc/__init__.py
+lxc/lxc.py
+lxc_sdk.egg-info/PKG-INFO
+lxc_sdk.egg-info/SOURCES.txt
+lxc_sdk.egg-info/dependency_links.txt
+lxc_sdk.egg-info/requires.txt
+lxc_sdk.egg-info/top_level.txt
