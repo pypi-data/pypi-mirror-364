@@ -1,0 +1,10 @@
+prometheus_client
+PyYAML
+psutil
+setuptools
+wheel
+twine
+flask
+clickhouse-connect
+psycopg2-binary
+ollama
