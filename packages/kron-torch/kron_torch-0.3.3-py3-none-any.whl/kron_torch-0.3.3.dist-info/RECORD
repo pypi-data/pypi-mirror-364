@@ -1,0 +1,12 @@
+kron_torch/.DS_Store,sha256=PKe1a-km9Abs3G6cVJGmmr9uFR7y4n6_gz-MhW531AE,6148
+kron_torch/__init__.py,sha256=1yiw_kzUScNIkfLFjPhkrwPJjNRrqcvcXYxKI9zmNRQ,316
+kron_torch/dist_kron.py,sha256=zC0CCKqhYceDycEnyqLiiOtBVkiHVd2naBe51jFkVvc,21258
+kron_torch/dist_onesidedkron.py,sha256=ehQXYaLyfRmsuCKm9A9A0Rr4CXzM-_JdftGylDXaWhE,10978
+kron_torch/dist_test.py,sha256=thi1V6ym0pKo7xFoFHu6oJu6luQ4kCjoOxH4JOPAAvE,4792
+kron_torch/kron.py,sha256=mn46FF2w4gdgrEsjfNBGR-JDyRdJWZxL8lEeF0C9RI0,17281
+kron_torch/kron_test.py,sha256=VzJXEURNTQe379ztf5WlKwUBfMlW20mxeYmkQIceh-w,2770
+kron_torch/kronos.py,sha256=7NYOd85Bhn1MjoPmdsd2hDveenSTdXDPi5Gjcz0lIAA,20309
+kron_torch-0.3.3.dist-info/licenses/LICENSE,sha256=nl8bPGELnC2lwxO_gdV3p9Gs7Ghr2wOE7e-m3w-QzZQ,18656
+kron_torch-0.3.3.dist-info/WHEEL,sha256=G2gURzTEtmeR8nrdXUJfNiB3VYVxigPQ-bEQujpNiNs,82
+kron_torch-0.3.3.dist-info/METADATA,sha256=Nof0x5iIkm__JwrFlwqeH7KOpPLtDFFx9-OqoH0anfo,6777
+kron_torch-0.3.3.dist-info/RECORD,,
