@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: cst-ui
+Version: 0.0.2
+Summary: A UI package based on Flet for more convenient construction of interface programs.
+Project-URL: Homepage, https://github.com/aigcst/cst-ui
+Author-email: aigcst <aigcst@outlook.com>
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.11
+Requires-Dist: flet>=0.70.0.dev5103
+Description-Content-Type: text/markdown
+
+A UI package based on Flet for more convenient construction of interface programs.

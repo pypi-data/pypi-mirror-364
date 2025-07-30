@@ -1,0 +1,23 @@
+[project]
+name = "cst-ui"
+version = "0.0.2"
+description = "A UI package based on Flet for more convenient construction of interface programs."
+readme = "README.md"
+authors = [{ name = "aigcst", email = "aigcst@outlook.com" }]
+requires-python = ">=3.11"
+dependencies = [
+    "flet>=0.70.0.dev5103",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.urls]
+Homepage = "https://github.com/aigcst/cst-ui"
+
+
