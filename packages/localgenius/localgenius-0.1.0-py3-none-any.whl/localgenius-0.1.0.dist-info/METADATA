@@ -1,0 +1,179 @@
+Metadata-Version: 2.4
+Name: localgenius
+Version: 0.1.0
+Summary: A personal MCP server that acts as a RAG source for your LLM
+Author: Marco Kotrotsos
+Project-URL: Homepage, https://github.com/yourusername/localgenius
+Project-URL: Repository, https://github.com/yourusername/localgenius
+Keywords: mcp,rag,llm,claude,openai,vector-search,embeddings
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: fastmcp>=0.2.0
+Requires-Dist: openai>=1.0.0
+Requires-Dist: faiss-cpu>=1.7.4
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: pydantic-settings>=2.0.0
+Requires-Dist: click>=8.1.0
+Requires-Dist: rich>=13.0.0
+Requires-Dist: python-dotenv>=1.0.0
+Requires-Dist: aiofiles>=23.0.0
+Requires-Dist: aiosqlite>=0.19.0
+Requires-Dist: aiohttp>=3.9.0
+Requires-Dist: numpy>=1.24.0
+Requires-Dist: PyYAML>=6.0.0
+
+# LocalGenius
+
+A personal MCP (Model Context Protocol) server that acts as a RAG (Retrieval-Augmented Generation) source for your LLM. Works with Claude Desktop!
+
+## Features
+
+- 🔍 Semantic search through your local documents
+- 🤖 RAG-powered Q&A using OpenAI GPT-4o
+- 📁 Local vector store using SQLite + FAISS
+- 🖥️ Claude Desktop integration via MCP
+- 🎨 Rich CLI interface with onboarding wizard
+- ⚡ Fast indexing and retrieval
+
+## Installation
+
+```bash
+# Install from PyPI (recommended)
+pip install localgenius
+
+# Or install from source
+git clone https://github.com/yourusername/localgenius.git
+cd localgenius
+pip install -e .
+```
+
+## Quick Start
+
+```bash
+# 1. Set your OpenAI API key
+export OPENAI_API_KEY="sk-..."
+
+# 2. First run - interactive setup wizard
+localgenius init
+
+# 3. Add documents to index
+localgenius add-source /path/to/documents --name "My Docs"
+
+# 4. Index the documents
+localgenius index
+
+# 5. Test it out
+localgenius ask "What are the main topics in my documents?"
+```
+
+## Claude Desktop Integration
+
+### Automatic Setup (Recommended)
+
+```bash
+# Automatically configure Claude Desktop
+localgenius install --claude
+```
+
+This command will:
+- Create the MCP server launcher script
+- Configure Claude Desktop automatically
+- Back up existing configuration
+- Show you next steps
+
+Then restart Claude Desktop (Cmd+Q) and look for the MCP icon (🧩)!
+
+## CLI Commands
+
+```bash
+# Initialize (first-time setup)
+localgenius init
+
+# Manage data sources
+localgenius add-source /path/to/docs --name "My Docs" --index
+localgenius remove-source /path/to/docs
+localgenius list-sources
+
+# Install integrations
+localgenius install --claude         # Auto-configure Claude Desktop
+
+# Index documents
+localgenius index                    # Index all sources
+localgenius index --source /path     # Index specific source
+localgenius index --force           # Force re-index
+localgenius index --show            # Show detailed index statistics
+
+# Search and ask questions
+localgenius search "your query"
+localgenius ask "your question"
+localgenius ask "question" --model gpt-4o --stream
+
+# Run MCP server
+localgenius serve         # MCP server for Claude Desktop
+
+# Check status
+localgenius status
+```
+
+## Usage in Claude Desktop
+
+Once configured, you can ask Claude to use your documents:
+
+- "Search my documents for information about X"
+- "What do my files say about Y?"
+- "Show me the LocalGenius status"
+- "Based on my indexed documents, explain Z"
+
+## Available MCP Tools
+
+LocalGenius provides three tools to Claude Desktop:
+
+1. **search** - Semantic search through documents
+   - Find relevant content based on similarity
+   - Adjustable similarity threshold and result count
+
+2. **ask** - RAG-powered Q&A using GPT-4o
+   - Get AI-generated answers based on your documents
+   - Includes source citations
+
+3. **status** - Get index statistics
+   - View total documents, sources, and file types
+
+## Requirements
+
+- Python 3.8+
+- OpenAI API key (for embeddings and RAG)
+
+## Troubleshooting
+
+### "Command not found: localgenius"
+```bash
+pip install -e .
+```
+
+### "OpenAI API key not configured"
+```bash
+export OPENAI_API_KEY="sk-..."
+# Add to ~/.bashrc or ~/.zshrc to make permanent
+```
+
+### Claude Desktop doesn't show LocalGenius
+1. Run `localgenius install --claude` to auto-configure
+2. Make sure to completely restart Claude Desktop (Cmd+Q)
+3. Check Console.app for error messages
+
+### "No documents indexed"
+```bash
+localgenius status        # Check what's configured
+localgenius index         # Run indexing
+```
