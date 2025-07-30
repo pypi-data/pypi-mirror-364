@@ -1,0 +1,2 @@
+[console_scripts]
+polygon-measure = polygon_measure.cli:main
