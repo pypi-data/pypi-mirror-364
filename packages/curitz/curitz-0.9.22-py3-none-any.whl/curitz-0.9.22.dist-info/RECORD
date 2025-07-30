@@ -1,0 +1,13 @@
+curitz/__init__.py,sha256=7k2wIXTI7uisKEdbsZ-2rtuywpN52mxE2MSbPBEM2KI,780
+curitz/__main__.py,sha256=bYt9eEaoRQWdejEHFD8REx9jxVEdZptECFsV7F49Ink,30
+curitz/cli.py,sha256=RaMsOkV0SP2w9eHcigS4uHboBDyv0mPok-16VQRC8y4,37195
+curitz/culistbox.py,sha256=XFiV3hUNipEertIVp2talOkmVUUUBchGj0gCY_6_BQs,4138
+curitz/textpad.py,sha256=G5yQOq5INPCJi2lmOIzoXyBPXmYZ08lRNTSqsGs7-20,8957
+curitz/timed_cache.py,sha256=OyEvTO7fCRrm1yWA7h5KBEXO39iKuPY8Keqw9VrOdUw,1244
+curitz/version.py,sha256=8n7EA9YuDMEyU124qRcKgTkHEFVPO2gGvwEpVFCMhdA,513
+curitz-0.9.22.dist-info/licenses/LICENSE,sha256=z8d0m5b2O9McPEK1xHG_dWgUBT6EfBDz6wA0F7xSPTA,11358
+curitz-0.9.22.dist-info/METADATA,sha256=K0-do7kR-9YQX45jP6xreBXNlrPr1lZpN4MZkxhoDnI,16605
+curitz-0.9.22.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+curitz-0.9.22.dist-info/entry_points.txt,sha256=RIOHKhn_bIzThppHzlUzOWVtvTGuAECQBzUSCj6Kc_I,43
+curitz-0.9.22.dist-info/top_level.txt,sha256=VM7WhYBRxpZawIOTxwJZ7LwKJ4KY-KaL7bxT5idNCHE,7
+curitz-0.9.22.dist-info/RECORD,,
