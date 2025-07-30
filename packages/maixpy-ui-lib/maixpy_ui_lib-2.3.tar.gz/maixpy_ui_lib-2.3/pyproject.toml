@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "maixpy-ui-lib"
+version = "2.3"
+authors = [
+  { name="Aristore" },
+  { name="levi_jia" },
+  { name="HYKMAX" },
+]
+description = "A lightweight UI component library for MaixPy."
+readme = "README.md"
+requires-python = ">=3.8"
+license = "Apache-2.0"
+keywords = ["maixpy", "ui", "gui", "embedded", "micropython"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Embedded Systems",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = ["MaixPy"]
+
+[project.urls]
+Homepage = "https://github.com/aristorechina/MaixPy-UI-Lib/"
+Repository = "https://github.com/aristorechina/MaixPy-UI-Lib/"
+"Bug Tracker" = "https://github.com/aristorechina/MaixPy-UI-Lib/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/maixpy_ui"]
