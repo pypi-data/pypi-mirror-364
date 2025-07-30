@@ -1,0 +1,50 @@
+Metadata-Version: 2.4
+Name: concurrex
+Version: 0.0.2
+Summary: Python concurrent execution helpers
+Author-email: Dobatymo <dobatymo@users.noreply.github.com>
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+License-File: LICENSE
+Requires-Dist: genutility[callbacks, concurrency, time]>=0.0.117
+Requires-Dist: rich
+Requires-Dist: typing-extensions>=4
+Requires-Dist: atomicarray>=0.0.1 ; extra == "fast"
+Project-URL: Home, https://github.com/Dobatymo/concurrex
+Provides-Extra: fast
+
+# concurrex (concurrent execution)
+
+The helpers in the Python standard library for concurrent execution, like `threading`, `multiprocessing`, `concurrent.futures` are lacking for certain use cases like backpressure and flow control.
+
+## Requirements
+
+The library works on Python 3.8+, but an important Python bug (bpo-29988) was fixed in Python 3.10, which makes ctrl-c handling much more reliable.
+
+## Examples
+
+```python
+
+from pillow import Image
+
+def decode_image(path):
+	img = Image.open(path)
+	img.load()
+	return path, img
+
+with ThreadPool(num_workers=3) as tp:
+
+	for result in tp.map(decode_image, Path(".").rglob("*.jpg"), bufsize=10)
+		path, img = result.get()
+		img.show()
+		label = input("label:")
+		print(path, label)
+```
+
