@@ -1,0 +1,24 @@
+[PYG-411] 🪳 Serialize direct relations without source given as string (#505)
+
+# Description
+
+**Reviewer**: All code inside `examples/` is generated. 
+
+The bug is caused by direct relations without the `source` property set
+to not be considered direct relations. This caused the conversions from
+the `pygen` DTO (data transfer object) to instance to treat as a single
+string, i.e., a regular text property instead of ensuring that it
+becomes a direct relation - `dict` with space and externalId set.
+
+## Bump
+
+- [x] Patch
+- [ ] Minor
+- [ ] Skip
+
+## Changelog
+### Fixed
+
+- Calling `.upsert()` on an instance that has a direct relations without
+a source specified and with that direct relation as a string
+(externalId) no longer raises a `CogniteAPIError`.
