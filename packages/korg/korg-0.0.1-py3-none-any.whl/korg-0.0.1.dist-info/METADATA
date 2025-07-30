@@ -1,0 +1,33 @@
+Metadata-Version: 2.4
+Name: korg
+Version: 0.0.1
+Summary: fast 1D LTE stellar spectral synthesis
+Project-URL: Homepage, https://github.com/ajwheeler/pykorg
+Project-URL: Source, https://github.com/ajwheeler/pykorg
+Project-URL: Tracker, https://github.com/ajwheeler/pykorg/issues
+Author-email: Adam Wheeler <adamwhlr@gmail.com>, "Matthew W. Abruzzo" <matthewabruzzo@gmail.com>
+License-Expression: BSD-3-Clause
+License-File: LICENSE
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: C++
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Scientific/Engineering :: Astronomy
+Classifier: Topic :: Scientific/Engineering :: Physics
+Requires-Python: >=3.11
+Requires-Dist: juliacall
+Requires-Dist: numpy
+Description-Content-Type: text/markdown
+
+# korg.py: WORK IN PROGRESS
+
+`korg` is a python package for performing fast 1D LTE stellar spectral synthesis.
+Under the hood, it uses the [Korg.jl](https://github.com/ajwheeler/Korg.jl) julia package.
