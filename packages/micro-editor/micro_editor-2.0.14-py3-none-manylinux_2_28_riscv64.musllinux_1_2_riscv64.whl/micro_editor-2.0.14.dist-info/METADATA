@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: micro-editor
+Version: 2.0.14
+Summary: python wrapper for terminal-based text editor 'micro'
+Keywords: micro,text editor
+Author-Email: dowon <ks2515@naver.com>
+License: MIT
+Classifier: Programming Language :: Go
+Classifier: Topic :: Text Editors
+Classifier: Topic :: Terminals
+Project-URL: repository, https://github.com/Bing-su/pip-binary-factory
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+
+# micro-py
+
+**micro** is a terminal-based text editor. see original [repository](https://github.com/zyedidia/micro) for more information.
+
+This is a python wrapper that can be installed with pip.
+
+## install
+
+```sh
+pip install micro-editor
+```
