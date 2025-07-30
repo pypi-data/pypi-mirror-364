@@ -1,0 +1,52 @@
+[build-system]
+requires = [
+    "setuptools >= 77.0.3",
+]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.package-dir]
+"" = "."
+
+[tool.setuptools.packages.find]
+where = [
+    ".",
+]
+include = [
+    "quapps*",
+]
+
+[project]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license-files = [
+    "LICEN[CS]E*",
+]
+readme = "README.md"
+name = "dlr-sc-quapps"
+version = "1.0"
+description = "This is a software package containing a collection of exemplary application implementations based on ``quark``."
+authors = [
+    { name = "DLR-SC", email = "qc-software@dlr.de" },
+]
+keywords = [
+    "Combinatorial Optimization",
+    "QUBO",
+    "Ising Problem",
+    "Quantum Computing",
+    "Quantum Annealing",
+]
+requires-python = ">=3.11"
+license = "Apache-2.0"
+dependencies = [
+    "pytest",
+    "numpy",
+    "networkx",
+    "sympy",
+    "dlr-sc-quark==1.2",
+]
+
+[project.urls]
+Homepage = "https://gitlab.com/quantum-computing-software/quapps/"
+Documentation = "https://quantum-computing-software.gitlab.io/quapps/"

@@ -1,0 +1,5 @@
+pytest
+numpy
+networkx
+sympy
+dlr-sc-quark==1.2
