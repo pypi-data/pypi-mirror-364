@@ -1,0 +1,30 @@
+Metadata-Version: 2.4
+Name: vietnamadminunits
+Version: 0.1.0
+Summary: Library of standardization and conversion of Vietnamese administrative units
+Home-page: https://github.com/tranngocminhhieu/vietnamadminunits
+Author: Hieu Tran
+Author-email: tnmhieu@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: Vietnamese
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-python
+Dynamic: summary
+
+# Vietnam admin units
+
+```shell
+pip install vietnamadminunits
+```
+

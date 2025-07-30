@@ -1,0 +1,15 @@
+vietnamadminunits/__init__.py,sha256=_VPCD_2M8ocnf6HIQMFtukWtDl4VJCo_QlWqcf8taSk,65
+vietnamadminunits/main.py,sha256=TETYdqIkxim-2zyb9Mbgo0UhC2OBVdYT_VugSergmdY,738
+vietnamadminunits/converter/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+vietnamadminunits/converter/convert_63_to_34.py,sha256=HuRQEbTvPhXI_5GvXZgktFlsrkKE1qRFhzeKsFvzBKA,298
+vietnamadminunits/data/parser_34.json,sha256=8leLdxQg_cLEAW3fJ2BKNPgkKvD8tgLB2J-FUdkGQV4,886319
+vietnamadminunits/data/parser_63.json,sha256=xX6c5vGnwedaoBKG2ZyptTyP396c630t5074bjOdaAQ,1814983
+vietnamadminunits/parser/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+vietnamadminunits/parser/objects.py,sha256=pIgZFRPNrd9LnCjjGizPsTFUtaSDDoiieh6oH1PzkOw,2076
+vietnamadminunits/parser/parser_34.py,sha256=KapJitRCPCxBq3BIIURA_Wk-D2LW7ENav93xNIuAH9A,5768
+vietnamadminunits/parser/parser_63.py,sha256=xo426Oqk_uTROoJnAKXuHQFcs0TMvf4hb6Zjs5fqFZY,4771
+vietnamadminunits/parser/utils.py,sha256=WyHnHjqe_FwBphKlKaF7ffpb6THeKHhSBRaD1sc6QUA,3705
+vietnamadminunits-0.1.0.dist-info/METADATA,sha256=84ol9Ja0P6Vd-ujqQctk0B_VICYj_ioT3CtiZGV-7Zk,855
+vietnamadminunits-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+vietnamadminunits-0.1.0.dist-info/top_level.txt,sha256=2NQmAedbz8PhAnpqK0rcKmOxHhyaA_--q3h1Wpq6-z4,18
+vietnamadminunits-0.1.0.dist-info/RECORD,,
