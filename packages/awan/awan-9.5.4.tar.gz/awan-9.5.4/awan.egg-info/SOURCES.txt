@@ -1,0 +1,13 @@
+LICENSE
+README.md
+setup.py
+awan/__init__.py
+awan/awan.ico
+awan/cli.py
+awan/gui.py
+awan.egg-info/PKG-INFO
+awan.egg-info/SOURCES.txt
+awan.egg-info/dependency_links.txt
+awan.egg-info/entry_points.txt
+awan.egg-info/requires.txt
+awan.egg-info/top_level.txt
