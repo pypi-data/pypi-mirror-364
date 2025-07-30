@@ -1,0 +1,32 @@
+Metadata-Version: 2.3
+Name: pys3fuse
+Version: 0.0.1a5
+Summary: 
+Author: mahdihaghverdi
+Author-email: mahdihaghverdiliewpl@gmail.com
+Requires-Python: >=3.12
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Framework :: AsyncIO
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: POSIX :: BSD :: FreeBSD
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: C
+Classifier: Topic :: Education
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Typing :: Typed
+Requires-Dist: fuse-python (>=1.0.9,<2.0.0)
+Requires-Dist: pyfuse3 (>=3.4.0,<4.0.0)
+Requires-Dist: rich (>=14.1.0,<15.0.0)
+Requires-Dist: structlog (>=25.4.0,<26.0.0)
+Description-Content-Type: text/markdown
+
+# pys3fuse
+A FUSE Written in Python to Support S3 Protocol on POSIX
+
+## Installation
+1. You must have these libraries
+`libfuse2t64   libfuse3-3    libfuse3-dev  libfuse-dev`
+
