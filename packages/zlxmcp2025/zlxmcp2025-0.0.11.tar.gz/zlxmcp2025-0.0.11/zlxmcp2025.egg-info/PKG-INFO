@@ -1,0 +1,90 @@
+Metadata-Version: 2.4
+Name: zlxmcp2025
+Version: 0.0.11
+Summary: ZLX MCP Server
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: click>=8.1.8
+Requires-Dist: fastmcp>=2.2.8
+Requires-Dist: gmssl>=3.2.2
+Requires-Dist: markdown>=3.8.2
+Requires-Dist: numpy>=2.2.6
+Requires-Dist: openai>=1.97.0
+Requires-Dist: openpyxl>=3.1.5
+Requires-Dist: oss2>=2.19.1
+Requires-Dist: pandas>=2.2.3
+Requires-Dist: pydantic>=2.11.4
+Requires-Dist: pyecharts>=2.0.8
+Requires-Dist: requests>=2.32.3
+Requires-Dist: tabulate>=0.9.0
+Requires-Dist: weasyprint>=65.1
+Requires-Dist: typing-extensions>=4.0
+Requires-Dist: Pillow>=10.0
+
+# ZLX-MCP-Server
+
+```bash
+{
+  "mcpServers": {
+    "wisecon-mcp": {
+      "command": "uvx",
+      "args": [
+         "--from",
+         "zlxmcp",
+         "zlx-mcp-server"
+      ]
+    }
+  }
+}
+```
+
+> pandas MCP
+
+```bash
+{
+  "mcpServers": {
+    "wisecon-mcp": {
+      "command": "uvx",
+      "args": [
+         "--from",
+         "zlxmcp",
+         "zlx-mcp-pandas"
+      ]
+    }
+  }
+}
+```
+
+> report MCP
+
+```bash
+{
+  "mcpServers": {
+    "wisecon-mcp": {
+      "command": "uvx",
+      "args": [
+         "--from",
+         "zlxmcp",
+         "zlx-mcp-report"
+      ]
+    }
+  }
+}
+```
+
+ > image_ocr MCP
+
+ ```bash
+{
+  "mcpServers": {
+    "wisecon-mcp": {
+      "command": "uvx",
+      "args": [
+         "--from",
+         "zlxmcp",
+         "zlx-mcp-image_ocr"
+      ]
+    }
+  }
+}
+```

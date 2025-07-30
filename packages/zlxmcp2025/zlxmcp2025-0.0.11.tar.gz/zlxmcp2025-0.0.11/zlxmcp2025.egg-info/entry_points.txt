@@ -1,0 +1,5 @@
+[console_scripts]
+zlx-mcp-image_ocr = zlxmcp.mcp.image_ocr:image_ocr_mcp_server
+zlx-mcp-pandas = zlxmcp.mcp.pd:pandas_mcp_server
+zlx-mcp-report = zlxmcp.mcp.report:report_mcp_server
+zlx-mcp-server = zlxmcp.mcp.server:zlx_mcp_server
