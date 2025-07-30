@@ -1,0 +1,11 @@
+# AdventureX Shit - Requirements
+# This package has minimal dependencies to ensure maximum compatibility
+
+# No external dependencies required!
+# This package uses only Python standard library modules
+
+# Optional development dependencies (not required for end users):
+# pytest>=6.0.0
+# setuptools>=45.0.0
+# wheel>=0.36.0
+# twine>=3.0.0

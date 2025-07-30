@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.md
+example.py
+requirements.txt
+setup.py
+adventurex_shit/__init__.py
+adventurex_shit/bounty_hunter.py
+adventurex_shit/chaos_simulator.py
+adventurex_shit/incident_reporter.py
+adventurex_shit/toilet_detective.py
+adventurex_shit.egg-info/PKG-INFO
+adventurex_shit.egg-info/SOURCES.txt
+adventurex_shit.egg-info/dependency_links.txt
+adventurex_shit.egg-info/top_level.txt
