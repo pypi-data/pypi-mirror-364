@@ -1,0 +1,15 @@
+Metadata-Version: 2.4
+Name: loma
+Version: 0.0.1
+Summary: Lightweight Optimization and Model Adaptation
+Author-email: Caden Chen <cadenc.woss@gmail.com>
+License: MIT
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+
+# LOMA
+
+**LOMA** (**L**ightweight **O**ptimization and **M**odel **A**daptation) is a modular Python framework for experimenting with model compression, structural pruning, and efficient fine-tuning techniques like LoRA.
+
+---
+
