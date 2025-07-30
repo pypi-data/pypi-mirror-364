@@ -1,0 +1,13 @@
+LICENSE
+README.md
+pyproject.toml
+packages/sinapsis_albumentations/src/sinapsis_albumentations/__init__.py
+packages/sinapsis_albumentations/src/sinapsis_albumentations/helpers/__init__.py
+packages/sinapsis_albumentations/src/sinapsis_albumentations/helpers/tags.py
+packages/sinapsis_albumentations/src/sinapsis_albumentations/templates/__init__.py
+packages/sinapsis_albumentations/src/sinapsis_albumentations/templates/albumentations_transforms.py
+packages/sinapsis_image_transforms.egg-info/PKG-INFO
+packages/sinapsis_image_transforms.egg-info/SOURCES.txt
+packages/sinapsis_image_transforms.egg-info/dependency_links.txt
+packages/sinapsis_image_transforms.egg-info/requires.txt
+packages/sinapsis_image_transforms.egg-info/top_level.txt
