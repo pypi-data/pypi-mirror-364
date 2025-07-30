@@ -1,0 +1,15 @@
+README.rst
+pyproject.toml
+shvcli_ell/__init__.py
+shvcli_ell/__setuptools__.py
+shvcli_ell/__version__.py
+shvcli_ell/plugin.py
+shvcli_ell/py.typed
+shvcli_ell/timesync.py
+shvcli_ell/timezone.py
+shvcli_ell.egg-info/PKG-INFO
+shvcli_ell.egg-info/SOURCES.txt
+shvcli_ell.egg-info/dependency_links.txt
+shvcli_ell.egg-info/entry_points.txt
+shvcli_ell.egg-info/requires.txt
+shvcli_ell.egg-info/top_level.txt

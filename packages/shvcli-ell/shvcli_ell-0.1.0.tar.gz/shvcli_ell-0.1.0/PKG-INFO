@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: shvcli-ell
+Version: 0.1.0
+Summary: Silicon Heaven CLI Elektroline extension
+Author: Elektroline a.s.
+Project-URL: source, https://gitlab.com/elektroline-predator/shvcli-ell
+Project-URL: changelog, https://gitlab.com/elektroline-predator/shvcli-ell/-/blob/master/CHANGELOG.md
+Project-URL: issues, https://gitlab.com/elektroline-predator/shvcli-ell/-/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.11
+Description-Content-Type: text/x-rst
+Requires-Dist: shvcli>=0.7.0
+
+Silicon Heaven CLI Elektroline extension
+========================================
+
+The extension for the Silicon Heaven CLI access application to provide utilities
+to work with Elektroline developed SHV systems.
+
+* `📃 Sources <https://gitlab.com/elektroline-predator/shvcli-ell>`__
+* `⁉️ Issue tracker <https://gitlab.com/elektroline-predator/shvcli-ell/-/issues>`__
+* `Silicon Heaven CLI <https://gitlab.com/silicon-heaven/shvcli>`__
