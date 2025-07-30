@@ -1,0 +1,7 @@
+[project]
+name = "mellem"
+version = "0.1.0"
+description = "The mellem library"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
