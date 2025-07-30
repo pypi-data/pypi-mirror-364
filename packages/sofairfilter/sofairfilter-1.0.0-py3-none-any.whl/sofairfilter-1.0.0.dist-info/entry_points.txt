@@ -1,0 +1,2 @@
+[console_scripts]
+sofairfilter = sofairfilter.__main__:main

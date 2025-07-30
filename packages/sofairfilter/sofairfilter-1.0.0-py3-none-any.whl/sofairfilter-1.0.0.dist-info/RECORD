@@ -1,0 +1,11 @@
+sofairfilter/__init__.py,sha256=MiuTjWgmRy8y_mSArbZm8UPcV3B26v_ztTsJN-17sck,82
+sofairfilter/__main__.py,sha256=FD75ZuvduIj6KvQPGaZx1fTB-8LwqjKfrLLBaQuLNDc,2435
+sofairfilter/config.yaml,sha256=vphz7iPblBPQypKug4YoBz_2djNDQjdWJbgUoL3EOVE,4153
+sofairfilter/filter.py,sha256=yE7MtDeSrho-m-41Wa8Ph3jgfueMrGmxEaIjpa6vdCU,4598
+sofairfilter/model_factory.py,sha256=cJe6W8HWl0nUMb8qzc97QZ_Ly7_KQMbnNkwbWmDnND8,10874
+sofairfilter/tokenizer_factory.py,sha256=6Vocb7vD7rtpbhgzRwXxzVm4XoJGDE4xHiWY7qVe6Hs,2961
+sofairfilter-1.0.0.dist-info/METADATA,sha256=km3yMsSFRE21VhmitQtDv5TF9cRzkANZsD-TrknLYU8,6185
+sofairfilter-1.0.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+sofairfilter-1.0.0.dist-info/entry_points.txt,sha256=aSVgIVfWuPrTlS8RquH-Zjf6pycU4QMsPal33sEu79s,60
+sofairfilter-1.0.0.dist-info/top_level.txt,sha256=Itg5dtWEZAU2r-G_t7eyeit6Gzt2jvWaZ8tf7wNZcac,13
+sofairfilter-1.0.0.dist-info/RECORD,,
