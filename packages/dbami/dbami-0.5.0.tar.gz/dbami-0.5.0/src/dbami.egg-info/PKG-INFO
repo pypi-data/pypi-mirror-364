@@ -1,0 +1,46 @@
+Metadata-Version: 2.4
+Name: dbami
+Version: 0.5.0
+Summary: Lightweight, Python-based, framework-agnostic async PostgreSQL migration tool
+Author-email: Jarrett Keifer <jkeifer@element84.com>
+License: Apache License 2.0
+Keywords: postgresql,sql,migration,async
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: asyncpg>=0.27.0
+Requires-Dist: buildpg>=0.4
+Provides-Extra: dev
+Requires-Dist: black>=23.1.0; extra == "dev"
+Requires-Dist: httpx>=0.24.0; extra == "dev"
+Requires-Dist: isort>=5.12.0; extra == "dev"
+Requires-Dist: mypy>=1.0.1; extra == "dev"
+Requires-Dist: pip-tools>=6.12.3; extra == "dev"
+Requires-Dist: pre-commit>=4.0.0; extra == "dev"
+Requires-Dist: pre-commit-hooks>=4.4.0; extra == "dev"
+Requires-Dist: pytest>=7.2.2; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.21.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0.0; extra == "dev"
+Requires-Dist: pyupgrade>=3.3.1; extra == "dev"
+Requires-Dist: ruff>=0.0.253; extra == "dev"
+Provides-Extra: snyk
+Requires-Dist: typing-extensions; extra == "snyk"
+Dynamic: license-file
+
+# `dbami`: The database friend you didn't know you needed
+
+A lightweight, Python-based, framework-agnostic, async-compatible PostgreSQL
+migration tool.
+
+## What does `dbami` mean?
+
+`dbami` was initially inspired by the tool
+[`dbmate`](https://github.com/amacneil/dbmate), and therefore takes inspiration
+from `dbmate` when it comes to name. That is, "ami" is French for "friend," a
+synonym of "mate."
+
+Other languages may have yielded suitable words for friend, but "ami" was
+chosen due to its short length (easier to type) and the allowance for a future
+golang-based implementation, which, most serendipitously, could be named
+`dbamigo`.
