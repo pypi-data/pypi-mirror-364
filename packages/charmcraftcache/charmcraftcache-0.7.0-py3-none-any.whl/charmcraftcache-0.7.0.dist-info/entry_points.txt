@@ -1,0 +1,4 @@
+[console_scripts]
+ccc=charmcraftcache._main:app
+charmcraftcache=charmcraftcache._main:app
+
