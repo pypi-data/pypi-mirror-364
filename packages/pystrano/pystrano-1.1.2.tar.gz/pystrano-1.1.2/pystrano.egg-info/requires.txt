@@ -1,0 +1,4 @@
+fabric<4.0,>=3.2.2
+click<9.0,>=8.1.7
+pyyaml<7.0,>=6.0.2
+python-dotenv<2.0,>=1.0.1

@@ -1,0 +1,2 @@
+[console_scripts]
+pystrano = pystrano.deploy:main

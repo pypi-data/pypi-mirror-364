@@ -1,0 +1,14 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+pystrano/__init__.py
+pystrano/config.py
+pystrano/core.py
+pystrano/deploy.py
+pystrano.egg-info/PKG-INFO
+pystrano.egg-info/SOURCES.txt
+pystrano.egg-info/dependency_links.txt
+pystrano.egg-info/entry_points.txt
+pystrano.egg-info/requires.txt
+pystrano.egg-info/top_level.txt
