@@ -1,0 +1,14 @@
+Metadata-Version: 1.2
+Name: odoo-addon-contract-group
+Version: 16.0.0.0.1.1
+Summary: Contract Groups
+Home-page: https://coopdevs.org
+Author: Coopdevs Treball SCCL
+License: AGPL-3
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Framework :: Odoo
+Classifier: Framework :: Odoo :: 16.0
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Requires-Python: >=3.10
