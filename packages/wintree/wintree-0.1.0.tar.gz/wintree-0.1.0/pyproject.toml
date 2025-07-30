@@ -1,0 +1,26 @@
+[project]
+name = "wintree"
+version = "0.1.0"
+description = "A lightweight Python library and CLI tool for displaying visually structured directory trees with optional emoji and exclusion filters."
+authors = [
+    {name = "harumiWeb",email = "ganaharumi@outlook.jp"}
+]
+readme = "README.md"
+repository = "https://github.com/harumiWeb/wintree"
+requires-python = ">=3.12"
+dependencies = [
+]
+
+[tool.poetry]
+packages = [{include = "wintree", from = "src"}]
+
+[tool.poetry.scripts]
+wintree = "wintree.cli:main"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.1"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
