@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "smume"
+version = "0.1.5"
+description = "A package for Saint Martin's University Mechanical Engineering students to create a custom flowchart for their academic plan."
+authors = ["Rico Picone <rpicone@stmartin.edu>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+graphviz = "^0.21"
+weasyprint = "^65.1"
+beautifulsoup4 = "^4.13.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
