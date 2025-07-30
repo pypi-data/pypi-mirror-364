@@ -1,0 +1,40 @@
+name: Run Python Tests (via conda + mamba)
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Conda
+      uses: conda-incubator/setup-miniconda@v2
+      with:
+        auto-update-conda: true
+        python-version: 3.12
+        environment-name: motila
+        miniforge-variant: Miniforge3
+        activate-environment: motila
+        use-mamba: false # we'll install mamba manually
+
+    - name: Install mamba and main dependencies
+      run: |
+        conda install -y -n motila -c conda-forge mamba
+        mamba install -y -n motila -c conda-forge \
+            numpy scipy matplotlib scikit-image scikit-learn \
+            pandas tifffile zarr numcodecs pystackreg openpyxl xlrd \
+            ipywidgets ipykernel ipympl psutil
+
+    - name: Activate environment and install pytest
+      run: |
+        source $(conda info --base)/etc/profile.d/conda.sh
+        conda activate motila
+        pip install pytest
+
+    - name: Run tests
+      run: |
+        source $(conda info --base)/etc/profile.d/conda.sh
+        conda activate motila
+        pytest
