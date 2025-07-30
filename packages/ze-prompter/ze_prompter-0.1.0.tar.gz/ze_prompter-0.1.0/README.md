@@ -1,0 +1,508 @@
+# ZePrompter 🚀
+
+A powerful and intuitive Python library for managing AI prompt templates and model configurations with built-in versioning, web dashboard, and seamless API.
+
+## Why ZePrompter?
+
+✨ **Simple API**: One-line setup, intuitive manager interface  
+🔄 **Smart Versioning**: Automatic prompt template versioning  
+🤖 **Model Management**: Centralized AI model configuration storage  
+🌐 **Web Dashboard**: Beautiful built-in interface with authentication  
+💾 **Database Agnostic**: SQLite by default, PostgreSQL/MySQL support  
+🔐 **Secure**: Login-protected dashboard and API endpoints  
+📝 **Rich Metadata**: Descriptions, extra fields, timestamps, and more  
+
+## Quick Start
+
+### Installation
+
+```bash
+pip install ze-prompter
+```
+
+### Basic Usage (The Easy Way!)
+
+```python
+from ze_prompter import get_manager
+
+# Get the manager - this handles everything for you!
+manager = get_manager()
+
+# Create a prompt template
+template = manager.prompt_manager.create_prompt_template(
+    name="greeting",
+    content="Hello {name}, welcome to {platform}! How can I help you today?"
+)
+
+# Create a model configuration
+model = manager.model_manager.create_model(
+    name="gpt-4",
+    description="OpenAI GPT-4 model",
+    extra_fields={
+        "provider": "openai",
+        "max_tokens": 4096,
+        "temperature": 0.7,
+        "api_key": "your-api-key-here"
+    }
+)
+
+print(f"Created template: {template.name} (v{template.version})")
+print(f"Created model: {model.name}")
+```
+
+That's it! No database setup, no session management, no boilerplate code. ZePrompter handles everything automatically.
+
+## Core Features
+
+### 🎯 Prompt Template Management
+
+```python
+from ze_prompter import get_manager
+
+manager = get_manager()
+pm = manager.prompt_manager  # Shorthand
+
+# Create templates
+email_template = pm.create_prompt_template(
+    name="customer_email",
+    content="Dear {customer_name},\n\nThank you for {action}. {message}\n\nBest regards,\n{sender_name}",
+    description="Customer service email template"
+)
+
+# Update templates (automatically creates new version)
+updated_template = pm.update_prompt_template(
+    template_id=email_template.id,
+    content="Hi {customer_name}! 👋\n\nThanks for {action}! {message}\n\nCheers,\n{sender_name}",
+    description="More friendly customer service email"
+)
+
+# Get latest version
+latest = pm.get_latest_template("customer_email")
+print(f"Latest version: {latest.version}")
+
+# Get all versions by name (much cleaner!)
+versions = pm.get_template_versions("customer_email")
+print(f"Total versions: {len(versions)}")
+
+# Get specific version by name and version number
+specific_version = pm.get_template_by_name_and_version("customer_email", 1)
+print(f"Version 1 content: {specific_version.content}")
+
+# You can also work with IDs if needed (methods with _by_id suffix)
+versions_by_id = pm.get_template_versions_by_id(template_id)
+template_by_id = pm.get_prompt_template_by_id(template_id)
+
+# List all templates
+all_templates = pm.list_templates()
+```
+
+### 🤖 Model Configuration Management
+
+```python
+from ze_prompter import get_manager
+manager = get_manager()
+mm = manager.model_manager  # Shorthand
+
+# Create different model configurations
+openai_model = mm.create_model(
+    name="gpt-4-turbo",
+    description="Latest OpenAI GPT-4 Turbo",
+    extra_fields={
+        "provider": "openai",
+        "model_id": "gpt-4-turbo-preview",
+        "max_tokens": 4096,
+        "temperature": 0.7,
+        "top_p": 1.0,
+        "api_base": "https://api.openai.com/v1"
+    }
+)
+
+anthropic_model = mm.create_model(
+    name="claude-3-opus",
+    description="Anthropic Claude 3 Opus",
+    extra_fields={
+        "provider": "anthropic",
+        "model_id": "claude-3-opus-20240229",
+        "max_tokens": 4096,
+        "temperature": 0.3
+    }
+)
+
+# Get models by name
+gpt4 = mm.get_model_by_name("gpt-4-turbo")
+print(f"Model config: {gpt4.extra_fields}")
+
+# List all models
+models = mm.list_models()
+for model in models:
+    provider = model.extra_fields.get('provider', 'unknown')
+    print(f"{model.name} ({provider})")
+```
+
+### 🌐 Web Dashboard
+
+Launch the beautiful web interface:
+
+```python
+# Option 1: Using the included runner
+from ze_prompter.api.main import app
+import uvicorn
+
+uvicorn.run(app, host="0.0.0.0", port=8000)
+```
+
+```bash
+# Option 2: Using the CLI  
+python -m ze_prompter.cli serve --port 8000
+```
+
+#### Creating User Accounts
+
+Before accessing the web dashboard, you need to create a user account:
+
+```bash
+# Create a new user account interactively
+python -m ze_prompter.cli create-account
+```
+
+This command will prompt you for:
+- Username
+- Email
+- Password (with confirmation)
+- Whether to make the user a superuser (admin)
+
+Example:
+```bash
+$ python -m ze_prompter.cli create-account
+🔧 Creating a new user account...
+Username: admin
+Email: admin@example.com
+Password: 
+Repeat for confirmation: 
+Make this user a superuser (admin)? [y/N]: y
+✅ Successfully created superuser: admin
+```
+
+Then visit `http://localhost:8000` and login with your created account.
+
+The dashboard provides:
+- 📝 Create, edit, and delete prompt templates
+- 🤖 Manage model configurations
+- 📚 Browse template version history
+- 🔍 Search and filter functionality
+- 📊 Usage statistics and analytics
+- 🔐 Secure authentication
+
+### ⚡ Advanced Usage
+
+#### Context Manager (Recommended for Scripts)
+
+```python
+from ze_prompter import get_manager
+
+with get_manager() as manager:
+    # Create a bunch of templates
+    templates = [
+        ("welcome", "Welcome {name} to our {service}!"),
+        ("goodbye", "Thanks for using {service}, {name}!"),
+        ("error", "Sorry {name}, we encountered an error: {error_message}")
+    ]
+    
+    for name, content in templates:
+        manager.prompt_manager.create_prompt_template(
+            name=name,
+            content=content
+        )
+    
+    print("Created all templates!")
+# Database connection is automatically closed here
+```
+
+#### Custom Database Session
+
+```python
+from ze_prompter import get_manager
+from ze_prompter.models.database import SessionLocal
+
+# Use your own session
+db_session = SessionLocal()
+manager = get_manager(db_session)
+
+# Now use the manager...
+template = manager.prompt_manager.create_prompt_template(
+    name="custom_session_template",
+    content="This uses a custom database session!"
+)
+
+# Don't forget to close when done
+db_session.close()
+```
+
+#### Batch Operations
+
+Batch import functionality is coming soon! This will allow you to efficiently import multiple templates at once.
+
+## Configuration
+
+ZePrompter supports configuration through environment variables for easy deployment and security.
+
+### Core Configuration Variables
+
+| Variable | Description | Default | Example |
+|----------|-------------|---------|---------|
+| `ZE_PROMPTER_DB` | Database connection string | `sqlite:///./prompt_library.db` | `postgresql://user:pass@localhost/zeprompter` |
+| `ZE_PROMPTER_SECRET` | JWT secret key for authentication | `ZEPROMPTER-UNSECURE-KEY` | `your-super-secret-jwt-key-here` |
+
+### Setting Environment Variables
+
+Create a `.env` file in your project root:
+
+```bash
+# Database Configuration
+ZE_PROMPTER_DB=sqlite:///./prompt_library.db
+# For PostgreSQL: ZE_PROMPTER_DB=postgresql://user:pass@localhost/zeprompter
+# For MySQL: ZE_PROMPTER_DB=mysql://user:pass@localhost/zeprompter
+
+# Security Configuration  
+ZE_PROMPTER_SECRET=your-super-secret-jwt-key-here
+```
+
+### Using Environment Variables
+
+```python
+import os
+from ze_prompter import get_manager
+
+# Set configuration via environment variables
+os.environ["ZE_PROMPTER_DB"] = "postgresql://user:pass@localhost/zeprompter"
+os.environ["ZE_PROMPTER_SECRET"] = "my-super-secret-key"
+
+# Manager will automatically use these settings
+manager = get_manager()
+```
+
+**Security Note**: Always use a strong, unique secret key for `ZE_PROMPTER_SECRET` in production environments. The default value is insecure and should only be used for development.
+
+## 🚀 Quick Deploy
+
+Deploy Ze Prompter instantly with ngrok for easy sharing and testing!
+
+### Prerequisites
+
+1. **Install ngrok**: Download from [ngrok.com](https://ngrok.com/download) and ensure it's in your PATH
+2. **Clone the repository**:
+   ```bash  
+   git clone https://github.com/olsihoxha/zeprompter
+   cd zeprompter
+   pip install -r requirements.txt
+   ```
+
+### One-Command Deploy
+
+```bash
+# Deploy with ngrok tunnel (recommended for testing)
+python -m ze_prompter.cli deploy
+
+# Deploy without ngrok (local only)
+python -m ze_prompter.cli deploy --no-ngrok
+
+# Deploy on custom port
+python -m ze_prompter.cli deploy --port 3000
+```
+
+### What happens when you deploy:
+
+1. 🔧 **Initializes database** - Sets up SQLite database automatically
+2. 🌐 **Creates ngrok tunnel** - Generates public HTTPS URL for sharing
+3. 📝 **Updates .env file** - Automatically saves the public URL to `ZE_PROMPTER_URL`
+4. ⚠️ **Validates configuration** - Warns about potential SQLite issues with public URLs
+5. 🎉 **Starts the server** - Your app is ready to share!
+
+### Example Output
+
+```bash
+$ python -m ze_prompter.cli deploy
+
+🚀 Deploying Ze Prompter...
+Initializing database...
+Starting ngrok tunnel...
+✅ ngrok tunnel created: https://abc123.ngrok.io
+✅ Updated .env file with ZE_PROMPTER_URL=https://abc123.ngrok.io
+
+🌟 Ze Prompter is now running!
+📍 Local URL: http://localhost:8000
+🌍 Public URL: https://abc123.ngrok.io
+🔐 Create an account first with: python -m ze_prompter.cli create-account
+📖 Press Ctrl+C to stop the server
+```
+
+### Production Considerations
+
+When deploying with a public URL, consider upgrading your database:
+
+```bash
+# Example with PostgreSQL
+export ZE_PROMPTER_DB="postgresql://user:pass@your-db-host/zeprompter"
+export ZE_PROMPTER_SECRET="your-super-secure-secret-key"
+python -m ze_prompter.cli deploy
+```
+
+**Note**: The CLI will warn you if you're using SQLite with a public URL, as it may cause issues with concurrent users.
+
+## REST API
+
+When you run the web server, you get a full REST API. This section provides context about the available endpoints - these are automatically created when you start the server and can be used for programmatic access to your templates and models.
+
+### Prompt Templates
+- `GET /api/prompts` - List all templates
+- `POST /api/prompts` - Create new template  
+- `GET /api/prompts/{id}` - Get specific template
+- `PUT /api/prompts/{id}` - Update template (creates new version)
+- `DELETE /api/prompts/{id}` - Delete template
+- `GET /api/prompts/{id}/versions` - Get all versions of template
+
+### Models
+- `GET /api/models` - List all models
+- `POST /api/models` - Create new model
+- `GET /api/models/{id}` - Get specific model  
+- `PUT /api/models/{id}` - Update model
+- `DELETE /api/models/{id}` - Delete model
+
+### Authentication
+- `POST /auth/login` - Login to get access token
+- `POST /auth/logout` - Logout
+
+## Real-World Examples
+
+### AI Chatbot with Multiple Models
+
+```python
+from ze_prompter import get_manager
+
+def setup_chatbot_system():
+    manager = get_manager()
+    
+    # Create prompt templates for different scenarios
+    templates = [
+        ("greeting", "Hello! I'm {bot_name}, your AI assistant. How can I help you today?"),
+        ("help_request", "I understand you need help with {topic}. Let me {action} for you."),
+        ("error_handling", "I apologize, but I encountered an issue: {error}. Let me try a different approach."),
+        ("farewell", "Thank you for chatting with me! Have a great {time_of_day}!")
+    ]
+    
+    for name, content in templates:
+        manager.prompt_manager.create_prompt_template(name=name, content=content)
+    
+    # Configure different AI models for different use cases
+    models = [
+        ("fast_responses", "GPT-3.5 Turbo for quick responses", {
+            "provider": "openai",
+            "model": "gpt-3.5-turbo",
+            "temperature": 0.7,
+            "max_tokens": 150
+        }),
+        ("complex_tasks", "GPT-4 for complex reasoning", {
+            "provider": "openai", 
+            "model": "gpt-4",
+            "temperature": 0.3,
+            "max_tokens": 1000
+        }),
+        ("creative_writing", "Claude for creative tasks", {
+            "provider": "anthropic",
+            "model": "claude-3-opus",
+            "temperature": 0.9,
+            "max_tokens": 2000
+        })
+    ]
+    
+    for name, desc, config in models:
+        manager.model_manager.create_model(
+            name=name,
+            description=desc,
+            extra_fields=config
+        )
+    
+    print("Chatbot system configured!")
+    return manager
+
+# Use the configured system
+manager = setup_chatbot_system()
+
+# Get a template and model for a user interaction
+greeting_template = manager.prompt_manager.get_latest_template("greeting")
+fast_model = manager.model_manager.get_model_by_name("fast_responses")
+
+# Format the prompt
+prompt = greeting_template.content.format(bot_name="ZeBot")
+model_config = fast_model.extra_fields
+
+print(f"Prompt: {prompt}")
+print(f"Model: {model_config['model']} (temp: {model_config['temperature']})")
+```
+
+### Email Template System
+
+```python
+from ze_prompter import get_manager
+
+def setup_email_templates():
+    """Set up basic email templates"""
+    with get_manager() as manager:
+        templates = [
+            ("welcome_email", "Welcome to {company}, {first_name}! Here's what happens next..."),
+            ("newsletter", "📧 {topic} Weekly Digest - {date}"),
+            ("promotional", "🎉 Save {discount}% on {product} - Limited time!")
+        ]
+        
+        for name, content in templates:
+            manager.prompt_manager.create_prompt_template(name=name, content=content)
+        
+        print(f"Created {len(templates)} email templates!")
+
+setup_email_templates()
+```
+
+## Development & Contributing
+
+### Development Setup
+
+```bash
+# Clone the repository  
+git clone https://github.com/olsihoxha/zeprompter
+cd zeprompter
+
+# Create virtual environment
+python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# Install in development mode
+pip install -e .
+
+# Install development dependencies
+pip install pytest black flake8 mypy
+
+# Run tests
+pytest
+
+# Format code
+black ze_prompter/
+
+# Type checking
+mypy ze_prompter/
+```
+
+
+## Support & Community
+
+- 🐛 Issues: Create an issue for bug reports and feature requests
+
+## License
+
+
+MIT License
+
+---
+
+**Made with 🧡️ by Claude & Me**
+
+*ZePrompter - Making AI prompt management simple and powerful* 🚀

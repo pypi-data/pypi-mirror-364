@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Ze Prompter</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h3><i class="fas fa-code"></i> Ze Prompter</h3>
+                        <p class="mb-0">Please sign in to continue</p>
+                    </div>
+                    <div class="card-body">
+                        <div id="errorAlert" class="alert alert-danger d-none"></div>
+
+                        <form id="loginForm">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">
+                                    <i class="fas fa-user"></i> Username
+                                </label>
+                                <input type="text" class="form-control" id="username" name="username" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">
+                                    <i class="fas fa-lock"></i> Password
+                                </label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100" id="loginBtn">
+                                <i class="fas fa-sign-in-alt"></i> Login
+                            </button>
+                        </form>
+
+                        <div class="mt-3 text-center">
+                            <small class="text-muted">
+                                <i class="fas fa-info-circle"></i> Don't keep prompts as constants in your code!
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#loginForm').on('submit', function(e) {
+                e.preventDefault();
+                login();
+            });
+        });
+
+        function login() {
+            const username = $('#username').val();
+            const password = $('#password').val();
+            const loginBtn = $('#loginBtn');
+
+            loginBtn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Logging in...');
+
+            // Create form data
+            const formData = new FormData();
+            formData.append('username', username);
+            formData.append('password', password);
+
+            fetch('/api/auth/token', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.access_token) {
+                    localStorage.setItem('authToken', data.access_token);
+                    window.location.href = '/dashboard';
+                } else {
+                    showError('Invalid login credentials');
+                }
+            })
+            .catch(error => {
+                showError('Login failed. Please try again.');
+            })
+            .finally(() => {
+                loginBtn.prop('disabled', false).html('<i class="fas fa-sign-in-alt"></i> Login');
+            });
+        }
+
+        function showError(message) {
+            $('#errorAlert').removeClass('d-none').text(message);
+        }
+    </script>
+</body>
+</html>
