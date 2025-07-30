@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: macro-check
+Version: 0.1.0
+Summary: Macro detection for documents
+Home-page: UNKNOWN
+Author: Your Name
+Author-email: you@example.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: oletools
+Requires-Dist: PyMuPDF
+
+# macro_check
+
+This Python package provides a utility function `perform_macro_check(filepath)` to detect the presence of macros in common document formats:
+
+- `.doc`, `.xls`, `.ppt` (OLE-based)
+- `.docx`, `.xlsx`, `.pptx` (OpenXML)
+- `.pdf` (for embedded JavaScript/OpenAction)
+
+## Usage
+
+```python
+from macro_check.checker import perform_macro_check
+
+result = perform_macro_check("sample.docm")
+print(result)
+
+
