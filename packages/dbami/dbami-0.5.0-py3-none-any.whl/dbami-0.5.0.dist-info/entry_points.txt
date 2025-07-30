@@ -1,0 +1,2 @@
+[console_scripts]
+dbami = dbami.__main__:main
