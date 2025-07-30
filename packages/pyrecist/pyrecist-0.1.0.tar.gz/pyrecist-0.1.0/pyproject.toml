@@ -1,0 +1,25 @@
+[project]
+name = "pyrecist"
+version = "0.1.0"
+description = "A package for evaluating RECIST criteria from CSV files"
+authors = [{ name="Roberto Rojas", email="roberto.rojas.pi@uchile.cl" }]
+readme = "README.md"
+requires-python = ">=3.7"
+license = {text = "MIT"}
+
+[project.urls]
+Homepage = "https://github.com/robertorojasp06/pyrecist"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[project.scripts]
+pyrecist = "pyrecist.__main__:main"
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
