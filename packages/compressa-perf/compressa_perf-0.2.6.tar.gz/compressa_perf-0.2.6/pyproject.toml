@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "compressa-perf"
+version = "0.2.6"
+description = "Performance Measurement tool by Compresss"
+authors = ["Gleb Morgachev <morgachev.g@gmail.com>"]
+readme = "README.md"
+packages = [{include = "compressa", from = "src"}]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<4"
+python-dotenv = "^1.0.1"
+openai = "^1.47.1"
+tabulate = "^0.9.0"
+pandas = "^2.2.3"
+requests = "^2.31.0"
+pyyaml = ">=5.1"
+reportlab = "^4.4.2"
+
+[tool.poetry.group.dev.dependencies]
+jupyterlab = "^4.2.4"
+black = "^24.8.0"
+datasets = "^3.0.1"
+transformers = "^4.45.1"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+
+[tool.poetry.scripts]
+compressa-perf = "compressa.perf.cli.__main__:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
