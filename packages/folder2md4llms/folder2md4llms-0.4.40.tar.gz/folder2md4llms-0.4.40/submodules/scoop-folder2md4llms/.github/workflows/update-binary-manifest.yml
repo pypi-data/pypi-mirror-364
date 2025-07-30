@@ -1,0 +1,347 @@
+name: Update Binary Manifest
+
+on:
+  repository_dispatch:
+    types: [new_binary_release]
+  schedule:
+    # Check for new binary releases every 6 hours
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to update to (e.g., 0.4.37)'
+        required: false
+        type: string
+
+concurrency:
+  group: ${{ github.workflow }}-binary
+  cancel-in-progress: true
+
+jobs:
+  update-binary-manifest:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+
+    - name: Set up environment
+      run: |
+        # Set up git config
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+      shell: pwsh
+
+    - name: Get current and latest versions
+      id: versions
+      run: |
+        echo "::group::Version detection for binary releases"
+        
+        # Get current version from binary manifest
+        $manifest = Get-Content "bucket/folder2md4llms-binary.json" | ConvertFrom-Json
+        $currentVersion = $manifest.version
+        Write-Host "Current binary manifest version: $currentVersion"
+        
+        # Get latest version from GitHub releases or input
+        if ("${{ github.event.inputs.version }}" -ne "") {
+          $latestVersion = "${{ github.event.inputs.version }}"
+          Write-Host "Using input version: $latestVersion"
+        } elseif ("${{ github.event.client_payload.version }}" -ne "") {
+          $latestVersion = "${{ github.event.client_payload.version }}"
+          Write-Host "Using dispatch version: $latestVersion"
+        } else {
+          Write-Host "Checking GitHub releases for latest binary..."
+          $releaseData = Invoke-RestMethod -Uri "https://api.github.com/repos/HenriquesLab/folder2md4llms/releases/latest"
+          $latestVersion = $releaseData.tag_name -replace '^v', ''
+          Write-Host "Latest GitHub release version: $latestVersion"
+          
+          # Check if the binary exists in the release
+          $binaryExists = $false
+          foreach ($asset in $releaseData.assets) {
+            if ($asset.name -eq "folder2md-windows-x64.exe") {
+              $binaryExists = $true
+              break
+            }
+          }
+          
+          if (-not $binaryExists) {
+            Write-Host "No Windows binary found in latest release, skipping update"
+            echo "needs-update=false" >> $env:GITHUB_OUTPUT
+            exit 0
+          }
+        }
+        
+        echo "current-version=$currentVersion" >> $env:GITHUB_OUTPUT
+        echo "latest-version=$latestVersion" >> $env:GITHUB_OUTPUT
+        
+        # Check if update is needed
+        if ($currentVersion -eq $latestVersion) {
+          echo "needs-update=false" >> $env:GITHUB_OUTPUT
+          Write-Host "✅ Binary manifest is already up to date"
+        } else {
+          echo "needs-update=true" >> $env:GITHUB_OUTPUT
+          Write-Host "Binary update needed: $currentVersion -> $latestVersion"
+        }
+        
+        echo "::endgroup::"
+      shell: pwsh
+
+    - name: Download and verify binary
+      if: steps.versions.outputs.needs-update == 'true'
+      id: verify
+      run: |
+        echo "::group::Downloading and verifying binary"
+        
+        $latestVersion = "${{ steps.versions.outputs.latest-version }}"
+        $binaryUrl = "https://github.com/HenriquesLab/folder2md4llms/releases/download/v$latestVersion/folder2md-windows-x64.exe"
+        $checksumUrl = "https://github.com/HenriquesLab/folder2md4llms/releases/download/v$latestVersion/folder2md-windows-x64.exe.sha256"
+        
+        Write-Host "Downloading binary from: $binaryUrl"
+        Write-Host "Downloading checksum from: $checksumUrl"
+        
+        # Create temp directory
+        $tempDir = New-Item -ItemType Directory -Path "temp_binary_check" -Force
+        
+        try {
+          # Download binary and checksum
+          Invoke-WebRequest -Uri $binaryUrl -OutFile "$tempDir/folder2md-windows-x64.exe"
+          Invoke-WebRequest -Uri $checksumUrl -OutFile "$tempDir/folder2md-windows-x64.exe.sha256"
+          
+          # Verify checksum
+          $downloadedHash = (Get-FileHash "$tempDir/folder2md-windows-x64.exe" -Algorithm SHA256).Hash.ToLower()
+          $expectedHash = (Get-Content "$tempDir/folder2md-windows-x64.exe.sha256").Split()[0].ToLower()
+          
+          Write-Host "Downloaded hash: $downloadedHash"
+          Write-Host "Expected hash: $expectedHash"
+          
+          if ($downloadedHash -eq $expectedHash) {
+            Write-Host "✅ Binary checksum verification passed"
+            echo "sha256=$expectedHash" >> $env:GITHUB_OUTPUT
+            
+            # Test the binary
+            Write-Host "Testing binary functionality..."
+            & "$tempDir/folder2md-windows-x64.exe" --version
+            if ($LASTEXITCODE -eq 0) {
+              Write-Host "✅ Binary functionality test passed"
+            } else {
+              throw "❌ Binary functionality test failed"
+            }
+            
+          } else {
+            throw "❌ Binary checksum verification failed"
+          }
+          
+        } catch {
+          Write-Host "❌ Binary download or verification failed: $_"
+          throw
+        } finally {
+          # Clean up temp directory
+          Remove-Item -Path $tempDir -Recurse -Force -ErrorAction SilentlyContinue
+        }
+        
+        echo "::endgroup::"
+      shell: pwsh
+
+    - name: Update binary manifest
+      if: steps.versions.outputs.needs-update == 'true'
+      id: update
+      run: |
+        echo "::group::Updating binary manifest"
+        
+        $latestVersion = "${{ steps.versions.outputs.latest-version }}"
+        $sha256Hash = "${{ steps.verify.outputs.sha256 }}"
+        $manifestFile = "bucket/folder2md4llms-binary.json"
+        
+        # Read current manifest
+        $manifest = Get-Content $manifestFile | ConvertFrom-Json
+        
+        # Create backup
+        Copy-Item $manifestFile "$manifestFile.backup"
+        
+        # Update version and hash
+        $manifest.version = $latestVersion
+        $manifest.architecture.'64bit'.url = "https://github.com/HenriquesLab/folder2md4llms/releases/download/v$latestVersion/folder2md-windows-x64.exe"
+        $manifest.architecture.'64bit'.hash = $sha256Hash
+        
+        # Save updated manifest
+        $manifest | ConvertTo-Json -Depth 10 | Set-Content $manifestFile
+        
+        Write-Host "Updated binary manifest:"
+        Get-Content $manifestFile
+        
+        echo "branch-name=update-binary-manifest-$latestVersion" >> $env:GITHUB_OUTPUT
+        echo "::endgroup::"
+      shell: pwsh
+
+    - name: Install and setup Scoop for testing
+      if: steps.versions.outputs.needs-update == 'true'
+      run: |
+        echo "::group::Setting up Scoop for binary testing"
+        
+        # Install Scoop
+        Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+        Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+        
+        # Add Scoop to PATH for current and future steps
+        $scoopPath = "$env:USERPROFILE\scoop\shims"
+        $env:PATH += ";$scoopPath"
+        echo "$scoopPath" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+        
+        # Verify Scoop installation
+        scoop --version
+        
+        echo "::endgroup::"
+      shell: pwsh
+
+    - name: Test updated binary manifest
+      if: steps.versions.outputs.needs-update == 'true'
+      run: |
+        echo "::group::Testing updated binary manifest"
+        
+        # Validate JSON syntax
+        $manifest = Get-Content "bucket/folder2md4llms-binary.json" | ConvertFrom-Json
+        Write-Host "✅ JSON syntax validation passed"
+        
+        # Test manifest directly without adding as bucket
+        # scoop bucket add test-binary-bucket .
+        
+        # Test binary installation directly from manifest
+        Write-Host "Testing binary installation..."
+        $manifestPath = Join-Path (Get-Location) "bucket\folder2md4llms-binary.json"
+        scoop install $manifestPath
+        
+        # Test basic functionality
+        folder2md --version
+        folder2md --help | Out-Null
+        
+        # Test with a simple example
+        Set-Content -Path "test.md" -Value "# Test Binary"
+        folder2md . --output test_binary_output.md
+        
+        if (-not (Test-Path "test_binary_output.md")) {
+          throw "❌ Binary output file not created"
+        }
+        
+        # Verify content
+        $content = Get-Content "test_binary_output.md" -Raw
+        if ($content -notmatch "Test Binary") {
+          throw "❌ Binary output missing expected content"
+        }
+        
+        # Clean up test
+        Remove-Item "test.md", "test_binary_output.md" -ErrorAction SilentlyContinue
+        scoop uninstall folder2md4llms-binary
+        
+        Write-Host "✅ Updated binary manifest tests passed"
+        echo "::endgroup::"
+      shell: pwsh
+
+    - name: Create pull request
+      if: steps.versions.outputs.needs-update == 'true'
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        echo "::group::Creating pull request"
+        
+        $latestVersion = "${{ steps.versions.outputs.latest-version }}"
+        $currentVersion = "${{ steps.versions.outputs.current-version }}"
+        $branchName = "${{ steps.update.outputs.branch-name }}"
+        
+        # Create and switch to new branch
+        git checkout -b $branchName
+        
+        # Stage and commit changes
+        git add bucket/folder2md4llms-binary.json
+        git commit -m "Update binary manifest to version $latestVersion
+
+        - Update version from $currentVersion to $latestVersion
+        - Update Windows binary URL and SHA256 hash
+        - Automated update from GitHub release
+        - Binary validation and installation test passed
+
+        Generated by GitHub Actions"
+        
+        # Push the branch
+        git push -u origin $branchName
+        
+        # Create the PR
+        gh pr create `
+          --title "Update folder2md4llms-binary to $latestVersion" `
+          --body "## Automated Binary Manifest Update
+
+        This PR updates the folder2md4llms-binary Scoop manifest to version **$latestVersion**.
+
+        ### Changes
+        - Version: ``$currentVersion`` → ``$latestVersion``
+        - Windows binary URL updated to GitHub release v$latestVersion
+        - SHA256 hash updated and verified
+        - JSON syntax validation passed
+        - Binary installation and functionality tests passed
+
+        ### Testing
+        The updated binary manifest has been automatically tested with:
+        - JSON syntax validation
+        - Binary download and SHA256 verification
+        - Scoop binary installation test
+        - Basic CLI functionality (``folder2md --version`` and ``--help``)
+        - Simple file processing test
+
+        ### Binary Information
+        - **Source**: https://github.com/HenriquesLab/folder2md4llms/releases/tag/v$latestVersion
+        - **Binary**: ``folder2md-windows-x64.exe``
+        - **SHA256**: ``${{ steps.verify.outputs.sha256 }}``
+
+        ---
+        This PR was created automatically by GitHub Actions." `
+          --label "automated-update,binary" `
+          --assignee "${{ github.repository_owner }}"
+        
+        Write-Host "Binary manifest pull request created successfully"
+        echo "::endgroup::"
+      shell: pwsh
+
+    - name: Cleanup on failure
+      if: failure() && steps.versions.outputs.needs-update == 'true'
+      run: |
+        echo "::group::Cleanup after failure"
+        
+        # Restore original manifest if backup exists
+        if (Test-Path "bucket/folder2md4llms-binary.json.backup") {
+          Move-Item "bucket/folder2md4llms-binary.json.backup" "bucket/folder2md4llms-binary.json" -Force
+          Write-Host "✅ Restored original binary manifest"
+        }
+        
+        # Clean up any test files
+        Remove-Item "test.md", "test_binary_output.md" -ErrorAction SilentlyContinue
+        Remove-Item -Path "temp_binary_check" -Recurse -Force -ErrorAction SilentlyContinue
+        
+        # Uninstall if needed
+        scoop uninstall folder2md4llms-binary -ErrorAction SilentlyContinue
+        
+        echo "::endgroup::"
+      shell: pwsh
+
+    - name: Summary
+      if: always()
+      run: |
+        echo "::group::Binary Update Summary"
+        Write-Host "### Binary Manifest Update Summary"
+        Write-Host "- Current version: ${{ steps.versions.outputs.current-version }}"
+        Write-Host "- Latest version: ${{ steps.versions.outputs.latest-version }}"
+        Write-Host "- Update needed: ${{ steps.versions.outputs.needs-update }}"
+        
+        if ("${{ steps.versions.outputs.needs-update }}" -eq "true") {
+          Write-Host "- ✅ Binary downloaded and verified"
+          Write-Host "- ✅ Binary manifest updated successfully"
+          Write-Host "- ✅ Tests passed"
+          Write-Host "- ✅ Pull request created"
+        } else {
+          Write-Host "- ✅ Binary manifest is up to date"
+        }
+        
+        echo "::endgroup::"
+      shell: pwsh

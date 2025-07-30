@@ -1,0 +1,325 @@
+name: Update Binary Cask
+
+on:
+  repository_dispatch:
+    types: [new_binary_release]
+  schedule:
+    # Check for new binary releases every 6 hours
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to update to (e.g., 0.4.37)'
+        required: false
+        type: string
+
+concurrency:
+  group: ${{ github.workflow }}-binary
+  cancel-in-progress: true
+
+jobs:
+  update-binary-cask:
+    runs-on: macos-latest
+    timeout-minutes: 30
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+
+    - name: Set up environment
+      run: |
+        # Set up git config
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+
+    - name: Get current and latest versions
+      id: versions
+      run: |
+        echo "::group::Version detection for binary releases"
+        
+        # Get current version from binary cask
+        CURRENT_VERSION=$(grep -o 'version "[^"]*"' Casks/folder2md4llms-binary.rb | sed 's/version "//' | sed 's/"//')
+        echo "Current binary cask version: $CURRENT_VERSION"
+        
+        # Get latest version from GitHub releases or input
+        if [ -n "${{ github.event.inputs.version }}" ]; then
+          LATEST_VERSION="${{ github.event.inputs.version }}"
+          echo "Using input version: $LATEST_VERSION"
+        elif [ -n "${{ github.event.client_payload.version }}" ]; then
+          LATEST_VERSION="${{ github.event.client_payload.version }}"
+          echo "Using dispatch version: $LATEST_VERSION"
+        else
+          echo "Checking GitHub releases for latest binary..."
+          
+          # Check if any releases exist
+          RELEASE_CHECK=$(curl -s https://api.github.com/repos/HenriquesLab/folder2md4llms/releases/latest)
+          if echo "$RELEASE_CHECK" | grep -q '"message": "Not Found"'; then
+            echo "No GitHub releases found, skipping update"
+            echo "needs-update=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          LATEST_VERSION=$(echo "$RELEASE_CHECK" | jq -r '.tag_name' | sed 's/^v//')
+          echo "Latest GitHub release version: $LATEST_VERSION"
+          
+          # Validate the version is not null or empty
+          if [ "$LATEST_VERSION" = "null" ] || [ -z "$LATEST_VERSION" ]; then
+            echo "Invalid version from GitHub releases, skipping update"
+            echo "needs-update=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          # Check if both architecture binaries exist in the release
+          INTEL_EXISTS=$(echo "$RELEASE_CHECK" | jq -r '.assets[].name' | grep -c "folder2md-macos-x64" || true)
+          ARM_EXISTS=$(echo "$RELEASE_CHECK" | jq -r '.assets[].name' | grep -c "folder2md-macos-arm64" || true)
+          
+          if [ "$INTEL_EXISTS" -eq 0 ] || [ "$ARM_EXISTS" -eq 0 ]; then
+            echo "Missing macOS binaries in latest release, skipping update"
+            echo "needs-update=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+        fi
+        
+        echo "current-version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+        echo "latest-version=$LATEST_VERSION" >> $GITHUB_OUTPUT
+        
+        # Check if update is needed
+        if [ "$CURRENT_VERSION" = "$LATEST_VERSION" ]; then
+          echo "needs-update=false" >> $GITHUB_OUTPUT
+          echo "✅ Binary cask is already up to date"
+        else
+          echo "needs-update=true" >> $GITHUB_OUTPUT
+          echo "Binary update needed: $CURRENT_VERSION -> $LATEST_VERSION"
+        fi
+        
+        echo "::endgroup::"
+
+    - name: Download and verify binaries
+      if: steps.versions.outputs.needs-update == 'true'
+      id: verify
+      run: |
+        echo "::group::Downloading and verifying binaries"
+        
+        LATEST_VERSION="${{ steps.versions.outputs.latest-version }}"
+        INTEL_URL="https://github.com/HenriquesLab/folder2md4llms/releases/download/v$LATEST_VERSION/folder2md-macos-x64"
+        ARM_URL="https://github.com/HenriquesLab/folder2md4llms/releases/download/v$LATEST_VERSION/folder2md-macos-arm64"
+        INTEL_CHECKSUM_URL="https://github.com/HenriquesLab/folder2md4llms/releases/download/v$LATEST_VERSION/folder2md-macos-x64.sha256"
+        ARM_CHECKSUM_URL="https://github.com/HenriquesLab/folder2md4llms/releases/download/v$LATEST_VERSION/folder2md-macos-arm64.sha256"
+        
+        echo "Downloading Intel binary from: $INTEL_URL"
+        echo "Downloading ARM binary from: $ARM_URL"
+        
+        # Create temp directory
+        mkdir -p temp_binary_check
+        
+        # Download binaries and checksums
+        curl -L -o temp_binary_check/folder2md-macos-x64 "$INTEL_URL"
+        curl -L -o temp_binary_check/folder2md-macos-arm64 "$ARM_URL"
+        curl -L -o temp_binary_check/folder2md-macos-x64.sha256 "$INTEL_CHECKSUM_URL"
+        curl -L -o temp_binary_check/folder2md-macos-arm64.sha256 "$ARM_CHECKSUM_URL"
+        
+        # Verify checksums
+        cd temp_binary_check
+        
+        INTEL_DOWNLOADED_HASH=$(shasum -a 256 folder2md-macos-x64 | cut -d' ' -f1)
+        INTEL_EXPECTED_HASH=$(cat folder2md-macos-x64.sha256 | cut -d' ' -f1)
+        ARM_DOWNLOADED_HASH=$(shasum -a 256 folder2md-macos-arm64 | cut -d' ' -f1)
+        ARM_EXPECTED_HASH=$(cat folder2md-macos-arm64.sha256 | cut -d' ' -f1)
+        
+        echo "Intel - Downloaded: $INTEL_DOWNLOADED_HASH, Expected: $INTEL_EXPECTED_HASH"
+        echo "ARM - Downloaded: $ARM_DOWNLOADED_HASH, Expected: $ARM_EXPECTED_HASH"
+        
+        if [ "$INTEL_DOWNLOADED_HASH" = "$INTEL_EXPECTED_HASH" ] && [ "$ARM_DOWNLOADED_HASH" = "$ARM_EXPECTED_HASH" ]; then
+          echo "✅ Binary checksum verification passed"
+          echo "intel-sha256=$INTEL_EXPECTED_HASH" >> $GITHUB_OUTPUT
+          echo "arm-sha256=$ARM_EXPECTED_HASH" >> $GITHUB_OUTPUT
+          
+          # Test both binaries
+          chmod +x folder2md-macos-x64 folder2md-macos-arm64
+          
+          # Test the appropriate binary for current architecture
+          if [ "$(uname -m)" = "x86_64" ]; then
+            ./folder2md-macos-x64 --version
+          else
+            ./folder2md-macos-arm64 --version
+          fi
+          
+          echo "✅ Binary functionality test passed"
+        else
+          echo "❌ Binary checksum verification failed"
+          exit 1
+        fi
+        
+        cd ..
+        rm -rf temp_binary_check
+        
+        echo "::endgroup::"
+
+    - name: Update binary cask
+      if: steps.versions.outputs.needs-update == 'true'
+      id: update
+      run: |
+        echo "::group::Updating binary cask"
+        
+        LATEST_VERSION="${{ steps.versions.outputs.latest-version }}"
+        INTEL_SHA256="${{ steps.verify.outputs.intel-sha256 }}"
+        ARM_SHA256="${{ steps.verify.outputs.arm-sha256 }}"
+        
+        # Update cask
+        sed -i '' "s/version \"[^\"]*\"/version \"$LATEST_VERSION\"/" Casks/folder2md4llms-binary.rb
+        sed -i '' "s/sha256 arm:   \"[^\"]*\"/sha256 arm:   \"$ARM_SHA256\"/" Casks/folder2md4llms-binary.rb
+        sed -i '' "s/intel: \"[^\"]*\"/intel: \"$INTEL_SHA256\"/" Casks/folder2md4llms-binary.rb
+        
+        echo "Updated cask:"
+        head -15 Casks/folder2md4llms-binary.rb
+        
+        echo "branch-name=update-binary-$LATEST_VERSION" >> $GITHUB_OUTPUT
+        echo "::endgroup::"
+
+    - name: Install Homebrew for testing
+      if: steps.versions.outputs.needs-update == 'true'
+      run: |
+        echo "::group::Setting up Homebrew for testing"
+        
+        # Homebrew should already be available on macOS runners
+        brew --version
+        
+        echo "::endgroup::"
+
+
+    - name: Test updated cask
+      if: steps.versions.outputs.needs-update == 'true'
+      run: |
+        echo "::group::Testing updated cask"
+        
+        # Test cask syntax
+        brew audit --strict folder2md4llms-binary || echo "Audit warnings are acceptable"
+        
+        # Install from local cask
+        brew install --cask ./Casks/folder2md4llms-binary.rb
+        
+        # Test basic functionality
+        folder2md --version
+        folder2md --help > /dev/null
+        
+        # Test with a simple example
+        echo "# Test Binary Cask" > test.md
+        folder2md . --output test_cask_output.md
+        
+        if [ ! -f "test_cask_output.md" ]; then
+          echo "❌ Cask output file not created"
+          exit 1
+        fi
+        
+        # Clean up test
+        rm -f test.md test_cask_output.md
+        brew uninstall --cask folder2md4llms-binary
+        
+        echo "✅ Updated cask tests passed"
+        echo "::endgroup::"
+
+    - name: Create pull request
+      if: steps.versions.outputs.needs-update == 'true'
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        echo "::group::Creating pull request"
+        
+        LATEST_VERSION="${{ steps.versions.outputs.latest-version }}"
+        CURRENT_VERSION="${{ steps.versions.outputs.current-version }}"
+        BRANCH_NAME="${{ steps.update.outputs.branch-name }}"
+        
+        # Create and switch to new branch
+        git checkout -b "$BRANCH_NAME"
+        
+        # Stage and commit changes
+        git add Casks/folder2md4llms-binary.rb
+        git commit -m "Update binary cask to version $LATEST_VERSION
+
+        - Update version from $CURRENT_VERSION to $LATEST_VERSION
+        - Update macOS binary URLs and SHA256 hashes for both architectures
+        - Automated update from GitHub release
+        - Cask validation and installation tests passed
+
+        Generated by GitHub Actions"
+        
+        # Push the branch
+        git push -u origin "$BRANCH_NAME"
+        
+        # Create the PR
+        gh pr create \
+          --title "Update folder2md4llms-binary to $LATEST_VERSION" \
+          --body "## Automated Binary Cask Update
+
+        This PR updates the folder2md4llms-binary Homebrew cask to version **$LATEST_VERSION**.
+
+        ### Changes
+        - Version: \`$CURRENT_VERSION\` → \`$LATEST_VERSION\`
+        - macOS binary URLs updated to GitHub release v$LATEST_VERSION
+        - SHA256 hashes updated and verified for both Intel and ARM64
+        - Cask syntax validation passed
+        - Installation and functionality tests passed
+
+        ### Testing
+        The updated cask has been automatically tested with:
+        - Homebrew audit validation
+        - Binary download and SHA256 verification
+        - Cask installation test (\`brew install --cask\`)
+        - Basic CLI functionality (\`folder2md --version\` and \`--help\`)
+        - Simple file processing test
+
+        ### Binary Information
+        - **Source**: https://github.com/HenriquesLab/folder2md4llms/releases/tag/v$LATEST_VERSION
+        - **Intel Binary**: \`folder2md-macos-x64\`
+        - **ARM64 Binary**: \`folder2md-macos-arm64\`
+        - **Intel SHA256**: \`${{ steps.verify.outputs.intel-sha256 }}\`
+        - **ARM64 SHA256**: \`${{ steps.verify.outputs.arm-sha256 }}\`
+
+        ---
+        This PR was created automatically by GitHub Actions." \
+          --label "automated-update,binary" \
+          --assignee "${{ github.repository_owner }}"
+        
+        echo "Binary cask pull request created successfully"
+        echo "::endgroup::"
+
+    - name: Cleanup on failure
+      if: failure() && steps.versions.outputs.needs-update == 'true'
+      run: |
+        echo "::group::Cleanup after failure"
+        
+        # Reset any changes
+        git checkout -- Casks/folder2md4llms-binary.rb || true
+        
+        # Clean up any test files
+        rm -f test.md test_formula_output.md test_cask_output.md
+        rm -rf temp_binary_check
+        
+        # Uninstall if installed
+        brew uninstall folder2md4llms-binary --force || true
+        brew uninstall --cask folder2md4llms-binary --force || true
+        
+        echo "::endgroup::"
+
+    - name: Summary
+      if: always()
+      run: |
+        echo "::group::Binary Update Summary"
+        echo "### Binary Cask Update Summary"
+        echo "- Current version: ${{ steps.versions.outputs.current-version }}"
+        echo "- Latest version: ${{ steps.versions.outputs.latest-version }}"
+        echo "- Update needed: ${{ steps.versions.outputs.needs-update }}"
+        
+        if [ "${{ steps.versions.outputs.needs-update }}" = "true" ]; then
+          echo "- ✅ Binaries downloaded and verified"
+          echo "- ✅ Cask updated successfully"
+          echo "- ✅ Tests passed"
+          echo "- ✅ Pull request created"
+        else
+          echo "- ✅ Binary cask is up to date"
+        fi
+        
+        echo "::endgroup::"

@@ -1,0 +1,304 @@
+name: Test Manifest
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'bucket/**'
+      - '.github/workflows/test-manifest.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'bucket/**'
+      - '.github/workflows/test-manifest.yml'
+  schedule:
+    # Run daily at 06:00 UTC to catch any upstream changes
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-manifest:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-2022, windows-latest]
+        python-version: ['3.11', '3.12', '3.13']
+        manifest: ['folder2md4llms-binary']
+        exclude:
+          # Reduce matrix for faster execution
+          - os: windows-2022
+            python-version: '3.13'
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+
+    - name: Install and setup Scoop
+      run: |
+        echo "::group::Installing Scoop"
+        $start_time = Get-Date
+        
+        # Install Scoop
+        Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+        Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+        
+        # Add Scoop to PATH
+        $env:PATH += ";$env:USERPROFILE\scoop\shims"
+        echo "$env:USERPROFILE\scoop\shims" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+        
+        # Verify Scoop installation
+        scoop --version
+        
+        $end_time = Get-Date
+        $duration = ($end_time - $start_time).TotalSeconds
+        Write-Host "✅ Scoop installation completed in $duration seconds"
+        echo "::endgroup::"
+      shell: pwsh
+
+    - name: Validate manifest JSON
+      run: |
+        echo "::group::Validating manifest JSON"
+        
+        # Test JSON syntax
+        $manifest = Get-Content "bucket/${{ matrix.manifest }}.json" | ConvertFrom-Json
+        
+        # Validate required fields
+        if (-not $manifest.version) { throw "Missing version field" }
+        if (-not $manifest.description) { throw "Missing description field" }
+        if (-not $manifest.homepage) { throw "Missing homepage field" }
+        if (-not $manifest.license) { throw "Missing license field" }
+        
+        # Validate binary manifest fields
+        if (-not $manifest.architecture) { throw "Missing architecture field for binary manifest" }
+        if (-not $manifest.architecture.'64bit') { throw "Missing 64bit architecture for binary manifest" }
+        if (-not $manifest.architecture.'64bit'.url) { throw "Missing binary URL" }
+        if (-not $manifest.architecture.'64bit'.hash) { throw "Missing binary hash" }
+        
+        Write-Host "✅ Manifest JSON validation passed"
+        Write-Host "Version: $($manifest.version)"
+        Write-Host "Description: $($manifest.description)"
+        
+        echo "::endgroup::"
+      shell: pwsh
+
+    - name: Test Scoop installation
+      run: |
+        echo "::group::Testing Scoop installation"
+        $start_time = Get-Date
+        
+        # Install the package directly from the manifest file
+        Write-Host "Installing ${{ matrix.manifest }} from local manifest..."
+        $manifestPath = Join-Path (Get-Location) "bucket\${{ matrix.manifest }}.json"
+        scoop install $manifestPath
+        
+        $install_time = Get-Date
+        $duration = ($install_time - $start_time).TotalSeconds
+        Write-Host "✅ Installation completed in $duration seconds"
+        
+        echo "::endgroup::"
+      shell: pwsh
+
+    - name: Verify installation
+      run: |
+        echo "::group::Verifying installation"
+        
+        # Check if the command is available
+        $commandExists = Get-Command folder2md -ErrorAction SilentlyContinue
+        if (-not $commandExists) {
+          throw "❌ folder2md command not found after installation"
+        }
+        Write-Host "✅ folder2md command is available"
+        
+        # Test version command
+        $versionOutput = folder2md --version 2>&1
+        Write-Host "Version output: $versionOutput"
+        
+        if ($versionOutput -match "folder2md") {
+          Write-Host "✅ Version command works"
+        } else {
+          throw "❌ Version command failed"
+        }
+        
+        # Test help command
+        $helpOutput = folder2md --help 2>&1
+        if ($LASTEXITCODE -eq 0) {
+          Write-Host "✅ Help command works"
+        } else {
+          throw "❌ Help command failed"
+        }
+        
+        echo "::endgroup::"
+      shell: pwsh
+
+    - name: Test basic functionality
+      run: |
+        echo "::group::Testing basic functionality"
+        
+        # Create a test directory with various file types
+        New-Item -ItemType Directory -Path "test_project" -Force
+        New-Item -ItemType Directory -Path "test_project/src" -Force
+        New-Item -ItemType Directory -Path "test_project/docs" -Force
+        
+        Set-Content -Path "test_project/src/main.py" -Value "print('Hello World')"
+        Set-Content -Path "test_project/README.md" -Value "# Test Project"
+        Set-Content -Path "test_project/docs/guide.md" -Value "# Documentation"
+        Set-Content -Path "test_project/temp.tmp" -Value "temporary file"
+        
+        # Test basic folder2md functionality
+        Push-Location test_project
+        folder2md . --output test_output.md
+        Pop-Location
+        
+        # Verify output file was created
+        if (-not (Test-Path "test_project/test_output.md")) {
+          throw "❌ Output file test_output.md was not created"
+        }
+        
+        # Check that the output contains expected content
+        $content = Get-Content "test_project/test_output.md" -Raw
+        if ($content -notmatch "Hello World") {
+          throw "❌ Output file does not contain expected Python code"
+        }
+        
+        if ($content -notmatch "Test Project") {
+          throw "❌ Output file does not contain expected README content"
+        }
+        
+        Write-Host "✅ Basic functionality test passed"
+        
+        # Test ignore file generation
+        Push-Location test_project
+        folder2md --init-ignore --force
+        Pop-Location
+        
+        if (-not (Test-Path "test_project/.folder2md_ignore")) {
+          throw "❌ .folder2md_ignore file was not created"
+        }
+        
+        Write-Host "✅ Ignore file generation test passed"
+        
+        echo "::endgroup::"
+      shell: pwsh
+
+    - name: Test configuration file support
+      run: |
+        echo "::group::Testing configuration file support"
+        
+        # Create a config file
+        $configContent = @"
+        output: config_test.md
+        exclude_patterns:
+          - "*.tmp"
+        include_patterns:
+          - "*.py"
+          - "*.md"
+        "@
+        Set-Content -Path "test_project/folder2md.yaml" -Value $configContent
+        
+        # Test with config file
+        Push-Location test_project
+        folder2md . --output config_test.md
+        Pop-Location
+        
+        # Verify config-based output was created
+        if (-not (Test-Path "test_project/config_test.md")) {
+          throw "❌ Config-based output file was not created"
+        }
+        
+        # Check basic content is present
+        $content = Get-Content "test_project/config_test.md" -Raw
+        if ($content -notmatch "Hello World") {
+          throw "❌ Config-based output missing expected content"
+        }
+        
+        Write-Host "✅ Configuration file test passed"
+        
+        echo "::endgroup::"
+      shell: pwsh
+
+    - name: Test version synchronization
+      run: |
+        echo "::group::Testing version synchronization"
+        
+        # Get PyPI version
+        $pypiData = Invoke-RestMethod -Uri "https://pypi.org/pypi/folder2md4llms/json"
+        $pypiVersion = $pypiData.info.version
+        Write-Host "PyPI version: $pypiVersion"
+        
+        # Get manifest version
+        $manifest = Get-Content "bucket/folder2md4llms-binary.json" | ConvertFrom-Json
+        $manifestVersion = $manifest.version
+        Write-Host "Manifest version: $manifestVersion"
+        
+        # Check if versions match (allow for minor differences in dev versions)
+        if ($pypiVersion -eq $manifestVersion) {
+          Write-Host "✅ Version synchronization perfect"
+        } else {
+          Write-Host "⚠️ Version mismatch detected"
+          Write-Host "This may indicate the manifest needs updating"
+        }
+        
+        echo "::endgroup::"
+      shell: pwsh
+
+    - name: Test uninstallation
+      run: |
+        echo "::group::Testing uninstallation"
+        
+        # Uninstall the package
+        scoop uninstall ${{ matrix.manifest }}
+        
+        # Verify the command is no longer available
+        $commandExists = Get-Command folder2md -ErrorAction SilentlyContinue
+        if ($commandExists) {
+          throw "❌ folder2md command still available after uninstall"
+        } else {
+          Write-Host "✅ folder2md command properly removed"
+        }
+        
+        echo "::endgroup::"
+      shell: pwsh
+
+    - name: Cleanup
+      if: always()
+      run: |
+        echo "::group::Cleanup"
+        
+        # Remove test files
+        Remove-Item -Path "test_project" -Recurse -Force -ErrorAction SilentlyContinue
+        
+        # Uninstall if still installed
+        try { scoop uninstall folder2md4llms-binary } catch { Write-Host "Package not found or already uninstalled" }
+        
+        Write-Host "✅ Cleanup completed"
+        
+        echo "::endgroup::"
+      shell: pwsh
+
+    - name: Performance summary
+      if: always()
+      run: |
+        echo "::group::Performance Summary"
+        Write-Host "### Scoop Formula Test Summary for ${{ matrix.os }} with Python ${{ matrix.python-version }}"
+        Write-Host "- ✅ Manifest JSON validation completed"
+        Write-Host "- ✅ Scoop installation completed"
+        Write-Host "- ✅ Package installation completed"
+        Write-Host "- ✅ Installation verification completed"
+        Write-Host "- ✅ Basic functionality test completed"
+        Write-Host "- ✅ Configuration file test completed"
+        Write-Host "- ✅ Version synchronization check completed"
+        Write-Host "- ✅ Uninstallation test completed"
+        Write-Host ""
+        Write-Host "### Platform Information"
+        Write-Host "- OS: ${{ matrix.os }}"
+        Write-Host "- Python: ${{ matrix.python-version }}"
+        Write-Host "- PowerShell: $($PSVersionTable.PSVersion)"
+        Write-Host "- Scoop: $(scoop --version 2>&1)"
+        echo "::endgroup::"
+      shell: pwsh

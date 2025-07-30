@@ -1,0 +1,64 @@
+{
+    "version": "0.4.37",
+    "description": "Enhanced tool to concatenate folder contents into markdown format for LLM consumption (Binary Distribution)",
+    "homepage": "https://github.com/henriqueslab/folder2md4llms",
+    "license": "MIT",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/HenriquesLab/folder2md4llms/releases/download/v0.4.37/folder2md-windows-x64.exe",
+            "hash": "4ecc981bccac7640bdabbfbae082bc964a4a5f828a8e884d96bf6d6db04ede38",
+            "bin": "folder2md-windows-x64.exe"
+        }
+    },
+    "shortcuts": [
+        ["folder2md-windows-x64.exe", "folder2md"]
+    ],
+    "post_install": [
+        "Write-Host 'folder2md4llms binary installation complete!' -ForegroundColor Green",
+        "Write-Host ''",
+        "Write-Host 'Usage:'",
+        "Write-Host '  folder2md . --output output.md    # Process current directory'",
+        "Write-Host '  folder2md --help                  # Show all options'",
+        "Write-Host ''",
+        "Write-Host 'This is the standalone binary version that includes all dependencies.'",
+        "Write-Host 'For the Python package version, use: scoop install folder2md4llms'",
+        "Write-Host ''",
+        "Write-Host 'Documentation: https://github.com/henriqueslab/folder2md4llms'"
+    ],
+    "checkver": {
+        "url": "https://api.github.com/repos/HenriquesLab/folder2md4llms/releases/latest",
+        "jsonpath": "$.tag_name",
+        "regex": "v([\\d.]+)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/HenriquesLab/folder2md4llms/releases/download/v$version/folder2md-windows-x64.exe"
+            }
+        },
+        "hash": {
+            "url": "$url.sha256",
+            "regex": "^([a-fA-F0-9]+)\\s"
+        }
+    },
+    "notes": [
+        "This is the standalone binary version of folder2md4llms.",
+        "It includes all dependencies and doesn't require Python to be installed.",
+        "",
+        "ADVANTAGES:",
+        "  ✓ No Python installation required",
+        "  ✓ Faster startup time",
+        "  ✓ Single executable file",
+        "  ✓ No dependency conflicts",
+        "",
+        "For the Python package version (requires Python 3.11+):",
+        "  scoop install folder2md4llms",
+        "",
+        "If you encounter Windows Defender warnings:",
+        "  1. This is normal for new executables without code signing",
+        "  2. You can verify the binary with the provided SHA256 checksum",
+        "  3. Add an exclusion if needed: Settings > Update & Security > Windows Security",
+        "",
+        "Documentation: https://github.com/henriqueslab/folder2md4llms"
+    ]
+}
