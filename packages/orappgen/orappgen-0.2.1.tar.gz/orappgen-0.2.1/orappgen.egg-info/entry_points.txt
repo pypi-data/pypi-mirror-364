@@ -1,0 +1,3 @@
+[console_scripts]
+startcustomapp = orappgen.starter:main
+
