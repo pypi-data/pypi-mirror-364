@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: DNLAP
+Version: 0.0.7
+Requires-Python: >=3.7
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: scipy
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
