@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -eux
+mkdir -p dist
+rye build --clean
+
+# Explicitly pass the token to rye publish with verbose output
+rye publish --yes --verbose --token="$PYPI_TOKEN"
