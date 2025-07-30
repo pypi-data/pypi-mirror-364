@@ -1,0 +1,3 @@
+[console_scripts]
+doonook-calendar=doonook_chinese_calendar.cli:cli
+
