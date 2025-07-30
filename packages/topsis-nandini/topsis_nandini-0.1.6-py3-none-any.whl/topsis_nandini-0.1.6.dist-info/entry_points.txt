@@ -1,0 +1,2 @@
+[console_scripts]
+topsis = Topsis_package.topsis.__main__:main
