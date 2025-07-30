@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+src/xiaolihuidaofirstpackage/__init__.py
+src/xiaolihuidaofirstpackage/main.py
+src/xiaolihuidaofirstpackage.egg-info/PKG-INFO
+src/xiaolihuidaofirstpackage.egg-info/SOURCES.txt
+src/xiaolihuidaofirstpackage.egg-info/dependency_links.txt
+src/xiaolihuidaofirstpackage.egg-info/entry_points.txt
+src/xiaolihuidaofirstpackage.egg-info/top_level.txt
