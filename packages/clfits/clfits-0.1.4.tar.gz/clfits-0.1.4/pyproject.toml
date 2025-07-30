@@ -1,0 +1,75 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "clfits"
+version = "0.1.4"
+authors = [{ name = "Amber Malpas", email = "malpas.1@osu.edu" }]
+description = "A command-line FITS header editor."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.9"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Astronomy",
+]
+dependencies = [
+    "astropy",
+    "typer[all]",
+    "rich",
+]
+
+[project.urls]
+Homepage = "https://github.com/AmberLee2427/CLFits"
+"Bug Tracker" = "https://github.com/AmberLee2427/CLFits/issues"
+Repository = "https://github.com/AmberLee2427/CLFits.git"
+
+[project.scripts]
+clfits = "clfits.main:app"
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "pytest-doctestplus",
+    "ruff",
+    "mypy",
+    "bump-my-version",
+    "sphinx",
+    "furo",
+    "pre-commit",
+]
+
+[tool.setuptools]
+packages = ["clfits"]
+package-dir = { "" = "src" }
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "C90", "N", "D"]
+ignore = [
+    "D100", # Missing docstring in public module
+    "D104", # Missing docstring in public package
+    "D107", # Missing docstring in __init__
+    "D203", # Incompatible with D211
+    "D213", # Incompatible with D212
+]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.mypy]
+strict = true
+ignore_missing_imports = true
+pretty = true 
