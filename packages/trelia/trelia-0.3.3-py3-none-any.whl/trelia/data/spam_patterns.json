@@ -1,0 +1,10 @@
+{
+  "spam_patterns": [
+    "give me rating \\d+",
+    "rate this",
+    "please rate",
+    "score my code",
+    "rate",
+    "writted"
+  ]
+}
