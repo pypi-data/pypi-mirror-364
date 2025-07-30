@@ -1,0 +1,68 @@
+# SDKFeishu - 飞书开放平台Python SDK
+
+一个基于飞书开放平台API，简单易用的非官方Python SDK，提供获取访问令牌、Bitable表格记录CRUD操作、文件上传下载等功能。
+
+## 功能特性
+- 获取飞书访问令牌
+- 多维表格(bitable)操作：
+  - 知识空间管理
+  - 表格记录CRUD操作
+- 文件上传与下载
+- 全面且详细的功能文档
+
+## 环境要求
+- Python 3.6+
+
+## 通过 pip 安装
+```bash
+pip install SDKFeishu
+```
+
+## 依赖安装
+> 直接通过 pip 安装的 SDKFeishu 无需再手动安装依赖
+
+```bash
+pip install requests requests-toolbelt
+```
+
+## 快速开始
+```python
+from SDKFeishu import get_access_token, Bitable
+
+# 1. 获取访问令牌
+app_id = "your_app_id"
+app_secret = "your_app_secret"
+access_token = get_access_token(app_id, app_secret)
+
+# 2. 初始化Bitable客户端
+bitable = Bitable(access_token, "your_app_token")
+
+# 3. 使用示例 - 查询表格记录
+records = bitable.find_table_record("your_table_id")
+print(records)
+```
+
+## API参考
+
+### 获取访问令牌
+`get_access_token(app_id: str, app_secret: str) -> str`
+
+### Bitable类方法
+- `get_wiki_space_list()` - 获取知识空间列表
+- `get_wiki_child_space_list(space_id)` - 获取子空间列表
+- `get_wiki_space_info(space_id)` - 获取知识空间信息
+- `find_table_record(table_id)` - 查询表格记录
+- `create_table_record(table_id, fields)` - 创建记录
+- `update_table_record(table_id, record_id, fields)` - 更新记录
+- `delete_table_record(table_id, record_id)` - 删除记录
+- `upload_media(file, file_name, file_size, parent_node)` - 上传文件
+- `download_media_by_link(file_token)` - 下载文件
+
+## 错误处理
+所有方法在请求失败时会返回包含状态码和错误信息的字符串
+
+## 贡献
+欢迎提交 Pull Request 或 Issue 报告问题
+
+## 许可证
+MIT
