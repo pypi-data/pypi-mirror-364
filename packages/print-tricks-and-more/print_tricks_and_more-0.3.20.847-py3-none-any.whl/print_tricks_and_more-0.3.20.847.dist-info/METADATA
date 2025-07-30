@@ -1,0 +1,91 @@
+Metadata-Version: 2.1
+Name: print-tricks-and-more
+Version: 0.3.20.847
+Summary: Simple to use, Powerful Programming! Debugging, Printing, Analysis, and helpful tools!
+Home-page: https://github.com/developer-1v/print_tricks
+Author: developer-1v
+Author-email: developer-1v <developer_1v@proton.me>
+License: MIT
+Project-URL: Homepage, https://github.com/developer-1v/print_tricks
+Project-URL: Bug Tracker, https://github.com/developer-1v/print_tricks/issues
+Project-URL: Documentation, https://github.com/developer-1v/print_tricks
+Project-URL: Source Code, https://github.com/developer-1v/print_tricks
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Debuggers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# Print Tricks And More
+
+Simple to use, powerful programming tools for debugging, printing, analysis, and more!
+
+## Installation
+
+```bash
+pip install print-tricks-and-more
+```
+
+## Features
+
+- Enhanced print statements with variable name, type, and line number information
+- Color-coded output for better readability
+- Timer functions for performance measurement
+- Easy debugging tools
+- Thread management helpers
+- And much more!
+
+## Basic Usage
+
+```python
+from print_tricks import pt
+
+# Basic variable printing
+name = "Python"
+pt(name)  # Will print the variable name, value, type, and line number
+
+# Color printing
+pt.c("This text will be colored", colors=pt.C.t1)
+
+# Timer functionality
+pt.t("timer_name")  # Start timer
+# ... some code to measure
+elapsed = pt.t("timer_name")  # End timer and get elapsed time
+
+# Pause execution until a key is pressed
+pt.p()  # Pause until any key is pressed
+pt.p("y")  # Pause until 'y' key is pressed
+
+# Error handling
+try:
+    # Some code that might raise an exception
+    result = 1 / 0
+except:
+    pt.e()  # Print exception information
+```
+
+## Advanced Features
+
+- `pt.counter()` - Count function calls
+- `pt.profile_resources()` - Monitor CPU, memory, and GPU usage
+- `pt.timeall()` - Comprehensive timing for functions
+- `pt.props()` - Inspect object properties
+- `pt.easy_imports()` - Simplify import paths
+
+## Documentation
+
+For more detailed documentation, please visit the [GitHub repository](https://github.com/developer-1v/print_tricks).
+
+## License
+
+This project is licensed under the MIT License. 
