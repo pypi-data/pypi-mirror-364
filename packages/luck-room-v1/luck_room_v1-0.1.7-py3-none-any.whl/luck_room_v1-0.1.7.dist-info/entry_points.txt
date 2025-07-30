@@ -1,0 +1,2 @@
+[console_scripts]
+luckroom = luck_room_v1.LuckRoom:main
