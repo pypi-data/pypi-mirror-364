@@ -1,0 +1,14 @@
+[console_scripts]
+benchmark = benchmark.main:main
+benchmark-quick = benchmark.main:quick_test
+benchmark-team1 = benchmark.main:team1
+benchmark-team2 = benchmark.main:team2
+benchmark-team3 = benchmark.main:team3
+build-docs = vibex.run:build_docs
+dev = vibex.run:dev
+docs = vibex.run:docs
+monitor = vibex.run:monitor
+prod = vibex.run:prod
+start = vibex.run:start
+test = vibex.run:test
+vibex = vibex.cli.main:main
