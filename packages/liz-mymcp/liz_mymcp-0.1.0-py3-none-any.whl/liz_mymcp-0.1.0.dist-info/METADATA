@@ -1,0 +1,7 @@
+Metadata-Version: 2.4
+Name: liz-mymcp
+Version: 0.1.0
+Summary: Add your description here
+Author-email: Unique <7771602+hanzili@user.noreply.gitee.com>
+Requires-Python: >=3.13
+Requires-Dist: mcp[cli]>=1.12.2
