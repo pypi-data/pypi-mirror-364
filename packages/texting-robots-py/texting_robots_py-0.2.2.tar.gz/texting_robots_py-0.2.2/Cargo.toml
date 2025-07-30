@@ -1,0 +1,16 @@
+[package]
+name = "texting-robots-py"
+version = "0.2.2"
+edition = "2024"
+description = "Python binding for Texting Robots"
+readme = "README.md"
+repository = "https://github.com/benwebber/texting-robots-py"
+license = "MIT OR Apache-2.0"
+
+[lib]
+name = "texting_robots"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = { version = "0.25.0", features = ["anyhow"] }
+texting_robots = "0.2.2"
