@@ -1,0 +1,8 @@
+setuptools
+zope.component
+zope.interface
+zope.publisher
+
+[test]
+zope.component[test]
+zope.testrunner
