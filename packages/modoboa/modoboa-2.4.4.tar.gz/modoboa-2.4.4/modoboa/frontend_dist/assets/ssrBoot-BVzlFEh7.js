@@ -1,0 +1,1 @@
+import{ab as t,d as e,ac as s,b4 as n}from"./index-CxS_NEhX.js";function i(){const o=t(!1);return e(()=>{window.requestAnimationFrame(()=>{o.value=!0})}),{ssrBootStyles:s(()=>o.value?void 0:{transition:"none !important"}),isBooted:n(o)}}export{i as u};
