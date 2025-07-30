@@ -1,0 +1,21 @@
+{
+  "type": "motion_picture",
+  "author": [
+    {
+      "literal": "Unknown"
+    }
+  ],
+  "accessed": {
+    "date-parts": [
+      [
+        2025,
+        7,
+        25
+      ]
+    ]
+  },
+  "title": "Media content from URL",
+  "container-title": "Bilibili",
+  "URL": "https://www.bilibili.com/video/BV15auXzyE3M",
+  "id": "Media_content_from_URL.md"
+}
