@@ -1,0 +1,2 @@
+[console_scripts]
+ironshield = ironshield.cli:main

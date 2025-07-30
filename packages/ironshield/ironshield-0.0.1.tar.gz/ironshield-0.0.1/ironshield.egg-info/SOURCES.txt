@@ -1,0 +1,11 @@
+README.md
+pyproject.toml
+setup.py
+ironshield/__init__.py
+ironshield/cli.py
+ironshield.egg-info/PKG-INFO
+ironshield.egg-info/SOURCES.txt
+ironshield.egg-info/dependency_links.txt
+ironshield.egg-info/entry_points.txt
+ironshield.egg-info/requires.txt
+ironshield.egg-info/top_level.txt

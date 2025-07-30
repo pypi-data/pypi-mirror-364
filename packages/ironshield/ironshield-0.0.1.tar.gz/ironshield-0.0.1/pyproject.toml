@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ironshield"
+version = "0.0.1"
+authors = [
+    {name = "IronShield Tech", email = "tech@ironshield.dev"},
+]
+description = "IronShield - A comprehensive security toolkit for Python applications"
+readme = "README.md"
+license = {text = "ISC"}
+requires-python = ">=3.7"
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "Topic :: Security",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "License :: OSI Approved :: ISC License (ISCL)",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+keywords = ["security", "ironshield", "protection", "python", "security-toolkit"]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "black",
+    "flake8",
+]
+
+[project.urls]
+Homepage = "https://github.com/IronShield-Tech/ironshield-js"
+"Bug Reports" = "https://github.com/IronShield-Tech/ironshield-js/issues"
+"Source" = "https://github.com/IronShield-Tech/ironshield-js"
+
+[project.scripts]
+ironshield = "ironshield.cli:main"
+
+[tool.setuptools]
+packages = ["ironshield"]
+
+[tool.black]
+line-length = 88
+target-version = ['py37']
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"] 
