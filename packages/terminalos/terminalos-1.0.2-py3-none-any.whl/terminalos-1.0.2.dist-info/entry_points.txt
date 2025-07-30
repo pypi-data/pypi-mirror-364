@@ -1,0 +1,3 @@
+[console_scripts]
+terminalos = terminalos.__main__:main
+tos = terminalos.__main__:main

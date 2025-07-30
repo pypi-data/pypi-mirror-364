@@ -1,0 +1,16 @@
+terminalos/__init__.py,sha256=KBIiOCKkvLWWwP95fGt2vH7D_JrEiDP1FQERDdsLCO0,366
+terminalos/__main__.py,sha256=MSmt_5Xg84uHqzTN38JwgseJK8rsJn_11A8WD99VtEo,61
+terminalos/cli.py,sha256=g-zEOz4Pb5k9015W_TMP-IfzRdsXyKyOk6Cn_hMZBGg,13459
+terminalos/apps/__init__.py,sha256=LIGhpTSgFJ76l_1VEcBkYfZBko5aStg65R6E_Bkvftw,20
+terminalos/apps/calculator.py,sha256=Bf6nB2Vmx6IEBktQRHS049MbBcA2UHj5NitwWjVFnM8,4006
+terminalos/apps/file_manager.py,sha256=2Ppc8bA8SUNs7xTYpu8koEcXXpq6vOwZdpsNlRP9ISM,1838
+terminalos/apps/system_monitor.py,sha256=UJs5I3SAJABjt0xOL9NwFWyS-BIsym5cXxgQmuxNQH4,3194
+terminalos/apps/text_editor.py,sha256=qPUJrqfFVv1fYC8xfcnIpyiozJwO8XyIAlFvu2xR7ik,1818
+terminalos/core/__init__.py,sha256=hvOGAGaDGN_TpHe_UEVSBmLd9BkCpkqrKf7ErKPTyoQ,37
+terminalos/core/app.py,sha256=4bLk-KKsIIgib1Aiuey2UpYt0f947T1iIogSa91SAx4,13383
+terminalos-1.0.2.dist-info/LICENSE,sha256=evuJiVU5AjwOYGBfS4GWpzK8d8mzqZaIXT-btvMuUKY,1090
+terminalos-1.0.2.dist-info/METADATA,sha256=FyvF9UhbRntlbtAFU_qHlqXIC_4k5X-tnFHqeoR0zXo,7303
+terminalos-1.0.2.dist-info/WHEEL,sha256=tZoeGjtWxWRfdplE7E3d45VPlLNQnvbKiYnx7gwAy8A,92
+terminalos-1.0.2.dist-info/entry_points.txt,sha256=FeiEEae-0xW5W4CuFjF5SrQSb8z_NCiqcp6qhA6eJcE,87
+terminalos-1.0.2.dist-info/top_level.txt,sha256=umoosJb7h0XNfXTX4uZQ6PxkoibV-LrlqSkwCJKvny8,11
+terminalos-1.0.2.dist-info/RECORD,,
