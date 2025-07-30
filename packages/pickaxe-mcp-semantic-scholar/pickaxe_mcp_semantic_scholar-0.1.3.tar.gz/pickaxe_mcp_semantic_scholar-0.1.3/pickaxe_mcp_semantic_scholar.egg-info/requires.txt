@@ -1,0 +1,4 @@
+fastmcp>=2.10.6
+httpx>=0.28.1
+mcp[cli]>=1.12.2
+semanticscholar>=0.10.0
