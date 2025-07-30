@@ -1,0 +1,3 @@
+[console_scripts]
+whitedot=whitedot.cli:main
+
