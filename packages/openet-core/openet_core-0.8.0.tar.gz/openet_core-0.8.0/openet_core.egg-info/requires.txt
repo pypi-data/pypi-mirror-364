@@ -1,0 +1,5 @@
+earthengine-api>=1.5.2
+python-dateutil
+
+[test]
+pytest

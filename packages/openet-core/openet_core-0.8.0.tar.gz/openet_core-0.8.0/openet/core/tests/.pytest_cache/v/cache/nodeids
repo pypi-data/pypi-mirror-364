@@ -1,0 +1,5 @@
+[
+  "test_interpolate.py::test_from_scene_et_actual_t_interval_monthly_et_reference_resample",
+  "test_interpolate.py::test_from_scene_et_actual_t_interval_monthly_values",
+  "test_interpolate.py::test_from_scene_et_fraction_t_interval_monthly_et_reference_resampling"
+]
