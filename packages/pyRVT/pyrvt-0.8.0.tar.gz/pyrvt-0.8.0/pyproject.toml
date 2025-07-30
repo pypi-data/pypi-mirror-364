@@ -1,0 +1,96 @@
+[build-system]
+requires = ["setuptools>=64", "setuptools-scm>=8"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyRVT"
+dynamic = ["version"]
+authors = [{ name = "Albert Kottke", email = "albert.kottke@gmail.com" }]
+description = "Random vibration theory for earthquake ground motions."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = [
+  "numpy",
+  "numba",
+  "scipy",
+  "pyexcel",
+  "pyexcel-io",
+  "pyexcel-xlsx",
+]
+
+[project.optional-dependencies]
+test = [
+  "coverage[toml]",
+  "pandas",
+  "pytest",
+  "pytest-cov",
+  "pystrata",
+  "pykooh",
+  "matplotlib",
+  "tomli ; python_version < '3.11'",
+]
+docs = [
+  "sphinx",
+  "furo",
+  "sphinx-copybutton",
+  "sphinx-design",
+  "sphinxcontrib-bibtex",
+  "sphinxext-opengraph",
+  "sphinx-autobuild",
+  "matplotlib",
+  "myst-parser",
+  "nbsphinx",
+  "ipython",
+  "linkify-it-py",
+]
+style = ["black[colorama,jupyter]", "ruff"]
+
+[project.urls]
+Homepage = "https://github.com/arkottke/pyrvt"
+Documentation = "https://pyrvt.readthedocs.io"
+
+[project.scripts]
+pyrvt = "pyrvt.runner:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools_scm]
+write_to = "src/pyrvt/_version.py"
+
+[tool.ruff]
+exclude = ["docs"]
+# Same as Black.
+line-length = 88
+indent-width = 4
+
+target-version = "py310"
+
+extend-include = ["*.ipynb"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "Q", "I"]
+ignore = ["E203"]
+
+# Test configuration
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = ["--strict-markers", "--strict-config"]
+
+[tool.coverage.run]
+source = ["src/pyrvt"]
+omit = ["*/tests/*", "*/test_*"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "pragma: no cover",
+  "def __repr__",
+  "raise AssertionError",
+  "raise NotImplementedError",
+]
