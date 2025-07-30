@@ -1,0 +1,33 @@
+"""Configuration for pytest. *Not* part of the public API."""
+
+from typing import Any, Dict, Literal
+
+import pytest
+from typing_extensions import TypeAlias
+
+from . import Array, Constraint, Int, Solver, Uint
+
+Uint8: TypeAlias = Uint[Literal[8]]
+Uint64: TypeAlias = Uint[Literal[64]]
+
+Int8: TypeAlias = Int[Literal[8]]
+Int64: TypeAlias = Int[Literal[64]]
+
+# Don't check  _z3.py for doctests: it doesn't have any, and importing the
+# file will raise an error if Z3 isn't installed.
+collect_ignore = ["_z3.py"]
+
+
+@pytest.fixture(autouse=True)
+def setup_doctest(doctest_namespace: Dict[str, Any]) -> None:
+    doctest_namespace.update(
+        {
+            "Array": Array,
+            "Solver": Solver,
+            "Constraint": Constraint,
+            "Uint8": Uint8,
+            "Uint64": Uint64,
+            "Int8": Int8,
+            "Int64": Int64,
+        }
+    )
