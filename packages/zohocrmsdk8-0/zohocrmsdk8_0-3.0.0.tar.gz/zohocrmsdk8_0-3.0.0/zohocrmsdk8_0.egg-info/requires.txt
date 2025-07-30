@@ -1,0 +1,5 @@
+requests
+python-dateutil
+urllib3
+mysql-connector-python
+setuptools
