@@ -1,0 +1,12 @@
+README.md
+pyproject.toml
+qa_automation2/__init__.py
+qa_automation2/adbcore.py
+qa_automation2/loginfor.py
+qa_automation2/qa_infor.py
+qa_automation2/qautomationcore.py
+qa_automation2.egg-info/PKG-INFO
+qa_automation2.egg-info/SOURCES.txt
+qa_automation2.egg-info/dependency_links.txt
+qa_automation2.egg-info/requires.txt
+qa_automation2.egg-info/top_level.txt
