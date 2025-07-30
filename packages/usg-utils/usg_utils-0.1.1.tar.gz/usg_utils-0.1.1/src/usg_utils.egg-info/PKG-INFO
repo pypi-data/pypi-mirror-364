@@ -1,0 +1,17 @@
+Metadata-Version: 2.4
+Name: usg_utils
+Version: 0.1.1
+Summary: Modflow usg utils
+Author-email: Bruno Lapi <brunolapij@gmail.com>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/BrunoLapi/usg_utils
+Project-URL: Bug Tracker, https://github.com/BrunoLapi/usg_utils/issues
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# usg\_utils
+
+Librería con funciones útiles para proceso y postproceso de modelos modflow-usg
+

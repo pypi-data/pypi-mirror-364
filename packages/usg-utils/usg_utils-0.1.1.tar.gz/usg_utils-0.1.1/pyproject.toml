@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "usg_utils"
+version = "0.1.1"
+description = "Modflow usg utils"
+readme = "README.md"
+requires-python = ">=3.7"
+license = "MIT"
+authors = [
+    { name = "Bruno Lapi", email = "brunolapij@gmail.com" }
+]
+dependencies = []
+
+[project.urls]
+"Homepage" = "https://github.com/BrunoLapi/usg_utils"
+"Bug Tracker" = "https://github.com/BrunoLapi/usg_utils/issues"

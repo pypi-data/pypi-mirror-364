@@ -1,0 +1,9 @@
+LICENSE
+README.md
+pyproject.toml
+src/usg_utils/__init__.py
+src/usg_utils/core.py
+src/usg_utils.egg-info/PKG-INFO
+src/usg_utils.egg-info/SOURCES.txt
+src/usg_utils.egg-info/dependency_links.txt
+src/usg_utils.egg-info/top_level.txt
