@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+ivrs_client/__init__.py
+ivrs_client/executor.py
+ivrs_client/prompt.py
+ivrs_client/sender.py
+ivrs_client.egg-info/PKG-INFO
+ivrs_client.egg-info/SOURCES.txt
+ivrs_client.egg-info/dependency_links.txt
+ivrs_client.egg-info/requires.txt
+ivrs_client.egg-info/top_level.txt
