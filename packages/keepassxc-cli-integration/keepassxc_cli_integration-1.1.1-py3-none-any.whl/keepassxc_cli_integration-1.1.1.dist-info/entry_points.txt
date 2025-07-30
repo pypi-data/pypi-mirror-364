@@ -1,0 +1,3 @@
+[console_scripts]
+kpx=keepassxc_cli_integration.kpx_cmd:main
+

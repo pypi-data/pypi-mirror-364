@@ -1,0 +1,13 @@
+keepassxc_cli_integration/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+keepassxc_cli_integration/backend/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+keepassxc_cli_integration/backend/autorization.py,sha256=7c6Ca8unRU1ez1Tro05xkprDPKnyFLyyJOAOlegaLLM,2970
+keepassxc_cli_integration/backend/kpx_protocol.py,sha256=WIS_w96VEl6rXhwlR4hDZW2E2PbMQ37XW-HX7g_jASk,8690
+keepassxc_cli_integration/backend/modules.py,sha256=VVacQLFc2Wore3Yp1PT2E8qC1o1R5VpR5uMrPYoIEG4,240
+keepassxc_cli_integration/backend/queries.py,sha256=EiQQ-U8AX4ZgkJsditBoGMlVRvigLhgzfqXfeLxTwyg,1706
+keepassxc_cli_integration/backend/utils.py,sha256=0fGGQEPbspNiyoO1t2dxZMFBh7AosI_p5dYKigNjg00,843
+keepassxc_cli_integration/kpx.py,sha256=oRIiVbqAEbtpT6bFE5ppBoFUk_MnogWcPSQPunGJ_MM,1761
+keepassxc_cli_integration/kpx_cmd.py,sha256=Kcc72gUrvNY_ucblpabzFaD5GbY-pt6LTXIevq_OZ6I,2318
+keepassxc_cli_integration-1.1.1.dist-info/entry_points.txt,sha256=0Uqc9nyN7ytOrhNil_Fc5EfCyzUq9pQnTvsf0mNnxCk,62
+keepassxc_cli_integration-1.1.1.dist-info/METADATA,sha256=O_CKU6ai2Yei20ocFsOjsoKMkWfZ7FcigMdm7Us8J2Y,2701
+keepassxc_cli_integration-1.1.1.dist-info/WHEEL,sha256=XbeZDeTWKc1w7CSIyre5aMDU_-PohRwTQceYnisIYYY,88
+keepassxc_cli_integration-1.1.1.dist-info/RECORD,,
