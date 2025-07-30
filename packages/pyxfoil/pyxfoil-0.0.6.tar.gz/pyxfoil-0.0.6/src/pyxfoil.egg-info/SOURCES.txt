@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+src/pyxfoil/__init__.py
+src/pyxfoil/xfoil.py
+src/pyxfoil/xfoilpolar.py
+src/pyxfoil/xfoilresult.py
+src/pyxfoil.egg-info/PKG-INFO
+src/pyxfoil.egg-info/SOURCES.txt
+src/pyxfoil.egg-info/dependency_links.txt
+src/pyxfoil.egg-info/requires.txt
+src/pyxfoil.egg-info/top_level.txt
