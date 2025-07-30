@@ -1,0 +1,23 @@
+[package]
+name = "pulldown-cmark-py"
+version = "0.1.0"
+authors = ["Mohamad Makki <moe.m.makki@gmail.com>"]
+edition = "2024"
+rust-version = "1.86.0"
+description = "A Python interface to pulldown-cmark."
+readme = "README.md"
+homepage = "https://git.sr.ht/~orchid/pulldown-cmark-py"
+repository = "https://git.sr.ht/~orchid/pulldown-cmark-py"
+license = "0BSD"
+keywords = ["markdown"]
+
+[lib]
+name = "pulldown_cmark"
+crate-type = ["cdylib"]
+
+[dependencies]
+itertools = "0.14.0"
+pulldown-cmark = "0.13.0"
+pyo3 = { version = "0.25.1", features = ["extension-module"] }
+rayon = "1.10.0"
+thiserror = "2.0.12"
