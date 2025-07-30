@@ -1,0 +1,11 @@
+.venv/
+.vscode*
+dist/
+build/
+*.egg-info
+*.log
+__pycache__
+config
+sample-logs/*.pcap*
+.positions/
+*.mmdb
