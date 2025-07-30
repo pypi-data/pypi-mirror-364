@@ -1,0 +1,27 @@
+repos:
+  - repo: https://github.com/adamchainz/blacken-docs
+    rev: "v1.12.1"
+    hooks:
+      - id: blacken-docs
+        additional_dependencies:
+          - black==22.12.0
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    # Ruff version.
+    rev: "v0.3.0"
+    hooks:
+      - id: ruff
+        # We use `--no-cache` to ensure that we always run based on what the
+        # pre-commit tool provides us.
+        args: [ --fix, --exit-non-zero-on-fix, --no-cache ]
+      - id: ruff-format
+        # We use `--no-cache` to ensure that we always run based on what the
+        # pre-commit tool provides us.
+        args: [ --no-cache ]
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-merge-conflict
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+      - id: trailing-whitespace
