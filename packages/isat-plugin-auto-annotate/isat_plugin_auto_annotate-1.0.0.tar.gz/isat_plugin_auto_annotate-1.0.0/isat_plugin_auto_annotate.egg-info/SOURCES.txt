@@ -1,0 +1,15 @@
+MANIFEST.in
+README.md
+setup.py
+ISAT_plugin_auto_annotate/__init__.py
+ISAT_plugin_auto_annotate/coco.csv
+ISAT_plugin_auto_annotate/main.py
+ISAT_plugin_auto_annotate/yolo.py
+ISAT_plugin_auto_annotate/yolo11n.onnx
+ISAT_plugin_auto_annotate/__pycache__/__init__.cpython-313.pyc
+isat_plugin_auto_annotate.egg-info/PKG-INFO
+isat_plugin_auto_annotate.egg-info/SOURCES.txt
+isat_plugin_auto_annotate.egg-info/dependency_links.txt
+isat_plugin_auto_annotate.egg-info/entry_points.txt
+isat_plugin_auto_annotate.egg-info/requires.txt
+isat_plugin_auto_annotate.egg-info/top_level.txt
