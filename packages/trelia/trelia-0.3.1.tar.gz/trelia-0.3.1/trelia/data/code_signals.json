@@ -1,0 +1,14 @@
+{
+  "code_signals": [
+    "\\bdef\\b", "\\breturn\\b", "\\bif\\b", "\\bfor\\b", "\\bwhile\\b", "=>",
+    "\\bclass\\b", "\\bimport\\b", "\\btry\\b", "\\bfunction\\b", "useState",
+    "<[A-Za-z]", "\\{", "\\}",
+
+    "\\bconda\\b", "\\bpip\\b", "\\bpython\\b", "\\bsudo\\b", "\\bwget\\b",
+    "\\bcurl\\b", "\\bbash\\b", "\\bapt\\b",
+
+    "\\bgit\\b", "\\bclone\\b", "\\bcommit\\b", "\\bpush\\b", "\\binit\\b",
+
+    "\\bnpm\\b", "\\bnode\\b", "\\byarn\\b", "\\bnpx\\b", "\\baxios\\b", "\\breact-router-dom\\b", "\\breact\\b"
+  ]
+}
