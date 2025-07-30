@@ -1,0 +1,16 @@
+stackformer/__init__.py,sha256=-TALNCHUrL3z5unNN1ROrHK4sZLYpenqLRl6aZoqNdU,1344
+stackformer/trainer.py,sha256=JuvvJG3ffkE7A8Yp9Gwr1K5MEZzmLU96G-4xJmDrTcg,15036
+stackformer/models/GPT_2.py,sha256=DgZHhZUYl5eSCTtv4vzICaV9YR_B8FHFm8oaMkJZycU,9499
+stackformer/models/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+stackformer/modules/Attention.py,sha256=Uivgd3Dd9atYSEhSbH_s1xRpIpfcNyxpZp9d5-QO388,26240
+stackformer/modules/Feed_forward.py,sha256=8LEsV-9E4-i91HKh69k4US913zdT4BlZFYGTfuSkkl0,2141
+stackformer/modules/Normalization.py,sha256=omSCs3r5QzlWoxzvI5zo2ZEI2DsuxjC9JUgkHcrP1QA,1350
+stackformer/modules/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+stackformer/modules/mask.py,sha256=x0nj0Rc2m7Z7bv8XAMkNpl7Xa69GCeknlx36S9OTLd4,1252
+stackformer/modules/position_embedding.py,sha256=C9m176HvpQBFGRIcstVrEzpTVdIMYPm32Ds_Uq-sbhc,2639
+stackformer/modules/tokenizer.py,sha256=hrtM2zVbnj1OTw3yg8Dbvra_uYkRUiQkmzDrUE9KMXM,821
+stackformer-0.1.1.dist-info/licenses/LICENSE,sha256=UgtbALSbKVzaUDMBYGM9DGsGQAbBusqJrnvRkmsa_-c,1089
+stackformer-0.1.1.dist-info/METADATA,sha256=vQ_RvcTNZQVLSUq16eniyzeEeEUXz-QYVGoVv6hp_VA,3078
+stackformer-0.1.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+stackformer-0.1.1.dist-info/top_level.txt,sha256=5qMo4h1LAVkMQBgnstfFSC1ckO8K1uh5yXFqt5vD6gw,12
+stackformer-0.1.1.dist-info/RECORD,,
