@@ -1,0 +1,12 @@
+gregex/__init__.py,sha256=8zLGg-DfQhnDl2Ky0n-zXpN-8e-g7iR0AcaI4l4Vvpk,32
+gregex/char.py,sha256=wBB_0c6X5nH2pyz7QXqQntB-kXmz4M5QljFkqcmhKIY,625
+gregex/group.py,sha256=PJicnbIX02cYb6Hj0HU14iM6OW96MNlldQfIouKm2lg,582
+gregex/pattern.py,sha256=U83v_pbOM16u-K-6BSeH2ClFvmzdmKxv7I5GD9IP0eI,230
+gregex/repeat.py,sha256=2m_oJEML2NKPV4pQ9FTRwkY5FZK7c1i4qLAYmfFulg4,522
+gregex/set.py,sha256=4jouwdIFVuoHS9dB3nXCtJXkcy90QFAHbgpPvsoe_Sg,659
+gregex/unicode.py,sha256=tVhA7muBET41WNXoUdbFbwwb_Sstc2Wn4vrvbrsTEyw,212
+gregex/version.py,sha256=07NzQXBgNlnw5kSN6ZYxE9By-_RuH3Jyy58Z74sIio0,21
+gregex-0.0.1.dist-info/METADATA,sha256=5vWaMeoNi9N_p1UG1NonX4HNuMRmDJCRejQ9VdnDO7Q,21981
+gregex-0.0.1.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+gregex-0.0.1.dist-info/licenses/LICENSE,sha256=gXf5dRMhNSbfLPYYTY_5hsZ1r7UU1OaKQEAQUhuIBkM,18092
+gregex-0.0.1.dist-info/RECORD,,
