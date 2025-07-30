@@ -1,0 +1,11 @@
+spacetransformer/torch/__init__.py,sha256=jR5DFh44ua9EHtrVg3vylfgPO84TC2hjsWYjlaostEI,604
+spacetransformer/torch/_version.py,sha256=1LUN_sRKOiFInoB6AlW6TYoQMCh1Z4KutwcHNvHcfB0,511
+spacetransformer/torch/affine_builder.py,sha256=gNaYfAZuM__Wl-TMx-6UW3NNzCeHr4eSAxLNctwSlqE,4252
+spacetransformer/torch/gpu_utils.py,sha256=_0qQ0pBofFWjnyvun3iN-DywVJpngXg7YmW2fzAjSmU,10056
+spacetransformer/torch/image_warpers.py,sha256=cfpWlcwjHET_BsF3i2D-mPtJD-Uv6o7m79jnPXR0pz4,27339
+spacetransformer/torch/utils.py,sha256=GnOASGTiQjt3ryzKluLHMfrHpYcFX3KdaiGxVpaJkRU,1708
+spacetransformer/torch/validation.py,sha256=5XhP4TI7NvX_4hqT1ZgqxEr1727LkWojDUgX-DoGT-o,8320
+spacetransformer_torch-0.2.4.dist-info/METADATA,sha256=3St27KpW7JugagPXJJ9XsJAj9mKUEsCXkXJEespARp4,1017
+spacetransformer_torch-0.2.4.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+spacetransformer_torch-0.2.4.dist-info/top_level.txt,sha256=bojDEOJWlhdf3CLPKGTQxGaK789-WHUZN8S64bO6ZV4,17
+spacetransformer_torch-0.2.4.dist-info/RECORD,,
