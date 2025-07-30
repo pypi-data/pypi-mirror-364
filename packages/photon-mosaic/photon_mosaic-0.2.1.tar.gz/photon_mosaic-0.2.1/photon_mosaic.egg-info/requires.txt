@@ -1,0 +1,16 @@
+snakemake
+numpy
+snakemake-executor-plugin-slurm
+PyYAML
+derotation
+suite2p-NIU
+
+[dev]
+pytest
+pytest-cov
+coverage
+tox
+mypy
+pre-commit
+ruff
+setuptools_scm

@@ -1,0 +1,2 @@
+[console_scripts]
+photon-mosaic = photon_mosaic.cli:main

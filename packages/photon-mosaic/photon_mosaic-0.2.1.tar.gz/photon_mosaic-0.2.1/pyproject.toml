@@ -1,0 +1,128 @@
+[project]
+name = "photon-mosaic"
+authors = [{name = "Laura Porta", email= "ucqflpo@ucl.ac.uk"}]
+description = "Automating calcium imaging analysis"
+readme = "README.md"
+requires-python = ">=3.11.0"
+dynamic = ["version"]
+
+dependencies = [
+  "snakemake",
+  "numpy",
+  "snakemake-executor-plugin-slurm",
+  "PyYAML",
+  "derotation",
+  "suite2p-NIU"
+]
+
+license = {text = "BSD-3-Clause"}
+
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: BSD License",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/neuroinformatics-unit/photon-mosaic"
+"Bug Tracker" = "https://github.com/neuroinformatics-unit/photon-mosaic/issues"
+"Documentation" = "https://photon-mosaic.neuroinformatics.dev"
+
+"Source Code" = "https://github.com/neuroinformatics-unit/photon-mosaic"
+"User Support" = "https://github.com/neuroinformatics-unit/photon-mosaic/issues"
+
+[project.scripts]
+photon-mosaic = "photon_mosaic.cli:main"
+
+[project.optional-dependencies]
+dev = [
+  "pytest",
+  "pytest-cov",
+  "coverage",
+  "tox",
+  "mypy",
+  "pre-commit",
+  "ruff",
+  "setuptools_scm",
+]
+
+[build-system]
+requires = [
+    "setuptools>=45",
+    "wheel",
+    "setuptools_scm[toml]>=6.2",
+]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["photon_mosaic*"]
+exclude = ["tests", "docs*"]
+
+
+[tool.pytest.ini_options]
+addopts = "--cov=photon_mosaic"
+filterwarnings = [
+    "error",
+]
+
+[tool.setuptools_scm]
+
+[tool.check-manifest]
+ignore = [
+  ".yaml",
+  "tox.ini",
+  "tests/",
+  "tests/test_unit/",
+  "tests/test_integration/",
+  "docs/",
+  "docs/source/",
+]
+
+
+[tool.ruff]
+line-length = 79
+exclude = ["__init__.py", "build", ".eggs"]
+lint.select = [
+  "E",   # pycodestyle errors
+  "F",   # Pyflakes
+  "I",   # isort
+  # You can see what all the rules do here: https://docs.astral.sh/ruff/rules/
+  # Some additional ruff rules that might be useful (uncomment to enable)
+  #"UP",  # pyupgrade
+  #"B",   # flake8 bugbear
+  #"SIM", # flake8 simplify
+  #"C90", # McCabe complexity
+]
+fix = true
+
+[tool.ruff.format]
+docstring-code-format = true # Also format code in docstrings (e.g. examples)
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+envlist = py{311,312}
+isolated_build = True
+
+[gh-actions]
+python =
+    3.11: py311
+    3.12: py312
+
+[testenv]
+deps =
+    .[dev]
+commands =
+    pytest -v --color=yes --cov=photon_mosaic --cov-report=xml
+"""
+
+[tool.codespell]
+skip = '.git'
+check-hidden = true
