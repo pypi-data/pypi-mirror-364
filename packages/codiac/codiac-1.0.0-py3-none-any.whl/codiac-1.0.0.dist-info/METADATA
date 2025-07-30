@@ -1,0 +1,36 @@
+Metadata-Version: 2.4
+Name: codiac
+Version: 1.0.0
+Summary: CoDIAC: Comprehensive Domain Interface Anlysis of Contacts
+Home-page: https://github.com/NaegleLab/CoDIAC
+Author: Naegle Lab
+Author-email: kmn4mj@virginia.edu
+License: GNU General Public License v3
+Project-URL: Documentation, https://naeglelab.github.io/CoDIAC/index.html
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Science/Research
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+License-File: LICENSE
+Requires-Dist: pandas==2.1.*
+Requires-Dist: numpy==1.26.*
+Requires-Dist: scipy==1.11.*
+Requires-Dist: matplotlib==3.7.*
+Requires-Dist: seaborn==0.13.*
+Requires-Dist: statsmodels==0.14.*
+Requires-Dist: biopython==1.79.*
+Requires-Dist: requests==2.31.*
+Requires-Dist: cogent3==2023.7.18a1
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: project-url
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+This is the source code for CoDIAC, an open source Python toolkit for harnessing InterPro, Uniprot, PDB, and AlphaFold for generating references of proteins containing domains of interest and analyzing the contacts that exist between that domain and other regions of interest.
