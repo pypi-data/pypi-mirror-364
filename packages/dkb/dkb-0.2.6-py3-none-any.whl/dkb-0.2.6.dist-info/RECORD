@@ -1,0 +1,12 @@
+./.gitignore,sha256=sVIQydKKN53qKZXUqmGVYRdtVQxx2rZI2qK5ooBEJIw,94
+./PKG-INFO,sha256=dkC-gR1b-ywl18oKYQCQIiiWeVsEQtk7ocQQ1LPXeSI,4947
+./README.md,sha256=zWNfiWGB50uNOGIULVRQoY_Iu_AY2L6ThbPaOJtIdyo,3873
+./claude.png,sha256=-EUIBAUy9auEI-edoHGtxtCs_h8U5ljqPS0EPHwj1JA,216658
+./dkb.py,sha256=oDyQ9Ln-CyuwmV6jx-zjRXFEmkOV9OzWHwml3Uvjtk0,26463
+./pyproject.toml,sha256=zN76YF-jI6O8k-bjdXYx2dLznrbHZlKH_gBjCIXTlTU,1293
+./.github/cliff.toml,sha256=qn7ml4fsaH55bmRYq9ce1AYRY4CW-lNQspqn1R3rRbg,1375
+./.github/workflows/release.yml,sha256=di1j9YBa20frLozl9wXRUf9ruY20i6JO9o_72aVT_jg,3540
+dkb-0.2.6.dist-info/METADATA,sha256=dkC-gR1b-ywl18oKYQCQIiiWeVsEQtk7ocQQ1LPXeSI,4947
+dkb-0.2.6.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+dkb-0.2.6.dist-info/entry_points.txt,sha256=_eOctOQA3y71iM7WLA0KDsaXPOjWp8LdvkkzfzlK1Z4,33
+dkb-0.2.6.dist-info/RECORD,,
