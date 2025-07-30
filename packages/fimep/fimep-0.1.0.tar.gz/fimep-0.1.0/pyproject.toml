@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "fimep"
+version = "0.1.0"
+description = "An ensemble predictor that uses a deep neural network for effector prediction. Input is a dataframe of predictions from kingdom-specific programs."
+readme = "README.md"
+requires-python = ">=3.11"
+
+authors = [
+  { name = "Love Odunlami", email = "lovekayode1@gmail.com" },
+]
+
+license = { text = "MIT" }
+license-files = ["LICENSE"]
+
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+
+dependencies = [
+  "numpy>=1.26.4",
+  "pandas>=2.2.3",
+  "keras>=3.6.0",
+  "tensorflow>=2.16.2",
+  "biopython>=1.85"
+]
+
+[project.scripts]
+fimep = "fimep.fimep_wrapper:main"
+
+
+[project.urls]
+Homepage = "https://github.com/LoveBio/fimep"
+Issues = "https://github.com/LoveBio/fimep/issues"
+
+[tool.hatch.build]
+sources = ["src"]
+
+# This includes non-code files like your Keras model in the wheel
+include = [
+  "src/fimep/model_2_v3_02.keras"
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/fimep"]
