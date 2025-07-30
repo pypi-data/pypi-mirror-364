@@ -1,0 +1,9 @@
+snakemake_executor_plugin_cannon/__init__.py,sha256=_n5wkqO4SLrCKuduUuNlB_AmvKQJ9smBEkHHtJkyqXY,37117
+snakemake_executor_plugin_cannon/cannon.py,sha256=C7lGo-ODaNDUjKzYV-C7wiRFV0tkRUnIyCLzeAVCe2w,9565
+snakemake_executor_plugin_cannon/efficiency_report.py,sha256=Lcafd8Zv14NMOmghPzuUd7rxLUS8PQmOISuNosauA4w,6256
+snakemake_executor_plugin_cannon/submit_string.py,sha256=C4-ZIsrHJg9WiJuDW3HqLno0uigBz8IYvgbI6nldJ38,2789
+snakemake_executor_plugin_cannon/utils.py,sha256=ML0uyq8edY28RmfJfCqb_JAZ_mpOejGVlpTmxr7h7pI,4490
+snakemake_executor_plugin_cannon-1.6.0.post1.dist-info/LICENSE,sha256=YVc4xTLWMqGfFL36120k7rzXtsT6e4RkJsh68VVn12s,1076
+snakemake_executor_plugin_cannon-1.6.0.post1.dist-info/METADATA,sha256=wjs3oriID5ngpJk_z0UZZfefIoQzINouMJhXL7zDeCg,3240
+snakemake_executor_plugin_cannon-1.6.0.post1.dist-info/WHEEL,sha256=b4K_helf-jlQoXBBETfwnf4B04YC67LOev0jo4fX5m8,88
+snakemake_executor_plugin_cannon-1.6.0.post1.dist-info/RECORD,,
