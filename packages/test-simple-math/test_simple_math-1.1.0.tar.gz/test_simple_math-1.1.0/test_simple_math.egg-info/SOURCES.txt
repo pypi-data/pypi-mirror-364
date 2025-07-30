@@ -1,0 +1,9 @@
+LICENSE
+README.md
+setup.py
+simple_math/__init__.py
+simple_math/operations.py
+test_simple_math.egg-info/PKG-INFO
+test_simple_math.egg-info/SOURCES.txt
+test_simple_math.egg-info/dependency_links.txt
+test_simple_math.egg-info/top_level.txt
