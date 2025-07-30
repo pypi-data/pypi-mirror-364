@@ -1,0 +1,18 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+_joblib_cache_
+*.py[cod]
+*$py.class
+
+# Jupyter notebook files
+.ipynb_checkpoints/
+*.ipynb
+
+#VS code files
+.vscode/
+
+#Mac OS files
+.DS_Store
+
+# GUMP-related test/working files 
+GUMP_Results/
