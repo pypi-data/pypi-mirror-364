@@ -1,0 +1,2 @@
+[console_scripts]
+scum-programmer = scum_programmer.main:main
