@@ -1,0 +1,3 @@
+[console_scripts]
+python-aitest-writer = python_aitest_writer.generate_test_cases:main
+

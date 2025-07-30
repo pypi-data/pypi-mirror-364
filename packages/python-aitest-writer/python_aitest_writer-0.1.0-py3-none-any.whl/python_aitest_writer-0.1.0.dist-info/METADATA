@@ -1,0 +1,64 @@
+Metadata-Version: 2.1
+Name: python-aitest-writer
+Version: 0.1.0
+Summary: Generate pytest test cases for your Python app using Claude AI
+Home-page: https://github.com/yourusername/python_aitest_writer
+Author: Your Name
+Author-email: your.email@example.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: pytest
+Requires-Dist: requests
+
+# python_aitest_writer
+
+Generate comprehensive pytest test cases for your Python application using Claude AI.
+
+## Features
+
+- Automatically generates pytest-style test cases for your Python codebase
+- Uses Claude AI for high-quality, context-aware test generation
+- Writes tests to a `tests/` directory in your project
+- CLI tool for easy integration into your workflow
+
+## Installation
+
+```bash
+pip install python_aitest_writer
+```
+
+## Requirements
+- Python 3.7+
+- [Anthropic Claude API key](https://docs.anthropic.com/claude/docs/quickstart)
+- Internet connection (for API calls)
+
+## Usage
+
+1. Set your Anthropic API key:
+   ```bash
+   export ANTHROPIC_API_KEY=sk-ant-...
+   ```
+2. Run the tool on your Python app:
+   ```bash
+   python-aitest-writer /path/to/your/python/app
+   ```
+   - The tool will scan all `.py` files, send them to Claude, and write generated tests to a `tests/` directory inside your app.
+3. Run the generated tests:
+   ```bash
+   cd /path/to/your/python/app
+   pytest
+   ```
+
+## Troubleshooting
+- **ModuleNotFoundError:** Run `pytest` from your project root. The generated test files include a `sys.path` patch for import safety.
+- **API Errors:** Ensure your `ANTHROPIC_API_KEY` is set and valid.
+- **No tests generated:** Check that your app directory contains `.py` files and is accessible.
+
+## License
+MIT 
+
