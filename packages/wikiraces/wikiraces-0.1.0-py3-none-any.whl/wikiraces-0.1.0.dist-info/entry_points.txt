@@ -1,0 +1,3 @@
+[console_scripts]
+wikiraces=wikiraces.cli:main
+
