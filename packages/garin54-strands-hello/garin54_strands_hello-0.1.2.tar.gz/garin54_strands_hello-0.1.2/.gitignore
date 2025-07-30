@@ -1,0 +1,58 @@
+# -- My Application ignore files
+*.log
+.pyenv
+*.sqlite3
+\#*
+.coverage
+site
+*.bz2
+
+# -- tmp, editor files
+*.swp
+*.~undo-tree~
+*~
+.#*
+.DS_Store
+.dir-locals.el
+.dir-locals.elc
+*.elc
+.tmp/
+_obsolete
+
+# -- dotenv environment variables file
+.env
+.env.test
+.env.production
+.envrc
+
+# -- javascript
+.expo
+node_modules
+package-lock.json
+
+# -- python
+# Pipfile.lock
+# poetry.lock
+*$py.class
+*.py[cod]
+.Python
+.mypy_cache
+.pytest_cache
+.venv
+__pycache__
+dist/
+pdoc_html
+pip-delete-this-directory.txt
+pip-log.txt
+
+# -- ruby
+# rdoc generated
+rdoc
+
+# yard generated
+doc/
+.yardoc
+
+# bundler
+.bundle
+.aider*
