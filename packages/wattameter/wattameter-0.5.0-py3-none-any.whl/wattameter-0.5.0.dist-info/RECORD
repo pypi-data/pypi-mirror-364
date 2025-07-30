@@ -1,0 +1,14 @@
+wattameter/__init__.py,sha256=HRitcfhcOWaSf84ZIsFhOL5Oy0VsM6zF66Z180ysa2Y,167
+wattameter/power_tracker.py,sha256=3ErtjsTugcsbsbLd6EmWyUepPc3p41dJYOwyKDclgws,6860
+wattameter/cli/__init__.py,sha256=RAOqj7fvO5KLHNlu1PKds-BzwkhIEvaDvInbKjArkuY,38
+wattameter/cli/main.py,sha256=w3NSfKHZxS7YdkqYQmphDUnphUnTkGrzvGnGxBCYcMs,4779
+wattameter/utils/__init__.py,sha256=Ehjg5uDJjDnJ5ZSL1iYqN2zsCkG8htQHz21YQQSNVl8,65
+wattameter/utils/codecarbon.py,sha256=_qim7xJi1hF3Wm59tmHVGndvDKBpX_Lv47DA7urYvLI,2142
+wattameter/utils/wattameter.sh,sha256=4wNNAW9DNP9dMWi4jNwvuEwowDO4AbJ42X6qeiyT9NY,3099
+wattameter/utils/wattawait.sh,sha256=-aUJ0FNvD1ln5y6BRzT-zyQh5tf_XkcE2rU4KF3s42M,1537
+wattameter-0.5.0.dist-info/licenses/LICENSE,sha256=o4fRHVjRXPYrCN-8XfHZF-FS5xZ9qdY4iz7Svz_jNwU,1515
+wattameter-0.5.0.dist-info/METADATA,sha256=6pwkaud3BUYLvUvWmdxaqDIVmlZ6qA_zMSFaev_uFa4,4253
+wattameter-0.5.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+wattameter-0.5.0.dist-info/entry_points.txt,sha256=amU1gJ7oo_d1LEFGPkwMDzbUWQDel_5Y9hOgmLMNzM8,208
+wattameter-0.5.0.dist-info/top_level.txt,sha256=MLy0is7coGGDLmFdtFrSE0QXdw_8s_N2O56nNVXkNv8,11
+wattameter-0.5.0.dist-info/RECORD,,
