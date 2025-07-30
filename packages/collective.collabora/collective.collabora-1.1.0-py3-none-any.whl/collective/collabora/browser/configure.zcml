@@ -1,0 +1,49 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="collective.collabora"
+    >
+
+  <browser:resourceDirectory
+      name="collective.collabora"
+      directory="./static"
+      />
+
+  <browser:page
+      name="collabora-edit"
+      for="plone.app.contenttypes.interfaces.IFile"
+      class=".edit.CollaboraEditView"
+      template="templates/edit.pt"
+      permission="zope2.View"
+      layer="collective.collabora.interfaces.ICollectiveCollaboraLayer"
+      />
+
+  <browser:page
+      name="collabora-wopi"
+      for="plone.app.contenttypes.interfaces.IFile"
+      class=".wopi.CollaboraWOPIView"
+      permission="zope2.View"
+      layer="collective.collabora.interfaces.ICollectiveCollaboraLayer"
+      />
+
+  <configure zcml:condition="installed Products.ATContentTypes">
+    <browser:page
+        name="collabora-edit"
+        for="Products.ATContentTypes.interfaces.IATFile"
+        class=".edit.CollaboraEditView"
+        template="templates/edit.pt"
+        permission="zope2.View"
+        layer="collective.collabora.interfaces.ICollectiveCollaboraLayer"
+        />
+
+    <browser:page
+        name="collabora-wopi"
+        for="Products.ATContentTypes.interfaces.IATFile"
+        class=".wopi.CollaboraWOPIView"
+        permission="zope2.View"
+        layer="collective.collabora.interfaces.ICollectiveCollaboraLayer"
+        />
+  </configure>
+
+</configure>
