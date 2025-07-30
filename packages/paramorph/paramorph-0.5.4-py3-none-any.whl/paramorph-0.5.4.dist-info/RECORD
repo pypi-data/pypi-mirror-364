@@ -1,0 +1,16 @@
+paramorph/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+paramorph/build.py,sha256=06cPWD-zijR2E-3l44jKtR-74eQfwUpOX8g7xbKW9Lk,5054
+paramorph/constants.py,sha256=3ZOTfkGy-t3zsnYUb5WvbdOXyYuWxwjORmHVhGpYoOU,914
+paramorph/core.py,sha256=Dz4PJEYFdq9YNhczjhwfi6o6RMMcsMWQ8KsX_ka_B_o,13009
+paramorph/paramorph_callbacks.py,sha256=uKCxGEBaiOCjFAry-LauTbtxhvKT9xf4ERJ_-ri8JT0,8310
+paramorph/paramorph_config.py,sha256=PNn5gyOxnJ3mUDPcHnOunFKjNTu5JKe4RcRd_y73BNc,2503
+paramorph/paramorph_sdk.py,sha256=oxWfS60yTx8aB_poh9u1o9c11N62QU5FM-xwkuW7JPI,8446
+paramorph/utils.py,sha256=49jPllwuz7HTHkwvPd2hVE-LZb3HVUcFu9Je5NRPJZ4,4927
+paramorph/huggingface/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+paramorph/huggingface/callbacks.py,sha256=U7UgC_xKU0s6swvbAi23aTUmnzRk8XJPE8n0wiMZlSg,2856
+paramorph/huggingface/trainer.py,sha256=VmHd4wE71wWdFNK7-a-4Xe8vqmMP18u5JorPNieqcd0,3456
+paramorph-0.5.4.dist-info/licenses/LICENSE,sha256=pogfDoMBP07ehIOvWymuWIar8pg2YLUhqOHsJQU3wdc,9250
+paramorph-0.5.4.dist-info/METADATA,sha256=vYpEs3yfPsyaOrSsYCh2HLVv-8Z6sTw1d-U6yIbuAec,20437
+paramorph-0.5.4.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+paramorph-0.5.4.dist-info/top_level.txt,sha256=_u9yooBAliVF0PGYY-OEo-mIJH0ek00TEUGZti0mlos,10
+paramorph-0.5.4.dist-info/RECORD,,
