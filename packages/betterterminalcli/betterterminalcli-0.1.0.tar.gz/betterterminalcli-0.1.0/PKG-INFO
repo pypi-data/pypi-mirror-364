@@ -1,0 +1,60 @@
+Metadata-Version: 2.4
+Name: betterterminalcli
+Version: 0.1.0
+Summary: Uma biblioteca para facilitar interfaces no terminal com menus, formulários, tabelas, logs coloridos e mais.
+Home-page: https://github.com/MauricioReisdoefer/betterterminal
+Author: Maurício Reisdoefer Pereira
+Author-email: mauricio.reisdoefer2009@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: readchar>=3.0.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Better Terminal #
+
+Biblioteca Python para facilitar a criação de interfaces de terminal interativas, elegantes e funcionais, com menus, formulários, logs, tabelas e entre outros...
+
+---
+
+## Recursos principais ##
+
+- Menus interativos com navegação por setas
+- Formulários com múltiplos tipos de perguntas (texto, senha, escolha, sim/não, números)  
+- Exibição de tabelas  
+- Barras de progresso e linhas de status atualizáveis  
+- Logs coloridos para facilitar a leitura  
+- Pager para visualização paginada de textos longos  
+- Molduras (frames) para organizar e destacar informações  
+
+---
+
+## Instalação ##
+
+```bash
+pip install betterterminal
+```
+
+Ou instale localmente.
+
+## Planos Futuros ##
+
+Refatorar com um sistema de "Widgets" e adição de novas funcionalidades.
+
+## Licença ##
+
+MIT License © 2025 Mauricio Reisdoefer
