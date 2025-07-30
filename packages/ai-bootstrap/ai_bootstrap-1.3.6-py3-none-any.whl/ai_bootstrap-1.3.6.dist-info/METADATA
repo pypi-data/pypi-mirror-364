@@ -1,0 +1,65 @@
+Metadata-Version: 2.4
+Name: ai-bootstrap
+Version: 1.3.6
+Summary: A CLI tool for scaffolding AI projects with GitHub Codespace integration and AI-powered project planning
+Project-URL: Homepage, https://github.com/SohamChaudhari2004/AIBootstrap.git
+Project-URL: Repository, https://github.com/SohamChaudhari2004/AIBootstrap.git
+Author-email: Soham Chaudhari <sohamrc0@gmail.com>
+License: MIT
+Requires-Python: >=3.8
+Requires-Dist: anthropic
+Requires-Dist: asyncio
+Requires-Dist: copier
+Requires-Dist: jinja2
+Requires-Dist: langchain-anthropic
+Requires-Dist: langchain-community
+Requires-Dist: langchain-core
+Requires-Dist: langchain-mistralai
+Requires-Dist: langchain-openai
+Requires-Dist: nest-asyncio
+Requires-Dist: openai
+Requires-Dist: pydantic
+Requires-Dist: python-dotenv
+Requires-Dist: pyyaml
+Requires-Dist: rich
+Requires-Dist: typer[all]
+Provides-Extra: dev
+Requires-Dist: black>=24.0.0; extra == 'dev'
+Requires-Dist: pytest-asyncio>=0.23.0; extra == 'dev'
+Requires-Dist: pytest>=8.0.0; extra == 'dev'
+Requires-Dist: ruff>=0.1.0; extra == 'dev'
+Provides-Extra: llms
+Requires-Dist: langchain-chainlit; extra == 'llms'
+Requires-Dist: langchain-chroma; extra == 'llms'
+Requires-Dist: langchain-cli; extra == 'llms'
+Requires-Dist: langchain-faiss; extra == 'llms'
+Requires-Dist: langchain-fastapi; extra == 'llms'
+Requires-Dist: langchain-in-memory; extra == 'llms'
+Requires-Dist: langchain-langgraph; extra == 'llms'
+Requires-Dist: langchain-llamaindex; extra == 'llms'
+Requires-Dist: langchain-ollama; extra == 'llms'
+Requires-Dist: langchain-postgres; extra == 'llms'
+Requires-Dist: langchain-redis; extra == 'llms'
+Requires-Dist: langchain-streamlit; extra == 'llms'
+Description-Content-Type: text/markdown
+
+# Use AI to automatically plan and generate your project
+ai-bootstrap create --chat
+
+# Specify AI provider (default is OpenAI)
+ai-bootstrap create --chat --planner-provider anthropic
+
+
+
+# Test the AI planner functionality
+ai-bootstrap test-ai-planner --description "I want to build a PDF analysis chatbot"
+
+# Test with different provider
+ai-bootstrap test-ai-planner --provider anthropic --description "Create a multi-agent research system"
+
+
+# Use the traditional interactive wizard
+ai-bootstrap create
+
+# Or specify options manually
+ai-bootstrap create --type rag --name my-rag-system
