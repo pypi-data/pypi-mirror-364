@@ -1,0 +1,37 @@
+from setuptools import setup, find_packages
+
+setup(
+    name="django-migration-testgen",
+    version="0.1.0",
+    description="Auto-generate test files for Django migration files",
+    long_description=open("README.md").read(),
+    long_description_content_type="text/markdown",
+    author="Vijayasankar Murugan",
+    author_email="vijayasankarsoftware@gmail.com",
+    url="https://github.com/yourusername/django-migration-testgen",
+    packages=find_packages(),
+    include_package_data=True,
+    install_requires=[
+        "Django>=3.2",
+    ],
+    classifiers=[
+        "Development Status :: 4 - Beta",
+        "Environment :: Web Environment",
+        "Framework :: Django",
+        "Framework :: Django :: 3.2",
+        "Framework :: Django :: 4.0",
+        "Framework :: Django :: 4.1",
+        "Framework :: Django :: 4.2",
+        "Framework :: Django :: 5.0",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Topic :: Software Development :: Testing",
+    ],
+    python_requires=">=3.8",
+)

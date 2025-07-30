@@ -1,0 +1,13 @@
+include README.md
+include LICENSE
+include requirements.txt
+include MANIFEST.in
+recursive-include django_migration_testgen/templates *
+recursive-include django_migration_testgen/management *
+recursive-exclude * __pycache__
+recursive-exclude * *.pyc
+recursive-exclude * *.pyo
+recursive-exclude * .DS_Store
+exclude .gitignore
+exclude .github
+exclude tests
