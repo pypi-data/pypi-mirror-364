@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sus-adk"
+version = "0.1.0"
+description = "A modular sus-adk for LLM interaction via cookies, inspired by LangChain and Google-ADK."
+authors = [
+    { name = "Venkat Bulusu", email = "venkatbulusu96@gmail.com" }
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = [
+    "requests"
+] 
