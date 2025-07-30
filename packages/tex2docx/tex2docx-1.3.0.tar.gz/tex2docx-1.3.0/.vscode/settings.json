@@ -1,0 +1,7 @@
+{
+    "python.testing.pytestArgs": [
+        "tests" // 指定测试目录，如果你的测试在 'tests' 文件夹下
+    ],
+    "python.testing.unittestEnabled": false, // 禁用 unittest
+    "python.testing.pytestEnabled": true // 启用 pytest
+}
