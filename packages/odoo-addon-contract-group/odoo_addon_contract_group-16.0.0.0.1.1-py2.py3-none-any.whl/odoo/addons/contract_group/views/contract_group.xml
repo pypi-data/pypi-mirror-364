@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="contract_group_form_view" model="ir.ui.view">
+        <field name="name">contract.group.view.form</field>
+        <field name="model">contract.group</field>
+        <field name="arch" type="xml">
+            <form string="Contract Group">
+                <sheet>
+                    <group>
+                        <field name="code" />
+                        <field name="partner_id" />
+
+                        <field name="contract_ids" />
+                        <field name="account_move_ids" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="contract_group_view_tree" model="ir.ui.view">
+        <field name="name">contract.group.view.tree</field>
+        <field name="model">contract.group</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="code" />
+                <field name="partner_id" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="contract_group_action_window" model="ir.actions.act_window">
+        <field name="name">contract.group.action.window</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">contract.group</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="contract_group_menu_act"
+        name="Contract Group"
+        parent="account.menu_finance_receivables"
+        action="contract_group_action_window"
+        sequence="900"
+    />
+</odoo>
