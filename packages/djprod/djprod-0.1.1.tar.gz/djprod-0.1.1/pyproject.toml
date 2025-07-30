@@ -1,0 +1,27 @@
+[project]
+name = "djprod"
+version = "0.1.1"
+description = "Yet another production-ready Django project."
+authors = [{ name = "Ali Hassan", email = "alihassan.pyc@gmail.com" }]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["django", "django-environ", "psycopg2-binary", "rich"]
+
+[project.scripts]
+djprod = "djprod.cli:main"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["djprod"]
+
+[tool.setuptools.package-data]
+"djprod" = ["../templates/**/*"]
+
+[project.urls]
+Homepage = "https://github.com/elly-hacen/djprod"
+Repository = "https://github.com/elly-hacen/djprod"
+Issues = "https://github.com/elly-hacen/djprod/issues"
