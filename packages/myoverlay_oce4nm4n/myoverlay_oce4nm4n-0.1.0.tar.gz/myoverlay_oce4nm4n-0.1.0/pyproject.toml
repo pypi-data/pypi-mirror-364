@@ -1,0 +1,30 @@
+[project]
+name = "myoverlay_oce4nm4n"
+version = "0.1.0"
+project.description = "A simple overlay for notes, apple reminders and tracking time until an event."
+authors = [
+    {name = "Oce4nM4n",email = "ayushmansihag@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "datetime (>=5.5,<6.0)"
+]
+
+
+
+classifiers = [
+    "Topic :: Utilities",
+    "Environment :: MacOS X"
+]
+
+license = { text = "MIT" }
+
+
+[tool.poetry]
+packages = [{include = "myoverlay_oce4nm4n", from = "src"}]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
