@@ -1,0 +1,1 @@
+Serve pip install numpy<2, pyzed forza l'installazione di una versione 2.x ma questo crea conflitti con opencv
