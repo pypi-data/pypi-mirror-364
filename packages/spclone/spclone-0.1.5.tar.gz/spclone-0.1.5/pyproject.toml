@@ -1,0 +1,23 @@
+
+[project]
+name = "spclone"
+version = "0.1.5"
+authors = [
+    { name = "Sermet Pekin", email = "Sermet.Pekin@gmail.com" }
+]
+description = "Instead of git clone this will install python packages from github"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "requests>=2.32.4",
+]
+[dependency-groups]
+dev = [
+    "black>=25.1.0",
+    "flake8>=7.3.0",
+    "pytest>=8.4.1",
+    "ruff>=0.12.5",
+]
+[project.scripts]
+spclone = "spclone.cli:clone"
+spinstall = "spclone.cli:main"
