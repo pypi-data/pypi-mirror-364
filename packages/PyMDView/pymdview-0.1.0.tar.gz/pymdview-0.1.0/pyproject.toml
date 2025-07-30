@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "PyMDView"
+version = "0.1.0"
+description = "A command line tool to display Markdown files"
+readme = "README.md"
+authors = [
+    {name = "Matt Lowe", email = "matt.lowe@amg-group.co.uk"}
+]
+maintainers = [
+  { name = "AMG Group", email = "matt.lowe@amg-group.co.uk" }
+]
+license = {text = "MIT"}
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Topic :: Text Processing :: Markup",
+    "Topic :: Utilities",
+]
+requires-python = ">=3.6"
+dependencies = [
+    "rich>=10.0.0",
+    "markdown-it-py>=2.0.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/AMGGroupPublic/MDView"
+"Bug Tracker" = "https://github.com/AMGGroupPublic/MDView/issues"
+
+[project.scripts]
+mdview = "source.python.CliMarkdown.cli_markdown:main"
+
+[tool.setuptools]
+packages = ["source.python.CliMarkdown"]

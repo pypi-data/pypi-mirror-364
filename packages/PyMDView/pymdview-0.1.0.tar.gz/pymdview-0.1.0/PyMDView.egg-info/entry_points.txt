@@ -1,0 +1,2 @@
+[console_scripts]
+mdview = source.python.CliMarkdown.cli_markdown:main
