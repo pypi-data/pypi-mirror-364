@@ -1,0 +1,10 @@
+odoo/addons/stock_viewer/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+odoo/addons/stock_viewer/__manifest__.py,sha256=Bb0coUZX4lVwq1swVfnGSN-K_FuuhTkIJq79o_6p1JI,981
+odoo/addons/stock_viewer/security/ir.model.access.csv,sha256=-PV1s7h6-7fgu7H0jp13rrosWLq45q3H9tEMe0I-pGA,2253
+odoo/addons/stock_viewer/security/stock_security.xml,sha256=KoM6XIHTTUzNtIqFS1P2EK4scmz6LHu1c32w9KgUtNI,567
+odoo/addons/stock_viewer/static/description/icon.png,sha256=6xBPJauaFOF0KDHfHgQopSc28kKvxMaeoQFQWZtfZDo,9455
+odoo/addons/stock_viewer/views/stock.xml,sha256=3OFKbdAcQ_E70uTVFzG-MxWJ5f2cAX1TWLY7NXtQ0mA,2119
+odoo12_addon_stock_viewer-12.0.1.0.0.99.dev3.dist-info/METADATA,sha256=pbFkU_PHzcg0VXS4p1HwmKU2DYZZ2QBjc2jyFgCtVrE,956
+odoo12_addon_stock_viewer-12.0.1.0.0.99.dev3.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+odoo12_addon_stock_viewer-12.0.1.0.0.99.dev3.dist-info/top_level.txt,sha256=qBj40grFkGOfDZ2WDSw3y1RnDlgG0u8rP8pvGNdbz4w,5
+odoo12_addon_stock_viewer-12.0.1.0.0.99.dev3.dist-info/RECORD,,
