@@ -1,0 +1,33 @@
+name: keystream_connect
+
+backend:
+  path: backend
+  routers:
+    - usecase
+
+frontend:
+  path: ""
+  entrypoints:
+    - name: uc_keystream_connect
+      title: keySTREAM™ In-field Provisioning
+      description: ""
+      entry: TrustManaged/keySTREAM AWS Connect-TMG.ipynb
+      icon:
+        name: keystream_logo_png
+        path: TrustManaged/assets/images/kudelski_iot.png
+      applications:
+        - IoT   # (Available applications: Automotive, IoT, Secure Boot etc)
+      devices:
+        - ECC608-TMNGTLS
+      boards:
+        - EV10E69A
+    - name: keystream_fota
+      title: keySTREAM™ Firmware Over-The-Air Update
+      description: ""
+      entry: frontend/usecases/keystream_fota/usecase_config.yaml
+      applications:
+        - IoT
+      devices:
+        - ECC608-TMNGTLS
+      boards:
+        - EV89U05A

@@ -1,0 +1,77 @@
+Metadata-Version: 2.4
+Name: tpds-extension-keystream-connect
+Version: 1.3.0
+Summary: Microchip(SPG) Trust Platform - Keystream Connect Usecase
+Home-page: https://www.microchip.com/TrustPlatform
+Author: Microchip Technology
+Author-email: SPG.Tools@microchip.com
+Classifier: License :: Other/Proprietary License
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: tpds-core>=2.3.2
+Requires-Dist: tpds-helper>=2.3.2
+Requires-Dist: tk
+Requires-Dist: pydebuggerupgrade>=3.7.1
+Dynamic: license-file
+
+# Trust Platform Design Suite - Kudelski keySTREAM connect Extension
+
+This module contains the frontend, backend services and resources required for keySTREAM connect extension.
+
+## Release Notes
+
+## Release 1.3.0
+    - Added FoTA with keySTREAM Usecase
+    - CryptoAuth Pro Trust Platform (EV89U05A) board support is added
+
+## Release v1.2.0
+    - Added support for public key provisioning
+    - Added support for shared symmetric key provisioning
+    - Updated 2 tier PKI documentation
+    - Updated usecase help for added features
+    - Added fixes for issues on usecase (linux/osx)
+    - Added firmware binary needed for factory programming
+
+## Release v1.1.2
+    - Added AWS ATS support
+    - Fixed video links on Usecase
+    - Updated MoQ and Certificate details for Secure Exchange Process
+
+## Release v1.1.1
+    - Added 2-Tier PKI support
+    - Transition from UTC time to Generalized time
+    - Other minor bug fixes
+
+## Release v1.0.2
+    - Step 2 Usecase bug fixes for new installation
+    - Usecase learn video updated to YT keySTREAM video
+
+## Release v1.0.1
+    - Updated WINC firmware update utility
+    - Removed device reset requirement on step 1 (Usecase TD)
+    - Updated form for user input on step 2 (Usecase TD)
+    - Updated Usecase help documentation
+
+## Release v1.0.0
+### Updates
+#### Device Onboarding
+    - Device Onboarding is the process by which a device is registered in keySTREAM server with a certain device identity and attached to a certain device vendor. Device onboarding is performed automatically by keySTREAM as part of the in-field device identity provisioning process.
+#### Device Certificate Renewal
+    - A new certificate will be generated and provisioned to the device before the old one expires. Renewing a certificate does not mean changing the associated key pair. **The key pair stays the same.**
+#### Device Refurbish
+    - A device can be brought back to factory provisioned state at any time using the device refurbishment functionality.
+#### Optional Multi Device Profile Public Uid
+    - Added Mutable Device Profile Public UID Feature in KTA.
+#### CAL Update 3.7.4
+    - KTA code has been integrated with Cryptoauthlib (3.7.4).
+### Fixes
+    - Changes Done to Support Integration of KTA with Latest Cryptoauthlib (3.7.4)
+    - Fixed Compilation Warnings
+    - Updated Doxygen Header's for KTA Source Files
+    - Device Reboot issue fixed
+    - Key Renewal issue fixed
+    - Expiry Date issue fixed

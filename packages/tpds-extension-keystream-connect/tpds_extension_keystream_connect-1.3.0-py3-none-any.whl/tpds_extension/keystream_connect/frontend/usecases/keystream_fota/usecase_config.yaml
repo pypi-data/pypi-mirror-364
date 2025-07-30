@@ -1,0 +1,73 @@
+---
+info: info_keystream_fota.md
+help: readme.pdf
+trainingVideos:
+  - https://www.youtube.com/embed/qZBLomyK0ds?si=02kb_Wz_2VHvG0iT
+assetList:
+  - Slot: 0x01
+    Description: Attestation Key - Private Key used by Kudelski to attest to the device authenticity. Only Kudelski knows the corresponding Public Key.
+  - Slot: 0x02
+    Description: Seal Identity ID - Unique profile User ID (UID) stored in this slot.
+  - Slot: 0x03
+    Description: Asymmetric Key - Managed and reserved by Kudelski.
+  - Slot: 0x04
+    Description: Symmetric Key - Managed and reserved by Kudelski.
+  - Slot: 0x0F
+    Description: Signing Public Key - Public Key to verify the signature of a Component Signed by Kudelski
+firmware:
+  - sg41_boot/sg41_sboot.X
+  - sg41_kta_fota/KTA_FOTA.X
+transactionDiagram: td_keystream_fota.png
+userInputs:
+  - input:
+      name: pub_uid
+      description: Fleet Profile Public UID
+      tooltip: Enter the Fleet Profile Public UID Created in keySTREAM UI, Ignore to use from previously generated resources.
+      inputType: text
+  - input:
+      name: keystream_auth_token
+      description: Authorization Token
+      tooltip: keySTREAM Authorization Token (API Key), Ignore to use from previously generated resources.
+      inputType: text
+  - input:
+      name: key_name
+      description: Signing Key Name
+      tooltip: keySTREAM Signing Key Name. Ignore to use from previously generated resources.
+      inputType: text
+  - input:
+      name: ssid
+      description: WIFI SSID
+      tooltip: Provide WIFI SSID to which device needs to connect, Ignore to use from previously generated resources.
+      inputType: text
+  - input:
+      name: password
+      description: WiFi Password
+      tooltip: Provide Wifi Password for device to connect, Ignore to use from previously generated resources.
+      inputType: text
+  - input:
+      name: comp_1
+      description: Component 1 (Bootloader)
+      tooltip: Upload Component 1 HEX
+      inputType: file
+      allowedFileExtensions:
+        - .hex
+  - input:
+      name: comp_1_info
+      description: Component 1 Info Address (hex)
+      tooltip: Please Enter Address if info for Component 1 in hex, Component info contains Start address of image, length and signature address etc.
+      inputType: text
+  - input:
+      name: comp_2
+      description: Component 2 (Application)
+      tooltip: Upload Component 2 HEX
+      inputType: file
+      allowedFileExtensions:
+        - .hex
+  - input:
+      name: comp_2_info
+      description: Component 2 Info Address (hex)
+      tooltip: Please Enter Address if info for Component 2 in hex, Component info contains Start address of image, length and signature address etc.
+      inputType: text
+supportedBoards:
+  - EV89U05A
+API: keystream/fota

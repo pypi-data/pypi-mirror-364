@@ -1,0 +1,51 @@
+---
+title: ECC608-TMNGTLS Device Information
+devices:
+  ECC608-TMNGTLS:
+    basePart: ATECC608
+    partLink: https://www.microchip.com/en-us/product/ECC608-TMNGTLS
+    toolLink: https://www.microchipdirect.com/trust-platform
+    provisioningFlow: TrustMANAGER
+    partType: Silicon
+    productCategory: Secure Element
+    partInterface:
+      - i2c
+    tpdsRelease: Yes
+    ndaRequired: No
+    annualVolume: 100000
+    certificates:
+      - standard
+      - WPC
+parts:
+  - partNumber: ECC608-TMNGTLSU
+    deviceName: ECC608-TMNGTLS
+    packagePin: UDFN-8
+    memory: N/A
+    media: Reel
+    moq:
+      lowVolume: 2000
+      highVolume: 30000
+    status: Production
+  - partNumber: ECC608-TMNGTLSS
+    deviceName: ECC608-TMNGTLS
+    packagePin: SOIC-8
+    memory: N/A
+    media: Reel
+    moq:
+      lowVolume: 2000
+      highVolume: 32000
+    status: Production
+  - partNumber: ECC608-TMNGTLSU-B
+    deviceName: ECC608-TMNGTLS
+    packagePin: UDFN-8
+    memory: N/A
+    media: Bag
+    moq: 10
+    status: Production
+  - partNumber: ECC608-TMNGTLSS-B
+    deviceName: ECC608-TMNGTLS
+    packagePin: SOIC-8
+    memory: N/A
+    media: Bag
+    moq: 10
+    status: Production

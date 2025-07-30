@@ -1,0 +1,8 @@
+title: Wifi credentials, Public Profile UID and keySTREAM Authentication token.
+ssid: ''
+password: ''
+pub_uid: ''
+keystream_auth_token: ''
+# Fixed Values
+keystream_coap_endpoint: mss.iot.kudelski.com
+keystream_http_endpoint: mss.iot.kudelski.com

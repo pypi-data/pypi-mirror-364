@@ -1,0 +1,69 @@
+---
+title: TMNG Proto Board Data
+boards:
+  EV10E69A:
+    description: CryptoAuth Trust Platform - TMNG
+    partNumber: EV10E69A
+    web_link: https://www.microchip.com/en-us/development-tool/EV10E69A
+    img: https://www.microchip.com/content/dam/mchp/mrt-dam/products/cpg/231012-cpg-photo-ea06v72a-angle-145x145-md.jpg
+    serial_series: MCHP3311
+    mcu_part_number: ATSAMD21E18A
+    program_tool: nEDBG
+    kit_parser_pid: 8978
+    kit_parser_version: v3.2.0
+    kit_name: CryptoAuth Trust Manager
+    product_string: CryptoAuth Trust Manager
+    connection:
+      interfaceType: hid
+      vid: 1003
+      pid: 8565
+    devices:
+      - deviceName: ECC608-TMNGTLS
+        partInterface:
+          interfaceType: i2c
+          address: 0xC0
+      - deviceName: ATECC608-TCSM
+        partInterface:
+          interfaceType: i2c
+          address: 0xC0
+      - deviceName: ATECC608-TNGTLS
+        partInterface:
+          interfaceType: i2c
+          address: 0x6A
+      - deviceName: ATECC608-TFLXTLS
+        partInterface:
+          interfaceType: i2c
+          address: 0x6C
+
+  EV89U05A :
+    description: CryptoAuth Pro Trust Platform
+    partNumber: EV89U05A
+    web_link: https://www.microchip.com/en-us/development-tool/EV89U05A
+    img: https://www.microchip.com/content/dam/mchp/mrt-dam/products/scg/pp-25-104717-250404-scg-photo-ev89u05a-angle-transparent.jpg
+    mcu_part_number: 32CX1025SG41100
+    program_tool: PKoB4
+    kit_parser_pid: 8978
+    kit_parser_version: v3.2.1
+    kit_name: MPLAB® PKoB4 In-Circuit Debugger
+    product_string: Cryotoauth PRO trustplatform
+    connection:
+      interfaceType: hid
+      vid: 1003
+      pid: 33035
+    devices:
+      - deviceName: ATECC608-TCSM
+        partInterface:
+          interfaceType: i2c
+          address: 0xC0
+      - deviceName: ATECC608-TNGTLS
+        partInterface:
+          interfaceType: i2c
+          address: 0x6A
+      - deviceName: ATECC608-TFLXTLS
+        partInterface:
+          interfaceType: i2c
+          address: 0x6C
+      - deviceName: ECC608-TMNGTLS
+        partInterface:
+          interfaceType: i2c
+          address: 0x70

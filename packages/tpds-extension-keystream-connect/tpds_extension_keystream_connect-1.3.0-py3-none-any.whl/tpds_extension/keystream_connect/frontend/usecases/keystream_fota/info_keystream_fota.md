@@ -1,0 +1,5 @@
+# Firmware Over-The-Air Update with keySTREAM-ECC608-TMNGTLS
+
+Firmware Over The Air (FoTA) is a critical technology that enables remote updates of embedded device firmware without the need for physical access. This capability is essential for maintaining device security, deploying new features, and fixing bugs in a scalable and efficient manner. keySTREAM Connect is a secure, cloud-based platform designed to streamline and manage the FoTA process across a wide range of IoT devices.
+
+Implementing FoTA with keySTREAM Connect and ECC608-TMNGTLS not only reduces operational costs and minimizes downtime but also enhances the overall reliability and security of connected devices. This use case demonstrates how organizations can efficiently manage large-scale device fleets and deliver continuous improvements to their products in the field.
