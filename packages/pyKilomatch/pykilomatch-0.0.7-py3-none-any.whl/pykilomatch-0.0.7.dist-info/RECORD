@@ -1,0 +1,12 @@
+pyKilomatch/AutoCuration.py,sha256=Q3o7iMP1E8_HOtYE59TT9YAvCByogdNNxEk2nwwh51k,12986
+pyKilomatch/ComputeWaveformFeatures.py,sha256=IEZf1yhmocKFex4TUkDG21q_iJx2Zqp7raGPpaf3pmY,3319
+pyKilomatch/IterativeClustering.py,sha256=5DHbxsu0cJBCA3bEQC2VV4b1XG1ffJ0CXgInOK0cwDU,14632
+pyKilomatch/MotionEstimation.py,sha256=0zd1AvU7cYG638T4fIMawFHJnoLAaN969dA8JSYHqSg,10006
+pyKilomatch/Preprocess.py,sha256=tkWulxdKcGxGmhRAHXtwf3MxlqT0GSCht_uoSA-uYng,11086
+pyKilomatch/__init__.py,sha256=y9U0zNKXPGWueNRW-ANHmYFrZ95B2Gv9SWvrAbdMXXk,269
+pyKilomatch/utils.py,sha256=uzTJVKz8ldNSHvlbS-h6cu44n8RIRc0TMPjgcpKU0Oc,10653
+pykilomatch-0.0.7.dist-info/licenses/LICENSE,sha256=OXLcl0T2SZ8Pmy2_dmlvKuetivmyPd5m1q-Gyd-zaYY,35149
+pykilomatch-0.0.7.dist-info/METADATA,sha256=_RQM-WLNIwkcomUARjFlgaSEMiAK2VqkjZiQ0IRMNNI,3816
+pykilomatch-0.0.7.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+pykilomatch-0.0.7.dist-info/top_level.txt,sha256=ecoSfablR9ikC6ZNlbIGgpcn1EwxQA4ufWhqFiwoBHI,12
+pykilomatch-0.0.7.dist-info/RECORD,,
