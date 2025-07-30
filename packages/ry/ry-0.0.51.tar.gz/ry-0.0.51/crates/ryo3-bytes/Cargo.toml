@@ -1,0 +1,24 @@
+[package]
+name = "ryo3-bytes"
+description = "ryo3 + bytes (https://docs.rs/regex/latest/bytes/)"
+version.workspace = true
+authors.workspace = true
+documentation.workspace = true
+edition.workspace = true
+homepage.workspace = true
+license.workspace = true
+repository.workspace = true
+keywords.workspace = true
+categories.workspace = true
+readme = "README.md"
+
+[dependencies]
+pyo3 = { workspace = true, features = [] }
+bytes = { workspace = true }
+ahash = { workspace = true }
+
+[features]
+multiple-pymethods = ["pyo3/multiple-pymethods"]
+
+[lints]
+workspace = true
