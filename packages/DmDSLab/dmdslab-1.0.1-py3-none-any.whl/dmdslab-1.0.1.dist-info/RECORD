@@ -1,0 +1,11 @@
+dmdslab/__init__.py,sha256=L_XRmPEeC1OKusqit9LXLUyNS0KZHnhw-asQzoSUqiE,2191
+dmdslab/datasets/__init__.py,sha256=Xj_hUPw-fOSQ-LxC5RPdqAE78YnDsCgjNGA-Ss5mF3A,417
+dmdslab/datasets/ml_data_container.py,sha256=K5TLqBA40tXJ6A_ZxNdgS_EbYWsSXvZvTP6NJKHw22I,15730
+dmdslab/datasets/uci_dataset_manager.py,sha256=N8uuFsBu35REYmNEHNGD_JJtcN70RAor2B8XyQVWc3I,21798
+dmdslab/datasets/db/uci_datasets.db,sha256=li3aH1ZIZSVqz-JBSgt6NcDBRcc_gM6bfuskbb4Bc_c,16384
+dmdslab-1.0.1.dist-info/licenses/LICENSE,sha256=HrhfyXIkWY2tGFK11kg7vPCqhgh5DcxleloqdhrpyMY,11558
+dmdslab-1.0.1.dist-info/METADATA,sha256=WbV_PDq_18QDKLAeGO730WDn606oTYp4BOCFsDiwlkQ,9223
+dmdslab-1.0.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+dmdslab-1.0.1.dist-info/entry_points.txt,sha256=8qU3LfKNqYeZ10utKhw0Q7Ovs6_XJfVh0cuRaMWojWw,74
+dmdslab-1.0.1.dist-info/top_level.txt,sha256=up-ui2PiHW8BzITDxKEObWhvUJINPx4ArTjFjn_CUdA,8
+dmdslab-1.0.1.dist-info/RECORD,,
