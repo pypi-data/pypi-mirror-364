@@ -1,0 +1,6 @@
+[console_scripts]
+presskit = presskit.cli:main_cli
+
+[presskit.sources]
+json = presskit.sources.json:JSONSource
+sqlite = presskit.sources.sqlite:SQLiteSource
