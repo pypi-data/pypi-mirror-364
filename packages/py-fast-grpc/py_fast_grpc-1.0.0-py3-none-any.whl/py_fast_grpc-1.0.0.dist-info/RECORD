@@ -1,0 +1,14 @@
+fast_grpc/__init__.py,sha256=8GqrJsSa9fvywHGcMkN0sJ0oQprglgmdbOTcWFSRU1o,319
+fast_grpc/app.py,sha256=Jp5hAwiGWSbJ4htFcC8lku_ZUehE5qOVu22qWaeqj8k,2274
+fast_grpc/enums.py,sha256=G6d0m5WSauiMJ-x7sWwMKDUVVqty3O-oMAHWM6PWoGE,482
+fast_grpc/middleware.py,sha256=jV65x06l5QyXozwzaKUa3Ls38kvSt8a593aGsGlAxns,197
+fast_grpc/proto/__init__.py,sha256=dkpHwTKwjdOEVzmvc-JT-65FFs7niz4x5CbzaWvI2Rk,364
+fast_grpc/proto/enums.py,sha256=zBxRbzqxEKedShDFRk2NEoQV5gFPcJ4FIlK-wnAS6tM,920
+fast_grpc/proto/models.py,sha256=wdMt7RAJPaPMs3ww7u9TU6TgtfSukNybOTj71Kvyyyo,1021
+fast_grpc/proto/parse.py,sha256=TRnbzmMGqppZOTdfPQEnn4FbmDLih2R0bOUwUGdTKJQ,4628
+fast_grpc/proto/templates/service.proto,sha256=mmKpkhj60_FR3JR2-ZTGTWbrMEsCy6CaWN7wowstZx4,601
+fast_grpc/proto/utils.py,sha256=gvCEYBwigOBHrqogwWlcmQREBZ4Yrzf298-eDERAc_w,871
+fast_grpc/service.py,sha256=w77fZdXt7mmrSIDecUrbyDQRXs03Rvw6WDexPA4_lVk,15763
+py_fast_grpc-1.0.0.dist-info/METADATA,sha256=jtNf5sosFuTI5w2xQT1-NV1Q-MrrlNdaaHA2qzx_CGM,1690
+py_fast_grpc-1.0.0.dist-info/WHEEL,sha256=b4K_helf-jlQoXBBETfwnf4B04YC67LOev0jo4fX5m8,88
+py_fast_grpc-1.0.0.dist-info/RECORD,,
