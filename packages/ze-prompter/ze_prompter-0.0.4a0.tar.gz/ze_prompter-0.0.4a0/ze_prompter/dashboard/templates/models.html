@@ -1,0 +1,332 @@
+{% extends "base.html" %}
+
+{% block title %}Models - Ze Prompter{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1><i class="fas fa-robot"></i> AI Models</h1>
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createModelModal">
+                <i class="fas fa-plus"></i> Create New Model
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped" id="modelsTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Extra Fields</th>
+                                <th>Created</th>
+                                <th width="150">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="5" class="text-center">
+                                    <i class="fas fa-spinner fa-spin"></i> Loading...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Create Model Modal -->
+<div class="modal fade" id="createModelModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fas fa-plus"></i> Create New Model
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="createModelForm">
+                    <div class="mb-3">
+                        <label for="modelName" class="form-label">Name *</label>
+                        <input type="text" class="form-control" id="modelName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="modelDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="modelDescription" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="modelExtraFields" class="form-label">Extra Fields (JSON)</label>
+                        <textarea class="form-control" id="modelExtraFields" rows="4"
+                                  placeholder='{"provider": "openai", "max_tokens": 4096, "temperature": 0.7}'></textarea>
+                        <div class="form-text">Enter valid JSON or leave empty. Example: {"key": "value"}</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-success" id="createModelBtn" onclick="createModel()">
+                    <i class="fas fa-save"></i> Create
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Model Modal -->
+<div class="modal fade" id="editModelModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fas fa-edit"></i> Edit Model
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editModelForm">
+                    <input type="hidden" id="editModelId">
+                    <div class="mb-3">
+                        <label for="editModelName" class="form-label">Name *</label>
+                        <input type="text" class="form-control" id="editModelName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editModelDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="editModelDescription" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editModelExtraFields" class="form-label">Extra Fields (JSON)</label>
+                        <textarea class="form-control" id="editModelExtraFields" rows="4"></textarea>
+                        <div class="form-text">Enter valid JSON or leave empty. Example: {"key": "value"}</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-success" id="editModelBtn" onclick="updateModel()">
+                    <i class="fas fa-save"></i> Update
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function() {
+    loadModels();
+});
+
+function loadModels() {
+    makeAuthenticatedRequest('/api/models/')
+        .then(response => response.json())
+        .then(data => {
+            populateModelsTable(data);
+        })
+        .catch(error => {
+            $('#modelsTable tbody').html(`
+                <tr>
+                    <td colspan="5" class="text-center text-danger">
+                        <i class="fas fa-exclamation-triangle"></i> Failed to load models
+                    </td>
+                </tr>
+            `);
+        });
+}
+
+function populateModelsTable(models) {
+    if (models.length === 0) {
+        $('#modelsTable tbody').html(`
+            <tr>
+                <td colspan="5" class="text-center text-muted">
+                    <i class="fas fa-inbox"></i> No models found
+                </td>
+            </tr>
+        `);
+        return;
+    }
+
+    const rows = models.map(model => `
+        <tr>
+            <td>
+                <strong>${model.name}</strong>
+            </td>
+            <td>
+                <span class="text-muted">${model.description || 'No description'}</span>
+            </td>
+            <td>
+                ${formatExtraFields(model.extra_fields)}
+            </td>
+            <td>
+                <small class="text-muted">${new Date(model.created_at).toLocaleDateString()}</small>
+            </td>
+            <td>
+                <div class="btn-group btn-group-sm" role="group">
+                    <button class="btn btn-outline-primary" onclick="editModel(${model.id})" title="Edit">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn btn-outline-danger" onclick="deleteModel(${model.id}, '${model.name}')" title="Delete">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>
+    `).join('');
+
+    $('#modelsTable tbody').html(rows);
+}
+
+function formatExtraFields(extraFields) {
+    if (!extraFields || Object.keys(extraFields).length === 0) {
+        return '<span class="text-muted">None</span>';
+    }
+
+    const fieldsHtml = Object.entries(extraFields).map(([key, value]) =>
+        `<span class="badge bg-light text-dark me-1">${key}: ${value}</span>`
+    ).join('');
+
+    return fieldsHtml;
+}
+
+function validateJSON(jsonString) {
+    if (!jsonString.trim()) return {};
+
+    try {
+        return JSON.parse(jsonString);
+    } catch (e) {
+        throw new Error('Invalid JSON format');
+    }
+}
+
+function createModel() {
+    const name = $('#modelName').val().trim();
+    const description = $('#modelDescription').val().trim();
+    const extraFieldsStr = $('#modelExtraFields').val().trim();
+
+    if (!name) {
+        showAlert('Please enter a model name', 'danger');
+        return;
+    }
+
+    let extraFields;
+    try {
+        extraFields = validateJSON(extraFieldsStr);
+    } catch (e) {
+        showAlert('Invalid JSON format in extra fields', 'danger');
+        return;
+    }
+
+    const btn = $('#createModelBtn');
+    btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Creating...');
+
+    makeAuthenticatedRequest('/api/models/', {
+        method: 'POST',
+        body: JSON.stringify({
+            name: name,
+            description: description || null,
+            extra_fields: extraFields
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        showAlert('Model created successfully!', 'success');
+        $('#createModelModal').modal('hide');
+        $('#createModelForm')[0].reset();
+        loadModels();
+    })
+    .catch(error => {
+        showAlert('Failed to create model', 'danger');
+    })
+    .finally(() => {
+        btn.prop('disabled', false).html('<i class="fas fa-save"></i> Create');
+    });
+}
+
+function editModel(id) {
+    makeAuthenticatedRequest(`/api/models/${id}`)
+        .then(response => response.json())
+        .then(data => {
+            $('#editModelId').val(data.id);
+            $('#editModelName').val(data.name);
+            $('#editModelDescription').val(data.description || '');
+            $('#editModelExtraFields').val(data.extra_fields ? JSON.stringify(data.extra_fields, null, 2) : '');
+            $('#editModelModal').modal('show');
+        })
+        .catch(error => {
+            showAlert('Failed to load model', 'danger');
+        });
+}
+
+function updateModel() {
+    const id = $('#editModelId').val();
+    const name = $('#editModelName').val().trim();
+    const description = $('#editModelDescription').val().trim();
+    const extraFieldsStr = $('#editModelExtraFields').val().trim();
+
+    if (!name) {
+        showAlert('Please enter a model name', 'danger');
+        return;
+    }
+
+    let extraFields;
+    try {
+        extraFields = validateJSON(extraFieldsStr);
+    } catch (e) {
+        showAlert('Invalid JSON format in extra fields', 'danger');
+        return;
+    }
+
+    const btn = $('#editModelBtn');
+    btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Updating...');
+
+    makeAuthenticatedRequest(`/api/models/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+            name: name,
+            description: description || null,
+            extra_fields: extraFields
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        showAlert('Model updated successfully!', 'success');
+        $('#editModelModal').modal('hide');
+        loadModels();
+    })
+    .catch(error => {
+        showAlert('Failed to update model', 'danger');
+    })
+    .finally(() => {
+        btn.prop('disabled', false).html('<i class="fas fa-save"></i> Update');
+    });
+}
+
+function deleteModel(id, name) {
+    if (!confirm(`Are you sure you want to delete the model "${name}"?\n\nThis action cannot be undone.`)) {
+        return;
+    }
+
+    makeAuthenticatedRequest(`/api/models/${id}`, {
+        method: 'DELETE'
+    })
+    .then(response => {
+        if (response.ok) {
+            showAlert('Model deleted successfully!', 'success');
+            loadModels();
+        } else {
+            throw new Error('Delete failed');
+        }
+    })
+    .catch(error => {
+        showAlert('Failed to delete model', 'danger');
+    });
+}
+</script>
+{% endblock %}
