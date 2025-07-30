@@ -1,0 +1,2 @@
+[console_scripts]
+djprod = djprod.cli:main
