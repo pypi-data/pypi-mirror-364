@@ -1,0 +1,16 @@
+aristech_nlp_client/__init__.py,sha256=PNjApeSqVhIn4jHAPj4GN7XcA3UqxSaeedgqpq7i3Bg,692
+aristech_nlp_client/client.py,sha256=8Q6s1eMxgCSQNirLQ6T2HbldBEx41mMcfxkmQEk9wgY,7732
+aristech_nlp_client/proto/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+aristech_nlp_client/proto/intents_pb2.py,sha256=6d-cyiaWNM_dm_wzaJFC4dEyJFs-8c1LGDJCi_PlqtU,6881
+aristech_nlp_client/proto/intents_pb2.pyi,sha256=HuUJoajcoD8uSe1DXOtJe8XdlgkMRbmjSse38yv8v8s,19530
+aristech_nlp_client/proto/intents_pb2_grpc.py,sha256=s00BcDrHMCLM6sXiLsbHS_O6GDxQAQSJuEMvkDnkSsw,888
+aristech_nlp_client/proto/nlp_server_pb2.py,sha256=pfqqozRkRIYH7wfroHPk60SBAQsPkLpCBt0vRat4dr4,4015
+aristech_nlp_client/proto/nlp_server_pb2.pyi,sha256=_5rQcfk9EaDDNu4ydmuGhIybiPNU0Ggo8n08Cj_YSmk,4359
+aristech_nlp_client/proto/nlp_server_pb2_grpc.py,sha256=o6yKdqJ5emZlYX_bzfoXSAVb8JXMb77sryBzYr0nIaQ,26576
+aristech_nlp_client/proto/projects_pb2.py,sha256=SA5moqFLaqYOKsDfbIEGsi4HixDU4ooq1zaqJWq6I00,5380
+aristech_nlp_client/proto/projects_pb2.pyi,sha256=js9r0c6pn5nAwnWOvk4IKf8KwR3QwlnMUAd-dcBmNbc,14746
+aristech_nlp_client/proto/projects_pb2_grpc.py,sha256=PtgNqkBRindUwQbPciQyAWF2fOd5u5yA-0-FctGO2fU,889
+aristech_nlp_client-2.0.0.dist-info/METADATA,sha256=TsY6CTWYkdqw5mK6Lf4BNDgyi2JcQAGnoK68L7xMeSA,2804
+aristech_nlp_client-2.0.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+aristech_nlp_client-2.0.0.dist-info/top_level.txt,sha256=m_O8q38pNFcP3AKxFjm3TsK1oHK2uvC3-gx1w0YXpKc,20
+aristech_nlp_client-2.0.0.dist-info/RECORD,,
