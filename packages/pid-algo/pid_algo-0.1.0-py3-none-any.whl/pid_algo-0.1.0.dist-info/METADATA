@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: pid-algo
+Version: 0.1.0
+Summary: AI-based visibility and media score algorithms
+Author: Your Name
+Author-email: abdulhoodiymuhiddinov2@gmail.com
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+
