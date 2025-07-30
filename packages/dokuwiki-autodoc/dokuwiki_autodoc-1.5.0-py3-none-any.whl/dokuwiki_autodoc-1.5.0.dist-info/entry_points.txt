@@ -1,0 +1,2 @@
+[console_scripts]
+qviewkit-url = dokuwiki_autodoc.qviewkit_url_handler:url_handler

@@ -1,0 +1,13 @@
+dokuwiki_autodoc/__about__.py,sha256=usFLehGLH-DHwSjFRUg22koQ6zZJOHcDGdxt6uTNbfo,132
+dokuwiki_autodoc/__init__.py,sha256=wai8thJrBTrnQ5lhNj6jdQTW4IW24ZnyMYAcVolmABc,110
+dokuwiki_autodoc/autodoc.py,sha256=UfgX5aDq1C1zqgqI_zfWYUGXEg11qXxJ1Wmioxn-wRU,16084
+dokuwiki_autodoc/liquid_filters.py,sha256=AKA9mYA00cg5gZvMnwduBQIvwlv89_PlzYlUlRLgtm0,1980
+dokuwiki_autodoc/qviewkit_url_handler.py,sha256=BYqYHGKL4ES6m60vsn0QWBRwpnPZAhaxZ0UyVS4CsFY,5575
+dokuwiki_autodoc/templates/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+dokuwiki_autodoc/templates/doc_base.txt.liquid,sha256=yjSbvXmKg_6q7b1qLyVNAFIE5fsKJw5HtXPCC65LtMs,823
+dokuwiki_autodoc/templates/sample.txt.liquid,sha256=Vy8S1Ajn1C2vlanvmFkcesVZL-4iVM70iykbXlLg1go,342
+dokuwiki_autodoc-1.5.0.dist-info/METADATA,sha256=lDuBNd_0U2XWnw8aCj8O617bTvFxB2c_j09Sz7y3bwU,5503
+dokuwiki_autodoc-1.5.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+dokuwiki_autodoc-1.5.0.dist-info/entry_points.txt,sha256=K7PLe9nmnlz7G80_lGQ2TMDYWVc2ZEVaWqHEeeol4Jk,83
+dokuwiki_autodoc-1.5.0.dist-info/licenses/LICENSE.txt,sha256=wDzqAntLQORAL6vQhVdzZyfsPVvFStZKtkct5DIZjK0,18047
+dokuwiki_autodoc-1.5.0.dist-info/RECORD,,
