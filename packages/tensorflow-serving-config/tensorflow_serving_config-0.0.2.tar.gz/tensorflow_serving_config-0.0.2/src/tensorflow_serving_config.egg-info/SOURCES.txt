@@ -1,0 +1,16 @@
+README.md
+setup.py
+src/tensorflow_serving/__init__.py
+src/tensorflow_serving/config/__init__.py
+src/tensorflow_serving/config/file_system_storage_path_source_pb2.py
+src/tensorflow_serving/config/log_collector_config_pb2.py
+src/tensorflow_serving/config/logging_config_pb2.py
+src/tensorflow_serving/config/model_server_config_pb2.py
+src/tensorflow_serving/config/monitoring_config_pb2.py
+src/tensorflow_serving/config/platform_config_pb2.py
+src/tensorflow_serving/config/ssl_config_pb2.py
+src/tensorflow_serving_config.egg-info/PKG-INFO
+src/tensorflow_serving_config.egg-info/SOURCES.txt
+src/tensorflow_serving_config.egg-info/dependency_links.txt
+src/tensorflow_serving_config.egg-info/requires.txt
+src/tensorflow_serving_config.egg-info/top_level.txt
