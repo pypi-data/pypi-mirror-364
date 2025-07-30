@@ -1,0 +1,128 @@
+{
+  "version": 2,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 16,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "cmake-pedantic",
+      "hidden": true,
+      "warnings": {
+        "dev": true,
+        "deprecated": true,
+        "uninitialized": true,
+        "unusedCli": true,
+        "systemVars": false
+      },
+      "errors": {
+        "dev": true,
+        "deprecated": true
+      }
+    },
+    {
+      "name": "dev-mode",
+      "hidden": true,
+      "inherits": "cmake-pedantic",
+      "cacheVariables": {
+        "pytango_DEVELOPER_MODE": "ON",
+        "Tango_USE_PKG_CONFIG": "OFF"
+      }
+    },
+    {
+      "name": "cppcheck",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_CXX_CPPCHECK": "cppcheck;--inline-suppr"
+      }
+    },
+    {
+      "name": "clang-tidy",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_CXX_CLANG_TIDY": "clang-tidy;--header-filter=^${sourceDir}/"
+      }
+    },
+    {
+      "name": "cpp-coverage",
+      "hidden": true,
+      "cacheVariables": {
+        "PYTANGO_ENABLE_COVERAGE": "ON"
+      }
+    },
+    {
+      "name": "flags-unix",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_CXX_FLAGS": "-Wconversion -Wsign-conversion -Wcast-qual -Wformat=2 -Wundef -Werror=float-equal -Wshadow -Wcast-align -Wunused -Wnull-dereference -Wdouble-promotion -Wimplicit-fallthrough -Wextra-semi -Woverloaded-virtual -Wnon-virtual-dtor -Wold-style-cast"
+      }
+    },
+    {
+      "name": "flags-windows",
+      "description": "Note that all the flags from /permissive- onwards are required for MSVC to conform to the language standard",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_CXX_FLAGS": "/utf-8 /w14165 /w14545 /w14546 /w14547 /w14549 /w14555 /w14905 /w14906 /w14928 /permissive- /volatile:iso /Zc:preprocessor /Zc:__cplusplus /Zc:externConstexpr /Zc:throwingNew /EHsc"
+      }
+    },
+    {
+      "name": "ci-unix",
+      "generator": "Ninja",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo"
+      }
+    },
+    {
+      "name": "ci-unix-verbose",
+      "hidden": true,
+      "inherits": ["flags-unix", "ci-unix"]
+    },
+    {
+      "name": "ci-win64",
+      "inherits": ["flags-windows"],
+      "generator": "Visual Studio 17 2022",
+      "architecture": "x64",
+      "cacheVariables": {
+        "Boost_USE_STATIC_LIBS": "OFF",
+        "Boost_COMPILER": "vc142"
+      },
+      "hidden": true
+    },
+    {
+      "name": "ci-sanitize",
+      "binaryDir": "${sourceDir}/cmakebuild/sanitize",
+      "inherits": ["ci-unix", "dev-mode"],
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Sanitize",
+        "CMAKE_CXX_FLAGS_SANITIZE": "-O2 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-common"
+      }
+    },
+    {
+      "name": "ci-build",
+      "binaryDir": "${sourceDir}/cmakebuild",
+      "hidden": true
+    },
+    {
+      "name": "ci-macOS",
+      "inherits": ["ci-build", "ci-unix"]
+    },
+    {
+      "name": "ci-Linux",
+      "inherits": ["ci-build", "ci-unix", "cpp-coverage"]
+    },
+    {
+      "name": "dev-Linux",
+      "inherits": ["ci-build", "ci-unix-verbose", "cpp-coverage", "clang-tidy", "cppcheck", "dev-mode"]
+    },
+    {
+      "name": "ci-Linux-wheel",
+      "inherits": ["ci-build", "ci-unix"]
+    },
+    {
+      "name": "ci-Windows",
+      "inherits": ["ci-build", "ci-win64"]
+    }
+  ]
+}

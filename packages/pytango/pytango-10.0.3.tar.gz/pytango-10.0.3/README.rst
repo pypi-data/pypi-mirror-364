@@ -1,0 +1,190 @@
+.. image:: https://gitlab.com/tango-controls/pytango/-/raw/899d21fe85b352288d4095244f3776c7006638af/doc/_static/logo.png
+   :alt: PyTango logo
+   :align: center
+   :width: 70%
+
+------------
+
+|Doc Status|
+|Gitlab Build Status|
+|Gitlab Code Coverage|
+|Pypi Version|
+|Python Versions|
+|Conda|
+
+PyTango
+=======
+
+Main website: https://pytango.readthedocs.io
+
+Python binding for Tango_, a library dedicated to distributed control systems.
+
+
+Description
+-----------
+
+PyTango_ exposes the complete `Tango C++ API`_ through the ``tango`` python module.
+It also adds a bit of abstraction by taking advantage of the Python capabilities:
+
+- ``tango.client`` provides a client access to device servers and databases.
+- ``tango.server`` provides base classes to declare and run device servers.
+
+
+Requirements
+------------
+
+PyTango_ is compatible with python 3.9+.
+
+General dependencies:
+
+-  cppTango_ >= 10.0.0, and its dependencies: omniORB4 and libzmq
+-  `Boost.Python`_ >= 1.71
+
+Python dependencies:
+
+-  numpy_
+-  psutil_
+-  packaging_
+-  typing-extensions_
+
+Build dependencies:
+
+- pypa-build_
+- scikit-build-core_
+- pybind11-stubgen_
+
+Optional dependencies (telemetry):
+
+- opentelemetry-api_
+- opentelemetry-sdk_
+- opentelemetry-exporter-otlp-proto-grpc_
+- opentelemetry-exporter-otlp-proto-http_
+
+Optional dependencies (test):
+
+- gevent_
+- pytest_
+- pytest-forked_
+- pytest-cov_
+- pytest-asyncio_
+
+.. note:: As a general rule, cppTango_ and pytango_ should share the same major
+      and minor version (for a version ``X.Y.Z``, ``X`` and ``Y`` should
+      match).
+      On some systems you may need to install ``omniORB4`` and ``libzmq`` related
+      development packages.
+
+
+Install
+-------
+
+PyTango_ is available on PyPI_ as ``pytango``, with pre-built binaries for some platforms
+(you need pip>=19.3, so upgrade first if necessary)::
+
+    $ python -m pip install --upgrade pip
+    $ python -m pip install pytango
+
+Alternatively, pre-built PyTango_ binaries can be installed from `Conda Forge_`::
+
+    $ conda install -c conda-forge pytango
+
+For the very latest code, or for development purposes, PyTango_ can be built and installed from the
+`sources`_.  This is complicated by the dependencies - see the Getting Started section in the documentation_.
+
+Usage
+-----
+
+To test the installation, import ``tango`` and check ``tango.utils.info()``::
+
+    >>> import tango
+    >>> print(tango.utils.info())
+    PyTango 10.0.0.dev0 (10, 0, 0, 'dev', 0)
+    PyTango compiled with:
+        Python : 3.12.0
+        Numpy  : 1.26.2
+        Tango  : 10.0.0
+        Boost  : 1.83.0
+
+    PyTango runtime is:
+        Python : 3.12.0
+        Numpy  : 1.26.2
+        Tango  : 10.0.0
+
+    PyTango running on:
+    uname_result(system='Darwin', node='osloxf01', release='22.6.0', version='Darwin Kernel Version 22.6.0: Wed Jul  5 22:22:05 PDT 2023; root:xnu-8796.141.3~6/RELEASE_ARM64_T6000', machine='arm64')
+
+For an interactive use, consider using ITango_, a tango IPython_ profile.
+
+
+Documentation
+-------------
+
+Check out the documentation_ for more information.
+
+
+
+Support and contribution
+------------------------
+
+You can get support from the `Tango forums`_, for both Tango_ and PyTango_ questions.
+
+All contributions,  `MR and bug reports`_ are welcome, please see: `How to Contribute`_ !
+
+
+.. |Doc Status| image:: https://readthedocs.org/projects/pytango/badge/?version=latest
+                :target: https://pytango.readthedocs.io/en/latest
+                :alt:
+
+.. |Gitlab Build Status| image:: https://img.shields.io/gitlab/pipeline-status/tango-controls/pytango?branch=develop&label=develop
+                         :target: https://gitlab.com/tango-controls/pytango/-/pipelines?page=1&scope=branches&ref=develop
+                         :alt:
+
+.. |Gitlab code coverage| image:: https://img.shields.io/gitlab/pipeline-coverage/tango-controls/pytango.svg?branch=develop
+                         :target: https://gitlab.com/tango-controls/pytango/-/pipelines?page=1&scope=branches&ref=develop
+                         :alt:
+
+.. |Pypi Version| image:: https://img.shields.io/pypi/v/PyTango.svg
+                  :target: https://pypi.org/project/PyTango
+                  :alt:
+
+.. |Python Versions| image:: https://img.shields.io/pypi/pyversions/PyTango.svg
+                     :target: https://pypi.org/project/PyTango/
+                     :alt:
+
+.. |Conda| image:: https://img.shields.io/conda/v/conda-forge/pytango
+                    :target: https://anaconda.org/conda-forge/pytango
+                    :alt:
+
+.. _Tango: https://tango-controls.org
+.. _Tango C++ API: https://tango-controls.github.io/cppTango-docs/index.html
+.. _PyTango: https://gitlab.com/tango-controls/pytango
+.. _PyPI: https://pypi.org/project/pytango
+.. _Conda Forge: https://anaconda.org/conda-forge/pytango
+.. _scikit-build-core: https://github.com/scikit-build/scikit-build-core
+.. _pybind11-stubgen: https://pypi.org/project/pybind11-stubgen/
+.. _pypa-build: https://github.com/pypa/build
+
+.. _cppTango: https://gitlab.com/tango-controls/cppTango
+.. _Boost.Python: https://www.boost.org/doc/libs/release/libs/python/doc/html/index.html
+.. _numpy: https://pypi.org/project/numpy
+.. _packaging: https://pypi.org/project/packaging
+.. _psutil: https://pypi.org/project/psutil
+.. _typing-extensions: https://pypi.org/project/typing_extensions
+.. _opentelemetry-api: https://pypi.org/project/opentelemetry-api
+.. _opentelemetry-sdk: https://pypi.org/project/opentelemetry-sdk
+.. _opentelemetry-exporter-otlp-proto-grpc: https://pypi.org/project/opentelemetry-exporter-otlp-proto-grpc
+.. _opentelemetry-exporter-otlp-proto-http: https://pypi.org/project/opentelemetry-exporter-otlp-proto-http
+.. _gevent: https://pypi.org/project/gevent
+.. _pytest: https://docs.pytest.org/en/latest/
+.. _pytest-forked: https://github.com/pytest-dev/pytest-forked
+.. _pytest-cov: https://github.com/pytest-dev/pytest-cov
+.. _pytest-asyncio: https://github.com/pytest-dev/pytest-asyncio
+
+.. _ITango: https://pypi.org/project/itango/
+.. _IPython: https://ipython.org
+
+.. _documentation: https://pytango.readthedocs.io/en/latest
+.. _Tango forums: https://tango-controls.org/community/forum
+.. _MR and bug reports: PyTango_
+.. _sources: PyTango_
+.. _How to Contribute: https://pytango.readthedocs.io/en/latest/how-to-contribute.html#how-to-contribute
