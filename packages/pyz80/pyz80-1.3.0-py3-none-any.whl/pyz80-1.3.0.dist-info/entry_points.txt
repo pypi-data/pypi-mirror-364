@@ -1,0 +1,2 @@
+[console_scripts]
+pyz80 = pyz80.pyz80:main
