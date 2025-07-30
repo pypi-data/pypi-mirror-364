@@ -1,0 +1,4 @@
+include opentable_mcp_README.md
+include requirements.txt
+include LICENSE
+include claude_desktop_config_example.json 
