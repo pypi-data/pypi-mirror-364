@@ -1,0 +1,62 @@
+Metadata-Version: 2.4
+Name: ivrs-client
+Version: 0.0.1
+Summary: 智能语音应答系统客户端
+Author-email: ZhihaoZhong <3230105732@zju.edu.cn>
+License: The MIT License (MIT)
+        Copyright © 2025 <ZJU_KoalaStudio>
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Keywords: Intelligent Voice Response System,ASR,TTS,LLM,IVRS
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: getmac
+Requires-Dist: loguru
+Requires-Dist: numpy
+Requires-Dist: PyAudio
+Requires-Dist: pydub
+Requires-Dist: Requests
+Requires-Dist: tqdm
+Dynamic: license-file
+
+# IVRS 客户端
+
+一个基于语音识别的智能交互系统客户端，支持语音录制、函数调用执行和Prompt配置管理。
+
+## 功能特性 
+
+- **语音录制与识别**
+  - 智能静音检测，自动停止录音
+  - 16kHz采样率，单声道录音
+  - 音频文件本地存储管理
+  - 支持任意格式音频播放
+
+- **函数调用执行**
+  - 动态函数注册与执行
+  - 支持本地Python函数扩展
+  - 自动函数参数验证
+  - 执行结果实时反馈
+
+- **Prompt配置管理**
+  - 用户个性化Prompt配置
+  - 服务器端配置同步
+  - 基于MAC地址的用户识别
+
+- **自动环境配置**
+  - 自动检测并安装FFmpeg
+  - 跨平台支持（Windows/Linux/macOS）
+  - 依赖项自动管理
+
+## 安装系统要求
+
+- Python 3.7+
+- FFmpeg（自动安装）
+- 麦克风设备

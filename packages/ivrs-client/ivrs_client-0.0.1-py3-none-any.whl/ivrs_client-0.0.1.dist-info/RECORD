@@ -1,0 +1,9 @@
+ivrs_client/__init__.py,sha256=SUPj3CoP3nen5Kjl5ybGTWZSxL0g4bTnu16NQVtMWbU,3064
+ivrs_client/executor.py,sha256=86igto4sqxm7cjotzyVQtv1SHZqe91x8PJeGhwsBf_I,7720
+ivrs_client/prompt.py,sha256=r3FeTYK2n725BET1KHG75Ulyiw4fwf10OvHwVxX1J2A,3624
+ivrs_client/sender.py,sha256=5CoHnoBhEOlE_HEiBH7WtNWHE5ZFbAh5uLQI67eIAFA,7306
+ivrs_client-0.0.1.dist-info/licenses/LICENSE,sha256=AnGwWMlaTb_9Lpdp0zlG9_5u4Zj6x3BKMqh9ppZuAAw,1096
+ivrs_client-0.0.1.dist-info/METADATA,sha256=KLWAHSvrpOWVFW_9IcDdc6KoiyEZT5wlCboNju2hpzg,2655
+ivrs_client-0.0.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+ivrs_client-0.0.1.dist-info/top_level.txt,sha256=OV6GRiz37U-bBxLQuP4FumkFlIf-Xl_dpUkJUNe3Rsw,12
+ivrs_client-0.0.1.dist-info/RECORD,,
