@@ -1,0 +1,64 @@
+Metadata-Version: 2.4
+Name: abstractrepo
+Version: 0.4.1
+Summary: Abstract CRUD repository components
+Home-page: https://github.com/Smoren/abstractrepo-pypi
+Author: Smoren
+Author-email: ofigate@gmail.com
+Project-URL: Documentation, https://github.com/Smoren/abstractrepo-pypi
+Project-URL: Bug Reports, https://github.com/Smoren/abstractrepo-pypi/issues
+Project-URL: Source Code, https://github.com/Smoren/abstractrepo-pypi
+Keywords: repo,repository,crud
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Database :: Front-Ends
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Utilities
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Provides-Extra: dev
+Requires-Dist: check-manifest; extra == "dev"
+Requires-Dist: coverage; extra == "dev"
+Provides-Extra: test
+Requires-Dist: coverage; extra == "test"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license-file
+Dynamic: project-url
+Dynamic: provides-extra
+Dynamic: requires-python
+Dynamic: summary
+
+# Abstract Data Repository for Python 3
+
+[![PyPI package](https://img.shields.io/badge/pip%20install-abstractrepo-brightgreen)](https://pypi.org/project/abstractrepo/)
+[![version number](https://img.shields.io/pypi/v/abstractrepo?color=green&label=version)](https://github.com/Smoren/abstractrepo-pypi/releases)
+[![Coverage Status](https://coveralls.io/repos/github/Smoren/abstractrepo-pypi/badge.svg?branch=master)](https://coveralls.io/github/Smoren/abstractrepo-pypi?branch=master)
+[![Actions Status](https://github.com/Smoren/abstractrepo-pypi/workflows/Test/badge.svg)](https://github.com/Smoren/abstractrepo-pypi/actions)
+[![License](https://img.shields.io/github/license/Smoren/abstractrepo-pypi)](https://github.com/Smoren/abstractrepo-pypi/blob/master/LICENSE)
+
+Abstract CRUD repository components
+
+## Installation
+
+```
+pip install abstractrepo
+```
