@@ -1,0 +1,7 @@
+[console_scripts]
+vulntrain-dataset-generation=vulntrain.datasets.create_dataset:main
+vulntrain-train-description-generation=vulntrain.trainers.summarize:main
+vulntrain-train-severity-classification=vulntrain.trainers.classify:main
+vulntrain-validate-severity-classification=vulntrain.validators.severity:main
+vulntrain-validate-text-generation=vulntrain.validators.summarize:main
+
