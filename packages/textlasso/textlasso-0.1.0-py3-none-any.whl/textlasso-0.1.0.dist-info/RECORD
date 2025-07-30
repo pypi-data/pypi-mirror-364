@@ -1,0 +1,12 @@
+textlasso/__init__.py,sha256=TzkK5a1-yAx35TBBHcLqkKx2DQCZgz-YZJAkAzN-g-E,383
+textlasso/_extractors.py,sha256=t7vwRW9UXlb7_J9LeZ1EAGpNuBA6aktS6-6wryW72-c,16571
+textlasso/_inprompt_injections.py,sha256=BMxNYst8BEor-L0a4C6eZU1iM3TLbTL092I9K8jeIF4,20207
+textlasso/_parsers.py,sha256=6cBUCI1-6guXzM2oyjM2u25bcCJoBe-bgPPzu_io_FE,2810
+textlasso/cleaners.py,sha256=yh175gpf0I2zuEir_uvsJTCngg5aBjJHMcD_u9CQaDk,581
+textlasso/extract.py,sha256=S1hUFQW5JizmI_2Kmt6NyCtYdBh8RnQNuFdV1-AeOoM,145
+textlasso/prompting.py,sha256=UaNlHzGszzd_pcQc-jCpCCOPkJ4yLciTb04GaHUXSUE,147
+textlasso-0.1.0.dist-info/licenses/LICENCE,sha256=y2WS7ClV1rr5aARcftekuZJf9EYTtPz5vGvZnXqmb4U,1068
+textlasso-0.1.0.dist-info/METADATA,sha256=99-g1xX9C6yYfSi16e-vTFQYeNDnopzAQ1twXCpHvWQ,17656
+textlasso-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+textlasso-0.1.0.dist-info/top_level.txt,sha256=T2Z9rDTbBDcJ1Tmqo3KbUtZrGlpYfflptNbth0xYwSk,10
+textlasso-0.1.0.dist-info/RECORD,,
