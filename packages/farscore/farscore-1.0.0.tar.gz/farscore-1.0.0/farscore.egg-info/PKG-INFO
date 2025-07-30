@@ -1,0 +1,172 @@
+Metadata-Version: 2.4
+Name: farscore
+Version: 1.0.0
+Summary: FARScore: A Synthetic Accseeibility Predictor based Fragment Assembly autoRegressive pretrain
+Home-page: https://github.com/simmzx/FARScore
+Author: Xiang Zhang
+Author-email: 776206454@qq.com
+License: MIT
+Project-URL: Bug Reports, https://github.com/simmzx/FARScore/issues
+Project-URL: Source, https://github.com/simmzx/FARScore
+Project-URL: Documentation, https://github.com/simmzx/FARScore/docs
+Keywords: chemistry,molecular,synthesizability,deep learning,graph neural networks,cheminformatics,drug discovery,SMILES
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Scientific/Engineering :: Chemistry
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: torch>=1.12.0
+Requires-Dist: torch-cluster>=1.6.0
+Requires-Dist: torch-geometric>=2.3.0
+Requires-Dist: torch-scatter>=2.1.0
+Requires-Dist: torch-sparse>=0.6.15
+Requires-Dist: torch-spline-conv>=1.2.1
+Requires-Dist: torchmetrics>=1.1.0
+Requires-Dist: dgl>=0.6.1
+Requires-Dist: dgllife>=0.2.9
+Requires-Dist: rdkit>=2022.3.0
+Requires-Dist: deepchem>=2.6.0
+Requires-Dist: numpy<2.0.0,>=1.21.0
+Requires-Dist: pandas<3.0.0,>=1.3.0
+Requires-Dist: scipy<2.0.0,>=1.7.0
+Requires-Dist: scikit-learn<2.0.0,>=1.0.0
+Requires-Dist: matplotlib>=3.5.0
+Requires-Dist: seaborn>=0.12.0
+Requires-Dist: pillow>=9.0.0
+Requires-Dist: openpyxl>=3.1.0
+Requires-Dist: requests>=2.31.0
+Requires-Dist: tqdm>=4.60.0
+Requires-Dist: pyyaml>=6.0.0
+Requires-Dist: numba>=0.57.0
+Provides-Extra: tensorflow
+Requires-Dist: tensorflow<3.0.0,>=2.10.0; extra == "tensorflow"
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0.0; extra == "dev"
+Requires-Dist: pytest-cov>=2.0.0; extra == "dev"
+Requires-Dist: black>=22.0.0; extra == "dev"
+Requires-Dist: flake8>=4.0.0; extra == "dev"
+Requires-Dist: mypy>=0.910; extra == "dev"
+Provides-Extra: docs
+Requires-Dist: sphinx>=4.0.0; extra == "docs"
+Requires-Dist: sphinx-rtd-theme>=1.0.0; extra == "docs"
+Requires-Dist: nbsphinx>=0.8.0; extra == "docs"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: license-file
+Dynamic: platform
+Dynamic: project-url
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+![AUR License](https://img.shields.io/aur/license/create-react-app?style=flat) [![我是徽章](https://img.shields.io/badge/simmzx💤%E7%9A%84-GitHub-brightgreen)](https://github.com/simmzx💤/My_Documentation)
+
+# FARScore: Molecular Synthetic Accessibility Predictor
+> Fragment Assembly autoRegressive based synthetic accessibility scorer to accelerate drug discovery
+## 🎯 What Makes FARScore Different
+FARScore revolutionizes synthetic accessibility prediction through **Fragment Assembly autoRegressive pretraining**. Unlike traditional approaches that directly learn synthesis patterns, FARScore first masters molecular construction fundamentals—understanding how molecules are assembled from fragments—then applies this knowledge to predict synthetic accessibility.
+### Two-Stage Learning:
+* **Stage 1**: Pretrain on 9.2M unlabeled molecules to learn molecular assembly patterns
+* **Stage 2**: Finetune on 800K labeled molecules for synthetic accessibility prediction
+
+This mirrors human chemical intuition: experienced chemists understand molecular construction before assessing synthetic difficulty.
+
+## ✨ Key Features
+* Easy Integration - Simple CSV input/output format
+* Batch Prediction - One-click synthetic accessibility scoring
+* High Accuracy - Achieves SOTA performance on multiple test sets with key metrics including accuracy, AUROC and specificity.
+
+## 🌐 Online Service
+**Instant molecular synthesis prediction in the cloud.** Simply upload your CSV file with SMILES and receive AI-powered synthetic accessibility scores in seconds.
+
+## 🚀 Quick Start
+### 1. Installation
+```python
+    # Clone repository
+    git clone https://github.com/simmzx/FARScore.git
+    cd ../FARScore
+
+    # Create environment and install dependencies
+    conda create -n FARScore python=3.8
+    conda activate FARScore
+    pip install -r requirements.txt
+```
+### 2. Prepare Data
+Create CSV file with "smiles" field:
+molecule_id  | smiles|
+:---------: | :--------:|
+Palbociclib  | CC1=C(C(=O)N(C2=NC(=NC=C12)NC3=NC=C(C=C3)N4CCNCC4)C5CCCC5)C(=O)C |
+(+)-Eburnamonine  | [C@]12(C3=C4CCN1CCC[C@@]2(CC(=O)N3C1C4=CC=CC=1)CC)[H] |
+### 3. Run Prediction
+CSV File Mode
+```python
+    python farscore.py --input_file example.csv
+```
+Direct SMILES Mode
+```python
+    # Single molecule
+    python farscore.py --smiles "CCO"
+    # Multiple molecules
+    python farscore.py --smiles "CCO" "CC(=O)O" "c1ccccc1"
+```
+### 4. View Results
+Output file will contain FARScore values:
+| molecule_id | smiles  | farscore |
+| :------------: |:---------------:|:-----:|
+| Palbociclib      | CC1=C(C(=O)N(C2=NC(=NC=C12)NC3=NC=C(C=C3)N4CCNCC4)C5CCCC5)C(=O)C | 0.9453 |
+| (+)-Eburnamonine | [C@]12(C3=C4CCN1CCC[C@@]2(CC(=O)N3C1C4=CC=CC=1)CC)[H]        |    0.0286 |
+
+**FARScore Interpretation:**
+* Close to 1: Easy to synthesize
+- Close to 0: Hard to synthesize
+* Threshold 0.5: Binary classification cutoff
+
+## 📖 Advanced Usage
+Custom Pretraining and Finetuning task
+### Pretrain Model
+```python
+    python farscore_pretrain.py \
+        --dataset smiles.txt \
+        --vocab fragment.txt 
+```
+Note: `smiles.txt` contains unlabeled molecules, `fragment.txt` is a fragment vocabulary generated by `./scripts/utils/mol/cls.py` from `smiles.txt` for fragment assembly autoregressive pretrain.
+
+### Finetune Model
+```python
+    python farscore_finetune.py \
+        --input_model_file gnn_pretrained.pth \
+        --dataset dataset.csv
+```
+Note: `gnn_pretrained.pth` is a model saved in pretraining stage, `dataset.csv` contains labeled molecules for finetune on specific downstream task.
+
+## 🔧 Requirements
+* Python 3.8-3.10
+* CUDA-enabled GPU (recommended)
+* Key dependencies: PyTorch, RDKit, DGL, DeepChem
+
+## 📄 Citation
+If this program is useful to you, please cite our paper:
+
+
+## :email: Contact
+For questions, please contact: Xiang Zhang (Email: zhangxiang@simm.ac.cn)
+______________________________________________________________________________________________________
+🌟 **Like this project? Give us a Star**
