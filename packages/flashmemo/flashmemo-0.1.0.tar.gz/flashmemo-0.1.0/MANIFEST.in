@@ -1,0 +1,2 @@
+include flashmemo/templates/*.html
+include flashmemo/data/*.json

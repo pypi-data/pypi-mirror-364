@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ajouter une carte - FlashMemo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 p-6">
+  <div class="max-w-xl mx-auto bg-white p-6 rounded shadow">
+    <h1 class="text-2xl font-bold mb-4">➕ Ajouter une nouvelle carte</h1>
+    <form method="POST" class="space-y-4">
+      <div>
+        <label class="block font-semibold mb-1">Question</label>
+        <input type="text" name="question" required class="w-full border rounded p-2" />
+      </div>
+      <div>
+        <label class="block font-semibold mb-1">Réponse</label>
+        <input type="text" name="answer" required class="w-full border rounded p-2" />
+      </div>
+      <div>
+        <label class="block font-semibold mb-1">Niveau</label>
+        <select name="level" class="w-full border rounded p-2">
+          <option value="facile">Facile</option>
+          <option value="moyen" selected>Moyen</option>
+          <option value="difficile">Difficile</option>
+        </select>
+      </div>
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Ajouter</button>
+    </form>
+    <a href="{{ url_for('index') }}" class="inline-block mt-4 text-blue-600 hover:underline">← Retour à la liste</a>
+  </div>
+</body>
+</html>
