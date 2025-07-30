@@ -1,0 +1,15 @@
+xmanage/__init__.py,sha256=HFgccIPl6FNforJmNj7B1yfnFhmsNRmyuRKWs31eiMg,243
+xmanage/attribute.py,sha256=fQlAJCnb0z0MAObgumaLzTTdaUBk7JIqK8EvtacDqjo,250
+xmanage/systemd/__init__.py,sha256=2WiFZVenrs00JIdyAUDmnaYnBraBWo1uq_FZBfOip5s,247
+xmanage/systemd/path.py,sha256=P3fTCbVEGDE7_lU9N2Vq-abuD8LNCXOJWOQxfa3YDBE,6109
+xmanage/systemd/service.py,sha256=egvsubHN7Wg7ofIVO162lJdD3rHl9HmHlkBxENi7RxM,15794
+xmanage/systemd/unit.py,sha256=lN5EAJE24LhkuQe0khY8vXi7eguGUhlJX6djLUMGFrY,18431
+xmanage/xsystem/__init__.py,sha256=Q9aqh__bQYW0wUOUdnQJx47ANIryBKTVzgjgvuzr1iA,1034
+xmanage/xsystem/path.py,sha256=9eh0nFnenV9zYEmVEEqx1Yz5MS9MggPqh4MI1hXdpHU,1121
+xmanage-0.7.1.dist-info/LICENSE,sha256=gXf5dRMhNSbfLPYYTY_5hsZ1r7UU1OaKQEAQUhuIBkM,18092
+xmanage-0.7.1.dist-info/METADATA,sha256=Y8RYlrZI68Csjq6J_2pREBEJKMKPBolF5PXaSa7wZMQ,737
+xmanage-0.7.1.dist-info/WHEEL,sha256=pWvVuNuBTVmNV7Lp2jMAgt1NplTICeFdl1SW8U3MWN4,109
+xmanage-0.7.1.dist-info/entry_points.txt,sha256=tYwxl0lTNZI_a63t0rTWpQnYmqqDuiMLF2YEarsZnnI,46
+xmanage-0.7.1.dist-info/top_level.txt,sha256=50ofzMpe0_6Fb63xMug3nWrwpcAWnCWLmiG8Gk0ZSts,8
+xmanage-0.7.1.dist-info/zip-safe,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
+xmanage-0.7.1.dist-info/RECORD,,
