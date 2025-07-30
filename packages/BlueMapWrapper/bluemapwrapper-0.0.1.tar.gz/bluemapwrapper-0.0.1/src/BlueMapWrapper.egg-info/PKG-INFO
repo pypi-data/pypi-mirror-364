@@ -1,0 +1,26 @@
+Metadata-Version: 2.4
+Name: BlueMapWrapper
+Version: 0.0.1
+Summary: A BlueMap Wrapper to get data from a BlueMap Map
+Author-email: RyanStudio <ryanstudiobusiness@gmail.com>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/RyanStudioo/BlueMapMarkersWrapper
+Project-URL: Issues, https://github.com/RyanStudioo/BlueMapMarkersWrapper/issues
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+<h1>BlueMapWrapper.py <img alt="bluemap logo" src="Documentation/images/bluemap_logo.png" height=50px></h1>
+
+An open-sourced API wrapper for BlueMap for Python!!
+
+This wrapper is used for getting information from existing Blue Maps, NOT to create one
+
+# Contents
+- ## [Clients](Documentation/Clients.md#clients)
+    - [Client](Documentation/Clients.md#client)
+    - [AsyncClient](Documentation/Clients.md#asyncclient)
+- 
