@@ -1,0 +1,2 @@
+[console_scripts]
+wish-ai-validate = wish_ai.cli_tools:cli_main
