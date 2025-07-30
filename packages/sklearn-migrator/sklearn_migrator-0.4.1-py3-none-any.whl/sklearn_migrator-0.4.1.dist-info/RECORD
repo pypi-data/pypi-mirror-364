@@ -1,0 +1,12 @@
+sklearn_migrator/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+sklearn_migrator/classification/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+sklearn_migrator/classification/decision_tree_clf.py,sha256=iz2Sr8hDgkpnzg4z2AliUrkunClCHcafFXynaADm4EM,4999
+sklearn_migrator/classification/logistic_regression_clf.py,sha256=KZWbiRObKEYHHylFsFRMaO5QWiqMjTZKPosjvejpRr4,771
+sklearn_migrator/regression/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+sklearn_migrator/regression/decision_tree_reg.py,sha256=miY7HvqAoFcjnLfjOMhBrM8NWjmHeLeQIiXdpCFMEH8,4686
+sklearn_migrator/regression/linear_regression_reg.py,sha256=SjtS049SVAnrx6r7K1RMLZp7HjMl3o_Y66FfGtT2wDg,1592
+sklearn_migrator-0.4.1.dist-info/licenses/LICENSE,sha256=4_K4SRMxZgiBH4rL6hrWVgsmGBlUnSRv0-CNxiCe8ok,1072
+sklearn_migrator-0.4.1.dist-info/METADATA,sha256=bvJCk3IWjownuJE1rQ5cl8UcLYPzCWjHJRBTNLfDbd8,1502
+sklearn_migrator-0.4.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+sklearn_migrator-0.4.1.dist-info/top_level.txt,sha256=1kCZPfVCqypPtpBpnkEMylUiQtd_kc8Ehx_62pKrgQg,17
+sklearn_migrator-0.4.1.dist-info/RECORD,,
