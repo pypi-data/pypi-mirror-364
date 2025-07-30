@@ -1,0 +1,16 @@
+# Data
+*.csv
+*.json
+*.nc
+*.RData
+
+# Python
+__pycache__
+*.pyc
+dist
+
+# Editor settings
+.vscode
+
+# Hatch-VCS
+_version.py
