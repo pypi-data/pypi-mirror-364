@@ -1,0 +1,241 @@
+CHANGES
+=======
+
+4.1.0
+-----
+
+* Change to use shell cat to fetch commit\_id
+* fix: Set stable-2024.1 version of skyline-console to use
+* Fix skyline-apiserver on python3.11
+* Update TOX\_CONSTRAINTS\_FILE for stable/2024.1
+* Update .gitreview for stable/2024.1
+
+4.0.1
+-----
+
+* fix: Upgrade the version of databases
+* fix: Explicit host header in HTTP redirects
+* refactor: Prefer FHS-conformant location
+* feat: Cached download of Skyline Console tarball
+* feat: Separate devbuild goal for incremental build
+* style: Uniform order of arguments, shorter lines
+* docs: add FAQ in README.rst
+* Revert "fix SQLAlchemy version"
+* fix: user login failure due to no role assignment to its default project
+* docs: bp-2024-h1-todo-list.md
+* fix: remove console tarball before downloading
+* fix SQLAlchemy version
+* Use service\_type instead of service\_name
+* refactor: Prefer separate LABEL instructions
+* feat: Install requirements in separate step
+* feat: Base installation independent of sources
+* refactor: Official solution for python(3) tools
+* refactor: Tuned
+* refactor: Dropped redundant environment setting
+* fix: Use system session to handle
+* feat: Add default\_project\_id
+* fix: modify database connection way
+* fix: fix login API error message
+* Update the installation documentation
+* Add configurable policy files
+* support masakari and designate
+* fix: Updated the version of gunicorn
+* Updating Target Attributes For Barbican Policy
+* fix: Compatible with member and \_member\_
+* Update master for stable/2023.2
+
+3.0.0.0rc1
+----------
+
+* fix: Add GLOBAL\_VENV into skyline devstack plugin script
+* docs: update kolla-ansible deploy skyline steps
+* feat: Add time\_expired into cookie
+* docs: add spec for feat 'Multi Region & Domain Switch'
+* change sso port to be optional
+* Update requirements and test-requirements
+* Update master for stable/2023.1
+
+2.0.0
+-----
+
+* docs: Add docker image address
+* fix: eliminate whitespace in passenv values
+* fix: prometheus response 500
+* feat: Add cafile conf
+* fix: Fix keystone\_url default sample
+* Fix spelling for admin role in Barbican policy
+* fix: Fix test requirement
+* fix: Fix the devstack for python3.8 and version in requirements
+* docs: Update doc with how to enable ssl
+* Remove unicode literal from code
+* feat: Add API docs
+* feat: Support both http and https for nginx.conf.j2 template
+* feat: Add log\_file config into skyline.yaml.sample
+* fix: Use constraints file when build skyline image
+* fix: Update policy
+* fix: Add enforce\_new\_defaults configuration
+* Update master for stable/zed
+
+1.0.0.0rc1
+----------
+
+* fix: Lack of Octavia device owner of port
+* docs: Add rc1 release notes
+* fix: Update policy
+* fix: Fix to add compute:kuryr for device\_owner filter
+* docs: fix rst syntax error about links
+* docs: replace "deployment with mariadb" chapter with links
+* docs: Restore the README.rst
+* fix: Fix server\_name is null in volumes attachment
+* fix: Add enable field in profile
+* chore: Add description for api params
+* chore: Add license for python file and update policy
+* fix: Check project\_id when supply uuid filter
+* fix: Add envdir to common commands in tox
+* refactor: Move all wrapper into wrapper folder
+* fix: Set bool as string for bootable and multiattach
+* fix: Fix empty projects in profile
+* feat: Return both id and name of children volume for snapshots
+* refactor: Remove invalid codes for volumes and snapshots
+* fix: Fix member use has no snapshot\_id filter for volumes
+* feat: Support uuid filter for volume snapshots list
+* docs: Add more for contributor introduction
+* docs: Add contributor introduction
+* docs: Add docker install of skyline-apiserver
+* docs: Add source install of skyline-apiserver
+* fix: Fix server\_name is null for ports list api
+* fix: Update requirements
+* fix: Catch InternalServerError
+* fix: Update the package version
+* fix: Fix the limit for ports list
+* fix: Remove invalid panko policy
+* feat: Support SSO login via openID
+* fix: Fix requirements conflict
+* docs: Add sample configuration into doc
+* feat: Add doc base frame
+* refactor: Remove base\_roles and add more into extension\_mapping
+* feat: Support mypy check
+* fix: Add MANIFEST.in and remove templates from packages
+
+1.0.0.0b2
+---------
+
+* docs: Change md file to rst file
+* fix: Add templates into packages
+* Add gunicorn log handler and formatter
+* feat: Support system scope for policy list and check
+* fix: Fix schemas of ServersResponseBase
+* refactor: Refactor the extension schemas
+* refactor: Refactor schemas
+* refactor: Adjust the common and contrib schemas
+* refactor: cleanup some invalid tests
+* docs: add skyline logo design
+* fix: add single quotation markx for password
+* fix: Check both service and endpoint
+* Add skyline port settings
+* feat: Remove patch for barbican and update policy
+* chore: Remove unused codes
+* feat: Add barbican policy and service\_mapping
+* refactor: Use source code instead of release packages
+* refactor: Register rule and apirule into enforcer
+* fix: Use debug config from default
+* feature: Add zun config and policy
+* refactor: Use pbr to get package version
+* fix: Fix the folder name of skyline-console
+* refactor: Remove invalid config
+* fix: Add manila into service mapping
+* fix: Use the correct job for post
+* style: Re-generate the default config yaml
+* chore: Remove poetry
+* feature: Add magnum config and policy
+* fix: Remove invalid constant NEUTRON\_PORTS\_API
+* feature: Add skyline-console commit-id
+* chore: Move skyline\_apiserver out of libs
+* chore: Remove invalid folder from libs
+* chore: Merge skyline-nginx into skyline-apiserver
+* chore: Merge skyline-policy-manager into skyline-apiserver
+* chore: Merge skyline-config into skyline-apiserver
+* chore: Merge skyline-log into skyline-apiserver
+* feat: Update policy for manila and trove
+* feat: Change the command for testenv:releasenotes
+* feat: Add releatenotes
+* chore: Update dependency packages and remove invalid
+* doc: add skyline community icons
+* doc: add sqlite connection string example
+* feat: Add manila policy
+* fix: Fix trove policy
+* fix: Remove invalid count of ports list
+* fix: Fix the url path pattern when generate nginx config
+* fix: Use -U to upgrade the skyline-console with tarball
+* fix: Add prefix for trove policy APIRule
+* Add Trove configs and policies to Skyline-Apiserver
+* fix: markupsafe ImportError
+* fix: Only use system\_session when use id filter
+* fix: Use admin permission to list volumes with ids
+* fix: Fix the log\_dir
+* fix: Update .zuul.yaml
+* fix: Add nginx option "listen\_address" and "log\_dir"
+* fix: Update README.md
+* fix: update skyline nginx log file address
+* fix: Remove skyline\_console when rename whl files
+* fix: Cleanup skyline-console in .zuul.yaml and publish job
+* refactor: Remove skyline-console submodule
+* chore: Update submodules
+* feat: add query api
+* feat: Add swift endpoint url when generate nginx.conf
+* docs: Execute make swagger to fill in information
+* fix: Error build image
+* feat: Improve the enum value for port device owner
+* Integration with Kolla and Kolla-Ansible
+* style: Change makefile for apiserver and nginx of skyline
+* feat: Add irrelevant-files for zuul jobs
+* Fix: Add post-run into publish job
+* Fix: Add pre-run into job
+* Fix: Only keep one tar.gz and whl package under dist
+* Fix: Change the parent of publish job
+* Fix: Reuse nvm.sh before run yarn
+* Fix: Fail to publish package to tarballs
+* refactor: Change the way to install nodejs and yarn
+* Fix: Add pre.yaml in publish job
+* refactor: Change the path of file alembic.ini
+* feat: Publish source package into tarballs
+* refactor: Remove -f of poetry build command
+* test: Add skyline-config unit test
+* test: Add skyline-policy-manager unit test
+* test: Add skyline-log unit test
+* feat: Add build sdist
+* feat: Add ironic and octavia into service\_mapping
+* chore: Update dependencies
+* feat: Support devstack integrated functional test
+* fix: Change the version of setuptools
+* fix: Remove git\_config when make venv
+* docs: Update README doc to link devstack README doc
+* feat: Support to deploy skyline with devstack
+* fix: get domain always from admin interface
+* fix: Double all\_projects params
+* fix: Lack of import constants
+* fix: Fix make build failed
+* feature: Add ZUUL JOBs
+* feature: Add x-openstack-request-id into header
+* fix: Re-generate the poetry.lock
+* fix: Fix params' default value of function
+* docs: add mascot description
+* fix: add quick start with sqlite in README doc
+* fix: Update README doc and fix dependency
+* fix: 400 page appears when using http protocol to access
+* fix: Add timeout to keystone session
+* docs: Add quick start docs
+* feat: Add bootstrap support for skyline image
+* chore: Add make clean to clean up project directory
+* feat: Add make build
+* refactor: Streamline libs directory structure
+* refactor: Move skyline-apiserver to libs
+* feat: Add skyline-nginx package
+* feat: Add skyline-console to submodule
+* feat: Add skyline-config under libs
+* feat: Add make genconfig to generate sample config
+* refactor: Use \_\_version\_\_ instead of VERSION in constants
+* fix: Add sample yaml config file
+* feat: Add initial code of skyline-apiserver
+* Add Zuul support for new repository
+* Added .gitreview

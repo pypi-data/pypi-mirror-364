@@ -1,0 +1,96 @@
+---
+- job:
+    name: skyline-functional-devstack
+    parent: devstack
+    description: |
+      Skyline functional tests job based on devstack (single-node).
+    pre-run: playbooks/devstack/pre.yaml
+    run:
+      - playbooks/devstack/run-devstack.yaml
+      - playbooks/devstack/run-tox.yaml
+    post-run:
+      - playbooks/devstack/post.yaml
+    required-projects:
+      - openstack/skyline-apiserver
+      - openstack/skyline-console
+    vars:
+      devstack_plugins:
+        skyline-apiserver: https://opendev.org/openstack/skyline-apiserver
+      zuul_copy_output:
+        /var/log/skyline: logs
+        /etc/skyline: logs
+        /etc/nginx: logs
+    host-vars:
+      controller:
+        tox_install_siblings: false
+        tox_envlist: functional
+
+- job:
+    name: skyline-tox-py38
+    parent: openstack-tox-py38
+    description: |
+      Skyline py38 unittest tests
+    vars:
+      python_version: 3.8
+      tox_envlist: py38
+
+- job:
+    name: skyline-tox-pep8-py38
+    parent: openstack-tox-py38
+    description: |
+      Skyline code static analysis
+    vars:
+      python_version: 3.8
+      tox_envlist: pep8
+
+- project:
+    templates:
+      - release-notes-jobs-python3
+      - publish-openstack-docs-pti
+    check:
+      jobs:
+        - skyline-tox-py38:
+            irrelevant-files:
+              - ^container/.*$
+              - ^devstack/.*$
+              - ^docs/.*$
+              - ^tools/.*$
+              - ^.*\.rst$
+              - ^.*\.md$
+              - ^kolla/.*$
+        - skyline-tox-pep8-py38
+        - skyline-functional-devstack:
+            irrelevant-files:
+              - ^container/.*$
+              - ^docs/.*$
+              - ^tools/.*$
+              - ^.*\.rst$
+              - ^.*\.md$
+              - ^kolla/.*$
+              # releasenotes
+              - ^releasenotes/.*$
+    gate:
+      jobs:
+        - skyline-tox-py38:
+            irrelevant-files:
+              - ^container/.*$
+              - ^devstack/.*$
+              - ^docs/.*$
+              - ^tools/.*$
+              - ^.*\.rst$
+              - ^.*\.md$
+              - ^kolla/.*$
+        - skyline-tox-pep8-py38
+        - skyline-functional-devstack:
+            irrelevant-files:
+              - ^container/.*$
+              - ^docs/.*$
+              - ^tools/.*$
+              - ^.*\.rst$
+              - ^.*\.md$
+              - ^kolla/.*$
+              # releasenotes
+              - ^releasenotes/.*$
+    post:
+      jobs:
+        - publish-openstack-python-branch-tarball
