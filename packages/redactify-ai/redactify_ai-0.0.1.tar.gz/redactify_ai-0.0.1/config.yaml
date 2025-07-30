@@ -1,0 +1,14 @@
+presidio:
+  entities:
+    - PERSON
+    - PHONE_NUMBER
+    - EMAIL_ADDRESS
+    - LOCATION
+    - DATE_TIME
+    - CREDIT_CARD
+  language: en
+  score_threshold: 0.6
+  mask_character: "*"
+  spacy_model: en_core_web_lg-3.8.0
+  # or en_core_web_sm
+  spacy_model_dir: D:\WORKSPACE\redactify-ai\models\spacy\en_core_web_lg-3.8.0\en_core_web_lg   # Custom model storage path

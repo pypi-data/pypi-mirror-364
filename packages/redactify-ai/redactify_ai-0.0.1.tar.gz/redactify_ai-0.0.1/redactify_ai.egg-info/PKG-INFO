@@ -1,0 +1,196 @@
+Metadata-Version: 2.4
+Name: redactify-ai
+Version: 0.0.1
+Summary: A Python package for leveraging Presidio for anonymizing sensitive PII data using Spark.
+Home-page: https://gitlab.com/rokorolev/redactify-ai
+Author: Roman Korolev
+Author-email: spark_development@yahoo.com
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pyyaml==6.0.1
+Requires-Dist: pandas==1.5.3
+Requires-Dist: spacy==3.7.5
+Requires-Dist: presidio_analyzer~=2.2.358
+Requires-Dist: presidio_anonymizer~=2.2.358
+Requires-Dist: requests==2.32.2
+Requires-Dist: urllib3==1.26.16
+Requires-Dist: pyspark==3.5.2
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# RedactifyAI
+
+RedactifyAI is a Python package for detecting and anonymizing sensitive Personally Identifiable Information (PII) 
+in textual data using Microsoft's Presidio and Apache Spark.
+
+## Key Features
+- **Integration with Presidio**: Detects and anonymizes PII such as names, emails, phone numbers, and more.
+- **Spark-powered processing**: Handle large-scale data anonymization with PySpark.
+- **Custom Recognizers**: Extend PII detection with custom logic for your specific needs.
+
+## Models
+- [en_core_web_lg](https://spacy.io/models/en#en_core_web_lg)
+
+---
+
+## Installation
+
+You can install RedactifyAI from PyPI or by building the wheel file locally.
+
+### Install from PyPI (if published)
+```bash
+pip install redactify-ai
+```
+
+### Build Locally
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-repo/redactify-ai.git
+   cd redactify-ai
+   ```
+1. Build the wheel:
+   ```bash
+   rm -rf build dist *.egg-info
+   python setup.py sdist bdist_wheel
+   ```
+1. Install the wheel:
+   ```shell
+   pip install dist/redactify_ai-0.0.1-py3-none-any.whl
+   ```
+1. Upload the Package to PyPi
+   1. Install Twine
+   `pip install twine`
+   2. Generate token for PyPi account
+   3. Upload the Package
+   `twine upload dist/*`
+
+## Usage
+### Step 1: Configuration
+Prepare a `config.yaml` file for Presidio configuration (e.g., recognizers, anonymization rules).
+Example:
+```yaml
+presidio:
+   entities:
+      - PERSON
+      - PHONE_NUMBER
+      - EMAIL_ADDRESS
+      - LOCATION
+      - DATE_TIME
+      - CREDIT_CARD
+   language: en
+   score_threshold: 0.6
+   mask_character: "*"
+   spacy_model: en_core_web_lg # download the model of your choice, e.g. en_core_web_sm
+   spacy_model_dir: /path/to/model/   # Custom model storage path
+```
+### Step 2: Create a Processor
+
+```python
+from redactify_ai.config import load_config
+from redactify_ai.processor import PresidioDLPProcessor
+
+# Load configuration
+config = load_config("config.yaml")
+processor = PresidioDLPProcessor(config)
+```
+### Step 3: Anonymize DataFrame with PySpark
+
+```python
+from redactify_ai.utils import anonymize_text_udf
+from pyspark.sql import SparkSession
+
+# Initialize Spark session
+spark = SparkSession.builder.appName("PresidioDLP").getOrCreate()
+
+# Create mock DataFrame
+data = [("Hi, I'm John Doe. Email me at john.doe@gmail.com.",)]
+df = spark.createDataFrame(data, ["transcripts"])
+
+# Apply anonymization
+anonymize_udf = anonymize_text_udf(processor)
+df_redacted = df.withColumn("transcripts_redacted", anonymize_udf(df["transcripts"]))
+df_redacted.show(truncate=False)
+```
+
+## Running the Pipeline
+To run the pipeline script provided in this repository:
+```shell
+python run_pipeline.py
+```
+
+## End-to-End Integration Testing
+
+If you want to verify that the RedactifyAI pipeline correctly redacts PII over a full environmentâ€”including Spark and 
+real NLP modelsâ€”an end-to-end test is provided.
+
+### Prerequisites
+
+- Docker installed on your system
+- `test_config.yaml`, the end-to-end test script (e.g., `test_pipeline_integration.py`), 
+and the project source code in your working directory
+
+> **Note:** The test requires the `en_core_web_lg` SpaCy model to be present. The provided Dockerfile ensures 
+this model is pre-installed and ready for use.
+
+### Running the End-to-End Test
+
+1. **Build the Docker Image**
+
+   In your project directory, run:
+
+   ```sh
+   docker build -t redactify-test .
+   ```
+
+2. **Run the Test Suite**
+
+   Spawn a container from your image and execute the integration test:
+
+   ```sh
+   docker run --rm -v "$PWD:/app" -w /app redactify-test bash -c "
+    python setup.py sdist bdist_wheel &&
+    pip install dist/redactify_ai-0.0.1-py3-none-any.whl &&
+    pytest tests/test_pipeline_integration.py --maxfail=1 --disable-warnings --tb=short
+    "
+   ```
+
+   This will build/wheel/install/testing using the real Spark instance, SpaCy language model, and all necessary dependencies.
+
+### What This Test Does
+
+- Runs the pipeline using a sample DataFrame with mock PII.
+- Uses the actual `PresidioDLPProcessor` and redaction logic.
+- Asserts that PII is redacted and replaced with mask characters as defined in your configuration.
+
+### How to Interpret Results
+
+- The test will pass if the sensitive information is successfully redacted from the output.
+- The script will print the redacted text, which should show mask characters (e.g., `*`) in place of PII.
+
+---
+
+If you make changes to the model configuration or the pipeline logic, rerunning this end-to-end test will ensure your
+modifications continue to correctly anonymize sensitive data.
+
+For any issues, please check that your Docker build completes successfully and that your working directory contains all 
+the necessary files (`test_config.yaml`, test script, and source code).
+
+## Contributing
+Contributions are welcome! Please create issues or pull requests if you find bugs or would like to add new features.
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
