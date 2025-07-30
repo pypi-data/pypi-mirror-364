@@ -1,0 +1,2 @@
+[labtasker.client.cli]
+labtasker-plugin-script-generate = labtasker_plugin_script_generate.main
