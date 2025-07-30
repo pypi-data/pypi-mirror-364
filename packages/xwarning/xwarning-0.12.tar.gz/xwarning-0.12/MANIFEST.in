@@ -1,0 +1,4 @@
+include README.md
+include LICENSE
+include __version__.py
+recursive-include xwarning *.py
