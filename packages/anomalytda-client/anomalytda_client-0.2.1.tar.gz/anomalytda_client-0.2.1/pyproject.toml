@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "anomalytda-client"
+version = "0.2.1"
+description = "The AnomalyTDA Client Library"
+authors = ["Datarefiner <admin@datarefiner.com>"]
+readme = "README.md"
+packages = [{include = "anomalytda_client"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+numpy = "^1.24.0"
+scipy = "^1.9.3"
+opencv-python = "^4.6.0"
+matplotlib = "^3.7.5"
+pillow = ">=10.4"
+tqdm = "^4.67.0"
+onnxruntime = "^1.19.2"
+
+[tool.poetry.group.dev.dependencies]
+black = {version = "^24.8.0", extras = ["d", "jupyter"]}
+isort = "^5.13.2"
+pytest = "^8.3.3"
+jupyter = {extras = ["notebook"], version = "^1.1.1"}
+mypy = "^1.13.0"
+pyarmor = "^9.0.5"
+flake8 = "^5.0.4"
+flake8-pyproject = "^1.2.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+disable_error_code = "import-untyped"
+
+[tool.black]
+line-length = 119
+
+[tool.flake8]
+max-line-length = 119
+extend-ignore = "E203"
