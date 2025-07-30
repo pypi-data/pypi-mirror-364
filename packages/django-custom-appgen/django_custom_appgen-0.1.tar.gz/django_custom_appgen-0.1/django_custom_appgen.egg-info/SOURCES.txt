@@ -1,0 +1,9 @@
+README.md
+setup.py
+app_generator/__init__.py
+app_generator/generate_django_app.py
+django_custom_appgen.egg-info/PKG-INFO
+django_custom_appgen.egg-info/SOURCES.txt
+django_custom_appgen.egg-info/dependency_links.txt
+django_custom_appgen.egg-info/entry_points.txt
+django_custom_appgen.egg-info/top_level.txt

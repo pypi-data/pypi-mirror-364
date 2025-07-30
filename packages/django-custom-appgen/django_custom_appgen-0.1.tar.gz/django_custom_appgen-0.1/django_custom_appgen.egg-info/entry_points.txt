@@ -1,0 +1,2 @@
+[console_scripts]
+djappgen = app_generator.generate_django_app:main
