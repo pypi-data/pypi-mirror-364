@@ -1,0 +1,2 @@
+[console_scripts]
+py-trashguard = pytrashguard.cli:main
