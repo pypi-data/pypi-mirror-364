@@ -1,0 +1,13 @@
+neurogenesis/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+neurogenesis/models/__init__.py,sha256=aLhCGNjpQzWbrPlN2gIk6x5-II41lNCwn1R7NUE7e9k,393
+neurogenesis/models/decision_tree.py,sha256=IsiBLUZSXyobb6AEPwDWTn765JWUrb0_5SFXjTp_aOQ,4871
+neurogenesis/models/knn.py,sha256=D3YKP8EqlwOzHKwpWrtMYEJFG7xNgFyxEQI3shS5QIY,1523
+neurogenesis/models/linear_regression.py,sha256=ZO9dq_pLiJ2z1ttmO8fE_ny2Pqls_IwkKFns7_l_YbY,1046
+neurogenesis/models/logistic_regression.py,sha256=VYWZ8HV4WwAbiFo4uem1wZRkJCDMqgjwYbSo7UEkMYI,1221
+neurogenesis/models/naive_bayes.py,sha256=VilU5OkqKIzRYjqAhs8ER1tshLaUIgpQNWNeYbwEnYk,2685
+neurogenesis/models/random_forest.py,sha256=zQT-aNthoIr0i9YQrW0UczkRqJ10UgxHQHp2hMpMxuI,1848
+neurogenesis/models/svm.py,sha256=EgIXIL8lybyTx_cYxor-YuVPGXot6-gj1m-HlL9879A,2180
+neurogenesis-0.0.1.dist-info/METADATA,sha256=F6Ifrpix5QaS9ASYiS2FkKu-TMPKI6pk7ULbxRCnfyo,3356
+neurogenesis-0.0.1.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+neurogenesis-0.0.1.dist-info/licenses/LICENSE,sha256=IwGE9guuL-ryRPEKi6wFPI_zOhg7zDZbTYuHbSt_SAk,35823
+neurogenesis-0.0.1.dist-info/RECORD,,
