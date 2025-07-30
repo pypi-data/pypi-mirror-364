@@ -1,0 +1,119 @@
+# MIPSolver
+
+高性能混合整数规划求解器，提供现代化Python API。
+
+## 安装
+
+```bash
+pip install mipsolver
+```
+
+## 快速开始
+
+```python
+import mipsolver as mp
+
+# 创建优化模型
+model = mp.Model("example")
+
+# 添加变量
+x = model.add_var(vtype=mp.BINARY, name="x")
+y = model.add_var(vtype=mp.BINARY, name="y")
+
+# 设置目标函数
+model.set_objective(5*x + 8*y, mp.MAXIMIZE)
+
+# 添加约束
+model.add_constr(2*x + 4*y <= 10, "capacity")
+
+# 求解
+model.optimize()
+
+# 获取结果
+print(f"最优值: {model.obj_val}")
+print(f"x = {x.value}, y = {y.value}")
+```
+
+## 特性
+
+- 高性能C++求解器核心
+- 现代化Python API
+- 多种C++ API接口（直接API、C API）
+- 支持二进制、整数和连续变量
+- MPS文件格式支持
+- 跨平台兼容性
+- 完整类型提示支持
+
+## C++ API
+
+MIPSolver也提供了C++ API用于高性能应用：
+
+### C++ 直接API
+
+```cpp
+#include "src/core.h"
+#include "src/branch_bound_solver.h"
+
+MIPSolver::Problem problem("example", MIPSolver::ObjectiveType::MAXIMIZE);
+int x = problem.addVariable("x", MIPSolver::VariableType::BINARY);
+int y = problem.addVariable("y", MIPSolver::VariableType::BINARY);
+
+problem.setObjectiveCoefficient(x, 5.0);
+problem.setObjectiveCoefficient(y, 8.0);
+
+int c = problem.addConstraint("capacity", MIPSolver::ConstraintType::LESS_EQUAL, 10.0);
+problem.getConstraint(c).addVariable(x, 2.0);
+problem.getConstraint(c).addVariable(y, 4.0);
+
+MIPSolver::BranchBoundSolver solver;
+MIPSolver::Solution solution = solver.solve(problem);
+```
+
+### C API
+
+```cpp
+#include "api/mipsolver_c_api.h"
+
+MIPSolver_ProblemHandle problem = MIPSolver_CreateProblem("example", MIPSOLVER_OBJ_MAXIMIZE);
+int x = MIPSolver_AddVariable(problem, "x", MIPSOLVER_VAR_BINARY);
+int y = MIPSolver_AddVariable(problem, "y", MIPSOLVER_VAR_BINARY);
+// ... 设置目标函数和约束
+MIPSolver_SolutionHandle solution = MIPSolver_Solve(problem);
+```
+
+更多C++示例请参考 [examples/README.md](examples/README.md)
+
+## 构建C++示例
+
+```bash
+cd examples
+./build_examples.sh
+./build/test_cpp_direct
+```
+
+## 项目结构
+
+```
+MIPSolver/
+├── mipsolver/          # Python包源码
+├── src/               # C++核心求解器
+├── api/               # C语言接口
+├── bindings/          # Python-C++绑定
+├── examples/          # 使用示例
+├── tests/             # 测试文件
+├── docs/              # 项目文档
+├── scripts/           # 构建脚本
+└── temp/              # 临时文件
+```
+
+详细的项目结构说明请参考：[docs/PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md)
+
+## 开发工具
+
+- **清理项目**: `./scripts/clean.sh` - 清理所有构建产物和缓存
+- **快速构建**: `./scripts/build.sh` - 完整的构建和测试流程
+- **示例构建**: `cd examples && ./build_examples.sh` - 构建C++示例
+
+## 许可证
+
+MIT License
