@@ -1,0 +1,122 @@
+Metadata-Version: 2.4
+Name: llm-text-splitter
+Version: 0.2.0
+Summary: A lightweight, rule-based text splitter for LLM context window management, handles multiple file formats and enriches chunks with metadata.
+Author-email: Mohamed Elghobary <m.abdeltawab.elghobary@gmail.com>
+Project-URL: Homepage, https://github.com/MohamedElghobary/llm_text_splitter
+Project-URL: Bug Tracker, https://github.com/MohamedElghobary/llm_text_splitter/issues
+Project-URL: Source Code, https://github.com/MohamedElghobary/llm_text_splitter
+Keywords: LLM,text-splitter,chunking,RAG,document-processing
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Text Processing
+Classifier: Topic :: Text Processing :: General
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Intended Audience :: Developers
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pypdf>=3.0.0
+Requires-Dist: python-docx>=0.8.0
+Requires-Dist: beautifulsoup4>=4.0.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"
+Requires-Dist: pytest-cov; extra == "dev"
+Dynamic: license-file
+
+# **LLM Text Splitter v0.2.0**
+![PyPI](https://img.shields.io/pypi/v/llm-text-splitter)
+
+A lightweight, rule-based text splitter designed for preparing long documents for Large Language Model (LLM) context windows. It intelligently breaks down text into manageable chunks, prioritizing meaningful structural breaks (like paragraphs or lines) before resorting to arbitrary character limits.
+
+## Key Features
+
+* **All-in-One Installation:** Handles `.pdf`, `.docx`, `.html`, and plain text files out-of-the-box with a single installation.
+* **Rich Metadata:** Each chunk is returned as a dictionary containing the text **content** and its **metadata** (e.g., source filename, path, chunk index), which is crucial for RAG (Retrieval-Augmented Generation) and source tracking.
+* **Robust Recursive Splitting:** Employs a powerful recursive splitting strategy that prioritizes semantic boundaries (paragraphs, then lines, then sentences) before falling back to character splits.
+* **Configurable Overlap:** Maintains context across hard splits with configurable character overlap.
+* **Modular & Extensible:** Built with a clean `readers` architecture, making it easy to add support for new file types in the future.
+
+## Installation
+
+You can install `llm-text-splitter` using pip:
+
+```bash
+pip install llm-text-splitter
+```
+
+## Usage
+Here's how to use the LLMTextSplitter in your Python projects:
+
+1. Splitting a File
+
+```python
+from llm_text_splitter import LLMTextSplitter
+
+# Assume you have 'my_report.pdf' and 'my_notes.txt'
+
+# Initialize the splitter with a target chunk size and overlap
+splitter = LLMTextSplitter(max_chunk_chars=1000, overlap_chars=100)
+
+try:
+    # Process a PDF file
+    pdf_chunks = splitter.split_file("my_report.pdf")
+    print(f"Split 'my_report.pdf' into {len(pdf_chunks)} chunks.")
+
+    # Each chunk is a dictionary with 'content' and 'metadata'
+    print("\n--- First PDF Chunk ---")
+    print("Content:", pdf_chunks[0]['content'][:200] + "...") # Print first 200 chars
+    print("Metadata:", pdf_chunks[0]['metadata'])
+    
+    print("\n" + "="*50 + "\n")
+
+    # Process a plain text file
+    txt_chunks = splitter.split_file("my_notes.txt")
+    print(f"Split 'my_notes.txt' into {len(txt_chunks)} chunks.")
+
+    print("\n--- First TXT Chunk ---")
+    print("Content:", txt_chunks[0]['content'])
+    print("Metadata:", txt_chunks[0]['metadata'])
+
+except FileNotFoundError as e:
+    print(e)
+except Exception as e:
+    print(f"An error occurred: {e}")
+```
+2. Splitting a Raw Text String
+Use split_text if you already have your text content in a string variable.
+
+```python
+from llm_text_splitter import LLMTextSplitter
+
+long_text = "This is the first paragraph. It contains multiple sentences.\n\nThis is the second paragraph. It is also quite long and will be chunked according to the recursive splitting rules to maintain semantic meaning where possible."
+
+# Initialize splitter with a small chunk size for demonstration
+splitter = LLMTextSplitter(max_chunk_chars=100, overlap_chars=15)
+
+# Split the text string
+chunks = splitter.split_text(long_text, base_metadata={"source": "manual_input"})
+
+print(f"Split text into {len(chunks)} chunks:\n")
+
+for chunk in chunks:
+    print(f"Content: {chunk['content']}")
+    print(f"Metadata: {chunk['metadata']}")
+    print("-" * 20)
+```
+## Example Output:
+```bash
+Split text into 2 chunks:
+
+Content: This is the first paragraph. It contains multiple sentences.
+Metadata: {'source': 'manual_input', 'chunk_index': 0}
+--------------------
+Content: This is the second paragraph. It is also quite long and will be chunked according to the recursive splitting rules to maintain semantic meaning where possible.
+Metadata: {'source': 'manual_input', 'chunk_index': 1}
+--------------------
+```

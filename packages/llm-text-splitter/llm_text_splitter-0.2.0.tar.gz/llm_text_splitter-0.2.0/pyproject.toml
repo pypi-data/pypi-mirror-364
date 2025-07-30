@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llm-text-splitter"
+version = "0.2.0"
+authors = [
+  { name="Mohamed Elghobary", email="m.abdeltawab.elghobary@gmail.com" },
+]
+description = "A lightweight, rule-based text splitter for LLM context window management, handles multiple file formats and enriches chunks with metadata."
+readme = "README.md"
+requires-python = ">=3.12"
+
+dependencies = [
+    "pypdf>=3.0.0",
+    "python-docx>=0.8.0",
+    "beautifulsoup4>=4.0.0"
+]
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Text Processing",
+    "Topic :: Text Processing :: General",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Intended Audience :: Developers",
+]
+
+keywords = ["LLM", "text-splitter", "chunking", "RAG", "document-processing"]
+
+[project.urls]
+"Homepage" = "https://github.com/MohamedElghobary/llm_text_splitter"
+"Bug Tracker" = "https://github.com/MohamedElghobary/llm_text_splitter/issues"
+"Source Code" = "https://github.com/MohamedElghobary/llm_text_splitter"
+
+[project.optional-dependencies]
+# Dependencies specifically for development and testing
+dev = [
+    "pytest>=7.0",
+    "pytest-cov"
+]
+
+[tool.setuptools]
+packages = ["llm_text_splitter"]

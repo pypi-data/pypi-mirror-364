@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+llm_text_splitter/__init__.py
+llm_text_splitter/readers.py
+llm_text_splitter/splitter.py
+llm_text_splitter.egg-info/PKG-INFO
+llm_text_splitter.egg-info/SOURCES.txt
+llm_text_splitter.egg-info/dependency_links.txt
+llm_text_splitter.egg-info/requires.txt
+llm_text_splitter.egg-info/top_level.txt
+tests/test_splitter.py

@@ -1,0 +1,7 @@
+pypdf>=3.0.0
+python-docx>=0.8.0
+beautifulsoup4>=4.0.0
+
+[dev]
+pytest>=7.0
+pytest-cov
