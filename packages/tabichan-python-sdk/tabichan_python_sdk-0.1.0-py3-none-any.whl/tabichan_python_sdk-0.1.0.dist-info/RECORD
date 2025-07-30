@@ -1,0 +1,10 @@
+tabichan/__init__.py,sha256=G25pntvTiK-Q_bjimTEcKDsVJSgBeXiE0dzZj6f7nQQ,243
+tabichan/__version__.py,sha256=kUR5RAFc7HCeiqdlX36dZOHkUI5wI6V_43RpEcD8b-0,22
+tabichan/client.py,sha256=LvRtGuk7Cwnv0vV3NP8nc4T8eXd6r1MuKnRfVRxj-Ck,3669
+tabichan/main.py,sha256=anfIs996oPDFhh8sSAAeowLu3-XqMiHxQVOeuqdsTn8,97
+tabichan/websocket_client.py,sha256=qnOb5cwb0h6mLaAfoKFRXkN3-rddznIHrD4VTvUUKsg,7188
+tabichan_python_sdk-0.1.0.dist-info/METADATA,sha256=EQh8r5JPHAzXWNpZ_pflGXPwAr3kq1IMt70UXwfAwLU,4723
+tabichan_python_sdk-0.1.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+tabichan_python_sdk-0.1.0.dist-info/entry_points.txt,sha256=zAl9wK8NdY74Ay_yGRMHcFXHUUPMwbz8T5nvfQ5Sdxs,48
+tabichan_python_sdk-0.1.0.dist-info/licenses/LICENSE,sha256=ytnL1vWbih-z6RQSTLVmJsrmk558FJdaxtGdjG1KfOE,1067
+tabichan_python_sdk-0.1.0.dist-info/RECORD,,
