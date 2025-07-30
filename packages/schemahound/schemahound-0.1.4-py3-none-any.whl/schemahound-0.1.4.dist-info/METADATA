@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: schemahound
+Version: 0.1.4
+Summary: Introspect & Fetch database schema information.
+Author-email: mslaursen <mslaursendk@gmail.com>
+Project-URL: Repository, https://github.com/mslaursen/schemahound.git
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# schemahound
