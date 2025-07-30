@@ -1,0 +1,2 @@
+recursive-include django_cv1/static *
+recursive-include django_cv1/templates *
