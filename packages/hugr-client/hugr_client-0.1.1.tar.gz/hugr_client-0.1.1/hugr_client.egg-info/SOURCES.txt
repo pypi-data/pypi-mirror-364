@@ -1,0 +1,10 @@
+README.md
+pyproject.toml
+hugr/__init__.py
+hugr/client.py
+hugr/stream.py
+hugr_client.egg-info/PKG-INFO
+hugr_client.egg-info/SOURCES.txt
+hugr_client.egg-info/dependency_links.txt
+hugr_client.egg-info/requires.txt
+hugr_client.egg-info/top_level.txt
