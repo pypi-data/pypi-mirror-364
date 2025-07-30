@@ -1,0 +1,4 @@
+[console_scripts]
+fasthugbench = fasthug.__main__:main
+fhb = fasthug.__main__:main
+fhbench = fasthug.__main__:main
