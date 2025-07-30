@@ -1,0 +1,12 @@
+README.md
+setup.py
+RdLib/Kalman.py
+RdLib/Rd.py
+RdLib/RdDriver.py
+RdLib/__init__.py
+RdLib/config.py
+RdLib.egg-info/PKG-INFO
+RdLib.egg-info/SOURCES.txt
+RdLib.egg-info/dependency_links.txt
+RdLib.egg-info/requires.txt
+RdLib.egg-info/top_level.txt
