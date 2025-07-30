@@ -1,0 +1,52 @@
+Metadata-Version: 2.4
+Name: rpa-sap-mock-bk
+Version: 0.1.2
+Summary: Robot Framework library for SAP Cloud SDK APIs
+Home-page: https://github.com/chiencse/rpa-sap
+Author: Minh Chiến
+Classifier: Framework :: Robot Framework
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: robotframework==6.1.1
+Requires-Dist: requests
+Requires-Dist: robotframework-pythonlibcore
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary
+
+hư viện Robot Framework để tích hợp SAP Cloud SDK.
+
+## Cài đặt
+
+```bash
+pip install rpa-sap-mock-bk
+```
+
+## Sử dụng trong Robot
+
+```robot
+*** Settings ***
+Library    rpa_sap
+
+*** Variables ***
+${BASE_URL}      https://your-sap-url.com
+${TOKEN}         your-access-token
+
+*** Test Cases ***
+Test SAP API
+    Connect To SAP System    ${BASE_URL}    ${TOKEN}
+    ${json}=    Set Variable    {"houseNumber": "123"}
+    ${result}=    Update Business Partner Address    1003764    28238    ${json}
+    Log    ${result}
+```
+
+## License
+
+MIT
