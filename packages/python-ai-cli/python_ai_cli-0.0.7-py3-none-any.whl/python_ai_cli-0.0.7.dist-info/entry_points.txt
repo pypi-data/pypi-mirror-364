@@ -1,0 +1,2 @@
+[console_scripts]
+python-ai-cli = python_ai_cli:main
