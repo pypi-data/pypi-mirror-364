@@ -1,0 +1,17 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+bridge/__init__.py
+bridge/sdk.py
+bridge/server.py
+simplesip/__init__.py
+simplesip/client.py
+simplesip.egg-info/PKG-INFO
+simplesip.egg-info/SOURCES.txt
+simplesip.egg-info/dependency_links.txt
+simplesip.egg-info/entry_points.txt
+simplesip.egg-info/requires.txt
+simplesip.egg-info/top_level.txt
+simplesip/examples/__init__.py
+simplesip/examples/demo.py
