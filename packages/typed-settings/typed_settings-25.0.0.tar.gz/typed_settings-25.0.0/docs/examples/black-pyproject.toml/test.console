@@ -1,0 +1,12 @@
+$ python black.py --help
+Usage: black.py [OPTIONS]
+
+Options:
+  --line-length INTEGER           [default: 79]
+  --skip-string-normalization / --no-skip-string-normalization
+                                  [default: no-skip-string-normalization]
+  --target-version [py39|py310|py311]
+                                  [default: py311]
+  --help                          Show this message and exit.
+$ python black.py --skip-string-normalization
+Settings(line_length=79, skip_string_normalization=True, target_version=<PyVersion.py311: '3.11'>)

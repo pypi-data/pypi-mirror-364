@@ -1,0 +1,19 @@
+version: 2
+build:
+  os: 'ubuntu-lts-latest'
+  tools:
+    python: 'latest'
+  commands:
+    - asdf plugin add uv
+    - asdf install uv latest
+    - asdf global uv latest
+    - >-
+      uv run
+      --all-extras --no-dev --group docs
+      -m sphinx
+      --builder html
+      --doctree-dir docs/_build/doctrees
+      --define language=en
+      --show-traceback
+      docs
+      $READTHEDOCS_OUTPUT/html
