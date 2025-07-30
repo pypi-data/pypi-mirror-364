@@ -1,0 +1,116 @@
+[build-system]
+build-backend = 'hatchling.build'
+requires = [ 'hatchling >=1.27.0' ]
+
+
+[dependency-groups]
+dev = [
+  'mypy >=1.17.0',
+  'ruff >=0.12.4',
+]
+
+
+[project]
+authors = [
+  {email='aekazitt+github@gmail.com', name='Sitt Guruvanich'},
+]
+classifiers = [
+  'Environment :: Web Environment',
+  'Framework :: AsyncIO',
+  'Intended Audience :: Developers',
+  'License :: OSI Approved :: MIT License',
+  'Programming Language :: Python :: 3',
+  'Programming Language :: Python :: 3.9',
+  'Programming Language :: Python :: 3.10',
+  'Programming Language :: Python :: 3.11',
+  'Programming Language :: Python :: 3.12',
+  'Programming Language :: Python :: 3.13',
+  'Programming Language :: Python :: 3.14',
+  'Programming Language :: Python :: 3 :: Only',
+  'Operating System :: OS Independent',
+  'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
+  'Topic :: Software Development :: Libraries :: Python Modules',
+]
+dependencies = []
+description = 'Semaphored background queue for Asynchronous Server Gateway Interface (ASGI) frameworks'
+homepage = 'https://github.com/aekasitt/etiquette'
+keywords = [
+  'asgi',
+  'asynchronous',
+  'asyncio',
+  'etiquette',
+  'extension',
+  'fastapi',
+  'litestar',
+  'plugin',
+  'queue',
+  'semaphore',
+  'starlette',
+  'uvloop',
+]
+license = 'MIT'
+readme = 'README.md'
+maintainers = [
+  {email='aekazitt+github@gmail.com', name='Sitt Guruvanich'},
+]
+name = 'etiquette'
+repository = 'https://github.com/aekasitt/etiquette.git'
+requires-python = '>=3.9'
+version = '0.0.1'
+
+
+[project.optional-dependencies]
+fastapi = [
+  'fastapi >=0.116.1',
+  'uvicorn >=0.35.0',
+]
+litestar = [
+  'litestar >=2.16.0',
+  'uvicorn >=0.35.0',
+]
+examples = [
+  'fastapi >=0.116.1',
+  'litestar >=2.16.0',
+  'uvicorn >=0.35.0',
+]
+tests = [
+  'fastapi >=0.116.1',
+  'httpx >=0.28.1',
+  'pytest >=8.4.1',
+  'pytest-asyncio >=1.1.0',
+]
+
+
+[tool.mypy]
+disallow_incomplete_defs = true
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+exclude = [ 'examples' ]
+strict = true
+
+
+[tool.pytest.ini_options]
+addopts = [
+  '--capture=sys',  # capture sysout messages
+  '--strict-markers',
+  '--tb=short',  # traceback
+]
+testpaths = [ 'tests' ]
+python_files = '*.py'
+
+
+[tool.ruff]
+indent-width = 2
+line-length = 100
+target-version = 'py39'
+
+
+[tool.ruff.lint.per-file-ignores]
+'__init__.py' = [
+  'F401',  # Ignore unused imports
+]
+'tests/**/*.py' = [
+  'F401',  # Ignore unused imports
+  'F811',  # Ignore redefinition of unused variable
+  'F841',  # Ignore local variable assigned but never used
+]
