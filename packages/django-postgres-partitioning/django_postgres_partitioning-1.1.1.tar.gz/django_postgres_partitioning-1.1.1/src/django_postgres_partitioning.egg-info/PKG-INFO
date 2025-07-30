@@ -1,0 +1,35 @@
+Metadata-Version: 2.4
+Name: django-postgres-partitioning
+Version: 1.1.1
+Summary: Средства для реализации партиционирования таблиц в СУБД PostgreSQL
+Home-page: https://stash.bars-open.ru/projects/EDUBASE/repos/django-pg-partitioning/
+Author: BARS Group
+Author-email: education_dev@bars-open.ru
+Classifier: Intended Audience :: Developers
+Classifier: Environment :: Web Environment
+Classifier: Natural Language :: Russian
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Framework :: Django :: 2.2
+Classifier: Framework :: Django :: 3.0
+Classifier: Framework :: Django :: 3.1
+Classifier: Framework :: Django :: 3.2
+Classifier: Framework :: Django :: 4.0
+Classifier: Framework :: Django :: 4.1
+Classifier: Framework :: Django :: 4.2
+Requires-Dist: six<2,>=1.11
+Requires-Dist: Django<4.3,>=2.2
+Requires-Dist: django-model-observer==1.1.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: summary
