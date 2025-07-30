@@ -1,0 +1,43 @@
+Metadata-Version: 2.4
+Name: NexLang
+Version: 1.3.3
+Summary: Super obfuscation Library
+Author: D
+Author-email: nasr2python@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: summary
+
+**This library was developed by a professional Python programmer.**
+
+`A private library for encryption and encryption implementation with a private interpreter.`
+
+# Super Library | Created By Devil ~~ Telegram —> @NeXlAnGpY #
+
+__You Can Use Library Using__
+
+```
+import nex
+
+nex.encode(input('YourFileName:  '))
+```
+
+**The encryption will be saved in the nex.py file.**
+
+# Execute Encrypt #
+
+```
+import nex
+
+nex._exec('Google-powered')
+```
+
+**Now You Can Execute Code For Safe**
