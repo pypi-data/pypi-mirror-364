@@ -1,0 +1,332 @@
+# Polygon Measurement Tool
+
+A Python package for measuring polygons in YOLO format annotation files with UI features and reference scale measurement.
+
+## Features
+
+- **Enhanced UI**: Crosshair cursor overlay for precise measurement
+- **High Accuracy**: Three-measurement reference scale averaging
+- **Real-time Preview**: Live measurement display with visual feedback
+- **Cross-platform**: Works on Windows, macOS, and Linux
+- **GUI Integration**: Directory selection dialog for ease of use
+- **Batch Processing**: Process multiple image-label pairs automatically
+
+## Installation
+
+### From PyPI (recommended)
+
+```bash
+pip install polygon-measure
+```
+
+### From Source
+
+```bash
+git clone https://github.com/
+cd polygon-measure
+pip install -e .
+```
+
+### Development Installation
+
+```bash
+pip install -e ".[dev]"
+```
+
+## Requirements
+
+- Python 3.7+
+- OpenCV 4.5.0+
+- NumPy 1.19.0+
+- Pandas 1.1.0+
+- SciPy 1.5.0+
+
+## Usage
+
+### Command Line Interface
+
+#### Using GUI (recommended)
+
+```bash
+polygon-measure --gui
+```
+
+#### Using Command Line Arguments
+
+```bash
+polygon-measure --images ./images --labels ./labels --output ./measurements
+```
+
+#### Using Short Arguments
+
+```bash
+polygon-measure -i ./images -l ./labels -o ./measurements
+```
+
+### Python API
+
+```python
+from polygon_measure import EnhancedPolygonMeasurementTool
+
+# Initialize the tool
+tool = EnhancedPolygonMeasurementTool(
+    images_dir="./images",
+    labels_dir="./labels",
+    output_dir="./measurements"
+)
+
+# Run the measurement process
+tool.run()
+```
+
+### Run as Module
+
+```bash
+python -m polygon_measure --gui
+```
+
+## How It Works
+
+### 1. Scale Setting Process
+
+For each image, you need to set the reference scale:
+
+1. **Draw 3 reference lines** on the ruler (each representing 1 cm)
+2. **Press 'S'** after drawing each line to save it
+3. **Tool calculates average** scale from the 3 measurements
+4. **Statistical validation** ensures measurement consistency
+
+### 2. Measurement Process
+
+- Load YOLO format label files automatically
+- Calculate polygon dimensions using the reference scale
+- Export measurements to CSV format
+- Process multiple image-label pairs in batch
+
+### 3. Controls
+
+During scale setting:
+
+- **S** - Save current measurement
+- **R** - Reset/redraw current line
+- **G** - Toggle grid overlay
+- **Q** - Quit/skip current image
+- **ESC** - Exit tool
+
+## Algorithm & Mathematical Implementation
+
+### Measurement Algorithm Flowchart
+
+```mermaid
+flowchart TD
+    A["Input: Polygon Points<br/>(normalized coordinates)<br/>+ Image Shape"] --> B{"Polygon has<br/>≥ 3 points?"}
+    
+    B -->|No| C["Return: max_length=0<br/>max_width=0<br/>area=0"]
+    
+    B -->|Yes| D["Convert Normalized to<br/>Pixel Coordinates<br/><br/>x_pixel = x_norm × width<br/>y_pixel = y_norm × height"]
+    
+    D --> E["Calculate Max Length<br/>(Max Distance Between Any Two Points)"]
+    
+    E --> F["Calculate Max Width<br/>(Perpendicular to Longest Dimension)"]
+    
+    F --> G{"SciPy Available<br/>& Convex Hull<br/>Succeeds?"}
+    
+    G -->|Yes| H["Advanced Method:<br/>1. Generate Convex Hull<br/>2. For each edge:<br/>   - Find perpendicular vector<br/>   - Project all points<br/>   - Calculate width<br/>3. Return maximum width"]
+    
+    G -->|No| I["Simple Fallback Method:<br/>Bounding Box Approach<br/><br/>width_x = max_x - min_x<br/>width_y = max_y - min_y<br/>return min(width_x, width_y)"]
+    
+    H --> J["Calculate Area<br/>(Shoelace Formula)"]
+    I --> J
+    
+    J --> K["Return Dictionary:<br/>{'max_length': float,<br/> 'max_width': float,<br/> 'area': float}"]
+    
+    style A fill:#e1f5fe
+    style C fill:#ffebee
+    style K fill:#e8f5e8
+    style G fill:#fff3e0
+```
+
+### Mathematical Formulas
+
+#### 1. Coordinate Conversion
+Convert from normalized YOLO coordinates (0-1 range) to pixel coordinates:
+
+```
+x_pixel = x_normalized × image_width
+y_pixel = y_normalized × image_height
+```
+
+#### 2. Maximum Length Calculation
+The maximum length is computed as the greatest Euclidean distance between any two vertices of the polygon.
+
+**Euclidean Distance Formula:**
+```
+distance = √[(x₂ - x₁)² + (y₂ - y₁)²]
+```
+
+**Maximum Length:**
+```
+max_length = max{distance(pᵢ, pⱼ) | i,j ∈ {1,2,...,n}, i ≠ j}
+```
+where p₁, p₂, ..., pₙ are the polygon vertices.
+
+#### 3. Maximum Width Calculation
+
+##### Advanced Method (Convex Hull Approach)
+For accurate width measurement, the algorithm uses the convex hull and calculates the width perpendicular to each edge:
+
+1. **Edge Vector:** `e⃗ = p₂ - p₁`
+2. **Unit Edge Vector:** `û = e⃗ / ||e⃗||`
+3. **Perpendicular Unit Vector:** `n̂ = [-û_y, û_x]`
+4. **Width for each edge:**
+   ```
+   width = max{n̂ · pᵢ} - min{n̂ · pᵢ}
+   ```
+   where the dot product `n̂ · pᵢ` projects point pᵢ onto the perpendicular direction.
+
+5. **Maximum Width:** `max_width = max{width_edge₁, width_edge₂, ..., width_edgeₖ}`
+
+##### Simple Fallback Method
+When SciPy is unavailable or convex hull computation fails:
+```
+width_x = max(x_coordinates) - min(x_coordinates)
+width_y = max(y_coordinates) - min(y_coordinates)
+max_width = min(width_x, width_y)
+```
+
+#### 4. Area Calculation (Shoelace Formula)
+The polygon area is calculated using the Shoelace formula¹:
+
+For a polygon with vertices (x₁,y₁), (x₂,y₂), ..., (xₙ,yₙ):
+
+```
+Area = ½|∑ᵢ₌₁ⁿ (xᵢy_{i+1} - x_{i+1}yᵢ)|
+```
+
+where indices are taken modulo n (i.e., x_{n+1} = x₁, y_{n+1} = y₁).
+
+### Implementation Features
+
+- **Robust Fallback**: Automatically switches to simpler algorithms when advanced libraries are unavailable
+- **Pixel-Perfect Accuracy**: All calculations performed in pixel space for maximum precision
+- **Convex Hull Optimization**: Uses computational geometry for true maximum width measurement
+- **Statistical Validation**: Reference scale measurements include coefficient of variation analysis
+
+### References
+
+1. Shoelace Formula (Surveyor's Formula): Braden, Bart (1986). "The Surveyor's Area Formula". *The College Mathematics Journal*. 17 (4): 326–337.
+2. Convex Hull Algorithms: de Berg, Mark; van Kreveld, Marc; Overmars, Mark; Schwarzkopf, Otfried (2000). *Computational Geometry: Algorithms and Applications*. Springer-Verlag.
+3. Euclidean Distance: Derived from the Pythagorean theorem, fundamental to metric geometry.
+
+## Output Format
+
+The tool generates CSV files with the following columns:
+
+- `image_name` - Name of the processed image
+- `polygon_count` - Total number of polygons in the image
+- `polygon_id` - ID of the current polygon
+- `max_length_cm` - Maximum length in centimeters
+- `max_length_pixels` - Maximum length in pixels
+- `max_width_cm` - Maximum width in centimeters
+- `max_width_pixels` - Maximum width in pixels
+- `area_cm2` - Area in square centimeters
+- `area_pixels2` - Area in square pixels
+- `scale_pixels_per_cm` - Scale factor used for conversion
+
+## Directory Structure
+
+```
+your-project/
+├── images/           # Input images
+├── labels/           # YOLO format label files (.txt)
+└── measurements/     # Output CSV files
+```
+
+## YOLO Label Format
+
+The tool expects YOLO segmentation format:
+
+```
+class_id x1 y1 x2 y2 x3 y3 ... xn yn
+```
+
+Where coordinates are normalized (0-1) relative to image dimensions.
+
+## Advanced Features
+
+### Statistical Analysis
+
+- Measures consistency across the 3 reference measurements
+- Warns if coefficient of variation exceeds 10%
+- Provides standard deviation and mean calculations
+
+### Visual Enhancements
+
+- Large, readable fonts with high contrast
+- Smart text positioning to avoid UI overlap
+- Grid overlay for precise alignment
+- Color-coded measurement panels
+
+### Error Handling
+
+- Graceful fallback for missing scipy (uses simple width calculation)
+- Validation of input directories and files
+- Comprehensive error messages and logging
+
+## Troubleshooting
+
+### Common Issues
+
+1. **No matching files found**
+
+   - Ensure image and label files have matching names
+   - Check that label files have `.txt` extension
+   - Verify directory paths are correct
+
+2. **Scale setting issues**
+
+   - Ensure you complete all 3 reference measurements
+   - Press 'S' after drawing each line
+   - Check that reference lines are drawn on a ruler
+
+3. **GUI not working**
+   - Install tkinter: `sudo apt-get install python3-tk` (Linux)
+   - Use command line arguments as fallback
+
+## Development
+
+### Project Structure
+
+```
+polygon_measure/
+├── __init__.py
+├── __main__.py
+├── cli.py
+├── config.py
+├── core/
+│   ├── __init__.py
+│   ├── measurement.py
+│   └── geometry.py
+├── ui/
+│   ├── __init__.py
+│   ├── directory_selector.py
+│   └── display.py
+└── utils/
+    ├── __init__.py
+    └── file_utils.py
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## Support
+
+For issues and questions:
+
+- Review the command line help: `polygon-measure --help`
+- Create an issue on GitHub
