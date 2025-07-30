@@ -1,0 +1,2 @@
+[console_scripts]
+neuropycon = ephypype.commands.neuropycon:cli
