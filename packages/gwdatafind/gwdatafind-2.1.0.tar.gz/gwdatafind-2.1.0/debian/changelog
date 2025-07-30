@@ -1,0 +1,86 @@
+gwdatafind (2.1.0-1) unstable; urgency=low
+
+  * Update for 2.1.0
+
+ -- Duncan Macleod <duncan.macleod@ligo.org>  Thu, 24 Jul 2025 10:21:00 +0100
+
+gwdatafind (2.0.0-1) unstable; urgency=low
+
+  * Update for 2.0.0
+  * Update Standards-Version and X-Python3-Version
+  * Update compat level to 13
+  * Use pybuild-plugin-pyproject
+  * Use argparse-manpage for manuals
+
+ -- Duncan Macleod <duncan.macleod@ligo.org>  Thu, 17 Apr 2025 22:38:00 +0100
+
+gwdatafind (1.2.0-1) unstable; urgency=low
+
+  * update for 1.2.0
+
+ -- Duncan Macleod <duncan.macleod@ligo.org>  Sat, 16 Dec 2023 17:35:00 +0000
+
+gwdatafind (1.1.3-1) unstable; urgency=low
+
+  * update for 1.1.3
+
+ -- Duncan Macleod <duncan.macleod@ligo.org>  Mon, 21 Nov 2022 12:40:00 +0000
+
+gwdatafind (1.1.2-1) unstable; urgency=low
+
+  * update for 1.1.2
+  * update igwn-auth-utils minimum version
+  * remove extra packages for igwn-auth-utils[requests]
+
+ -- Duncan Macleod <duncan.macleod@ligo.org>  Thu, 29 Sep 2022 13:38:00 +0100
+
+gwdatafind (1.1.1-1) unstable; urgency=low
+
+  * update for 1.1.1
+
+ -- Duncan Macleod <duncan.macleod@ligo.org>  Mon, 09 May 2022 15:21:00 +0100
+
+gwdatafind (1.1.0-1) unstable; urgency=low
+
+  * update for 1.1.0
+  * project now depends on igwn_auth_utils/requests
+
+ -- Duncan Macleod <duncan.macleod@ligo.org>  Thu, 21 Apr 2022 11:37:00 +0100
+
+gwdatafind (1.0.5-1) unstable; urgency=low
+
+  * update for 1.0.5
+  * drop python-gwdatafind Python 2 package
+  * separate command-line scripts from Python 3 library
+
+ -- Duncan Macleod <duncan.macleod@ligo.org>  Fri, 28 Jan 2022 16:32:00 +0000
+
+gwdatafind (1.0.4-1) unstable; urgency=low
+
+  * packaging release to include command-line scripts in python2 package
+
+ -- Duncan Macleod <duncan.macleod@ligo.org>  Fri, 11 Jan 2019 10:14:00 +0000
+
+gwdatafind (1.0.3-1) unstable; urgency=low
+
+  * bug-fix release to support python3 RPMs and testing
+
+ -- Duncan Macleod <duncan.macleod@ligo.org>  Fri, 04 Jan 2019 10:52:51 +0000
+
+gwdatafind (1.0.2-1) unstable; urgency=low
+
+  * bug-fix release
+
+ -- Duncan Macleod <duncan.macleod@ligo.org>  Tue, 14 Aug 2018 12:50:00 +0100
+
+gwdatafind (1.0.1-1) unstable; urgency=low
+
+  * bug-fix release
+
+ -- Duncan Macleod <duncan.macleod@ligo.org>  Tue, 14 Aug 2018 09:52:00 +0100
+
+gwdatafind (1.0.0-1) unstable; urgency=low
+
+  * first release
+
+ -- Duncan Macleod <duncan.macleod@ligo.org>  Mon, 30 Jul 2018 20:45:00 +0100

@@ -1,0 +1,54 @@
+# -- gwdatafind source package ------------------------------------------------
+
+Source: gwdatafind
+Maintainer: Duncan Macleod <duncan.macleod@ligo.org>
+Section: python
+Priority: optional
+Standards-Version: 4.2.1
+X-Python3-Version: >= 3.9
+Build-Depends:
+ debhelper-compat (= 13),
+ dh-python,
+ pybuild-plugin-pyproject,
+ python3-all,
+ python3-argparse-manpage,
+ python3-igwn-auth-utils (>= 0.3.1),
+ python3-igwn-segments,
+ python3-pytest (>= 3.9.3),
+ python3-requests-mock,
+ python3-setuptools,
+
+# -- python3-gwdatafind -------------------------------------------------------
+
+Package: python3-gwdatafind
+Architecture: all
+Depends:
+ ${misc:Depends},
+ ${python3:Depends},
+ python3-igwn-auth-utils (>= 0.3.1),
+ python3-igwn-segments,
+Description: GW data discovery Python 3 library
+ The DataFind service allows users to query for the location of
+ Gravitational-Wave Frame (GWF) files containing data from the
+ current gravitational-wave detectors.
+ .
+ This package provides the Python 3 library.
+
+# -- gwdatafind ---------------------------------------------------------------
+
+Package: gwdatafind
+Architecture: all
+Depends:
+ ${misc:Depends},
+ ${python3:Depends},
+ python3-gwdatafind (= ${binary:Version}),
+ python3-pkg-resources,
+Conflicts:
+ glue (<< 1.61.0),
+ python-gwdatafind (<< 1.0.4-2),
+Description: GW data discovery client
+ The DataFind service allows users to query for the location of
+ Gravitational-Wave Frame (GWF) files containing data from the
+ current gravitational-wave detectors.
+ .
+ This package provides the command-line interface `gw_data_find'.

@@ -1,0 +1,4 @@
+include CHANGELOG.md LICENSE README.md
+include rpm/python-gwdatafind.spec
+include debian/*
+include debian/source/*

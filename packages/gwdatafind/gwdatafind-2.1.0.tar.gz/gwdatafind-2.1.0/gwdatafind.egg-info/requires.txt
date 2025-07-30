@@ -1,0 +1,16 @@
+igwn-auth-utils>=0.3.1
+igwn-segments
+
+[docs]
+furo
+myst-parser>=4.0.1
+Sphinx>=4.4.0
+sphinx-argparse
+sphinx-automodapi
+sphinx-copybutton
+sphinx-github-style
+
+[test]
+pytest>=3.9.3
+pytest-cov
+requests-mock
