@@ -1,0 +1,11 @@
+merlin_spectra/README,sha256=4tYqjH7811hzIrk3VicFOudOK3h-C1mweg1ISetBw4g,2278
+merlin_spectra/__init__.py,sha256=S7u1lbuWmM3A3ajykBialmPoJUK6Jg-WmNqM-9OZFdk,22
+merlin_spectra/emission.py,sha256=HmbvC4zlfYj5Eju9ThDGLfLxvbhueWRH7oJcLjBmuFs,9636
+merlin_spectra/galaxy_visualization.py,sha256=MZBOaHze2ArrGuJnlGpqyUgcy9QamRvuC-ax0ntCKqg,42943
+merlin_spectra/post.py,sha256=Ma2tidggHY2Kj6SnpRZekFZ59_IEoNElqBXqNRMXAnY,9303
+merlin_spectra/linelists/linelist.dat,sha256=UFrpDwgjuCwk0pY9Dz9WmDxgEN3l-U7-mG96ybOt1tk,4359787
+merlin_spectra/linelists/linelist2.dat,sha256=vSCyyT-6TREpR-aTiUgnl75R8HZgdU2gx61feN9ygJE,11902912
+merlin_spectra-0.0.1.dist-info/METADATA,sha256=f5VwChZDlQ9P-z9RFpUrNXQtZovrFqqHXy-8927lBYs,4435
+merlin_spectra-0.0.1.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+merlin_spectra-0.0.1.dist-info/licenses/LICENSE,sha256=y-3-KqlaI7Lf76h3aU7UnbgXSFKORO8150QOT1aQD7Q,1070
+merlin_spectra-0.0.1.dist-info/RECORD,,
