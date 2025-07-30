@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+ocean_crow_voting_system/__init__.py
+ocean_crow_voting_system/main.py
+ocean_crow_voting_system/ocean_crow_voting_system.py
+ocean_crow_voting_system.egg-info/PKG-INFO
+ocean_crow_voting_system.egg-info/SOURCES.txt
+ocean_crow_voting_system.egg-info/dependency_links.txt
+ocean_crow_voting_system.egg-info/requires.txt
+ocean_crow_voting_system.egg-info/top_level.txt

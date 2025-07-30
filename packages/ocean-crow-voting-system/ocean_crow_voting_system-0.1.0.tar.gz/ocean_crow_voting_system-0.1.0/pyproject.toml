@@ -1,0 +1,21 @@
+[project]
+name = "ocean-crow-voting-system"
+version = "0.1.0"
+description = "A voting system package"
+readme = "README.md"
+license = "MIT" # Use simple string for SPDX license
+license-files = ["LICENSE"] # Optional: include LICENSE file
+authors = [
+    { name = "Sheldon Kenny Salmon", email = "OceanCrowtt@gmail.com" }
+]
+dependencies = [
+    "pygame>=2.0.0",
+]
+
+[build-system]
+requires = ["setuptools>=77.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project.scripts]
+# Example for CLI scripts, if applicable
+# ocean-crow = "ocean_crow_voting_system.main:main"
