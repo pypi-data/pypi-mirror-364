@@ -1,0 +1,11 @@
+odoo/addons/account_viewer/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+odoo/addons/account_viewer/__manifest__.py,sha256=RsZAx57L7FOzXpg4-lmdnNrRqAI4KT4axjCuziKwjZw,1075
+odoo/addons/account_viewer/security/account_security.xml,sha256=lRYqmxcn5b6ueDklTy56GbxjyGdE9FC2PajYxgidp9k,1236
+odoo/addons/account_viewer/security/ir.model.access.csv,sha256=xdMxiZmLGVcJABZzEWLMaRBnbwvVtsOVieAbaBKjRps,1837
+odoo/addons/account_viewer/static/description/icon.png,sha256=6xBPJauaFOF0KDHfHgQopSc28kKvxMaeoQFQWZtfZDo,9455
+odoo/addons/account_viewer/views/account.xml,sha256=tPgUPxj1QDsi-A4XM2SDTMvPpghew2Cxq29XspciASc,2709
+odoo/addons/account_viewer/views/product.xml,sha256=cMjK1VKYZGj9gsX85YKGd3ys9fNtfZS4tUFQfde4BHU,730
+odoo12_addon_account_viewer-12.0.1.0.1.99.dev2.dist-info/METADATA,sha256=uoqlD6qzD0mZFE6A51rkhYuirujp73h1xzgzyeMl5SQ,1003
+odoo12_addon_account_viewer-12.0.1.0.1.99.dev2.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+odoo12_addon_account_viewer-12.0.1.0.1.99.dev2.dist-info/top_level.txt,sha256=qBj40grFkGOfDZ2WDSw3y1RnDlgG0u8rP8pvGNdbz4w,5
+odoo12_addon_account_viewer-12.0.1.0.1.99.dev2.dist-info/RECORD,,
