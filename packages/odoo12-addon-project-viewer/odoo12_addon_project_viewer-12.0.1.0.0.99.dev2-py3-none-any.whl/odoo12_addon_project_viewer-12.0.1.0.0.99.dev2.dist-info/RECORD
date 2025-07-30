@@ -1,0 +1,10 @@
+odoo/addons/project_viewer/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+odoo/addons/project_viewer/__manifest__.py,sha256=FI7YfWWPtD1kibMqy2fsjpdfhCJL5nTNtr88MnVY8cM,1002
+odoo/addons/project_viewer/security/ir.model.access.csv,sha256=HwqpJ7pnzD2rMaVasvubA53NiRlGDJDR0-KZothK0aA,899
+odoo/addons/project_viewer/security/project_security.xml,sha256=EoND_ebwPDacWZfBbJhevr0Cwa-vDvwRG2FR2fr0gNw,572
+odoo/addons/project_viewer/static/description/icon.png,sha256=6xBPJauaFOF0KDHfHgQopSc28kKvxMaeoQFQWZtfZDo,9455
+odoo/addons/project_viewer/views/project.xml,sha256=tKuPu3CqFFd51RarDI5P7SeMfz-kv39VJAip8IR1O_Q,729
+odoo12_addon_project_viewer-12.0.1.0.0.99.dev2.dist-info/METADATA,sha256=-mFJ5a5nSPw-R3fKi4pdcEbXTOsXPgdarWXlH2kx4Bk,962
+odoo12_addon_project_viewer-12.0.1.0.0.99.dev2.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+odoo12_addon_project_viewer-12.0.1.0.0.99.dev2.dist-info/top_level.txt,sha256=qBj40grFkGOfDZ2WDSw3y1RnDlgG0u8rP8pvGNdbz4w,5
+odoo12_addon_project_viewer-12.0.1.0.0.99.dev2.dist-info/RECORD,,
