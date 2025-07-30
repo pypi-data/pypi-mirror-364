@@ -1,0 +1,14 @@
+aish/__init__.py,sha256=Nqnn8clbgv-5l0PgxcTOldg8mkMKrFn4TvPL-rYUUGg,1
+aish/__main__.py,sha256=8jnUtGyV5HLiixnmWKxRK9nrWOSgE7yr95XbdmemvxE,61
+aish/agent.py,sha256=A19TJbAlwGyKp1nL97rteZ8NdALfQE4EDJUV0ZYKw9w,5943
+aish/cli.py,sha256=Mp_SOeRWFRZKLyF6ifbwYCSGM7HtTV0mTIJcEnRpOZ0,5025
+aish/config.py,sha256=0xwaQQ5pq-_JHKlBGAcUfBSAYmy-tFsdZ7RcppdW5MQ,454
+aish/history.py,sha256=vlK38hRiD8cdymDIOFH6EAWJbGgqnpl9_U-T14MDB1A,478
+aish/safety.py,sha256=QzQ1WG3fNcnsbbx-YzjmUM0iNJ9bVFpaIYu5iB7I0sg,794
+aish/utils.py,sha256=MK4Rz6y-zjkN9bdLxdACdQeeSLtG4agkTQw9KrlEpls,56
+aish_local-0.1.3.dist-info/licenses/LICENSE,sha256=Hbivc9a3XYIzqP2bujDTIp6bpUKYEvolp3TgrfgAANo,1070
+aish_local-0.1.3.dist-info/METADATA,sha256=kw1tYsoWmrdNu878xKvxEl7Du2OcrAMlCMTMckFiSYw,975
+aish_local-0.1.3.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+aish_local-0.1.3.dist-info/entry_points.txt,sha256=Wji265Yx2y7gpS6PEB5TN7wz59pvaVn78dSMat37NTg,39
+aish_local-0.1.3.dist-info/top_level.txt,sha256=7IoxNdXDpw3hvEZcAbaz7vhZj_WPTcM-zFXTDXVg47M,5
+aish_local-0.1.3.dist-info/RECORD,,
