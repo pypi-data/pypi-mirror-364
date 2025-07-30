@@ -1,0 +1,2 @@
+[console_scripts]
+ribomala = ribomala.main:main
