@@ -1,0 +1,58 @@
+Metadata-Version: 2.4
+Name: matcha-ai
+Version: 0.1.0
+Summary: A placeholder package for matcha-ai
+Home-page: https://github.com/matcha-zen/matcha-ai
+Author: Derrick Choo
+Author-email: Derrick Choo <dalacan@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/matcha-zen/matcha-ai
+Project-URL: Repository, https://github.com/matcha-zen/matcha-ai
+Project-URL: Issues, https://github.com/matcha-zen/matcha-ai/issues
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0; extra == "dev"
+Requires-Dist: black; extra == "dev"
+Requires-Dist: flake8; extra == "dev"
+Dynamic: author
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+
+# Matcha AI
+
+A placeholder package for matcha-ai.
+
+## Installation
+
+```bash
+pip install matcha-ai
+```
+
+## Usage
+
+```python
+import matcha_ai
+
+print(matcha_ai.hello())
+```
+
+## Development
+
+This package is currently in development. More features coming soon!
+
+## License
+
+MIT License
