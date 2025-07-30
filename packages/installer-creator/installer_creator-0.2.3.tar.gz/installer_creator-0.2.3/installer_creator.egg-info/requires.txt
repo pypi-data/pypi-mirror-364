@@ -1,0 +1,7 @@
+nuitka
+pyyaml
+psutil
+rich
+
+[:platform_system == "Windows"]
+pywinpty
