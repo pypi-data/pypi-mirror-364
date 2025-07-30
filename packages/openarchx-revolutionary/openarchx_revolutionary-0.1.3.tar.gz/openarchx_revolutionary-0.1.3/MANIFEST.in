@@ -1,0 +1,17 @@
+include LICENSE.md
+include README.md
+include MANIFEST.in
+include OPENARCHX_V0_1_3_FINAL_REPORT.md
+include PERFORMANCE_REPORT.md
+include requirements.txt
+recursive-include openarchx *.py
+recursive-include openarchx *.cu
+recursive-include openarchx *.cpp
+recursive-include openarchx *.h
+recursive-include examples *.py
+recursive-include examples *.md
+recursive-include benchmarks *.py
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+recursive-exclude * .git*
+recursive-exclude * .pytest_cache 
