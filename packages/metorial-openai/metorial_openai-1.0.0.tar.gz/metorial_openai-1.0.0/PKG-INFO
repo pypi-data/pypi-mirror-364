@@ -1,0 +1,25 @@
+Metadata-Version: 2.4
+Name: metorial-openai
+Version: 1.0.0
+Summary: OpenAI provider for Metorial
+Project-URL: Homepage, https://metorial.com
+Project-URL: Documentation, https://metorial.com/docs
+Project-URL: Repository, https://github.com/metorial/metorial-enterprise
+Author-email: Metorial Team <support@metorial.com>
+License: MIT
+License-File: LICENSE
+Keywords: ai,llm,metorial,openai
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.9
+Requires-Dist: metorial-mcp-session>=1.0.0
+Requires-Dist: openai>=1.0.0
+Requires-Dist: typing-extensions>=4.0.0
