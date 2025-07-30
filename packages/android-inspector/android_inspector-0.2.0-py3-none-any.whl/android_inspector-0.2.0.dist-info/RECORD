@@ -1,0 +1,15 @@
+android_inspector/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+android_inspector/pipelines/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+android_inspector/pipelines/android_d2d.py,sha256=4hvV1k5lcpPp-qPen7CSZ7XdysA5DLug_S8SU2Txu4M,1972
+android_inspector/pipes/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+android_inspector/pipes/android_d2d.py,sha256=p2o82A4XIb5Qc1zsCtIaw2OJY1NYs6tsb-BZ0SrBv5M,2545
+android_inspector-0.2.0.dist-info/licenses/AUTHORS.rst,sha256=1MsnG6WJe4p9Pa_yHPgDJYmG1h424UgI1S3mNf6B6HI,87
+android_inspector-0.2.0.dist-info/licenses/CHANGELOG.rst,sha256=V5Xac4wWIKnxr4_AUVuaxtvc7uffj57eQ2K64b-2BS8,142
+android_inspector-0.2.0.dist-info/licenses/CODE_OF_CONDUCT.rst,sha256=xXDTFpYY3Y7JoxrWADihieUvhGlwJc_oxsbmLJaBvE4,3422
+android_inspector-0.2.0.dist-info/licenses/NOTICE,sha256=W4dwAgKqs8w2N7wG8Q_e92rVad3bejEp2adts7wHf2g,780
+android_inspector-0.2.0.dist-info/licenses/apache-2.0.LICENSE,sha256=xx0jnfkXJvxRnG63LTGOxlggYnIysveWIZ6H3PNdCrQ,11357
+android_inspector-0.2.0.dist-info/METADATA,sha256=MnLefu8G_tVkM9IlR3LZz8IcAzyo--rm9tYMDKXPSko,6175
+android_inspector-0.2.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+android_inspector-0.2.0.dist-info/entry_points.txt,sha256=fC5_zmiqZ12lFkq-sCu6zkKR8ECGkyzCVuTJr_mZ6NQ,103
+android_inspector-0.2.0.dist-info/top_level.txt,sha256=0eRdilNjrbtYVG5l3zPQuZb0HnBXJhx3KB_fnEUMy_o,18
+android_inspector-0.2.0.dist-info/RECORD,,
