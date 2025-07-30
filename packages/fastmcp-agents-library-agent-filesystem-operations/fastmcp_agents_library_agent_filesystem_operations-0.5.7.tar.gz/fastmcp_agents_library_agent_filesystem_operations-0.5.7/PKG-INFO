@@ -1,0 +1,10 @@
+Metadata-Version: 2.3
+Name: fastmcp-agents-library-agent-filesystem-operations
+Version: 0.5.7
+Summary: An agent for interacting with the filesystem
+Requires-Dist: fastmcp-agents-library-mcp
+Requires-Dist: fastmcp-ai-agent-bridge-pydantic-ai>=0.1.0
+Requires-Python: >=3.13
+Description-Content-Type: text/markdown
+
+An agent for interacting with the Filesystem.
