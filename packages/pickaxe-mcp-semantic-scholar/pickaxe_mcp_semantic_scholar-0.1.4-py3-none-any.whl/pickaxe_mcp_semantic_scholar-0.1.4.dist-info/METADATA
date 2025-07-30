@@ -1,0 +1,34 @@
+Metadata-Version: 2.4
+Name: pickaxe-mcp-semantic-scholar
+Version: 0.1.4
+Summary: MCP server for https://www.semanticscholar.org/
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: fastmcp>=2.10.6
+Requires-Dist: httpx>=0.28.1
+Requires-Dist: mcp[cli]>=1.12.2
+Requires-Dist: semanticscholar>=0.10.0
+
+# PXE Semantic Scholar
+
+Provides access to the Semantic Scholar API
+
+## Installation
+
+uvx:
+
+```
+{
+  "mcpServers": {
+    "pickaxe-mcp-semantic-scholar": {
+      "command": "uvx",
+      "args": [
+        "pickaxe-mcp-semantic-scholar"
+      ],
+      "env": {
+        "SEMANTIC_SCHOLAR_API_KEY": "..."
+      }
+    }
+  }
+}
+```
