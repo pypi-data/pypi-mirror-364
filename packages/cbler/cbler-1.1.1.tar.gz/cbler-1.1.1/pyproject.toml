@@ -1,0 +1,27 @@
+[project]
+name = "cbler"
+version = "1.1.1"
+description = "Extensible code concatenator and clipboard tool"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.11.7",
+    "pyperclip>=1.9.0",
+    "rich>=14.0.0",
+    "typer[all]>=0.16.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.7.19,<0.8.0"]
+build-backend = "uv_build"
+
+[project.scripts]
+cbler = "cbler.main:app"
+
+[tool.uv-build]
+package = "cbler"
