@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+README.md
+__version__.py
+setup.py
+xwarning/__init__.py
+xwarning/__main__.py
+xwarning/xwarning.py
+xwarning.egg-info/PKG-INFO
+xwarning.egg-info/SOURCES.txt
+xwarning.egg-info/dependency_links.txt
+xwarning.egg-info/requires.txt
+xwarning.egg-info/top_level.txt
