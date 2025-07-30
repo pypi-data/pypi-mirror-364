@@ -1,0 +1,3 @@
+include quakemigrate/core/src/qmlib.*
+include quakemigrate/core/src/migratelib.c
+include quakemigrate/core/src/onsetlib.c
