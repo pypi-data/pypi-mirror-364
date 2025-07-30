@@ -1,0 +1,31 @@
+Metadata-Version: 2.4
+Name: pickaxe-mcp-open-alex
+Version: 0.1.2
+Summary: A fully open catalog of the global research system
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: fastmcp>=2.10.6
+Requires-Dist: httpx>=0.28.1
+Requires-Dist: mcp[cli]>=1.12.2
+Requires-Dist: pyalex>=0.18
+
+# PXE OpenAlex
+
+Provides access to the OpenAlex API
+
+## Installation
+
+uvx:
+
+```
+{
+  "mcpServers": {
+    "pickaxe-mcp-open-alex": {
+      "command": "uvx",
+      "args": [
+        "pickaxe-mcp-open-alex@latest"
+      ]
+    }
+  }
+}
+```
