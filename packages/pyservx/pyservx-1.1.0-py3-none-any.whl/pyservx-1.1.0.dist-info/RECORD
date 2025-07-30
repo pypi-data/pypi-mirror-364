@@ -1,0 +1,11 @@
+pyservx/__init__.py,sha256=P46sCZCW1SAUson0VT-PllU42gLB5p1DFWEt12Kdn38,43
+pyservx/file_operations.py,sha256=KQoU_XhG-_-hYCJLAUfYOwCjJmUP5pRWWm_QfMORSnM,1664
+pyservx/html_generator.py,sha256=bd0eR0kAhUnYP96zJKqW1bzWb7vSXYT7m9j4O0rhPmw,15782
+pyservx/request_handler.py,sha256=8pF03SddBv0Pn4cVRL3NNAcS91FY_DJk9Xiu9lTI1_c,6482
+pyservx/server.py,sha256=AAq4rMw5Qda0rVvhNTfj0XNTJHnk8uMEX76wpJTxodI,5602
+pyservx-1.1.0.dist-info/licenses/LICENSE,sha256=RQfbbgFORXVcSaR2_p6XSOR7k0yw1iGfpnW7mg1NW9c,1074
+pyservx-1.1.0.dist-info/METADATA,sha256=Uh5G5sxSjlgpBs9vafbSNklgdIVW7kLB9_OVmIeXsmE,2516
+pyservx-1.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+pyservx-1.1.0.dist-info/entry_points.txt,sha256=tRdMhIAJUa2bpIJ5h9ZkKPdSSp8fnYlPDGcJhdh01TY,48
+pyservx-1.1.0.dist-info/top_level.txt,sha256=lns7pTcCmrrfUXLVStCYJVqE6lglEqT1xABDpuTEF-Y,8
+pyservx-1.1.0.dist-info/RECORD,,
