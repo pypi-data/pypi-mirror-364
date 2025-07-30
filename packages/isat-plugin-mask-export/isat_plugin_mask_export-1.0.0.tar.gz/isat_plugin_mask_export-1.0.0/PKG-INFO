@@ -1,0 +1,63 @@
+Metadata-Version: 2.4
+Name: isat-plugin-mask-export
+Version: 1.0.0
+Summary: ISAT Plugin for mask export.
+Home-page: https://github.com/yatengLG/ISAT_plugin_mask_export
+Author: yatengLG
+Author-email: yatenglg@foxmail.com
+License: Apache2.0
+Keywords: isat-sam,isat plugin,mask export
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Natural Language :: Chinese (Simplified)
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: isat-sam>=1.4.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# ISAT插件 - mask导出
+
+这是一个[ISAT](https://github.com/yatengLG/ISAT_with_segment_anything)的插件开发示例。
+
+仅使用157行代码，开发一个带界面的ISAT插件，使ISAT支持mask导出功能。
+
+![maskexport.img](display/img.png)
+
+## 功能
+
+* 跟随标注操作，实时显示mask
+* 支持mask反转
+* 支持mask膨胀/腐蚀
+* 保存标注的同时，保存mask图像
+
+## 安装与使用
+
+### 安装
+
+```shell
+pip install isat-plugin-mask-export
+```
+
+### 使用
+
+- 运行isat
+- 插件界面，激活MaskExportPlugin即可
+

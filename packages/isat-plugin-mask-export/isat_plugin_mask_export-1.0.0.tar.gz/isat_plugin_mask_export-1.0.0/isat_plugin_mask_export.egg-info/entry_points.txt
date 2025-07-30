@@ -1,0 +1,2 @@
+[isat.plugins]
+mask_export_plugin = ISAT_plugin_mask_export.main:MaskExportPlugin
