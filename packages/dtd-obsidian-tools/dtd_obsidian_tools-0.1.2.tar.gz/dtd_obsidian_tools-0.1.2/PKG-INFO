@@ -1,0 +1,71 @@
+Metadata-Version: 2.4
+Name: dtd-obsidian-tools
+Version: 0.1.2
+Summary: Tools for working with Obsidian vaults, including community detection and graph analysis
+Author-email: Your Name <your.email@example.com>
+Maintainer-email: Your Name <your.email@example.com>
+License: MIT License
+        
+        Copyright (c) 2025 David Marx
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: Homepage, https://github.com/yourusername/dtd-obsidian-tools
+Project-URL: Documentation, https://github.com/yourusername/dtd-obsidian-tools#readme
+Project-URL: Repository, https://github.com/yourusername/dtd-obsidian-tools
+Project-URL: Bug Tracker, https://github.com/yourusername/dtd-obsidian-tools/issues
+Keywords: obsidian,knowledge-graph,community-detection,networkx,markdown
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Text Processing :: Markup
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Office/Business :: Groupware
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: networkx>=3.0
+Requires-Dist: loguru>=0.7.0
+Requires-Dist: fire>=0.5.0
+Requires-Dist: omegaconf>=2.3.0
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: python-frontmatter>=1.0.0
+Requires-Dist: seaborn>=0.11.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0; extra == "dev"
+Requires-Dist: black>=23.0; extra == "dev"
+Requires-Dist: isort>=5.12; extra == "dev"
+Requires-Dist: flake8>=6.0; extra == "dev"
+Requires-Dist: mypy>=1.0; extra == "dev"
+Requires-Dist: pre-commit>=3.0; extra == "dev"
+Provides-Extra: docs
+Requires-Dist: mkdocs>=1.4; extra == "docs"
+Requires-Dist: mkdocs-material>=9.0; extra == "docs"
+Requires-Dist: mkdocstrings[python]>=0.20; extra == "docs"
+Dynamic: license-file
+
+# dtd-obsidian-tools
+misc tools for working with obsidian vaults

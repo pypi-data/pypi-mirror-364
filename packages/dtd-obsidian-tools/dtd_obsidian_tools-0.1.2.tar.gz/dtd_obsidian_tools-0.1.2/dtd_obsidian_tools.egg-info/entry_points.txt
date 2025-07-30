@@ -1,0 +1,2 @@
+[console_scripts]
+obsidian-colorclass = obsidian.colorclass_processor:main
