@@ -1,0 +1,4 @@
+click>=8.2.1
+httptools>=0.6.4
+uvloop>=0.21.0
+watchdog>=6.0.0
