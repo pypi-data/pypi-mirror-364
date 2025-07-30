@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+CLI_DIR="$(dirname "$(realpath "$0")")"
+exec uv run --directory "$CLI_DIR/../" fastanime "$@"
