@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: bean
+Version: 0.0.4
+Summary: A simple devops toolkit
+Home-page: https://github.com/acegik/bean
+Download-URL: https://github.com/acegik/bean/downloads
+Author: acegik
+License: GPL-3.0
+Keywords: tools
+Requires-Python: >=3.7
+
