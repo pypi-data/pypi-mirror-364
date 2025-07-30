@@ -1,0 +1,21 @@
+numpy>=1.21.0
+urllib3>=2.0.0
+scipy>=1.7.0
+cupy-cuda12x>=12.0.0  # For CUDA 12.x support
+ninja>=1.11.0  # For building CUDA extensions
+cmake>=3.18.0  # For building CUDA extensions
+
+# Optional dependencies for extended functionality
+# Uncomment to install for additional features
+
+# TensorFlow integration
+# tensorflow>=2.10.0
+
+# Hugging Face integration 
+# transformers>=4.25.0
+# datasets>=2.10.0
+
+# Scientific computing
+# pandas>=1.5.0
+# scikit-learn>=1.0.0
+# matplotlib>=3.5.0
