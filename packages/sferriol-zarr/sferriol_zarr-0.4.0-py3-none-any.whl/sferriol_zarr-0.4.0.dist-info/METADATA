@@ -1,0 +1,75 @@
+Metadata-Version: 2.4
+Name: sferriol-zarr
+Version: 0.4.0
+Summary: Read only Zarr storage
+Home-page: https://gitlab.in2p3.fr/sferriol/sferriol-zarr
+Author: Sylvain Ferriol
+Author-email: s.ferriol@ipnl.in2p3.fr
+Classifier: License :: OSI Approved :: The Unlicense (Unlicense)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: zarr<3,>=2.11.0
+Requires-Dist: fsspec>=2025.3.0
+Requires-Dist: fsspec_xrootd>=0.5.1
+Dynamic: license-file
+
+# sferriol-zarr
+
+sferriol-zarr is a module with new zarr storage class TarStore (only read-only).
+
+It also has the create_store shortcut that returns the store corresponding to the specified url
+
+
+## Installation
+
+	pip install git+https://gitlab.in2p3.fr/sferriol-ip2i/sferriol-zarr.git
+
+
+## TarStore Usage
+
+    import zarr
+    import sferriol.zarr
+
+    # original zarr storage
+
+    dir_store =  zarr.DirectoryStore('data/example.zarr')
+    z = zarr.create(store=dir_store, overwrite=True, shape=1000000, dtype='i4')
+
+
+    # convert it to tar file ('data/example.zarr.tar')
+
+    tar_fpath = sferriol.zarr.create_tar('data/example.zarr')
+
+
+    # now use TarStore
+
+    tar_store =  sferriol.zarr.TarStore('data/example.zarr.tar')
+    tz = zarr.open(store=tar_store, mode='r')
+    tar_store.close()  # don't forget to call this when you're done
+
+
+    # or in a with statement
+
+    with sferriol.zarr.TarStore('data/example.zarr.tar') as tar_store:
+        tz = zarr.open(store=tar_store, mode='r')
+
+
+## create_store Usage
+
+    from sferriol.zarr import create_store
+
+    # local storage
+
+    store = create_store('/.../my_data.zarr')
+    store = create_store('/.../my_data.zarr.tar')
+    store = create_store('/.../my_data.zarr.zip')
+
+    # xrootd storage
+
+    store = create_store('root://host:port///.../my_data.zarr')
+    store = create_store('root://host:port///.../my_data.zarr.tar')
+    store = create_store('root://host:port///.../my_data.zarr.zip')
+
