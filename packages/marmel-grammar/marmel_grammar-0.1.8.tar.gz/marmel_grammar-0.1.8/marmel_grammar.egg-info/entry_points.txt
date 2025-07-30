@@ -1,0 +1,2 @@
+[console_scripts]
+marmel-grammar = main:main
