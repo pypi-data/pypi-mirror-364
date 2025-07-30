@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(mv:*)",
+      "Bash(mkdir:*)",
+      "Bash(uv run:*)",
+      "Bash(ls:*)",
+      "Bash(git check-ignore:*)",
+      "Bash(cat:*)",
+      "Bash(uv sync:*)",
+      "Bash(curl:*)",
+      "Bash(pkill:*)",
+      "Bash(jobs)",
+      "Bash(source:*)",
+      "Bash(python:*)",
+      "Bash(fastapi --version)",
+      "Bash(-F \"input_path=/nonexistent/file.srt\" )",
+      "Bash(-F \"provider=deepseek\")",
+      "Bash(true)",
+      "WebFetch(domain:fastapi.tiangolo.com)",
+      "Bash(docker build:*)",
+      "Bash(docker compose:*)",
+      "Bash(-F \"input_path=/media/subtitles/movie.srt\" )",
+      "Bash(-F \"translation_mode=bilingual\")",
+      "Bash(PUID=1001 PGID=1001 docker compose up -d)",
+      "Bash(docker exec:*)",
+      "Bash(-F \"input_path=/media/subtitles/permission-test.srt\" )",
+      "Bash(docker run:*)",
+      "Bash(time docker run:*)",
+      "Bash(docker logs:*)",
+      "Bash(docker stop:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(uv build:*)"
+    ],
+    "deny": []
+  }
+}
