@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+monnaie_converter/__init__.py
+monnaie_converter/apps.py
+monnaie_converter/forms.py
+monnaie_converter/urls.py
+monnaie_converter/views.py
+monnaie_converter.egg-info/PKG-INFO
+monnaie_converter.egg-info/SOURCES.txt
+monnaie_converter.egg-info/dependency_links.txt
+monnaie_converter.egg-info/requires.txt
+monnaie_converter.egg-info/top_level.txt
+monnaie_converter/static/monnaie_converter/style.css
+monnaie_converter/templates/monnaie_converter/converter.html
