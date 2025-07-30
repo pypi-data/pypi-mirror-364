@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: statement_reader
+Version: 0.1.1
+Summary: A Python library designed to parse bank operations from PDF statements
+Author-Email: dkurchigin <kurchigin.dmitry@yandex.ru>
+License: MIT
+Project-URL: Homepage, https://gitverse.ru/dkurchigin/statement_reader
+Project-URL: Documentation, https://statement-reader.dkurchigin.ru/
+Project-URL: Source, https://gitverse.ru/dkurchigin/statement_reader
+Requires-Python: >=3.12
+Requires-Dist: pypdf>=5.8.0
+Requires-Dist: pydantic>=2.11.7
+Description-Content-Type: text/markdown
+
+### statement-reader
+
+**statement-reader** is a Python library designed to parse bank operations from PDF statements. It extracts detailed information such as date, time, category, amount, and balance for each transaction, and classifies them as either income or expense.
+
+------------------
+
+### 🚀 Features
+
+✅ Parses lines from Sberbank PDF statements
+✅ Detects income/expense operations using regex patterns
+✅ Converts parsed data into structured Operation objects
+✅ Handles date and numeric formatting (e.g., replaces non-breaking spaces and commas)
+✅ Includes computed fields like weekday for advanced data analysis
+
+------------------
