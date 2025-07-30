@@ -1,0 +1,11 @@
+redactify_ai/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+redactify_ai/config.py,sha256=BPDrQtVJNQs_uo-YD4YitlUgjY0nt7djP02AXoCCLxM,119
+redactify_ai/custom_recognizers.py,sha256=M4DKwiHYU6bILiFgZOalWtMQEGksZ7Eop31fUNxAStQ,367
+redactify_ai/download_model.py,sha256=b-3T3Vbb-iUVRKYOx8_LJzYgJa-4CL9acloOHPvFGqM,1280
+redactify_ai/processor.py,sha256=yuIlq6cbO4JrnXBQWqCtiEq94Bln-blyW6SpHTUe1mc,4219
+redactify_ai/utils.py,sha256=0Io9uWaGU3GGWd2_2UZxRcIUxyfnrMT7ylMOwj2bB7s,485
+redactify_ai-0.0.1.dist-info/licenses/LICENSE,sha256=DMrg4Bgr8uESRqlZfSlr_GWAwMySjMrTg850SsYxjpc,1070
+redactify_ai-0.0.1.dist-info/METADATA,sha256=5_wdl71bjBdOFJI7SiXq5Fsm3J9kscpE9waF46iRcnA,6295
+redactify_ai-0.0.1.dist-info/WHEEL,sha256=0CuiUZ_p9E4cD6NyLD6UG80LBXYyiSYZOKDm5lp32xk,91
+redactify_ai-0.0.1.dist-info/top_level.txt,sha256=eRmUwJXpM9uJFQv9aJiIuIDwAbNZdQpPvQiXgZ-OSjw,13
+redactify_ai-0.0.1.dist-info/RECORD,,
