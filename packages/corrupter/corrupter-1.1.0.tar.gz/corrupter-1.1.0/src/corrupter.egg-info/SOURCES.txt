@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+src/corrupter/__init__.py
+src/corrupter/main.py
+src/corrupter.egg-info/PKG-INFO
+src/corrupter.egg-info/SOURCES.txt
+src/corrupter.egg-info/dependency_links.txt
+src/corrupter.egg-info/entry_points.txt
+src/corrupter.egg-info/top_level.txt
+tests/test_corrupter.py

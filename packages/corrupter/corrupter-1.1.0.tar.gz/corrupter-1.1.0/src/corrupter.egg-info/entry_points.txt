@@ -1,0 +1,2 @@
+[console_scripts]
+corrupter = corrupter.main:cli_entry_point
