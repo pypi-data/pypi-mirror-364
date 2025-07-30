@@ -1,0 +1,6 @@
+scipy>=1.11
+matplotlib
+h5py
+sparse
+astropy
+mhealpy
