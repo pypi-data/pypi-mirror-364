@@ -1,0 +1,11 @@
+vaultsphere/__init__.py,sha256=1dSODnREzaxCYLvHAMCseQnLYSBc1vYARB5Ag1cxmew,65
+vaultsphere/core.py,sha256=DAAde8PSk0YYuyzs_nlKh-emv0Rsx7Rqjfl2NCkwixA,10504
+vaultsphere/crypto.py,sha256=mkoDTt0SNoq-FbMXMXMeZdlZzpoKcTm68TLDocRsUQI,624
+vaultsphere/index.py,sha256=Vdkz0iEcncNGaja5cX-UmPkdZnd6XPaTiVTPOQ6dt2c,1594
+vaultsphere/schema.py,sha256=-T5WRKUagcRUbTofxFpb5cGXdZoJ5m-EVangPYUy9yM,717
+vaultsphere/utils.py,sha256=EfkE5j_WYD8w9bOMYBICH9za0dKJdnCgCNcjz8AUMd0,1094
+vaultsphere-0.1.0.dist-info/licenses/LICENSE,sha256=Tmbz6As44WY7xAEzw-nwyvQKP59zACghSKoNxgx1Wh4,1085
+vaultsphere-0.1.0.dist-info/METADATA,sha256=5X8RzCzouAr_RZPCL8-9T_ANEb7VWgnulyqSwc0lsNA,3677
+vaultsphere-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+vaultsphere-0.1.0.dist-info/top_level.txt,sha256=568VhPEhp-zUdsr4FDI6WwVOV7CMXjhsbdU26ZSnqWU,12
+vaultsphere-0.1.0.dist-info/RECORD,,
