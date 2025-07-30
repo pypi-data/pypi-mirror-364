@@ -1,0 +1,2 @@
+include src/tinyjs/*.js
+include src/tinyjs/package.json
