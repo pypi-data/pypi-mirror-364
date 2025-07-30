@@ -1,0 +1,12 @@
+corebridge/__init__.py,sha256=isJrmDBLRag7Zc2UK9ZovWGOv7ji1Oh-zJtJMNJFkXw,22
+corebridge/_modidx.py,sha256=DAr6CmBACArA1kfaZVdG7Of6RdQd3mVnaTXXRFNzn8Q,12902
+corebridge/aicorebridge.py,sha256=zfxeDLgIkztMqoRHKmsjSNrb3MDHk5KxakOWK6V26vo,12977
+corebridge/core.py,sha256=l7_WTW0-6zhZnLrGkioP9s4AVS3adLEiYL9f-0uDdp4,8890
+corebridge/rscript.py,sha256=nOQReVVpvst9IxJxMoEmiSUisaVAVwl92R-VRiw6OYk,26646
+corebridge/timeseriesdataframe.py,sha256=l2OuwTrIAx3yM5d3BBZtteEwtvaGFF__o2kE_oHBd70,9749
+corebridge-0.5.2.dist-info/LICENSE,sha256=xV8xoN4VOL0uw9X8RSs2IMuD_Ss_a9yAbtGNeBWZwnw,11337
+corebridge-0.5.2.dist-info/METADATA,sha256=jbCIOKdjgHbxNGcEjerLzrOwP56b6WKj8cKTmgv2tp4,6525
+corebridge-0.5.2.dist-info/WHEEL,sha256=GJ7t_kWBFywbagK5eo9IoUwLW6oyOeTKmQ-9iHFVNxQ,92
+corebridge-0.5.2.dist-info/entry_points.txt,sha256=UY5H-eh-TDxLiXHyqQEcwm2Ci9FMiNHC_QJyrv3cqYQ,42
+corebridge-0.5.2.dist-info/top_level.txt,sha256=ymWZu_KP-0tjq3MRzIN1YLMlgZ9B2dUgY5tPK_e1jbY,11
+corebridge-0.5.2.dist-info/RECORD,,
