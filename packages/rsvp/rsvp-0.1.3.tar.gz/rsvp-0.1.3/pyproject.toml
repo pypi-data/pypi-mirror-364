@@ -1,0 +1,72 @@
+[build-system]
+requires = ["flit_core >=3.2,<4", "versioningit"]
+build-backend = "flit_core.buildapi"
+
+
+
+[project]
+name = "rsvp"
+authors = [{name = "tom65536", email = "peregrinus@planet.ms"}]
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+dynamic = ["version", "description"]
+classifiers = [
+   "Development Status :: 3 - Alpha",
+   "Framework :: AsyncIO",
+   "Framework :: Pydantic :: 2",
+   "Framework :: aiohttp",
+   "Intended Audience :: Developers",
+   "Programming Language :: Python :: 3.11",
+   "Programming Language :: Python :: 3.12",
+   "Programming Language :: Python :: 3.13",
+   "Topic :: System :: Distributed Computing",
+   "Typing :: Typed"
+]
+requires-python=">=3.11"
+
+[project.urls]
+Home = "https://github.com/tom65536/rsvp"
+
+[project.optional-dependencies]
+test = [
+   "pytest>=8.4,<9.0",
+   "pytest-cov>=6.2,<7.0",
+   "pytest-asyncio>=1.1,<2.0"
+]
+type = [
+   "pyright>=1.1.14,<2.0"
+]
+
+[tool.flit.sdist]
+exclude = [".gitignore"]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "--cov=rsvp --cov-report=term-missing"
+testpaths = ["tests"]
+
+[tool.pyright]
+include = ["src"]
+exclude = ["**/__pycache__"]
+
+[tool.ruff]
+line-length = 120
+indent-width = 3
+exclude = [ "__about__.py" ]
+
+[tool.ruff.format]
+quote-style = "single"
+
+[tool.versioningit.write]
+file = "src/rsvp/__about__.py"
+indent-style = "space"
+docstring-code-format = true
+
+[tool.versioningit]
+next-version = "smallest"
+
+[tool.versioningit.vcs]
+method = "git"
+match = ["v*"]
+default-tag = "1.0.0"
