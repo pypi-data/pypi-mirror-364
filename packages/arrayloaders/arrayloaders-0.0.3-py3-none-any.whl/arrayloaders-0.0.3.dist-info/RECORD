@@ -1,0 +1,11 @@
+arrayloaders/__init__.py,sha256=7NK86Y_ISntsMtRPblD0B6KtavSuksoN3P-dfPHf7U4,255
+arrayloaders/io/__init__.py,sha256=rqLdVJ9ZjqQhzWzGNF5y-Cd9D0dj_beEJizgFjbTYnY,722
+arrayloaders/io/dask_loader.py,sha256=OWhJSWmgXgpN1HWD96p11CHfGmdHgnU9zlbF6dcKn0Q,5650
+arrayloaders/io/datamodules.py,sha256=vWrRVRe5UY0ocmGw8hOtGUcrFtg4rxxKXHYnwo1hz_0,3437
+arrayloaders/io/store_creation.py,sha256=k_1zZn6JAM7zBbjPvb5yWGWjXbu0_15pY3yTiQ70gJA,11131
+arrayloaders/io/utils.py,sha256=sVl-jXfYxm-U2LOieTaC0v5quNp1lwBl4_JwQfZWqo8,3695
+arrayloaders/io/zarr_loader.py,sha256=_w3unQZm8tk8s4bZ5eQzxUlFCGc7QsfN1SjnPrTNXRk,25457
+arrayloaders-0.0.3.dist-info/LICENSE,sha256=UOZ1F5fFDe3XXvG4oNnkL1-Ecun7zpHzRxjp-XsMeAo,11324
+arrayloaders-0.0.3.dist-info/WHEEL,sha256=CpUCUxeHQbRN5UGRQHYRJorO5Af-Qy_fHMctcQ8DSGI,82
+arrayloaders-0.0.3.dist-info/METADATA,sha256=Chp7mlYor1874BbeY3ubqaBE5T2hnzfTa8OL1SCCrrg,1189
+arrayloaders-0.0.3.dist-info/RECORD,,
