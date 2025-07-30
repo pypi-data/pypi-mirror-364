@@ -1,0 +1,119 @@
+[build-system]
+build-backend = 'setuptools.build_meta'
+requires = ['setuptools==69.2.0', 'setuptools_scm[toml]>=6.2', 'wheel']
+
+[project]
+name = 'furax'
+authors = [
+    { name = 'Pierre Chanial', email = 'chanial@apc.in2p3.fr' },
+    { name = 'Simon Biquard', email = 'biquard@apc.in2p3.fr' },
+    { name = 'Wassim Kabalan' },
+]
+maintainers = [{ name = 'Pierre Chanial', email = 'chanial@apc.in2p3.fr' }]
+description = 'Operators and solvers for high-performance computing.'
+readme = 'README.md'
+keywords = ['scientific computing']
+classifiers = [
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3',
+    'Intended Audience :: Science/Research',
+    'Operating System :: OS Independent',
+    'Topic :: Scientific/Engineering',
+]
+requires-python = '>=3.10'
+license = { file = 'LICENSE' }
+dependencies = [
+    'jaxtyping',
+    'healpy>=0.16.6',
+    'jax-healpy',
+    'jax-dataclasses',
+    'lineax',
+    'numpy',
+    'scipy',
+    'typing-extensions; python_version < "3.11"',
+    'matplotlib',
+    'astropy',
+]
+dynamic = ['version']
+
+[project.optional-dependencies]
+dev = ['pytest', 'pytest-cov', 'pytest-mock', 'pytest-insubprocess>=1.1', 'setuptools_scm', 'beartype']
+comp_sep = ['pysm3']
+docs = [
+    'sphinx>=5.0',
+    'sphinx-book-theme>=1.0',
+    'sphinx-copybutton>=0.5',
+    'myst-parser>=1.0',
+    'nbsphinx>=0.8',
+    'ipykernel>=6.0',
+]
+
+[project.urls]
+homepage = 'https://scipol.in2p3.fr'
+repository = 'https://github.com/CMBSciPol/furax'
+
+[tool.coverage.report]
+exclude_lines = [
+    'pragma: no cover',
+    'except ImportError:',
+    'raise NotImplementedError',
+    'if typing.TYPE_CHECKING:',
+]
+show_missing = true
+skip_covered = true
+
+[[tool.mypy.overrides]]
+module = [
+    'astropy',
+    'astropy.cosmology',
+    'healpy',
+    'jax_healpy',
+    'lineax',
+    'scipy.stats.sampling',
+    'scipy',
+    'astropy.cosmology',
+    'pysm3',
+    'pysm3.units',
+]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+# addopts = '-ra --cov=furax --jaxtyping-packages=furax,beartype.beartype(conf=beartype.BeartypeConf(strategy=beartype.BeartypeStrategy.On))'
+addopts = '-s -ra --color=yes'
+testpaths = ['tests']
+markers = ["slow: mark test as slow."]
+
+#[tool.setuptools]
+#packages = ['src/furax']
+
+[tool.setuptools_scm]
+version_scheme = 'post-release'
+fallback_version = '0.0.0'
+
+[tool.ruff]
+line-length = 100
+fix = true           # autofix issues
+force-exclude = true # useful with ruff-pre-commit plugin
+src = ["src"]
+
+[tool.ruff.lint]
+select = [
+    'ARG001', # flake8-unused-function-arguments
+    'E',      # pycodestyle-errors
+    'F',      # pyflakes
+    'I',      # isort
+    'UP',     # pyupgrade
+    'T10',    # flake8-debugger
+]
+ignore = [
+    'E203',
+    'E731',
+    'E741',
+    'F722', # conflicts with jaxtyping Array annotations
+]
+
+[tool.ruff.lint.per-file-ignores]
+"src/furax/core/_base.py" = ['E743']
+
+[tool.ruff.format]
+quote-style = 'single'
