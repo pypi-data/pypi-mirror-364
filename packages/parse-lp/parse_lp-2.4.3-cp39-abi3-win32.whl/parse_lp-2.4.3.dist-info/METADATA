@@ -1,0 +1,43 @@
+Metadata-Version: 2.4
+Name: parse_lp
+Version: 2.4.3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+License-File: LICENSE-APACHE
+Summary: A fast LP file format parser for Python, powered by Rust
+Keywords: linear-programming,optimization,parser,integer-programming,math
+Author: Dan Dixey, Dan Dixey <dan@functorml.co.uk>
+Author-email: Dan Dixey, Dan Dixey <dan@functorml.co.uk>
+License: MIT OR Apache-2.0
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+Project-URL: Source Code, https://github.com/dandxy89/lp_parser_rs
+
+# parse_lp
+
+A fast LP file format parser for Python, powered by Rust.
+
+## Installation
+
+```bash
+pip install parse_lp
+```
+
+## Usage
+
+```python
+from parse_lp import LpParser
+
+# Parse an LP file
+parser = LpParser("path/to/file.lp")
+
+# Export to CSV files
+parser.to_csv("output_directory/")
+```
+
+## License
+
+Licensed under either of Apache License, Version 2.0 or MIT license at your option.
