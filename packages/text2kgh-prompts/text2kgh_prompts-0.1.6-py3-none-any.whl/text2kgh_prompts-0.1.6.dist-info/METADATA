@@ -1,0 +1,25 @@
+Metadata-Version: 2.4
+Name: text2kgh-prompts
+Version: 0.1.6
+Summary: Add your description here
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: llmada>=1.0.3
+Requires-Dist: toml==0.10.2
+
+uv pip install -e .
+
+
+
+main 
+
+继续维持和改进单一文件prompt效果
+
+Arch1 规则
+
+1 单一文章独立生成
+
+2 将生成后的内容进行融合
+
+3 使用程序来整合和实现 大模型配合识别
+
