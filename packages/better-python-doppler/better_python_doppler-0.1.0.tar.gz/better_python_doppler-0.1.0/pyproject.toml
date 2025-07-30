@@ -1,0 +1,28 @@
+[build-system]
+requires        = ["setuptools>=61.0", "wheel"]
+build-backend   = "setuptools.build_meta"
+
+[project]
+name            = "better-python-doppler"
+version         = "0.1.0"
+dependencies    = [
+
+                  ]
+requires-python = ">=3.12"
+authors         = [{name = "Derek Banker", email = "dbb2002@gmail.com"}]
+
+description     = "A simplified and up to date Python SDK for Doppler. Because their current one has stale docs and doesn't provide much IDE support."
+readme          = "README.md"
+license         = "Apache-2.0"
+license-files   = ["LICENSE"]   
+keywords        = ["Doppler", "SKD"]
+classifiers     = [
+                    "Programming Language :: Python"
+                  ]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where   = ["src"]
+include = ["better_python_doppler*"]
