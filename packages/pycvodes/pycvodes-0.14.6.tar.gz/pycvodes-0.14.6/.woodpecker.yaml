@@ -1,0 +1,68 @@
+variables:
+  - &ci_image 'cont-reg.bjodah.se:443/bjodah/triceratops-3:33'
+
+
+when:
+  - event: [push]  # pull_request, tag, cron, 
+
+steps:
+  - name: pypy
+    image: *ci_image
+    commands:
+      - bash -l .ci/test-case.sh --tmp --python /opt-3/pypy3.??-v*-linux64/bin/python3 /opt-3/sundials-6.7.0-debug
+
+  - name: py3.11-rel
+    image: *ci_image
+    commands:
+      - bash -l .ci/test-case.sh --tmp --python /opt-3/cpython-v3.11.*-release/bin/python3 /opt-3/sundials-6.7.0-release
+
+  - name: py3.12-asan
+    image: *ci_image
+    environment:
+      - PYTHONMALLOC=malloc
+    commands:
+      - bash -l .ci/test-case.sh --asan --tmp --python /opt-3/cpython-v3.12.*-release/bin/python3 /opt-3/sundials-6.7.0-asan
+
+  - name: py3.13-extended
+    image: *ci_image
+    environment:
+      - PYCVODES_NO_LAPACK=1
+      - PYCVODES_NO_KLU=1
+    commands:
+      - bash -l .ci/test-case.sh --tmp --python /opt-3/cpython-v3.13-apt-deb/bin/python3 /opt-3/sundials-6.7.0-extended
+
+  - name: py3.12-single
+    image: *ci_image
+    environment:
+      - PYCVODES_NO_LAPACK=1
+      - PYCVODES_NO_KLU=1
+    commands:
+      - bash -l .ci/test-case.sh --tmp --python /opt-3/cpython-v3.12.*-release/bin/python3 /opt-3/sundials-6.7.0-single
+
+  - name: sdist-and-docs
+    image: *ci_image
+    environment:
+      - PYCVODES_STRICT=1
+      - LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu
+    commands:
+      - .ci/test-sdist.sh
+      - ./scripts/prepare_deploy.sh
+      - if grep "DO-NOT-MERGE!" -R . --exclude ".woodpecker.yaml"; then exit 1; fi
+    depends_on:
+      - pypy
+      - py3.11-rel
+      - py3.12-asan
+      - py3.13-extended
+      - py3.12-single
+
+  - name: deploy-public-html
+    image: *ci_image
+    commands:
+      - tar -C ./deploy/public_html -czf pycvodes-${CI_COMMIT_BRANCH}.tar.gz .
+      - curl -T pycvodes-${CI_COMMIT_BRANCH}.tar.gz ftp://pycvodes:$${ARTIFACTS_PASS}@$${FTP_SERVER}/public_html/
+    secrets: [ ARTIFACTS_PASS, FTP_SERVER ]
+    when:
+     - event: push
+       repo: bjodah/pycvodes
+    depends_on:
+      - sdist-and-docs

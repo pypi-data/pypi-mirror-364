@@ -1,0 +1,59 @@
+{% set name = "pycvodes" %}
+{% set variant = "openblas" %}
+{% set version = GIT_DESCRIBE_TAG | replace("v", "") %}
+{% set number = GIT_DESCRIBE_NUMBER | int %}
+{% if number > 0 %}
+   {% set version = version + ".post" + GIT_DESCRIBE_NUMBER %}
+{% endif %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  git_url: ../
+
+build:
+  number: 200
+  features:
+    - blas_{{ variant }}  # [not win]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - blas 1.1 {{ variant }}  # [not win]
+    - openblas                # [not win]
+    - sundials
+    - python
+    - setuptools
+    - pip
+    - cython
+    - numpy
+  run:
+    - blas 1.1 {{ variant }}  # [not win]
+    - openblas                # [not win]
+    - sundials
+    - python
+    - numpy
+
+test:
+  imports:
+    - pycvodes
+  requires:
+    - pytest
+  commands:
+    - pytest --pyargs {{ name }}
+
+about:
+  home: https://github.com/bjodah/{{ name }}
+  license: BSD 2-Clause
+  license_file: LICENSE
+  summary: 'Python wrapper around cvodes (from the sundials library)'
+  doc_url: https://bjodah.github.io/{{ name }}/latest
+
+
+extra:
+  recipe-maintainers:
+    - bjodah
