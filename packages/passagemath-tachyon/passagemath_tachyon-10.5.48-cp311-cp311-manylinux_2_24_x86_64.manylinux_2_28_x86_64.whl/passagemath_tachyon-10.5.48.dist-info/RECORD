@@ -1,0 +1,14 @@
+passagemath_tachyon.libs/libmvec-2-8eb5c230.28.so,sha256=Gdo7EVBAMWbRA-JVgOEEeORNX1dJRqvBmXnAdsO_m8w,2100945
+passagemath_tachyon.libs/libpng16-c8eb30d6.so.16.43.0,sha256=pk8Ut0TxSrfjdiC8EDcHpuV1H3sCEnrSgNgSx5-gyD4,1081449
+sage/all__sagemath_tachyon.py,sha256=11IF4LhzQgW9pLP4qg2orAUzp4za7tgeXOx4HY0-3tM,187
+sage/ext_data/doctest/invalid/syntax_error.tachyon,sha256=T63BiiHK2Isz3zUr9Kh1AiVl5yymejYP5CjF5OH7B-I,2413
+sage/interfaces/all__sagemath_tachyon.py,sha256=0ZcxN1iXbvcw2ngvTJbySrEstyQcX51WoF870h-F8qA,46
+sage/interfaces/tachyon.py,sha256=UXKGzfLUU1lnpTkIVh_Y5el9O0sI4A8gx_7ttfGZh8s,32719
+sage/libs/all__sagemath_tachyon.py,sha256=kbiu3HPTxZvqYjSkrBd4EOZmiPs1u4C7a3bVUwVQE9g,164
+sage/libs/tachyon.cpython-311-x86_64-linux-gnu.so,sha256=-ZLB_apxSDMvSuS-LYNMd6KLqovZ5icjFGEkkmN1ObQ,75688
+sage/libs/tachyon.pyx,sha256=0ZcxN1iXbvcw2ngvTJbySrEstyQcX51WoF870h-F8qA,46
+sage_wheels/bin/tachyon,sha256=0yaEJnfEJ_bcZ67Ugyq2X3BOppQQsjFNouefc4D-HUI,233424
+passagemath_tachyon-10.5.48.dist-info/METADATA,sha256=Ygn-8B9FaycUIl_wfIOleKai5wRKj0PBaRZyjQreAg8,4279
+passagemath_tachyon-10.5.48.dist-info/WHEEL,sha256=N6PyfvHGx46Sh1ny6KlB0rtGwHkXZAwlLCEEPBiTPn8,152
+passagemath_tachyon-10.5.48.dist-info/top_level.txt,sha256=Kmzulf9WsphADFQuqgvdy5mvTLDj_V2zkFHU2s3UXos,6
+passagemath_tachyon-10.5.48.dist-info/RECORD,,
