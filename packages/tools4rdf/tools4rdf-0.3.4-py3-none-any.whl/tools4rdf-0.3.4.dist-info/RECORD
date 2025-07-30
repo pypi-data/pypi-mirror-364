@@ -1,0 +1,15 @@
+tools4rdf/__init__.py,sha256=AVEjDnkiI0pMVvoGTYnMITHUsc-hgcBUgnXmyfSjCeg,55
+tools4rdf/visualize.py,sha256=upN1oTHQIXl1QvOp3NnAbmLll5-b2hydl429ohi7--Q,10562
+tools4rdf/data/cmso.owl,sha256=99Msua7qSAtYaWE8toepB6fDDfsK_5KHn34tECT7Wsg,80745
+tools4rdf/network/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tools4rdf/network/attrsetter.py,sha256=vgTpeNMFujabva2mT7WTrbeC_Qpur0SveZIh4Tvd0_4,2241
+tools4rdf/network/network.py,sha256=lsIJa2AyfiStdg2iISzle2r2pr37FEqlIwja0Purin0,42301
+tools4rdf/network/ontology.py,sha256=RG8nVyZZdEVsIbtY_kaZmz58uPLYwWKx4CM1xGzugNU,493
+tools4rdf/network/parser.py,sha256=xmqTiN8mAXAI8bmgyuU0BcavychqUnvhVVV_dmsuab4,35014
+tools4rdf/network/patch.py,sha256=qwRkztTMDHCTQjKhGREYv8zyaZpxT0myXGpOogHnP1s,335
+tools4rdf/network/term.py,sha256=1x5udHck_p4Q3piJXHtfdKRHwzL5r9DBo5kd4bkang8,15537
+tools4rdf-0.3.4.dist-info/licenses/LICENSE,sha256=I-27k4zdjPYQYuKuAm_KjxJY-nYpg02zBdSrn-jq-jA,1066
+tools4rdf-0.3.4.dist-info/METADATA,sha256=jxiymG7eznvetmYEK6sk5zrLhfJknXgpNe9kcHbVqAU,1083
+tools4rdf-0.3.4.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+tools4rdf-0.3.4.dist-info/top_level.txt,sha256=zkwaNtQHqc1uOLsamZTWdrJfmqdKF7BMXMeoOsSXP_4,10
+tools4rdf-0.3.4.dist-info/RECORD,,
