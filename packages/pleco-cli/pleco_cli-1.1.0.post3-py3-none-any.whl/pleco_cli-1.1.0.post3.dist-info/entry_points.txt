@@ -1,0 +1,2 @@
+[console_scripts]
+pleco = pleco.__main__:cli
