@@ -1,0 +1,81 @@
+Metadata-Version: 2.4
+Name: qosm
+Version: 0.45
+Summary: Quasi-Optical System Modelling
+Author-email: Gregory Gaudin <gregory.gaudin@imt-atlantique.fr>, Clement Henry <clement.henry@imt-atlantique.fr>
+License: AFL-3.0
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: matplotlib
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: gmsh
+Requires-Dist: h5py
+Requires-Dist: scikit-rf
+Requires-Dist: pyside6
+Requires-Dist: PyOpenGL
+Requires-Dist: PyOpenGL-Accelerate
+Requires-Dist: toml
+
+# Module Installation
+
+1. Open a terminal in this directory.
+2. Run the following command:
+
+   **Debian-based distributions**
+   ```bash
+   python3 -m pip install . --break-system-package
+   ```
+   
+   **Windows**
+   ```console
+   py -<version> -m pip install .
+   ```
+   > **Note:** Replace <version> with the version of Python in which you want to install the module.
+   > **Note:** Depending on your python installation, you may need to run `python` instead of `py`.
+
+
+# 📦 Installation from the Git Repository (with compilation)
+
+To install the package directly from the GitLab repository, use the following command:
+
+**On Windows:**
+
+To install using Git and the source code, please make sure to install the following components:
+- GIT: Download from https://github.com/git-for-windows/git/releases/download/v2.50.0.windows.1/Git-2.50.0-64-bit.exe. 
+- MSVC Build Tools: Available at https://aka.ms/vs/17/release/vs_BuildTools.exe
+- Python (version 3.11 or higher): Can be installed via the Microsoft Store or other sources
+
+Then, open a terminal (such as powershell) and run:
+```bash
+pip install --no-binary=qosm git+https://gitlab.imt-atlantique.fr/quasi-optical-system-modelling/qosm.git@main#egg=qosm
+```
+
+**On Debian-based distributions:**
+
+Install the required packages by running:
+```bash
+sudo apt install build-essential libomp-dev libopenblas-dev libgsl-dev python3 python3-pip python3-pybind11 python3-setuptools
+```
+
+Then, execute the following command to install QOSM:
+```bash
+pip3 install --no-binary=qosm git+https://gitlab.imt-atlantique.fr/quasi-optical-system-modelling/qosm.git@main#egg=qosm --break-system-packages
+```
+
+> **Note**: On Linux systems, you may need to remove the `--break-system-packages` option with old Python versions.
+
+
+# Usage
+
+You can now import and use the package in your Python code. For example:
+ ```python
+import qosm
+```
+
+You can launch the GUI with
+```bash
+python -m qosm
+```
+
+> **Note**: On Linux systems, you may need to use `python3`.
