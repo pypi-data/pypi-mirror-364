@@ -1,0 +1,11 @@
+memetextgen/__init__.py,sha256=rlJ06_qGZ91ebgL2UAi7fexgcLJb7cM1w7-n00LlkCI,82
+memetextgen/__main__.py,sha256=iH5oCqpf5JU53c6MOneaX4CYklNfuOqRbizT8znKDcA,294
+memetextgen/meme.py,sha256=p2ZcQj0dq2MJs8ShU4vUR3LQ8sIMdPsbKW9MjiJUPZU,275
+memetextgen-0.1.0.dist-info/licenses/LICENSE,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/test_meme.py,sha256=RybnU8ETBDyph0toJLaVpbY47aK4e77a25xLc7Nxhbo,173
+memetextgen-0.1.0.dist-info/METADATA,sha256=oIVSME6VFL3lOPTuxkcbP81hIZ4a6SHvM8fm8RzNzp4,1073
+memetextgen-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+memetextgen-0.1.0.dist-info/entry_points.txt,sha256=QFMd-fcd3ru7il3vahInvuNCu4puFyXBdUWXYH9o9OE,58
+memetextgen-0.1.0.dist-info/top_level.txt,sha256=EM-oaMHMkplKg6Zvb_zq_9SNUEh9_EWnz4DChKYzsnA,18
+memetextgen-0.1.0.dist-info/RECORD,,

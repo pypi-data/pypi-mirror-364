@@ -1,0 +1,52 @@
+Metadata-Version: 2.4
+Name: memetextgen
+Version: 0.1.0
+Summary: A silly meme-case text converter.
+Home-page: https://github.com/yourusername/memetextgen
+Author: Joe Blow
+Author-email: your@email.com
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+Dynamic: summary
+
+# memegen
+
+Convert boring text into silly MEME text.
+
+## Example
+
+```python
+from memetextgen import to_meme_case
+
+print(to_meme_case("hello world"))
+# Output: HeLLo WoRLd
+```
+
+CLI Usage
+
+python -m memetextgen "hello world"
+
+---
+
+## ✅ 4. `LICENSE` (MIT recommended)
+
+```text
+MIT License
+
+Copyright (c) 2025 Joe Blow
+
+Permission is hereby granted, free of charge, to any person obtaining a copy...
+```
