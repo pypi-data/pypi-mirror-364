@@ -1,0 +1,12 @@
+chess
+click
+Flask
+Flask-Cors
+parameterized
+pyinstaller
+mypy
+flake8
+black
+isort
+ufmt
+types-flask-cors>=6.0.0.20250520
