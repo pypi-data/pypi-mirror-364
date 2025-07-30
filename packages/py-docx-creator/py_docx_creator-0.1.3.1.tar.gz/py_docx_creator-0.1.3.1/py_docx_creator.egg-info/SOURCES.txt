@@ -1,0 +1,11 @@
+README.md
+pyproject.toml
+py_docx_creator/AbstractClasses.py
+py_docx_creator/CoreClasses.py
+py_docx_creator/CustomClasses.py
+py_docx_creator/__init__.py
+py_docx_creator.egg-info/PKG-INFO
+py_docx_creator.egg-info/SOURCES.txt
+py_docx_creator.egg-info/dependency_links.txt
+py_docx_creator.egg-info/requires.txt
+py_docx_creator.egg-info/top_level.txt
