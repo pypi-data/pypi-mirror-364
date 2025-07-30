@@ -1,0 +1,2 @@
+[spacy_loggers]
+rich-logger = rich_logger.spacy_logger:rich_logger
