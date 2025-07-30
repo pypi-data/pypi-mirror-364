@@ -1,0 +1,15 @@
+README.md
+pyproject.toml
+src/captchafox/__init__.py
+src/captchafox.egg-info/PKG-INFO
+src/captchafox.egg-info/SOURCES.txt
+src/captchafox.egg-info/dependency_links.txt
+src/captchafox.egg-info/requires.txt
+src/captchafox.egg-info/top_level.txt
+src/captchafox/browser/__init__.py
+src/captchafox/browser/captchafox.py
+src/captchafox/captcha/__init__.py
+src/captchafox/core/__init__.py
+src/captchafox/integration/__init__.py
+src/captchafox/services/__init__.py
+src/captchafox/utils/__init__.py
