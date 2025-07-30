@@ -1,0 +1,2 @@
+[console_scripts]
+fetch-fundamentals = fetch_fundamental_data.cli:main
