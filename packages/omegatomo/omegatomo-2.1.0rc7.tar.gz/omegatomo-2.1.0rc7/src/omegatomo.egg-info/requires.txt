@@ -1,0 +1,15 @@
+numpy
+pymatreader
+arrayfire
+scikit-image
+SimpleITK
+
+[cupy]
+cupy
+
+[pyopencl]
+pyopencl
+
+[pytorch]
+torch
+cupy
