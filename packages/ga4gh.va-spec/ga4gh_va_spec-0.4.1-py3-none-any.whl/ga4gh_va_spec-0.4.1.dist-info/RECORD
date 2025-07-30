@@ -1,0 +1,17 @@
+ga4gh/va_spec/__init__.py,sha256=vpW2d3XG9r-6hZO-1x8hNokxE1l_Bu8AGcn4-pI3Hfc,302
+ga4gh/va_spec/aac_2017/__init__.py,sha256=oByiAiCmFty7Lg2IOo8veM8zlNaxcKILO--mo3yc2GE,518
+ga4gh/va_spec/aac_2017/models.py,sha256=Hlwbj3RM-wbwXhYEWN3fi9_c1O8AnG_RlYYTLlfHIRE,7050
+ga4gh/va_spec/acmg_2015/__init__.py,sha256=BsylRVp1BxTVlHADs3eAsIPPumiw9_l2838m16Go9O4,352
+ga4gh/va_spec/acmg_2015/models.py,sha256=KgwBN1psdDn-3HGCRUo1vPJ-bA-1H2ONNbFYSiQ-Xas,8951
+ga4gh/va_spec/base/__init__.py,sha256=aZ99GoDF7hmFwXUrkEi9NHeYrD7HPg64t4kDqD0c1AM,2348
+ga4gh/va_spec/base/core.py,sha256=5LLgyzmPLu7R8n2nNb-Uk2OvOMMozbWVaKPMTOeLQF0,34858
+ga4gh/va_spec/base/domain_entities.py,sha256=JtF0-5p5-6wCjuBJSUHcCIHEQf0OhLMGTMbYyXHIRGg,3081
+ga4gh/va_spec/base/enums.py,sha256=c_og03x2xKbOKHPs-q1ei9GRJBaZZWNoO6uJJ1Y1M6c,2770
+ga4gh/va_spec/base/validators.py,sha256=rLQDzkE7r7IuOu82doiucV7Ag3_FHnA7rirTm_POlGY,1602
+ga4gh/va_spec/ccv_2022/__init__.py,sha256=rT3U9EZFTtGnyDJ9w9xk0cKPXwmLeLVBmGX-i-hZtgc,254
+ga4gh/va_spec/ccv_2022/models.py,sha256=jbSicjcn4p_KVY9sQKwyuvDTNXEqdCsui5i-aMnzAdk,6435
+ga4gh_va_spec-0.4.1.dist-info/licenses/LICENSE,sha256=xx0jnfkXJvxRnG63LTGOxlggYnIysveWIZ6H3PNdCrQ,11357
+ga4gh_va_spec-0.4.1.dist-info/METADATA,sha256=Xd2n5NC0CykDxExGUm08ygXDCWpu9fbqzSyo2tU83PM,18303
+ga4gh_va_spec-0.4.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+ga4gh_va_spec-0.4.1.dist-info/top_level.txt,sha256=dcwOVyhs_HDiP72Eg7DskeWMdcbw70-OwDmjxNuwNKg,6
+ga4gh_va_spec-0.4.1.dist-info/RECORD,,
