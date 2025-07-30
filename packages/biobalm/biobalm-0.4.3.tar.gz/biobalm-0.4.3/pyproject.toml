@@ -1,0 +1,43 @@
+[project]
+name = "biobalm"
+authors = [{ name = "Jordan Rozum", email = "jrozum@binghamton.edu" }]
+description = "Boolean Attractor Landscape Mapper"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11"
+dependencies = [
+    'biodivine_aeon >=1.2.5',
+    'clingo >=5.6.2',
+    'networkx >=2.8.8',    
+]
+# To reflect the change in the documentation, please also update `docs/source/conf.py`.
+version = "0.4.3"
+
+# Pint can be used for static analysis, but is not mandatory.
+[project.optional-dependencies]
+pint = [
+    "pypint==1.6.2"
+]
+
+[tool.setuptools]
+packages = ['biobalm', 'biobalm._sd_algorithms', 'biobalm._sd_attractors']
+
+[tool.pyright]
+include = ["biobalm", "tests"]
+stubPath = "stubs"
+reportMissingImports = true
+reportMissingTypeStubs = true
+reportUntypedFunctionDecorator = true
+reportUntypedClassDecorator = true
+typeCheckingMode = "strict"
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+line_length = 88
+profile = "black"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--networksize=10"
