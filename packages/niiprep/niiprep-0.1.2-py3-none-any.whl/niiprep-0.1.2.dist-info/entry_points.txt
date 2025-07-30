@@ -1,0 +1,8 @@
+[console_scripts]
+crop = niiprep.cli:crop_cli
+denoiseMP2RAGE = niiprep.cli:denoise_mp2rage
+nii2mp4 = niiprep.cli:nii_to_mp4_cli
+registernii = niiprep.cli:register_cli
+rembgnii = niiprep.cli:rembg_cli
+resample = niiprep.cli:resample_cli
+roundnii = niiprep.cli:round_cli
