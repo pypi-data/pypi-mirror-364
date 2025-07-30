@@ -1,0 +1,13 @@
+activity/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+activity/admin.py,sha256=LjbC-nCsIXUWrxLERjjU4d8yq2wdVu1t3ydNnWEpk4c,391
+activity/apps.py,sha256=G7omAkDtBA8n_64IaoHtlaepm32FWtszBmNOulxmp7o,154
+activity/middleware.py,sha256=e6rtpUK9zkcO2vywXV2GCT8yf69Q_Z1VKyGWUxHh2u8,1344
+activity/models.py,sha256=_v-MtYPS9LBf29mwWRAyac4mPY8JCaeI__BX2PniFiY,792
+activity/tests.py,sha256=BIDCCwgZ9T2QP-2-Fur5Hbtu6RFRF06LrGgz2bgXdwM,2935
+activity/views.py,sha256=u0FhL7RT5byf5IlcnZEMrcH2TOnQkdfRQU2SjtA26m0,66
+activity/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_user_activity-0.0.1.dist-info/licenses/LICENSE,sha256=sxA8yNi--LrS0ZEEh6OJayTcKcIIJHxaWhqmR3R29dw,1113
+django_user_activity-0.0.1.dist-info/METADATA,sha256=U5WiBuSsOHplTHKjIPUvVmSKTm7FSyRgZHw_ZLyJtSI,4613
+django_user_activity-0.0.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+django_user_activity-0.0.1.dist-info/top_level.txt,sha256=6k-0d2nzXZIfKMIAq58HUNerhFI2eDmrhD4DpxtkEPs,9
+django_user_activity-0.0.1.dist-info/RECORD,,
