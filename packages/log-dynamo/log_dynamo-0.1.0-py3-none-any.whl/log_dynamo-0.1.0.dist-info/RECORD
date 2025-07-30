@@ -1,0 +1,8 @@
+log_dynamo/__init__.py,sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,0
+log_dynamo/access.py,sha256=75f9a45542d46ed3df57560fc8f947d4e5a2982debdd91b292ec2fffaf16fda5,1297
+log_dynamo/level.py,sha256=93c07fc04f7c2d49755e01b716388668a77ca6cd2ea7be0e613bcb399d88246e,136
+log_dynamo/record.py,sha256=cdf5784bc615e4e58154c4c5d3b96407dcb44e4d46245c14e8223c364a73e48b,1635
+log_dynamo/utils.py,sha256=2c93960c1f505ba09c40bce2a252f1476dcb6bba2f8119883ebba39af4ff4d4a,944
+log_dynamo-0.1.0.dist-info/WHEEL,sha256=b70116f4076fa664af162441d2ba3754dbb4ec63e09d563bdc1e9ab023cce400,78
+log_dynamo-0.1.0.dist-info/METADATA,sha256=d78089f4cfbde1e0aabaeb14e21f2abd1f6fdef2152827f18e6a09da218833d5,451
+log_dynamo-0.1.0.dist-info/RECORD,,
