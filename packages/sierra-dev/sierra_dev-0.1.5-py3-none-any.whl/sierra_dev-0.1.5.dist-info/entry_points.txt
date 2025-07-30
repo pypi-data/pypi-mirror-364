@@ -1,0 +1,2 @@
+[console_scripts]
+sierra-dev = __main__:cli
