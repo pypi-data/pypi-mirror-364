@@ -1,0 +1,4 @@
+include README.md
+include LICENSE
+include smooth_criminal/**/*.py
+recursive-include smooth_criminal/flet_app *.py *.png *.json
