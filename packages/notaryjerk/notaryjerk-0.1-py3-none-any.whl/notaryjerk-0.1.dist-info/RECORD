@@ -1,0 +1,14 @@
+notaryjerk/LoadCommand.py,sha256=xz5ow9pUGRgDZ_-YEuhnrKOcorWi0-1xM6R7xYsjCy0,18401
+notaryjerk/MachO.py,sha256=ijpE-F1bY8-Km0_XSsXdn0YrVTjDCXPRBW7OI_xxwXo,14341
+notaryjerk/__init__.py,sha256=ZtTpzVZp3-_0lkXDs6bN5ilsERReEXlkocR2kwJcQ3U,1034
+notaryjerk/__main__.py,sha256=o18JlSwAKpmQzdQK7iNcn88g988jHlJl9zgi8HNZmO0,2927
+notaryjerk/_version.py,sha256=Olnj0P417yZvGbXQOnbeTFrk9yzWuvCOHN4tVKBMeOc,506
+notaryjerk/notarize.py,sha256=AHeLdEtEAeG1blqJiCP3F3toIVNcsNtO6Ys7t9AFQR4,14843
+notaryjerk/staple.py,sha256=OPOUaSYlGofJDb87NQlWGssNMpHT65NASX0PhKdNNcI,13861
+notaryjerk/utilities.py,sha256=4eQ8qXZs7z-logLS8sknRG_zyxHXjvZcNGzE5v1v9So,5309
+notaryjerk-0.1.dist-info/licenses/LICENSE.md,sha256=qpIH6TnsUxulEwvJfyFoZj7kxUx_jabS1-jO2U0SXHk,34306
+notaryjerk-0.1.dist-info/METADATA,sha256=P79t2IQNOmuB7AoWgPmFitA_WdCSAC7fmUPw_iBqhKw,43927
+notaryjerk-0.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+notaryjerk-0.1.dist-info/entry_points.txt,sha256=wBmZcJ4Kl3YLTD8ikgbjyB8E_RklraLQbyLFG7z9BhE,57
+notaryjerk-0.1.dist-info/top_level.txt,sha256=_aTULzjNI6wc1YrZWwZOl1mhZo8p6flv-Qyiixn_T0s,11
+notaryjerk-0.1.dist-info/RECORD,,
