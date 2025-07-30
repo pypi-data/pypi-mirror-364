@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README-CN.md
+README.md
+setup.cfg
+setup.py
+alibabacloud_eduaiservice20231218/__init__.py
+alibabacloud_eduaiservice20231218/client.py
+alibabacloud_eduaiservice20231218/models.py
+alibabacloud_eduaiservice20231218.egg-info/PKG-INFO
+alibabacloud_eduaiservice20231218.egg-info/SOURCES.txt
+alibabacloud_eduaiservice20231218.egg-info/dependency_links.txt
+alibabacloud_eduaiservice20231218.egg-info/requires.txt
+alibabacloud_eduaiservice20231218.egg-info/top_level.txt
