@@ -1,0 +1,12 @@
+tqdm
+
+[better_color]
+colorama
+
+[better_dl]
+requests
+
+[dev]
+pytest
+pdoc
+mypy
