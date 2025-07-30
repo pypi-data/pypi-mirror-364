@@ -1,0 +1,15 @@
+S3RecipeHandler/Asset.py,sha256=VXDDtWenyK-mpblaVK61W8mex7M9bLcEfwzu5qRiH14,1840
+S3RecipeHandler/AssetList.py,sha256=0blWrPOhGa29GII0CpvYbACZwM9CkJIp9MLRRq13kro,1534
+S3RecipeHandler/GraphicBlock.py,sha256=NNF61MYomr66fkW2Kf61w8l8MX_ARn7agE7UBlZ2frQ,1641
+S3RecipeHandler/Helpers.py,sha256=HZPplP2ZWmPATom-6vsTD0Zqz3VvXg3iByzXFJhAz2E,10145
+S3RecipeHandler/Model.py,sha256=uWbz5OjoBoPtb4LR13E1YGZevRkoAQmmafRFfLRAKWY,4503
+S3RecipeHandler/RGBBlock.py,sha256=C777ysiddZgFKo0ymCIsr6MZ975M1Viemvjcicjkor4,2568
+S3RecipeHandler/Recipe.py,sha256=So-hOeGIgZkijS6vLdjXkEPHLTcjoItYZD9Rk0AEuqc,9310
+S3RecipeHandler/S3RGB.py,sha256=9Tf0ZzPe6TK_F16xrkXBcuoYPwITUSjuoNalJ9wquxQ,119
+S3RecipeHandler/__init__.py,sha256=qzPgWwEiXhc4_btE7va7Rl1tePqIHL16-3nbQVdc9TI,7
+S3RecipeHandler/texture.py,sha256=HJ48ALlJPUqJXJbwcG2YRBqwuZMrkGtRm6Ei-pmIoiU,1528
+s3recipehandler-1.1.0.dist-info/licenses/LICENSE.txt,sha256=IwGE9guuL-ryRPEKi6wFPI_zOhg7zDZbTYuHbSt_SAk,35823
+s3recipehandler-1.1.0.dist-info/METADATA,sha256=TS71dtIABNd89zqAflAKleZzaXlf3MruZFpEw4udGxg,1796
+s3recipehandler-1.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+s3recipehandler-1.1.0.dist-info/top_level.txt,sha256=-_PjcbVzggM0tL3ilFFjdb5Mys0Pxcqif999ZLwR5Q4,16
+s3recipehandler-1.1.0.dist-info/RECORD,,
