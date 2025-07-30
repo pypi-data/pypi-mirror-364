@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+set -eu
+
+# Determine which Python executable to use
+if command -v python3 &> /dev/null; then
+    PYTHON_CMD="python3"
+elif command -v python &> /dev/null; then
+    PYTHON_CMD="python"
+else
+    echo "Error: Neither python3 nor python was found in your PATH"
+    exit 1
+fi
+
+echo "Using Python command: $PYTHON_CMD"
+
+# Clean previous builds
+echo "Cleaning previous builds..."
+rm -rf dist/ build/ *.egg-info/
+
+# Build the package
+echo "Building package..."
+$PYTHON_CMD -m build
+
+# Check the distribution
+echo "Checking the distribution with twine..."
+twine check dist/*
+
+# Upload to PyPI
+echo "Uploading to PyPI..."
+echo "You can use one of the following methods:"
+echo "1. Upload with username/password prompt:"
+echo "   twine upload dist/*"
+echo ""
+echo "2. Upload with token (recommended):"
+echo "   twine upload dist/* -u __token__ -p YOUR_PYPI_TOKEN"
+echo ""
+echo "3. Upload with token from environment variable:"
+echo "   TWINE_USERNAME=__token__ TWINE_PASSWORD=$PYPI_TOKEN twine upload dist/*"
+echo ""
+
+read -p "Do you want to proceed with the upload now? (y/n): " confirm
+if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]; then
+    if [ -z "${PYPI_TOKEN:-}" ]; then
+        echo "No PYPI_TOKEN environment variable found."
+        read -p "Do you want to enter your PyPI token now? (y/n): " enter_token
+        if [[ $enter_token == [yY] || $enter_token == [yY][eE][sS] ]]; then
+            read -sp "Enter your PyPI token: " token
+            echo ""
+            TWINE_USERNAME=__token__ TWINE_PASSWORD=$token twine upload dist/*
+        else
+            echo "Please run the upload command manually when ready."
+        fi
+    else
+        echo "Using PYPI_TOKEN from environment variables..."
+        TWINE_USERNAME=__token__ TWINE_PASSWORD=$PYPI_TOKEN twine upload dist/*
+    fi
+else
+    echo "Upload canceled. You can upload manually when ready using one of the commands above."
+fi
+
+echo "Done!"
