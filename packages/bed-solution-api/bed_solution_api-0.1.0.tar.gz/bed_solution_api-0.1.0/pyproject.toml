@@ -1,0 +1,24 @@
+[project]
+name = "bed_solution_api"
+version = "0.1.0"
+description = "API for bed solution capston project"
+authors = [
+    { name="Jaeho Lee", email="capstongcp@gmail.com" }
+]
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+dependencies = [
+    "rich>=13.0",
+    "supabase>=2.17",
+    "python-dotenv"
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.urls]
+"Github" = "https://github.com/iOT-Capston-Design-Project/BedSolution-Python-API"

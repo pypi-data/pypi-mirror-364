@@ -1,0 +1,58 @@
+# Bed Solution API
+
+침대 압력 모니터링 솔루션을 위한 API 라이브러리입니다.
+
+## 설정
+
+API를 사용하기 전에 `.env` 파일을 프로젝트 루트 디렉토리에 생성하고 다음 환경 변수들을 설정해야 합니다:
+
+```env
+# 서버 API 설정 (필수)
+API_KEY=your_api_key_here
+API_URL=https://your-api-server.com
+
+# 로깅 설정
+ENABLE_DEBUGGING=False
+ENABLE_LOG_CONSOLE=True
+ENABLE_LOG_FILE=True
+LOG_DIR_PATH=./logs
+
+# 압력 데이터 전송 간격 (분 단위)
+MIN_INTERVAL=5
+```
+
+### 환경 변수 설명
+
+| 변수명 | 필수 여부 | 설명 | 기본값 | 예시 |
+|--------|----------|------|--------|------|
+| `API_KEY` | 필수 | 서버 API 인증 키 | - | `abc123xyz789` |
+| `API_URL` | 필수 | 서버 API 엔드포인트 URL | - | `https://api.bedsolution.com` |
+| `ENABLE_DEBUGGING` | 선택 | 디버깅 모드 활성화 여부 | `False` | `True` 또는 `False` |
+| `ENABLE_LOG_CONSOLE` | 선택 | 콘솔 로그 출력 활성화 여부 | `True` | `True` 또는 `False` |
+| `ENABLE_LOG_FILE` | 선택 | 파일 로그 저장 활성화 여부 | `True` | `True` 또는 `False` |
+| `LOG_DIR_PATH` | 선택 | 로그 파일 저장 디렉토리 경로 | `./logs` | `./logs` 또는 `/var/log/bedsolution` |
+| `MIN_INTERVAL` | 선택 | 압력 데이터 전송 최소 간격 (분) | `30` | `30`, `60`, `120` |
+
+## 사용법
+
+```python
+from bed_solution_api import BedSolutionAPI
+from pressure_info import PressureInfo
+
+# API 인스턴스 생성
+api = BedSolutionAPI()
+
+# 장비 등록
+device_id = api.register_device()
+
+# 압력 정보 기록
+pressure_data = PressureInfo(occipu=50, scapula=60, elbow=30, hip=80)
+api.record_pressure_info(pressure_data)
+
+# 서버로 데이터 전송
+api.send()
+
+# 장비 등록 해제
+api.deregister_device()
+```
+
