@@ -1,0 +1,2 @@
+[console_scripts]
+abin-add-two-num = abin_add_two_num:main
