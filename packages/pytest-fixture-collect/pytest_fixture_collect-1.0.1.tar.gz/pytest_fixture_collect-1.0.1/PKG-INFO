@@ -1,0 +1,35 @@
+Metadata-Version: 2.4
+Name: pytest-fixture-collect
+Version: 1.0.1
+Summary: A utility to collect pytest fixture file paths.
+Author-email: Ariel Boucheikhchoukh <ariel.boucheikh@gmail.com>
+License-Expression: MIT
+Project-URL: repository, https://github.com/ari-bou/pytest-fixture-collect
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Provides-Extra: test
+Requires-Dist: pytest; extra == "test"
+Dynamic: license-file
+
+# Pytest Fixture Collect
+
+A utility to collect pytest fixture file paths.
+
+
+```python
+    # conftest.py
+    from pathlib import Path
+
+    from pytest_fixture_collect import collect_fixture_file_paths
+
+    root_dir = ...  # absolute path of project root
+    fixture_dir = ROOT_DIR / ...  # absolute path of fixture directory
+
+    pytest_plugins = collect_fixture_file_paths(root_dir, fixture_dir)
+```

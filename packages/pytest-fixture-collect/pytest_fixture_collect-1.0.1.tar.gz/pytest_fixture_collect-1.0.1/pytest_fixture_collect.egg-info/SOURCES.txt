@@ -1,0 +1,13 @@
+LICENSE
+README.md
+pyproject.toml
+./README.md
+pytest_fixture_collect/VERSION
+pytest_fixture_collect/__init__.py
+pytest_fixture_collect/collect.py
+pytest_fixture_collect.egg-info/PKG-INFO
+pytest_fixture_collect.egg-info/SOURCES.txt
+pytest_fixture_collect.egg-info/dependency_links.txt
+pytest_fixture_collect.egg-info/requires.txt
+pytest_fixture_collect.egg-info/top_level.txt
+tests/test_collect.py

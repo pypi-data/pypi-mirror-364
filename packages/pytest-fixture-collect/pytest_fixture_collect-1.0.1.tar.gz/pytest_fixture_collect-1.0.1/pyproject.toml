@@ -1,0 +1,33 @@
+[project]
+name = "pytest-fixture-collect"
+description = "A utility to collect pytest fixture file paths."
+license = "MIT"
+urls.repository = "https://github.com/ari-bou/pytest-fixture-collect"
+authors = [
+    { name = "Ariel Boucheikhchoukh", email = "ariel.boucheikh@gmail.com" }
+]
+readme = "./README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dynamic = [ "version" ]
+optional-dependencies.test = [
+    "pytest"
+]
+
+[build-system]
+requires = ["setuptools>=70"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.dynamic]
+version = { file = "pytest_fixture_collect/VERSION" } 
+readme = { file = [ "README.md" ] }
+
+[tool.setuptools.packages.find]
+include = [ "pytest_fixture_collect*" ]
+exclude = [ "tests*" ]
