@@ -1,0 +1,15 @@
+.gitignore
+.pre-commit-config.yaml
+LICENSE
+README.md
+pyproject.toml
+.github/workflows/ci.yaml
+src/witty/__init__.py
+src/witty/compile_module.py
+src/witty.egg-info/PKG-INFO
+src/witty.egg-info/SOURCES.txt
+src/witty.egg-info/dependency_links.txt
+src/witty.egg-info/requires.txt
+src/witty.egg-info/top_level.txt
+tests/__init__.py
+tests/test_compile.py
