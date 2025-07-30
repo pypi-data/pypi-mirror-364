@@ -1,0 +1,9 @@
+LICENSE
+README.md
+setup.py
+ergou/__init__.py
+ergou/ergou.py
+ergou.egg-info/PKG-INFO
+ergou.egg-info/SOURCES.txt
+ergou.egg-info/dependency_links.txt
+ergou.egg-info/top_level.txt
