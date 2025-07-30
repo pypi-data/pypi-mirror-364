@@ -1,0 +1,74 @@
+Metadata-Version: 2.1
+Name: microblocks
+Version: 0.10.0
+Summary: Python Boilerplate contains all the boilerplate you need to create a Python package.
+Home-page: https://github.com/wwj718/microblocks_messaging_library
+Author: Wenjie Wu
+Author-email: wuwenjie718@gmail.com
+License: GNU General Public License v3
+Keywords: MicroBlocks
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+License-File: LICENSE
+License-File: AUTHORS.rst
+Requires-Dist: pyserial==3.5
+Requires-Dist: adafruit-circuitpython-ble==10.0.7
+Requires-Dist: dynatalk==0.7.3
+
+==============================
+microblocks
+==============================
+
+
+MicroBlocks and Python Communication with Messages.
+
+
+Install
+-------
+
+python -m pip install microblocks
+
+
+Usage
+-----
+
+from microblocks import Message
+
+
+Features
+--------
+
+* TODO
+
+Credits
+-------
+
+This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+
+
+=======
+History
+=======
+* 0.9.0 (2024-07-11): Add device-related methods(same as Snap! library); add notebook demo
+* 0.8.0 (2024-07-11): Make it more robust
+* 0.7.1 (2024-07-10): Fix broken discover method; Optimize connection mechanism
+* 0.7.0 (2024-07-09): Increase ble buffer size to resolve occasional msgBytes errors; upgrade adafruit-circuitpython-ble
+* 0.6.0 (2024-07-08): add MicroblocksClient
+* 0.5.0 (2024-07-08): Support connecting multiple BLE devices; 
+* 0.4.0 (2024-02-03)
+* 0.3.0 (2024-02-02)
+* 0.2.0 (2024-01-07)
+* 0.1.1 (2023-12-26)
+* 0.1.0 (2023-12-25)
+* 0.0.3 (2023-12-23)
+* 0.0.2 (2022-11-29)
+* 0.0.1 (2022-10-28)
+* First release on PyPI.

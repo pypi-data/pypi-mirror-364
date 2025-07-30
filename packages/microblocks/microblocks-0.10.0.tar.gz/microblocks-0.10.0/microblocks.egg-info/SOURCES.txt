@@ -1,0 +1,15 @@
+AUTHORS.rst
+HISTORY.rst
+LICENSE
+MANIFEST.in
+README.rst
+readme.md
+setup.cfg
+setup.py
+microblocks/__init__.py
+microblocks.egg-info/PKG-INFO
+microblocks.egg-info/SOURCES.txt
+microblocks.egg-info/dependency_links.txt
+microblocks.egg-info/not-zip-safe
+microblocks.egg-info/requires.txt
+microblocks.egg-info/top_level.txt
