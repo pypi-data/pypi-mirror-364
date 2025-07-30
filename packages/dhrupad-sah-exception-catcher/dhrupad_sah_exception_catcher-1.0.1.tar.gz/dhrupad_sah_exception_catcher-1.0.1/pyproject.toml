@@ -1,0 +1,115 @@
+[project]
+name = "dhrupad-sah-exception-catcher"
+version = "1.0.1"
+description = "Automatically catch and report exceptions to Mira Sentinel with rich context and log integration for AI-powered debugging and automatic fix generation"
+authors = [
+    { name = "Mira Sentinel Team", email = "noreply@example.com" },
+]
+dependencies = [
+    "httpx>=0.25.0",
+    "pydantic>=2.0.0",
+    "psutil>=5.9.0",
+]
+requires-python = ">=3.8"
+readme = "README.md"
+keywords = [
+    "exception",
+    "error-handling",
+    "monitoring",
+    "observability",
+    "logging",
+    "automation",
+    "claude",
+    "ai-fixing",
+    "fastapi",
+    "flask",
+    "django",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Quality Assurance",
+    "Topic :: System :: Logging",
+    "Topic :: System :: Monitoring",
+]
+
+[project.license]
+text = "MIT"
+
+[project.urls]
+Homepage = "https://github.com/dhrupad-sah/python-exception-catcher"
+Repository = "https://github.com/dhrupad-sah/python-exception-catcher"
+Documentation = "https://github.com/dhrupad-sah/python-exception-catcher#readme"
+Issues = "https://github.com/dhrupad-sah/python-exception-catcher/issues"
+
+[project.optional-dependencies]
+fastapi = [
+    "fastapi>=0.100.0",
+    "starlette>=0.27.0",
+]
+flask = [
+    "flask>=2.0.0",
+]
+django = [
+    "django>=4.0.0",
+]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "mypy>=1.5.0",
+    "fastapi>=0.100.0",
+    "starlette>=0.27.0",
+    "flask>=2.0.0",
+    "uvicorn>=0.23.0",
+]
+
+[build-system]
+requires = [
+    "pdm-backend",
+]
+build-backend = "pdm.backend"
+
+[tool.pdm]
+distribution = true
+
+[tool.pdm.dev-dependencies]
+test = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "fastapi>=0.100.0",
+    "starlette>=0.27.0",
+    "flask>=2.0.0",
+    "uvicorn>=0.23.0",
+]
+lint = [
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "mypy>=1.5.0",
+]
+
+[tool.black]
+line-length = 88
+target-version = [
+    "py38",
+]
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
