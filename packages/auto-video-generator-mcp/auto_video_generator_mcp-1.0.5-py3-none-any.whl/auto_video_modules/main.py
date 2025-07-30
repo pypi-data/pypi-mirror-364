@@ -1,0 +1,1 @@
+# 复制自 auto_generate_video_mcp_modular.py 
