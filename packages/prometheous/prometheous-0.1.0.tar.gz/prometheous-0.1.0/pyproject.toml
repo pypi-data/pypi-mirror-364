@@ -1,0 +1,72 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "prometheous"
+version = "0.1.0"
+description = "AI-powered documentation generation and vector indexing tool"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "James Brown", email = "james@example.com"}
+]
+keywords = ["documentation", "ai", "vector-search", "code-analysis"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: Text Processing :: Indexing",
+]
+
+dependencies = [
+    "beartype",
+    "progressbar2", 
+    "jinja2",
+    "langchain",
+    "parse",
+    "pydantic",
+    "tiktoken",
+    "tinydb",
+    "textual",
+    "markdown",
+    "humanize",
+    "rich",
+    "aiofiles",
+    "numpy",
+    "identify",
+    "openai",
+    "litellm",
+    "click>=8.0.0",
+    "langchain-ollama",
+    "docarray[hnswlib,proto]",
+    "llama_index",
+]
+
+[project.urls]
+Homepage = "https://github.com/James4Ever0/prometheous"
+Repository = "https://github.com/James4Ever0/prometheous"
+Issues = "https://github.com/James4Ever0/prometheous/issues"
+
+[project.scripts]
+prom = "prometheous.cli:main"
+
+[tool.setuptools]
+packages = ["prometheous"]
+include-package-data = true
+
+[tool.setuptools.package-data]
+prometheous = [
+    "templates/*.html.j2",
+    "templates/*.html", 
+    "static/*.js",
+    "static/*.css",
+]
