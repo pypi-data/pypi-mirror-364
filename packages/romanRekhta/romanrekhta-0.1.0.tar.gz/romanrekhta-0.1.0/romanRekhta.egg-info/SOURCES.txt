@@ -1,0 +1,12 @@
+README.md
+pyproject.toml
+setup.py
+romanRekhta/__init__.py
+romanRekhta/preprocessing.py
+romanRekhta/stopwords.py
+romanRekhta/tokenizer.py
+romanRekhta.egg-info/PKG-INFO
+romanRekhta.egg-info/SOURCES.txt
+romanRekhta.egg-info/dependency_links.txt
+romanRekhta.egg-info/requires.txt
+romanRekhta.egg-info/top_level.txt
