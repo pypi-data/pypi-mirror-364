@@ -1,0 +1,79 @@
+{
+  "name": "@cmd-ntrf/jupyterlab-lmod",
+  "version": "5.3.0",
+  "description": "Lmod/Tmod JupyterLab extension",
+  "keywords": [
+    "jupyter",
+    "jupyterlab",
+    "jupyterlab-extension"
+  ],
+  "homepage": "https://github.com/cmd-ntrf/jupyter-lmod",
+  "bugs": {
+    "url": "https://github.com/cmd-ntrf/jupyter-lmod/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Felix-Antoine Fortin",
+    "email": "felix@calculquebec.ca"
+  },
+  "contributors": [
+    {
+      "name": "Étienne Dubeau"
+    },
+    {
+      "name": "Guillaume Moutier"
+    },
+    {
+      "name": "Alex Domingo"
+    },
+    {
+      "name": "Mahendra Paipuri"
+    }
+  ],
+  "files": [
+    "lib/**/*.{d.ts,eot,gif,html,jpg,js,js.map,json,png,svg,woff2,ttf}",
+    "style/*.css"
+  ],
+  "main": "lib/src/index.js",
+  "types": "lib/src/index.d.ts",
+  "style": "style/index.css",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cmd-ntrf/jupyter-lmod.git"
+  },
+  "scripts": {
+    "build": "jlpm run build:lib && jlpm run build:labextension:dev",
+    "build:prod": "jlpm run build:lib && jlpm run build:labextension",
+    "build:labextension": "jupyter labextension build .",
+    "build:labextension:dev": "jupyter labextension build --development True .",
+    "build:lib": "jlpm run copy && tsc",
+    "clean": "jlpm run clean:lib",
+    "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
+    "clean:labextension": "rimraf jupyterlab-lmod/labextension",
+    "clean:all": "jlpm run clean:lib && jlpm run clean:labextension",
+    "copy": "mkdir -p lib/src && cp -r src/assets lib/src",
+    "eslint": "eslint . --ext .ts,.tsx --fix",
+    "eslint:check": "eslint . --ext .ts,.tsx",
+    "eslint:check:junit": "eslint . --ext .ts,.tsx --format junit --output-file linting.xml",
+    "install:extension": "jupyter labextension develop --overwrite .",
+    "prepare": "jlpm run clean && jlpm run build:prod",
+    "watch": "run-p watch:src watch:labextension",
+    "watch:src": "tsc -w",
+    "watch:labextension": "jupyter labextension watch ."
+  },
+  "dependencies": {
+    "@jupyterhub/jupyter-server-proxy": "^4.1.0",
+    "@jupyterlab/application": "^4.0.0",
+    "@jupyterlab/launcher": "^4.0.0"
+  },
+  "devDependencies": {
+    "@jupyterlab/builder": "^4.2.0",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "~5.0.7",
+    "typescript": "~5.4.5"
+  },
+  "jupyterlab": {
+    "extension": true,
+    "outputDir": "jupyterlmod/labextension"
+  }
+}
