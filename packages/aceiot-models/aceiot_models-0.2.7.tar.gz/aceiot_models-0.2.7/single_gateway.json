@@ -1,0 +1,247 @@
+{
+  "name": "cristian_house_0001_test",
+  "site": "cristian_house_test",
+  "client": "aceiot",
+  "hw_type": null,
+  "software_type": "volttron 8.2",
+  "primary_mac": "18-c0-4d-84-ca-5b",
+  "vpn_ip": "100.77.130.15",
+  "device_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTczMDczOTc1OCwianRpIjoiMmI2OTI2OTYtMWY0Ny00M2I3LWI3ZWMtNWViZWM5MTJkZThhIiwidHlwZSI6ImFjY2VzcyIsImlkZW50aXR5IjoiY3Jpc3RpYW5faG91c2VfMDAwMV90ZXN0IiwibmJmIjoxNzMwNzM5NzU4LCJleHAiOjE3NjIyNzU3NTh9.lB9d8naBbf9rH68iGGO5JN4M1qYh1Rlg0D7JCJG9CCc",
+  "interfaces": {
+    "netplans": {
+      "/etc/netplan/00-installer-config.yaml": {
+        "network": {
+          "version": 2,
+          "renderer": "networkd",
+          "ethernets": {
+            "eth0": {
+              "dhcp4": true
+            },
+            "enp1s0": {
+              "dhcp4": true,
+              "addresses": [
+                "192.168.10.1/24",
+                "192.168.1.83/24"
+              ]
+            },
+            "enp2s0": {
+              "dhcp4": true,
+              "addresses": [
+                "192.168.9.1/24"
+              ]
+            },
+            "enp3s0": {
+              "dhcp4": true,
+              "addresses": [
+                "192.168.7.1/24"
+              ]
+            },
+            "enp4s0": {
+              "dhcp4": true,
+              "addresses": [
+                "192.168.8.1/24"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "discovered_interfaces": {
+      "enp1s0": {
+        "ip_addr": [
+          {
+            "addr": "192.168.10.1",
+            "netmask": "255.255.255.0",
+            "broadcast": "192.168.10.255"
+          },
+          {
+            "addr": "192.168.1.83",
+            "netmask": "255.255.255.0",
+            "broadcast": "192.168.1.255"
+          },
+          {
+            "addr": "192.168.1.82",
+            "netmask": "255.255.255.0",
+            "broadcast": "192.168.1.255"
+          }
+        ],
+        "mac_addr": [
+          {
+            "addr": "18:c0:4d:84:ca:5b",
+            "broadcast": "ff:ff:ff:ff:ff:ff"
+          }
+        ]
+      },
+      "enp2s0": {
+        "mac_addr": [
+          {
+            "addr": "18:c0:4d:84:ca:5c",
+            "broadcast": "ff:ff:ff:ff:ff:ff"
+          }
+        ]
+      },
+      "tailscale0": {
+        "ip_addr": [
+          {
+            "addr": "100.77.130.15",
+            "peer": "100.77.130.15",
+            "netmask": "255.255.255.255"
+          }
+        ]
+      }
+    }
+  },
+  "deploy_config": {
+    "last_pull": "2025-07-24T20:04:13.454956",
+    "last_scan": "2025-05-16T21:28:55.776008",
+    "hawke_state": {
+      "state": "started",
+      "hawke.listener": {
+        "status": "GOOD",
+        "last_updated": "2024-08-23T15:58:32.236700"
+      }
+    },
+    "last_deploy": "2025-05-28T19:29:57.459800",
+    "start_hawke": false,
+    "cloud_agents": {
+      "hawke.test": {
+        "error": "",
+        "status": "timeout",
+        "triggers": {
+          "stop_agent": false,
+          "start_agent": false,
+          "restart_agent": false
+        },
+        "last_updated": "2025-07-24T20:04:18.581734",
+        "base64_config_hash": "8sobtsfpB9Btr+Roflefznazfk6Tt2BQItpS5szCb9I=",
+        "volttron_agent_package_id": "06849fbc-de88-71a9-8000-3b47a4c29954"
+      },
+      "hawke.test1": {
+        "error": "",
+        "status": "timeout",
+        "triggers": {
+          "stop_agent": false,
+          "start_agent": false,
+          "restart_agent": false
+        },
+        "last_updated": "2025-07-24T20:04:18.582038",
+        "base64_config_hash": null,
+        "volttron_agent_package_id": "06646bb0-54cd-71ff-8000-66dbd65a3a52"
+      },
+      "cloud_listener": {
+        "error": "",
+        "status": "GOOD",
+        "triggers": {
+          "stop_agent": false,
+          "start_agent": false,
+          "restart_agent": false
+        },
+        "last_updated": "2025-07-24T20:04:14.575623",
+        "base64_config_hash": "2maYwLSRT5XWgBH2TOuEqsAkYFa3OKrEKcMxfuUmePg=",
+        "volttron_agent_package_id": "0660709e-586f-712a-8000-33943b4734a8"
+      },
+      "platform.madison_dr": {
+        "error": "",
+        "status": "timeout",
+        "triggers": {
+          "stop_agent": false,
+          "start_agent": false,
+          "restart_agent": false
+        },
+        "last_updated": "2025-07-24T20:04:18.581463",
+        "volttron_agent_package_id": "0684c37e-5422-7158-8000-39f32d05b748"
+      }
+    },
+    "driver_count": {
+      "value": 1,
+      "last_updated": "2025-07-24T20:04:18.582503"
+    },
+    "trigger_scan": false,
+    "volttron_rev": "f89e513ea",
+    "agent_actions": [],
+    "deploy_bacnet": true,
+    "shutdown_hawke": false,
+    "trigger_deploy": false,
+    "critical_agents": [
+      "platform.packet_capture",
+      "platform.load_modeler",
+      "platform.load_simulator"
+    ],
+    "historian_state": {
+      "state": "GOOD",
+      "last_updated": "2025-07-24T20:04:18.582503"
+    },
+    "platform_agents": {
+      "hawke.test1": {
+        "uuid": "97faa541-700b-4bdf-9dba-eda801b6e7ba",
+        "health": true,
+        "version": "1.0",
+        "identity": "hawke.test1",
+        "bad_start": "2025-07-21T20:35:18.671627",
+        "last_restarted": "2025-07-21T20:35:18.671645"
+      },
+      "platform.driver": {
+        "uuid": "6b6acbb7-97c9-4464-b5ea-4cba96bfad02",
+        "health": true,
+        "version": "4.5.2",
+        "identity": "platform.driver",
+        "bad_start": "2025-07-21T20:35:18.665394",
+        "last_restarted": "2025-07-21T20:35:18.665409"
+      },
+      "platform.ace-agent": {
+        "uuid": "587ec432-5e48-4a20-a9fb-98b8720fb862",
+        "health": true,
+        "version": "1.7.2",
+        "identity": "platform.ace-agent",
+        "bad_start": "2025-07-21T20:35:18.668429",
+        "last_restarted": "2025-07-21T20:35:18.668445"
+      },
+      "platform.historian": {
+        "uuid": "0862db9e-e3bb-4d49-87ef-a513a61f2c63",
+        "health": true,
+        "version": "5.1",
+        "identity": "platform.historian",
+        "bad_start": "2025-07-23T18:36:02.681365",
+        "last_restarted": "2025-07-23T18:36:02.498602"
+      },
+      "platform.bacnet_proxy": {
+        "uuid": "e70f69d1-c485-447b-9902-cd2ffd146529",
+        "health": true,
+        "version": "0.6.0",
+        "identity": "platform.bacnet_proxy",
+        "bad_start": "2025-07-21T20:35:18.659210",
+        "last_restarted": "2025-07-21T20:35:18.659225"
+      },
+      "platform.racer_optimization": {
+        "uuid": "e8f1e223-b986-4b79-a985-9af2e233654e",
+        "health": true,
+        "version": "0.2.0",
+        "identity": "platform.racer_optimization",
+        "bad_start": "2025-07-21T20:35:18.674700",
+        "last_restarted": "2025-07-21T20:35:18.674714"
+      }
+    },
+    "volttron_version": "8.2",
+    "enable_collection": true,
+    "last_model_update": "2025-07-24T20:04:18.582503",
+    "ace_config_version": "1.7.2",
+    "bacnet_scan_address": "192.168.1.83/24",
+    "bacnet_proxy_address": "192.168.1.82/24",
+    "system_state_updated": "2025-07-04T04:00:20.575809",
+    "bacnet_scan_object_id": 708113,
+    "bacnet_proxy_object_id": 708112,
+    "hawke_shutdown_timeout": 10,
+    "hawke_agent_action_results": {
+      "hawke.listener2": "successfully called stop_agent - 2024-06-05T19:03:13.483742",
+      "hawke.listener3": "successfully called stop_agent - 2024-06-10T19:08:06.213519",
+      "hawke_test_agent": "agent is already running - 2024-06-10T19:25:06.154055",
+      "hawke.release_test": "successfully called stop_agent - 2024-06-07T20:26:21.773907",
+      "hawke.release_test-1": "successfully called stop_agent - 2024-06-05T19:03:13.663707",
+      "hawke.release_test-2": "ERROR: unable to handle hawke agent actions"
+    },
+    "vtron_forward_historian_pubkey": "6tkpAVvn8_xGGbG0OnvybanlDGCPs_8GUg18xezJ9Tk"
+  },
+  "device_token_expires": "2025-11-04 17:02:38.149735",
+  "archived": false,
+  "updated": "2025-07-24T20:04:19.136390"
+}
