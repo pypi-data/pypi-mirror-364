@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "shopcloud-microservice"
+dynamic = ["version"]
+description = "CLI tool for manage microservices"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Konstantin Stoldt", email = "konstantin.stoldt@talk-point.de"},
+]
+keywords = ["CLI"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "pyyaml",
+    "requests",
+    "joblib",
+    "shopcloud_secrethub",
+]
+
+[project.urls]
+Homepage = "https://github.com/Talk-Point/shopcloud-microservice-cli"
+Repository = "https://github.com/Talk-Point/shopcloud-microservice-cli"
+
+[project.scripts]
+microservice = "shopcloud_microservice.cli:main"
+
+[tool.setuptools]
+packages = ["shopcloud_microservice"]
+
+[tool.setuptools.dynamic]
+version = {attr = "shopcloud_microservice._version.__version__"}
+
+[tool.ruff]
+lint.select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    # "I",  # isort
+    "C",  # flake8-comprehensions
+    "B",  # flake8-bugbear
+]
+lint.ignore = [
+    "E501",  # line too long, handled by black
+    "B008",  # do not perform function calls in argument defaults
+    "F401",
+    "C901",  # too complex
+]
