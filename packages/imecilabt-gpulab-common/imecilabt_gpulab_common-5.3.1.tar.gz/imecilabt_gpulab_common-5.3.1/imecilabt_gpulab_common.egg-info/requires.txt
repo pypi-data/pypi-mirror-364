@@ -1,0 +1,5 @@
+snakecase
+python-dateutil
+pyyaml
+dataclass-dict-convert<2,>=1.6.1
+imecilabt-utils<2,>=1.5.0
