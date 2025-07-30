@@ -1,0 +1,4 @@
+[console_scripts]
+extend-io-table = g3tables.plc_composition_io_table._extend_table:main
+g3tables-update-creds = g3tables.utils.gdrive._update_creds:main
+gen-system-config = g3tables.system_config._cli:main
