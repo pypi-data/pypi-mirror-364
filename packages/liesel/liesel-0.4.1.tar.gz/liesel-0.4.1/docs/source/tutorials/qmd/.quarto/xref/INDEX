@@ -1,0 +1,26 @@
+{
+  "07-groups.qmd": {
+    "07-groups.md": "0ad1751b"
+  },
+  "04-mcycle.qmd": {
+    "04-mcycle.md": "f2403808"
+  },
+  "01-lin-reg.qmd": {
+    "01-lin-reg.md": "3c56e312"
+  },
+  "03-gev.qmd": {
+    "03-gev.md": "9aec8ee6"
+  },
+  "01a-transform.qmd": {
+    "01a-transform.md": "27edfc8a"
+  },
+  "02-ls-reg.qmd": {
+    "02-ls-reg.md": "0ebebec7"
+  },
+  "06-pymc.qmd": {
+    "06-pymc.md": "7b8e2868"
+  },
+  "05-reproducibility.qmd": {
+    "05-reproducibility.md": "a54a2ed6"
+  }
+}
