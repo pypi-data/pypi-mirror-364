@@ -1,0 +1,9 @@
+MANIFEST.in
+README.md
+pyproject.toml
+src/lightdash_game.egg-info/PKG-INFO
+src/lightdash_game.egg-info/SOURCES.txt
+src/lightdash_game.egg-info/dependency_links.txt
+src/lightdash_game.egg-info/entry_points.txt
+src/lightdash_game.egg-info/requires.txt
+src/lightdash_game.egg-info/top_level.txt
