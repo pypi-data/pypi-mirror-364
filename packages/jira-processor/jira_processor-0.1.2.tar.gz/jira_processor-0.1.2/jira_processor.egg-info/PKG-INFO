@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: jira-processor
+Version: 0.1.2
+Summary: A library to process JIRA issues and generate summaries.
+Home-page: UNKNOWN
+Author: hannah biju
+Author-email: hb7379@zebra.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+License-File: LICENSE
+
+UNKNOWN
+
