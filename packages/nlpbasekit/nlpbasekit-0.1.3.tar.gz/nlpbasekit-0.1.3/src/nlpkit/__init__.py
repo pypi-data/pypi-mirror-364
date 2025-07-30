@@ -1,0 +1,1 @@
+from .app import LogisticClassifier, SupportVectorClassifier, DTC, NeigbhorClassifier, GaussianProcess, GBC, SGD, NMeans
