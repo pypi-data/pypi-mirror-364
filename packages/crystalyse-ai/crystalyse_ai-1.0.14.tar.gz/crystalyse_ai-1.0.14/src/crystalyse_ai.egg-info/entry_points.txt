@@ -1,0 +1,11 @@
+[console_scripts]
+crystalyse = crystalyse_ai.cli:main
+crystalyse-creative-server = crystalyse_ai.mcp_servers.creative.server:main
+crystalyse-unified-server = crystalyse_ai.mcp_servers.unified.server:main
+crystalyse-visualization-server = crystalyse_ai.mcp_servers.visualization.server:main
+
+[crystalyse_ai.tools]
+chemeleon = crystalyse_ai.tools.chemeleon:ChemeleonTool
+mace = crystalyse_ai.tools.mace:MACETool
+smact = crystalyse_ai.tools.smact:SMACTTool
+visualization = crystalyse_ai.tools.visualization:VisualizationTool
