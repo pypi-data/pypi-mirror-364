@@ -1,0 +1,2 @@
+[console_scripts]
+figshare_get = figshare_get.cli:figshare_get
