@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling", "uv-dynamic-versioning"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sage-timer"
+dynamic = ["version"]
+description = "Sage is an easy-to-use command line timer that looks good and adheres to your human inclinations about the language of time."
+keywords = ["timer", "stopwatch", "cli", "terminal", "productivity", "pomodoro", "curses"]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["click>=8.2.1", "nava>=0.7", "platformdirs>=4.3.8"]
+
+[project.scripts]
+sage = "sage.cli.main:sage"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.1",
+    "twine>=6.1.0",
+]
+
+[tool.hatch.build.targets.wheel]
+include = [
+    "sage/",
+    "sounds/",
+]
+
+[tool.hatch.version]
+source = "uv-dynamic-versioning"
