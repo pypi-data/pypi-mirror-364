@@ -1,0 +1,149 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "gnatss"
+dynamic = ["version"]
+description = "Community Seafloor Global Navigation Satellite Systems - Acoustic (GNSS-A) Transponder Surveying Software"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Software Development :: Build Tools",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "astropy>=6.1.7,<8",
+    "fsspec>=2024.5.0,<2025",
+    "matplotlib>=3.8.0,<4",
+    "numba>=0.56.4,<1",
+    # numpy/f2py/f2py2e.py:719
+    # VisibleDeprecationWarning: distutils has been deprecated since NumPy 1.26.x
+    # Use the Meson backend instead,
+    # or generate wrapperswithout -c and use a custom build script
+    "numpy>1.26,<2",
+    "nptyping>=2.5.0,<3",
+    "cftime>=1.6.2,<2",
+    "pandas>=2.0.3,<3",
+    "pydantic==2.8.2",
+    "pydantic-settings>=2.0.3,<3",
+    "pyyaml>=6.0.1,<7",
+    "pymap3d>=3.0.1,<4",
+    "pluggy>=1.2.0,<2",
+    "pyproj>=3.5.0,<4",
+    "scipy>=1.10.1,<2",
+    "typer>=0.7.0,<1",
+    "xarray>=2024.5.0,<2025",
+]
+
+[project.optional-dependencies]
+docs = [
+    "jupyter-book",
+    "numpydoc",
+    "sphinx-automodapi",
+    "sphinx-panels",
+    "sphinx_rtd_theme",
+    "sphinxcontrib-mermaid",
+    "autodoc_pydantic>=2.0.1,<3.0"
+]
+test = [
+    "nox",
+    "meson",
+    "ninja>1.8.2",
+    "pre-commit",
+    "hypothesis",
+    "pytest",
+    "pytest-cov",
+    "pytest-flake8",
+    "pytest-mock",
+    "pytest-xdist",
+    "pytest-benchmark",
+    "PyGithub",
+]
+all = [
+    "gnatss[docs,test]",
+]
+
+[project.license]
+file = "LICENSE"
+
+[project.urls]
+Homepage = "https://github.com/seafloor-geodesy/gnatss"
+Documentation = "https://gnatss.readthedocs.io"
+Repository = "https://github.com/seafloor-geodesy/gnatss.git"
+Issues = "https://github.com/seafloor-geodesy/gnatss/issues"
+
+[project.scripts]
+gnatss = "gnatss.cli:app"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "src/gnatss/version.py"
+
+[tool.hatch.version.raw-options]
+local_scheme = "no-local-version"
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+  "/tests",
+]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = ["-vvv", "-ra", "--showlocals", "--strict-markers", "--strict-config"]
+xfail_strict = false
+log_cli_level = "INFO"
+testpaths = [
+  "tests",
+]
+
+[tool.ruff]
+exclude = ["tests/**", "testing.py"]
+line-length = 100
+
+[tool.ruff.lint]
+extend-select = [
+  "B",        # flake8-bugbear
+  "I",        # isort
+  "C4",       # flake8-comprehensions
+  "EM",       # flake8-errmsg
+  "ICN",      # flake8-import-conventions
+  "G",        # flake8-logging-format
+  "PGH",      # pygrep-hooks
+  "PIE",      # flake8-pie
+  "PL",       # pylint
+  "PT",       # flake8-pytest-style
+  "PTH",      # flake8-use-pathlib
+  "RET",      # flake8-return
+  "RUF",      # Ruff-specific
+  "SIM",      # flake8-simplify
+  "T20",      # flake8-print
+  "UP",       # pyupgrade
+  "YTT",      # flake8-2020
+  "EXE",      # flake8-executable
+  "NPY",      # NumPy specific rules
+  "PD",       # pandas-vet
+]
+ignore = [
+  "F722",     # syntax error in forward annotation
+  "PLR09",    # Too many <...>
+  "PLR2004",  # Magic value used in comparison
+  "ISC001",   # Conflicts with formatter
+]
+isort.required-imports = ["from __future__ import annotations"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["T20"]
+"noxfile.py" = ["T20"]
+
+[tool.repo-review]
+ignore = [ "PP309", "PC140", "MY100" ]
