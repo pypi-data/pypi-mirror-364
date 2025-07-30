@@ -1,0 +1,19 @@
+[adt.modules]
+ArchiveUnusedFiles = asciidoc_dita_toolkit.modules.archive_unused_files:ArchiveUnusedFilesModule
+ContentType = asciidoc_dita_toolkit.modules.content_type:ContentTypeModule
+ContextAnalyzer = asciidoc_dita_toolkit.modules.context_analyzer:ContextAnalyzerModule
+ContextMigrator = asciidoc_dita_toolkit.modules.context_migrator:ContextMigratorModule
+CrossReference = asciidoc_dita_toolkit.modules.cross_reference:CrossReferenceModule
+DirectoryConfig = asciidoc_dita_toolkit.modules.directory_config:DirectoryConfigModule
+EntityReference = asciidoc_dita_toolkit.modules.entity_reference:EntityReferenceModule
+ExampleBlock = asciidoc_dita_toolkit.modules.example_block:ExampleBlockModule
+UserJourney = asciidoc_dita_toolkit.modules.user_journey:UserJourneyModule
+ValeFlagger = asciidoc_dita_toolkit.modules.vale_flagger:ValeFlaggerModule
+
+[console_scripts]
+adg = asciidoc_dita_toolkit.adt_core.cli:launch_gui
+adt = asciidoc_dita_toolkit.adt_core.cli:main
+adt-test-files = asciidoc_dita_toolkit.adt_core.cli:adt_test_files_main
+asciidoc-dita-toolkit = asciidoc_dita_toolkit.adt_core.cli:main
+asciidoc-dita-toolkit-gui = asciidoc_dita_toolkit.adt_core.cli:launch_gui
+valeflag = asciidoc_dita_toolkit.plugins.vale_flagger.cli:main
