@@ -1,0 +1,16 @@
+[project]
+name = "htls"
+version = "0.9.1"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "idna>=3.10"
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.package-data]
+"htls" = ["libs/*"]
