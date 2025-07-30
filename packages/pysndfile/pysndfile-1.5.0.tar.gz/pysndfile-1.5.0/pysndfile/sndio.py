@@ -1,0 +1,284 @@
+"""
+sndio is a simple interface for reading and writing arbitrary sound files.
+The module contains 5 functions.
+
+|  **functions:**
+|     :meth:`pysndfile.sndio.get_info`:: retrieve information from a sound file.
+|     :meth:`pysndfile.sndio.get_markers`:: retrieve markers from aiff/ or wav files.
+|     :meth:`pysndfile.sndio.read`:: read data and meta data from sound file.
+|     :meth:`pysndfile.sndio.write`:: create a sound file from a given numpy array.
+|     :meth:`pysndfile.sndio.get_info_command`:: retrieve information about a sound file, using the libsndfile sf_command function
+"""
+
+#
+# Copyright (C) 2014 IRCAM
+#
+# All rights reserved.
+#
+# This file is part of pysndfile.
+#
+# pysndfile is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# pysndfile is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with pysndfile.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+from __future__ import absolute_import
+from typing import Union, Optional, Dict, TypedDict, List, Literal
+from pathlib import Path
+from ._pysndfile import PySndfile, construct_format, stringtype_name_to_id, max_supported_string_length, fileformat_name_to_id, fileformat_id_to_name, SfDitherInfo, SfCuePoint, SfInstrument, SfBroadcastInfo, SfCartInfo, SfInfo, SfEmbedFileInfo, SfLoopInfo
+import numpy as np
+
+def get_info(name: Union[Path,str], extended_info=False) :
+    """
+    retrieve information from a sound file
+
+    :param name: sndfile name
+    :type name: str
+    :param extended_info:
+    :type extended_info: bool
+
+    :return: 3 or 5 tuple with meta information read from the soundfile
+       in case extended_info is False a 3-tuple comprising samplerate, encoding (str), major format  is returned
+       in case extended_info is True a 5-tuple comprising additionally the number of frames and the number of channels
+       is returned.
+    """
+    with PySndfile(str(name)) as sf:
+        if extended_info:
+            return sf.samplerate(), sf.encoding_str(), sf.major_format_str(), sf.frames(), sf.channels()
+        return sf.samplerate(), sf.encoding_str(), sf.major_format_str()
+
+def get_markers(name) :
+    """
+    retrieve markers from sound file
+
+    :param name: sound file name
+    :type name: Union[str, Path]
+    :return: list of marker tuples containing the marker time
+       and marker label.
+    :rtype: List
+
+    Note: following the implementation of libsndfile marker labels will be empty strings for all but aiff files.
+    """
+    
+    with PySndfile(str(name)) as sf:
+        return sf.get_cue_mrks()
+
+class Commands(TypedDict, total = False):
+    """Commands that set chunk data or modify behavior
+
+    Passed to :py:func:write, these commands will be executed before writing
+    audio samples. All commands are optional. Refer to the libsndfile
+    documentation for more information
+    """
+    SFC_SET_NORM_DOUBLE: bool
+    SFC_SET_NORM_FLOAT: bool
+    SFC_SET_SCALE_FLOAT_INT_READ: bool
+    SFC_SET_SCALE_INT_FLOAT_WRITE: bool
+    SFC_SET_ADD_PEAK_CHUNK: bool
+    SFC_SET_UPDATE_HEADER_AUTO: bool
+    SFC_SET_RAW_START_OFFSET: int
+    SFC_SET_DITHER_ON_WRITE: SfDitherInfo
+    SFC_SET_DITHER_ON_READ: SfDitherInfo
+    SFC_SET_CLIPPING: bool
+    SFC_SET_CUE: List[SfCuePoint]
+    SFC_SET_INSTRUMENT: SfInstrument
+    SFC_SET_BROADCAST_INFO: SfBroadcastInfo
+    SFC_SET_CHANNEL_MAP_INFO: List[str]
+    SFC_WAVEX_SET_AMBISONIC: str
+    SFC_RF64_AUTO_DOWNGRADE: bool
+    SFC_SET_VBR_ENCODING_QUALITY: float
+    SFC_SET_COMPRESSION_LEVEL: float
+    SFC_SET_OGG_PAGE_LATENCY_MS: float
+    SFC_SET_OGG_PAGE_LATENCY: float
+    SFC_SET_BITRATE_MODE: str
+    SFC_SET_CART_INFO: SfCartInfo
+    SFC_SET_ORIGINAL_SAMPLERATE: int
+    SFC_TEST_IEEE_FLOAT_REPLACE: bool
+    SFC_SET_ADD_HEADER_PAD_CHUNK: bool
+    SFC_SET_ADD_DITHER_ON_WRITE: None
+    SFC_SET_ADD_DITHER_ON_READ: None
+
+def write(name: Union[Path, str], data:np.ndarray, rate=44100, format="aiff", enc='pcm16', 
+          sf_strings:Optional[Dict[bytes, bytes]]=None, commands:Optional[Commands]=None):
+    """
+    Write data-vector to sndfile using samplerate, format and encoding as specified
+    valid format strings are all the keys in the dict pysndfile.fileformat_name_to_id
+    valid encodings are those that are supported by the selected format
+    from the list of keys in pysndfile.encoding_name_to_id.
+
+    :param name: sndfile name
+    :type name: Union[str, OPath]
+    :param data: array containing sound data. For mono files an 1d array can be given, for multi channel sound files
+                sound frames are in the rows and data channels in the columns.
+    :type data: numpy.array
+    :param rate: sample rate default s to 44100
+    :type rate: int
+    :param format: sndfile major format default=aiff
+    :type format: str
+    :param enc: sndfile encoding default=pcm16
+    :type enc: str
+    :param sf_strings: dictionary containing bytes in ascii encoding to be written as meta data into the sound file.
+          dictionary keys are limited to the keys available in `stringtype_name_to_id``
+          sf_strings arguments are only supported when the file format supports it.
+          This are currently only the [aiff, wav, wavex, caf] formats.
+          Note that each format imposes a particular limit to the length of 
+          individual strings. These lengths are stored in the dict `max_supported_string_length`. If any of your strings exceeds the limit given in that dict a RuntimeError will be produced
+
+    :type sf_strings: Union[dict, None]
+    :param commands: a dictionaty mapping command names to arguments.
+        If supplied, all commands will be executed before writing any audio samples
+    :type commands: :py:class:`Commands`
+    :return: number of sample frames written.
+    :rtype: int
+    :raises: RuntimeError if libsndfile reports failure
+    """
+    nchans = len(data.shape)
+    if nchans == 2 :
+        nchans = data.shape[1]
+    elif nchans != 1:
+        raise RuntimeError("error:sndio.write:can only be called with vectors or matrices ")
+
+    with  PySndfile(str(name), "w",
+                    format=construct_format(format, enc),
+                    channels = nchans, samplerate = rate) as sf:
+
+        if sf_strings is not None:
+            sf.set_strings(sf_strings)
+        if commands is not None:
+            # these two must be called first
+            if "SFC_SET_COMPRESSION_LEVEL" in commands:
+                sf.command("SFC_SET_COMPRESSION_LEVEL",
+                           commands["SFC_SET_COMPRESSION_LEVEL"])
+            if "SFC_SET_VBR_ENCODING_QUALITY" in commands:
+                sf.command("SFC_SET_VBR_ENCODING_QUALITY",
+                           commands["SFC_SET_VBR_ENCODING_QUALITY"])
+            for c in commands.items():
+                if c[0] not in ["SFC_SET_COMPRESSION_LEVEL",
+                                "SFC_SET_VBR_ENCODING_QUALITY"]:
+                    sf.command(c[0], c[1])
+        nf = sf.write_frames(data)
+
+        if nf != data.shape[0]:
+            raise IOError("sndio.write::error::writing of samples failed")
+        
+        return nf
+
+enc_norm_map = {
+    "pcm8" : np.float64(2**7),
+    "pcm16": np.float64(2**15),
+    "pcm24": np.float64(2**23),
+    "pcm32": np.float64(2**31),
+    }
+    
+def read(name:Union[Path,str], end:Optional[int]=None, start:int=0, dtype=np.float64, return_format=False,
+             sf_strings:Dict[str,str]=None, force_2d=False):
+    """
+    read samples from arbitrary sound files into a numpy array. 
+    May return subsets of samples as specified by start and end arguments (Def all samples)
+    normalizes samples to [-1,1] if the datatype is a floating point type
+
+    The returned array is 1D for mono sound files and 2D with the channels in the columns
+    for higher number of channels. If force_2d is given mono sound files will be returned 
+    in an array with shape (num_frames, 1)
+
+    *Parameters*
+
+    :param name: sound file name
+    :type name: Union[str, Path]
+    :param end: end sample frame position (not included into the segment to be returned) default=None -> read all samples
+    :type end: Union[int, None]
+    :param start: first sample frame to read default=0
+    :type start: int
+    :param dtype: data type of the numpy array that will be returned.
+    :type dtype: numpy.dtype
+    :param return_format: if set then the return tuple will contain an additional element containing the sound file major format
+    :type return_format: bool
+    :param sf_strings: if a dict is given the dict elements will be set to the strings that are available in the
+         sound file.
+    :type sf_strings: Union[None,dict]
+    :param force_2d: forces the returned array to have 2 dimensions with 
+    :type force_2d: bool
+    :return: 3 or 4 -tuple containing
+        data (1d for mon sounds 2d for multi channel sounds, where channels are in the columns),
+        samplerate (int) and encoding (str),
+        in case return_format is True then the next element contains the major
+        format of the sound file (can be used to recreate a sound file with an identical format).
+    :rtype: Union[Tuple(numpy.array, int, str),Tuple(numpy.array, int, str, str)]
+    """
+
+    with PySndfile(str(name)) as sf:
+        enc = sf.encoding_str()
+        nf = sf.seek(start, 0)
+        if not nf == start:
+            raise IOError("sndio.read::error:: while seeking at starting position")
+    
+        if end == None:
+            ff = sf.read_frames(sf.frames() - start, dtype=dtype, force_2d=force_2d)
+        else:
+            ff = sf.read_frames(end-start, dtype=dtype, force_2d=force_2d)
+
+        if isinstance(sf_strings, dict):
+            sf_strings.clear()
+            sf_strings.update(sf.get_strings())
+
+        if return_format:
+            return ff, sf.samplerate(), enc, sf.major_format_str()
+        return ff, sf.samplerate(), enc
+
+class Returns(TypedDict, total = False):
+    """Commands providing information about an audio file
+
+    Returned by :py:fun:get_info_command
+    """
+    SFC_GET_LOG_INFO: str
+    SFC_GET_CURRENT_SF_INFO: SfInfo
+    SFC_GET_NORM_DOUBLE: bool
+    SFC_GET_NORM_FLOAT: bool
+    SFC_CALC_SIGNAL_MAX: float
+    SFC_CALC_NORM_SIGNAL_MAX: float
+    SFC_CALC_MAX_ALL_CHANNELS: List[float]
+    SFC_CALC_NORM_MAX_ALL_CHANNELS: List[float]
+    SFC_GET_SIGNAL_MAX: Optional[float]
+    SFC_GET_MAX_ALL_CHANNELS: Optional[List[float]]
+    SFC_GET_DITHER_INFO_COUNT: int
+    SFC_GET_DITHER_INFO: SfDitherInfo
+    SFC_GET_EMBED_FILE_INFO: SfEmbedFileInfo
+    SFC_GET_CLIPPING: bool
+    SFC_GET_CUE_COUNT: int
+    SFC_GET_CUE: List[SfCuePoint]
+    SFC_GET_INSTRUMENT: Optional[SfInstrument]
+    SFC_GET_LOOP_INFO: Optional[SfLoopInfo]
+    SFC_GET_BROADCAST_INFO: Optional[SfBroadcastInfo]
+    SFC_GET_CHANNEL_MAP_INFO: Optional[List[str]]
+    SFC_RAW_DATA_NEEDS_ENDSWAP: bool
+    SFC_WAVEX_GET_AMBISONIC: str
+    SFC_GET_OGG_STREAM_SERIALNO: int
+    SFC_GET_BITRATE_MODE: str
+    SFC_GET_CART_INFO: Optional[SfCartInfo]
+    SFC_GET_ORIGINAL_SAMPLERATE: int
+
+def get_info_command(name:Union[Path,str], commands:List[Literal["SFC_GET_LOG_INFO", "SFC_GET_CURRENT_SF_INFO", "SFC_GET_NORM_DOUBLE", "SFC_GET_NORM_FLOAT", "SFC_CALC_SIGNAL_MAX", "SFC_CALC_NORM_SIGNAL_MAX", "SFC_CALC_MAX_ALL_CHANNELS", "SFC_CALC_NORM_MAX_ALL_CHANNELS", "SFC_GET_SIGNAL_MAX", "SFC_GET_MAX_ALL_CHANNELS", "SFC_GET_DITHER_INFO_COUNT", "SFC_GET_DITHER_INFO", "SFC_GET_EMBED_FILE_INFO", "SFC_GET_CLIPPING", "SFC_GET_CUE_COUNT", "SFC_GET_CUE", "SFC_GET_INSTRUMENT", "SFC_GET_LOOP_INFO", "SFC_GET_BROADCAST_INFO", "SFC_GET_CHANNEL_MAP_INFO", "SFC_RAW_DATA_NEEDS_ENDSWAP", "SFC_WAVEX_GET_AMBISONIC", "SFC_GET_OGG_STREAM_SERIALNO", "SFC_GET_BITRATE_MODE", "SFC_GET_CART_INFO", "SFC_GET_ORIGINAL_SAMPLERATE"]]):
+    """Retrieves information about a sound file
+
+    :param name: sound file name
+    :type name: Union[str, Path]
+    :param commands: a list of commands retrieving information
+    :type commands: list[str]
+    :returns: a dictionary mapping command names to the retrieved information
+    :rtype: :py:class:`Returns`
+    :raises: RuntimeError if libsndfile reports failure
+    """
+    ret = Returns()
+    with PySndfile(str(name)) as sf:
+        for c in commands:
+            ret[c] = sf.command(c)
+    return ret
