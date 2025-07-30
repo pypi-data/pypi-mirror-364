@@ -1,0 +1,68 @@
+Metadata-Version: 2.4
+Name: repo-scaffold
+Version: 0.12.0
+Summary: shawn deng repo temple project
+Author-email: shawndeng <shawndeng1109@qq.com>
+License-Expression: MIT
+Requires-Python: >=3.10
+Requires-Dist: click>=8.1.8
+Requires-Dist: cookiecutter>=2.6.0
+Provides-Extra: dev
+Requires-Dist: commitizen>=3.12.0; extra == 'dev'
+Requires-Dist: pytest-cov>=6.0.0; extra == 'dev'
+Requires-Dist: pytest-mock>=3.14.0; extra == 'dev'
+Requires-Dist: pytest>=8.3.4; extra == 'dev'
+Requires-Dist: ruff>=0.9.7; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: mkdocs-gen-files>=0.5.0; extra == 'docs'
+Requires-Dist: mkdocs-literate-nav>=0.6.1; extra == 'docs'
+Requires-Dist: mkdocs-material>=9.5.3; extra == 'docs'
+Requires-Dist: mkdocs>=1.5.3; extra == 'docs'
+Requires-Dist: mkdocstrings-python>=1.7.5; extra == 'docs'
+Requires-Dist: mkdocstrings>=0.24.0; extra == 'docs'
+Requires-Dist: pymdown-extensions>=10.7; extra == 'docs'
+Description-Content-Type: text/markdown
+
+# repo-scaffold
+
+[![PyPI version](https://badge.fury.io/py/repo-scaffold.svg)](https://badge.fury.io/py/repo-scaffold)
+[![Python Version](https://img.shields.io/pypi/pyversions/repo-scaffold.svg)](https://pypi.org/project/repo-scaffold/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+A modern project scaffolding tool with component-based architecture.
+
+## Features
+
+- 🚀 Quick project creation
+- 📦 Component-based templates
+- ⚙️ Interactive configuration
+- 🔧 Best practices included
+
+## Quick Start
+
+```bash
+# Install
+uvx install repo-scaffold
+
+# Create project
+repo-scaffold create
+
+# Or run directly
+uvx run repo-scaffold create
+```
+
+## Commands
+
+```bash
+repo-scaffold list        # List templates
+repo-scaffold components  # List components
+repo-scaffold create      # Create project
+repo-scaffold show <name> # Show template info
+```
+
+## Documentation
+
+- [Getting Started](docs/getting-started/)
+- [Installation](docs/getting-started/installation.md)
+- [Quick Start](docs/getting-started/quick-start.md)
+- [Configuration](docs/getting-started/configuration.md)
