@@ -1,0 +1,10 @@
+./.gitignore,sha256=y_XLTkIIHR8HTMof7fBY8qQSae9vBVldAdInozbLFQE,3240
+./PKG-INFO,sha256=9qvRJYHulFbJ8BEGZi_Qxn4JrCS3pC4aW6Da2nJqVro,1036
+./README.md,sha256=c95RJhNaiBUOALWoWVvfNAnqcuRP-kZRvr_y0TOpWX0,330
+./pyproject.toml,sha256=N_u9Ski9btSaq-YfNphud8qqAlta4PFSceKd6a9fi5c,1005
+./mp_scrape_cli/__init__.py,sha256=aJCKBAtpc_7b4nOnU1N0FkbTJFXaaBW3NlEATYKOBcc,136
+./mp_scrape_cli/__main__.py,sha256=KBYUvQVFQ3RvCD88O6hL41TIbVjmYdC7qXIWyh2qVvQ,1072
+./mp_scrape_cli/examples/parliaments.toml,sha256=qBSVlhK4l7g-Sv9cmjOCmLkiyJttTsu0De90QZlZtRQ,902
+mp_scrape_cli-0.1.8.dist-info/METADATA,sha256=9qvRJYHulFbJ8BEGZi_Qxn4JrCS3pC4aW6Da2nJqVro,1036
+mp_scrape_cli-0.1.8.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+mp_scrape_cli-0.1.8.dist-info/RECORD,,

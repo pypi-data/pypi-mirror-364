@@ -1,0 +1,31 @@
+Metadata-Version: 2.4
+Name: mp_scrape_cli
+Version: 0.1.8
+Summary: MP Scrape -- MP Explore
+Project-URL: Homepage, https://git.fsfe.org/mp-explore/mp-explore
+Project-URL: Issues, https://git.fsfe.org/mp-explore/mp-explore/issues
+Author-email: "Free Software Foundation Europe e.V." <mp-explore@fsfe.org>
+Maintainer-email: Sofía Aritz <sofiaritz@fsfe.org>
+License-Expression: AGPL-3.0-or-later
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Typing :: Typed
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+
+<!--
+SPDX-FileCopyrightText: 2025 Free Software Foundation Europe e.V. <mp-explore@fsfe.org>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+# MP Scrape CLI
+
+> MP Scrape has been renamed to MP Explore.
+> Replace all references from mp-scrape* to mp-explore*
+> 
+> Thank you for your understanding
+
+https://git.fsfe.org/mp-explore
