@@ -1,0 +1,13 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+terminalos/__init__.py
+terminalos/__main__.py
+terminalos/cli.py
+terminalos.egg-info/PKG-INFO
+terminalos.egg-info/SOURCES.txt
+terminalos.egg-info/dependency_links.txt
+terminalos.egg-info/entry_points.txt
+terminalos.egg-info/requires.txt
+terminalos.egg-info/top_level.txt
