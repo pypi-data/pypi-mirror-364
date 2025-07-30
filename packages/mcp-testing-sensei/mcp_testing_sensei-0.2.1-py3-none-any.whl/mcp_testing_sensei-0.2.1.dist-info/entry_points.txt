@@ -1,0 +1,3 @@
+[console_scripts]
+mcp-testing-sensei=mcp_server:main
+
