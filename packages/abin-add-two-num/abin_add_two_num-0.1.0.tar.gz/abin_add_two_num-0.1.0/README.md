@@ -1,0 +1,149 @@
+# Add Two Numbers MCP Server
+
+一个简单而实用的 MCP 服务，提供数字相加计算和个性化问候功能。
+
+## 功能特性
+
+- **数字相加工具**: 提供两个整数相加的计算功能
+- **个性化问候资源**: 根据提供的姓名生成个性化问候语
+- **轻量级设计**: 基于 FastMCP 框架，简单易用
+- **标准 MCP 协议**: 完全兼容 Model Context Protocol 标准
+
+## 安装方式
+
+### 通过 pip 安装
+
+```bash
+pip install add-two-num
+```
+
+### 从源码安装
+
+```bash
+git clone <your-repo-url>
+cd add-two-num
+pip install -e .
+```
+
+## 服务配置
+
+### 基本配置
+
+```json
+{
+  "mcpServers": {
+    "add-two-num": {
+      "command": "uvx",
+      "args": ["add-two-num@latest"],
+      "env": {}
+    }
+  }
+}
+```
+
+### 本地开发配置
+
+```json
+{
+  "mcpServers": {
+    "add-two-num": {
+      "command": "python",
+      "args": ["-m", "add_two_num"],
+      "cwd": "/path/to/add-two-num",
+      "env": {}
+    }
+  }
+}
+```
+
+## 可用工具
+
+### sum
+
+计算两个整数的和。
+
+**参数:**
+- `a` (int): 第一个整数
+- `b` (int): 第二个整数
+
+**返回值:**
+- `int`: 两个数的和
+
+**示例:**
+```python
+# 调用示例
+result = sum(5, 3)  # 返回 8
+```
+
+## 可用资源
+
+### greeting://{name}
+
+生成个性化问候语。
+
+**参数:**
+- `name` (str): 要问候的姓名
+
+**返回值:**
+- `str`: 个性化问候语
+
+**示例:**
+```
+greeting://Alice  # 返回 "Hello, Alice!"
+```
+
+## 使用指南
+
+1. **配置 MCP 客户端**: 将上述服务配置添加到你的 MCP 客户端配置文件中
+2. **启动服务**: MCP 客户端会自动启动 add-two-num 服务
+3. **使用工具**: 通过 MCP 客户端调用 `sum` 工具进行数字计算
+4. **访问资源**: 通过 `greeting://` URI 获取个性化问候语
+
+## 技术规格
+
+- **Python 版本**: >= 3.13
+- **依赖框架**: FastMCP, MCP CLI
+- **通信协议**: stdio
+- **协议版本**: MCP 1.11.0+
+
+## 开发说明
+
+### 本地开发
+
+```bash
+# 克隆仓库
+git clone <your-repo-url>
+cd add-two-num
+
+# 安装依赖
+pip install -e .
+
+# 运行服务
+python -m add_two_num
+```
+
+### 测试
+
+```bash
+# 测试工具调用
+echo '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "sum", "arguments": {"a": 5, "b": 3}}}' | python -m add_two_num
+```
+
+## 许可证
+
+本项目采用 MIT 许可证。
+
+## 贡献
+
+欢迎提交 Issue 和 Pull Request 来改进这个项目！
+
+## 作者
+
+- **Abin** - [trashwbin@gmail.com](mailto:trashwbin@gmail.com)
+
+## 更新日志
+
+### v0.1.0
+- 初始版本发布
+- 实现基本的数字相加功能
+- 添加个性化问候资源
