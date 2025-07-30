@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+codefinal_shared/__init__.py
+codefinal_shared/auth.py
+codefinal_shared/constants.py
+codefinal_shared/models.py
+codefinal_shared/serializers.py
+codefinal_shared/validation.py
+finstack_backend.egg-info/PKG-INFO
+finstack_backend.egg-info/SOURCES.txt
+finstack_backend.egg-info/dependency_links.txt
+finstack_backend.egg-info/not-zip-safe
+finstack_backend.egg-info/requires.txt
+finstack_backend.egg-info/top_level.txt
