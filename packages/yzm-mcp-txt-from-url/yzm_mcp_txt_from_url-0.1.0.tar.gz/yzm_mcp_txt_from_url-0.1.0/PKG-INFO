@@ -1,0 +1,10 @@
+Metadata-Version: 2.3
+Name: yzm-mcp-txt-from-url
+Version: 0.1.0
+Summary: Add your description here
+Author: 梓萌 杨
+Author-email: 梓萌 杨 <wangzhangsan83@foxmail.com>
+Requires-Dist: mcp[cli]>=1.12.1
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+
