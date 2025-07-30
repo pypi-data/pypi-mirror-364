@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: lucheng-models
+Version: 2025.7.25.3
+Summary: 潞城数据库模型
+License-File: LICENSE
+Requires-Python: >=3.12
+Requires-Dist: python-dateutil>=2.9.0.post0
+Requires-Dist: sqlalchemy>=2.0.41
+Description-Content-Type: text/markdown
+
+# lucheng-models
+潞城数据库模型
