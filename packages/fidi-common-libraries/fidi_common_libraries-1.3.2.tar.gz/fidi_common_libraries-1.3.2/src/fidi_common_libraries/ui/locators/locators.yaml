@@ -1,0 +1,81 @@
+# Arquivo de exemplo para locators de elementos UI
+# Este arquivo define os critérios de localização para elementos da interface
+
+# Tela de Login
+login_username:
+  primary:
+    control_id: null
+    class_name: "TEdit"
+    auto_id: "edtUsuario"
+    title_re: null
+    title: null
+  position:
+    coord_x: 150
+    coord_y: 200
+
+login_password:
+  primary:
+    control_id: null
+    class_name: "TEdit"
+    auto_id: "edtSenha"
+    title_re: null
+    title: null
+  position:
+    coord_x: 150
+    coord_y: 240
+
+login_button:
+  primary:
+    control_id: null
+    class_name: "TButton"
+    auto_id: "btnEntrar"
+    title_re: null
+    title: "Entrar"
+  position:
+    coord_x: 200
+    coord_y: 280
+
+# Janela Principal
+main_window:
+  primary:
+    control_id: null
+    class_name: "TForm"
+    auto_id: null
+    title_re: ".*RM.*"
+    title: null
+  position:
+    coord_x: null
+    coord_y: null
+
+menu_button:
+  primary:
+    control_id: null
+    class_name: "TButton"
+    auto_id: "btnMenu"
+    title_re: null
+    title: "Menu"
+  position:
+    coord_x: 50
+    coord_y: 50
+
+save_button:
+  primary:
+    control_id: null
+    class_name: "TButton"
+    auto_id: "btnSalvar"
+    title_re: null
+    title: "Salvar"
+  position:
+    coord_x: 100
+    coord_y: 500
+
+cancel_button:
+  primary:
+    control_id: null
+    class_name: "TButton"
+    auto_id: "btnCancelar"
+    title_re: null
+    title: "Cancelar"
+  position:
+    coord_x: 200
+    coord_y: 500
