@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "s3streamer"
+version = "3.1.0"
+description = "Stream files to AWS S3 using multipart upload."
+readme = "README.rst"
+authors = ["Ahmad Ferdaus Abd Razak <fer1035@gmail.com>"]
+license = "GPL-2.0-only"
+repository = "https://gitlab.com/fer1035_python/modules/pypi-s3streamer"
+keywords = ["S3", "AWS", "API", "multipart", "upload"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+requests = "^2.25.1"
+tqdm = "^4.67.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+streams3 = { reference = "streams3", type = "file" }
