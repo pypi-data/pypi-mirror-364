@@ -1,0 +1,8 @@
+.venv
+.pypirc
+__pycache__
+.vscode*
+config
+sample-logs/*.pcap*
+.positions/
+*.mmdb
