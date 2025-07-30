@@ -1,0 +1,1 @@
+from .solaredgeha import SolarEdgeHa
