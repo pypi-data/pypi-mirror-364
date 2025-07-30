@@ -1,0 +1,7 @@
+numpy>=1.26.0
+posix_ipc>=1.0
+
+[dev]
+pre-commit
+setuptools>=64
+wheel
