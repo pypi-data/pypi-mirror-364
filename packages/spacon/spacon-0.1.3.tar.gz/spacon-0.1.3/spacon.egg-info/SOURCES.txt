@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+setup.cfg
+spacon/__init__.py
+spacon/model.py
+spacon/utils.py
+spacon.egg-info/PKG-INFO
+spacon.egg-info/SOURCES.txt
+spacon.egg-info/dependency_links.txt
+spacon.egg-info/requires.txt
+spacon.egg-info/top_level.txt

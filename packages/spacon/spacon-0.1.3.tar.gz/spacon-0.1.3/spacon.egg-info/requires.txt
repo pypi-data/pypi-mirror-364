@@ -1,0 +1,8 @@
+scanpy
+numpy
+tqdm
+scipy
+python-igraph
+louvain
+nibabel
+alphashape
