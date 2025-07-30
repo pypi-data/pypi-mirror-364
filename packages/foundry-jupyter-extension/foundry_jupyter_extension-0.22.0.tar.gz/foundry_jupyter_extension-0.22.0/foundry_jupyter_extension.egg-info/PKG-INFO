@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: foundry-jupyter-extension
+Version: 0.22.0
+Summary: Fake internal tool for Foundry notebook extensions
+Classifier: Programming Language :: Python :: 3
+Dynamic: classifier
+Dynamic: description
+Dynamic: summary
+
+.
