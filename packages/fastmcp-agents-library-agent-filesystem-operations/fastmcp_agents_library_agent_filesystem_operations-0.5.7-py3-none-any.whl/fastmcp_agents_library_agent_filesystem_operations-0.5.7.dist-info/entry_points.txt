@@ -1,0 +1,3 @@
+[console_scripts]
+filesystem-agent = fastmcp_agents.library.agent.filesystem_operations.agent:run
+
