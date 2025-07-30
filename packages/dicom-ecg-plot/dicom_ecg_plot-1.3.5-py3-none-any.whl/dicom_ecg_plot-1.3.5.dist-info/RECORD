@@ -1,0 +1,10 @@
+dicom_ecg_plot-1.3.5.data/scripts/dicom-ecg-plot,sha256=Uh_HbDqJf4z2SjZoeNQDBaIFUg0C-ZPUaFAXp8_ZXuw,2243
+dicom_ecg_plot-1.3.5.dist-info/licenses/LICENSE,sha256=wOKekEE5XzbOktBgWxDoug9Cwo985Ul1jaeTjxZu-xk,1085
+ecg/__init__.py,sha256=BUZ3xp8sx3ZG5JqYQUxz4VcEsOk_AzOTGYPR-uHCNjs,27
+ecg/ecg.py,sha256=SQN-D_J3X9xcVIJvzh1GdMLKKN4bz0Tw3hMDUWzjJZU,18913
+ecg/i18n.py,sha256=GFeHPUq12NA7UAQzVfIJXoScMpzST4vuxm9qt7C4sPw,955
+ecg/improved_ecg_module.py,sha256=wlRX7k5-_S5-vIbILFx8Aoq8wva4im_4Z1265RAM6wE,23572
+dicom_ecg_plot-1.3.5.dist-info/METADATA,sha256=PjTzUebdeyiqAY41UQtvF8psF3EHBXmEX6mjJGh9dsk,3263
+dicom_ecg_plot-1.3.5.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+dicom_ecg_plot-1.3.5.dist-info/top_level.txt,sha256=ZqrsCvzvEQpWgFHo8EgW8GmqFR1JHhfCI12zOGYZfj0,4
+dicom_ecg_plot-1.3.5.dist-info/RECORD,,
