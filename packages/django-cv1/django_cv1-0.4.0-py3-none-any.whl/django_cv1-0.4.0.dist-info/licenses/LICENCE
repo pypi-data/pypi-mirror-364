@@ -1,0 +1,4 @@
+[project]
+license = "GPL-3.0-or-later"
+# or
+license = "MIT AND (Apache-2.0 OR BSD-2-Clause)"
