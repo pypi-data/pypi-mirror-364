@@ -1,0 +1,40 @@
+
+{
+	"comment": "this below is just an attempt of figuring out how a whole project json should be according to the things we are able to do within our project, and this is just a way to leave a comment here. As you can see, I have information about the whole project (the configuration you'd have in your video editor) and, then, the configuration of each clip, that is the one our system is capable of handling and building.",
+	"project": {
+		"name": "name",
+		"resolution": {
+			"width": 1920,
+			"height": 1080
+		},
+		"frame_rate": 30,
+		"duration": 0,
+		"tracks": [
+			{
+				"id": "v1",
+				"type": "video",
+				"clips": [
+					{
+						"id": "c1",
+						"content": {
+							"type": "text",
+							"url": "",
+							"text": "hola",
+							"text_to_narrate": "hola, quiero que me narres esta porfa",
+							"keywords": "test",
+							"filename": "gsfull720.png",
+							"duration": 6,
+							"audio_narration_filename": "",
+							"music": "",
+							"voice": "Matthew",
+							"enhancements": [],
+							"extra_params": {
+								"filename": "test_cv2_image.png"
+							}
+						}
+					}
+				]
+			}
+		]
+	}
+}
