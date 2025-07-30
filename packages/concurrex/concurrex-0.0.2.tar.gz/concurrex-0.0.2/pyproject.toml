@@ -1,0 +1,81 @@
+[build-system]
+build-backend = "flit_core.buildapi"
+requires = [
+  "flit-core<4,>=3.2",
+]
+
+[project]
+name = "concurrex"
+readme = "readme.md"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Dobatymo", email = "dobatymo@users.noreply.github.com" },
+]
+requires-python = ">=3.8"
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+]
+dynamic = [
+  "description",
+  "version",
+]
+dependencies = [
+  "genutility[callbacks,concurrency,time]>=0.0.117",
+  "rich",
+  "typing-extensions>=4",
+]
+optional-dependencies.fast = [
+  "atomicarray>=0.0.1",
+]
+urls.Home = "https://github.com/Dobatymo/concurrex"
+
+[tool.black]
+line-length = 120
+
+[tool.ruff]
+line-length = 120
+lint.extend-select = [
+  "B",
+  "I",
+]
+lint.ignore = [
+  "B011",
+  "B904",
+]
+
+[tool.isort]
+profile = "black"
+line_length = 120
+
+[tool.pytest.ini_options]
+log_cli = true
+log_level = "DEBUG"                                                                                               # or log_cli_level
+log_format = "%(asctime)s %(levelname)-8s %(threadName)s %(name)s:%(filename)s:%(lineno)d %(object)s %(message)s" # or log_cli_format
+log_date_format = "%Y-%m-%d %H:%M:%S"                                                                             # or log_cli_date_format
+
+[tool.mypy]
+ignore_missing_imports = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_configs = true
+warn_unused_ignores = true
+warn_unreachable = true
+strict_equality = true
+
+[tool.bandit]
+skips = [
+  "B101",
+]
+
+[dependency-groups]
+dev = [
+  "genutility[test]>=0.0.103",
+  "pytest>=8.3.5",
+  "pytest-subtests>=0.13.1",
+]
