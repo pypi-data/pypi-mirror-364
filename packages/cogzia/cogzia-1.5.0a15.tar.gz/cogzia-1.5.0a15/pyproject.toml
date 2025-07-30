@@ -1,0 +1,69 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = ["main", "config", "demo_workflow", "ui_components", "app_executor", "auth_manager", "ui", "cloud_storage_adapter", "utils", "services", "universal_discovery", "mcp", "cleanup", "update_manager", "validation", "version", "default_config", "semantic_matcher", "post_install", "cogzia_api_key_client"]
+
+[project]
+name = "cogzia"
+version = "1.5.0a15"
+description = "Cogzia Alpha v1.5 - Cloud-native AI Agent Builder"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Cogzia Team", email = "team@cogzia.com"}
+]
+keywords = ["ai", "agents", "mcp", "cloud", "automation"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "httpx>=0.25.0",
+    "aiohttp>=3.9.0",
+    "websockets>=11.0.0",
+    "rich>=13.0.0",
+    "click>=8.0.0",
+    "pydantic>=2.0.0",
+    "PyYAML>=6.0.0",
+    "pandas>=2.0.0",
+    "numpy>=1.24.0",
+    "requests>=2.28.0",
+    "python-dateutil>=2.8.0",
+    "typing-extensions>=4.0.0",
+    "jsonschema>=4.0.0",
+    "msgpack>=1.0.0",
+    "PyJWT>=2.0.0",
+    "python-dotenv>=1.0.0",
+    "google-cloud-secret-manager>=2.16.0",
+    "google-auth>=2.17.0",
+    "build>=1.2.2.post1",
+    "twine>=6.1.0",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+]
+dev = [
+]
+
+[project.scripts]
+cogzia = "main:cli_main"
+
+[project.urls]
+Homepage = "https://dev.cogzia.com"
+Documentation = "https://dev.cogzia.com/docs"
+Repository = "https://github.com/cogzia/agent_builder"
+Issues = "https://github.com/cogzia/agent_builder/issues"
+"Bug Tracker" = "https://github.com/cogzia/agent_builder/issues"
+
