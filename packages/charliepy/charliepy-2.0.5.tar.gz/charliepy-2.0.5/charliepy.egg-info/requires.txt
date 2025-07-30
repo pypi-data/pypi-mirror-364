@@ -1,0 +1,6 @@
+torch
+scikit-learn
+tqdm
+
+[dev]
+pytest>=7.0
