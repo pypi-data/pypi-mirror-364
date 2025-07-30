@@ -1,0 +1,5 @@
+[console_scripts]
+dataset-cat-webui=dataset_cat.webui:launch_webui
+format=dataset_cat.scripts.format_runner:main
+lint=dataset_cat.scripts.lint_runner:main
+
