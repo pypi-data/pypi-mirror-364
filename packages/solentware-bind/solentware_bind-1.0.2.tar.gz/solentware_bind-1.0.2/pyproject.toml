@@ -1,0 +1,51 @@
+[build-system]
+requires = [
+    "setuptools>=61.0",
+    "wheel"
+]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 79
+
+[project]
+name = "solentware-bind"
+version = "1.0.2"
+authors = [
+  { name="Roger Marsh", email="roger.marsh@solentware.co.uk" },
+]
+description = "Bind and exception handling for tkinter callbacks."
+classifiers = [
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development",
+    "Intended Audience :: Developers",
+    "Development Status :: 3 - Alpha",
+]
+license = {file = "LICENCE"}
+readme = "README"
+
+[project.urls]
+Homepage = "http://www.solentware.co.uk"
+Repository = "https://github.com/RogerMarsh/solentware-bind.git"
+"Bug Tracker" = "https://github.com/RogerMarsh/solentware-bind/issues"
+
+# Still beta according to Python-3.10.12 built on openbsd7 on 19 June 2023.
+# py3-setuptools-64.0.3p1v0 is setuptools version according to pkg_info.
+# python3.10 -m pip install --user --no-index --find-links dist solentware_bind==1.0.1.dev0
+# successfully installed the package so not having the setup.py script at
+# setuptools.pypa.io/en/stable/userguide/pyproject_config.html
+# is fine.
+# uci_net uses the [tool.setuptools.packages.find] section for comparison.
+# Actually it does not: uci_net.samples gets a huge deprecation warning and
+# having both [tool.setuptools] and [tool.setuptools.packages.find] is an
+# error.
+[tool.setuptools]
+packages = [
+    "solentware_bind",
+    "solentware_bind.gui",
+]
