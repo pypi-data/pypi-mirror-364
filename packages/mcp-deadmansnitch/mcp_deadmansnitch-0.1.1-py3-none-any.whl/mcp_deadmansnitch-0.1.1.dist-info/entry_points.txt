@@ -1,0 +1,2 @@
+[console_scripts]
+mcp-deadmansnitch = mcp_deadmansnitch.server:main
