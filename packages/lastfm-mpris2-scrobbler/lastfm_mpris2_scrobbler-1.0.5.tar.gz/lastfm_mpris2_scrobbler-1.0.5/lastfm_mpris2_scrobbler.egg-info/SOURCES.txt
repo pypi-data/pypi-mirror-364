@@ -1,0 +1,16 @@
+LICENSE
+README.md
+setup.py
+lastfm_mpris2_scrobbler/Cache.py
+lastfm_mpris2_scrobbler/PlayerState.py
+lastfm_mpris2_scrobbler/Scrobbler.py
+lastfm_mpris2_scrobbler/__init__.py
+lastfm_mpris2_scrobbler/__main__.py
+lastfm_mpris2_scrobbler/globals.py
+lastfm_mpris2_scrobbler.egg-info/PKG-INFO
+lastfm_mpris2_scrobbler.egg-info/SOURCES.txt
+lastfm_mpris2_scrobbler.egg-info/dependency_links.txt
+lastfm_mpris2_scrobbler.egg-info/entry_points.txt
+lastfm_mpris2_scrobbler.egg-info/not-zip-safe
+lastfm_mpris2_scrobbler.egg-info/requires.txt
+lastfm_mpris2_scrobbler.egg-info/top_level.txt
