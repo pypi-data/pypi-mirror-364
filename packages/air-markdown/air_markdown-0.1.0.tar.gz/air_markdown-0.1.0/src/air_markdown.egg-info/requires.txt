@@ -1,0 +1,9 @@
+air>=0.15.0
+mistletoe>=1.4.0
+
+[test]
+coverage
+pytest
+ruff
+ty
+ipdb
