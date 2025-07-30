@@ -1,0 +1,31 @@
+Metadata-Version: 2.4
+Name: robotframework-ride
+Version: 2.1.5
+Summary: RIDE :: Robot Framework Test Data Editor
+Project-URL: Download, https://pypi.python.org/pypi/robotframework-ride
+Project-URL: Homepage, https://github.com/robotframework/RIDE/
+Author-email: Robot Framework Developers <robotframework@gmail.com>
+Maintainer-email: Hélio Guilherme <helioxentric@gmail.com>
+License-Expression: Apache-2.0
+License-File: LICENSE.txt
+Keywords: IDE,robotframework,test editor,testautomation,testing
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Python :: 3.14
+Classifier: Topic :: Software Development :: Testing
+Requires-Python: <3.15,>=3.8
+Requires-Dist: packaging
+Requires-Dist: psutil
+Requires-Dist: pygments
+Requires-Dist: pypubsub
+Requires-Dist: pywin32; platform_system == 'Windows'
+Requires-Dist: requests>=2.32.4
+Requires-Dist: robotframework
+Requires-Dist: wxpython
