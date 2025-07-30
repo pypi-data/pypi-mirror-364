@@ -1,0 +1,184 @@
+# -*- encoding: utf-8 -*-
+
+from uuid import UUID
+from pathlib import Path
+
+import pytest  # type: ignore
+
+from libinsdb import LocalInsDb, Entity, Quantity, DataFile
+
+
+def load_mock_database():
+    curpath = Path(__file__).parent
+    return LocalInsDb(storage_path=curpath / "mock_db_json")
+
+
+def test_key_errors():
+    imo = load_mock_database()
+
+    with pytest.raises(KeyError):
+        imo.query("/format_specs/aaaaaaaa-bbbb-cccc-dddd-eeeeeeffffff")
+
+    with pytest.raises(KeyError):
+        imo.query("/entities/aaaaaaaa-bbbb-cccc-dddd-eeeeeeffffff")
+
+    with pytest.raises(KeyError):
+        imo.query("/quantities/aaaaaaaa-bbbb-cccc-dddd-eeeeeeffffff")
+
+    with pytest.raises(KeyError):
+        imo.query("/data_files/aaaaaaaa-bbbb-cccc-dddd-eeeeeeffffff")
+
+    with pytest.raises(KeyError):
+        imo.query("/UNKNOWN_TAG/instrument/beams/horn01/horn01_grasp")
+
+    with pytest.raises(KeyError):
+        imo.query("/1.0/WRONG/PATH/horn01_grasp")
+
+    with pytest.raises(KeyError):
+        imo.query("/1.0/instrument/beams/horn01/UNKNOWN_QUANTITY")
+
+    with pytest.raises(KeyError):
+        # This might look correct, but quantity "horn01_synth" has no
+        # data files in release 1.0
+        imo.query("/1.0/instrument/beams/horn01/horn01_synth")
+
+
+def test_query_uuid():
+    db = load_mock_database()
+
+    uuid = UUID("8734a013-4184-412c-ab5a-963388beae34")
+    entity = db.query(f"/entities/{uuid}")
+    assert isinstance(entity, Entity)
+    assert entity.uuid == uuid
+
+    uuid = UUID("6d1d72ac-ad22-4e94-9ff4-4c3fa8d47c53")
+    quantity = db.query(f"/quantities/{uuid}")
+    assert isinstance(quantity, Quantity)
+    assert quantity.uuid == uuid
+
+    uuid = UUID("ed8ef738-ef1e-474b-b867-646c74f89694")
+    data_file = db.query(f"/data_files/{uuid}")
+    assert isinstance(data_file, DataFile)
+    assert data_file.uuid == uuid
+
+    data_file = db.query(uuid)
+    assert isinstance(data_file, DataFile)
+    assert data_file.uuid == uuid
+
+
+def test_get_queried_objects():
+    db = load_mock_database()
+
+    entity_uuid = UUID("8734a013-4184-412c-ab5a-963388beae34")
+    _ = db.query(f"/entities/{entity_uuid}")
+    assert db.get_path_for_entity(entity_uuid) == "LFI/frequency_030_ghz/27M"
+
+    quantity_uuid = UUID("6d1d72ac-ad22-4e94-9ff4-4c3fa8d47c53")
+    _ = db.query(f"/quantities/{quantity_uuid}")
+    assert db.get_path_for_quantity(quantity_uuid) == "LFI/frequency_030_ghz/27M/bandpass"
+
+    # This is not being tracked…
+    untracked_data_file_uuid = UUID("ed8ef738-ef1e-474b-b867-646c74f89694")
+    _ = db.query(f"/data_files/{untracked_data_file_uuid}", track=False)
+
+    # …but this will be
+    tracked_data_file_uuid = UUID("25109593-c5e2-4b60-b06e-ac5e6c3b7b83")
+    _ = db.query(f"/data_files/{tracked_data_file_uuid}")
+
+    release_data_file_uuid = UUID("3ffd0d49-f06b-4c6a-9885-fb5b4f6db3ac")
+    _ = db.query("/releases/planck2018/LFI/frequency_044_ghz/24M/bandpass")
+
+    queried_files = db.get_queried_data_files()
+    assert untracked_data_file_uuid not in queried_files
+    assert tracked_data_file_uuid in queried_files
+    assert release_data_file_uuid in queried_files
+
+
+def test_query_release():
+    db = load_mock_database()
+
+    uuid = UUID("3ffd0d49-f06b-4c6a-9885-fb5b4f6db3ac")
+    data_file = db.query("/releases/planck2018/LFI/frequency_044_ghz/24M/bandpass")
+    assert data_file.uuid == uuid
+
+
+def test_entry_hierarchy():
+    db = load_mock_database()
+
+    assert len(db.root_entities) == 3
+    assert set(
+        [
+            UUID("564faff1-ef68-4e40-a2d1-9adb8d00d5c1"),
+            UUID("ff5c3ca2-6789-415e-ae4e-eb68d086baa4"),
+            UUID("ff2a87bd-9a64-4ab5-9456-d5ffeae9ea23"),
+        ]
+    ) == set(db.root_entities)
+
+    # This is the "27M" entity
+    uuid = UUID("8734a013-4184-412c-ab5a-963388beae34")
+    child_entity = db.query_entity(uuid)
+
+    # Check that the parent is the "frequency_030_ghz" entity
+    assert child_entity.parent == UUID("b3386894-40a3-4664-aaf6-f78d944943e2")
+
+    assert db.get_path_for_entity(uuid) == "LFI/frequency_030_ghz/27M"
+    assert db.get_path_for_entity(child_entity.uuid) == "LFI/frequency_030_ghz/27M"
+
+
+def test_schema_formats():
+    for folder_name in [
+        "mock_db_json",
+        "mock_db_json_gz",
+        "mock_db_yaml",
+        "mock_db_yaml_gz",
+        Path("mock_db_json") / "schema.json",  # Explicit file name
+        Path("mock_db_json_gz") / "schema.json.gz",  # Explicit file name
+    ]:
+        print(f"Testing {folder_name}")
+        mock_db_path = Path(__file__).parent / folder_name
+        db = LocalInsDb(storage_path=mock_db_path)
+
+        # This is the "27M" entity
+        uuid = UUID("8734a013-4184-412c-ab5a-963388beae34")
+        child_entity = db.query_entity(uuid)
+
+        # Check that the parent is the "frequency_030_ghz" entity
+        assert child_entity.parent == UUID("b3386894-40a3-4664-aaf6-f78d944943e2")
+
+
+def test_uncommon_schema_name():
+    path = Path(__file__).parent / "mock_db_json_3" / "really_weird_name.json"
+    db = LocalInsDb(storage_path=path)
+    assert db.storage_path == path.parent
+
+
+def test_missing_data_files():
+    mock_db_path = Path(__file__).parent / "mock_db_json"
+    db = LocalInsDb(storage_path=mock_db_path)
+    # This folder does contain data files…
+    assert db.are_data_files_available
+
+    mock_db_path = Path(__file__).parent / "mock_db_json_3" / "really_weird_name.json"
+    db = LocalInsDb(storage_path=mock_db_path)
+    # … but this folder does not
+    assert not db.are_data_files_available
+
+    # Check that the correct assertion is raised
+    from libinsdb import InstrumentDbFormatError
+
+    data_file = db.query_data_file(UUID("3ffd0d49-f06b-4c6a-9885-fb5b4f6db3ac"))
+    with pytest.raises(InstrumentDbFormatError):
+        with data_file.open_data_file(db):
+            # This instruction should never be executed
+            pass
+
+
+def test_merge():
+    db = load_mock_database()
+    db.merge(LocalInsDb(Path(__file__).parent / "mock_db_json_2"))
+
+    # This UUID is present in the *first* database
+    assert db.query_entity(UUID("8734a013-4184-412c-ab5a-963388beae34"))
+
+    # This UUID is present in the *second* database
+    assert db.query_entity(UUID("79673fad-adcf-471a-969f-cb0d4a85bd30"))
