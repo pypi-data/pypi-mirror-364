@@ -1,0 +1,168 @@
+v2.1.1
+ - fix to eq_to_OC_koposov2019 (and inverse), sin and cos were flipped before
+
+v2.1.0
+ - output handler now supports both old and new .out file formats
+
+v2.0.0 (LONG TERM SUPPORT RELEASE)
+ - can now search by ID in timestep.print_particle() with use_id=True keyword
+ - timestep.subset_rect() and timestep_subset_circ() now both have an inverse=True keyword,
+   which lets you cut everything inside the bounds instead of keeping everything inside bounds
+ - removed extra unecessary .update()s in timestep.subset_rect(), timestep.subset_circ(), 
+   timestep.split(), timestep.split_at_id_wrap(), and recenter_each_component()
+ - added histogram reading capability in output_handler.read_histogram()
+
+v1.4.8: (MINOR PATCH)
+ - fixed bug in computing vgsr and vr for simulated data
+ - corrected rotation matrix and typo in coords.eq_to_OC_koposov2019()
+ - added inverse coords.OC_to_eq_koposov2019()
+ - added @fix_arrays decorator to coords that makes it a lot easier to implement flexible 
+   array & non-array inputs
+ - added some flexible array/non-array inputs to various coords functions
+
+v1.4.7: (MINOR PATCH)
+ - made the goodness-of-fit in orbit_fitter an actual chi-squared
+ - fixed type mismatch in coords.pole_rotation_inv
+ - added timestep.get_bound_mass()
+ - added timestep.check_for_incest()
+ - edited github readme
+ - split_at_id_wrap works again for new Nbody formatting, added a toggle for user-inputted 
+   values for backwards compatability
+ - added plot.scatter_multiple() to plot lists of timesteps (like those made by split_at_id_wrap)
+ - added a few paper&stream-specific transformations (gal_to_lambet_newberg2010(), 
+   lambet_to_gal_newberg2010(), and eq_to_OC_koposov2019())
+
+v1.4.6: (BUG FIX)
+ - the reverse orbit in orbit_fitter.get_OrbitData_from_orbit() was using the forwards
+   orbit to calculate vgsr. Fixed
+ - timestep.only_dark_matter() had a typo that made it identical to only_baryons(). Fixed
+ - did some refactoring of orbit_fitter to make it easier to read and more consistent with
+   things like changing the timestep and potential
+
+v1.4.5: (MINOR PATCH)
+ - fixed bug where orbit fitter plots would use the mwahpy default potential even
+   if another was provided
+ - output_handler.read_output() now works for files with the <bodies> </bodies> tags format
+ - changed name of sky_to_pole() to pole_rotation(), because it was confusing. 
+   sky_to_pole() is now an alias for pole_rotation() and causes a DeprecationWarning
+ - added pole_rotation_inv() function
+ - timestep.scatter() now has a 'cbar' keyword to turn on a colorbar & shade particles appropriately
+ - improved how .coords was checking types
+ - added eq_to_OC() transformation from ra/dec to Orphan-Chenab lambda/beta, 
+   and OC_to_eq() inverse transformation
+
+v1.4.4: (MINOR PATCH)
+ - orbit_fitter gradient descent now uses Nelder-Mead optimizer by default, BFGS
+   was terminating the optimization early
+ - fixed bug in calc_self_energies where KE was 2x as large as it should be
+ - added ability to change galaxy potential in orbit_fitter.py
+
+v1.4.3: (BUG FIX)
+ - fixed some typos that would prevent the package from initializing correctly
+ - fixed plot.hist()
+ - fixed print_particle()
+ - calc_rvpm() was adding an additional unnecessary (unsupported) key to the
+   timestep object
+ - made timestep.recenter() and timestep.update() more verbose
+ - warnings are now printed, not raised as errors
+ - typos in plot.fancy_plot()
+ - fixed incorrect sizing of plot.fancy_plot()
+
+v1.4.2: (MINOR PATCH)
+ - Now using python's built-in Warning class instead of manually checking flags
+   and printing warning statements
+ - orbit_fitter and orbit_fitter_gc now have two modes: 'de' (differential evolution)
+   and 'gd' (gradient descent). Mode 'de' requires bounds, and mode 'gd' requires
+   an initial guess. These are selected with the 'mode' keyword in
+   orbit_fitter.fit_orbit() and orbit_fitter_gc.fit_orbit().
+ - the phase space coordinates of the Sun are now a PhaseSpace class, which can be
+   updated throughout the package with mwahpy_glob.solar_ps.update(<[x, y, z, vx, vy, vz]>).
+   To access the x velocity of the phase space coordinate, for example, you now use
+   mwahpy_glob.solar_ps.vx.
+
+v1.4.1:
+ MAJOR CHANGES:
+ - now require python v3.6.0 or above due to installation problems with older
+   versions of python.
+ - fixed bug in orbit_fitter and orbit_fitter_gc where using numpy arrays for
+   velocity data would not properly set flags, but lists would crash the program
+ - progress bars do not show up in jupyter notebooks now, to prevent lagging out
+   the client
+ - global flags are now instances of the Flag class (located in flags.py), which
+   can be switched on or off globally with "myflag.switch(<bool>)". They can still
+   be treated with default boolean comparisons, e.g. "if myflag:".
+ MINOR CHANGES:
+ - phase space of the Sun is now a constant in mwahpy_glob and should be accessed
+   from there instead of hard-coded
+ - added fancy_plot() in .plot, can call as timestep.fancy_plot(<...>)
+ - changed coords.rv_to_vgsr() to coords.vlos_to_vgsr() (trying to avoid overloading
+   "radial velocity")
+ - added coords.vgsr_to_vlos()
+ - didn't need to be importing or utilizing sys
+ BUG FIXES:
+ - fixed divide-by-zero error in timestep.get_self_energies()
+ - fixed bug in coords.rot_around_arb_axis() that was slowing it down slightly
+ - fixed bug in output_handler.read_output() where the progress bar would not
+   go from 0 to 100% if the 'stop' keyword was used
+ - coords.remove_sol_mot_from_pm() no longer modifies the pmra and pmdec input
+   arrays in place
+
+v1.4.0:
+ - renamed orbit_fitting and orbit_fitting_gc to orbit_fitter and orbit_fitter_gc
+ - refactored and fixed orbit_fitter
+ - added documentation for orbit_fitter and orbit_fitter_gc
+ - added documentation for changes since v1.3.5
+ - functions that were re-used between orbit_fitter and orbit_fitter_gc are now
+   all located in orbit_fitter
+ - it's not really a chi-squared, so now it's just a goodness-of-fit in the orbit
+   fitting packages
+
+v1.3.8:
+ - refactored and fixed orbit_fitting_gc
+ - better way to do coords.cart_to_plane()
+ - added coords.cart_to_lonlat()
+ - coords.gal_to_lambet() and coords.cart_to_lambet() now use coords.cart_to_lonlat()
+   in the background as abstraction
+ - added coords.gal_to_lambet_galcentric(), will probably be deprecated soon in
+   order to clarify coordinate systems
+
+v1.3.7:
+ - Fixed sign of Ly
+ - added start and stop keywords to output_handler.read_output()
+
+v1.3.6:
+ - fixed sky_to_pole() tests and a couple other tests
+ - fixed a bug with output_handler.make_nbody_input() not writing '\n' at end of file
+
+v1.3.5:
+ - sky_to_pole() now uses a change of basis matrix instead of vector math
+ - fixed bugs with mismatches of Timestep.index_list after extra calculations
+ - Timestep.id is now an array of ints, not floats
+ - added Timestep.take_by_id()
+ - output_handler.make_nbody_input() now properly handles the 'recenter' keyword argument
+ - output_handler.make_nbody_input() pads now floats correctly
+ - updated README
+ - Timestep.typ is now a list of ints, not floats
+
+v1.3.4:
+ - Timestep.typ attribute stores whether particles are baryons (0) or dark matter (1)
+ - output_handler has been updated to also read in particle type
+ - Timestep.only_baryons() and Timestep_only_dark_matter() cut the data to only
+   include one type of particle
+ - Added support for galactic spherical coordinates (phi, theta)
+ - Added find_progenitor()
+ - make_nbody_input() no longer recenters the Timestep before printing out
+ - fixed 'self not defined' error in output_handler.make_csv()
+ - Timestep.rad and Timestep.rot are now Timestep.vrad and Timestep.vrot
+ - updated documentation pdf to new naming convention
+ - updated documentation to include all supported functions
+ - updated README
+ - removed coords.approx_lsr()
+
+v1.3.3:
+ - added changelog
+ - fixed bug in Timestep.copy() that would cause error if the Timestep had calculated values
+ - adapted python standard naming convention (mostly, method names went from camelCase to lower_case)
+ - consolidated coords.py tests into tests.py
+ - bug fix in coords.cart_to_plane()
+ - fixed import scheme
