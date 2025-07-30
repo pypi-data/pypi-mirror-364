@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>📚 FlashMemo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans min-h-screen flex flex-col items-center p-6">
+
+  <header class="text-center mb-10">
+    <h1 class="text-4xl font-bold text-blue-600 mb-2">📚 FlashMemo by Digital Dreamer 👨‍💻</h1>
+    <p class="text-lg text-gray-700">Révisez facilement avec vos fiches mémoires.</p>
+  </header>
+
+  <main class="w-full max-w-2xl bg-white p-6 rounded-lg shadow-lg">
+
+    <h2 class="text-2xl font-semibold mb-6">Quiz rapide</h2>
+
+    <div id="quiz-container" class="space-y-6">
+      <!-- Le quiz sera injecté ici via JS -->
+    </div>
+
+    <button id="start-quiz" class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition mb-6">
+      🎯 Démarrer le quiz
+    </button>
+
+    <div id="result" class="mt-6 hidden p-4 bg-green-100 rounded text-green-900 font-semibold"></div>
+
+    <div id="manage-cards" class="mt-8 border-t pt-6">
+      <h2 class="text-xl font-semibold mb-2">Gestion des cartes</h2>
+      <a href="/add" class="text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded transition">
+        ➕ Ajouter une nouvelle carte
+      </a>
+    </div>
+
+  </main>
+
+  <script>
+    let cards = [];
+    let currentIndex = 0;
+    let score = 0;
+    let userAnswers = [];
+
+    async function loadCards() {
+      const res = await fetch('/api/cards');
+      cards = await res.json();
+    }
+
+    function showQuestion(index) {
+      const quizContainer = document.getElementById('quiz-container');
+      quizContainer.innerHTML = '';
+
+      const card = cards[index];
+
+      const questionEl = document.createElement('p');
+      questionEl.textContent = `❓ ${card.question}`;
+      questionEl.className = 'text-xl font-semibold mb-3';
+
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.placeholder = "Tape ta réponse ici";
+      input.className = 'border rounded px-3 py-2 w-full';
+
+      const btn = document.createElement('button');
+      btn.textContent = 'Valider';
+      btn.className = 'mt-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition';
+
+      btn.onclick = () => {
+        const answer = input.value.trim();
+        if (!answer) {
+          alert('Merci de saisir une réponse !');
+          return;
+        }
+        userAnswers.push({ question: card.question, correctAnswer: card.answer, userAnswer: answer });
+        if (answer.toLowerCase() === card.answer.toLowerCase()) {
+          score++;
+        }
+        currentIndex++;
+        if (currentIndex < cards.length) {
+          showQuestion(currentIndex);
+        } else {
+          showResult();
+        }
+      };
+
+      quizContainer.appendChild(questionEl);
+      quizContainer.appendChild(input);
+      quizContainer.appendChild(btn);
+    }
+
+    function showResult() {
+      const quizContainer = document.getElementById('quiz-container');
+      quizContainer.innerHTML = '';
+
+      const resultDiv = document.getElementById('result');
+      resultDiv.classList.remove('hidden');
+
+      let html = `<p>🎉 Quiz terminé ! Score : ${score} / ${cards.length} (${((score / cards.length) * 100).toFixed(0)}%)</p><hr class="my-4">`;
+
+      userAnswers.forEach((entry, idx) => {
+        const correct = entry.userAnswer.toLowerCase() === entry.correctAnswer.toLowerCase();
+        html += `<p><strong>Q${idx + 1}:</strong> ${entry.question}</p>`;
+        html += `<p>Ta réponse: <span class="${correct ? 'text-green-600' : 'text-red-600'} font-semibold">${entry.userAnswer}</span></p>`;
+        html += `<p>Réponse correcte: <strong>${entry.correctAnswer}</strong></p>`;
+        html += `<hr class="my-2">`;
+      });
+
+      resultDiv.innerHTML = html;
+
+      document.getElementById('start-quiz').classList.remove('hidden');
+      document.getElementById('manage-cards').style.display = 'block'; // Ré-affiche gestion des cartes après quiz
+    }
+
+    document.getElementById('start-quiz').addEventListener('click', async () => {
+      await loadCards();
+      if (cards.length === 0) {
+        alert("Aucune carte disponible pour le quiz.");
+        return;
+      }
+      score = 0;
+      currentIndex = 0;
+      userAnswers = [];
+      document.getElementById('result').classList.add('hidden');
+      document.getElementById('start-quiz').classList.add('hidden');
+      document.getElementById('manage-cards').style.display = 'none'; // Masque gestion cartes pendant quiz
+      showQuestion(currentIndex);
+    });
+  </script>
+</body>
+</html>

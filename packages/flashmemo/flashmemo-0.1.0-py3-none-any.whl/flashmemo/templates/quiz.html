@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>🎯 Quiz - FlashMemo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans min-h-screen flex flex-col items-center p-6">
+
+  <header class="text-center mb-10">
+    <h1 class="text-3xl font-bold text-green-600 mb-2">🎯 Quiz FlashMemo</h1>
+    <p class="text-gray-700">Testez vos connaissances question par question.</p>
+  </header>
+
+  <main class="w-full max-w-xl bg-white p-6 rounded-lg shadow-lg">
+    <div id="quiz-container" class="flex flex-col items-center">
+      <p id="question" class="text-xl font-semibold mb-4"></p>
+      <button id="show-answer" class="bg-blue-600 text-white px-5 py-2 rounded mb-4 hover:bg-blue-700 transition">Afficher la réponse</button>
+      <p id="answer" class="hidden text-green-700 mb-6 text-lg"></p>
+
+      <div class="flex space-x-4">
+        <button id="next-question" class="bg-gray-500 text-white px-4 py-2 rounded hidden hover:bg-gray-600 transition">Question suivante</button>
+        <button id="finish-quiz" class="bg-red-500 text-white px-4 py-2 rounded hidden hover:bg-red-600 transition">Terminer le quiz</button>
+      </div>
+
+      <p id="score" class="mt-6 text-xl font-bold text-purple-700 hidden"></p>
+    </div>
+  </main>
+
+  <script>
+    let cards = [];
+    let currentIndex = 0;
+    let score = 0;
+
+    async function loadCards() {
+      const response = await fetch('/api/cards');
+      cards = await response.json();
+
+      if (cards.length === 0) {
+        document.getElementById('quiz-container').innerHTML = "<p class='text-gray-500'>Aucune carte disponible pour le quiz.</p>";
+        return;
+      }
+
+      shuffle(cards);
+      showQuestion();
+    }
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    function showQuestion() {
+      const q = cards[currentIndex];
+      document.getElementById('question').textContent = q.question;
+      document.getElementById('answer').textContent = q.answer;
+      document.getElementById('answer').classList.add('hidden');
+
+      document.getElementById('show-answer').classList.remove('hidden');
+      document.getElementById('next-question').classList.add('hidden');
+      document.getElementById('finish-quiz').classList.add('hidden');
+      document.getElementById('score').classList.add('hidden');
+    }
+
+    document.getElementById('show-answer').addEventListener('click', () => {
+      document.getElementById('answer').classList.remove('hidden');
+      document.getElementById('show-answer').classList.add('hidden');
+      if (currentIndex < cards.length - 1) {
+        document.getElementById('next-question').classList.remove('hidden');
+      } else {
+        document.getElementById('finish-quiz').classList.remove('hidden');
+      }
+      // On considère la carte vue = score +1 (tu peux changer la logique)
+      score++;
+    });
+
+    document.getElementById('next-question').addEventListener('click', () => {
+      currentIndex++;
+      showQuestion();
+    });
+
+    document.getElementById('finish-quiz').addEventListener('click', () => {
+      document.getElementById('quiz-container').innerHTML = `
+        <p class="text-2xl font-bold text-purple-700">🎉 Quiz terminé !</p>
+        <p class="mt-4 text-lg">Votre score : ${(score / cards.length * 100).toFixed(0)}% (${score} sur ${cards.length})</p>
+        <a href="/" class="mt-6 inline-block bg-blue-500 text-white px-6 py-3 rounded hover:bg-blue-600 transition">Retour à l'accueil</a>
+      `;
+    });
+
+    loadCards();
+  </script>
+
+</body>
+</html>
