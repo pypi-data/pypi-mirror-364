@@ -1,0 +1,4 @@
+[console_scripts]
+claude-mpm = claude_mpm.cli:main
+claude-mpm-ticket = claude_mpm.cli.ticket_cli:main
+ticket = claude_mpm.cli.ticket_cli:main
