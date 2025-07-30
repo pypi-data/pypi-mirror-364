@@ -1,0 +1,15 @@
+[project]
+name = "pickaxe-mcp-semantic-scholar"
+version = "0.1.4"
+description = "MCP server for https://www.semanticscholar.org/"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastmcp>=2.10.6",
+    "httpx>=0.28.1",
+    "mcp[cli]>=1.12.2",
+    "semanticscholar>=0.10.0",
+]
+
+[project.scripts]
+pickaxe-mcp-semantic-scholar = "main:main"
