@@ -1,0 +1,50 @@
+[project]
+name = "cvdpack"
+version = "0.0.4"
+license = {text = "BSD-3-Clause"}
+license-files = ["LICENSE"]
+description = "Quantize and video-compress your RGB/Depth/Flow/SurfaceNormal datasets"
+readme = "README.md"
+authors = [
+    { name = "Alexander Raistrick", email = "araistrick@princeton.edu" }
+]
+
+keywords = [
+    "computer vision",
+    "datasets"
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+
+requires-python = ">3.10.0"
+dependencies = [
+    "numpy<2",
+    "opencv-python",
+    "tqdm"
+]
+dev = [
+    "ruff",
+]
+slurm = [
+    "submitit",
+    "setuptools", # submitit implicitly depends on pkg_resources which is no longer available in newer python versions
+]
+
+[project.scripts]
+cvdpack = "cvdpack.main:main"
+
+[project.optional-dependencies]
+slurm = [
+    "submitit"
+]
+dev = [
+    "ruff",
+    "matplotlib",
+    "pytest"
+]
+
+[build-system]
+# based on https://github.com/astral-sh/trusted-publishing-examples/blob/main/pyproject.toml
+requires = ["hatchling"]
+build-backend = "hatchling.build"

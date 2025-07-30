@@ -1,0 +1,69 @@
+{
+    "metadata": {},
+    "data_types": {
+        "image": {
+            "original_path_template": "{scene}/{split}/{vid}/{gt_type}_{cam}/{frame:06d}_{cam}.png",
+            "packed_path_template": "{scene}/{split}/{vid}/{gt_type}_{cam}.mkv",
+            "packing": {
+                "method": "CHECKBOUNDS",
+                "min_orig_val": 0,
+                "max_orig_val": 255,
+                "from_dtype": "uint8",
+                "to_dtype": "uint8"
+            }
+        },
+        "depth": {
+            "original_path_template": "{scene}/{split}/{vid}/{gt_type}_{cam}/{frame:06d}_{cam}_{gt_type}.npy",
+            "packed_path_template": "{scene}/{split}/{vid}/{gt_type}_{cam}.mkv",
+            "packing": {
+                "method": "INV",
+                "min_orig_val": 0.5,
+                "max_orig_val": 1000,
+                "from_dtype": "float32",
+                "to_dtype": "uint16",
+                "out_of_bounds_method": "nan"
+            }
+        },
+        "flow": {
+            "original_path_template": "{scene}/{split}/{vid}/{gt_type}/{frame:06d}_{framenext:06d}_{gt_type}.npy",
+            "packed_path_template": "{scene}/{split}/{vid}/{gt_type}.mkv",
+            "unpack_channels_last": 2,
+            "packing": {
+                "method": "LINEAR",
+                "min_orig_val": -300,
+                "max_orig_val": 300,
+                "from_dtype": "float32",
+                "to_dtype": "uint16",
+                "out_of_bounds_method": "nan_warn"
+            }
+        },
+        "flow_mask": {
+            "original_path_template": "{scene}/{split}/{vid}/flow/{frame:06d}_{framenext:06d}_mask.npy",
+            "packed_path_template": "{scene}/{split}/{vid}/{gt_type}.mkv",
+            "packing": {
+                "method": "CHECKBOUNDS",
+                "min_orig_val": 0,
+                "max_orig_val": 255,
+                "from_dtype": "uint8",
+                "to_dtype": "uint8"
+            }
+        },
+        "seg": {
+            "original_path_template": "{scene}/{split}/{vid}/{gt_type}_{cam}/{frame:06d}_{cam}_{gt_type}.npy",
+            "packed_path_template": "{scene}/{split}/{vid}/{gt_type}_{cam}.mkv",
+            "packing": {
+                "method": "CHECKBOUNDS",
+                "min_orig_val": 0,
+                "max_orig_val": 255,
+                "from_dtype": "uint8",
+                "to_dtype": "uint8"
+            }
+        },
+        "pose": {
+            "original_path_template": "{scene}/{split}/{vid}/{gt_type}_{cam}.txt",
+            "packed_path_template": "{scene}/{split}/{vid}/{gt_type}_{cam}.npy",
+            "npy_dtype": "float32"
+        }
+    }
+}
+
