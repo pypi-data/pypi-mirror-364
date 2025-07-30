@@ -1,0 +1,76 @@
+on:
+  pull_request:
+    branches:
+      - master
+
+  push:
+    branches:
+      - master
+
+name: CI
+
+jobs:
+  test:
+    name: Test
+    strategy:
+      matrix:
+        python-version: ["3.13", "3.12", "3.11", "3.10", "3.9"]
+    runs-on: ubuntu-latest
+    environment: pypi-test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - uses: extractions/setup-just@v2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: "Install python venv"
+        run: "uv sync"
+
+      - name: "Lint and test"
+        run: |
+          source .venv/bin/activate
+          just lint
+          just test
+          coverage xml
+
+      - uses: coverallsapp/github-action@v2
+        if: ${{ contains(matrix.python-version, '3.13') }}
+
+  build:
+    name: Build
+    if: ${{ github.event_name == 'pull_request' }}
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Load version into env
+        shell: bash
+        run: |
+          dev_version=$(date '+%Y%m%d%H%M%S')
+          echo "RELEASE_VERSION=0.1.0dev${dev_version}" >> $GITHUB_ENV
+
+      - uses: ./.github/build
+        with:
+          package-version: ${RELEASE_VERSION}
+
+  pypi-publish:
+    name: Publish to test-pypi
+    if: ${{ github.event_name == 'pull_request' }}
+    needs: [test, build]
+    runs-on: ubuntu-latest
+    # Specifying a GitHub environment is optional, but strongly encouraged
+    environment: pypi-test
+    permissions:
+      # IMPORTANT: this permission is mandatory for Trusted Publishing
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: ${{ vars.REPOSITORY_URL }}

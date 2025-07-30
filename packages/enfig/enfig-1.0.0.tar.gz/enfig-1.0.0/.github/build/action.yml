@@ -1,0 +1,21 @@
+name: build
+inputs:
+  package-version:
+    required: true
+    description: The python package version
+runs:
+  using: "composite"
+  steps:
+    - uses: astral-sh/setup-uv@v5
+
+    - name: Build
+      shell: bash
+      run: |
+        uvx --from=toml-cli toml set --toml-path=pyproject.toml project.version ${{ inputs.package-version }}
+        uv build
+
+    - name: Upload package
+      uses: actions/upload-artifact@v4
+      with:
+        path: dist/
+        name: dist
