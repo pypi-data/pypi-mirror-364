@@ -1,0 +1,39 @@
+Metadata-Version: 2.2
+Name: groupdups
+Version: 0.1.0
+Summary: Group duplicate values in a list with their index positions
+Author: Harsh Laghave
+Author-email: harshlaghave17@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: requires-python
+Dynamic: summary
+
+# groupdups
+
+A simple Python package to group duplicate values in a list and return their index positions.
+
+## Installation
+
+```bash
+pip install groupdups
+```
+
+## Usage
+
+```python
+from groupdups import group_duplicates
+
+arr = [2, 3, 2, 4, 3, 2]
+print(group_duplicates(arr))
+# Output: {2: [0, 2, 5], 3: [1, 4], 4: [3]}
+```
