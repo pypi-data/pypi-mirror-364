@@ -1,0 +1,17 @@
+django_file_tools/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_file_tools/conf.py,sha256=jEYPG82xz8H9DrN3ViIa1FuG3Z6LAPereyRptwx6VkQ,720
+django_file_tools/drf_views.py,sha256=Avufj0nebbhUDLUxjgs1chL754BAYYo4TYsC2GG03ew,1356
+django_file_tools/model_fields.py,sha256=q6fCF_TvyjdcVTtIRnfLMkuDZCLMWtWt0SHemIUIdh4,2457
+django_file_tools/models.py,sha256=vjJqvx2kHMwFztsdD_tl0U74n7esQDBnXE-MTqO2ehw,377
+django_file_tools/pathers.py,sha256=ff5xW0aRGkfthF4V9cS-KHJkhWWhHTSZ_yb0HNCfBFE,1536
+django_file_tools/runner.py,sha256=OxcVsiZ6C-M-tsgY6n3YW86uWMYXkVK2_H-nrTPuDs0,307
+django_file_tools/s3.py,sha256=uS1CZY0VLHhLprPho2L5gsdLCGQvHdixDF8DVC41Omk,8882
+django_file_tools/serializer_fields.py,sha256=SBSFc-TvNF53jODgqNL0iXF_fURSM3eDR3Ny98kj7OA,1778
+django_file_tools/serializers.py,sha256=pvYh5Cdnud0yz7SqlubhfHTTmyCpdeQLby07D4vSOks,378
+django_file_tools/storage_backends.py,sha256=HAGtBzBDtUCr5q7XMHaAwrTLyF3XG4V9OKtxi2-u2ZA,2036
+django_file_tools/tests.py,sha256=s9fPmanpbnXxCnpPVl_Pi0zvVbkl8amH_rDTqZWB9Jc,861
+django_file_tools/views.py,sha256=Dr_z2IXTJWSPZZCm4_b1-5_4tVXnfj9dvDa-ZLTfcb8,2428
+django_file_tools-0.1.7.dist-info/LICENSE,sha256=555ak2JOW5HrdOtdFCnoccinA0MlPEGcZUtibbu8pvY,1071
+django_file_tools-0.1.7.dist-info/METADATA,sha256=dYERm9f2TeWVsdLtSuBGD9iPW6LqOZBQPIjdY80FjSQ,1230
+django_file_tools-0.1.7.dist-info/WHEEL,sha256=fGIA9gx4Qxk2KDKeNJCbOEwSrmLtjWCwzBz351GyrPQ,88
+django_file_tools-0.1.7.dist-info/RECORD,,
