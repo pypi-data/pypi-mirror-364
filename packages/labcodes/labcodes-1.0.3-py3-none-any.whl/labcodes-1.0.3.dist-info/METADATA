@@ -1,0 +1,63 @@
+Metadata-Version: 2.4
+Name: labcodes
+Version: 1.0.3
+Summary: Simple routines for superconducting quantum circuits.
+Project-URL: Homepage, https://github.com/Qiujv/LabCodes
+Author-email: Qiujv <qiujv@outlook.com>
+License-Expression: GPL-3.0-or-later
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.9
+Requires-Dist: attrs
+Requires-Dist: cmocean
+Requires-Dist: cvxpy
+Requires-Dist: json-numpy
+Requires-Dist: lmfit>=0.9.5
+Requires-Dist: matplotlib
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: scikit-learn
+Requires-Dist: scipy
+Requires-Dist: tqdm
+Provides-Extra: labber
+Requires-Dist: h5py>=2.6; extra == 'labber'
+Description-Content-Type: text/markdown
+
+# LabCodes
+
+Simple routines for superconducting quantum circuits.
+
+# Contents
+
+`fitter`: CurveFit and BatchFit handling fitting and fit datas.
+
+`models`: Fitting models with pre-defined initial value guess functions.
+
+`plotter`: Data plotting routines for data generated in 2d sweep or other experiments.
+
+`fileio`: Reading and writing data files, supports Labber, LabRAD, LTspice;
+
+`calc`: Numerical calculator for physical models.
+
+`tomo`: Data processing routine for quantum state tomography and process tomograpy.
+
+`misc`: Useful functions that not fitting anywhere else.
+
+`frog`: Codes for FROG experiments only.
+
+# Installation
+
+```powershell
+pip install labcodes
+```
+
+# Documentation
+
+All functions, classes comes with necessary documentations in their docstrings. 
+Check them out with command like `help(balabala)`.
+To browser the contents within, try `dir(balabala)` or `help(module_name)`.
+
+If you are using iPython or Jupyter, try `any_object?` or `any_object??`.
+
+It is highly recommended to read the source codes. I tried to make it easy to read.
+
+If there is any advice or suggestions, write an issue, or pull request. 😊
