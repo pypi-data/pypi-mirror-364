@@ -1,0 +1,15 @@
+[project]
+name = "FLImagingClrPy"
+version = "6.8.5"
+description = "FLImaging(R) CLR for Python"
+authors = [{name="Fourth Logic Incorporated", email="support@fourthlogic.co.kr"}]
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8.0"
+dependencies = [
+    "pythonnet>=3.0.5",
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
