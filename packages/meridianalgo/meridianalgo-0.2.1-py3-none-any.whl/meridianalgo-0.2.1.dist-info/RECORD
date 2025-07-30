@@ -1,0 +1,12 @@
+meridianalgo/__init__.py,sha256=mtzBegMCn7yjLmOHW5KW4Fi7V3K1KF3v1Xsn5JcVHL0,695
+meridianalgo/ai_analyzer.py,sha256=_ojH-wjAfE3nCqZyFu12bRRPAqkUzC1sELaJ8rdiy78,16940
+meridianalgo/backtest_engine.py,sha256=qLpWxpOKWjepLFIZCR7cEBTWFd7FXmxxxymhueyj1R0,7832
+meridianalgo/ensemble_models.py,sha256=qADI2MEjyCqJqaXSc-4QybA53Gf8c5WfIFSSvgkyjOY,15723
+meridianalgo/indicators.py,sha256=VYr2qZ7ZAQq8NFEBNMG5OjKaEfchhlBwpXrONeObDCE,8537
+meridianalgo/ml_predictor.py,sha256=2SQosxm42CjhVBKjJOQmw9ofAsN1z_p3kjsuUQ93J0s,14384
+meridianalgo/trading_engine.py,sha256=Kpu5dXVDUDpMreFiSz_baWbQmn69wY3TgboNPvKnr1g,4308
+meridianalgo/utils.py,sha256=fZFZxDKN7KlMq1HhnDBtkEDQhsxalQBmkz01yUtuNwo,9223
+meridianalgo-0.2.1.dist-info/METADATA,sha256=xvH9aob7dWp9LB6urNfb65MNh8Gx0IljkRds01buTQE,26718
+meridianalgo-0.2.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+meridianalgo-0.2.1.dist-info/top_level.txt,sha256=WIINyMzqpamOl_Po9dwbaAzYCpFSif7ag-W8HLcLzaU,13
+meridianalgo-0.2.1.dist-info/RECORD,,
