@@ -1,0 +1,3 @@
+# PyCompound
+A Python-based tool for spectral library matching, PyCompound is available as a Python package with a command-line interface (CLI) available and as a GUI application build with Python/Shiny. It performs spectral library matching to identify chemical compounds, offering a range of spectrum preprocessing transformations and similarity measures, including Cosine and three entropy-based similarity measures. PyCompound supports both high-resolution mass spectrometry (HRMS) data (e.g., LC-MS/MS) and nominal-resolution mass spectrometry (NRMS) data (e.g., GC-MS). For documentation and usage instructions for PyCompound, please refer to the GitHub repository [https://github.com/hdlugas/pycompound](https://github.com/hdlugas/pycompound).
+
