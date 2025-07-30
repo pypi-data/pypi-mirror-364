@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "python-package-audit"
+version = "0.1.6"
+description = "Python Package Audit is a lightweight static analysis tool designed to detect unused Python packages"
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = [
+    "colorama>=0.4.6",
+    "pipdeptree>=2.27.0"
+]
+license = {text = "MIT"}
+authors = [
+  { name="Omer Menashe", email="unspecified@mail.com" }
+]
+keywords = ["python-package-audit", "package", "audit"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+
+[project.urls]
+"Source" = "https://github.com/iamomerm/python-package-audit"
+
+[tool.setuptools]
+py-modules = ["package_analyzer", "pkgaudit"]

@@ -1,0 +1,11 @@
+LICENSE
+README.md
+package_analyzer.py
+pkgaudit.py
+pyproject.toml
+python_package_audit.egg-info/PKG-INFO
+python_package_audit.egg-info/SOURCES.txt
+python_package_audit.egg-info/dependency_links.txt
+python_package_audit.egg-info/requires.txt
+python_package_audit.egg-info/top_level.txt
+tests/test_pkgaudit.py
