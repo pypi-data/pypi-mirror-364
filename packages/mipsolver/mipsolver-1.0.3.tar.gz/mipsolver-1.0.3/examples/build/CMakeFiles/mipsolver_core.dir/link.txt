@@ -1,0 +1,2 @@
+/usr/bin/ar qc libmipsolver_core.a CMakeFiles/mipsolver_core.dir/Users/yutonglv/MIPSolver/src/core.cpp.o
+/usr/bin/ranlib libmipsolver_core.a
