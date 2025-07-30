@@ -1,0 +1,2 @@
+[scancodeio_pipelines]
+android_d2d = android_inspector.pipelines.android_d2d:AndroidAPKDeployToDevelop

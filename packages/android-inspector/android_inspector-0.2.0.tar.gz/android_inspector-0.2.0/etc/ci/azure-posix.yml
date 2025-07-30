@@ -1,0 +1,52 @@
+parameters:
+    job_name: ''
+    image_name: ''
+    python_versions: []
+    test_suites: {}
+    python_architecture: x64
+
+jobs:
+    - job: ${{ parameters.job_name }}
+
+      pool:
+          vmImage: ${{ parameters.image_name }}
+
+      strategy:
+          matrix:
+              ${{ each tsuite in parameters.test_suites }}:
+                 ${{ tsuite.key }}:
+                     test_suite_label: ${{ tsuite.key }}
+                     test_suite: ${{ tsuite.value }}
+
+      services:
+        postgres: postgres
+
+      steps:
+          - checkout: self
+            fetchDepth: 10
+
+          - ${{ each pyver in parameters.python_versions }}:
+              - task: UsePythonVersion@0
+                inputs:
+                    versionSpec: '${{ pyver }}'
+                    architecture: '${{ parameters.python_architecture }}'
+                displayName: '${{ pyver }} - Install Python'
+
+              - task: JavaToolInstaller@0
+                inputs:
+                    versionSpec: '17'
+                    jdkArchitectureOption: 'x64'
+                    jdkSourceOption: 'PreInstalled'
+                displayName: 'Install Java 17'
+
+              - script: |
+                    make dev
+                    make envfile_testing
+                    sudo mkdir /etc/scancodeio
+                    sudo cp .env /etc/scancodeio
+                    wget "https://github.com/skylot/jadx/releases/download/v1.5.0/jadx-1.5.0.zip" -O /tmp/jadx-1.5.0.zip
+                    sudo unzip -o -d /usr /tmp/jadx-1.5.0.zip
+                displayName: '${{ pyver }} - Configure'
+
+              - script: $(test_suite)
+                displayName: '${{ pyver }} - $(test_suite_label) on ${{ parameters.job_name }}'
