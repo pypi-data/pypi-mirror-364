@@ -1,0 +1,184 @@
+id: "urn:agent:genesis:cardiology_nurse:1"
+name: "Cardiology Nurse Agent"
+fullyQualifiedName: "genesis.autonomize.ai.cardiology_nurse"
+description: "Perform clinical validations for cardiology PA requests including guideline checks and summary generation"
+domain: "autonomize.ai"
+subDomain: "cardiology-clinical"
+version: "1.0.0"
+environment: "production"
+agentOwner: "cardiology-clinical@autonomize.ai"
+agentOwnerDisplayName: "Cardiology Nurse Agent Team"
+email: "cardiology-clinical@autonomize.ai"
+status: "ACTIVE"
+
+# Tags
+tags:
+  - "UM"
+  - "orchestrator"
+  - "cardiology-clinical"
+  - "workflow"
+  - "healthcare"
+  - "prior-authorization"
+
+# Multi-agent configuration
+kind: "Multi Agent"
+agentGoal: "Validate cardiology requests against clinical guidelines, retrieve relevant policies, and generate comprehensive summaries for review"
+targetUser: "internal"
+valueGeneration: "ProcessAutomation"
+interactionMode: "RequestResponse"
+runMode: "RealTime"
+agencyLevel: "AdaptiveWorkflow"
+toolsUse: false
+learningCapability: "None"
+
+# Orchestration configuration
+orchestration:
+  type: "sequential"
+  error_handling: "continue_on_error"
+  timeout: 300
+  flow:
+    - step: "guideline_check_agent_step"
+      agent: "guideline-check-agent"
+      description: "Execute guideline-check-agent"
+      inputs:
+        data: "${input.data}"
+      outputs:
+        - result
+    - step: "summary_generation_agent_step"
+      agent: "summary-generation-agent"
+      description: "Execute summary-generation-agent"
+      inputs:
+        data: "${previous_step_0.output}"
+      outputs:
+        - result
+    - step: "guideline_retrieval_agent_step"
+      agent: "guideline-retrieval-agent"
+      description: "Execute guideline-retrieval-agent"
+      inputs:
+        data: "${previous_step_1.output}"
+      outputs:
+        - result
+
+# Sample input example
+sampleInput:
+  case_data:
+    service_codes: ["93458"]
+    diagnosis_codes: ["I25.10"]
+    clinical_history: "Coronary artery disease"
+    member_age: 70
+    line_of_business: "Medicare"
+
+# Components
+components:
+  # Workflow Input
+  - id: "workflow-input"
+    name: "Orchestrator Input"
+    kind: "Data"
+    type: "genesis:chat_input"
+    description: "Input for orchestration workflow"
+    provides:
+      - useAs: "input"
+        in: "coordinator"
+        description: "Initial workflow input"
+
+  # Coordinator Agent
+  - id: "coordinator"
+    name: "Cardiology Nurse Agent Coordinator"
+    kind: "Agent"
+    type: "genesis:sequential_crew"
+    description: "Coordinates the execution of multiple agents"
+    config:
+      workflow_name: "cardiology_nurse"
+      agents: ['guideline-check-agent', 'summary-generation-agent', 'guideline-retrieval-agent']
+      error_handling: "continue"
+      collect_outputs: true
+    provides:
+      - useAs: "input"
+        in: "workflow-output"
+        description: "Aggregated workflow results"
+
+  # Guideline Check Agent Reference
+  - id: "guideline_check_agent"
+    name: "Guideline Check Agent"
+    kind: "Agent"
+    type: "$ref:guideline_check_agent"
+    description: "Reference to guideline-check-agent"
+    asTools: false
+
+  # Summary Generation Agent Reference
+  - id: "summary_generation_agent"
+    name: "Summary Generation Agent"
+    kind: "Agent"
+    type: "$ref:summary_generation_agent"
+    description: "Reference to summary-generation-agent"
+    asTools: false
+
+  # Guideline Retrieval Agent Reference
+  - id: "guideline_retrieval_agent"
+    name: "Guideline Retrieval Agent"
+    kind: "Agent"
+    type: "$ref:guideline_retrieval_agent"
+    description: "Reference to guideline-retrieval-agent"
+    asTools: false
+
+  # Workflow Output
+  - id: "workflow-output"
+    name: "Orchestration Results"
+    kind: "Data"
+    type: "genesis:chat_output"
+    description: "Display orchestration results"
+    config:
+      should_store_message: true
+
+# Dependencies on other agents
+reusability:
+  dependencies:
+    - agentId: "urn:agent:genesis:guideline_check_agent:1"
+      version: "1.0.0"
+      required: true
+    - agentId: "urn:agent:genesis:summary_generation_agent:1"
+      version: "1.0.0"
+      required: true
+    - agentId: "urn:agent:genesis:guideline_retrieval_agent:1"
+      version: "1.0.0"
+      required: true
+
+# Expected outputs
+outputs:
+  - "orchestration_summary"
+  - "step_results"
+  - "overall_status"
+  - "recommendations"
+
+# KPIs
+kpis:
+  - name: "Auto-approval Rate"
+    category: "Efficiency"
+    valueType: "percentage"
+    target: 28
+    unit: "%"
+    description: "Auto-approval Rate for cardiology-clinical"
+  - name: "Validation Accuracy"
+    category: "Quality"
+    valueType: "percentage"
+    target: 98
+    unit: "%"
+    description: "Validation Accuracy for cardiology-clinical"
+  - name: "Guideline Match Accuracy"
+    category: "Quality"
+    valueType: "percentage"
+    target: 95
+    unit: "%"
+    description: "Guideline Match Accuracy for cardiology-clinical"
+  - name: "Reviewer Time Saved"
+    category: "Efficiency"
+    valueType: "numeric"
+    target: 180
+    unit: "seconds"
+    description: "Reviewer Time Saved for cardiology-clinical"
+  - name: "Summary Readability Score"
+    category: "Quality"
+    valueType: "numeric"
+    target: 80
+    unit: "score"
+    description: "Summary Readability Score for cardiology-clinical"

@@ -1,0 +1,382 @@
+id: urn:agent:genesis:benefit_check_flow:1
+name: Comprehensive Benefit Check Orchestrator
+fullyQualifiedName: genesis.autonomize.ai.benefit_check_flow
+description: Complete benefit verification orchestrator using specialized agents for eligibility, coverage, accumulators,
+  and cost estimation
+domain: autonomize.ai
+subDomain: benefit-orchestration
+version: 2.0.0
+environment: production
+agentOwner: benefit-orchestration@autonomize.ai
+agentOwnerDisplayName: Benefit Orchestration Team
+email: benefit-orchestration@autonomize.ai
+status: ACTIVE
+variables: []
+tags:
+- UM
+- benefits
+- eligibility
+- coverage
+- orchestrator
+- workflow
+- healthcare
+- authorization
+kind: Multi Agent
+agentGoal: Analyze healthcare authorization requests and provide complete evaluation reports following LOB-specific validation
+  workflows for Medicare, Medicaid, and Marketplace plans
+targetUser: internal
+valueGeneration: ProcessAutomation
+interactionMode: RequestResponse
+runMode: RealTime
+agencyLevel: AdaptiveWorkflow
+toolsUse: false
+learningCapability: None
+orchestration:
+  type: sequential
+  error_handling: continue_on_error
+  timeout: 300
+  flow:
+  - step: validate_codes
+    agent: encoder-pro
+    description: Validate medical codes
+    inputs:
+      service_codes: ${input.service_codes}
+      diagnosis_codes: ${input.diagnosis_codes}
+    outputs:
+    - validated_codes
+  - step: check_eligibility
+    agent: eligibility-checker
+    description: Verify member eligibility
+    inputs:
+      member_id: ${input.member_id}
+      service_date: ${input.service_date}
+      validated_codes: ${validate_codes.validated_codes}
+    outputs:
+    - eligibility_status
+  - step: check_eoc
+    agent: eoc-check-agent
+    description: Validate against Evidence of Coverage
+    inputs:
+      member_id: ${input.member_id}
+      service_codes: ${validate_codes.validated_codes}
+      eligibility: ${check_eligibility.eligibility_status}
+    outputs:
+    - eoc_coverage
+  - step: check_accumulators
+    agent: accumulator-check-agent
+    description: Check deductibles and OOP status
+    inputs:
+      member_id: ${input.member_id}
+      service_cost: ${input.estimated_cost}
+      benefit_year: ${input.benefit_year}
+    outputs:
+    - accumulator_status
+  - step: check_provider
+    agent: provider-check-agent
+    description: Verify provider network status
+    inputs:
+      provider_npi: ${input.provider_npi}
+      service_date: ${input.service_date}
+      line_of_business: ${check_eligibility.line_of_business}
+    outputs:
+    - provider_status
+  - step: check_pa_requirements
+    agent: pa-lookup
+    description: Check prior authorization requirements
+    inputs:
+      service_codes: ${validate_codes.validated_codes}
+      diagnosis_codes: ${input.diagnosis_codes}
+      member_plan: ${check_eligibility.plan_info}
+    outputs:
+    - pa_requirements
+  - step: check_history
+    agent: qnxt-history
+    description: Retrieve claims and auth history
+    inputs:
+      member_id: ${input.member_id}
+      lookback_months: 12
+    outputs:
+    - member_history
+  - step: generate_summary
+    agent: benefit-summary-generator
+    description: Compile comprehensive benefit summary
+    inputs:
+      eligibility: ${check_eligibility.eligibility_status}
+      eoc_coverage: ${check_eoc.eoc_coverage}
+      accumulator_status: ${check_accumulators.accumulator_status}
+      provider_status: ${check_provider.provider_status}
+      pa_requirements: ${check_pa_requirements.pa_requirements}
+      member_history: ${check_history.member_history}
+    outputs:
+    - comprehensive_summary
+sampleInput:
+  member_id: M123456789
+  service_codes:
+  - '70553'
+  - '72148'
+  diagnosis_codes:
+  - R51.9
+  - G43.909
+  provider_npi: '1234567890'
+  service_date: '2024-03-15'
+  line_of_business: Medicare
+  state: WA
+  estimated_cost: 2500
+  benefit_year: '2024'
+components:
+- id: benefit-request
+  name: Benefit Check Request
+  kind: Data
+  type: genesis:chat_input
+  description: Comprehensive benefit check request with member, service, and provider information
+  provides:
+  - useAs: input
+    in: coordinator
+    description: Initial workflow input
+- id: coordinator
+  name: Benefit Check Flow Coordinator
+  kind: Agent
+  type: genesis:sequential_crew
+  description: Coordinates the execution of multiple agents
+  config:
+    workflow_name: benefit_check_flow
+    agents:
+    - encoder-pro
+    - eligibility-checker
+    - eoc-check-agent
+    - accumulator-check-agent
+    - provider-check-agent
+    - pa-lookup
+    - qnxt-history
+    - benefit-summary-generator
+    error_handling: continue
+    collect_outputs: true
+  provides:
+  - useAs: input
+    in: benefit-output
+    description: Aggregated workflow results
+- id: orchestrator-agent
+  name: Benefit Check Orchestrator
+  kind: Agent
+  type: genesis:agent
+  description: Orchestrates comprehensive benefit checking using specialized agents
+  config:
+    system_prompt: "You are a Healthcare Authorization Processing Assistant specialized in evaluating service code eligibility,\
+      \ coverage, and authorization requirements. Your goal is to analyze authorization requests and provide a complete evaluation\
+      \ report following LOB-specific validation workflows.\n\n## INSTRUCTIONS:\nWhen given a healthcare authorization request,\
+      \ you will:\n\n### 1. PARSE INPUT:\nExtract key information from the JSON input including member information, service\
+      \ codes, state, LOB (line of business), and diagnoses.\n- When state is empty, use \"WA\" (Washington) derived from\
+      \ the health plan code (e.g., \"WA-MHI\")\n- When LOB is empty, use \"Medicaid\" for Molina Healthcare plans\n- Extract\
+      \ service codes from the services array\n\n### 2. DETERMINE WORKFLOW:\nBased on the LOB, follow these specific validation\
+      \ workflows:\n\n**For Medicare:**\n- For EACH service code separately, use the encoder pro get_service_code_info tool\n\
+      - Use check_prior_authorization\n- Use eoc_check_tool to check coverage in EOC documents\n- Use accumulator_tool with\
+      \ complete member information: service code, member ID, LOB, state, and case details\n\n**For Medicaid:**\n- For EACH\
+      \ service code separately, use the encoder pro get_service_code_info tool\n- Use check_prior_authorization\n- (Skip\
+      \ EOC validation and accumulator checks for Medicaid)\n\n**For Marketplace:**\n- For EACH service code separately, use\
+      \ the encoder pro get_service_code_info tool\n- Use check_prior_authorization\n- Use eoc_check_tool to check coverage\
+      \ in EOC documents\n- (Skip accumulator checks for Marketplace)\n\n### 3. ACCUMULATOR TOOL USAGE:\nWhen calling the\
+      \ accumulator_tool for Medicare cases, pass a comprehensive input that includes:\n- Service code (if specified)\n- Member\
+      \ ID (if specified)\n- Line of business (if specified)\n- State (if specified)\n- Case ID (if specified)\n- Units requested\
+      \ (if specified)\n- Start/end dates (if specified)\n- Associated diagnoses (if specified)\n\n**Format the accumulator_tool\
+      \ input as:**\n```\nService Code: [CODE]\nMember ID: [MEMBER_ID]\nCase ID: [CASE_ID]\nLine of Business: [LOB]\nState:\
+      \ [STATE]\nUnits Requested: [UNITS]\nStart Date: [START_DATE]\nEnd Date: [END_DATE]\nDiagnoses: [DIAGNOSIS_CODES_AND_DESCRIPTIONS]\n\
+      ```\n\n### 4. CREATE A CONSOLIDATED REPORT with the following sections:\n- **AUTHORIZATION SUMMARY:** General overview\
+      \ of the request\n- **MEMBER DETAILS:** Information about the member\n- **SERVICE CODE ANALYSIS:** Detailed information\
+      \ for each service code\n- **COVERAGE DETERMINATION:** Whether services are covered\n- **DIAGNOSES:** List any diagnoses\
+      \ associated with the current authorization request\n- **PA REQUIREMENTS:** Whether prior authorization is required\n\
+      - **EOC VALIDATION:** Include results from EOC validation (Medicare and Marketplace only)\n- **ACCUMULATOR CHECK:**\
+      \ Include results from accumulator check (Medicare only)\n- **RECOMMENDATION:** Suggested decision based on all findings\n\
+      \n## ERROR HANDLING:\n- If a tool returns an error, clearly indicate this in the appropriate section with \"Not available\
+      \ due to system error\" and CONTINUE with other sections\n- For DME codes like E1161 (wheelchairs), if errors occur,\
+      \ note that these typically:\n  * Require prior authorization for Medicaid\n  * Are covered when medically necessary\
+      \ with proper documentation\n- AFTER all tools have been called, generate the FINAL report using whatever information\
+      \ is available\n- Do NOT wait for \"pending\" information - all tool results (successful or error) are considered COMPLETE\
+      \ and FINAL\n\nIMPORTANT: When ANY tool returns an error or fails to complete, immediately treat that as a complete\
+      \ response containing \"System Error\". DO NOT retry tools that fail. Complete all tool calls sequentially regardless\
+      \ of errors and then generate the final report.\n\n## OUTPUT FORMAT:\n- Use bullet points for clarity\n- Bold important\
+      \ section headers\n- Include all sections even if information is limited\n- No need to repeat the full report twice\n\
+      - Mark incomplete information clearly as \"Not available\" rather than \"Pending\"\n- For sections that don't apply\
+      \ to the current LOB, include the section but note \"Not applicable for [LOB] line of business\"\n\nREMEMBER: Your primary\
+      \ responsibility is to provide a COMPLETE analysis that will help determine whether the authorization request should\
+      \ be approved, denied, or requires further review, EVEN WHEN TOOL RESPONSES CONTAIN ERRORS.\n"
+    temperature: 0.2
+    max_tokens: 3000
+  provides:
+  - useAs: input
+    in: benefit-output
+    description: Orchestrated benefit check results
+- id: eligibility-checker
+  name: Eligibility Checker
+  kind: Agent
+  type: $ref:eligibility_checker
+  description: Member eligibility verification
+  asTools: false
+- id: eoc-check-agent
+  name: EOC Check Agent
+  kind: Agent
+  type: $ref:eoc_check
+  description: Evidence of Coverage validation
+  asTools: false
+- id: accumulator-check-agent
+  name: Accumulator Check Agent
+  kind: Agent
+  type: $ref:accumulator_check
+  description: Deductible and OOP status check
+  asTools: false
+- id: provider-check-agent
+  name: Provider Check Agent
+  kind: Agent
+  type: $ref:provider_check
+  description: Provider network validation
+  asTools: false
+- id: encoder-pro
+  name: Encoder Pro
+  kind: Tool
+  type: genesis:encoder_pro
+  description: Medical coding validation
+  asTools: true
+  config:
+    validate_codes: true
+    include_descriptions: true
+    check_compatibility: true
+  provides:
+  - useAs: tools
+    in: orchestrator-agent
+    description: Medical coding validation tool
+- id: pa-lookup
+  name: PA Lookup
+  kind: Tool
+  type: genesis:pa_lookup
+  description: Prior authorization requirements
+  asTools: true
+  config:
+    include_criteria: true
+    check_alternatives: true
+  provides:
+  - useAs: tools
+    in: orchestrator-agent
+    description: PA requirements lookup tool
+- id: qnxt-history
+  name: QNXT History
+  kind: Tool
+  type: genesis:qnext_auth_history
+  description: Claims and authorization history
+  asTools: true
+  config:
+    lookback_months: 12
+    include_claims: true
+    include_authorizations: true
+  provides:
+  - useAs: tools
+    in: orchestrator-agent
+    description: Member history lookup tool
+- id: knowledge-hub
+  name: Benefit Knowledge Search
+  kind: Tool
+  type: genesis:knowledge_hub_search
+  description: Search benefit policies and guidelines
+  asTools: true
+  config:
+    collections:
+    - benefit_policies
+    - coverage_guidelines
+    - authorization_criteria
+    search_type: similarity
+    top_k: 5
+  provides:
+  - useAs: tools
+    in: orchestrator-agent
+    description: Benefit document search tool
+- id: benefit-summary-generator
+  name: Benefit Summary Generator
+  kind: Agent
+  type: genesis:agent
+  description: Compiles comprehensive benefit summary from all checks
+  config:
+    system_prompt: "Create a comprehensive benefit summary that includes:\n\n1. Eligibility Status:\n   - Coverage active/inactive\n\
+      \   - Plan details and tier\n   - Effective dates\n\n2. Service Coverage:\n   - Covered/not covered determination\n\
+      \   - EOC validation results\n   - Any exclusions or limitations\n   - Frequency limits\n\n3. Cost Breakdown:\n   -\
+      \ Member responsibility amount\n   - Deductible status and impact\n   - Out-of-pocket maximum impact\n   - Copay/coinsurance\
+      \ details\n   - Network vs out-of-network costs\n\n4. Provider Status:\n   - Network participation\n   - Any network\
+      \ restrictions\n   - Impact on costs\n\n5. Authorization Requirements:\n   - PA required (yes/no)\n   - Clinical criteria\n\
+      \   - Documentation needed\n   - Submission process\n\n6. Recommendations:\n   - Next steps for member\n   - Alternative\
+      \ options if not covered\n   - Cost-saving opportunities\n"
+    temperature: 0.2
+- id: conversation-memory
+  name: Orchestrator Memory
+  kind: Memory
+  type: genesis:conversation_memory
+  description: Track orchestration context
+  config:
+    memory_key: benefit_orchestrator_memory
+    max_messages: 50
+  provides:
+  - useAs: memory
+    in: orchestrator-agent
+    description: Conversation context
+- id: benefit-output
+  name: Comprehensive Benefit Results
+  kind: Data
+  type: genesis:chat_output
+  description: Display complete benefit verification results
+  config:
+    should_store_message: true
+reusability:
+  dependencies:
+  - agentId: urn:agent:genesis:eligibility_checker:1
+    version: '>=1.0.0'
+    required: true
+  - agentId: urn:agent:genesis:eoc_check:1
+    version: '>=1.0.0'
+    required: true
+  - agentId: urn:agent:genesis:accumulator_check:1
+    version: '>=1.0.0'
+    required: true
+  - agentId: urn:agent:genesis:provider_check:1
+    version: '>=1.0.0'
+    required: true
+outputs:
+- eligibility_status
+- coverage_determination
+- eoc_validation
+- accumulator_impact
+- provider_network_status
+- cost_breakdown
+- pa_requirements
+- member_recommendations
+- comprehensive_summary
+kpis:
+- name: Orchestration Success Rate
+  category: Quality
+  valueType: percentage
+  target: 98
+  unit: '%'
+  description: Percentage of successful comprehensive benefit checks
+- name: Total Processing Time
+  category: Performance
+  valueType: numeric
+  target: 10000
+  unit: ms
+  description: Total time for complete benefit verification
+- name: Component Utilization
+  category: Efficiency
+  valueType: percentage
+  target: 90
+  unit: '%'
+  description: Percentage of checks using all relevant components
+- name: Decision Accuracy
+  category: Quality
+  valueType: percentage
+  target: 97
+  unit: '%'
+  description: Accuracy of benefit determinations when audited
+- name: Cost Estimate Accuracy
+  category: Quality
+  valueType: percentage
+  target: 95
+  unit: '%'
+  description: Accuracy of member cost estimates
+securityInfo:
+  visibility: Private
+  confidentiality: High
+  gdprSensitive: true

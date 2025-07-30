@@ -1,0 +1,85 @@
+# Calculator Agent with Variables Example
+# This example demonstrates runtime variables and tweaks functionality
+
+name: {agent_name}
+description: A configurable agent that can perform math calculations
+version: "1.0.0"
+
+# Enhanced metadata for Genesis Studio
+id: calc-agent-var
+fullyQualifiedName: examples.calculator-agent-with-variables
+domain: Examples
+agentOwner: {owner_email}
+agentOwnerDisplayName: {owner_name}
+email: {owner_email}
+kind: Single Agent
+agentGoal: {agent_goal}
+targetUser: both
+valueGeneration: ProcessAutomation
+interactionMode: MultiTurnConversation
+runMode: RealTime
+agencyLevel: StaticWorkflow
+
+components:
+  # 1. Chat Input - User's math question
+  - id: user-question
+    type: genesis:chat_input
+    name: Math Question
+    description: Enter your math problem or calculation
+    config:
+      sender_name: {user_name}
+      should_store_message: true
+      session_id: {session_id}
+    provides:
+      - in: calculator-agent
+        useAs: input
+        description: Send question to agent
+
+  # 2. Calculator Tool
+  - id: calculator-tool
+    type: genesis:calculator
+    name: Calculator
+    description: Tool for mathematical calculations
+    provides:
+      - in: calculator-agent
+        useAs: tool
+        description: Provide calculator as a tool to the agent
+
+  # 3. Agent with Calculator
+  - id: calculator-agent
+    type: genesis:agent
+    name: {agent_display_name}
+    description: Agent that helps with mathematical calculations
+    config:
+      system_prompt: |
+        {system_prompt_template}
+        
+        When the user asks you to perform calculations:
+        1. Use the calculator tool for any arithmetic operations
+        2. Show your work step by step
+        3. Explain what you're calculating and why
+        4. Present the final answer clearly
+        
+        The calculator can handle expressions like:
+        - Basic arithmetic: 2+2, 10-5, 3*4, 20/5
+        - Complex expressions: 4*4*(33/22)+12-20
+        - Powers: 2**3 (2 to the power of 3)
+        
+        Always use the calculator for accuracy, even for simple calculations.
+      temperature: {temperature}
+      max_tokens: {max_tokens}
+      llm_api_key: ${LLM_API_KEY}
+    provides:
+      - in: answer-output
+        useAs: input
+        description: Send response to output
+
+  # 4. Chat Output - Display the answer
+  - id: answer-output
+    type: genesis:chat_output
+    name: Answer
+    description: Shows the calculated result and explanation
+    config:
+      sender_name: {agent_display_name}
+      should_store_message: true
+      session_id: {session_id}

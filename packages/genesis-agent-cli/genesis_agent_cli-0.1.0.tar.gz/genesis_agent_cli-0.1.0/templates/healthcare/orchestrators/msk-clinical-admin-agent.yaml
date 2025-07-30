@@ -1,0 +1,195 @@
+id: "urn:agent:genesis:msk_clinical_admin:1"
+name: "MSK Clinical Admin Agent"
+fullyQualifiedName: "genesis.autonomize.ai.msk_clinical_admin"
+description: "Perform administrative validations for MSK PA requests including eligibility, accumulators, and provider checks"
+domain: "autonomize.ai"
+subDomain: "msk-admin"
+version: "1.0.0"
+environment: "production"
+agentOwner: "msk-admin@autonomize.ai"
+agentOwnerDisplayName: "MSK Clinical Admin Agent Team"
+email: "msk-admin@autonomize.ai"
+status: "ACTIVE"
+
+# Tags
+tags:
+  - "UM"
+  - "orchestrator"
+  - "msk-admin"
+  - "workflow"
+  - "healthcare"
+  - "prior-authorization"
+
+# Multi-agent configuration
+kind: "Multi Agent"
+agentGoal: "Validate MSK prior authorization requests through eligibility verification, accumulator checks, provider network validation, and episode management"
+targetUser: "internal"
+valueGeneration: "ProcessAutomation"
+interactionMode: "RequestResponse"
+runMode: "RealTime"
+agencyLevel: "AdaptiveWorkflow"
+toolsUse: false
+learningCapability: "None"
+
+# Orchestration configuration
+orchestration:
+  type: "sequential"
+  error_handling: "continue_on_error"
+  timeout: 300
+  flow:
+    - step: "eligibility_checker_step"
+      agent: "eligibility-checker"
+      description: "Execute eligibility-checker"
+      inputs:
+        data: "${input.data}"
+      outputs:
+        - result
+    - step: "accumulator_check_agent_step"
+      agent: "accumulator-check-agent"
+      description: "Execute accumulator-check-agent"
+      inputs:
+        data: "${previous_step_0.output}"
+      outputs:
+        - result
+    - step: "provider_check_agent_step"
+      agent: "provider-check-agent"
+      description: "Execute provider-check-agent"
+      inputs:
+        data: "${previous_step_1.output}"
+      outputs:
+        - result
+    - step: "eoc_check_agent_step"
+      agent: "eoc-check-agent"
+      description: "Execute eoc-check-agent"
+      inputs:
+        data: "${previous_step_2.output}"
+      outputs:
+        - result
+
+# Sample input example
+sampleInput:
+  member_id: "M456789012"
+  service_codes: ["97110", "97112"]
+  provider_npi: "5678901234"
+  service_date: "2024-03-18"
+  line_of_business: "Commercial"
+
+# Components
+components:
+  # Workflow Input
+  - id: "workflow-input"
+    name: "Orchestrator Input"
+    kind: "Data"
+    type: "genesis:chat_input"
+    description: "Input for orchestration workflow"
+    provides:
+      - useAs: "input"
+        in: "coordinator"
+        description: "Initial workflow input"
+
+  # Coordinator Agent
+  - id: "coordinator"
+    name: "MSK Clinical Admin Agent Coordinator"
+    kind: "Agent"
+    type: "genesis:sequential_crew"
+    description: "Coordinates the execution of multiple agents"
+    config:
+      workflow_name: "msk_clinical_admin"
+      agents: ['eligibility-checker', 'accumulator-check-agent', 'provider-check-agent', 'eoc-check-agent']
+      error_handling: "continue"
+      collect_outputs: true
+    provides:
+      - useAs: "input"
+        in: "workflow-output"
+        description: "Aggregated workflow results"
+
+  # Eligibility Checker Reference
+  - id: "eligibility_checker"
+    name: "Eligibility Checker"
+    kind: "Agent"
+    type: "$ref:eligibility_checker"
+    description: "Reference to eligibility-checker"
+    asTools: false
+
+  # Accumulator Check Agent Reference
+  - id: "accumulator_check_agent"
+    name: "Accumulator Check Agent"
+    kind: "Agent"
+    type: "$ref:accumulator_check_agent"
+    description: "Reference to accumulator-check-agent"
+    asTools: false
+
+  # Provider Check Agent Reference
+  - id: "provider_check_agent"
+    name: "Provider Check Agent"
+    kind: "Agent"
+    type: "$ref:provider_check_agent"
+    description: "Reference to provider-check-agent"
+    asTools: false
+
+  # Eoc Check Agent Reference
+  - id: "eoc_check_agent"
+    name: "Eoc Check Agent"
+    kind: "Agent"
+    type: "$ref:eoc_check_agent"
+    description: "Reference to eoc-check-agent"
+    asTools: false
+
+  # Workflow Output
+  - id: "workflow-output"
+    name: "Orchestration Results"
+    kind: "Data"
+    type: "genesis:chat_output"
+    description: "Display orchestration results"
+    config:
+      should_store_message: true
+
+# Dependencies on other agents
+reusability:
+  dependencies:
+    - agentId: "urn:agent:genesis:eligibility_checker:1"
+      version: "1.0.0"
+      required: true
+    - agentId: "urn:agent:genesis:accumulator_check_agent:1"
+      version: "1.0.0"
+      required: true
+    - agentId: "urn:agent:genesis:provider_check_agent:1"
+      version: "1.0.0"
+      required: true
+    - agentId: "urn:agent:genesis:eoc_check_agent:1"
+      version: "1.0.0"
+      required: true
+
+# Expected outputs
+outputs:
+  - "orchestration_summary"
+  - "step_results"
+  - "overall_status"
+  - "recommendations"
+
+# KPIs
+kpis:
+  - name: "Eligibility Match Rate"
+    category: "Quality"
+    valueType: "percentage"
+    target: 98
+    unit: "%"
+    description: "Eligibility Match Rate for msk-admin"
+  - name: "Accumulator Fetch Success Rate"
+    category: "Quality"
+    valueType: "percentage"
+    target: 95
+    unit: "%"
+    description: "Accumulator Fetch Success Rate for msk-admin"
+  - name: "Network Match Accuracy"
+    category: "Quality"
+    valueType: "percentage"
+    target: 99
+    unit: "%"
+    description: "Network Match Accuracy for msk-admin"
+  - name: "Episode Reuse Rate"
+    category: "Efficiency"
+    valueType: "percentage"
+    target: 70
+    unit: "%"
+    description: "Episode Reuse Rate for msk-admin"

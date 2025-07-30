@@ -1,0 +1,59 @@
+name: Simple Calculator Agent
+description: A minimal agent that takes a question, formats it with a prompt, and uses a calculator tool
+version: '2.0'
+tags:
+- test
+- calculator
+- minimal
+components:
+- id: user-question
+  type: genesis:chat_input
+  name: User Question
+  description: Takes user's math question
+  provides:
+  - in: math-prompt
+    useAs: question
+    description: Pass question to prompt template
+- id: math-prompt
+  type: genesis:prompt_template
+  name: Math Problem Prompt
+  description: Formats the math question for the agent
+  config:
+    template: 'You are a helpful math assistant with access to a calculator tool.
+
+
+      User''s question: {question}
+
+
+      Please solve this math problem step by step, using the calculator tool for any calculations.
+
+      Show your work and explain each step.
+
+      '
+  provides:
+  - in: calculator-agent
+    useAs: prompt
+    description: Pass formatted prompt to agent
+- id: calculator-agent
+  type: genesis:agent
+  name: Calculator Agent
+  description: Agent that solves math problems
+  config:
+    system_message: You are a math expert. Use the calculator tool for all calculations.
+    temperature: 0.1
+  provides:
+  - in: result-output
+    useAs: input
+    description: Send response to output
+- id: calculator-tool
+  type: genesis:calculator
+  name: Calculator Tool
+  description: Basic calculator for math operations
+  provides:
+  - in: calculator-agent
+    useAs: tool
+    description: Provide calculator as tool to agent
+- id: result-output
+  type: genesis:chat_output
+  name: Result
+  description: Shows the calculated result

@@ -1,0 +1,292 @@
+id: "urn:agent:genesis:pharmacy_clinical_admin:1"
+name: "Pharmacy Clinical Admin Agent"
+fullyQualifiedName: "genesis.autonomize.ai.pharmacy_clinical_admin"
+description: "Perform comprehensive pharmacy PA validations including Q-set retrieval, adjudication, and case updates"
+domain: "autonomize.ai"
+subDomain: "pharmacy-admin"
+version: "1.0.0"
+environment: "production"
+agentOwner: "pharmacy-admin@autonomize.ai"
+agentOwnerDisplayName: "Pharmacy Clinical Admin Agent Team"
+email: "pharmacy-admin@autonomize.ai"
+status: "ACTIVE"
+
+# Tags
+tags:
+  - "UM"
+  - "orchestrator"
+  - "pharmacy-admin"
+  - "workflow"
+  - "healthcare"
+  - "prior-authorization"
+
+# Multi-agent configuration
+kind: "Multi Agent"
+agentGoal: "Validate and adjudicate pharmacy prior authorization requests through eligibility, Q-set evaluation, decision making, and system updates"
+targetUser: "internal"
+valueGeneration: "ProcessAutomation"
+interactionMode: "RequestResponse"
+runMode: "RealTime"
+agencyLevel: "AdaptiveWorkflow"
+toolsUse: false
+learningCapability: "None"
+
+# Orchestration configuration
+orchestration:
+  type: "sequential"
+  error_handling: "continue_on_error"
+  timeout: 300
+  flow:
+    - step: "eligibility_checker_step"
+      agent: "eligibility-checker"
+      description: "Execute eligibility-checker"
+      inputs:
+        data: "${input.data}"
+      outputs:
+        - result
+    - step: "q_set_retrieval_agent_step"
+      agent: "q-set-retrieval-agent"
+      description: "Execute q-set-retrieval-agent"
+      inputs:
+        data: "${previous_step_0.output}"
+      outputs:
+        - result
+    - step: "provider_check_agent_step"
+      agent: "provider-check-agent"
+      description: "Execute provider-check-agent"
+      inputs:
+        data: "${previous_step_1.output}"
+      outputs:
+        - result
+    - step: "eoc_check_agent_step"
+      agent: "eoc-check-agent"
+      description: "Execute eoc-check-agent"
+      inputs:
+        data: "${previous_step_2.output}"
+      outputs:
+        - result
+    - step: "guideline_check_agent_step"
+      agent: "guideline-check-agent"
+      description: "Execute guideline-check-agent"
+      inputs:
+        data: "${previous_step_3.output}"
+      outputs:
+        - result
+    - step: "summary_generation_agent_step"
+      agent: "summary-generation-agent"
+      description: "Execute summary-generation-agent"
+      inputs:
+        data: "${previous_step_4.output}"
+      outputs:
+        - result
+    - step: "q_set_adjudication_agent_step"
+      agent: "q-set-adjudication-agent"
+      description: "Execute q-set-adjudication-agent"
+      inputs:
+        data: "${previous_step_5.output}"
+      outputs:
+        - result
+    - step: "update_episode_agent_step"
+      agent: "update-episode-agent"
+      description: "Execute update-episode-agent"
+      inputs:
+        data: "${previous_step_6.output}"
+      outputs:
+        - result
+    - step: "attach_document_agent_step"
+      agent: "attach-document-agent"
+      description: "Execute attach-document-agent"
+      inputs:
+        data: "${previous_step_7.output}"
+      outputs:
+        - result
+
+# Sample input example
+sampleInput:
+  member_id: "M234567890"
+  drug_name: "Humira"
+  ndc_code: "00074-3799-02"
+  provider_npi: "3456789012"
+  service_date: "2024-03-16"
+  line_of_business: "Medicare"
+
+# Components
+components:
+  # Workflow Input
+  - id: "workflow-input"
+    name: "Orchestrator Input"
+    kind: "Data"
+    type: "genesis:chat_input"
+    description: "Input for orchestration workflow"
+    provides:
+      - useAs: "input"
+        in: "coordinator"
+        description: "Initial workflow input"
+
+  # Coordinator Agent
+  - id: "coordinator"
+    name: "Pharmacy Clinical Admin Agent Coordinator"
+    kind: "Agent"
+    type: "genesis:sequential_crew"
+    description: "Coordinates the execution of multiple agents"
+    config:
+      workflow_name: "pharmacy_clinical_admin"
+      agents: ['eligibility-checker', 'q-set-retrieval-agent', 'provider-check-agent', 'eoc-check-agent', 'guideline-check-agent', 'summary-generation-agent', 'q-set-adjudication-agent', 'update-episode-agent', 'attach-document-agent']
+      error_handling: "continue"
+      collect_outputs: true
+    provides:
+      - useAs: "input"
+        in: "workflow-output"
+        description: "Aggregated workflow results"
+
+  # Eligibility Checker Reference
+  - id: "eligibility_checker"
+    name: "Eligibility Checker"
+    kind: "Agent"
+    type: "$ref:eligibility_checker"
+    description: "Reference to eligibility-checker"
+    asTools: false
+
+  # Q Set Retrieval Agent Reference
+  - id: "q_set_retrieval_agent"
+    name: "Q Set Retrieval Agent"
+    kind: "Agent"
+    type: "$ref:q_set_retrieval_agent"
+    description: "Reference to q-set-retrieval-agent"
+    asTools: false
+
+  # Provider Check Agent Reference
+  - id: "provider_check_agent"
+    name: "Provider Check Agent"
+    kind: "Agent"
+    type: "$ref:provider_check_agent"
+    description: "Reference to provider-check-agent"
+    asTools: false
+
+  # Eoc Check Agent Reference
+  - id: "eoc_check_agent"
+    name: "Eoc Check Agent"
+    kind: "Agent"
+    type: "$ref:eoc_check_agent"
+    description: "Reference to eoc-check-agent"
+    asTools: false
+
+  # Guideline Check Agent Reference
+  - id: "guideline_check_agent"
+    name: "Guideline Check Agent"
+    kind: "Agent"
+    type: "$ref:guideline_check_agent"
+    description: "Reference to guideline-check-agent"
+    asTools: false
+
+  # Summary Generation Agent Reference
+  - id: "summary_generation_agent"
+    name: "Summary Generation Agent"
+    kind: "Agent"
+    type: "$ref:summary_generation_agent"
+    description: "Reference to summary-generation-agent"
+    asTools: false
+
+  # Q Set Adjudication Agent Reference
+  - id: "q_set_adjudication_agent"
+    name: "Q Set Adjudication Agent"
+    kind: "Agent"
+    type: "$ref:q_set_adjudication_agent"
+    description: "Reference to q-set-adjudication-agent"
+    asTools: false
+
+  # Update Episode Agent Reference
+  - id: "update_episode_agent"
+    name: "Update Episode Agent"
+    kind: "Agent"
+    type: "$ref:update_episode_agent"
+    description: "Reference to update-episode-agent"
+    asTools: false
+
+  # Attach Document Agent Reference
+  - id: "attach_document_agent"
+    name: "Attach Document Agent"
+    kind: "Agent"
+    type: "$ref:attach_document_agent"
+    description: "Reference to attach-document-agent"
+    asTools: false
+
+  # Workflow Output
+  - id: "workflow-output"
+    name: "Orchestration Results"
+    kind: "Data"
+    type: "genesis:chat_output"
+    description: "Display orchestration results"
+    config:
+      should_store_message: true
+
+# Dependencies on other agents
+reusability:
+  dependencies:
+    - agentId: "urn:agent:genesis:eligibility_checker:1"
+      version: "1.0.0"
+      required: true
+    - agentId: "urn:agent:genesis:q_set_retrieval_agent:1"
+      version: "1.0.0"
+      required: true
+    - agentId: "urn:agent:genesis:provider_check_agent:1"
+      version: "1.0.0"
+      required: true
+    - agentId: "urn:agent:genesis:eoc_check_agent:1"
+      version: "1.0.0"
+      required: true
+    - agentId: "urn:agent:genesis:guideline_check_agent:1"
+      version: "1.0.0"
+      required: true
+    - agentId: "urn:agent:genesis:summary_generation_agent:1"
+      version: "1.0.0"
+      required: true
+    - agentId: "urn:agent:genesis:q_set_adjudication_agent:1"
+      version: "1.0.0"
+      required: true
+    - agentId: "urn:agent:genesis:update_episode_agent:1"
+      version: "1.0.0"
+      required: true
+    - agentId: "urn:agent:genesis:attach_document_agent:1"
+      version: "1.0.0"
+      required: true
+
+# Expected outputs
+outputs:
+  - "orchestration_summary"
+  - "step_results"
+  - "overall_status"
+  - "recommendations"
+
+# KPIs
+kpis:
+  - name: "Eligibility Match Rate"
+    category: "Quality"
+    valueType: "percentage"
+    target: 98
+    unit: "%"
+    description: "Eligibility Match Rate for pharmacy-admin"
+  - name: "Q-set Retrieval Accuracy"
+    category: "Quality"
+    valueType: "percentage"
+    target: 95
+    unit: "%"
+    description: "Q-set Retrieval Accuracy for pharmacy-admin"
+  - name: "Auto-Adjudication Rate"
+    category: "Efficiency"
+    valueType: "percentage"
+    target: 40
+    unit: "%"
+    description: "Auto-Adjudication Rate for pharmacy-admin"
+  - name: "Timely Case Closure Rate"
+    category: "Efficiency"
+    valueType: "percentage"
+    target: 98
+    unit: "%"
+    description: "Timely Case Closure Rate for pharmacy-admin"
+  - name: "Audit Readiness"
+    category: "Compliance"
+    valueType: "percentage"
+    target: 100
+    unit: "%"
+    description: "Audit Readiness for pharmacy-admin"

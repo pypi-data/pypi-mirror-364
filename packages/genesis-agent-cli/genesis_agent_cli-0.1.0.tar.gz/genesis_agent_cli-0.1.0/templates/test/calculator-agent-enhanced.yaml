@@ -1,0 +1,57 @@
+id: calc-agent-001
+name: Calculator Agent
+fullyQualifiedName: test.calculator-agent
+description: A simple math agent with calculator tool
+domain: Testing
+version: 1.0.0
+agentOwner: test-user
+agentOwnerDisplayName: Test User
+email: test@example.com
+kind: Single Agent
+agentGoal: Solve math problems using calculator
+targetUser: both
+valueGeneration: ProcessAutomation
+interactionMode: MultiTurnConversation
+runMode: RealTime
+agencyLevel: StaticWorkflow
+tags:
+- math
+- calculator
+- test
+components:
+- id: user-input
+  type: genesis:chat_input
+  name: User Question
+  description: Math question from user
+  provides:
+  - in: math-agent
+    useAs: input
+    description: Send question to agent
+- id: calculator
+  type: genesis:calculator
+  name: Calculator Tool
+  description: Basic math calculator
+  provides:
+  - in: math-agent
+    useAs: tool
+    description: Provide calculator to agent
+- id: math-agent
+  type: genesis:agent
+  name: Math Solver Agent
+  description: Agent that solves math problems
+  config:
+    system_message: 'You are a helpful math assistant. Always use the calculator tool for calculations.
+
+      Show your work step by step and explain your reasoning.
+
+      '
+    temperature: 0.1
+    max_tokens: 1000
+  provides:
+  - in: result-output
+    useAs: input
+    description: Send solution to output
+- id: result-output
+  type: genesis:chat_output
+  name: Solution Output
+  description: Display the calculated result

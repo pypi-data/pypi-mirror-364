@@ -1,0 +1,12 @@
+{
+  "agent_name": "Advanced Calculator Assistant",
+  "agent_display_name": "Math Helper",
+  "agent_goal": "Provide accurate mathematical calculations and explanations",
+  "owner_email": "user@example.com",
+  "owner_name": "Example User",
+  "user_name": "User",
+  "session_id": "session-123",
+  "system_prompt_template": "You are an advanced mathematical assistant with expertise in calculations",
+  "temperature": 0.1,
+  "max_tokens": 2000
+}

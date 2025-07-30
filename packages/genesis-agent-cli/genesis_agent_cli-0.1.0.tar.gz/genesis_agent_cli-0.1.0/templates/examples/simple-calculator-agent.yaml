@@ -1,0 +1,83 @@
+name: Simple Calculator Agent
+description: A basic agent that can perform math calculations
+version: 1.0.0
+id: simple-calc-agent
+fullyQualifiedName: examples.simple-calculator-agent
+domain: Examples
+agentOwner: user
+agentOwnerDisplayName: User
+email: user@example.com
+kind: Single Agent
+agentGoal: Perform mathematical calculations
+targetUser: both
+valueGeneration: ProcessAutomation
+interactionMode: MultiTurnConversation
+runMode: RealTime
+agencyLevel: StaticWorkflow
+components:
+- id: user-question
+  type: genesis:chat_input
+  name: Math Question
+  description: Enter your math problem or calculation
+  provides:
+  - in: calculator-agent
+    useAs: input
+    description: Send question to agent
+- id: calculator-tool
+  type: genesis:calculator
+  name: Calculator
+  description: Tool for mathematical calculations
+  provides:
+  - in: calculator-agent
+    useAs: tool
+    description: Provide calculator as a tool to the agent
+- id: calculator-agent-prompt
+  name: Agent Instructions
+  kind: Prompt
+  type: genesis:prompt_template
+  description: Prompt template for agent instructions
+  config:
+    saved_prompt: agent_prompt_v1
+    template: 'You are a helpful math assistant with access to a calculator tool.
+
+
+      When the user asks you to perform calculations:
+
+      1. Use the calculator tool for any arithmetic operations
+
+      2. Show your work step by step
+
+      3. Explain what you''re calculating and why
+
+      4. Present the final answer clearly
+
+
+      The calculator can handle expressions like:
+
+      - Basic arithmetic: 2+2, 10-5, 3*4, 20/5
+
+      - Complex expressions: 4*4*(33/22)+12-20
+
+      - Powers: 2**3 (2 to the power of 3)
+
+
+      Always use the calculator for accuracy, even for simple calculations.'
+  provides:
+  - useAs: system_prompt
+    in: calculator-agent
+    description: System prompt for the agent
+- id: calculator-agent
+  type: genesis:agent
+  name: Math Assistant
+  description: Agent that helps with mathematical calculations
+  config:
+    temperature: 0.1
+    max_tokens: 1000
+  provides:
+  - in: answer-output
+    useAs: input
+    description: Send response to output
+- id: answer-output
+  type: genesis:chat_output
+  name: Answer
+  description: Shows the calculated result and explanation

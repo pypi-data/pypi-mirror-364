@@ -1,0 +1,203 @@
+id: urn:agent:genesis:pa_workflow:1
+name: Prior Authorization Workflow
+fullyQualifiedName: genesis.autonomize.ai.pa_workflow
+description: End-to-end prior authorization processing workflow
+domain: autonomize.ai
+subDomain: prior-authorization
+version: 1.0.0
+environment: production
+agentOwner: pa-workflow@autonomize.ai
+agentOwnerDisplayName: PA Workflow Team
+email: pa-workflow@autonomize.ai
+status: ACTIVE
+tags:
+- UM
+- prior-authorization
+- workflow
+- orchestration
+- healthcare
+- multi-step
+kind: Multi Agent
+agentGoal: Process prior authorization requests through document extraction, clinical validation, and authorization decision
+targetUser: internal
+valueGeneration: ProcessAutomation
+interactionMode: RequestResponse
+runMode: RealTime
+agencyLevel: AdaptiveWorkflow
+toolsUse: false
+learningCapability: None
+sampleInput:
+  document_url: https://storage.example.com/pa-requests/fax_12345.pdf
+  member_id: M123456789
+  request_type: initial
+  urgency: routine
+orchestration:
+  type: sequential
+  error_handling: continue_on_error
+  timeout: 300
+  flow:
+  - step: document_processing
+    agent: document-processor
+    description: Extract information from PA request documents
+    inputs:
+      document_url: ${input.document_url}
+    outputs:
+    - extracted_content
+  - step: medication_extraction
+    agent: medication-extractor
+    description: Extract medications from clinical text
+    inputs:
+      clinical_text: ${document_processing.extracted_content}
+    outputs:
+    - medications
+  - step: clinical_validation
+    agent: clinical-validator
+    description: Validate clinical information
+    inputs:
+      clinical_data: ${document_processing.extracted_content}
+      medications: ${medication_extraction.medications}
+    outputs:
+    - validation_status
+    - clinical_rationale
+  - step: authorization_decision
+    agent: pa-processor
+    description: Make authorization decision
+    inputs:
+      clinical_data: ${document_processing.extracted_content}
+      medications: ${medication_extraction.medications}
+      validation: ${clinical_validation.validation_status}
+    outputs:
+    - decision
+    - auth_number
+components:
+- id: workflow-input
+  name: PA Request Input
+  kind: Data
+  type: genesis:chat_input
+  description: Prior authorization request with document URL
+  provides:
+  - useAs: input
+    in: coordinator
+    description: Initial workflow input
+- id: coordinator
+  name: Prior Auth Workflow Coordinator
+  kind: Agent
+  type: genesis:sequential_crew
+  description: Coordinates the execution of multiple agents
+  config:
+    workflow_name: prior_auth_workflow
+    agents:
+    - document-processor
+    - medication-extractor
+    - clinical-validator
+    - pa-processor
+    error_handling: continue
+    collect_outputs: true
+  provides:
+  - useAs: input
+    in: workflow-output
+    description: Aggregated workflow results
+- id: document-processor
+  name: Document Processor
+  kind: Agent
+  type: $ref:document_processor
+  description: Extract text from PA documents
+  provides:
+  - useAs: input
+    in: medication-extractor
+    description: Extracted text for medication extraction
+  - useAs: input
+    in: clinical-validator
+    description: Clinical content for validation
+  asTools: false
+- id: medication-extractor
+  name: Medication Extractor
+  kind: Agent
+  type: $ref:medication_extractor
+  description: Extract medications from clinical text
+  provides:
+  - useAs: input
+    in: clinical-validator
+    description: Medications for validation
+  - useAs: input
+    in: pa-processor
+    description: Medications for PA decision
+  asTools: false
+- id: clinical-validator
+  name: Clinical Validator
+  kind: Agent
+  type: $ref:clinical_validator
+  description: Validate clinical appropriateness
+  provides:
+  - useAs: input
+    in: pa-processor
+    description: Validation results for PA decision
+  asTools: false
+- id: pa-processor
+  name: PA Decision Processor
+  kind: Agent
+  type: genesis:agent
+  description: Make final PA decision
+  config:
+    system_prompt: 'You are the final decision maker for prior authorization requests.
+
+
+      Based on the provided information:
+
+      1. Review extracted clinical documentation
+
+      2. Consider medication requirements
+
+      3. Evaluate clinical validation results
+
+      4. Make authorization decision
+
+
+      Decision options:
+
+      - APPROVED: All criteria met
+
+      - DENIED: Does not meet medical necessity
+
+      - PENDING: Additional information needed
+
+
+      Always provide:
+
+      - Clear decision
+
+      - Detailed rationale
+
+      - Authorization number if approved
+
+      - Next steps if pending
+
+      '
+    temperature: 0.1
+  provides:
+  - useAs: input
+    in: workflow-output
+    description: Final PA decision
+- id: workflow-output
+  name: PA Decision Output
+  kind: Data
+  type: genesis:chat_output
+  description: Display final PA decision and details
+  config:
+    should_store_message: true
+reusability:
+  dependencies:
+  - agentId: urn:agent:genesis:document_processor:1
+    version: 2.0.0
+    required: true
+  - agentId: urn:agent:genesis:medication_extractor:1
+    version: 1.0.0
+    required: true
+  - agentId: urn:agent:genesis:clinical_validator:1
+    version: 2.0.0
+    required: true
+outputs:
+- authorization_decision
+- authorization_number
+- clinical_rationale
+- next_steps

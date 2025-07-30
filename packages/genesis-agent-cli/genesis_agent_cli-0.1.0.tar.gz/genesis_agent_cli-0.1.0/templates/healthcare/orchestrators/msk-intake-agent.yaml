@@ -1,0 +1,175 @@
+id: "urn:agent:genesis:msk_intake:1"
+name: "MSK Intake Agent"
+fullyQualifiedName: "genesis.autonomize.ai.msk_intake"
+description: "Process musculoskeletal prior authorization requests from document intake through classification and extraction"
+domain: "autonomize.ai"
+subDomain: "msk-intake"
+version: "1.0.0"
+environment: "production"
+agentOwner: "msk-intake@autonomize.ai"
+agentOwnerDisplayName: "MSK Intake Agent Team"
+email: "msk-intake@autonomize.ai"
+status: "ACTIVE"
+
+# Tags
+tags:
+  - "UM"
+  - "orchestrator"
+  - "msk-intake"
+  - "workflow"
+  - "healthcare"
+  - "prior-authorization"
+
+# Multi-agent configuration
+kind: "Multi Agent"
+agentGoal: "Process MSK prior authorization faxes by converting raw documents into structured formats using OCR, classification, and data extraction for downstream processing"
+targetUser: "internal"
+valueGeneration: "ProcessAutomation"
+interactionMode: "RequestResponse"
+runMode: "RealTime"
+agencyLevel: "AdaptiveWorkflow"
+toolsUse: false
+learningCapability: "None"
+
+# Orchestration configuration
+orchestration:
+  type: "sequential"
+  error_handling: "continue_on_error"
+  timeout: 300
+  flow:
+    - step: "document_processor_step"
+      agent: "document-processor"
+      description: "Execute document-processor"
+      inputs:
+        data: "${input.data}"
+      outputs:
+        - result
+    - step: "classification_agent_step"
+      agent: "classification-agent"
+      description: "Execute classification-agent"
+      inputs:
+        data: "${previous_step_0.output}"
+      outputs:
+        - result
+    - step: "extraction_agent_step"
+      agent: "extraction-agent"
+      description: "Execute extraction-agent"
+      inputs:
+        data: "${previous_step_1.output}"
+      outputs:
+        - result
+
+# Sample input example
+sampleInput:
+  document_url: "https://storage.example.com/msk/fax_34567.pdf"
+  source: "fax"
+  received_date: "2024-03-14T09:15:00Z"
+
+# Components
+components:
+  # Workflow Input
+  - id: "workflow-input"
+    name: "Orchestrator Input"
+    kind: "Data"
+    type: "genesis:chat_input"
+    description: "Input for orchestration workflow"
+    provides:
+      - useAs: "input"
+        in: "coordinator"
+        description: "Initial workflow input"
+
+  # Coordinator Agent
+  - id: "coordinator"
+    name: "MSK Intake Agent Coordinator"
+    kind: "Agent"
+    type: "genesis:sequential_crew"
+    description: "Coordinates the execution of multiple agents"
+    config:
+      workflow_name: "msk_intake"
+      agents: ['document-processor', 'classification-agent', 'extraction-agent']
+      error_handling: "continue"
+      collect_outputs: true
+    provides:
+      - useAs: "input"
+        in: "workflow-output"
+        description: "Aggregated workflow results"
+
+  # Document Processor Reference
+  - id: "document_processor"
+    name: "Document Processor"
+    kind: "Agent"
+    type: "$ref:document_processor"
+    description: "Reference to document-processor"
+    asTools: false
+
+  # Classification Agent Reference
+  - id: "classification_agent"
+    name: "Classification Agent"
+    kind: "Agent"
+    type: "$ref:classification_agent"
+    description: "Reference to classification-agent"
+    asTools: false
+
+  # Extraction Agent Reference
+  - id: "extraction_agent"
+    name: "Extraction Agent"
+    kind: "Agent"
+    type: "$ref:extraction_agent"
+    description: "Reference to extraction-agent"
+    asTools: false
+
+  # Workflow Output
+  - id: "workflow-output"
+    name: "Orchestration Results"
+    kind: "Data"
+    type: "genesis:chat_output"
+    description: "Display orchestration results"
+    config:
+      should_store_message: true
+
+# Dependencies on other agents
+reusability:
+  dependencies:
+    - agentId: "urn:agent:genesis:document_processor:1"
+      version: "1.0.0"
+      required: true
+    - agentId: "urn:agent:genesis:classification_agent:1"
+      version: "1.0.0"
+      required: true
+    - agentId: "urn:agent:genesis:extraction_agent:1"
+      version: "1.0.0"
+      required: true
+
+# Expected outputs
+outputs:
+  - "orchestration_summary"
+  - "step_results"
+  - "overall_status"
+  - "recommendations"
+
+# KPIs
+kpis:
+  - name: "Fax Processing Time"
+    category: "Performance"
+    valueType: "numeric"
+    target: 8000
+    unit: "ms"
+    description: "Fax Processing Time for msk-intake"
+  - name: "Ingestion Success Rate"
+    category: "Quality"
+    valueType: "percentage"
+    target: 95
+    unit: "%"
+    description: "Ingestion Success Rate for msk-intake"
+  - name: "Classification Accuracy"
+    category: "Quality"
+    valueType: "percentage"
+    target: 95
+    unit: "%"
+    description: "Classification Accuracy for msk-intake"
+  - name: "Field Extraction Accuracy"
+    category: "Quality"
+    valueType: "percentage"
+    target: 93
+    unit: "%"
+    description: "Field Extraction Accuracy for msk-intake"
