@@ -1,0 +1,796 @@
+{
+  "items": [
+    {
+      "name": "adr_demo_container",
+      "site": "adr_demo_container",
+      "client": "adr_demo",
+      "hw_type": "virtual",
+      "software_type": "volttron 8.2",
+      "primary_mac": "None",
+      "vpn_ip": null,
+      "device_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0NzMzNDIyNiwianRpIjoiZmI0ZDAwMTUtZmI5Yi00YWQyLTlhOGMtZmI0OTAxMTA2MWI4IiwidHlwZSI6ImFjY2VzcyIsImlkZW50aXR5IjoiYWRyX2RlbW9fY29udGFpbmVyIiwibmJmIjoxNzQ3MzM0MjI2LCJleHAiOjE3Nzg4NzAyMjZ9.J4TXhfC5nj0-_1GflB15e_5r3eIGYhpivZv9gcQAUAo",
+      "interfaces": {},
+      "deploy_config": {
+        "last_pull": "2025-06-08T13:34:25.381435",
+        "last_scan": "2025-05-16T12:37:57.094925",
+        "last_deploy": "2025-05-16T12:34:57.091210",
+        "cloud_agents": {},
+        "driver_count": {
+          "value": 43,
+          "last_updated": "2025-06-08T13:34:26.761131"
+        },
+        "system_state": "",
+        "trigger_scan": false,
+        "volttron_rev": "02f403777",
+        "trigger_deploy": true,
+        "historian_state": {
+          "state": "GOOD",
+          "last_updated": "2025-06-08T13:34:26.761131"
+        },
+        "platform_agents": {
+          "platform.driver": {
+            "uuid": "6ad0e678-a5a1-404a-b1b4-7df6ccdc4321",
+            "health": true,
+            "version": "4.5.3",
+            "identity": "platform.driver",
+            "bad_start": "2025-06-05T15:00:04.642543",
+            "last_restarted": "2025-06-05T15:00:04.642545"
+          },
+          "platform.ace-agent": {
+            "uuid": "8509ad6d-2909-4a9c-92ea-31c4c06cbdff",
+            "health": true,
+            "version": "1.7.0",
+            "identity": "platform.ace-agent",
+            "bad_start": "2025-06-05T15:00:04.643769",
+            "last_restarted": "2025-06-05T15:00:04.643772"
+          },
+          "platform.historian": {
+            "uuid": "81e23f4b-871b-4b2d-b633-dd57fa228ab2",
+            "health": true,
+            "version": "5.1",
+            "identity": "platform.historian",
+            "bad_start": "2025-06-05T15:00:04.644962",
+            "last_restarted": "2025-06-05T15:00:04.644964"
+          },
+          "platform.bacnet_proxy": {
+            "uuid": "ba3728b7-c6d1-4d92-98db-62086d21a59e",
+            "health": true,
+            "version": "0.6.0",
+            "identity": "platform.bacnet_proxy",
+            "bad_start": "2025-06-05T15:00:04.641316",
+            "last_restarted": "2025-06-05T15:00:04.641321"
+          }
+        },
+        "volttron_version": "8.2",
+        "enable_collection": true,
+        "last_model_update": "2025-06-08T13:34:26.761131",
+        "ace_config_version": "1.7.0",
+        "vtron_forward_historian_pubkey": ""
+      },
+      "device_token_expires": "2026-05-15 18:37:06.140234",
+      "archived": false,
+      "updated": "2025-06-08T13:34:27.535760"
+    },
+    {
+      "name": "cristian_house_0001_test",
+      "site": "cristian_house_test",
+      "client": "aceiot",
+      "hw_type": null,
+      "software_type": "volttron 8.2",
+      "primary_mac": "18-c0-4d-84-ca-5b",
+      "vpn_ip": "100.77.130.15",
+      "device_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTczMDczOTc1OCwianRpIjoiMmI2OTI2OTYtMWY0Ny00M2I3LWI3ZWMtNWViZWM5MTJkZThhIiwidHlwZSI6ImFjY2VzcyIsImlkZW50aXR5IjoiY3Jpc3RpYW5faG91c2VfMDAwMV90ZXN0IiwibmJmIjoxNzMwNzM5NzU4LCJleHAiOjE3NjIyNzU3NTh9.lB9d8naBbf9rH68iGGO5JN4M1qYh1Rlg0D7JCJG9CCc",
+      "interfaces": {
+        "netplans": {
+          "/etc/netplan/00-installer-config.yaml": {
+            "network": {
+              "version": 2,
+              "renderer": "networkd",
+              "ethernets": {
+                "eth0": {
+                  "dhcp4": true
+                },
+                "enp1s0": {
+                  "dhcp4": true,
+                  "addresses": [
+                    "192.168.10.1/24",
+                    "192.168.1.83/24"
+                  ]
+                },
+                "enp2s0": {
+                  "dhcp4": true,
+                  "addresses": [
+                    "192.168.9.1/24"
+                  ]
+                },
+                "enp3s0": {
+                  "dhcp4": true,
+                  "addresses": [
+                    "192.168.7.1/24"
+                  ]
+                },
+                "enp4s0": {
+                  "dhcp4": true,
+                  "addresses": [
+                    "192.168.8.1/24"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "discovered_interfaces": {
+          "enp1s0": {
+            "ip_addr": [
+              {
+                "addr": "192.168.10.1",
+                "netmask": "255.255.255.0",
+                "broadcast": "192.168.10.255"
+              },
+              {
+                "addr": "192.168.1.83",
+                "netmask": "255.255.255.0",
+                "broadcast": "192.168.1.255"
+              },
+              {
+                "addr": "192.168.1.82",
+                "netmask": "255.255.255.0",
+                "broadcast": "192.168.1.255"
+              }
+            ],
+            "mac_addr": [
+              {
+                "addr": "18:c0:4d:84:ca:5b",
+                "broadcast": "ff:ff:ff:ff:ff:ff"
+              }
+            ]
+          },
+          "enp2s0": {
+            "mac_addr": [
+              {
+                "addr": "18:c0:4d:84:ca:5c",
+                "broadcast": "ff:ff:ff:ff:ff:ff"
+              }
+            ]
+          },
+          "tailscale0": {
+            "ip_addr": [
+              {
+                "addr": "100.77.130.15",
+                "peer": "100.77.130.15",
+                "netmask": "255.255.255.255"
+              }
+            ]
+          }
+        }
+      },
+      "deploy_config": {
+        "last_pull": "2025-07-24T20:04:13.454956",
+        "last_scan": "2025-05-16T21:28:55.776008",
+        "hawke_state": {
+          "state": "started",
+          "hawke.listener": {
+            "status": "GOOD",
+            "last_updated": "2024-08-23T15:58:32.236700"
+          }
+        },
+        "last_deploy": "2025-05-28T19:29:57.459800",
+        "start_hawke": false,
+        "cloud_agents": {
+          "hawke.test": {
+            "error": "",
+            "status": "timeout",
+            "triggers": {
+              "stop_agent": false,
+              "start_agent": false,
+              "restart_agent": false
+            },
+            "last_updated": "2025-07-24T20:04:18.581734",
+            "base64_config_hash": "8sobtsfpB9Btr+Roflefznazfk6Tt2BQItpS5szCb9I=",
+            "volttron_agent_package_id": "06849fbc-de88-71a9-8000-3b47a4c29954"
+          },
+          "hawke.test1": {
+            "error": "",
+            "status": "timeout",
+            "triggers": {
+              "stop_agent": false,
+              "start_agent": false,
+              "restart_agent": false
+            },
+            "last_updated": "2025-07-24T20:04:18.582038",
+            "base64_config_hash": null,
+            "volttron_agent_package_id": "06646bb0-54cd-71ff-8000-66dbd65a3a52"
+          },
+          "cloud_listener": {
+            "error": "",
+            "status": "GOOD",
+            "triggers": {
+              "stop_agent": false,
+              "start_agent": false,
+              "restart_agent": false
+            },
+            "last_updated": "2025-07-24T20:04:14.575623",
+            "base64_config_hash": "2maYwLSRT5XWgBH2TOuEqsAkYFa3OKrEKcMxfuUmePg=",
+            "volttron_agent_package_id": "0660709e-586f-712a-8000-33943b4734a8"
+          },
+          "platform.madison_dr": {
+            "error": "",
+            "status": "timeout",
+            "triggers": {
+              "stop_agent": false,
+              "start_agent": false,
+              "restart_agent": false
+            },
+            "last_updated": "2025-07-24T20:04:18.581463",
+            "volttron_agent_package_id": "0684c37e-5422-7158-8000-39f32d05b748"
+          }
+        },
+        "driver_count": {
+          "value": 1,
+          "last_updated": "2025-07-24T20:04:18.582503"
+        },
+        "trigger_scan": false,
+        "volttron_rev": "f89e513ea",
+        "agent_actions": [],
+        "deploy_bacnet": true,
+        "shutdown_hawke": false,
+        "trigger_deploy": false,
+        "critical_agents": [
+          "platform.packet_capture",
+          "platform.load_modeler",
+          "platform.load_simulator"
+        ],
+        "historian_state": {
+          "state": "GOOD",
+          "last_updated": "2025-07-24T20:04:18.582503"
+        },
+        "platform_agents": {
+          "hawke.test1": {
+            "uuid": "97faa541-700b-4bdf-9dba-eda801b6e7ba",
+            "health": true,
+            "version": "1.0",
+            "identity": "hawke.test1",
+            "bad_start": "2025-07-21T20:35:18.671627",
+            "last_restarted": "2025-07-21T20:35:18.671645"
+          },
+          "platform.driver": {
+            "uuid": "6b6acbb7-97c9-4464-b5ea-4cba96bfad02",
+            "health": true,
+            "version": "4.5.2",
+            "identity": "platform.driver",
+            "bad_start": "2025-07-21T20:35:18.665394",
+            "last_restarted": "2025-07-21T20:35:18.665409"
+          },
+          "platform.ace-agent": {
+            "uuid": "587ec432-5e48-4a20-a9fb-98b8720fb862",
+            "health": true,
+            "version": "1.7.2",
+            "identity": "platform.ace-agent",
+            "bad_start": "2025-07-21T20:35:18.668429",
+            "last_restarted": "2025-07-21T20:35:18.668445"
+          },
+          "platform.historian": {
+            "uuid": "0862db9e-e3bb-4d49-87ef-a513a61f2c63",
+            "health": true,
+            "version": "5.1",
+            "identity": "platform.historian",
+            "bad_start": "2025-07-23T18:36:02.681365",
+            "last_restarted": "2025-07-23T18:36:02.498602"
+          },
+          "platform.bacnet_proxy": {
+            "uuid": "e70f69d1-c485-447b-9902-cd2ffd146529",
+            "health": true,
+            "version": "0.6.0",
+            "identity": "platform.bacnet_proxy",
+            "bad_start": "2025-07-21T20:35:18.659210",
+            "last_restarted": "2025-07-21T20:35:18.659225"
+          },
+          "platform.racer_optimization": {
+            "uuid": "e8f1e223-b986-4b79-a985-9af2e233654e",
+            "health": true,
+            "version": "0.2.0",
+            "identity": "platform.racer_optimization",
+            "bad_start": "2025-07-21T20:35:18.674700",
+            "last_restarted": "2025-07-21T20:35:18.674714"
+          }
+        },
+        "volttron_version": "8.2",
+        "enable_collection": true,
+        "last_model_update": "2025-07-24T20:04:18.582503",
+        "ace_config_version": "1.7.2",
+        "bacnet_scan_address": "192.168.1.83/24",
+        "bacnet_proxy_address": "192.168.1.82/24",
+        "system_state_updated": "2025-07-04T04:00:20.575809",
+        "bacnet_scan_object_id": 708113,
+        "bacnet_proxy_object_id": 708112,
+        "hawke_shutdown_timeout": 10,
+        "hawke_agent_action_results": {
+          "hawke.listener2": "successfully called stop_agent - 2024-06-05T19:03:13.483742",
+          "hawke.listener3": "successfully called stop_agent - 2024-06-10T19:08:06.213519",
+          "hawke_test_agent": "agent is already running - 2024-06-10T19:25:06.154055",
+          "hawke.release_test": "successfully called stop_agent - 2024-06-07T20:26:21.773907",
+          "hawke.release_test-1": "successfully called stop_agent - 2024-06-05T19:03:13.663707",
+          "hawke.release_test-2": "ERROR: unable to handle hawke agent actions"
+        },
+        "vtron_forward_historian_pubkey": "6tkpAVvn8_xGGbG0OnvybanlDGCPs_8GUg18xezJ9Tk"
+      },
+      "device_token_expires": "2025-11-04 17:02:38.149735",
+      "archived": false,
+      "updated": "2025-07-24T20:04:19.136390"
+    },
+    {
+      "name": "cristian_house_0002_nanopi",
+      "site": "cristian_house_test",
+      "client": "aceiot",
+      "hw_type": null,
+      "software_type": null,
+      "primary_mac": "04-91-62-f0-6a-28",
+      "vpn_ip": "100.75.8.102",
+      "device_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0NDk0MDI5OCwianRpIjoiYTE2NmZkNTgtYzAzNy00NTVmLWExMjQtYzYzOTJjY2ZkNDQxIiwidHlwZSI6ImFjY2VzcyIsImlkZW50aXR5IjoiY3Jpc3RpYW5faG91c2VfMDAwMl9uYW5vcGkiLCJuYmYiOjE3NDQ5NDAyOTgsImV4cCI6MTc3NjQ3NjI5OH0.iyFDsbddADOXYrsh_7IacOAcHP4uzqq-kNiSvpYPOnw",
+      "interfaces": {
+        "netplans": {
+          "/etc/netplan/config.yaml": {
+            "network": {
+              "ethernets": {
+                "eth1": {
+                  "dhcp4": true,
+                  "nameservers": {
+                    "addresses": [
+                      "1.1.1.1",
+                      "8.8.8.8",
+                      "8.8.4.4"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "/etc/netplan/armbian-default.yaml": {
+            "network": {
+              "version": 2,
+              "renderer": "NetworkManager",
+              "ethernets": {
+                "eth1": {
+                  "dhcp4": true,
+                  "addresses": [
+                    "192.168.8.1/24",
+                    "192.168.1.125/24",
+                    "192.168.100.99/24"
+                  ]
+                },
+                "eth2": {
+                  "dhcp4": true,
+                  "addresses": [
+                    "192.168.6.1/24"
+                  ]
+                },
+                "enp1s0": {
+                  "dhcp4": true,
+                  "addresses": [
+                    "192.168.10.1/24"
+                  ]
+                },
+                "enp2s0": {
+                  "dhcp4": true,
+                  "addresses": [
+                    "192.168.9.1/24"
+                  ]
+                },
+                "enp3s0": {
+                  "dhcp4": true,
+                  "addresses": [
+                    "192.168.7.1/24"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "discovered_interfaces": {
+          "eth1": {
+            "ip_addr": [
+              {
+                "addr": "192.168.8.1",
+                "netmask": "255.255.255.0",
+                "broadcast": "192.168.8.255"
+              },
+              {
+                "addr": "192.168.1.125",
+                "netmask": "255.255.255.0",
+                "broadcast": "192.168.1.255"
+              },
+              {
+                "addr": "192.168.100.99",
+                "netmask": "255.255.255.0",
+                "broadcast": "192.168.100.255"
+              },
+              {
+                "addr": "192.168.1.241",
+                "netmask": "255.255.255.0",
+                "broadcast": "192.168.1.255"
+              }
+            ],
+            "mac_addr": [
+              {
+                "addr": "04:91:62:f0:6a:28",
+                "broadcast": "ff:ff:ff:ff:ff:ff"
+              }
+            ]
+          },
+          "enp1s0": {
+            "mac_addr": [
+              {
+                "addr": "8a:ab:00:08:45:d4",
+                "broadcast": "ff:ff:ff:ff:ff:ff"
+              }
+            ]
+          },
+          "tailscale0": {
+            "ip_addr": [
+              {
+                "addr": "100.75.8.102",
+                "peer": "100.75.8.102",
+                "netmask": "255.255.255.255"
+              }
+            ]
+          }
+        }
+      },
+      "deploy_config": {
+        "last_pull": "2025-07-11T14:55:03.358002",
+        "last_scan": "2024-05-17T21:02:41.668505",
+        "hawke_state": {
+          "state": "started",
+          "hawke.listener": {
+            "status": "GOOD",
+            "last_updated": "2024-09-11T19:08:02.474716"
+          }
+        },
+        "start_hawke": false,
+        "cloud_agents": {},
+        "driver_count": {
+          "value": 1,
+          "last_updated": "2025-07-11T14:55:04.508698"
+        },
+        "trigger_scan": false,
+        "volttron_rev": "31a1f33f8",
+        "agent_actions": [],
+        "deploy_bacnet": true,
+        "shutdown_hawke": false,
+        "historian_state": {
+          "state": "GOOD",
+          "last_updated": "2025-07-11T14:55:04.508698"
+        },
+        "platform_agents": {
+          "hawke.listener": {
+            "uuid": "370c0e3b-403e-4169-bf88-84d0c1402e32",
+            "health": true,
+            "version": "3.3",
+            "identity": "hawke.listener",
+            "bad_start": "2025-07-10T22:11:48.192961",
+            "last_restarted": "2025-07-10T22:11:48.192994"
+          },
+          "platform.driver": {
+            "uuid": "9a5428d8-4bc6-4780-89ac-603aee4f1bac",
+            "health": true,
+            "version": "4.4.3b0",
+            "identity": "platform.driver",
+            "bad_start": "2025-07-10T22:11:48.200651",
+            "last_restarted": "2025-07-10T22:11:48.200686"
+          },
+          "platform.listener": {
+            "uuid": "072173df-b1d0-4838-8d99-e3d6510357fa",
+            "health": true,
+            "version": "3.3",
+            "identity": "platform.listener",
+            "bad_start": "2025-07-10T22:11:48.250696",
+            "last_restarted": "2025-07-10T22:11:48.250729"
+          },
+          "platform.ace-agent": {
+            "uuid": "36e20ab2-65d3-4a41-9786-ca33401914a5",
+            "health": true,
+            "version": "1.7.2",
+            "identity": "platform.ace-agent",
+            "bad_start": "2025-07-10T22:11:48.238589",
+            "last_restarted": "2025-07-10T22:11:48.238622"
+          },
+          "platform.historian": {
+            "uuid": "e24a02fc-f7e9-40b0-9904-b154abba0677",
+            "health": true,
+            "version": "5.1",
+            "identity": "platform.historian",
+            "bad_start": "2025-07-10T22:11:48.259413",
+            "last_restarted": "2025-07-10T22:11:48.259505"
+          },
+          "platform.bacnet_proxy": {
+            "uuid": "65f8c79e-eaeb-4acc-bb39-2a438e5c5387",
+            "health": true,
+            "version": "0.6.0",
+            "identity": "platform.bacnet_proxy",
+            "bad_start": "2025-07-10T22:11:48.230976",
+            "last_restarted": "2025-07-10T22:11:48.231009"
+          },
+          "platform.cojourn-agent": {
+            "uuid": "925ccc12-d63f-40fa-9107-cb0e4fabeef9",
+            "health": true,
+            "version": "0.9.1",
+            "identity": "platform.cojourn-agent",
+            "bad_start": "2025-07-10T22:11:48.208431",
+            "last_restarted": "2025-07-10T22:11:48.208464"
+          },
+          "platform.packet_capture": {
+            "uuid": "6c0a6e4e-658e-44ee-abed-354db3cb17ac",
+            "health": true,
+            "version": "1.7.1",
+            "identity": "platform.packet_capture",
+            "bad_start": "2025-07-10T22:11:48.185550",
+            "last_restarted": "2025-07-10T22:11:48.185585"
+          },
+          "platform.serial_capture": {
+            "uuid": "6fe21aec-4b2f-4b8f-a6c1-7ceb20a75e33",
+            "health": true,
+            "version": "0.1",
+            "identity": "platform.serial_capture",
+            "bad_start": "2025-07-10T22:11:48.223394",
+            "last_restarted": "2025-07-10T22:11:48.223471"
+          }
+        },
+        "volttron_version": "8.2",
+        "enable_collection": true,
+        "last_model_update": "2025-07-11T14:55:04.508698",
+        "ace_config_version": "1.7.2",
+        "system_state_updated": "2025-03-14T21:17:15.970967",
+        "hawke_agent_action_results": {},
+        "vtron_forward_historian_pubkey": "jpX44GpL31i7Ki-dz9PbC1FLBrUDiNBfq1bjehyuHAI"
+      },
+      "device_token_expires": "2026-04-18 01:38:18.318346",
+      "archived": false,
+      "updated": "2025-07-11T14:55:05.283389"
+    },
+    {
+      "name": "cristian_house_0004_24_04_test",
+      "site": "cristian_house_test",
+      "client": "aceiot",
+      "hw_type": null,
+      "software_type": null,
+      "primary_mac": "d8-5e-d3-e3-3d-fe",
+      "vpn_ip": "100.108.220.61",
+      "device_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTczNjQ0NTI5OCwianRpIjoiYzY4ZTk2M2MtMTNiMS00ODJiLTk5YTgtZGI2MzgyMmYyNTMxIiwidHlwZSI6ImFjY2VzcyIsImlkZW50aXR5IjoiY3Jpc3RpYW5faG91c2VfMDAwNF8yNF8wNF90ZXN0IiwibmJmIjoxNzM2NDQ1Mjk4LCJleHAiOjE3Njc5ODEyOTh9.xs5ha-2EKtqEqI6sfLeJakN1FJ6fbU_9aMb05F4BM1Q",
+      "interfaces": {
+        "netplans": {
+          "/etc/netplan/50-cloud-init.yaml": {
+            "network": {
+              "version": 2,
+              "renderer": "networkd",
+              "ethernets": {
+                "eth0": {
+                  "dhcp4": true
+                },
+                "enp1s0": {
+                  "dhcp4": true,
+                  "addresses": [
+                    "192.168.10.1/24"
+                  ]
+                },
+                "enp2s0": {
+                  "dhcp4": true,
+                  "addresses": [
+                    "192.168.9.1/24"
+                  ]
+                },
+                "enp3s0": {
+                  "dhcp4": true,
+                  "addresses": [
+                    "192.168.7.1/24"
+                  ]
+                },
+                "enp4s0": {
+                  "dhcp4": true,
+                  "addresses": [
+                    "192.168.8.1/24"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "discovered_interfaces": {
+          "enp1s0": {
+            "ip_addr": [
+              {
+                "addr": "192.168.10.1",
+                "netmask": "255.255.255.0",
+                "broadcast": "192.168.10.255"
+              },
+              {
+                "addr": "192.168.1.89",
+                "netmask": "255.255.255.0",
+                "broadcast": "192.168.1.255"
+              }
+            ],
+            "mac_addr": [
+              {
+                "addr": "d8:5e:d3:e3:3d:fe",
+                "broadcast": "ff:ff:ff:ff:ff:ff"
+              }
+            ]
+          },
+          "enp2s0": {
+            "mac_addr": [
+              {
+                "addr": "d8:5e:d3:e3:3d:ff",
+                "broadcast": "ff:ff:ff:ff:ff:ff"
+              }
+            ]
+          },
+          "tailscale0": {
+            "ip_addr": [
+              {
+                "addr": "100.108.220.61",
+                "peer": "100.108.220.61",
+                "netmask": "255.255.255.255"
+              }
+            ]
+          }
+        }
+      },
+      "deploy_config": {
+        "last_pull": "2025-07-24T20:04:16.053267",
+        "last_deploy": "2025-06-04T14:51:57.051203",
+        "cloud_agents": {},
+        "driver_count": {
+          "value": 6,
+          "last_updated": "2025-07-24T20:04:16.656584"
+        },
+        "volttron_rev": "0feeaa07d",
+        "deploy_bacnet": true,
+        "trigger_deploy": false,
+        "historian_state": {
+          "state": "GOOD",
+          "last_updated": "2025-07-24T20:04:16.656584"
+        },
+        "platform_agents": {
+          "platform.driver": {
+            "uuid": "770a0acf-ee63-42ed-b812-1e228aedb7cb",
+            "health": true,
+            "version": "4.5.0",
+            "identity": "platform.driver",
+            "bad_start": "2025-07-24T19:44:03.261934",
+            "last_restarted": "2025-07-24T19:44:03.091274"
+          },
+          "platform.ace-agent": {
+            "uuid": "c13cd914-7643-4837-b57b-66c22cd80e02",
+            "health": true,
+            "version": "1.7.2",
+            "identity": "platform.ace-agent",
+            "bad_start": "2025-07-24T19:13:01.012418",
+            "last_restarted": "2025-07-24T19:13:01.012429"
+          },
+          "platform.bacnet_proxy": {
+            "uuid": "7bb52b3d-8764-4e3a-b91e-7eef3bbdddb0",
+            "health": true,
+            "version": "0.6.0",
+            "identity": "platform.bacnet_proxy",
+            "bad_start": "2025-07-24T19:44:03.091236",
+            "last_restarted": "2025-07-24T19:44:03.074294"
+          },
+          "platform.racer_optimization": {
+            "uuid": "00e2a522-8926-4ea4-b38e-64f5a221785e",
+            "health": true,
+            "version": "0.2",
+            "identity": "platform.racer_optimization",
+            "bad_start": "2025-07-24T19:13:01.019812",
+            "last_restarted": "2025-07-24T19:13:01.019825"
+          },
+          "platform.bacnet_proxy_10.20.30.41": {
+            "uuid": "9779163f-1499-4b5e-b6e1-8c19288f056f",
+            "health": true,
+            "version": "0.6.0",
+            "identity": "platform.bacnet_proxy_10.20.30.41",
+            "bad_start": "2025-07-24T19:13:01.015898",
+            "last_restarted": "2025-07-24T19:13:01.015910"
+          }
+        },
+        "volttron_version": "8.2",
+        "enable_collection": true,
+        "last_model_update": "2025-07-24T20:04:16.656584",
+        "ace_config_version": "1.7.2",
+        "bacnet_scan_address": "192.168.1.133/24",
+        "bacnet_proxy_address": "192.168.1.133/24",
+        "system_state_updated": "2025-01-13T15:12:00.921407",
+        "bacnet_scan_object_id": 708112,
+        "bacnet_proxy_object_id": 708112,
+        "vtron_forward_historian_pubkey": "3sNIxaTB8eclRNh25wgQfWsO_iKgXuE3nID2oq9swFE"
+      },
+      "device_token_expires": "2026-01-09 17:54:58.421162",
+      "archived": false,
+      "updated": "2025-07-24T20:04:17.277459"
+    },
+    {
+      "name": "cristian_house_0005_central",
+      "site": "cristian_house_test",
+      "client": "aceiot",
+      "hw_type": null,
+      "software_type": null,
+      "primary_mac": "None",
+      "vpn_ip": null,
+      "device_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTczNzA0OTE5MywianRpIjoiMDNmYTgwZGItMjEzZC00MjRmLWE1YjYtOGE2Nzc0Y2QwMDA3IiwidHlwZSI6ImFjY2VzcyIsImlkZW50aXR5IjoiY3Jpc3RpYW5faG91c2VfMDAwNV9jZW50cmFsIiwibmJmIjoxNzM3MDQ5MTkzLCJleHAiOjE3Njg1ODUxOTN9.S3OwStioJmx0NgIG-YfJtFlG01_df_5Vxg55Tn7MBmo",
+      "interfaces": {},
+      "deploy_config": {
+        "last_pull": "2025-03-14T20:36:37.913785",
+        "last_deploy": "2025-03-14T19:39:21.218034",
+        "cloud_agents": {},
+        "driver_count": {
+          "value": 0,
+          "last_updated": "2025-03-14T20:36:43.611817"
+        },
+        "trigger_deploy": false,
+        "historian_state": {
+          "state": "GOOD",
+          "last_updated": "2025-03-14T20:36:43.611817"
+        },
+        "platform_agents": {
+          "platform.driver": {
+            "uuid": "6af221c8-7b93-41a5-93f5-343985760256",
+            "health": true,
+            "version": "4.4.3",
+            "identity": "platform.driver",
+            "bad_start": "2025-03-14T20:31:25.153305",
+            "last_restarted": "2025-03-14T20:31:24.979383"
+          },
+          "platform.ace_agent": {
+            "uuid": "dd98759d-9100-453d-a099-7b52fa59dbfc",
+            "health": true,
+            "version": "1.4.5",
+            "identity": "platform.ace_agent",
+            "bad_start": "2025-03-14T20:26:17.840371",
+            "last_restarted": "2025-03-14T20:26:17.840384"
+          },
+          "platform.historian": {
+            "uuid": "333b8ead-f7ff-421b-80f1-7edcc809b092",
+            "health": true,
+            "version": "5.1",
+            "identity": "platform.historian",
+            "bad_start": "2025-03-14T20:32:34.329446",
+            "last_restarted": "2025-03-14T20:32:33.973476"
+          },
+          "platform.bacnet_proxy": {
+            "uuid": "a58584c1-1e1d-4b2a-85d9-68d4958cff89",
+            "health": true,
+            "version": "0.5",
+            "identity": "platform.bacnet_proxy",
+            "bad_start": "2025-03-14T20:31:24.979352",
+            "last_restarted": "2025-03-14T20:31:24.943006"
+          },
+          "platform.sqlhistorian": {
+            "uuid": "a1a00b13-8fb2-41a8-a576-b1cf1622c04c",
+            "health": true,
+            "version": "4.0.0",
+            "identity": "platform.sqlhistorian",
+            "bad_start": "2025-03-14T20:26:17.847822",
+            "last_restarted": "2025-03-14T20:26:17.847838"
+          },
+          "platform.bacnet_proxy_10.20.30.41": {
+            "uuid": "87607a2c-71bd-4523-8943-662150220b78",
+            "health": true,
+            "version": "0.5",
+            "identity": "platform.bacnet_proxy_10.20.30.41",
+            "bad_start": "2025-03-14T20:31:27.205934",
+            "last_restarted": "2025-03-14T20:31:27.169992"
+          }
+        },
+        "volttron_version": "9.0.3",
+        "enable_collection": true,
+        "last_model_update": "2025-03-14T20:36:43.611817",
+        "ace_config_version": "1.4.5"
+      },
+      "device_token_expires": "2026-01-16 17:39:53.527049",
+      "archived": false,
+      "updated": "2025-05-15T15:27:03.510700"
+    }
+  ],
+  "page": 1,
+  "pages": 1,
+  "per_page": 10,
+  "total": 5
+}
