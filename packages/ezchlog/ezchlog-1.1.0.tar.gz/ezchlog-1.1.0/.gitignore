@@ -1,0 +1,11 @@
+target/
+dist/
+project/
+__pycache__/
+*.pyc
+reports/
+.coverage
+.venv/
+.cache/
+.python-version
+aur/

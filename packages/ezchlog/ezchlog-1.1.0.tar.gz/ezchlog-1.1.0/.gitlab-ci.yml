@@ -1,0 +1,337 @@
+stages:
+  - test
+  - tag
+  - build
+  - publish
+  - release
+
+.test:
+  stage: test
+  rules:
+    - if: '$CI_COMMIT_TAG'
+      when: never
+    - if: '$CI_COMMIT_BRANCH'
+security:
+  extends: .test
+  image:
+    name: aquasec/trivy
+    entrypoint: [""]
+    pull_policy: ["always", "if-not-present"]
+  variables:
+    TRIVY_NO_PROGRESS: "true"
+    TRIVY_EXIT_CODE: 1
+    TRIVY_SEVERITY: "HIGH,CRITICAL"
+    TRIVY_IGNORE_UNFIXED: "true"
+    TRIVY_SCANNERS: "vuln"
+    TRIVY_CACHE_DIR: ".trivycache/"
+    TRIVY_IGNOREFILE: ".trivyignore"
+    TRIVY_IGNORE_CVE: ""
+  cache:
+    paths:
+      - .trivycache/
+  script:
+    - |
+      echo "" > ".trivyignore"
+      if [ -n "$TRIVY_IGNORE_CVE" ]; then
+        for cve in $TRIVY_IGNORE_CVE; do
+          echo "$cve" >> ".trivyignore"
+        done
+      fi
+    - 'trivy image --download-db-only'
+    - 'trivy fs "$CI_PROJECT_DIR"'
+secret:
+  extends: .test
+  image:
+    name: registry.gitlab.com/systra/qeto/infra/git-secret-analyzer:1.1.0
+    entrypoint: ["/bin/bash", "-c", "exec bash /usr/local/bin/entrypoint"]
+    pull_policy: ["always", "if-not-present"]
+  variables:
+    APP_DIR: "$CI_PROJECT_DIR"
+    LOG_OPTS: "$CI_COMMIT_SHA"
+  script:
+    - '#'
+rust-linter:
+  extends: .test
+  image: rust:latest
+  before_script:
+    - 'rustup component add rustfmt'
+  script:
+    - 'cargo fmt --check'
+rust-tips:
+  extends: .test
+  image: rust:latest
+  before_script:
+    - 'rustup component add clippy'
+  script:
+    - 'cargo clippy'
+rust-tests:
+  extends: .test
+  image: rust:latest
+  script:
+    - 'git config --global user.email test@example.com' # for git tests
+    - 'git config --global init.defaultBranch master' # for git tests
+    - 'cargo test'
+.python:
+  image:
+    name: python:3.13
+    pull_policy: ["always", "if-not-present"]
+  cache:
+    key:
+      files:
+        - pyproject.toml
+        - uv.lock
+    paths:
+      - .cache/uv
+      - .venv
+  variables:
+    UV_CACHE_DIR: '.cache/uv'
+    UV_LINK_MODE: 'copy'
+  before_script:
+    - |
+      set -xe
+      pip install --break-system-packages uv
+      uv venv --python $PYTHON_VERSION
+      uv sync --frozen
+python-linter:
+  extends: ['.test', '.python']
+  script:
+    - 'uv run poe lint'
+python-tests:
+  extends: ['.test', '.python']
+  parallel:
+    matrix:
+      - MX_PY_VER: ['3.9', '3.10', '3.11', '3.12', '3.13']
+  image:
+    name: python:${MX_PY_VER}
+  script:
+    - 'git config --global user.email test@example.com' # for git tests
+    - 'git config --global init.defaultBranch master' # for git tests
+    - 'export COVERAGE_FILE=reports/.coverage.${PYTHON_VERSION}'
+    - 'uv run poe test'
+  artifacts:
+    paths:
+      - "reports/*"
+python-coverage:
+  extends: '.test'
+  needs:
+    - job: "python-tests: [3.9]"
+      artifacts: true
+    - job: "python-tests: [3.10]"
+      artifacts: true
+    - job: "python-tests: [3.11]"
+      artifacts: true
+    - job: "python-tests: [3.12]"
+      artifacts: true
+    - job: "python-tests: [3.13]"
+      artifacts: true
+  image: python
+  script:
+    - |
+      echo "Gather all python tests"
+      set -xe
+      pip install --break-system-packages coverage
+      export COVERAGE_FILE=reports/.coverage
+      coverage combine
+      coverage report
+      coverage xml
+      coverage html
+  coverage: '/^TOTAL .+? ([0-9.]+%)$/'
+  artifacts:
+    paths:
+      - 'reports/**'
+
+.tag_base:
+  extends: .python
+  stage: tag
+  when: manual
+  rules:
+    - if: '$CI_COMMIT_TAG'
+      when: never
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+  before_script:
+    - !reference [.python, before_script]
+    - |
+      set -xe
+      mkdir -p ~/.ssh && chmod 700 ~/.ssh
+      echo "StrictHostKeyChecking no" > ~/.ssh/config
+      eval $(ssh-agent -s)
+      git config user.name "${GITLAB_USER_NAME}"
+      git config user.email "${GITLAB_USER_EMAIL}"
+      git remote set-url --push origin git@${CI_SERVER_HOST}:${CI_PROJECT_PATH}.git
+  script:
+    - |
+      set -xe
+      if echo "${CI_JOB_NAME}" | grep -q ':'; then
+        export RULE_UPDATE=$(echo "${CI_JOB_NAME}"|cut -d: -f2)
+      else
+        echo "Job name should be in the format job:UPDATE where UPDATE should be major, minor or patch" >&2
+        exit 1
+      fi
+      if [ ! -s "$DEPLOY_KEY_TO_TAG" ]; then
+        echo "DEPLOY_KEY_TO_TAG should points to an ssh private key to push a tag in this repository" >&2
+        echo 'use `ssh-keygen -t ed25519 -C "To push tags from gitlab CI" -f key` to create key pairs' >&2
+        exit 1
+      fi
+      (cat "$DEPLOY_KEY_TO_TAG" | tr -d "\r"; echo "") | ssh-add - >/dev/null
+      uv run poe bump_version "$RULE_UPDATE"
+      VER=$(uv run poe -q version)
+      uv run ezchlog merge "$VER"
+      git add -u
+      git commit -m "version $VER"
+      git tag -a -f -m "version $VER" "v$VER"
+      git push origin "refs/tags/v$VER"
+      git push -o ci.skip origin "HEAD:$CI_COMMIT_BRANCH"
+      echo "v$VER tagged and pushed"
+  needs:
+    - security
+    - secret
+    - rust-linter
+    - rust-tips
+    - rust-tests
+    - python-linter
+    - python-tests
+tag:major:
+  extends: .tag_base
+tag:minor:
+  extends: .tag_base
+tag:patch:
+  extends: .tag_base
+
+rust-build-release:
+  stage: build
+  rules:
+    - if: '$CI_COMMIT_TAG && $CI_COMMIT_TAG =~ /v\d+\.\d+\.\d+/'
+  parallel:
+    matrix:
+      - MX_HOST_ARCH: ['linux-x86_64', 'linux-aarch64', 'linux-arm', 'darwin-x86_64', 'darwin-aarch64', 'windows-x86_64.exe']
+  image: messense/cargo-zigbuild
+  script:
+    - 'export TARGET_HASH=ezchlog-${MX_HOST_ARCH}.sha256'
+    - 'echo $TARGET_HASH'
+    - 'make target/$TARGET_HASH'
+  artifacts:
+    paths:
+      - target/ezchlog-*
+    expire_in: 1 hour
+
+rust-build-releases:
+  stage: build
+  rules:
+    - if: '$CI_COMMIT_TAG && $CI_COMMIT_TAG =~ /v\d+\.\d+\.\d+/'
+  needs:
+    - job: "rust-build-release: [linux-x86_64]"
+      artifacts: true
+    - job: "rust-build-release: [linux-aarch64]"
+      artifacts: true
+    - job: "rust-build-release: [linux-arm]"
+      artifacts: true
+    - job: "rust-build-release: [darwin-x86_64]"
+      artifacts: true
+    - job: "rust-build-release: [darwin-aarch64]"
+      artifacts: true
+    - job: "rust-build-release: [windows-x86_64.exe]"
+      artifacts: true
+  image: busybox
+  script:
+    - 'echo "Gather all artifacts"'
+  artifacts:
+    paths:
+      - target/ezchlog-*
+    expire_in: 1 hour
+
+rust-publish:
+  stage: publish
+  rules:
+    - if: '$CI_COMMIT_TAG && $CI_COMMIT_TAG =~ /v\d+\.\d+\.\d+/'
+  needs:
+    - job: rust-build-releases
+      artifacts: true
+  image: bash
+  variables:
+    PKG_REGISTRY_URL: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/${CI_PROJECT_NAME}"
+  before_script:
+    - 'echo $CI_COMMIT_TAG'
+    - 'apk add curl'
+  script:
+    - |
+      set -xe
+      for f in target/ezchlog-*; do
+        name="$(basename "$f")"
+        echo "Publishing $f → ${CI_COMMIT_TAG}/${name}"
+        curl --fail-with-body -H "JOB-TOKEN: ${CI_JOB_TOKEN}" -T "$f" "${PKG_REGISTRY_URL}/${CI_COMMIT_TAG}/${name}"
+      done
+
+python-build-release:
+  extends: .python
+  stage: build
+  rules:
+    - if: '$CI_COMMIT_TAG && $CI_COMMIT_TAG =~ /v\d+\.\d+\.\d+/'
+  artifacts:
+    paths:
+      - 'dist/'
+  script:
+    - 'uv pip install hatch'
+    - 'uv run hatch build'
+
+.python:pubvars:
+  variables:
+    PYPI_URL: https://pypi.org
+    # PYPI_URL: https://test.pypi.org
+python-publish:
+  extends: ['.python', '.python:pubvars']
+  stage: publish
+  rules:
+    - if: '$CI_COMMIT_TAG && $CI_COMMIT_TAG =~ /v\d+\.\d+\.\d+/'
+  needs:
+    - job: python-build-release
+      artifacts: true
+  id_tokens:
+    PYPI_ID_TOKEN: # variable injected by Gitlab
+      aud: pypi
+    TESTPYPI_ID_TOKEN: # variable injected by Gitlab
+      aud: testpypi
+  script:
+    - |
+      set -xe
+      pip install --break-system-packages twine id
+      if echo "$PYPI_URL" | grep -q test; then
+        PYPI_ID_TOKEN=$TESTPYPI_ID_TOKEN
+        TWINE_REPOSITORY_URL=${PYPI_URL}/legacy/
+      fi
+      # store PYPI_ID_TOKEN value in oidc_token if GITLAB_CI is non empty
+      oidc_token=$(python -m id PYPI)
+      api_token=$(curl -s -X POST ${PYPI_URL}/_/oidc/mint-token -d '{"token":"'${oidc_token}'"}' \
+        | python -c 'from json import load; from sys import stdin; print(load(stdin)["token"])')
+      twine upload -u __token__ -p "${api_token}" dist/*
+
+gitlab-release:
+  extends: .python:pubvars
+  stage: release
+  rules:
+    - if: '$CI_COMMIT_TAG && $CI_COMMIT_TAG =~ /v\d+\.\d+\.\d+/'
+  needs:
+    - job: rust-build-releases
+      artifacts: true
+    - job: rust-publish
+    - job: python-publish
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  variables:
+    PKG_REGISTRY_URL: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/${CI_PROJECT_NAME}"
+  before_script:
+    - 'apk add jq'
+  script:
+    - |
+      echo "Release $CI_COMMIT_TAG"
+      set -xe
+      export VER=$(echo ${CI_COMMIT_TAG}|tr -d v)
+      (
+        echo "{\"name\": \"Pypi release\", \"url\": \"${PYPI_URL}/project/ezchlog/${VER}/\"}"
+        for f in $(\ls -1 target/ezchlog-*|sort); do
+          name="$(basename "$f")"
+          echo "{\"name\": \"$name\", \"url\": \"${PKG_REGISTRY_URL}/${CI_COMMIT_TAG}/${name}\"}"
+        done
+      ) | jq -s . > links.json
+      release-cli create \
+        --name "EzChLog $CI_COMMIT_TAG" \
+        --description "EzChLog version $VER" \
+        --assets-link "$(jq -c . links.json)"

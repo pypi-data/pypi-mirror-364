@@ -1,0 +1,30 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.6.0
+  hooks:
+    - id: fix-byte-order-marker
+    - id: end-of-file-fixer
+    - id: mixed-line-ending
+- repo: local
+  hooks:
+    - id: ruff-linter
+      name: ruff linter
+      entry: ruff
+      args: ['check', '--fix']
+      language: system
+      types: [python]
+    - id: ruff-formatter
+      name: ruff formatter
+      entry: ruff
+      args: ['format']
+      language: system
+      types: [python]
+    - id: mypy
+      name: mypy
+      entry: "mypy ."
+      pass_filenames: false
+      language: system
+      require_serial: true
+      verbose: true
