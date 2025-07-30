@@ -1,0 +1,10 @@
+surface_fitter/__init__.py,sha256=Th9btN_V1KN2UfPRdVe73E4GN78b7w7MWOWr1Bhzs3g,306
+surface_fitter/fit_poly_3d.py,sha256=00whN9ImttjxMmAa5fynxZssjQTRKoOjjCoFTNBwxrs,18959
+surface_fitter/main.py,sha256=fghfKln5lDl0s1trXhWzlAgiATQJn62Bk3XbpQbL69k,60
+surface_fitter/plot_scatter_3d.py,sha256=xd_zJx4c4K08v7tOxW5FRFn6i1E7-r-DlohX255u5Kg,4365
+surface_fitter/surface_generator.py,sha256=TskEij66vz4f9hsKwizglAi0BzTyGxJz06zRTeV3LUQ,1110
+surface_fitter-0.16.dist-info/licenses/LICENSE,sha256=OXLcl0T2SZ8Pmy2_dmlvKuetivmyPd5m1q-Gyd-zaYY,35149
+surface_fitter-0.16.dist-info/METADATA,sha256=MSuJrkpsJ0AYUTvkHBBJtzFM9T_Dcohm0JzgQ4Z1lNE,2906
+surface_fitter-0.16.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+surface_fitter-0.16.dist-info/top_level.txt,sha256=C83qT9iwE9VS8wik_c0zoVyfDnf59d10y--2kbLCmqA,15
+surface_fitter-0.16.dist-info/RECORD,,
