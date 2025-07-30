@@ -1,0 +1,81 @@
+{
+  "sessionId": "session-1753281994715-c69q6r8uu",
+  "checkpointId": "checkpoint-1753282024717-t7d4uwvuu",
+  "checkpointName": "auto-save-1753282024716",
+  "timestamp": "2025-07-23T14:47:04.718Z",
+  "data": {
+    "timestamp": "2025-07-23T14:47:04.716Z",
+    "changeCount": 5,
+    "changesByType": {
+      "swarm_created": [
+        {
+          "type": "swarm_created",
+          "data": {
+            "swarmId": "swarm-1753281994714-nl5xqcnh3",
+            "swarmName": "hive-1753281994709",
+            "objective": "we've published a great package that will help ACE IoT's team and customers interact with the Aerodrome Cloud, let's add some specific workflows to it. One common workflow is using the volttron agent endpoint to upload a volttron agent directory as a zip file. Then we upload a config file to the agent_configs endpoint, and finally we deploy the package by pushing to the volttron_agent_config_package endpoint and referencing our package and config file, we should be able to execute this from the cli and from the repl, start by modeling the user flow for deploying the volttron agent to the gateway and designing a user experience that is intuitive",
+            "workerCount": 8
+          },
+          "timestamp": "2025-07-23T14:46:34.715Z"
+        }
+      ],
+      "agent_activity": [
+        {
+          "type": "agent_activity",
+          "data": {
+            "agentId": "worker-swarm-1753281994714-nl5xqcnh3-0",
+            "activity": "spawned",
+            "data": {
+              "type": "researcher",
+              "name": "Researcher Worker 1"
+            }
+          },
+          "timestamp": "2025-07-23T14:46:34.716Z"
+        },
+        {
+          "type": "agent_activity",
+          "data": {
+            "agentId": "worker-swarm-1753281994714-nl5xqcnh3-1",
+            "activity": "spawned",
+            "data": {
+              "type": "coder",
+              "name": "Coder Worker 2"
+            }
+          },
+          "timestamp": "2025-07-23T14:46:34.716Z"
+        },
+        {
+          "type": "agent_activity",
+          "data": {
+            "agentId": "worker-swarm-1753281994714-nl5xqcnh3-2",
+            "activity": "spawned",
+            "data": {
+              "type": "analyst",
+              "name": "Analyst Worker 3"
+            }
+          },
+          "timestamp": "2025-07-23T14:46:34.716Z"
+        },
+        {
+          "type": "agent_activity",
+          "data": {
+            "agentId": "worker-swarm-1753281994714-nl5xqcnh3-3",
+            "activity": "spawned",
+            "data": {
+              "type": "tester",
+              "name": "Tester Worker 4"
+            }
+          },
+          "timestamp": "2025-07-23T14:46:34.716Z"
+        }
+      ]
+    },
+    "statistics": {
+      "tasksProcessed": 0,
+      "tasksCompleted": 0,
+      "memoryUpdates": 0,
+      "agentActivities": 4,
+      "consensusDecisions": 0
+    }
+  }
+}
