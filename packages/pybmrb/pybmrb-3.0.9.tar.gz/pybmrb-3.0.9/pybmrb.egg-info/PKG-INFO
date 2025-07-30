@@ -1,0 +1,60 @@
+Metadata-Version: 2.1
+Name: pybmrb
+Version: 3.0.9
+Summary: PyBMRB provides tools for visualizing BMRB entries and  NMR-STAR files. Maintained by the BMRB.
+Home-page: https://github.com/uwbmrb/PyBMRB
+Author: Kumaran Baskaran
+Author-email: baskaran@uchc.edu
+License: MIT
+Keywords: bmrb,nmr,nmrstar,biomagresbank,biological magnetic resonance bank,HSQC,TOCSY,Chemical shifts,Histogram
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Intended Audience :: Education
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.7
+Description-Content-Type: text/x-rst
+License-File: LICENSE
+
+Welcome to PyBMRB!
+======================================
+.. image:: https://mybinder.org/badge_logo.svg
+ :target: https://mybinder.org/v2/gh/uwbmrb/PyBMRB/v3
+
+A Python module for visualizing Nuclear Magnetic Resonance(NMR)  chemical shift data from Biological Magnetic
+Resonance data Bank (`BMRB <http://bmrb.ip>`_) and  from NMR-STAR  format files. PyBMRB helps the
+users to view the one dimensional chemical shift list as multi-dimensional NMR spectra. Chemical shift distributions
+can be studied using this library by plotting the histograms using differnt filtering criteria.
+
+This package uses `PyBMRB <https://github.com/uwbmrb/PyNMRSTAR>`_ to parse the NMR-STAR files
+and `BMRB-API <https://github.com/uwbmrb/BMRB-API>`_ to fetch the data directly from BMRB, which avoids the hustle of
+downloading and parsing the data from the BMRB for visualizations.
+
+`Read the documents here <https://pybmrb.readthedocs.org>`__.
+
+
+.. |PythonVersions| image:: https://img.shields.io/pypi/pyversions/pynmrstar.svg
+   :target: https://github.com/uwbmrb/PyBMRB
+
+.. |License| image::  https://img.shields.io/github/license/kumar-physics/PyBMRB
+   :target: https://github.com/uwbmrb/PyBMRB
+
+
+.. |BuildStatus| image:: https://img.shields.io/github/workflow/status/kumar-physics/PyBMRB/CI/dev
+   :target: https://github.com/uwbmrb/PyBMRB
+
+
+|BuildStatus| |License| |PythonVersions|

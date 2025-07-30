@@ -1,0 +1,5 @@
+pandas
+requests<=3,>=2.21.0
+plotly>=4.1.0
+pynmrstar>=3.0.4
+numpy>1.15

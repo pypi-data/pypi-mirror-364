@@ -1,0 +1,13 @@
+LICENSE
+README.rst
+setup.py
+pybmrb/ChemicalShift.py
+pybmrb/ChemicalShiftStatistics.py
+pybmrb/Histogram.py
+pybmrb/Spectra.py
+pybmrb/__init__.py
+pybmrb.egg-info/PKG-INFO
+pybmrb.egg-info/SOURCES.txt
+pybmrb.egg-info/dependency_links.txt
+pybmrb.egg-info/requires.txt
+pybmrb.egg-info/top_level.txt
