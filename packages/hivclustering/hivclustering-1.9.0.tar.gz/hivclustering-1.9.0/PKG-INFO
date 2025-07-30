@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: hivclustering
+Version: 1.9.0
+Summary: HIV molecular clustering tools
+Home-page: http://github.com/veg/hivclustering
+Author: Sergei Kosakovsky Pond
+Author-email: spond@ucsd.edu
+License: MIT License
+Provides-Extra: edgefiltering
+Requires-Dist: bioext>=0.21.0; extra == "edgefiltering"
+Requires-Dist: hyphy-python>=0.1.11; extra == "edgefiltering"
+Requires-Dist: hppy>=0.9.9; extra == "edgefiltering"
