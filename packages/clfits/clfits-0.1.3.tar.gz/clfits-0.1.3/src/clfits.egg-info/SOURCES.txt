@@ -1,0 +1,14 @@
+LICENSE
+README.md
+pyproject.toml
+src/clfits/__init__.py
+src/clfits/io.py
+src/clfits/main.py
+src/clfits.egg-info/PKG-INFO
+src/clfits.egg-info/SOURCES.txt
+src/clfits.egg-info/dependency_links.txt
+src/clfits.egg-info/entry_points.txt
+src/clfits.egg-info/requires.txt
+src/clfits.egg-info/top_level.txt
+tests/test_io.py
+tests/test_main.py
