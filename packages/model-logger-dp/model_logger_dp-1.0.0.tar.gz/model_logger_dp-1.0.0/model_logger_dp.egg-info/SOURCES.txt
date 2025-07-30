@@ -1,0 +1,9 @@
+LICENSE
+README.md
+setup.py
+model_logger_dp/__init__.py
+model_logger_dp/logger.py
+model_logger_dp.egg-info/PKG-INFO
+model_logger_dp.egg-info/SOURCES.txt
+model_logger_dp.egg-info/dependency_links.txt
+model_logger_dp.egg-info/top_level.txt
