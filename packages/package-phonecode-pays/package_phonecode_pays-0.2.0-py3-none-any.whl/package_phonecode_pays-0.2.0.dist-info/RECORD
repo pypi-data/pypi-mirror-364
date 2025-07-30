@@ -1,0 +1,16 @@
+package_phoncode/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+package_phoncode/apps.py,sha256=ciiBKdIxPzv_xIFtwkwfd82fuD0ryNDtuYA66E1zgA0,162
+package_phoncode/data.py,sha256=XxTMYiEkaacVrDbBwPL-mmwp0C4qOs57WZ1csdGQ8GI,225
+package_phoncode/forms.py,sha256=ByMeKzYgYLj3lEU0GqCqIZARXIoYjK3Igvjd1XCUZqc,127
+package_phoncode/urls.py,sha256=7GwA0-n_KdsoHMTa55uZrhWPprmqY713-2CxomKcyIM,140
+package_phoncode/views.py,sha256=g3MXN0tNyriCpN3ZGKzDo9NGJ_6rs_Wr40pLuVobzqw,647
+package_phonecode_pays-0.2.0.dist-info/licenses/LICENSE,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+test1/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+test1/asgi.py,sha256=YP9a978ucZMUnsMT5xrJ0xVLW1G29LTyMXWIT7DUkT8,387
+test1/settings.py,sha256=esd7zrJEJUyFiqkyN1ROi-s2zr2Cf4dssziBHMWVCYI,3182
+test1/urls.py,sha256=z4Nn1NiX95F3vhZr_lIY_fcp91BzJ7J7LODiD0K9yNM,824
+test1/wsgi.py,sha256=oS2uQXLGiV68fxvO3vTUXXNcDemXDpMXH6QmgEZaDTU,387
+package_phonecode_pays-0.2.0.dist-info/METADATA,sha256=yQYt87ll9Pu4sAC5vJwNiY6YzJMgHzBrk_n6vU_rdNk,557
+package_phonecode_pays-0.2.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+package_phonecode_pays-0.2.0.dist-info/top_level.txt,sha256=xB0GsAOAGV4F0qLxWWrOFYjAU10P8a5Xx011_ptDx8c,23
+package_phonecode_pays-0.2.0.dist-info/RECORD,,
