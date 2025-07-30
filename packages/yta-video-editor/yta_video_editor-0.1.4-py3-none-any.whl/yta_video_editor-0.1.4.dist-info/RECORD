@@ -1,0 +1,15 @@
+yta_video_editor/__init__.py,sha256=kCPxHh-aWxsnos_Xmxn7pcIK1grETxDIUl6rDxqqBZc,77
+yta_video_editor/editor.py,sha256=wxwPIngeO2kCuGqdCqKb9rjTbdO454-CfyXWpG1-yNM,30165
+yta_video_editor/modifications/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+yta_video_editor/modifications/color_temperature_video_modification.py,sha256=Zf2d6iDvLNkr9b_jYida_RzEV9TKwaGdkkibT6pdmuE,1091
+yta_video_editor/modifications/video_modification.py,sha256=ujoF2NAdVgxhCPZk4U8_DL9PW2Up1omc6qMCes8xf9Q,2535
+yta_video_editor/modifications/video_modifications.py,sha256=RWY2x2ajA17pQ_iP0_0eJOwvuIV3XxI_qNdj9vI382M,1735
+yta_video_editor/settings.py,sha256=nSxBo4dI4JlO-8ygbtlbA696LidBsCjHdHXR8IR1g54,2997
+yta_video_editor/video/__init__.py,sha256=821r0Jt20eP_iDN4_ssCjUAofnVXFaX3UekZ-sePBY8,18217
+yta_video_editor/video/attribute.py,sha256=WE12SJGCnR8HoJQYePtMAaATNpkryKzYQkeWLEFF6NQ,7246
+yta_video_editor/video/attribute_modifier.py,sha256=v-FS4x6cnxDttR4IlZYoAYXNyi7dQk5R5alvjcu87XA,2521
+yta_video_editor/video/make_frame_parameter.py,sha256=NHr_FUYNpco69GJ2O9WVqoDoCFO-j3OdJ5I2RAxj9MY,8618
+yta_video_editor-0.1.4.dist-info/LICENSE,sha256=6kbiFSfobTZ7beWiKnHpN902HgBx-Jzgcme0SvKqhKY,1091
+yta_video_editor-0.1.4.dist-info/METADATA,sha256=WNGQ4oYh6_BavddTrtpBEWoQxYTZcFBOWQXoUPDJoSY,838
+yta_video_editor-0.1.4.dist-info/WHEEL,sha256=XbeZDeTWKc1w7CSIyre5aMDU_-PohRwTQceYnisIYYY,88
+yta_video_editor-0.1.4.dist-info/RECORD,,
