@@ -1,0 +1,14 @@
+numpy==1.26.0
+pandas
+scipy
+statsmodels
+pysam
+tqdm
+PyWavelets
+scikit-learn
+pyarrow
+Bottleneck
+pyBigWig
+networkx
+babachi==3.0.0
+genome-tools==2.0.0
