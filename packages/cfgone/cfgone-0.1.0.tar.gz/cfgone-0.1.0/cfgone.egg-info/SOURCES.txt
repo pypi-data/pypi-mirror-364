@@ -1,0 +1,13 @@
+README.md
+pyproject.toml
+cfgone/__init__.py
+cfgone/core.py
+cfgone.egg-info/PKG-INFO
+cfgone.egg-info/SOURCES.txt
+cfgone.egg-info/dependency_links.txt
+cfgone.egg-info/requires.txt
+cfgone.egg-info/top_level.txt
+tests/test_demo.py
+tests/test_edge_cases.py
+tests/test_printing.py
+tests/test_usage.py
