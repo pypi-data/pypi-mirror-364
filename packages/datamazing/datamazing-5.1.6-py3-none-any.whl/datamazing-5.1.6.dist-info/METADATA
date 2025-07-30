@@ -1,0 +1,12 @@
+Metadata-Version: 2.3
+Name: datamazing
+Version: 5.1.6
+Summary: Package for working with pandas Dataset, but wit specialized functions used for Energinet
+Author: Team Enigma
+Author-email: gridop-enigma@energinet.dk
+Requires-Python: >=3.10
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
