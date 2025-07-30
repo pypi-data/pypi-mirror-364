@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: orfrom
+Version: 0.1.0
+Summary: Application Django réutilisable : formulaire de contact
+Home-page: UNKNOWN
+Author: Ton Nom
+Author-email: ton@email.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 3.2
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: django>=3.2
+
+# orform — Formulaire de contact Django réutilisable
+
+**orform** est une application Django légère et réutilisable qui fournit un **formulaire de contact prêt à l'emploi**. Elle peut être installée comme un package Python via `pip` et intégrée facilement dans n'importe quel projet Django.
+
+---
+
+## Fonctionnalités
+
+- Formulaire avec champs : **nom**, **email**, **message**
+- Enregistrement automatique des soumissions en base de données
+- Modèle Django prêt à l’emploi
+
+---
+
+## 🔧 Installation
+
+1. Clone ou télécharge le répertoire contenant `contactform`.
+2. Installe l’application dans ton environnement :
+3. Assurez-vous d'ajouter le nom de l'app dans "INSTALLED_APPS"
+4. Le nom de l'app est: "contactform"
+
+
+```bash
+pip install orform
+
+
