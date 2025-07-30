@@ -1,0 +1,10 @@
+#!/bin/bash
+# WF 2024-08-15
+
+isort tests/*.py
+black tests/*.py
+for package in mogwai/core mogwai/examples mogwai/parser mogwai/schema
+do
+  isort $package/*.py
+  black $package/*.py
+done
