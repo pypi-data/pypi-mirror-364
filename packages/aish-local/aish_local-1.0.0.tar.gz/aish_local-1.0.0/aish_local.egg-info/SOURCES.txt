@@ -1,0 +1,17 @@
+LICENSE
+README.md
+pyproject.toml
+aish/__init__.py
+aish/__main__.py
+aish/agent.py
+aish/cli.py
+aish/config.py
+aish/history.py
+aish/safety.py
+aish/utils.py
+aish_local.egg-info/PKG-INFO
+aish_local.egg-info/SOURCES.txt
+aish_local.egg-info/dependency_links.txt
+aish_local.egg-info/entry_points.txt
+aish_local.egg-info/requires.txt
+aish_local.egg-info/top_level.txt
