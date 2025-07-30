@@ -1,0 +1,3 @@
+[console_scripts]
+cobra = src.cli.cli:main
+pcobra = src.main:main
