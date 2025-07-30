@@ -1,0 +1,10 @@
+README.md
+pyproject.toml
+setup.py
+bennett.egg-info/PKG-INFO
+bennett.egg-info/SOURCES.txt
+bennett.egg-info/dependency_links.txt
+bennett.egg-info/requires.txt
+bennett.egg-info/top_level.txt
+harrison/__init__.py
+harrison/chat.py
