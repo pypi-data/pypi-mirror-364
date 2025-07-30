@@ -1,0 +1,49 @@
+[tool.poetry]
+name = "opentable-rest-client"
+version = "1.0.0"
+description = "A Python client library for the OpenTable REST API - search, book, and manage restaurant reservations"
+authors = ["wheelis <noreply@github.com>"]
+readme = "README.md"
+license = "MIT"
+homepage = "https://github.com/wheelis/opentable_mcp"
+repository = "https://github.com/wheelis/opentable_mcp"
+documentation = "https://github.com/wheelis/opentable_mcp/blob/main/python_client/README.md"
+keywords = ["opentable", "restaurant", "reservations", "api", "booking"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+packages = [
+    {include = "opentable_client"},
+]
+include = ["CHANGELOG.md", "opentable_client/py.typed"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+httpx = ">=0.23.0,<0.29.0"
+attrs = ">=22.2.0"
+python-dateutil = "^2.8.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.0.0"
+black = "^23.0.0"
+ruff = "^0.1.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["F", "I", "UP"]
