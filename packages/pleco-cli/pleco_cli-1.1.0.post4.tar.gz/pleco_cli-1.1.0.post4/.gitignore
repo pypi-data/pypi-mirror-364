@@ -1,0 +1,10 @@
+csv/
+.venv
+.pytest_cache/
+src/pleco/__pycache__/
+tests/__pycache__/
+*.pyc
+*.pyo
+*.csv
+*.whl
+*.tar.gz
