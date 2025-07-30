@@ -1,0 +1,14 @@
+snapvc/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+snapvc/housing.py,sha256=ckj4RIRS7XbMAxpn2qfW7k4MGVfcgq5guPlJAw4tDcM,1828
+snapvc/ignore.py,sha256=EmWMTfc3nHkPg5UxGibbNlNVBkqWKV6DCVmrWDc18Y8,478
+snapvc/main.py,sha256=AjtbYj9QVdNk-C0jkMk3aH7JpFJ2FICG0OGbL1mcgF0,2775
+snapvc/revert.py,sha256=ICGpF2yB3j8XwHu9ccVOfq5-THQPZr7g_VIFSq_97gA,1618
+snapvc/snapshot.py,sha256=vipUND1_0tY3LfCYL_KZSx9VQoPUW6OiBvOhpI8O0Jk,2253
+snapvc/staging.py,sha256=QtOngV440zNQ7FBSJQwuLcGa1-NROsbYJzPXS_b3DtY,1886
+snapvc/utils.py,sha256=JOme3sWst3qHMvtaz1e7nzZvINVEL4rp31k-861Y3HM,2453
+snapvc-1.0.0.dist-info/licenses/LICENSE,sha256=M2AnUrhNPOqr3CdCPCFzxle8P7xZoVQkiSPZb4kUTDQ,1083
+snapvc-1.0.0.dist-info/METADATA,sha256=iIaZ23Got3hiq4qjw_mpP9HQAhg_hor9N-Wgt3YDgvY,4749
+snapvc-1.0.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+snapvc-1.0.0.dist-info/entry_points.txt,sha256=OQbdQRDlZE_Y-ELw8r91QKXvIvv5jxBUtVcRxyjae6E,42
+snapvc-1.0.0.dist-info/top_level.txt,sha256=dn6lzPJD0V7OWelR-2FXNpN0XuNL-WDe8oW0njFxdJc,7
+snapvc-1.0.0.dist-info/RECORD,,
