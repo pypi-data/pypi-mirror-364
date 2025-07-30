@@ -1,0 +1,84 @@
+# Core LangChain Application Template Configuration
+_templates_suffix: .jinja
+_envops:
+    keep_trailing_newline: true
+
+# Questions for user input
+project_name:
+    type: str
+    help: Name of your LangChain project
+    default: my-langchain-app
+    validator: >-
+        {% if not (project_name | regex_search('^[a-zA-Z][a-zA-Z0-9_-]*$')) %}
+        Project name must start with a letter and contain only letters, numbers, hyphens, and underscores.
+        {% endif %}
+
+project_type:
+    type: str
+    help: Project type
+    default: core-langchain
+    when: false  # Don't ask, set by CLI
+
+llm_provider:
+    type: str
+    help: Choose your LLM provider
+    choices:
+        - openai
+        - anthropic
+        - ollama
+        - mistral
+    default: mistral
+
+app_type:
+    type: str
+    help: Choose application type
+    choices:
+        - qa_system
+        - text_processor
+        - api_service
+        - custom
+    default: qa_system
+
+chain_types:
+    type: json
+    help: Types of chains to include
+    default: '["llm", "retrieval"]'
+
+include_tools:
+    type: bool
+    help: Include custom tools
+    default: true
+
+ui_framework:
+    type: str
+    help: Choose your UI framework
+    choices:
+        - streamlit
+        - fastapi
+        - cli
+    default: streamlit
+
+python_version:
+    type: str
+    help: Python version for development environment
+    choices:
+        - "3.9"
+        - "3.10"
+        - "3.11"
+        - "3.12"
+    default: "3.11"
+
+include_notebooks:
+    type: bool
+    help: Include Jupyter notebooks for experimentation
+    default: true
+
+include_tests:
+    type: bool
+    help: Include test files
+    default: true
+
+include_docker:
+    type: bool
+    help: Include Docker configuration
+    default: false

@@ -1,0 +1,263 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# {{ project_name|replace('_', ' ')|title }} - Example Usage\n",
+    "\n",
+    "This notebook demonstrates how to use the multimodal chatbot components programmatically."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import sys\n",
+    "import os\n",
+    "sys.path.append(os.path.dirname(os.getcwd()))\n",
+    "\n",
+    "from src.chatbot.engine import chatbot\n",
+    "from src.config import settings\n",
+    "import asyncio"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Basic Text Conversation"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "async def test_conversation():\n",
+    "    result = await chatbot.process_message(\n",
+    "        message=\"Hello! Can you tell me about your capabilities?\",\n",
+    "        session_id=\"notebook_session\"\n",
+    "    )\n",
+    "    print(f\"Response: {result['response']}\")\n",
+    "\n",
+    "# Run the async function\n",
+    "await test_conversation()"
+   ]
+  },
+  {% if 'image' in modalities %}
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Image Processing Example"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from src.processors.image_processor import image_processor\n",
+    "from pathlib import Path\n",
+    "\n",
+    "# Example image analysis\n",
+    "async def test_image_analysis():\n",
+    "    # You would need to add an actual image file to test this\n",
+    "    image_path = Path(\"../data/sample_image.jpg\")\n",
+    "    \n",
+    "    if image_path.exists():\n",
+    "        result = await image_processor.process_image(image_path)\n",
+    "        print(f\"Image Analysis: {result['description']}\")\n",
+    "    else:\n",
+    "        print(\"No sample image found. Add an image to ../data/sample_image.jpg to test.\")\n",
+    "\n",
+    "await test_image_analysis()"
+   ]
+  },
+  {% endif %}
+  {% if 'audio' in modalities %}
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Audio Processing Example"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from src.processors.audio_processor import audio_processor\n",
+    "\n",
+    "# Example audio transcription\n",
+    "async def test_audio_processing():\n",
+    "    audio_path = Path(\"../data/sample_audio.wav\")\n",
+    "    \n",
+    "    if audio_path.exists():\n",
+    "        result = await audio_processor.process_audio(audio_path)\n",
+    "        print(f\"Transcription: {result.get('transcription', 'N/A')}\")\n",
+    "        print(f\"Audio Info: {result['metadata']}\")\n",
+    "    else:\n",
+    "        print(\"No sample audio found. Add an audio file to ../data/sample_audio.wav to test.\")\n",
+    "\n",
+    "await test_audio_processing()"
+   ]
+  },
+  {% endif %}
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Memory and Dialog Management"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from src.chatbot.memory import memory_manager\n",
+    "from src.chatbot.dialog_manager import dialog_manager\n",
+    "\n",
+    "# Test conversation memory\n",
+    "def test_memory():\n",
+    "    session_id = \"memory_test\"\n",
+    "    \n",
+    "    # Create session\n",
+    "    memory_manager.create_session(session_id)\n",
+    "    \n",
+    "    # Get session info\n",
+    "    info = memory_manager.get_session_info(session_id)\n",
+    "    print(f\"Session Info: {info}\")\n",
+    "    \n",
+    "    # Test dialog state\n",
+    "    state, action = dialog_manager.update_dialog_state(\n",
+    "        session_id, \"Hello, I'd like to upload an image\", []\n",
+    "    )\n",
+    "    print(f\"Dialog State: {state}\")\n",
+    "    print(f\"Action Data: {action}\")\n",
+    "\n",
+    "test_memory()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Configuration and Stats"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Display current configuration\n",
+    "print(f\"Project: {settings.PROJECT_NAME}\")\n",
+    "print(f\"Supported Modalities: {settings.SUPPORTED_MODALITIES}\")\n",
+    "print(f\"LLM Model: {settings.LLM_MODEL}\")\n",
+    "print(f\"Memory Type: {settings.MEMORY_TYPE}\")\n",
+    "\n",
+    "# Get chatbot stats\n",
+    "stats = chatbot.get_stats()\n",
+    "print(f\"\\nChatbot Stats: {stats}\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Multimodal Conversation Example"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "async def multimodal_conversation():\n",
+    "    session_id = \"multimodal_test\"\n",
+    "    \n",
+    "    # Start conversation\n",
+    "    result1 = await chatbot.process_message(\n",
+    "        message=\"Hi! I'm going to show you some files.\",\n",
+    "        session_id=session_id\n",
+    "    )\n",
+    "    print(f\"Bot: {result1['response']}\")\n",
+    "    \n",
+    "    # Simulate file upload (you would replace with actual file paths)\n",
+    "    sample_files = []\n",
+    "    \n",
+    "    {% if 'image' in modalities %}\n",
+    "    # Add image if exists\n",
+    "    image_path = Path(\"../data/sample_image.jpg\")\n",
+    "    if image_path.exists():\n",
+    "        sample_files.append({\n",
+    "            \"path\": str(image_path),\n",
+    "            \"type\": \"image/jpeg\",\n",
+    "            \"name\": \"sample_image.jpg\"\n",
+    "        })\n",
+    "    {% endif %}\n",
+    "    \n",
+    "    {% if 'audio' in modalities %}\n",
+    "    # Add audio if exists\n",
+    "    audio_path = Path(\"../data/sample_audio.wav\")\n",
+    "    if audio_path.exists():\n",
+    "        sample_files.append({\n",
+    "            \"path\": str(audio_path),\n",
+    "            \"type\": \"audio/wav\",\n",
+    "            \"name\": \"sample_audio.wav\"\n",
+    "        })\n",
+    "    {% endif %}\n",
+    "    \n",
+    "    if sample_files:\n",
+    "        result2 = await chatbot.process_message(\n",
+    "            message=\"Please analyze these files for me.\",\n",
+    "            files=sample_files,\n",
+    "            session_id=session_id\n",
+    "        )\n",
+    "        print(f\"\\nBot: {result2['response']}\")\n",
+    "        print(f\"Processed {len(result2.get('processed_files', []))} file(s)\")\n",
+    "    else:\n",
+    "        print(\"\\nNo sample files found. Add sample files to ../data/ to test multimodal features.\")\n",
+    "    \n",
+    "    # Get conversation history\n",
+    "    history = chatbot.get_conversation_history(session_id)\n",
+    "    print(f\"\\nConversation has {len(history)} messages\")\n",
+    "\n",
+    "await multimodal_conversation()"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.{{ python_version.split('.')[1] }}.0"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}

@@ -1,0 +1,248 @@
+"""Document retrieval for {{ project_name }}."""
+
+from pathlib import Path
+from typing import List, Dict, Any, Optional
+import logging
+{% if framework == "langchain" %}
+from langchain.schema import Document
+{% if llm_provider == "openai" %}
+from langchain_openai import OpenAIEmbeddings
+{% elif llm_provider == "ollama" %}
+from langchain_community.embeddings import OllamaEmbeddings
+{% endif %}
+{% if vector_store == "chroma" %}
+from langchain_community.vectorstores import Chroma
+{% elif vector_store == "faiss" %}
+from langchain_community.vectorstores import FAISS
+{% endif %}
+{% elif framework == "llamaindex" %}
+from llama_index.core import VectorStoreIndex, load_index_from_storage
+from llama_index.core.storage import StorageContext
+{% if llm_provider == "openai" %}
+from llama_index.embeddings.openai import OpenAIEmbedding
+{% elif llm_provider == "ollama" %}
+from llama_index.embeddings.ollama import OllamaEmbedding
+{% endif %}
+{% endif %}
+
+from ..config import settings
+
+logger = logging.getLogger(__name__)
+
+class DocumentRetriever:
+    """Document retrieval system."""
+    
+    def __init__(self):
+        """Initialize the retriever."""
+        self.vector_store_path = settings.VECTOR_STORE_PATH
+        
+        # Initialize embeddings
+        {% if framework == "langchain" %}
+        {% if llm_provider == "openai" %}
+        self.embeddings = OpenAIEmbeddings(
+            model=settings.EMBEDDING_MODEL,
+            openai_api_key=settings.OPENAI_API_KEY
+        )
+        {% elif llm_provider == "ollama" %}
+        self.embeddings = OllamaEmbeddings(
+            base_url=settings.OLLAMA_BASE_URL,
+            model=settings.EMBEDDING_MODEL
+        )
+        {% endif %}
+        {% elif framework == "llamaindex" %}
+        {% if llm_provider == "openai" %}
+        self.embeddings = OpenAIEmbedding(
+            model=settings.EMBEDDING_MODEL,
+            api_key=settings.OPENAI_API_KEY
+        )
+        {% elif llm_provider == "ollama" %}
+        self.embeddings = OllamaEmbedding(
+            base_url=settings.OLLAMA_BASE_URL,
+            model_name=settings.EMBEDDING_MODEL
+        )
+        {% endif %}
+        {% endif %}
+        
+        self.vector_store = None
+        self.retriever = None
+    
+    def load_vector_store(self) -> Any:
+        """Load the vector store from disk.
+        
+        Returns:
+            Loaded vector store instance.
+        """
+        if not self.vector_store_path.exists():
+            raise FileNotFoundError(
+                f"Vector store not found at {self.vector_store_path}. "
+                "Please run document ingestion first."
+            )
+        
+        {% if framework == "langchain" %}
+        {% if vector_store == "chroma" %}
+        self.vector_store = Chroma(
+            persist_directory=str(self.vector_store_path),
+            embedding_function=self.embeddings,
+            collection_name=settings.COLLECTION_NAME,
+        )
+        {% elif vector_store == "faiss" %}
+        self.vector_store = FAISS.load_local(
+            str(self.vector_store_path),
+            self.embeddings,
+        )
+        {% endif %}
+        
+        # Create retriever
+        self.retriever = self.vector_store.as_retriever(
+            search_kwargs={
+                "k": settings.SIMILARITY_TOP_K,
+                {% if vector_store == "chroma" %}
+                "score_threshold": settings.SIMILARITY_THRESHOLD,
+                {% endif %}
+            }
+        )
+        {% elif framework == "llamaindex" %}
+        # Load the index from storage
+        storage_context = StorageContext.from_defaults(
+            persist_dir=str(self.vector_store_path)
+        )
+        self.vector_store = load_index_from_storage(
+            storage_context,
+            embed_model=self.embeddings,
+        )
+        
+        # Create retriever
+        self.retriever = self.vector_store.as_retriever(
+            similarity_top_k=settings.SIMILARITY_TOP_K,
+        )
+        {% endif %}
+        
+        logger.info("Vector store loaded successfully")
+        return self.vector_store
+    
+    def retrieve_documents(self, query: str) -> List[Any]:
+        """Retrieve relevant documents for a query.
+        
+        Args:
+            query: Search query.
+            
+        Returns:
+            List of relevant documents.
+        """
+        if self.retriever is None:
+            self.load_vector_store()
+        
+        {% if framework == "langchain" %}
+        documents = self.retriever.get_relevant_documents(query)
+        {% elif framework == "llamaindex" %}
+        documents = self.retriever.retrieve(query)
+        {% endif %}
+        
+        logger.info(f"Retrieved {len(documents)} documents for query: {query}")
+        return documents
+    
+    def similarity_search(self, query: str, k: Optional[int] = None) -> List[Any]:
+        """Perform similarity search.
+        
+        Args:
+            query: Search query.
+            k: Number of documents to return.
+            
+        Returns:
+            List of similar documents with scores.
+        """
+        if self.vector_store is None:
+            self.load_vector_store()
+        
+        k = k or settings.SIMILARITY_TOP_K
+        
+        {% if framework == "langchain" %}
+        {% if vector_store == "chroma" %}
+        results = self.vector_store.similarity_search_with_score(query, k=k)
+        {% elif vector_store == "faiss" %}
+        results = self.vector_store.similarity_search_with_score(query, k=k)
+        {% endif %}
+        {% elif framework == "llamaindex" %}
+        retriever = self.vector_store.as_retriever(similarity_top_k=k)
+        results = retriever.retrieve(query)
+        {% endif %}
+        
+        logger.info(f"Found {len(results)} similar documents")
+        return results
+    
+    def get_document_by_id(self, doc_id: str) -> Optional[Any]:
+        """Get a specific document by ID.
+        
+        Args:
+            doc_id: Document ID.
+            
+        Returns:
+            Document if found, None otherwise.
+        """
+        if self.vector_store is None:
+            self.load_vector_store()
+        
+        # Implementation depends on vector store type
+        {% if framework == "langchain" %}
+        {% if vector_store == "chroma" %}
+        try:
+            results = self.vector_store._collection.get(ids=[doc_id])
+            if results and results['documents']:
+                return results['documents'][0]
+        except Exception as e:
+            logger.error(f"Error retrieving document {doc_id}: {e}")
+        {% endif %}
+        {% endif %}
+        
+        return None
+    
+    def list_documents(self) -> List[Dict[str, Any]]:
+        """List all documents in the vector store.
+        
+        Returns:
+            List of document metadata.
+        """
+        if self.vector_store is None:
+            self.load_vector_store()
+        
+        documents = []
+        {% if framework == "langchain" %}
+        {% if vector_store == "chroma" %}
+        try:
+            collection = self.vector_store._collection
+            results = collection.get()
+            
+            for i, doc_id in enumerate(results['ids']):
+                metadata = results['metadatas'][i] if results['metadatas'] else {}
+                documents.append({
+                    'id': doc_id,
+                    'metadata': metadata,
+                })
+        except Exception as e:
+            logger.error(f"Error listing documents: {e}")
+        {% endif %}
+        {% endif %}
+        
+        return documents
+
+def main():
+    """Main function for testing retrieval."""
+    retriever = DocumentRetriever()
+    retriever.load_vector_store()
+    
+    # Test query
+    query = "What is this document about?"
+    documents = retriever.retrieve_documents(query)
+    
+    print(f"Retrieved {len(documents)} documents:")
+    for i, doc in enumerate(documents, 1):
+        {% if framework == "langchain" %}
+        print(f"{i}. {doc.page_content[:200]}...")
+        print(f"   Source: {doc.metadata.get('source', 'Unknown')}")
+        {% elif framework == "llamaindex" %}
+        print(f"{i}. {doc.text[:200]}...")
+        print(f"   Score: {doc.score:.4f}")
+        {% endif %}
+
+if __name__ == "__main__":
+    main()

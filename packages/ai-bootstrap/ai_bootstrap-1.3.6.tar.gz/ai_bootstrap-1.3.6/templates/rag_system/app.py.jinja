@@ -1,0 +1,422 @@
+"""Main application for {{ project_name }}."""
+
+{% if ui_framework == "streamlit" %}
+import streamlit as st
+from pathlib import Path
+import logging
+from src.core.pipeline import RAGPipeline
+from src.config import settings
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Page configuration
+st.set_page_config(
+    page_title="{{ project_name }}",
+    page_icon="🤖",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+@st.cache_resource
+def initialize_pipeline():
+    """Initialize the RAG pipeline."""
+    pipeline = RAGPipeline()
+    if pipeline.initialize():
+        return pipeline
+    return None
+
+def main():
+    """Main Streamlit application."""
+    st.title("🤖 {{ project_name }}")
+    st.markdown("Welcome to your RAG system powered by {{ framework|title }} and {{ llm_provider|title }}!")
+    
+    # Sidebar
+    with st.sidebar:
+        st.header("⚙️ Configuration")
+        
+        # Pipeline status
+        pipeline = initialize_pipeline()
+        if pipeline:
+            st.success("✅ Pipeline initialized")
+            
+            # Show stats
+            stats = pipeline.get_stats()
+            st.info(f"📊 Indexed documents: {stats.get('indexed_documents', 0)}")
+            
+            # Settings
+            top_k = st.slider("Number of documents to retrieve", 1, 10, 5)
+            include_sources = st.checkbox("Show sources", True)
+            
+        else:
+            st.error("❌ Pipeline initialization failed")
+            st.info("Please check your configuration and ensure documents are available.")
+            return
+    
+    # Main interface
+    if pipeline:
+        # Chat interface
+        if "messages" not in st.session_state:
+            st.session_state.messages = []
+        
+        # Display chat messages
+        for message in st.session_state.messages:
+            with st.chat_message(message["role"]):
+                st.markdown(message["content"])
+                if message["role"] == "assistant" and "sources" in message:
+                    with st.expander("📚 Sources"):
+                        for source in message["sources"]:
+                            st.markdown(f"- {source}")
+        
+        # Chat input
+        if prompt := st.chat_input("Ask a question about your documents..."):
+            # Add user message
+            st.session_state.messages.append({"role": "user", "content": prompt})
+            with st.chat_message("user"):
+                st.markdown(prompt)
+            
+            # Generate response
+            with st.chat_message("assistant"):
+                with st.spinner("Thinking..."):
+                    result = pipeline.query(
+                        question=prompt,
+                        top_k=top_k,
+                        include_sources=include_sources
+                    )
+                
+                st.markdown(result["answer"])
+                
+                # Add assistant message
+                assistant_message = {
+                    "role": "assistant", 
+                    "content": result["answer"]
+                }
+                
+                if include_sources and result.get("sources"):
+                    assistant_message["sources"] = result["sources"]
+                    with st.expander("📚 Sources"):
+                        for source in result["sources"]:
+                            st.markdown(f"- {source}")
+                
+                st.session_state.messages.append(assistant_message)
+    
+    # Footer
+    st.markdown("---")
+    st.markdown("Built with ❤️ using AI Bootstrap")
+
+if __name__ == "__main__":
+    main()
+
+{% elif ui_framework == "chainlit" %}
+import chainlit as cl
+import logging
+from src.core.pipeline import RAGPipeline
+from src.config import settings
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Global pipeline instance
+pipeline = None
+
+@cl.on_chat_start
+async def on_chat_start():
+    """Initialize the RAG pipeline when chat starts."""
+    global pipeline
+    
+    await cl.Message(
+        content="🤖 Welcome to {{ project_name }}! Initializing the RAG system..."
+    ).send()
+    
+    try:
+        pipeline = RAGPipeline()
+        if pipeline.initialize():
+            await cl.Message(
+                content="✅ RAG system initialized successfully! You can now ask questions about your documents."
+            ).send()
+        else:
+            await cl.Message(
+                content="❌ Failed to initialize RAG system. Please check your configuration and documents."
+            ).send()
+    except Exception as e:
+        logger.error(f"Error initializing pipeline: {e}")
+        await cl.Message(
+            content=f"❌ Error: {str(e)}"
+        ).send()
+
+@cl.on_message
+async def on_message(message: cl.Message):
+    """Handle incoming messages."""
+    global pipeline
+    
+    if not pipeline:
+        await cl.Message(
+            content="❌ Pipeline not initialized. Please refresh the page."
+        ).send()
+        return
+    
+    try:
+        # Show typing indicator
+        async with cl.Step(name="Searching documents..."):
+            result = pipeline.query(
+                question=message.content,
+                top_k=5,
+                include_sources=True
+            )
+        
+        # Prepare response
+        response_content = result["answer"]
+        
+        # Create elements for sources
+        elements = []
+        if result.get("sources"):
+            sources_text = "\n".join([f"- {source}" for source in result["sources"]])
+            elements.append(
+                cl.Text(
+                    name="sources",
+                    content=sources_text,
+                    display="side"
+                )
+            )
+        
+        # Send response
+        await cl.Message(
+            content=response_content,
+            elements=elements
+        ).send()
+        
+    except Exception as e:
+        logger.error(f"Error processing message: {e}")
+        await cl.Message(
+            content=f"❌ Error processing your question: {str(e)}"
+        ).send()
+
+if __name__ == "__main__":
+    cl.run()
+
+{% elif ui_framework == "fastapi" %}
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+from typing import List, Optional
+import logging
+from src.core.pipeline import RAGPipeline
+from src.config import settings
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# FastAPI app
+app = FastAPI(
+    title="{{ project_name }}",
+    description="RAG system API powered by {{ framework|title }} and {{ llm_provider|title }}",
+    version="1.0.0"
+)
+
+# CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Global pipeline instance
+pipeline = None
+
+# Pydantic models
+class QueryRequest(BaseModel):
+    question: str
+    top_k: Optional[int] = 5
+    include_sources: Optional[bool] = True
+
+class QueryResponse(BaseModel):
+    answer: str
+    sources: List[str]
+    num_documents: int
+    query: str
+
+class HealthResponse(BaseModel):
+    status: str
+    message: str
+
+@app.on_event("startup")
+async def startup_event():
+    """Initialize the RAG pipeline on startup."""
+    global pipeline
+    
+    try:
+        pipeline = RAGPipeline()
+        if pipeline.initialize():
+            logger.info("RAG pipeline initialized successfully")
+        else:
+            logger.error("Failed to initialize RAG pipeline")
+    except Exception as e:
+        logger.error(f"Error during startup: {e}")
+
+@app.get("/", response_model=dict)
+async def root():
+    """Root endpoint."""
+    return {
+        "message": "Welcome to {{ project_name }}",
+        "framework": "{{ framework }}",
+        "llm_provider": "{{ llm_provider }}",
+        "vector_store": "{{ vector_store }}"
+    }
+
+@app.get("/health", response_model=HealthResponse)
+async def health_check():
+    """Health check endpoint."""
+    if not pipeline:
+        return HealthResponse(
+            status="error",
+            message="Pipeline not initialized"
+        )
+    
+    health = pipeline.health_check()
+    return HealthResponse(
+        status=health["status"],
+        message=f"Found {len(health['issues'])} issues" if health['issues'] else "All systems operational"
+    )
+
+@app.post("/query", response_model=QueryResponse)
+async def query_documents(request: QueryRequest):
+    """Query the RAG system."""
+    if not pipeline:
+        raise HTTPException(status_code=503, detail="Pipeline not initialized")
+    
+    try:
+        result = pipeline.query(
+            question=request.question,
+            top_k=request.top_k,
+            include_sources=request.include_sources
+        )
+        
+        return QueryResponse(**result)
+        
+    except Exception as e:
+        logger.error(f"Error processing query: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/stats", response_model=dict)
+async def get_stats():
+    """Get pipeline statistics."""
+    if not pipeline:
+        raise HTTPException(status_code=503, detail="Pipeline not initialized")
+    
+    return pipeline.get_stats()
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(
+        "app:app",
+        host="0.0.0.0",
+        port=settings.FASTAPI_PORT,
+        reload=True
+    )
+
+{% else %}
+# CLI Application
+import argparse
+import logging
+from src.core.pipeline import RAGPipeline
+from src.config import settings
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+def main():
+    """Main CLI application."""
+    parser = argparse.ArgumentParser(description="{{ project_name }} - RAG System CLI")
+    parser.add_argument("--query", "-q", type=str, help="Question to ask")
+    parser.add_argument("--interactive", "-i", action="store_true", help="Interactive mode")
+    parser.add_argument("--top-k", "-k", type=int, default=5, help="Number of documents to retrieve")
+    parser.add_argument("--no-sources", action="store_true", help="Don't show sources")
+    parser.add_argument("--initialize", action="store_true", help="Initialize the pipeline")
+    parser.add_argument("--stats", action="store_true", help="Show pipeline statistics")
+    
+    args = parser.parse_args()
+    
+    # Initialize pipeline
+    print("🤖 Initializing {{ project_name }}...")
+    pipeline = RAGPipeline()
+    
+    if args.initialize or not pipeline._is_initialized:
+        print("📚 Initializing RAG pipeline...")
+        if not pipeline.initialize():
+            print("❌ Failed to initialize pipeline")
+            return
+        print("✅ Pipeline initialized successfully!")
+    
+    if args.stats:
+        stats = pipeline.get_stats()
+        print("\n📊 Pipeline Statistics:")
+        for key, value in stats.items():
+            print(f"  {key}: {value}")
+        return
+    
+    if args.query:
+        # Single query mode
+        print(f"\n❓ Question: {args.query}")
+        result = pipeline.query(
+            question=args.query,
+            top_k=args.top_k,
+            include_sources=not args.no_sources
+        )
+        
+        print(f"🤖 Answer: {result['answer']}")
+        
+        if not args.no_sources and result.get('sources'):
+            print("\n📚 Sources:")
+            for source in result['sources']:
+                print(f"  - {source}")
+        
+        print(f"\n📊 Documents used: {result['num_documents']}")
+    
+    elif args.interactive:
+        # Interactive mode
+        print("\n🚀 Interactive mode started. Type 'quit' to exit.")
+        
+        while True:
+            try:
+                question = input("\n❓ Your question: ").strip()
+                
+                if question.lower() in ['quit', 'exit', 'q']:
+                    print("👋 Goodbye!")
+                    break
+                
+                if not question:
+                    continue
+                
+                print("🔍 Searching...")
+                result = pipeline.query(
+                    question=question,
+                    top_k=args.top_k,
+                    include_sources=not args.no_sources
+                )
+                
+                print(f"\n🤖 Answer: {result['answer']}")
+                
+                if not args.no_sources and result.get('sources'):
+                    print("\n📚 Sources:")
+                    for source in result['sources']:
+                        print(f"  - {source}")
+                
+            except KeyboardInterrupt:
+                print("\n👋 Goodbye!")
+                break
+            except Exception as e:
+                print(f"❌ Error: {e}")
+    
+    else:
+        print("Please specify --query, --interactive, --stats, or --initialize")
+        parser.print_help()
+
+if __name__ == "__main__":
+    main()
+{% endif %}

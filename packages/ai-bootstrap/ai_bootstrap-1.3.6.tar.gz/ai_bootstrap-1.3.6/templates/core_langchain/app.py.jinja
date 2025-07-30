@@ -1,0 +1,441 @@
+"""Web application for {{ project_name }}."""
+
+{% if ui_framework == "streamlit" %}
+import streamlit as st
+import json
+from pathlib import Path
+import logging
+from src.main import app
+from src.config import settings
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Page configuration
+st.set_page_config(
+    page_title="{{ project_name|title }}",
+    page_icon="🔗",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+def main():
+    """Main Streamlit application."""
+    st.title("🔗 {{ project_name|replace('_', ' ')|title }}")
+    st.markdown("LangChain application powered by {{ llm_provider|title }}")
+    
+    # Sidebar
+    with st.sidebar:
+        st.header("⚙️ Configuration")
+        st.info(f"🤖 Model: {settings.LLM_MODEL}")
+        st.info(f"🎯 App Type: {settings.APP_TYPE}")
+        
+        # Chain types
+        st.subheader("🔗 Chain Types")
+        for chain_type in settings.CHAIN_TYPES:
+            st.success(f"✅ {chain_type.title()}")
+        
+        {% if include_tools %}
+        # Tools
+        st.subheader("🛠️ Available Tools")
+        tools = app.list_tools()
+        for tool in tools:
+            st.success(f"🔧 {tool}")
+        {% endif %}
+        
+        # Stats
+        if st.button("📊 Show Stats"):
+            stats = app.get_stats()
+            st.json(stats)
+    
+    # Main interface
+    {% if app_type == "qa_system" %}
+    st.subheader("❓ Question & Answer")
+    
+    col1, col2 = st.columns([3, 1])
+    
+    with col1:
+        question = st.text_input(
+            "Ask a question:",
+            placeholder="Enter your question here..."
+        )
+    
+    with col2:
+        st.write("")  # Spacer
+        ask_button = st.button("🚀 Ask", type="primary")
+    
+    context = st.text_area(
+        "Context (optional):",
+        placeholder="Provide additional context for your question...",
+        height=100
+    )
+    
+    if ask_button and question:
+        with st.spinner("Processing your question..."):
+            result = app.ask_question(question, context if context else None)
+        
+        if "answer" in result:
+            st.success("✅ Answer generated!")
+            st.write("**Answer:**")
+            st.write(result["answer"])
+            
+            # Show sources if available
+            if "source_documents" in result:
+                with st.expander("📚 Sources"):
+                    for i, doc in enumerate(result["source_documents"], 1):
+                        st.write(f"**Source {i}:**")
+                        st.write(doc.page_content[:500] + "..." if len(doc.page_content) > 500 else doc.page_content)
+        
+        elif "error" in result:
+            st.error(f"❌ Error: {result['error']}")
+    
+    {% elif app_type == "text_processor" %}
+    st.subheader("📝 Text Processing")
+    
+    text_input = st.text_area(
+        "Enter text to process:",
+        placeholder="Paste or type your text here...",
+        height=200
+    )
+    
+    col1, col2 = st.columns([2, 1])
+    
+    with col1:
+        operation = st.selectbox(
+            "Processing operation:",
+            ["summarize", "analyze", "rewrite", "translate", "extract_keywords"]
+        )
+    
+    with col2:
+        st.write("")  # Spacer
+        process_button = st.button("🔄 Process", type="primary")
+    
+    if process_button and text_input:
+        with st.spinner(f"Processing text ({operation})..."):
+            result = app.process_text(text_input, operation)
+        
+        if "processed_text" in result:
+            st.success("✅ Text processed!")
+            st.write("**Result:**")
+            st.write(result["processed_text"])
+        elif "error" in result:
+            st.error(f"❌ Error: {result['error']}")
+    
+    {% elif app_type == "api_service" %}
+    st.subheader("🔌 API Service Interface")
+    
+    st.write("Send requests to the LangChain service:")
+    
+    request_data = st.text_area(
+        "Request data (JSON):",
+        placeholder='{"input": "your input here"}',
+        height=150
+    )
+    
+    if st.button("📤 Send Request", type="primary"):
+        if request_data:
+            try:
+                data = json.loads(request_data)
+                
+                with st.spinner("Processing request..."):
+                    result = app.handle_request(data)
+                
+                if result.get("status") == "success":
+                    st.success("✅ Request processed!")
+                    st.write("**Result:**")
+                    st.write(result["result"])
+                else:
+                    st.error(f"❌ Error: {result.get('error', 'Unknown error')}")
+                    
+            except json.JSONDecodeError:
+                st.error("❌ Invalid JSON format")
+        else:
+            st.warning("Please enter request data")
+    
+    {% else %}
+    st.subheader("🔗 Custom Chain Interface")
+    
+    input_data = st.text_area(
+        "Input data (JSON):",
+        placeholder='{"input": "your input here"}',
+        height=150
+    )
+    
+    if st.button("▶️ Run Chain", type="primary"):
+        if input_data:
+            try:
+                data = json.loads(input_data)
+                
+                with st.spinner("Running chain..."):
+                    result = app.run_chain(data)
+                
+                if result.get("status") == "success":
+                    st.success("✅ Chain executed!")
+                    st.write("**Result:**")
+                    st.write(result["result"])
+                else:
+                    st.error(f"❌ Error: {result.get('error', 'Unknown error')}")
+                    
+            except json.JSONDecodeError:
+                st.error("❌ Invalid JSON format")
+        else:
+            st.warning("Please enter input data")
+    {% endif %}
+    
+    {% if include_tools %}
+    # Tools section
+    st.subheader("🛠️ Tools")
+    
+    tools = app.list_tools()
+    if tools:
+        tool_name = st.selectbox("Select a tool:", tools)
+        
+        tool_args = st.text_area(
+            "Tool arguments (JSON):",
+            placeholder='{"arg1": "value1", "arg2": "value2"}',
+            height=100
+        )
+        
+        if st.button("🔧 Use Tool", type="secondary"):
+            try:
+                args = json.loads(tool_args) if tool_args else {}
+                
+                with st.spinner(f"Using tool: {tool_name}..."):
+                    result = app.use_tool(tool_name, **args)
+                
+                if result.get("status") == "success":
+                    st.success("✅ Tool executed!")
+                    st.write("**Result:**")
+                    st.write(result["result"])
+                else:
+                    st.error(f"❌ Error: {result.get('error', 'Unknown error')}")
+                    
+            except json.JSONDecodeError:
+                st.error("❌ Invalid JSON format in arguments")
+    else:
+        st.info("No tools available")
+    {% endif %}
+
+if __name__ == "__main__":
+    main()
+
+{% elif ui_framework == "fastapi" %}
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+from typing import Dict, Any, Optional, List
+import logging
+from src.main import app
+from src.config import settings
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# FastAPI app
+fastapi_app = FastAPI(
+    title="{{ project_name|title }}",
+    description="LangChain application API powered by {{ llm_provider|title }}",
+    version="1.0.0"
+)
+
+# CORS middleware
+fastapi_app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Pydantic models
+{% if app_type == "qa_system" %}
+class QuestionRequest(BaseModel):
+    question: str
+    context: Optional[str] = None
+
+class QuestionResponse(BaseModel):
+    answer: str
+    question: str
+    context: Optional[str] = None
+    sources: Optional[List[str]] = None
+{% elif app_type == "text_processor" %}
+class TextProcessRequest(BaseModel):
+    text: str
+    operation: str = "summarize"
+
+class TextProcessResponse(BaseModel):
+    original_text: str
+    processed_text: str
+    operation: str
+{% else %}
+class ChainRequest(BaseModel):
+    input_data: Dict[str, Any]
+
+class ChainResponse(BaseModel):
+    result: str
+    input_data: Dict[str, Any]
+    status: str
+{% endif %}
+
+{% if include_tools %}
+class ToolRequest(BaseModel):
+    tool_name: str
+    arguments: Dict[str, Any]
+
+class ToolResponse(BaseModel):
+    tool: str
+    result: str
+    arguments: Dict[str, Any]
+    status: str
+{% endif %}
+
+class HealthResponse(BaseModel):
+    status: str
+    message: str
+
+class StatsResponse(BaseModel):
+    app_type: str
+    llm_model: str
+    chain_types: List[str]
+    initialized: bool
+    {% if include_tools %}
+    tools_count: int
+    available_tools: List[str]
+    {% endif %}
+
+@fastapi_app.get("/", response_model=dict)
+async def root():
+    """Root endpoint."""
+    return {
+        "message": "Welcome to {{ project_name|title }}",
+        "app_type": settings.APP_TYPE,
+        "llm_model": settings.LLM_MODEL,
+        "chain_types": settings.CHAIN_TYPES
+    }
+
+@fastapi_app.get("/health", response_model=HealthResponse)
+async def health_check():
+    """Health check endpoint."""
+    if app.chain is None:
+        return HealthResponse(
+            status="error",
+            message="Application not initialized"
+        )
+    
+    return HealthResponse(
+        status="healthy",
+        message="Application is running"
+    )
+
+@fastapi_app.get("/stats", response_model=StatsResponse)
+async def get_stats():
+    """Get application statistics."""
+    stats = app.get_stats()
+    return StatsResponse(**stats)
+
+{% if app_type == "qa_system" %}
+@fastapi_app.post("/ask", response_model=QuestionResponse)
+async def ask_question(request: QuestionRequest):
+    """Ask a question using the QA system."""
+    try:
+        result = app.ask_question(request.question, request.context)
+        
+        if "error" in result:
+            raise HTTPException(status_code=500, detail=result["error"])
+        
+        return QuestionResponse(
+            answer=result.get("answer", ""),
+            question=request.question,
+            context=request.context,
+            sources=result.get("sources", [])
+        )
+        
+    except Exception as e:
+        logger.error(f"Error processing question: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+{% elif app_type == "text_processor" %}
+@fastapi_app.post("/process", response_model=TextProcessResponse)
+async def process_text(request: TextProcessRequest):
+    """Process text using the configured chain."""
+    try:
+        result = app.process_text(request.text, request.operation)
+        
+        if "error" in result:
+            raise HTTPException(status_code=500, detail=result["error"])
+        
+        return TextProcessResponse(**result)
+        
+    except Exception as e:
+        logger.error(f"Error processing text: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+{% else %}
+@fastapi_app.post("/chain", response_model=ChainResponse)
+async def run_chain(request: ChainRequest):
+    """Run the chain with input data."""
+    try:
+        result = app.run_chain(request.input_data)
+        
+        if result.get("status") == "error":
+            raise HTTPException(status_code=500, detail=result["error"])
+        
+        return ChainResponse(**result)
+        
+    except Exception as e:
+        logger.error(f"Error running chain: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+{% endif %}
+
+{% if include_tools %}
+@fastapi_app.post("/tool", response_model=ToolResponse)
+async def use_tool(request: ToolRequest):
+    """Use a specific tool."""
+    try:
+        result = app.use_tool(request.tool_name, **request.arguments)
+        
+        if result.get("status") == "error":
+            raise HTTPException(status_code=500, detail=result["error"])
+        
+        return ToolResponse(**result)
+        
+    except Exception as e:
+        logger.error(f"Error using tool: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@fastapi_app.get("/tools", response_model=List[str])
+async def list_tools():
+    """List available tools."""
+    return app.list_tools()
+{% endif %}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(
+        "app:fastapi_app",
+        host=settings.FASTAPI_HOST,
+        port=settings.FASTAPI_PORT,
+        reload=True
+    )
+
+{% else %}
+# CLI Application
+import argparse
+import logging
+from src.main import app, main
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+if __name__ == "__main__":
+    print("🔗 {{ project_name|title }} - LangChain Application")
+    print(f"App Type: {settings.APP_TYPE}")
+    print(f"LLM Model: {settings.LLM_MODEL}")
+    print()
+    
+    # Run the main CLI function
+    main()
+{% endif %}

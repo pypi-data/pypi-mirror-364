@@ -1,0 +1,11 @@
+"""Prompt templates for {{ project_name }}."""
+
+from typing import Dict, Any, List
+from langchain.prompts import PromptTemplate, ChatPromptTemplate, MessagesPlaceholder
+from langchain.prompts.few_shot import FewShotPromptTemplate
+from langchain.prompts.example_selector import SemanticSimilarityExampleSelector
+
+# Template definitions
+PROMPT_TEMPLATES = {
+    "basic": {
+        "template": """You are a helpful AI assistant for {{ project_name|replace('_', ' ')|title }}.

@@ -1,0 +1,193 @@
+# {{ project_name }}
+
+A Retrieval-Augmented Generation (RAG) system built with {{ framework|title }} and {{ llm_provider|title }}.
+
+## 🚀 Features
+
+- **Framework**: {{ framework|title }}
+- **LLM Provider**: {{ llm_provider|title }}
+- **Vector Store**: {{ vector_store|title }}
+- **UI**: {{ ui_framework|title }}
+- **Document Processing**: PDF, TXT, DOCX, MD support
+- **Real-time Chat Interface**
+{% if include_notebooks %}
+- **Jupyter Notebooks** for experimentation
+{% endif %}
+{% if include_tests %}
+- **Comprehensive Testing**
+{% endif %}
+
+## 📋 Prerequisites
+
+- Python {{ python_version }}+
+{% if llm_provider == "openai" %}
+- OpenAI API key
+{% elif llm_provider == "ollama" %}
+- Ollama installed and running
+{% endif %}
+
+## 🛠️ Installation
+
+1. **Clone and navigate to the project:**
+cd {{ project_name }}
+
+2. **Create and activate virtual environment:**
+python -m venv venv
+source venv/bin/activate # On Windows: venv\Scripts\activate
+
+3. **Install dependencies:**
+pip install -r requirements.txt
+
+4. **Set up environment variables:**
+cp .env.example .env
+
+Edit .env with your configuration
+## 📚 Usage
+
+### 1. Add Documents
+
+Place your documents in the `data/` directory:
+cp /path/to/your/documents/* data/
+Supported formats: PDF, TXT, DOCX, MD
+
+### 2. Initialize the System
+
+{% if ui_framework == "cli" %}
+python app.py --initialize
+{% else %}
+The system will automatically initialize when you first run it.
+{% endif %}
+
+### 3. Run the Application
+
+{% if ui_framework == "streamlit" %}
+streamlit run app.py
+{% elif ui_framework == "chainlit" %}
+chainlit run app.py
+{% elif ui_framework == "fastapi" %}
+python app.py
+
+Or: uvicorn app:app --reload
+{% else %}
+**Interactive Mode:**
+python app.py --interactive
+**Single Query:**
+python app.py --query "What is this document about?"
+{% endif %}
+
+## ⚙️ Configuration
+
+Key settings in `.env`:
+
+{% if llm_provider == "openai" %}
+- `OPENAI_API_KEY`: Your OpenAI API key
+- `LLM_MODEL`: GPT model to use (default: gpt-3.5-turbo)
+- `EMBEDDING_MODEL`: Embedding model (default: text-embedding-ada-002)
+{% elif llm_provider == "ollama" %}
+- `OLLAMA_BASE_URL`: Ollama server URL (default: http://localhost:11434)
+- `LLM_MODEL`: Ollama model to use (default: llama2)
+- `EMBEDDING_MODEL`: Embedding model (default: nomic-embed-text)
+{% endif %}
+- `CHUNK_SIZE`: Document chunk size (default: 1000)
+- `CHUNK_OVERLAP`: Chunk overlap (default: 200)
+- `SIMILARITY_TOP_K`: Number of documents to retrieve (default: 5)
+
+## 🧪 Development
+
+{% if include_tests %}
+**Run tests:**
+pytest tests/
+{% endif %}
+
+{% if include_notebooks %}
+**Use Jupyter notebooks:**
+jupyter notebook notebooks/
+
+jupyter notebook notebooks/
+{% endif %}
+{% if ui_framework == "cli" %}
+python app.py --stats
+
+text
+{% else %}
+python app.py --stats
+{% endif %}
+
+{{ project_name }}/
+├── data/ # Documents to process
+├── vector_store/ # Vector database storage
+├── src/
+│ ├── config.py # Configuration management
+│ └── core/
+│ ├── ingestion.py # Document processing
+│ ├── retrieval.py # Document retrieval
+│ ├── generation.py # Answer generation
+│ └── pipeline.py # Complete RAG pipeline
+├── app.py # Main application
+├── requirements.txt # Dependencies
+{% if include_notebooks %}
+├── notebooks/ # Jupyter notebooks
+{% endif %}
+{% if include_tests %}
+├── tests/ # Test files
+{% endif %}
+└── .env # Environment variables
+
+text
+
+## 🔧 Customization
+
+└── .env # Environment variables
+
+## 🔧 Customization
+
+### Changing Models
+
+Update the `.env` file with new model names:
+{% if llm_provider == "openai" %}
+LLM_MODEL=gpt-4
+EMBEDDING_MODEL=text-embedding-3-large
+
+text
+{% elif llm_provider == "ollama" %}
+LLM_MODEL=mistral
+EMBEDDING_MODEL=nomic-embed-text
+
+LLM_MODEL=gpt-4
+EMBEDDING_MODEL=text-embedding-3-large
+
+{% elif llm_provider == "ollama" %}
+Modify the prompt template in `src/core/generation.py`.
+LLM_MODEL=mistral
+EMBEDDING_MODEL=nomic-embed-text
+
+{% endif %}
+- Verify API keys in `.env`
+{% if llm_provider == "ollama" %}
+- Ensure Ollama is running: `ollama serve`
+{% endif %}
+
+**Out of memory errors:**
+- Reduce `CHUNK_SIZE` in `.env`
+- Process fewer documents at once
+
+**Poor retrieval quality:**
+- Adjust `SIMILARITY_TOP_K` and `SIMILARITY_THRESHOLD`
+- Try different chunk sizes
+- Ensure document quality and relevance
+
+## 📄 License
+
+MIT License - see LICENSE file for details.
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests
+5. Submit a pull request
+
+---
+
+Built with ❤️ using [AI Bootstrap](https://github.com/your-repo/ai-bootstrap)

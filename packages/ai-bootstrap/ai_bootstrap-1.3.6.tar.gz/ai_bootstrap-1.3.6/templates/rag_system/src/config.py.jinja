@@ -1,0 +1,73 @@
+"""Configuration management for {{ project_name }}."""
+
+import os
+from pathlib import Path
+from typing import Optional, List
+from pydantic import BaseSettings, Field
+from pydantic_settings import BaseSettings
+
+class Settings(BaseSettings):
+    """Application settings."""
+    
+    # Project settings
+    PROJECT_NAME: str = "{{ project_name }}"
+    PROJECT_ROOT: Path = Path(__file__).parent.parent
+    
+    # LLM Provider settings
+    {% if llm_provider == "openai" %}
+    OPENAI_API_KEY: Optional[str] = Field(None, env="OPENAI_API_KEY")
+    LLM_MODEL: str = Field("gpt-3.5-turbo", env="LLM_MODEL")
+    EMBEDDING_MODEL: str = Field("text-embedding-ada-002", env="EMBEDDING_MODEL")
+    {% elif llm_provider == "ollama" %}
+    OLLAMA_BASE_URL: str = Field("http://localhost:11434", env="OLLAMA_BASE_URL")
+    LLM_MODEL: str = Field("llama2", env="LLM_MODEL")
+    EMBEDDING_MODEL: str = Field("nomic-embed-text", env="EMBEDDING_MODEL")
+    {% endif %}
+    
+    # Vector store settings
+    {% if vector_store == "chroma" %}
+    VECTOR_STORE_PATH: Path = Field(
+        default_factory=lambda: Path(__file__).parent.parent / "vector_store",
+        env="VECTOR_STORE_PATH"
+    )
+    COLLECTION_NAME: str = Field("{{ project_name }}_docs", env="COLLECTION_NAME")
+    {% elif vector_store == "faiss" %}
+    VECTOR_STORE_PATH: Path = Field(
+        default_factory=lambda: Path(__file__).parent.parent / "vector_store",
+        env="VECTOR_STORE_PATH"
+    )
+    INDEX_NAME: str = Field("faiss_index", env="INDEX_NAME")
+    {% endif %}
+    
+    # Document processing settings
+    DATA_PATH: Path = Field(
+        default_factory=lambda: Path(__file__).parent.parent / "data",
+        env="DATA_PATH"
+    )
+    CHUNK_SIZE: int = Field(1000, env="CHUNK_SIZE")
+    CHUNK_OVERLAP: int = Field(200, env="CHUNK_OVERLAP")
+    
+    # Retrieval settings
+    SIMILARITY_TOP_K: int = Field(5, env="SIMILARITY_TOP_K")
+    SIMILARITY_THRESHOLD: float = Field(0.7, env="SIMILARITY_THRESHOLD")
+    
+    # Generation settings
+    MAX_TOKENS: int = Field(1000, env="MAX_TOKENS")
+    TEMPERATURE: float = Field(0.1, env="TEMPERATURE")
+    
+    # UI settings
+    {% if ui_framework == "streamlit" %}
+    STREAMLIT_PORT: int = Field(8501, env="STREAMLIT_PORT")
+    {% elif ui_framework == "chainlit" %}
+    CHAINLIT_PORT: int = Field(8000, env="CHAINLIT_PORT")
+    {% elif ui_framework == "fastapi" %}
+    FASTAPI_PORT: int = Field(8000, env="FASTAPI_PORT")
+    {% endif %}
+    
+    class Config:
+        env_file = ".env"
+        env_file_encoding = "utf-8"
+        case_sensitive = True
+
+# Global settings instance
+settings = Settings()

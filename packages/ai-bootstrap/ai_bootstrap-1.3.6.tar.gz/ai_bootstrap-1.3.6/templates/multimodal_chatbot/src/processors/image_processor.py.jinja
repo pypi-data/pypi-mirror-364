@@ -1,0 +1,365 @@
+"""Image processing capabilities for {{ project_name }}."""
+
+from typing import Dict, Any, Optional, List, Union
+import logging
+from pathlib import Path
+import asyncio
+import base64
+import io
+from PIL import Image, ImageEnhance, ImageFilter
+import requests
+{% if llm_provider == "openai" %}
+from openai import OpenAI
+{% elif llm_provider == "anthropic" %}
+import anthropic
+{% endif %}
+
+from ..config import settings
+
+logger = logging.getLogger(__name__)
+
+class ImageProcessor:
+    """Handles image analysis{% if 'generation' in image_features %}, generation,{% endif %} and processing."""
+    
+    def __init__(self):
+        """Initialize the image processor."""
+        {% if llm_provider == "openai" %}
+        self.client = OpenAI(api_key=settings.OPENAI_API_KEY)
+        {% elif llm_provider == "anthropic" %}
+        self.client = anthropic.Anthropic(api_key=settings.ANTHROPIC_API_KEY)
+        {% endif %}
+        
+        logger.info("Image processor initialized")
+    
+    async def process_image(self, image_path: Path) -> Dict[str, Any]:
+        """Process an uploaded image file."""
+        try:
+            # Validate file
+            if not self._is_valid_image(image_path):
+                return {"error": "Invalid or unsupported image format"}
+            
+            # Load and prepare image
+            image = Image.open(image_path)
+            image_info = self._get_image_info(image)
+            
+            # Analyze image
+            analysis = await self._analyze_image(image_path)
+            
+            result = {
+                "description": analysis.get("description", ""),
+                "analysis": {
+                    "image_info": image_info,
+                    "content_analysis": analysis,
+                },
+                "file_path": str(image_path),
+                "success": True
+            }
+            
+            logger.info(f"Successfully processed image: {image_path.name}")
+            return result
+            
+        except Exception as e:
+            logger.error(f"Error processing image {image_path}: {e}")
+            return {
+                "error": str(e),
+                "file_path": str(image_path),
+                "success": False
+            }
+    
+    def _is_valid_image(self, image_path: Path) -> bool:
+        """Check if the file is a valid image."""
+        try:
+            # Check file size
+            file_size = image_path.stat().st_size
+            if file_size > settings.MAX_IMAGE_SIZE:
+                logger.warning(f"Image too large: {file_size} bytes")
+                return False
+            
+            # Check file extension
+            if image_path.suffix.lower()[1:] not in settings.SUPPORTED_IMAGE_FORMATS:
+                logger.warning(f"Unsupported image format: {image_path.suffix}")
+                return False
+            
+            # Try to open with PIL
+            with Image.open(image_path) as img:
+                img.verify()
+            
+            return True
+            
+        except Exception as e:
+            logger.error(f"Image validation failed: {e}")
+            return False
+    
+    def _get_image_info(self, image: Image.Image) -> Dict[str, Any]:
+        """Extract basic information from the image."""
+        return {
+            "format": image.format,
+            "mode": image.mode,
+            "size": image.size,
+            "width": image.width,
+            "height": image.height,
+            "has_transparency": image.mode in ("RGBA", "LA") or "transparency" in image.info,
+        }
+    
+    async def _analyze_image(self, image_path: Path) -> Dict[str, Any]:
+        """Analyze image content using vision AI."""
+        
+        {% if llm_provider == "openai" %}
+        try:
+            # Encode image to base64
+            with open(image_path, "rb") as image_file:
+                base64_image = base64.b64encode(image_file.read()).decode('utf-8')
+            
+            response = self.client.chat.completions.create(
+                model=settings.LLM_MODEL,
+                messages=[
+                    {
+                        "role": "user",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "Please analyze this image and provide a detailed description. Include information about objects, people, activities, colors, setting, and any text you can see."
+                            },
+                            {
+                                "type": "image_url",
+                                "image_url": {
+                                    "url": f"data:image/jpeg;base64,{base64_image}"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                max_tokens=500
+            )
+            
+            description = response.choices[0].message.content
+            
+            return {
+                "description": description,
+                "model_used": settings.LLM_MODEL,
+                "confidence": "high"  # OpenAI doesn't provide confidence scores
+            }
+            
+        except Exception as e:
+            logger.error(f"Error in OpenAI image analysis: {e}")
+            return {
+                "description": "Error analyzing image with AI vision",
+                "error": str(e)
+            }
+        
+        {% elif llm_provider == "anthropic" %}
+        try:
+            # Read and encode image
+            with open(image_path, "rb") as image_file:
+                image_data = base64.b64encode(image_file.read()).decode('utf-8')
+            
+            # Determine media type
+            media_type = f"image/{image_path.suffix[1:].lower()}"
+            if media_type == "image/jpg":
+                media_type = "image/jpeg"
+            
+            message = self.client.messages.create(
+                model=settings.LLM_MODEL,
+                max_tokens=500,
+                messages=[
+                    {
+                        "role": "user",
+                        "content": [
+                            {
+                                "type": "image",
+                                "source": {
+                                    "type": "base64",
+                                    "media_type": media_type,
+                                    "data": image_data
+                                }
+                            },
+                            {
+                                "type": "text",
+                                "text": "Please analyze this image and provide a detailed description. Include information about objects, people, activities, colors, setting, and any text you can see."
+                            }
+                        ]
+                    }
+                ]
+            )
+            
+            description = message.content[0].text
+            
+            return {
+                "description": description,
+                "model_used": settings.LLM_MODEL,
+                "confidence": "high"
+            }
+            
+        except Exception as e:
+            logger.error(f"Error in Anthropic image analysis: {e}")
+            return {
+                "description": "Error analyzing image with AI vision",
+                "error": str(e)
+            }
+        
+        {% else %}
+        # Fallback for other providers or local models
+        try:
+            # Basic image analysis without AI
+            image = Image.open(image_path)
+            
+            # Simple analysis
+            colors = image.getcolors(maxcolors=256)
+            dominant_colors = []
+            if colors:
+                # Get top 3 most common colors
+                sorted_colors = sorted(colors, key=lambda x: x[0], reverse=True)[:3]
+                for count, color in sorted_colors:
+                    if isinstance(color, tuple):
+                        dominant_colors.append(f"RGB{color}")
+                    else:
+                        dominant_colors.append(str(color))
+            
+            description = f"Image analysis: {image.width}x{image.height} {image.format} image"
+            if dominant_colors:
+                description += f" with dominant colors: {', '.join(dominant_colors[:2])}"
+            
+            return {
+                "description": description,
+                "model_used": "basic_analysis",
+                "confidence": "low"
+            }
+            
+        except Exception as e:
+            logger.error(f"Error in basic image analysis: {e}")
+            return {
+                "description": "Unable to analyze image",
+                "error": str(e)
+            }
+        {% endif %}
+    
+    {% if 'generation' in image_features %}
+    async def generate_image(self, prompt: str, **kwargs) -> Dict[str, Any]:
+        """Generate an image from a text prompt."""
+        
+        {% if llm_provider == "openai" %}
+        try:
+            response = self.client.images.generate(
+                model=settings.DALLE_MODEL,
+                prompt=prompt,
+                size=kwargs.get("size", "1024x1024"),
+                quality=kwargs.get("quality", "standard"),
+                n=1,
+            )
+            
+            image_url = response.data[0].url
+            
+            # Download and save the image
+            image_response = requests.get(image_url)
+            image_data = image_response.content
+            
+            # Save to data directory
+            output_path = settings.DATA_PATH / "generated" / f"generated_{datetime.now().strftime('%Y%m%d_%H%M%S')}.png"
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            
+            with open(output_path, "wb") as f:
+                f.write(image_data)
+            
+            return {
+                "success": True,
+                "image_path": str(output_path),
+                "prompt": prompt,
+                "model_used": settings.DALLE_MODEL,
+                "url": image_url
+            }
+            
+        except Exception as e:
+            logger.error(f"Error generating image: {e}")
+            return {
+                "success": False,
+                "error": str(e),
+                "prompt": prompt
+            }
+        
+        {% else %}
+        # Fallback for other providers
+        logger.warning("Image generation not supported for this LLM provider")
+        return {
+            "success": False,
+            "error": "Image generation not supported for the current LLM provider",
+            "prompt": prompt
+        }
+        {% endif %}
+    {% endif %}
+    
+    def enhance_image(self, image_path: Path, enhancement_type: str = "auto") -> Dict[str, Any]:
+        """Apply image enhancements."""
+        try:
+            image = Image.open(image_path)
+            
+            if enhancement_type == "brightness":
+                enhancer = ImageEnhance.Brightness(image)
+                enhanced = enhancer.enhance(1.2)
+            elif enhancement_type == "contrast":
+                enhancer = ImageEnhance.Contrast(image)
+                enhanced = enhancer.enhance(1.1)
+            elif enhancement_type == "sharpness":
+                enhancer = ImageEnhance.Sharpness(image)
+                enhanced = enhancer.enhance(1.3)
+            elif enhancement_type == "blur":
+                enhanced = image.filter(ImageFilter.GaussianBlur(radius=1))
+            else:  # auto enhancement
+                # Apply multiple enhancements
+                enhanced = image
+                enhanced = ImageEnhance.Contrast(enhanced).enhance(1.05)
+                enhanced = ImageEnhance.Brightness(enhanced).enhance(1.05)
+                enhanced = ImageEnhance.Sharpness(enhanced).enhance(1.1)
+            
+            # Save enhanced image
+            output_path = settings.DATA_PATH / "enhanced" / f"enhanced_{image_path.name}"
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            enhanced.save(output_path)
+            
+            return {
+                "success": True,
+                "original_path": str(image_path),
+                "enhanced_path": str(output_path),
+                "enhancement_type": enhancement_type
+            }
+            
+        except Exception as e:
+            logger.error(f"Error enhancing image: {e}")
+            return {
+                "success": False,
+                "error": str(e),
+                "original_path": str(image_path)
+            }
+    
+    def resize_image(self, image_path: Path, max_size: tuple = (800, 600)) -> Dict[str, Any]:
+        """Resize an image while maintaining aspect ratio."""
+        try:
+            image = Image.open(image_path)
+            original_size = image.size
+            
+            # Calculate new size maintaining aspect ratio
+            image.thumbnail(max_size, Image.Resampling.LANCZOS)
+            new_size = image.size
+            
+            # Save resized image
+            output_path = settings.DATA_PATH / "resized" / f"resized_{image_path.name}"
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            image.save(output_path, optimize=True, quality=85)
+            
+            return {
+                "success": True,
+                "original_path": str(image_path),
+                "resized_path": str(output_path),
+                "original_size": original_size,
+                "new_size": new_size
+            }
+            
+        except Exception as e:
+            logger.error(f"Error resizing image: {e}")
+            return {
+                "success": False,
+                "error": str(e),
+                "original_path": str(image_path)
+            }
+
+# Global image processor instance
+image_processor = ImageProcessor()

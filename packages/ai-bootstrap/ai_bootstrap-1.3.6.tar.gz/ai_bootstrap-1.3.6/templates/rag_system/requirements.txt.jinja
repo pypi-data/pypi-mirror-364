@@ -1,0 +1,78 @@
+# Core dependencies
+{% if framework == "langchain" %}
+langchain>=0.1.0
+langchain-core>=0.1.0
+langchain-community>=0.0.20
+{% elif framework == "llamaindex" %}
+llama-index>=0.9.0
+llama-index-core>=0.9.0
+{% endif %}
+
+# LLM Provider
+{% if llm_provider == "openai" %}
+{% if framework == "langchain" %}
+langchain-openai>=0.0.6
+{% elif framework == "llamaindex" %}
+llama-index-llms-openai>=0.1.0
+llama-index-embeddings-openai>=0.1.0
+{% endif %}
+openai>=1.12.0
+{% elif llm_provider == "ollama" %}
+{% if framework == "langchain" %}
+langchain-community>=0.0.20
+{% elif framework == "llamaindex" %}
+llama-index-llms-ollama>=0.1.0
+llama-index-embeddings-ollama>=0.1.0
+{% endif %}
+ollama>=0.1.0
+{% endif %}
+
+# Vector Store
+{% if vector_store == "chroma" %}
+chromadb>=0.4.22
+{% elif vector_store == "faiss" %}
+faiss-cpu>=1.7.4
+{% endif %}
+
+# Document processing
+pypdf2>=3.0.1
+python-docx>=1.1.0
+python-pptx>=0.6.23
+openpyxl>=3.1.2
+
+# Text splitting and processing
+tiktoken>=0.6.0
+beautifulsoup4>=4.12.0
+markdownify>=0.11.6
+
+# UI Framework
+{% if ui_framework == "streamlit" %}
+streamlit>=1.31.0
+streamlit-chat>=0.1.1
+{% elif ui_framework == "chainlit" %}
+chainlit>=1.0.0
+{% elif ui_framework == "fastapi" %}
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+python-multipart>=0.0.6
+{% endif %}
+
+# Development and utilities
+python-dotenv>=1.0.0
+pydantic>=2.6.0
+pydantic-settings>=2.1.0
+{% if include_notebooks %}
+jupyter>=1.0.0
+ipykernel>=6.29.0
+matplotlib>=3.8.0
+seaborn>=0.13.0
+{% endif %}
+{% if include_tests %}
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+pytest-cov>=4.0.0
+{% endif %}
+
+# Logging and monitoring
+loguru>=0.7.2
+rich>=13.7.0

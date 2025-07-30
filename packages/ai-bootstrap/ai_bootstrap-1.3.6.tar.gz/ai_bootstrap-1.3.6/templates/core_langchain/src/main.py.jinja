@@ -1,0 +1,342 @@
+"""Main application logic for {{ project_name }}."""
+
+import logging
+from typing import Dict, Any, Optional
+from pathlib import Path
+
+from .config import settings
+from .llms.providers import get_llm
+from .chains.custom_chains import get_chain_by_name
+{% if include_tools %}
+from .tools.custom_tools import get_available_tools
+{% endif %}
+
+# Configure logging
+logging.basicConfig(
+    level=getattr(logging, settings.LOG_LEVEL),
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
+
+class {{ project_name|replace('-', '_')|replace(' ', '_')|title }}Application:
+    """Main application class for {{ project_name }}."""
+    
+    def __init__(self):
+        """Initialize the application."""
+        self.llm = None
+        self.chain = None
+        {% if include_tools %}
+        self.tools = get_available_tools()
+        {% endif %}
+        
+        logger.info("{{ project_name|title }} application initialized")
+    
+    def initialize(self, chain_type: str = "{% if app_type == 'qa_system' %}rag{% else %}llm{% endif %}") -> bool:
+        """Initialize the application components.
+        
+        Args:
+            chain_type: Type of chain to initialize
+            
+        Returns:
+            True if initialization successful, False otherwise
+        """
+        try:
+            # Initialize LLM
+            self.llm = get_llm()
+            logger.info(f"LLM initialized: {settings.LLM_MODEL}")
+            
+            # Initialize chain
+            self.chain = get_chain_by_name(chain_type)
+            logger.info(f"Chain initialized: {chain_type}")
+            
+            {% if include_tools %}
+            logger.info(f"Tools available: {len(self.tools)}")
+            {% endif %}
+            
+            return True
+            
+        except Exception as e:
+            logger.error(f"Initialization failed: {e}")
+            return False
+    
+    {% if app_type == "qa_system" %}
+    def ask_question(self, question: str, context: str = None) -> Dict[str, Any]:
+        """Ask a question using the QA system.
+        
+        Args:
+            question: Question to ask
+            context: Optional context for the question
+            
+        Returns:
+            Dictionary with answer and metadata
+        """
+        if not self.chain:
+            return {"error": "Application not initialized"}
+        
+        try:
+            if context:
+                # Use context if provided
+                result = self.chain.invoke({"question": question, "context": context})
+            else:
+                # Use retrieval chain
+                result = self.chain.invoke({"query": question})
+            
+            if isinstance(result, dict):
+                return result
+            else:
+                return {"answer": str(result), "question": question}
+                
+        except Exception as e:
+            logger.error(f"Error processing question: {e}")
+            return {"error": str(e), "question": question}
+    
+    {% elif app_type == "text_processor" %}
+    def process_text(self, text: str, operation: str = "summarize") -> Dict[str, Any]:
+        """Process text using the configured chain.
+        
+        Args:
+            text: Text to process
+            operation: Type of processing to perform
+            
+        Returns:
+            Dictionary with processed text and metadata
+        """
+        if not self.chain:
+            return {"error": "Application not initialized"}
+        
+        try:
+            result = self.chain.invoke({
+                "text": text,
+                "operation": operation
+            })
+            
+            return {
+                "original_text": text,
+                "processed_text": str(result),
+                "operation": operation
+            }
+            
+        except Exception as e:
+            logger.error(f"Error processing text: {e}")
+            return {"error": str(e), "operation": operation}
+    
+    {% elif app_type == "api_service" %}
+    def handle_request(self, request_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Handle an API request.
+        
+        Args:
+            request_data: Request data dictionary
+            
+        Returns:
+            Response dictionary
+        """
+        if not self.chain:
+            return {"error": "Application not initialized"}
+        
+        try:
+            result = self.chain.invoke(request_data)
+            
+            return {
+                "result": str(result),
+                "request_data": request_data,
+                "status": "success"
+            }
+            
+        except Exception as e:
+            logger.error(f"Error handling request: {e}")
+            return {
+                "error": str(e),
+                "request_data": request_data,
+                "status": "error"
+            }
+    
+    {% else %}
+    def run_chain(self, input_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Run the chain with input data.
+        
+        Args:
+            input_data: Input data for the chain
+            
+        Returns:
+            Chain output dictionary
+        """
+        if not self.chain:
+            return {"error": "Application not initialized"}
+        
+        try:
+            result = self.chain.invoke(input_data)
+            
+            return {
+                "result": str(result),
+                "input_data": input_data,
+                "status": "success"
+            }
+            
+        except Exception as e:
+            logger.error(f"Error running chain: {e}")
+            return {
+                "error": str(e),
+                "input_data": input_data,
+                "status": "error"
+            }
+    {% endif %}
+    
+    {% if include_tools %}
+    def use_tool(self, tool_name: str, **kwargs) -> Dict[str, Any]:
+        """Use a specific tool.
+        
+        Args:
+            tool_name: Name of the tool to use
+            **kwargs: Tool arguments
+            
+        Returns:
+            Tool execution result
+        """
+        for tool in self.tools:
+            if tool.name == tool_name:
+                try:
+                    result = tool.run(kwargs)
+                    return {
+                        "tool": tool_name,
+                        "result": result,
+                        "arguments": kwargs,
+                        "status": "success"
+                    }
+                except Exception as e:
+                    logger.error(f"Error using tool {tool_name}: {e}")
+                    return {
+                        "tool": tool_name,
+                        "error": str(e),
+                        "arguments": kwargs,
+                        "status": "error"
+                    }
+        
+        return {
+            "error": f"Tool '{tool_name}' not found",
+            "available_tools": [tool.name for tool in self.tools],
+            "status": "error"
+        }
+    
+    def list_tools(self) -> List[str]:
+        """List available tools."""
+        return [tool.name for tool in self.tools]
+    {% endif %}
+    
+    def get_stats(self) -> Dict[str, Any]:
+        """Get application statistics.
+        
+        Returns:
+            Statistics dictionary
+        """
+        return {
+            "app_type": settings.APP_TYPE,
+            "llm_model": settings.LLM_MODEL,
+            "chain_types": settings.CHAIN_TYPES,
+            "initialized": self.chain is not None,
+            {% if include_tools %}
+            "tools_count": len(self.tools),
+            "available_tools": [tool.name for tool in self.tools],
+            {% endif %}
+            "project_name": settings.PROJECT_NAME,
+        }
+
+def create_app() -> {{ project_name|replace('-', '_')|replace(' ', '_')|title }}Application:
+    """Create and initialize the application.
+    
+    Returns:
+        Initialized application instance
+    """
+    app = {{ project_name|replace('-', '_')|replace(' ', '_')|title }}Application()
+    
+    if app.initialize():
+        logger.info("Application created and initialized successfully")
+    else:
+        logger.error("Application initialization failed")
+    
+    return app
+
+# Global application instance
+app = create_app()
+
+def main():
+    """Main function for CLI usage."""
+    import argparse
+    
+    parser = argparse.ArgumentParser(description="{{ project_name|title }} - LangChain Application")
+    {% if app_type == "qa_system" %}
+    parser.add_argument("--question", "-q", type=str, help="Question to ask")
+    parser.add_argument("--context", "-c", type=str, help="Context for the question")
+    {% elif app_type == "text_processor" %}
+    parser.add_argument("--text", "-t", type=str, help="Text to process")
+    parser.add_argument("--operation", "-o", type=str, default="summarize", help="Processing operation")
+    {% else %}
+    parser.add_argument("--input", "-i", type=str, help="Input for the chain")
+    {% endif %}
+    {% if include_tools %}
+    parser.add_argument("--tool", type=str, help="Tool to use")
+    parser.add_argument("--tool-args", type=str, help="Tool arguments (JSON format)")
+    {% endif %}
+    parser.add_argument("--stats", action="store_true", help="Show application statistics")
+    
+    args = parser.parse_args()
+    
+    if args.stats:
+        stats = app.get_stats()
+        print("Application Statistics:")
+        for key, value in stats.items():
+            print(f"  {key}: {value}")
+        return
+    
+    {% if include_tools %}
+    if args.tool:
+        import json
+        tool_args = {}
+        if args.tool_args:
+            try:
+                tool_args = json.loads(args.tool_args)
+            except json.JSONDecodeError:
+                print("Error: Invalid JSON in tool arguments")
+                return
+        
+        result = app.use_tool(args.tool, **tool_args)
+        print(f"Tool Result: {result}")
+        return
+    {% endif %}
+    
+    {% if app_type == "qa_system" %}
+    if args.question:
+        result = app.ask_question(args.question, args.context)
+        print(f"Question: {args.question}")
+        if "answer" in result:
+            print(f"Answer: {result['answer']}")
+        elif "error" in result:
+            print(f"Error: {result['error']}")
+    {% elif app_type == "text_processor" %}
+    if args.text:
+        result = app.process_text(args.text, args.operation)
+        print(f"Original: {args.text}")
+        if "processed_text" in result:
+            print(f"Processed: {result['processed_text']}")
+        elif "error" in result:
+            print(f"Error: {result['error']}")
+    {% else %}
+    if args.input:
+        import json
+        try:
+            input_data = json.loads(args.input)
+        except json.JSONDecodeError:
+            input_data = {"input": args.input}
+        
+        result = app.run_chain(input_data)
+        print(f"Input: {input_data}")
+        if "result" in result:
+            print(f"Result: {result['result']}")
+        elif "error" in result:
+            print(f"Error: {result['error']}")
+    {% endif %}
+    else:
+        print("{{ project_name|title }} is running!")
+        print("Use --help for usage information")
+
+if __name__ == "__main__":
+    main()

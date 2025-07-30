@@ -1,0 +1,104 @@
+"""Configuration management for {{ project_name }}."""
+
+import os
+from pathlib import Path
+from typing import Optional, List, Dict, Any
+from pydantic import BaseSettings, Field
+from pydantic_settings import BaseSettings
+
+class Settings(BaseSettings):
+    """Application settings for the multimodal chatbot."""
+    
+    # Project settings
+    PROJECT_NAME: str = "{{ project_name }}"
+    PROJECT_ROOT: Path = Path(__file__).parent.parent
+    
+    # LLM Provider settings
+    {% if llm_provider == "openai" %}
+    OPENAI_API_KEY: Optional[str] = Field(None, env="OPENAI_API_KEY")
+    LLM_MODEL: str = Field("gpt-4-vision-preview", env="LLM_MODEL")
+    {% elif llm_provider == "anthropic" %}
+    ANTHROPIC_API_KEY: Optional[str] = Field(None, env="ANTHROPIC_API_KEY")
+    LLM_MODEL: str = Field("claude-3-opus-20240229", env="LLM_MODEL")
+    {% elif llm_provider == "ollama" %}
+    OLLAMA_BASE_URL: str = Field("http://localhost:11434", env="OLLAMA_BASE_URL")
+    LLM_MODEL: str = Field("llava", env="LLM_MODEL")  # Multimodal model
+    {% endif %}
+    
+    # Chatbot settings
+    MAX_CONVERSATION_TURNS: int = Field(50, env="MAX_CONVERSATION_TURNS")
+    RESPONSE_TEMPERATURE: float = Field(0.7, env="RESPONSE_TEMPERATURE")
+    MAX_TOKENS: int = Field(1000, env="MAX_TOKENS")
+    
+    # Memory settings
+    MEMORY_TYPE: str = Field("conversation_buffer", env="MEMORY_TYPE")  # buffer, summary, token_buffer
+    MAX_MEMORY_TOKENS: int = Field(2000, env="MAX_MEMORY_TOKENS")
+    
+    # Modality settings
+    SUPPORTED_MODALITIES: List[str] = {{ modalities }}
+    
+    {% if 'image' in modalities %}
+    # Image processing settings
+    MAX_IMAGE_SIZE: int = Field(5 * 1024 * 1024, env="MAX_IMAGE_SIZE")  # 5MB
+    SUPPORTED_IMAGE_FORMATS: List[str] = Field(
+        default=["jpg", "jpeg", "png", "gif", "bmp", "webp"],
+        env="SUPPORTED_IMAGE_FORMATS"
+    )
+    {% if 'generation' in image_features %}
+    # Image generation settings
+    DALLE_MODEL: str = Field("dall-e-3", env="DALLE_MODEL")
+    STABLE_DIFFUSION_MODEL: str = Field("stable-diffusion-xl-base-1.0", env="STABLE_DIFFUSION_MODEL")
+    {% endif %}
+    {% endif %}
+    
+    {% if 'audio' in modalities %}
+    # Audio processing settings
+    MAX_AUDIO_SIZE: int = Field(25 * 1024 * 1024, env="MAX_AUDIO_SIZE")  # 25MB
+    SUPPORTED_AUDIO_FORMATS: List[str] = Field(
+        default=["mp3", "wav", "m4a", "flac"],
+        env="SUPPORTED_AUDIO_FORMATS"
+    )
+    {% if 'stt' in audio_features %}
+    # Speech-to-Text settings
+    STT_MODEL: str = Field("whisper-1", env="STT_MODEL")
+    {% endif %}
+    {% if 'tts' in audio_features %}
+    # Text-to-Speech settings
+    TTS_MODEL: str = Field("tts-1", env="TTS_MODEL")
+    TTS_VOICE: str = Field("alloy", env="TTS_VOICE")
+    {% endif %}
+    {% endif %}
+    
+    # File storage
+    DATA_PATH: Path = Field(
+        default_factory=lambda: Path(__file__).parent.parent / "data",
+        env="DATA_PATH"
+    )
+    UPLOAD_PATH: Path = Field(
+        default_factory=lambda: Path(__file__).parent.parent / "data" / "uploads",
+        env="UPLOAD_PATH"
+    )
+    
+    # UI settings
+    {% if ui_framework == "chainlit" %}
+    CHAINLIT_PORT: int = Field(8000, env="CHAINLIT_PORT")
+    CHAINLIT_HOST: str = Field("0.0.0.0", env="CHAINLIT_HOST")
+    {% elif ui_framework == "streamlit" %}
+    STREAMLIT_PORT: int = Field(8501, env="STREAMLIT_PORT")
+    {% elif ui_framework == "flask" %}
+    FLASK_PORT: int = Field(5000, env="FLASK_PORT")
+    FLASK_HOST: str = Field("0.0.0.0", env="FLASK_HOST")
+    FLASK_DEBUG: bool = Field(False, env="FLASK_DEBUG")
+    {% endif %}
+    
+    # Security settings
+    MAX_FILE_UPLOADS_PER_SESSION: int = Field(10, env="MAX_FILE_UPLOADS_PER_SESSION")
+    SESSION_TIMEOUT_MINUTES: int = Field(60, env="SESSION_TIMEOUT_MINUTES")
+    
+    class Config:
+        env_file = ".env"
+        env_file_encoding = "utf-8"
+        case_sensitive = True
+
+# Global settings instance
+settings = Settings()

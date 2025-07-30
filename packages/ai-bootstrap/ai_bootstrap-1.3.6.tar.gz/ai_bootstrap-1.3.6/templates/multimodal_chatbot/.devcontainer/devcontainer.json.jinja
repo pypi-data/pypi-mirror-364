@@ -1,0 +1,84 @@
+{
+    "name": "{{ project_name }} - Multimodal Chatbot Development Environment",
+    "image": "mcr.microsoft.com/devcontainers/python:{{ python_version }}-bullseye",
+    
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "ms-python.flake8",
+                "charliermarsh.ruff",
+                "ms-toolsai.jupyter",
+                "ms-toolsai.vscode-jupyter-cell-tags",
+                {% if 'image' in modalities %}
+                "ms-toolsai.vscode-pytorch",
+                {% endif %}
+                {% if 'audio' in modalities %}
+                "ms-vscode.vscode-speech",
+                {% endif %}
+                {% if include_docker %}
+                "ms-azuretools.vscode-docker",
+                {% endif %}
+                "github.vscode-github-actions",
+                "ms-vscode.vscode-json",
+                "redhat.vscode-yaml"
+            ],
+            "settings": {
+                "python.defaultInterpreterPath": "/usr/local/bin/python",
+                "python.linting.enabled": true,
+                "python.linting.pylintEnabled": false,
+                "python.linting.flake8Enabled": true,
+                "python.formatting.provider": "black",
+                "editor.formatOnSave": true,
+                "editor.codeActionsOnSave": {
+                    "source.organizeImports": true
+                }
+            }
+        }
+    },
+    
+    "postCreateCommand": "pip install --user -r requirements.txt",
+    
+    {% if ui_framework == "chainlit" %}
+    "forwardPorts": [8000],
+    "portsAttributes": {
+        "8000": {
+            "label": "Chainlit Chatbot",
+            "onAutoForward": "notify"
+        }
+    },
+    {% elif ui_framework == "streamlit" %}
+    "forwardPorts": [8501],
+    "portsAttributes": {
+        "8501": {
+            "label": "Streamlit Chatbot",
+            "onAutoForward": "notify"
+        }
+    },
+    {% elif ui_framework == "flask" %}
+    "forwardPorts": [5000],
+    "portsAttributes": {
+        "5000": {
+            "label": "Flask Chatbot",
+            "onAutoForward": "notify"
+        }
+    },
+    {% endif %}
+    
+    {% if 'audio' in modalities %}
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "installZsh": true,
+            "configureZshAsDefaultShell": true,
+            "username": "vscode",
+            "userUid": "1000",
+            "userGid": "1000"
+        }
+    },
+    {% endif %}
+    
+    "remoteEnv": {
+        "PYTHONPATH": "/workspaces/{{ project_name }}/src"
+    }
+}

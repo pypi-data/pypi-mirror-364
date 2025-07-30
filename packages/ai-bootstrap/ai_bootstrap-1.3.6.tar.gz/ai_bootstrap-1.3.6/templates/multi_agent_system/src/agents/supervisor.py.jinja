@@ -1,0 +1,201 @@
+"""Supervisor agent for {{ project_name }}."""
+
+from typing import Dict, Any, List
+import logging
+{% if llm_provider == "openai" %}
+from langchain_openai import ChatOpenAI
+{% elif llm_provider == "anthropic" %}
+from langchain_anthropic import ChatAnthropic
+{% elif llm_provider == "ollama" %}
+from langchain_community.llms import Ollama
+{% endif %}
+from langchain.prompts import ChatPromptTemplate
+from langchain.schema import HumanMessage
+
+from ..state import WorkflowState
+from ..config import settings
+
+logger = logging.getLogger(__name__)
+
+class SupervisorAgent:
+    """Central supervisor agent that coordinates other agents."""
+    
+    def __init__(self):
+        """Initialize the supervisor agent."""
+        {% if llm_provider == "openai" %}
+        self.llm = ChatOpenAI(
+            model=settings.LLM_MODEL,
+            temperature=0.1,
+            openai_api_key=settings.OPENAI_API_KEY,
+        )
+        {% elif llm_provider == "anthropic" %}
+        self.llm = ChatAnthropic(
+            model=settings.LLM_MODEL,
+            temperature=0.1,
+            anthropic_api_key=settings.ANTHROPIC_API_KEY,
+        )
+        {% elif llm_provider == "ollama" %}
+        self.llm = Ollama(
+            base_url=settings.OLLAMA_BASE_URL,
+            model=settings.LLM_MODEL,
+            temperature=0.1,
+        )
+        {% endif %}
+        
+        self.available_agents = [
+            {% for agent in agents %}
+            "{{ agent.name }}",
+            {% endfor %}
+        ]
+        
+        self.agent_descriptions = {
+            {% for agent in agents %}
+            "{{ agent.name }}": "{{ agent.role }}",
+            {% endfor %}
+        }
+    
+    def create_system_prompt(self) -> str:
+        """Create the system prompt for the supervisor."""
+        agent_list = "\n".join([
+            f"- {name}: {desc}" 
+            for name, desc in self.agent_descriptions.items()
+        ])
+        
+        return f"""You are a supervisor agent managing a team of specialized agents.
+
+Available Agents:
+{agent_list}
+
+Your responsibilities:
+1. Analyze the current task and state
+2. Decide which agent should act next
+3. Provide clear instructions to the selected agent
+4. Determine when the task is complete
+5. Synthesize final results
+
+Current workflow state will be provided. Choose the next agent based on:
+- What has been accomplished so far
+- What still needs to be done
+- Which agent is best suited for the next step
+
+Respond with your decision and reasoning.
+If the task is complete, set next_agent to "FINISH".
+"""
+    
+    def decide_next_action(self, state: WorkflowState) -> Dict[str, Any]:
+        """Decide what should happen next in the workflow."""
+        
+        # Create prompt with current state
+        prompt = ChatPromptTemplate.from_messages([
+            ("system", self.create_system_prompt()),
+            ("human", self._format_state_for_prompt(state))
+        ])
+        
+        try:
+            response = self.llm.invoke(prompt.format_messages())
+            
+            # Parse the response to determine next action
+            decision = self._parse_supervisor_response(response.content, state)
+            
+            logger.info(f"Supervisor decision: {decision}")
+            return decision
+            
+        except Exception as e:
+            logger.error(f"Error in supervisor decision: {e}")
+            return {
+                "next_agent": "FINISH",
+                "reasoning": f"Error occurred: {str(e)}",
+                "is_complete": True,
+                "error_message": str(e)
+            }
+    
+    def _format_state_for_prompt(self, state: WorkflowState) -> str:
+        """Format the current state for the LLM prompt."""
+        return f"""
+Current Task: {state.get('task', 'No task specified')}
+
+Progress so far:
+- Iteration: {state['iteration_count']}
+- Current Step: {state.get('current_step', 'start')}
+- Steps Completed: {', '.join(state.get('steps_completed', []))}
+
+Research Findings ({len(state.get('research_findings', []))} items):
+{chr(10).join(f"- {finding}" for finding in state.get('research_findings', [])[:3])}
+
+Code Solutions ({len(state.get('code_solutions', []))} items):
+{chr(10).join(f"- {sol.get('description', 'No description')}" for sol in state.get('code_solutions', [])[:3])}
+
+Review Feedback ({len(state.get('review_feedback', []))} items):
+{chr(10).join(f"- {feedback}" for feedback in state.get('review_feedback', [])[:3])}
+
+Recent Messages ({len(state.get('messages', []))} total):
+{chr(10).join(f"- {msg.get('content', '')[:100]}..." for msg in state.get('messages', [])[-3:])}
+
+What should happen next?
+"""
+    
+    def _parse_supervisor_response(self, response: str, state: WorkflowState) -> Dict[str, Any]:
+        """Parse the supervisor's response to extract decisions."""
+        response_lower = response.lower()
+        
+        # Check if task should be finished
+        if any(word in response_lower for word in ["finish", "complete", "done", "final"]):
+            return {
+                "next_agent": "FINISH",
+                "reasoning": response,
+                "is_complete": True,
+                "current_step": "complete"
+            }
+        
+        # Try to identify which agent should act next
+        for agent_name in self.available_agents:
+            if agent_name.lower() in response_lower:
+                return {
+                    "next_agent": agent_name,
+                    "reasoning": response,
+                    "is_complete": False,
+                    "current_step": f"execute_{agent_name}"
+                }
+        
+        # Default to first available agent if unclear
+        return {
+            "next_agent": self.available_agents[0],
+            "reasoning": f"Defaulting to {self.available_agents[0]}. Original response: {response}",
+            "is_complete": False,
+            "current_step": f"execute_{self.available_agents[0]}"
+        }
+
+def supervisor_node(state: WorkflowState) -> Dict[str, Any]:
+    """LangGraph node function for the supervisor agent."""
+    supervisor = SupervisorAgent()
+    
+    try:
+        decision = supervisor.decide_next_action(state)
+        
+        # Update state with supervisor's decision
+        updates = {
+            "messages": state["messages"] + [
+                HumanMessage(content=f"Supervisor: {decision['reasoning']}")
+            ],
+            "next_agent": decision["next_agent"],
+            "iteration_count": 1,
+            "current_step": decision.get("current_step", state["current_step"]),
+            "is_complete": decision.get("is_complete", False),
+        }
+        
+        if decision.get("error_message"):
+            updates["error_message"] = decision["error_message"]
+        
+        return updates
+        
+    except Exception as e:
+        logger.error(f"Error in supervisor node: {e}")
+        return {
+            "messages": state["messages"] + [
+                HumanMessage(content=f"Supervisor Error: {str(e)}")
+            ],
+            "next_agent": "FINISH",
+            "iteration_count": 1,
+            "is_complete": True,
+            "error_message": str(e)
+        }

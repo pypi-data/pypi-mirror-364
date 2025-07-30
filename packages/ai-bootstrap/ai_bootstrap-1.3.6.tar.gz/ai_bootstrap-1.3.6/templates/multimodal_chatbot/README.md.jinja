@@ -1,0 +1,282 @@
+# {{ project_name }}
+
+A multimodal AI chatbot that can process {% if 'image' in modalities %}, images{% endif %}{% if 'audio' in modalities %}, and audio{% endif %} built with {{ llm_provider|title }} and {{ ui_framework|title }}.
+
+## 🚀 Features
+
+- **LLM Provider**: {{ llm_provider|title }}
+- **UI Framework**: {{ ui_framework|title }}
+- **Supported Modalities**: {{ modalities|join(', ')|title }}
+{% if 'image' in modalities %}
+- **Image Capabilities**:
+  - Image analysis and description
+{% if 'generation' in image_features %}
+  - Image generation from  prompts
+{% endif %}
+{% endif %}
+{% if 'audio' in modalities %}
+- **Audio Capabilities**:
+{% if 'stt' in audio_features %}
+  - Speech-to- transcription
+{% endif %}
+{% if 'tts' in audio_features %}
+  - -to-speech conversion
+{% endif %}
+{% endif %}
+- **Conversation Memory**: Persistent chat history
+- **File Upload Support**: Drag & drop interface
+
+## 📋 Prerequisites
+
+- Python {{ python_version }}+
+{% if llm_provider == "openai" %}
+- OpenAI API key
+{% elif llm_provider == "anthropic" %}
+- Anthropic API key
+{% elif llm_provider == "ollama" %}
+- Ollama installed and running
+{% endif %}
+
+## 🛠️ Installation
+
+1. **Clone and navigate to the project:**
+cd {{ project_name }}
+
+
+
+2. **Create and activate virtual environment:**
+python -m venv venv
+source venv/bin/activate # On Windows: venv\Scripts\activate
+
+
+
+3. **Install dependencies:**
+pip install -r requirements.txt
+
+
+
+4. **Set up environment variables:**
+cp .env.example .env
+
+Edit .env with your configuration
+
+
+## 📚 Usage
+
+### 1. Configure Environment
+
+Set up your `.env` file with the required API keys:
+
+{% if llm_provider == "openai" %}
+OPENAI_API_KEY=your_openai_api_key_here
+{% elif llm_provider == "anthropic" %}
+ANTHROPIC_API_KEY=your_anthropic_api_key_here
+{% elif llm_provider == "ollama" %}
+OLLAMA_BASE_URL=http://localhost:11434
+{% endif %}
+
+
+
+### 2. Run the Application
+
+{% if ui_framework == "chainlit" %}
+**Chainlit Interface:**
+chainlit run app.py
+
+
+{% elif ui_framework == "streamlit" %}
+**Streamlit Interface:**
+streamlit run app.py
+
+
+{% elif ui_framework == "flask" %}
+**Flask Web Interface:**
+python app.py
+
+
+{% endif %}
+
+## 💬 Using the Chatbot
+
+###  Conversation
+Simply type your message and press Enter to chat with the AI assistant.
+
+{% if 'image' in modalities %}
+### Image Analysis
+1. Upload an image using the file upload interface
+2. Ask questions about the image or request analysis
+3. The AI will describe what it sees in the image
+
+{% if 'generation' in image_features %}
+### Image Generation
+Ask the chatbot to create images with prompts like:
+- "Generate an image of a sunset over mountains"
+- "Create a logo for a tech startup"
+- "Draw a cat wearing a space helmet"
+{% endif %}
+{% endif %}
+
+{% if 'audio' in modalities %}
+### Audio Processing
+{% if 'stt' in audio_features %}
+1. Upload audio files for transcription
+2. The chatbot will convert speech to 
+3. You can then discuss the transcribed content
+{% endif %}
+
+{% if 'tts' in audio_features %}
+### -to-Speech
+Ask the chatbot to read  aloud:
+- "Please read this  aloud"
+- "Convert this to speech"
+- "I'd like to hear this as audio"
+{% endif %}
+{% endif %}
+
+## ⚙️ Configuration
+
+Key settings in `.env`:
+
+{% if llm_provider == "openai" %}
+- `OPENAI_API_KEY`: Your OpenAI API key
+- `LLM_MODEL`: Model to use (default: gpt-4-vision-preview)
+{% elif llm_provider == "anthropic" %}
+- `ANTHROPIC_API_KEY`: Your Anthropic API key
+- `LLM_MODEL`: Model to use (default: claude-3-opus-20240229)
+{% elif llm_provider == "ollama" %}
+- `OLLAMA_BASE_URL`: Ollama server URL
+- `LLM_MODEL`: Local model to use (default: llava)
+{% endif %}
+- `MAX_CONVERSATION_TURNS`: Conversation history limit (default: 50)
+- `MEMORY_TYPE`: Type of conversation memory (default: conversation_buffer)
+{% if 'image' in modalities %}
+- `MAX_IMAGE_SIZE`: Maximum image upload size in bytes (default: 5MB)
+{% endif %}
+{% if 'audio' in modalities %}
+- `MAX_AUDIO_SIZE`: Maximum audio upload size in bytes (default: 25MB)
+{% endif %}
+
+## 🧪 Development
+
+{% if include_tests %}
+**Run tests:**
+pytest tests/
+
+
+{% endif %}
+
+{% if include_notebooks %}
+**Use Jupyter notebooks:**
+jupyter notebook notebooks/
+
+
+{% endif %}
+
+**Enable debug mode:**
+Set `LOG_LEVEL=DEBUG` in your `.env` file for detailed logging.
+
+## 📁 Project Structure
+
+{{ project_name }}/
+├── src/
+│ ├── chatbot/ # Core chatbot logic
+│ │ ├── engine.py # Main chatbot engine
+│ │ ├── memory.py # Conversation memory
+│ │ └── dialog_manager.py # Dialog flow management
+│ ├── processors/ # Modality processors
+{% if 'image' in modalities %}
+│ │ ├── image_processor.py # Image analysis{% if 'generation' in image_features %} & generation{% endif %}
+{% endif %}
+{% if 'audio' in modalities %}
+│ │ └── audio_processor.py # Audio processing
+{% endif %}
+│ └── config.py # Configuration management
+├── app.py # Main application
+├── data/ # File storage
+├── requirements.txt # Dependencies
+{% if include_notebooks %}
+├── notebooks/ # Jupyter notebooks
+{% endif %}
+{% if include_tests %}
+├── tests/ # Test files
+{% endif %}
+└── .env # Environment variables
+
+
+
+## 🔧 Customization
+
+### Adding New Modalities
+
+1. Create a new processor in `src/processors/`
+2. Update the configuration in `src/config.py`
+3. Integrate with the main engine in `src/chatbot/engine.py`
+
+### Custom Dialog Flow
+
+Modify `src/chatbot/dialog_manager.py` to customize:
+- Conversation states
+- Intent classification
+- Response templates
+
+### UI Customization
+
+{% if ui_framework == "chainlit" %}
+Edit `app.py` to customize the Chainlit interface:
+- Message handling
+- File upload processing
+- Custom UI elements
+{% elif ui_framework == "streamlit" %}
+Edit `app.py` to customize the Streamlit interface:
+- Layout and styling
+- Sidebar options
+- Chat display format
+{% elif ui_framework == "flask" %}
+Create templates in `templates/` directory:
+- `chat.html` for the main interface
+- Custom CSS and JavaScript
+{% endif %}
+
+## 🐛 Troubleshooting
+
+**Chatbot not responding:**
+- Check API keys in `.env`
+{% if llm_provider == "ollama" %}
+- Ensure Ollama is running: `ollama serve`
+{% endif %}
+- Verify internet connection
+
+{% if 'image' in modalities %}
+**Image upload issues:**
+- Check file format is supported
+- Ensure file size is under the limit
+- Verify image file is not corrupted
+{% endif %}
+
+{% if 'audio' in modalities %}
+**Audio processing problems:**
+- Check audio format is supported
+- Ensure file size is under the limit
+- For local processing, verify audio libraries are installed
+{% endif %}
+
+**Memory issues:**
+- Reduce `MAX_CONVERSATION_TURNS` in `.env`
+- Clear conversation history regularly
+- Check available system memory
+
+## 📄 License
+
+MIT License - see LICENSE file for details.
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Add new modality processors or UI improvements
+4. Include tests for new features
+5. Submit a pull request
+
+---
+
+Built with ❤️ using [AI Bootstrap](https://github.com/your-repo/ai-bootstrap)

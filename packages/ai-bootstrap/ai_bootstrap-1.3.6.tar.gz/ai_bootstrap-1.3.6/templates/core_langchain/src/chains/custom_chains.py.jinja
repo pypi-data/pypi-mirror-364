@@ -1,0 +1,357 @@
+"""Custom LangChain chains for {{ project_name }}."""
+
+from typing import Dict, Any, List, Optional
+import logging
+from langchain.chains import LLMChain{% if "sequential" in chain_types %}, SequentialChain{% endif %}
+{% if "retrieval" in chain_types %}
+from langchain.chains import RetrievalQA
+from langchain_community.vectorstores import FAISS
+{% if llm_provider == "openai" %}
+from langchain_openai import OpenAIEmbeddings
+{% elif llm_provider == "ollama" %}
+from langchain_community.embeddings import OllamaEmbeddings
+{% endif %}
+{% endif %}
+from langchain.schema import BaseRetriever
+from langchain.schema.runnable import Runnable, RunnablePassthrough, RunnableLambda
+from langchain.schema.output_parser import StrOutputParser
+
+{% if llm_provider == "openai" %}
+from langchain_openai import ChatOpenAI
+{% elif llm_provider == "anthropic" %}
+from langchain_anthropic import ChatAnthropic
+{% elif llm_provider == "ollama" %}
+from langchain_community.llms import Ollama
+{% endif %}
+
+from ..prompts.templates import (
+    {% if "llm" in chain_types %}
+    get_basic_prompt,
+    {% endif %}
+    {% if "retrieval" in chain_types %}
+    get_qa_prompt,
+    {% endif %}
+    get_custom_prompt,
+)
+from ..llms.providers import get_llm
+from ..config import settings
+{% if include_tools %}
+from ..tools.custom_tools import get_available_tools
+{% endif %}
+
+logger = logging.getLogger(__name__)
+
+{% if "llm" in chain_types %}
+def create_llm_chain(
+    prompt_template: str = None,
+    llm_kwargs: Dict[str, Any] = None
+) -> LLMChain:
+    """Create a basic LLM chain.
+    
+    Args:
+        prompt_template: Custom prompt template to use
+        llm_kwargs: Additional kwargs for LLM initialization
+        
+    Returns:
+        Configured LLMChain instance
+    """
+    try:
+        # Get LLM instance
+        llm = get_llm(**(llm_kwargs or {}))
+        
+        # Get prompt template
+        if prompt_template:
+            from ..prompts.templates import create_prompt_template
+            prompt = create_prompt_template(prompt_template)
+        else:
+            prompt = get_basic_prompt()
+        
+        # Create chain
+        chain = LLMChain(
+            llm=llm,
+            prompt=prompt,
+            verbose=True,
+        )
+        
+        logger.info("Created LLM chain successfully")
+        return chain
+        
+    except Exception as e:
+        logger.error(f"Error creating LLM chain: {e}")
+        raise
+{% endif %}
+
+{% if "sequential" in chain_types %}
+def create_sequential_chain(
+    chain_configs: List[Dict[str, Any]]
+) -> SequentialChain:
+    """Create a sequential chain from multiple chain configurations.
+    
+    Args:
+        chain_configs: List of chain configuration dictionaries
+        
+    Returns:
+        Configured SequentialChain instance
+    """
+    try:
+        chains = []
+        
+        for config in chain_configs:
+            chain_type = config.get("type", "llm")
+            
+            if chain_type == "llm":
+                chain = create_llm_chain(
+                    prompt_template=config.get("prompt"),
+                    llm_kwargs=config.get("llm_kwargs", {})
+                )
+                chains.append(chain)
+        
+        if not chains:
+            raise ValueError("No valid chains configured")
+        
+        # Create sequential chain
+        sequential_chain = SequentialChain(
+            chains=chains,
+            verbose=True,
+        )
+        
+        logger.info(f"Created sequential chain with {len(chains)} chains")
+        return sequential_chain
+        
+    except Exception as e:
+        logger.error(f"Error creating sequential chain: {e}")
+        raise
+{% endif %}
+
+{% if "retrieval" in chain_types %}
+def create_retrieval_chain(
+    retriever: BaseRetriever = None,
+    llm_kwargs: Dict[str, Any] = None
+) -> RetrievalQA:
+    """Create a retrieval-augmented question answering chain.
+    
+    Args:
+        retriever: Custom retriever to use
+        llm_kwargs: Additional kwargs for LLM initialization
+        
+    Returns:
+        Configured RetrievalQA chain
+    """
+    try:
+        # Get LLM instance
+        llm = get_llm(**(llm_kwargs or {}))
+        
+        # Get or create retriever
+        if retriever is None:
+            retriever = _create_default_retriever()
+        
+        # Create retrieval chain
+        chain = RetrievalQA.from_chain_type(
+            llm=llm,
+            chain_type="stuff",
+            retriever=retriever,
+            return_source_documents=True,
+            verbose=True,
+        )
+        
+        logger.info("Created retrieval QA chain successfully")
+        return chain
+        
+    except Exception as e:
+        logger.error(f"Error creating retrieval chain: {e}")
+        raise
+
+def _create_default_retriever() -> BaseRetriever:
+    """Create a default retriever for the retrieval chain."""
+    try:
+        # Initialize embeddings
+        {% if llm_provider == "openai" %}
+        embeddings = OpenAIEmbeddings(
+            model=settings.EMBEDDING_MODEL,
+            openai_api_key=settings.OPENAI_API_KEY
+        )
+        {% elif llm_provider == "ollama" %}
+        embeddings = OllamaEmbeddings(
+            base_url=settings.OLLAMA_BASE_URL,
+            model=settings.EMBEDDING_MODEL
+        )
+        {% endif %}
+        
+        # Check if vector store exists
+        if settings.VECTOR_STORE_PATH.exists():
+            # Load existing vector store
+            vector_store = FAISS.load_local(
+                str(settings.VECTOR_STORE_PATH),
+                embeddings
+            )
+        else:
+            # Create empty vector store (will need to be populated)
+            from langchain.schema import Document
+            sample_docs = [Document(page_content="Sample document", metadata={})]
+            vector_store = FAISS.from_documents(sample_docs, embeddings)
+            
+            # Save the vector store
+            settings.VECTOR_STORE_PATH.parent.mkdir(parents=True, exist_ok=True)
+            vector_store.save_local(str(settings.VECTOR_STORE_PATH))
+        
+        # Create retriever
+        retriever = vector_store.as_retriever(
+            search_kwargs={"k": settings.SIMILARITY_TOP_K}
+        )
+        
+        logger.info("Created default retriever successfully")
+        return retriever
+        
+    except Exception as e:
+        logger.error(f"Error creating default retriever: {e}")
+        raise
+{% endif %}
+
+def create_custom_chain(
+    chain_config: Dict[str, Any]
+) -> Runnable:
+    """Create a custom chain using LangChain Expression Language (LCEL).
+    
+    Args:
+        chain_config: Configuration dictionary for the chain
+        
+    Returns:
+        Custom Runnable chain
+    """
+    try:
+        chain_type = chain_config.get("type", "basic")
+        
+        if chain_type == "basic":
+            return _create_basic_lcel_chain(chain_config)
+        elif chain_type == "rag":
+            return _create_rag_lcel_chain(chain_config)
+        {% if include_tools %}
+        elif chain_type == "agent":
+            return _create_agent_chain(chain_config)
+        {% endif %}
+        else:
+            raise ValueError(f"Unknown chain type: {chain_type}")
+            
+    except Exception as e:
+        logger.error(f"Error creating custom chain: {e}")
+        raise
+
+def _create_basic_lcel_chain(config: Dict[str, Any]) -> Runnable:
+    """Create a basic LCEL chain."""
+    
+    # Get components
+    llm = get_llm()
+    prompt = get_custom_prompt(config.get("prompt_name", "basic"))
+    
+    # Create chain using LCEL
+    chain = (
+        RunnablePassthrough.assign(
+            formatted_input=lambda x: x.get("input", "")
+        )
+        | prompt
+        | llm
+        | StrOutputParser()
+    )
+    
+    return chain
+
+{% if "retrieval" in chain_types %}
+def _create_rag_lcel_chain(config: Dict[str, Any]) -> Runnable:
+    """Create a RAG chain using LCEL."""
+    
+    # Get components
+    llm = get_llm()
+    retriever = _create_default_retriever()
+    prompt = get_qa_prompt()
+    
+    # Helper function to format documents
+    def format_docs(docs):
+        return "\n\n".join(doc.page_content for doc in docs)
+    
+    # Create RAG chain using LCEL
+    rag_chain = (
+        {"context": retriever | format_docs, "question": RunnablePassthrough()}
+        | prompt
+        | llm
+        | StrOutputParser()
+    )
+    
+    return rag_chain
+{% endif %}
+
+{% if include_tools %}
+def _create_agent_chain(config: Dict[str, Any]) -> Runnable:
+    """Create an agent chain with tools."""
+    from langchain.agents import create_openai_functions_agent, AgentExecutor
+    from langchain.agents.output_parsers import OpenAIFunctionsAgentOutputParser
+    from langchain.agents.format_scratchpad import format_to_openai_functions
+    
+    # Get components
+    llm = get_llm()
+    tools = get_available_tools()
+    
+    # Create agent prompt
+    from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
+    
+    agent_prompt = ChatPromptTemplate.from_messages([
+        ("system", "You are a helpful assistant with access to tools."),
+        ("user", "{input}"),
+        MessagesPlaceholder(variable_name="agent_scratchpad"),
+    ])
+    
+    # Bind tools to LLM
+    {% if llm_provider == "openai" %}
+    llm_with_tools = llm.bind(functions=[tool.dict() for tool in tools])
+    {% else %}
+    # For non-OpenAI providers, use a simpler approach
+    llm_with_tools = llm
+    {% endif %}
+    
+    # Create agent
+    agent = (
+        {
+            "input": lambda x: x["input"],
+            "agent_scratchpad": lambda x: format_to_openai_functions(x["intermediate_steps"]),
+        }
+        | agent_prompt
+        | llm_with_tools
+        | OpenAIFunctionsAgentOutputParser()
+    )
+    
+    # Create agent executor
+    agent_executor = AgentExecutor(
+        agent=agent,
+        tools=tools,
+        verbose=True,
+        handle_parsing_errors=True,
+    )
+    
+    return agent_executor
+{% endif %}
+
+def get_chain_by_name(chain_name: str, **kwargs) -> Runnable:
+    """Get a chain by name.
+    
+    Args:
+        chain_name: Name of the chain to create
+        **kwargs: Additional arguments for chain creation
+        
+    Returns:
+        Configured chain instance
+    """
+    chain_map = {
+        {% if "llm" in chain_types %}
+        "llm": lambda: create_llm_chain(**kwargs),
+        {% endif %}
+        {% if "retrieval" in chain_types %}
+        "retrieval": lambda: create_retrieval_chain(**kwargs),
+        "rag": lambda: create_custom_chain({"type": "rag", **kwargs}),
+        {% endif %}
+        "custom": lambda: create_custom_chain(kwargs),
+    }
+    
+    if chain_name not in chain_map:
+        available_chains = list(chain_map.keys())
+        raise ValueError(f"Unknown chain: {chain_name}. Available: {available_chains}")
+    
+    return chain_map[chain_name]()

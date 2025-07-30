@@ -1,0 +1,89 @@
+"""Shared state definition for {{ project_name }}."""
+
+from typing import List, Dict, Any, Optional, TypedDict, Annotated
+from langgraph.graph import add_messages
+import operator
+
+class AgentState(TypedDict):
+    """Shared state between all agents in the system."""
+    
+    # Message history
+    messages: Annotated[List[Dict[str, Any]], add_messages]
+    
+    # Current task/objective
+    task: Optional[str]
+    
+    # Agent that should act next
+    next_agent: Optional[str]
+    
+    # Accumulated research/findings
+    research_findings: Annotated[List[str], operator.add]
+    
+    # Code snippets or solutions
+    code_solutions: Annotated[List[Dict[str, str]], operator.add]
+    
+    # Review feedback
+    review_feedback: Annotated[List[str], operator.add]
+    
+    # Final result
+    final_result: Optional[str]
+    
+    # Iteration count to prevent infinite loops
+    iteration_count: Annotated[int, lambda x, y: x + y]
+    
+    # Agent-specific data storage
+    agent_data: Dict[str, Any]
+
+class WorkflowState(TypedDict):
+    """Extended state for workflow control."""
+    
+    # Include all AgentState fields
+    messages: Annotated[List[Dict[str, Any]], add_messages]
+    task: Optional[str]
+    next_agent: Optional[str]
+    research_findings: Annotated[List[str], operator.add]
+    code_solutions: Annotated[List[Dict[str, str]], operator.add]
+    review_feedback: Annotated[List[str], operator.add]
+    final_result: Optional[str]
+    iteration_count: Annotated[int, lambda x, y: x + y]
+    agent_data: Dict[str, Any]
+    
+    # Workflow control
+    is_complete: bool
+    current_step: str
+    steps_completed: Annotated[List[str], operator.add]
+    error_message: Optional[str]
+
+# Helper functions for state management
+def create_initial_state(task: str) -> WorkflowState:
+    """Create initial state for a new workflow."""
+    return WorkflowState(
+        messages=[],
+        task=task,
+        next_agent="supervisor",
+        research_findings=[],
+        code_solutions=[],
+        review_feedback=[],
+        final_result=None,
+        iteration_count=0,
+        agent_data={},
+        is_complete=False,
+        current_step="start",
+        steps_completed=[],
+        error_message=None
+    )
+
+def should_continue(state: WorkflowState) -> bool:
+    """Determine if the workflow should continue."""
+    max_iterations = 10
+    
+    if state["iteration_count"] >= max_iterations:
+        return False
+    
+    if state["is_complete"]:
+        return False
+    
+    if state["error_message"]:
+        return False
+    
+    return True

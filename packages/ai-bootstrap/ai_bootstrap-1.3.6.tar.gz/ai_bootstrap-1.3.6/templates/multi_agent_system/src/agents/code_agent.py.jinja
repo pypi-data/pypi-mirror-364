@@ -1,0 +1,286 @@
+"""Code agent for {{ project_name }}."""
+
+from typing import Dict, Any, List
+import logging
+import ast
+import re
+{% if llm_provider == "openai" %}
+from langchain_openai import ChatOpenAI
+{% elif llm_provider == "anthropic" %}
+from langchain_anthropic import ChatAnthropic
+{% elif llm_provider == "ollama" %}
+from langchain_community.llms import Ollama
+{% endif %}
+from langchain.prompts import ChatPromptTemplate
+from langchain.schema import HumanMessage
+
+from ..state import WorkflowState
+from ..config import settings
+from ..tools.file_io import write_file, read_file
+
+logger = logging.getLogger(__name__)
+
+class CodeAgent:
+    """Agent specialized in code writing, analysis, and debugging."""
+    
+    def __init__(self):
+        """Initialize the code agent."""
+        {% if llm_provider == "openai" %}
+        self.llm = ChatOpenAI(
+            model=settings.LLM_MODEL,
+            temperature=0.1,
+            openai_api_key=settings.OPENAI_API_KEY,
+        )
+        {% elif llm_provider == "anthropic" %}
+        self.llm = ChatAnthropic(
+            model=settings.LLM_MODEL,
+            temperature=0.1,
+            anthropic_api_key=settings.ANTHROPIC_API_KEY,
+        )
+        {% elif llm_provider == "ollama" %}
+        self.llm = Ollama(
+            base_url=settings.OLLAMA_BASE_URL,
+            model=settings.LLM_MODEL,
+            temperature=0.1,
+        )
+        {% endif %}
+    
+    def create_coding_prompt(self) -> ChatPromptTemplate:
+        """Create the coding prompt template."""
+        return ChatPromptTemplate.from_messages([
+            ("system", """You are a code specialist agent. Your role is to write, analyze, debug, and optimize code based on requirements and specifications.
+
+Your capabilities:
+- Writing clean, efficient, and well-documented code
+- Code analysis and review
+- Debugging and error resolution
+- Code optimization and refactoring
+- Testing and validation
+
+When working with code:
+1. Follow best practices and coding standards
+2. Include comprehensive comments and docstrings
+3. Handle errors gracefully
+4. Write testable and maintainable code
+5. Consider performance and security implications
+
+Programming languages you excel at:
+- Python (primary)
+- JavaScript/TypeScript
+- SQL
+- Shell scripting
+
+Current task context: {task}
+Previous code solutions: {previous_solutions}
+Research findings available: {research_context}
+
+Your response should include:
+- Clean, working code
+- Explanation of the approach
+- Any assumptions made
+- Testing suggestions
+"""),
+            ("human", "{request}")
+        ])
+    
+    def validate_code(self, code: str, language: str = "python") -> Dict[str, Any]:
+        """Validate code syntax and basic structure."""
+        validation_result = {
+            "is_valid": False,
+            "errors": [],
+            "warnings": [],
+            "suggestions": []
+        }
+        
+        if language.lower() == "python":
+            try:
+                ast.parse(code)
+                validation_result["is_valid"] = True
+                validation_result["suggestions"].append("Code syntax is valid")
+            except SyntaxError as e:
+                validation_result["errors"].append(f"Syntax error: {str(e)}")
+            except Exception as e:
+                validation_result["errors"].append(f"Parse error: {str(e)}")
+        
+        # Basic code quality checks
+        lines = code.split('\n')
+        
+        # Check for basic documentation
+        if not any('"""' in line or "'''" in line for line in lines):
+            validation_result["warnings"].append("Consider adding docstrings")
+        
+        # Check for error handling
+        if "try:" not in code and "except:" not in code:
+            validation_result["suggestions"].append("Consider adding error handling")
+        
+        return validation_result
+    
+    def extract_code_blocks(self, text: str) -> List[Dict[str, str]]:
+        """Extract code blocks from LLM response."""
+        code_blocks = []
+        
+        # Pattern to match code blocks with language specification
+        pattern = r'``````'
+        matches = re.findall(pattern, text, re.DOTALL)
+        
+        for language, code in matches:
+            code_blocks.append({
+                "language": language or "python",
+                "code": code.strip(),
+            })
+        
+        # If no code blocks found, try to extract inline code
+        if not code_blocks:
+            inline_pattern = r'`([^`]+)`'
+            inline_matches = re.findall(inline_pattern, text)
+            
+            for code in inline_matches:
+                if len(code) > 20:  # Likely actual code, not just variable names
+                    code_blocks.append({
+                        "language": "python",
+                        "code": code.strip(),
+                    })
+        
+        return code_blocks
+    
+    def write_code(self, request: str, context: Dict[str, Any]) -> Dict[str, Any]:
+        """Write code based on the request and context."""
+        try:
+            prompt = self.create_coding_prompt()
+            
+            # Prepare context information
+            previous_solutions = []
+            for solution in context.get("code_solutions", [])[-3:]:
+                previous_solutions.append(
+                    f"- {solution.get('description', 'Code solution')}: {solution.get('code', '')[:200]}..."
+                )
+            
+            research_context = "\n".join(
+                context.get("research_findings", [])[-2:]  # Last 2 research findings
+            )
+            
+            response = self.llm.invoke(prompt.format_messages(
+                task=context.get("task", ""),
+                previous_solutions="\n".join(previous_solutions),
+                research_context=research_context,
+                request=request
+            ))
+            
+            # Extract code blocks from response
+            code_blocks = self.extract_code_blocks(response.content)
+            
+            # Validate the code
+            validated_solutions = []
+            for block in code_blocks:
+                validation = self.validate_code(block["code"], block["language"])
+                
+                solution = {
+                    "description": f"Code solution for: {request[:100]}...",
+                    "code": block["code"],
+                    "language": block["language"],
+                    "validation": validation,
+                    "explanation": response.content
+                }
+                
+                validated_solutions.append(solution)
+            
+            # If no code blocks found, treat entire response as explanation
+            if not validated_solutions:
+                validated_solutions.append({
+                    "description": f"Analysis for: {request[:100]}...",
+                    "code": "",
+                    "language": "text",
+                    "validation": {"is_valid": True, "errors": [], "warnings": [], "suggestions": []},
+                    "explanation": response.content
+                })
+            
+            return {
+                "solutions": validated_solutions,
+                "request": request,
+                "success": True
+            }
+            
+        except Exception as e:
+            logger.error(f"Error writing code: {e}")
+            return {
+                "solutions": [{
+                    "description": f"Error processing request: {request[:100]}...",
+                    "code": "",
+                    "language": "text",
+                    "validation": {"is_valid": False, "errors": [str(e)], "warnings": [], "suggestions": []},
+                    "explanation": f"Code generation failed: {str(e)}"
+                }],
+                "request": request,
+                "success": False,
+                "error": str(e)
+            }
+    
+    def process_task(self, state: WorkflowState) -> Dict[str, Any]:
+        """Process the coding task based on current state."""
+        task = state.get("task", "")
+        
+        # Extract coding request from task or messages
+        if any(keyword in task.lower() for keyword in ["code", "write", "implement", "function", "class"]):
+            request = task
+        else:
+            # Look for coding-related messages
+            recent_messages = state.get("messages", [])[-3:]
+            coding_requests = []
+            
+            for msg in recent_messages:
+                content = msg.get("content", "")
+                if any(keyword in content.lower() for keyword in ["code", "write", "implement", "function", "debug"]):
+                    coding_requests.append(content)
+            
+            request = "; ".join(coding_requests) or f"Implement solution for: {task}"
+        
+        # Write the code
+        result = self.write_code(request, state)
+        
+        return {
+            "code_solutions": result["solutions"],
+            "messages": [
+                HumanMessage(content=f"Code Agent: Generated {len(result['solutions'])} solution(s)")
+            ],
+            "agent_data": {
+                **state.get("agent_data", {}),
+                "code_agent": {
+                    "last_request": request,
+                    "solutions_generated": len(result["solutions"]),
+                    "success": result["success"]
+                }
+            }
+        }
+
+def code_agent_node(state: WorkflowState) -> Dict[str, Any]:
+    """LangGraph node function for the code agent."""
+    agent = CodeAgent()
+    
+    try:
+        result = agent.process_task(state)
+        
+        # Add iteration count
+        result["iteration_count"] = 1
+        
+        logger.info("Code agent completed task")
+        return result
+        
+    except Exception as e:
+        logger.error(f"Error in code agent node: {e}")
+        return {
+            "messages": [
+                HumanMessage(content=f"Code Agent Error: {str(e)}")
+            ],
+            "code_solutions": [{
+                "description": "Error occurred",
+                "code": "",
+                "language": "text",
+                "validation": {"is_valid": False, "errors": [str(e)], "warnings": [], "suggestions": []},
+                "explanation": f"Agent error: {str(e)}"
+            }],
+            "iteration_count": 1,
+            "agent_data": {
+                **state.get("agent_data", {}),
+                "code_agent": {"error": str(e)}
+            }
+        }

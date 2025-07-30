@@ -1,0 +1,168 @@
+"""Tests for processor components."""
+
+import pytest
+import asyncio
+from pathlib import Path
+import tempfile
+import io
+from PIL import Image
+
+{% if 'image' in modalities %}
+from src.processors.image_processor import ImageProcessor
+{% endif %}
+{% if 'audio' in modalities %}
+from src.processors.audio_processor import AudioProcessor
+{% endif %}
+
+class TestProcessors:
+    """Test processor functionality."""
+    
+    {% if 'image' in modalities %}
+    @pytest.fixture
+    def sample_image(self):
+        """Create a sample image for testing."""
+        # Create a simple test image
+        img = Image.new('RGB', (100, 100), color='red')
+        
+        with tempfile.NamedTemporaryFile(suffix='.png', delete=False) as f:
+            img.save(f.name)
+            yield Path(f.name)
+        
+        # Cleanup
+        Path(f.name).unlink(missing_ok=True)
+    
+    @pytest.mark.asyncio
+    async def test_image_processor_initialization(self):
+        """Test image processor initialization."""
+        processor = ImageProcessor()
+        assert processor is not None
+    
+    @pytest.mark.asyncio
+    async def test_image_processing(self, sample_image):
+        """Test basic image processing."""
+        processor = ImageProcessor()
+        result = await processor.process_image(sample_image)
+        
+        assert result["success"] is True
+        assert "description" in result
+        assert result["file_path"] == str(sample_image)
+    
+    def test_image_validation(self, sample_image):
+        """Test image validation."""
+        processor = ImageProcessor()
+        
+        # Valid image
+        assert processor._is_valid_image(sample_image) is True
+        
+        # Non-existent file
+        fake_path = Path("nonexistent.png")
+        assert processor._is_valid_image(fake_path) is False
+    
+    def test_image_info_extraction(self, sample_image):
+        """Test image information extraction."""
+        processor = ImageProcessor()
+        
+        with Image.open(sample_image) as img:
+            info = processor._get_image_info(img)
+        
+        assert info["width"] == 100
+        assert info["height"] == 100
+        assert info["format"] == "PNG"
+    {% endif %}
+    
+    {% if 'audio' in modalities %}
+    @pytest.fixture
+    def sample_audio(self):
+        """Create a sample audio file for testing."""
+        # Create a simple test audio file using pydub
+        from pydub import AudioSegment
+        from pydub.generators import Sine
+        
+        # Generate a 1-second sine wave at 440Hz
+        audio = Sine(440).to_audio_segment(duration=1000)
+        
+        with tempfile.NamedTemporaryFile(suffix='.wav', delete=False) as f:
+            audio.export(f.name, format="wav")
+            yield Path(f.name)
+        
+        # Cleanup
+        Path(f.name).unlink(missing_ok=True)
+    
+    @pytest.mark.asyncio
+    async def test_audio_processor_initialization(self):
+        """Test audio processor initialization."""
+        processor = AudioProcessor()
+        assert processor is not None
+    
+    @pytest.mark.asyncio
+    async def test_audio_processing(self, sample_audio):
+        """Test basic audio processing."""
+        processor = AudioProcessor()
+        result = await processor.process_audio(sample_audio)
+        
+        assert result["success"] is True
+        assert "metadata" in result
+        assert result["file_path"] == str(sample_audio)
+    
+    def test_audio_validation(self, sample_audio):
+        """Test audio validation."""
+        processor = AudioProcessor()
+        
+        # Valid audio
+        assert processor._is_valid_audio(sample_audio) is True
+        
+        # Non-existent file
+        fake_path = Path("nonexistent.wav")
+        assert processor._is_valid_audio(fake_path) is False
+    
+    def test_audio_info_extraction(self, sample_audio):
+        """Test audio information extraction."""
+        processor = AudioProcessor()
+        info = processor._get_audio_info(sample_audio)
+        
+        assert "duration_seconds" in info
+        assert "frame_rate" in info
+        assert "channels" in info
+        assert info["duration_seconds"] > 0
+    
+    def test_audio_sentiment_analysis(self):
+        """Test audio sentiment analysis."""
+        processor = AudioProcessor()
+        
+        # Test positive sentiment
+        positive_text = "I love this amazing product"
+        result = processor.analyze_audio_sentiment(positive_text)
+        assert result["sentiment"] == "positive"
+        
+        # Test negative sentiment
+        negative_text = "This is terrible and awful"
+        result = processor.analyze_audio_sentiment(negative_text)
+        assert result["sentiment"] == "negative"
+        
+        # Test neutral sentiment
+        neutral_text = "The weather is okay today"
+        result = processor.analyze_audio_sentiment(neutral_text)
+        assert result["sentiment"] == "neutral"
+    {% endif %}
+
+class TestProcessorIntegration:
+    """Test processor integration scenarios."""
+    
+    @pytest.mark.asyncio
+    async def test_multiple_processor_initialization(self):
+        """Test initializing multiple processors."""
+        processors = []
+        
+        {% if 'image' in modalities %}
+        processors.append(ImageProcessor())
+        {% endif %}
+        {% if 'audio' in modalities %}
+        processors.append(AudioProcessor())
+        {% endif %}
+        
+        assert len(processors) > 0
+        for processor in processors:
+            assert processor is not None
+
+if __name__ == "__main__":
+    pytest.main([__file__])

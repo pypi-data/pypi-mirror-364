@@ -1,0 +1,72 @@
+# Core chatbot dependencies
+langchain>=0.1.0
+langchain-core>=0.1.0
+langchain-community>=0.0.20
+
+# LLM Provider
+{% if llm_provider == "openai" %}
+langchain-openai>=0.0.6
+openai>=1.12.0
+{% elif llm_provider == "anthropic" %}
+langchain-anthropic>=0.1.0
+anthropic>=0.18.0
+{% elif llm_provider == "ollama" %}
+langchain-community>=0.0.20
+ollama>=0.1.0
+{% endif %}
+
+# UI Framework
+{% if ui_framework == "chainlit" %}
+chainlit>=1.0.0
+{% elif ui_framework == "streamlit" %}
+streamlit>=1.31.0
+streamlit-chat>=0.1.1
+{% elif ui_framework == "flask" %}
+flask>=3.0.0
+{% endif %}
+
+# Image processing
+{% if 'image' in modalities %}
+pillow>=10.2.0
+{% if 'generation' in image_features %}
+diffusers>=0.26.0
+transformers>=4.37.0
+torch>=2.1.0
+{% endif %}
+{% endif %}
+
+# Audio processing
+{% if 'audio' in modalities %}
+pydub>=0.25.1
+{% if 'stt' in audio_features or 'tts' in audio_features %}
+SpeechRecognition>=3.10.1
+{% endif %}
+{% endif %}
+
+# Development and utilities
+python-dotenv>=1.0.0
+pydantic>=2.6.0
+pydantic-settings>=2.1.0
+{% if include_notebooks %}
+jupyter>=1.0.0
+ipykernel>=6.29.0
+matplotlib>=3.8.0
+seaborn>=0.13.0
+{% endif %}
+{% if include_tests %}
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+pytest-cov>=4.0.0
+{% endif %}
+
+# HTTP requests and file handling
+requests>=2.31.0
+aiofiles>=23.2.1
+
+# Logging and monitoring
+loguru>=0.7.2
+rich>=13.7.0
+
+# Additional utilities
+python-magic>=0.4.27
+pathvalidate>=3.2.0
