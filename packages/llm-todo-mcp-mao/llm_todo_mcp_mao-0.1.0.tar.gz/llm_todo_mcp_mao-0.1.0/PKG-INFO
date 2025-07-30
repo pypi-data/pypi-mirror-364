@@ -1,0 +1,273 @@
+Metadata-Version: 2.4
+Name: llm-todo-mcp-mao
+Version: 0.1.0
+Summary: A todo application MCP server designed for AI agent task management
+Author-email: Todo MCP Team <team@todo-mcp.dev>
+License: MIT
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.10
+Requires-Dist: click>=8.0.0
+Requires-Dist: colorama>=0.4.6
+Requires-Dist: jsonschema>=4.0.0
+Requires-Dist: mcp>=1.0.0
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: pyyaml>=6.0.0
+Requires-Dist: rich>=13.0.0
+Provides-Extra: dev
+Requires-Dist: black>=23.0.0; extra == 'dev'
+Requires-Dist: isort>=5.12.0; extra == 'dev'
+Requires-Dist: mypy>=1.5.0; extra == 'dev'
+Requires-Dist: pytest-asyncio>=0.21.0; extra == 'dev'
+Requires-Dist: pytest-cov>=4.0.0; extra == 'dev'
+Requires-Dist: pytest>=7.0.0; extra == 'dev'
+Requires-Dist: ruff>=0.1.0; extra == 'dev'
+Requires-Dist: types-pyyaml>=6.0.0; extra == 'dev'
+Description-Content-Type: text/markdown
+
+# Todo MCP Server
+
+A comprehensive Model Context Protocol (MCP) server for AI agent task management, providing structured tools for creating, managing, and organizing tasks through markdown-based storage with advanced features for enterprise-grade task management.
+
+## 🚀 Features
+
+### Core Task Management
+- **Full CRUD Operations**: Create, read, update, and delete tasks with validation
+- **Hierarchical Organization**: Multi-level parent-child task relationships
+- **Status Tracking**: Complete lifecycle management (pending, in-progress, completed, blocked)
+- **Priority System**: Four-level priority system (low, medium, high, urgent)
+- **Tag-based Categorization**: Flexible tagging system for advanced organization
+- **Due Date Management**: Full datetime support with timezone handling
+
+### Advanced Capabilities
+- **Markdown Storage**: Human-readable task storage with YAML frontmatter
+- **MCP Protocol Compliance**: Full compatibility with Model Context Protocol v1.0
+- **Concurrent Access**: Thread-safe multi-agent support
+- **Performance Optimized**: Handles 1000+ tasks with sub-100ms response times
+- **Caching System**: LRU cache with configurable size limits
+- **Search & Filtering**: Full-text search with advanced filtering options
+- **Audit Trail**: Complete tool call history and change tracking
+
+### Enterprise Features
+- **Backup System**: Automatic backup with configurable retention
+- **File Monitoring**: Real-time file system change detection
+- **Configuration Management**: Environment-based configuration with validation
+- **Comprehensive Logging**: Structured logging with multiple levels
+- **Error Recovery**: Graceful error handling and system resilience
+- **Performance Monitoring**: Built-in metrics and response time tracking
+
+## Installation
+
+### Prerequisites
+
+- Python 3.8 or higher
+- uv package manager
+
+### Setup
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd todo-mcp
+```
+
+2. Create virtual environment and install dependencies:
+```bash
+uv sync
+```
+
+3. Install development dependencies:
+```bash
+uv sync --dev
+```
+
+## Usage
+
+### Running the MCP Server
+
+Start the server with default settings:
+```bash
+uv run todo-mcp-server
+```
+
+With custom data directory:
+```bash
+uv run todo-mcp-server --data-dir /path/to/data
+```
+
+With debug logging:
+```bash
+uv run todo-mcp-server --log-level DEBUG
+```
+
+### 🛠️ Available MCP Tools
+
+#### Task Management Tools
+- `create_task`: Create a new task with full metadata support
+- `update_task`: Update existing task properties with validation
+- `delete_task`: Delete tasks with optional cascade for children
+- `get_task`: Retrieve specific task with complete information
+- `list_tasks`: List tasks with advanced filtering and pagination
+- `get_task_context`: Get task with full context including hierarchy and history
+
+#### Hierarchy Management Tools
+- `add_child_task`: Establish parent-child relationships
+- `remove_child_task`: Remove child relationships safely
+- `get_task_hierarchy`: Retrieve complete task hierarchy trees
+- `move_task`: Move tasks between parents with validation
+
+#### Status Management Tools
+- `update_task_status`: Update individual task status with validation
+- `bulk_status_update`: Batch update multiple task statuses
+- `get_task_status`: Get current status of specific tasks
+- `get_pending_tasks`: Retrieve all tasks in pending state
+- `get_in_progress_tasks`: Retrieve all active tasks
+- `get_blocked_tasks`: Retrieve all blocked tasks
+- `get_completed_tasks`: Retrieve all completed tasks
+
+#### Advanced Query Tools
+- `search_tasks`: Full-text search across task content
+- `filter_tasks`: Advanced filtering by multiple criteria
+- `get_task_statistics`: Comprehensive task metrics and analytics
+
+### 📊 Performance Specifications
+
+- **Response Time**: < 100ms for task operations
+- **Search Performance**: < 200ms for 1000+ task datasets
+- **Throughput**: 50+ operations per second
+- **Memory Usage**: < 1KB per task average
+- **Concurrent Users**: Supports multiple AI agents simultaneously
+- **Dataset Size**: Tested with 5000+ tasks
+
+## Development
+
+### Project Structure
+
+```
+src/todo_mcp/
+├── models/          # Data models (Task, TaskStatus, etc.)
+├── services/        # Business logic layer
+├── storage/         # File I/O and markdown handling
+├── tools/           # MCP tool implementations
+├── utils/           # Utility functions
+├── config.py        # Configuration management
+└── server.py        # Main MCP server
+```
+
+### 🧪 Testing
+
+#### Run All Tests
+```bash
+uv run pytest
+```
+
+#### Test with Coverage
+```bash
+uv run pytest --cov=src/todo_mcp --cov-report=html
+```
+
+#### Test Categories
+```bash
+# Unit tests
+uv run pytest tests/test_models/ tests/test_services/ tests/test_tools/
+
+# Integration tests
+uv run pytest tests/test_integration/
+
+# Performance tests
+uv run pytest tests/test_integration/test_performance_load.py
+
+# MCP compliance tests
+uv run pytest tests/test_integration/test_mcp_compliance.py
+
+# Concurrent access tests
+uv run pytest tests/test_integration/test_concurrent_access.py
+```
+
+#### Test Data Generation
+```bash
+# Generate test datasets for load testing
+uv run python -c "
+from tests.test_integration.test_data_generator import TestDataGenerator
+# Use generator to create test data
+"
+```
+
+### Code Quality
+
+Format code:
+```bash
+uv run black .
+uv run isort .
+```
+
+Lint code:
+```bash
+uv run ruff check .
+```
+
+Type checking:
+```bash
+uv run mypy .
+```
+
+## Configuration
+
+The server can be configured through environment variables with the `TODO_MCP_` prefix:
+
+- `TODO_MCP_DATA_DIRECTORY`: Data storage directory (default: `data`)
+- `TODO_MCP_LOG_LEVEL`: Logging level (default: `INFO`)
+- `TODO_MCP_BACKUP_ENABLED`: Enable backups (default: `true`)
+- `TODO_MCP_MAX_CACHE_SIZE`: Maximum cache size (default: `1000`)
+
+## Task File Format
+
+Tasks are stored as markdown files with YAML frontmatter:
+
+```markdown
+---
+id: task-001
+title: Example Task
+status: pending
+priority: medium
+tags:
+  - example
+  - demo
+created_at: 2024-01-01T00:00:00Z
+updated_at: 2024-01-01T00:00:00Z
+parent_id: parent-task-001
+child_ids:
+  - child-task-001
+  - child-task-002
+---
+
+This is the task description in markdown format.
+
+## Details
+
+- Task details can include markdown formatting
+- Lists, links, and other markdown features are supported
+- The description is stored separately from the metadata
+```
+
+## License
+
+MIT License - see LICENSE file for details.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests for new functionality
+5. Ensure all tests pass
+6. Submit a pull request
+
+## Support
+
+For issues and questions, please use the GitHub issue tracker.
