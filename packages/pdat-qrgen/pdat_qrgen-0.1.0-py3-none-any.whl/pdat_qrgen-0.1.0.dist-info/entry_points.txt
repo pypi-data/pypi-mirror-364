@@ -1,0 +1,3 @@
+[console_scripts]
+qrgen=src.cli:cli
+
