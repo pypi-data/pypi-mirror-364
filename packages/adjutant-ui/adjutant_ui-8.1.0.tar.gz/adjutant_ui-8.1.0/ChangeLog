@@ -1,0 +1,91 @@
+CHANGES
+=======
+
+8.1.0
+-----
+
+* Update TOX\_CONSTRAINTS\_FILE for stable/2024.1
+* Update .gitreview for stable/2024.1
+* Address RemovedInDjango40Warning (2)
+
+8.0.0
+-----
+
+* Drop lower constraints and remove tests
+
+7.0.0
+-----
+
+* Update zuul settings, drop Python 3.{6,7} support
+
+5.0.0
+-----
+
+* Now checks for code 202 when checking for success for other operations
+* Now checks for code 202 when checking for success
+* Comparison exception causes quota output to fail
+* Add doc/requirements
+* Add Python3 wallaby unit tests
+
+1.0.0
+-----
+
+* drop mock from lower-constraints
+* Stop to use the \_\_future\_\_ module
+* Switch to newer openstackdocstheme and reno versions
+* Fix hacking min version to 3.0.1
+* Cleanup py27 support
+* Add py38 package metadata
+* Add Python3 victoria unit tests
+* Update hacking for Python3
+* Follow PTI for docs builds
+* Use unittest.mock instead of third party mock
+* [ussuri][goal] Drop python 2.7 support and testing
+* Sync Sphinx requirement
+* Fix some flake8 warnings
+* Add pep8 jobs
+
+0.5.0
+-----
+
+* Change Adjutant UI to use the correct service type
+* Upgrade app for Django >= 2.0 compatability
+* Update Adjutant-UI to handle 202 http codes
+* Remove six usage
+* OpenDev Migration Patch
+* Fix the misspelling of "available"
+* Get rid of iteritems in favor of items
+* Drop nose dependencies
+* Fixes to match Horizon Rocky
+* Fix key error with unknown service in size
+* rename project users internal column name
+* Fix horizon install
+* Set up .gitreview
+* Remove useless manifest file
+* Use include\_usage param in adjutant quota get view
+* Clean up service and role translations
+* rename request date for notifications correctly
+* Add Notification Panel
+* fix a divide by zero bug
+* "Management" had a spelling error, this commit adds the missing character
+* quota panel fixes
+* Quota Update Panel
+* Logout\_status instead of logout\_reason\_class
+* Fixes for Django 1.10 compatabililty
+* Fix a template rename issue with signup templates
+* Remove Catalyst	specific line from templates
+* Adding comment to readme about USERNAME\_IS\_EMAIL
+* Signup Panel
+* Rename panel to Admin Tasks
+* Approval should warn with a pop-up
+* Added Reissue token and Rerun Validation action
+* Actions in detail view not working when approved
+* Panel and Token Handler for update email
+* Fixing gitreview repo location
+* Renaming StackTask to Adjutant
+* Update paths and add keystone\_policy.json location
+* Task List Panel
+* Add support for USERNAME\_IS\_EMAIL
+* Reorganising enabled files
+* Initial code base for StackTask UI
+* Initial empty repository
