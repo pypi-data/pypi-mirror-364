@@ -1,0 +1,47 @@
+[project]
+name = "macos-window-info"
+version = "0.1.0"
+description = "A Python tool to find the process ID (PID) of a macOS window by its title or other attributes"
+authors = [
+    {name = "Bernardo Martins", email = "bsamartins@gmail.com"}
+]
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.13"
+dependencies = [
+    "pyobjc-framework-quartz>=11.1,<12.0"
+]
+keywords = ["macos", "window", "pid", "process", "quartz"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Monitoring",
+]
+
+[project.urls]
+Homepage = "https://github.com/bsamartins/macos-window-info"
+Repository = "https://github.com/bsamartins/macos-window-info"
+Issues = "https://github.com/bsamartins/macos-window-info/issues"
+
+[project.scripts]
+macos-window-info = "macos_window_info.main:main"
+
+[project.optional-dependencies]
+dev = [
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "isort>=5.12.0",
+    "mypy>=1.5.0",
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
