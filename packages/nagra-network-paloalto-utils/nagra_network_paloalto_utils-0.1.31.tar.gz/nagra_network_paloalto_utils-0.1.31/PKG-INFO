@@ -1,0 +1,59 @@
+Metadata-Version: 2.3
+Name: nagra_network_paloalto_utils
+Version: 0.1.31
+Summary: 
+Author: David Gallay
+Author-email: david.gallay@nagra.com
+Requires-Python: >=3.9,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: click (>=8.1.7,<9.0.0)
+Requires-Dist: colorama (>=0.4.4)
+Requires-Dist: gitpython (>=0.3.6)
+Requires-Dist: glom (>=23.4.0,<24.0.0)
+Requires-Dist: nagra-network-misc-utils (==0.2.7)
+Requires-Dist: nagra-panorama-api (==0.2.7)
+Requires-Dist: pyyaml (>=0.2.5)
+Requires-Dist: requests (>=2.31.0,<3.0.0)
+Requires-Dist: ruamel-yaml (>=0.17.21)
+Requires-Dist: urllib3 (>=1.26.4)
+Requires-Dist: xmltodict (>=0.13.0)
+Description-Content-Type: text/markdown
+
+# Palo Alto Utility Script
+
+This contains script wrapped inside a single CLI.
+The functionalities offered by it are grouped by subcommands:
+- panorama:
+    Description: Commands to directly interact with panorama
+    Subcommands:
+    - addresses: Handle the addresses objects
+    - applications: Handle the applications objects
+    - services: Handle the applications objects
+    - tags: Handle the tags objects
+    - commit/push: Commit/Push changes on panorama
+    - lock/unlock: Set/Unset the lock on panorama
+    - list_edited_devicegroups: Output the device groups with uncommited changes
+- terraform:
+    Description: Commands to manage resources related to terraform
+    Subcommands:
+    - check-delete: Check if the objects removed from the configuration are used somehwere
+- yaml:
+    Description: Commands to manipulate yaml files
+    Subcommands:
+    - check: Check that the data in yaml are correct
+    - check_indexes: Take a file (or folder containg files, e.g. 'security-policies/data/') in yaml format defining security policies and check the indexes.
+
+- push_folder: Do a git push on a repository
+
+
+
+## Testing
+For testing, we are using [pytest](https://docs.pytest.org/en/8.2.x/). We test the CLI well behaviour to ensure non-regression.
+The tests are currently run by hand.
+Check the `tests/` folder for more information
+
