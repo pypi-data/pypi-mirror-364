@@ -1,0 +1,60 @@
+Metadata-Version: 2.4
+Name: tdd-guard-pytest
+Version: 0.1.0
+Summary: Pytest plugin for TDD Guard - enforces Test-Driven Development principles
+Author: Nizar Selander, Durafen
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/nizos/tdd-guard
+Project-URL: Repository, https://github.com/nizos/tdd-guard
+Project-URL: Bug Tracker, https://github.com/nizos/tdd-guard/issues
+Project-URL: Documentation, https://github.com/nizos/tdd-guard/tree/main/reporters/pytest
+Keywords: tdd,test-driven-development,testing,pytest,claude
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: Pytest
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Software Development :: Testing
+Classifier: Topic :: Software Development :: Quality Assurance
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: pytest>=6.0
+
+# TDD Guard Pytest Reporter
+
+Pytest plugin that captures test results for TDD Guard validation.
+
+## Requirements
+
+- [TDD Guard](https://github.com/nizos/tdd-guard) must be installed
+- Python 3.8+
+- pytest 6.0+
+
+## Installation
+
+```bash
+# First install TDD Guard
+npm install -g tdd-guard
+
+# Then install the pytest plugin
+pip install tdd-guard-pytest
+```
+
+## Usage
+
+The plugin automatically activates when installed. No configuration needed.
+
+## How it Works
+
+1. Captures test results during pytest execution
+2. Saves results to `.claude/tdd-guard/data/test.json`
+3. TDD Guard reads these results to validate TDD compliance
+
+## License
+
+MIT

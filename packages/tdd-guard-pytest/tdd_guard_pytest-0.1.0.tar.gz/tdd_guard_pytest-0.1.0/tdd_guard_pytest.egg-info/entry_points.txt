@@ -1,0 +1,2 @@
+[pytest11]
+tdd-guard = tdd_guard_pytest.pytest_reporter
