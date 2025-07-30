@@ -1,0 +1,30 @@
+[CDF-25018] ➡ cdf migrate files (#1717)
+
+# Description
+
+**Context**: This is part of the alpha migration tooling in Toolkit, for
+overview [see
+here](https://cognitedata.atlassian.net/wiki/spaces/~170890702/pages/5455773697/Migration+Tooling+in+Toolkit).
+This is step 3 of that process, enabling linking of asset-centric files
+to cognite-files, such that the new CogniteFile can point to an existing
+asset-centric file and thus not needing to download and reupload the
+file content.
+
+This PR adds the command for migrating files, meaning linking them to
+the existing asset-centric FileMetadata.
+
+## Changelog
+
+- [x] Patch
+- [ ] Minor
+- [ ] Skip
+
+## cdf
+
+### Added
+
+- [alpha] New command `cdf migrate files`. 
+
+## templates
+
+No changes.
