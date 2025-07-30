@@ -1,0 +1,68 @@
+Metadata-Version: 2.4
+Name: ddgimage
+Version: 0.1.0
+Summary: A modern, async Python library for DuckDuckGo image searching and crawling.
+Author-email: Ajay Sharma <xelionaj@gmail.com>
+License-Expression: MIT
+License-File: LICENSE
+Requires-Python: >=3.12
+Requires-Dist: aiofiles>=24.1.0
+Requires-Dist: beautifulsoup4>=4.13.4
+Requires-Dist: httpx[http2]>=0.28.1
+Requires-Dist: lxml>=6.0.0
+Requires-Dist: pydantic>=2.11.7
+Provides-Extra: dev
+Requires-Dist: pytest; extra == 'dev'
+Requires-Dist: pytest-asyncio; extra == 'dev'
+Requires-Dist: pytest-mock; extra == 'dev'
+Requires-Dist: ruff; extra == 'dev'
+Description-Content-Type: text/markdown
+
+# ddgimage
+
+A modern, asynchronous Python client for searching images on DuckDuckGo.
+
+## Features
+- Async image search using DuckDuckGo's public endpoints
+- Extract image URLs from arbitrary web pages
+- Download images asynchronously
+- Fully type-annotated and tested
+
+## Installation
+```bash
+pip install ddgimage
+```
+
+## Usage
+
+### Basic Image Search
+```python
+from ddgimage import Client
+import asyncio
+
+async def main():
+    client = Client()
+    async for result in client.asearch("red panda", max_results=5):
+        print(result.title, result.image_url)
+
+asyncio.run(main())
+```
+
+### Extract Images from a Web Page
+```python
+from ddgimage import Client
+import asyncio
+
+async def main():
+    client = Client()
+    images = await client.get_images_from_page("https://example.com")
+    print(images)
+
+asyncio.run(main())
+```
+## Notes
+- This project is not affiliated with DuckDuckGo.
+- DuckDuckGo may block automated requests or change their endpoints at any time.
+
+## License
+MIT
