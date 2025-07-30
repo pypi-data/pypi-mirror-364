@@ -1,0 +1,4 @@
+[console_scripts]
+build=scripts.build:build
+portfinder=portfinder.cli:run
+
