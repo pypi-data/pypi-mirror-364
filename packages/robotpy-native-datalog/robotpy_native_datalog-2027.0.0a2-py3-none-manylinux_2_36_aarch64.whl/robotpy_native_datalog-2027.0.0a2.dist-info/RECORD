@@ -1,0 +1,14 @@
+native/datalog/_init_robotpy_native_datalog.py,sha256=NnlsBNiWbNov0jIn_wOZTUB2KCNjor4xbbOM2dOmMaU,674
+native/datalog/robotpy-native-datalog.pc,sha256=QEkmO0Z93zTmn3P2Lio7fX004QkOXb0tT8Lswn54tEA,290
+native/datalog/include/wpi/datalog/DataLog.h,sha256=hOlfJbUerU_OCNailaDC2aCMeNxkqHjhWnZa8SpmBlY,53835
+native/datalog/include/wpi/datalog/DataLogBackgroundWriter.h,sha256=VxJbThFMsuWGBwzrcbAZFEKUiSWRZNBSQmC1q_ExtvY,5846
+native/datalog/include/wpi/datalog/DataLogReader.h,sha256=KNiq0Dpaj4iUi4KpAad1OtwALi9SITNzbYA1pN9rGnQ,10361
+native/datalog/include/wpi/datalog/DataLogReaderThread.h,sha256=bmO-9wqFp7WSJEmtWtqS0p6kNizpstu8tPWomZafXJI,3056
+native/datalog/include/wpi/datalog/DataLogWriter.h,sha256=HcroMh2MvudKNA6s8qEk46DRVxkUFOKd0_1fbGDIqeU,2516
+native/datalog/include/wpi/datalog/DataLog_c.h,sha256=EjPf8vl0upmOxOIURkeDnN2tJZqm5rsZml_ZfhXOXco,10827
+native/datalog/include/wpi/datalog/FileLogger.h,sha256=JAMgQQyuehyHBLZX68J98t3EebJ96-yQAUIuNWa3VeA,1881
+native/datalog/lib/libdatalog.so,sha256=dXbQsQeirf0V8qBerLumbSQQdIL6JB7xBzN9q3QSon8,138840
+robotpy_native_datalog-2027.0.0a2.dist-info/METADATA,sha256=ol9xv2Mja6CcNPkv8hVF_ATbcTZaA_mkQhh3jTBjU4k,186
+robotpy_native_datalog-2027.0.0a2.dist-info/WHEEL,sha256=R6UEMv_BK-kwA5hLP9yGNAdEW2d4kSzHe3YjdiiPetQ,98
+robotpy_native_datalog-2027.0.0a2.dist-info/entry_points.txt,sha256=IePkBCpVsQNxZWhmRsz8szwKUjQKTwK5iOtIhAP0tFE,38
+robotpy_native_datalog-2027.0.0a2.dist-info/RECORD,,
