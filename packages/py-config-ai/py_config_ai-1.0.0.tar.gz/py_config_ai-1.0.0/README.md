@@ -1,0 +1,336 @@
+# py-config-ai
+
+[![PyPI version](https://badge.fury.io/py/py-config-ai.svg)](https://badge.fury.io/py/py-config-ai)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+🧠 **AI-powered configuration file generator for developers**
+
+**Author:** [Sherin Joseph Roy](https://sherin-sef-ai.github.io/)  
+**GitHub:** [https://github.com/Sherin-SEF-AI/py-config-ai](https://github.com/Sherin-SEF-AI/py-config-ai.git)  
+**Email:** sherin.joseph2217@gmail.com
+
+Generate configuration files like `.prettierrc`, `.eslintrc`, `pyproject.toml`, `black`, `ruff`, `flake8`, and more using AI providers (OpenAI, Claude, Gemini, Groq). Simply describe your preferences in natural language and let AI create the perfect configuration for your project.
+
+## ✨ Features
+
+- 🤖 **Multiple AI Providers**: Support for OpenAI, Anthropic Claude, Google Gemini, and Groq
+- 🔐 **Secure Key Management**: Encrypted storage of API keys using keyring
+- 📝 **Rich CLI Interface**: Beautiful, interactive command-line interface with Rich
+- 🎯 **Smart Presets**: Pre-built configurations for common project types (FastAPI, Django, React, etc.)
+- 🔧 **Extensive Config Support**: 15+ configuration types including Python, JavaScript, Docker, and more
+- 💬 **Natural Language**: Describe your needs in plain English
+- 🎨 **Interactive Mode**: Guided setup with prompts and previews
+- 🧪 **Connection Testing**: Verify your AI provider setup
+
+## 🚀 Quick Start
+
+### 1. Install the package
+```bash
+pip install py-config-ai
+```
+
+### 2. Add your API key
+```bash
+py-config-ai add-key groq your-api-key-here
+```
+
+### 3. Generate configurations using natural language!
+
+**Simple natural language commands:**
+```bash
+# Generate a Python formatter config
+py-config-ai create "I want to format Python code with 88 character line length"
+
+# Create a React prettier config
+py-config-ai create "Generate a prettier config for a React project with 2 spaces"
+
+# Create a Docker setup
+py-config-ai create "Create a dockerfile for a Python FastAPI application"
+
+# Generate a gitignore
+py-config-ai create "Create a gitignore file for a Python project with virtual environments"
+```
+
+**Interactive guided mode:**
+```bash
+py-config-ai generate --interactive
+```
+
+**Traditional command-line mode:**
+```bash
+py-config-ai generate --type black --description "100 character line length with strict formatting"
+```
+
+## ✨ Key Features
+
+### 🧠 Natural Language Integration
+- **Describe what you want in plain English** - no need to know exact config names
+- **Smart configuration type detection** - automatically identifies the right config type
+- **Conversational interface** - guided prompts with helpful examples
+- **Context-aware generation** - understands your project structure
+
+### 📁 Automatic File Management
+- **Smart file naming** - automatically saves with correct extensions
+- **No more copy-paste** - files are saved directly to disk
+- **Ready to edit** - open files immediately in your preferred editor
+- **Proper file extensions** - `.toml`, `.json`, `.conf`, etc.
+
+### 🔍 Context-Aware Generation
+- **Project structure analysis** - understands your codebase layout
+- **Framework detection** - recognizes Django, Flask, React, Next.js, etc.
+- **File type counting** - knows how many Python, JS, TS files you have
+- **Existing config detection** - builds upon your current setup
+- **Directory-aware patterns** - includes relevant exclusions and includes
+
+### 🔧 Multiple AI Providers
+- **OpenAI** (GPT-4, GPT-3.5-turbo)
+- **Anthropic Claude** (Claude-3-Sonnet, Claude-3-Haiku)
+- **Google Gemini** (Gemini-1.5-Pro)
+- **Groq** (Llama3-8b-8192)
+
+### 🛡️ Security & Quality
+- **Secure API key storage** using keyring with fallback
+- **Input validation** for all user inputs
+- **Comprehensive error handling**
+- **Type hints** throughout the codebase
+
+## 📋 Supported Configuration Types
+
+### Python
+- `pyproject.toml` - Python project configuration (PEP 518)
+- `black` - Code formatter
+- `isort` - Import sorter
+- `ruff` - Fast linter and formatter
+- `flake8` - Style guide enforcement
+- `pylint` - Static code analysis
+- `mypy` - Static type checker
+
+### JavaScript/TypeScript
+- `.prettierrc` - Code formatter
+- `.eslintrc` - Linter
+- `tsconfig.json` - TypeScript compiler
+
+### Other
+- `markdownlint.json` - Markdown linter
+- `stylelint` - CSS/SCSS linter
+- `dockerfile` - Docker container
+- `.env` - Environment variables
+- `docker-compose.yml` - Multi-container setup
+- `nginx.conf` - Web server
+- `gitignore` - Git ignore patterns
+
+## 🎯 Available Presets
+
+- **fastapi** - FastAPI web application with modern Python tooling
+- **django** - Django web application with comprehensive tooling
+- **react** - React application with modern JavaScript tooling
+- **node** - Node.js application with modern JavaScript tooling
+- **python-library** - Python library with comprehensive development tooling
+
+## 🛠️ CLI Commands
+
+### Natural Language Generation
+
+```bash
+# Simple natural language commands
+py-config-ai create "I want to format Python code with 88 character line length"
+py-config-ai create "Generate a prettier config for a React project"
+py-config-ai create "Create a dockerfile for a Python FastAPI application"
+
+# With custom output file
+py-config-ai create "Generate an ESLint config" --output .eslintrc.json
+
+# With context (analyzes your project structure)
+py-config-ai create "Create a gitignore for a Python project" --context .
+py-config-ai create "Generate pyproject.toml for this package" --context .
+py-config-ai create "Create Docker setup for this FastAPI app" --context .
+```
+
+### Traditional Generation
+
+```bash
+# Interactive mode
+py-config-ai generate --interactive
+
+# Generate specific config
+py-config-ai generate --type black --description "100 char line length, strict formatting"
+
+# Use preset
+py-config-ai generate --preset fastapi
+
+# With context
+py-config-ai generate --type .eslintrc --context ./src --description "React project with TypeScript"
+
+# Show preview before saving
+py-config-ai generate --type .prettierrc --preview --output .prettierrc.json
+```
+
+### API Key Management
+
+```bash
+# Add API key
+py-config-ai add-key openai
+py-config-ai add-key anthropic
+py-config-ai add-key gemini
+py-config-ai add-key groq
+
+# List configured keys
+py-config-ai list-keys
+
+# Remove key
+py-config-ai remove-key openai
+```
+
+### Information Commands
+
+```bash
+# List supported config types
+py-config-ai list
+
+# List available presets
+py-config-ai presets
+
+# Test provider connection
+py-config-ai test --provider openai
+```
+
+## 🔧 Configuration Examples
+
+### Black Configuration
+```bash
+py-config-ai generate --type black --description "Use 100 character line length, target Python 3.9+, and exclude tests directory"
+```
+
+### ESLint Configuration
+```bash
+py-config-ai generate --type .eslintrc --description "React project with TypeScript, use Airbnb style guide, and allow console.log in development"
+```
+
+### Dockerfile
+```bash
+py-config-ai generate --type dockerfile --description "Python 3.11 slim image for FastAPI app, expose port 8000, use uvicorn"
+```
+
+## 🏗️ Project Structure
+
+```
+py-config-ai/
+├── src/py_config_ai/
+│   ├── core/
+│   │   ├── generator.py      # Main configuration generator
+│   │   └── key_manager.py    # Secure API key management
+│   ├── providers/
+│   │   ├── base.py          # Abstract provider interface
+│   │   ├── openai_provider.py
+│   │   ├── anthropic_provider.py
+│   │   ├── gemini_provider.py
+│   │   └── groq_provider.py
+│   ├── configs/
+│   │   ├── config_types.py  # Supported configuration types
+│   │   └── presets.py       # Pre-built configurations
+│   ├── utils/
+│   │   ├── file_utils.py    # File operations
+│   │   └── validation.py    # Input validation
+│   ├── templates/           # Configuration templates
+│   └── cli.py              # Command-line interface
+├── tests/                  # Test suite
+├── docs/                   # Documentation
+└── pyproject.toml         # Package configuration
+```
+
+## 🔒 Security
+
+- API keys are stored securely using the `keyring` library
+- Fallback to encrypted local storage if keyring is unavailable
+- No keys are logged or transmitted unnecessarily
+- Input validation for all user-provided data
+
+## 🧪 Testing
+
+```bash
+# Install development dependencies
+pip install -e ".[dev]"
+
+# Run tests
+pytest
+
+# Run with coverage
+pytest --cov=py_config_ai
+
+# Run linting
+black src/
+isort src/
+flake8 src/
+mypy src/
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+### Development Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/py-config-ai.git
+cd py-config-ai
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install in development mode
+pip install -e ".[dev]"
+
+# Install pre-commit hooks
+pre-commit install
+```
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 👨‍💻 Author
+
+**Sherin Joseph Roy** - Startup Founder & Hardware/IoT Enthusiast
+
+- 🌐 **Website:** [https://sherin-sef-ai.github.io/](https://sherin-sef-ai.github.io/)
+- 📧 **Email:** sherin.joseph2217@gmail.com
+- 🐙 **GitHub:** [https://github.com/Sherin-SEF-AI](https://github.com/Sherin-SEF-AI)
+- 🔗 **LinkedIn:** [Sherin Joseph Roy](https://www.linkedin.com/in/sherin-joseph-roy/)
+
+### About the Author
+
+Sherin is a startup founder and hardware/IoT enthusiast passionate about building innovative solutions that bridge the gap between hardware and software. With expertise in autonomous systems, robotics, and AI, Sherin has developed multiple open-source packages on PyPI and is focused on creating intelligent machines that think and act independently.
+
+**Specializations:**
+- Autonomous Systems & Self-Driving Vehicles
+- Robotics & Computer Vision
+- IoT & Embedded Systems
+- Hardware Design & Development
+- AI/ML & Machine Learning
+- Cybersecurity & Ethical Hacking
+
+## 🙏 Acknowledgments
+
+- [Typer](https://typer.tiangolo.com/) for the beautiful CLI framework
+- [Rich](https://rich.readthedocs.io/) for the stunning terminal output
+- [Halo](https://github.com/manrajgrover/halo) for the loading spinners
+- All the AI providers for their amazing APIs
+
+## 📞 Support
+
+- 📧 Email: support@pyconfigai.com
+- 🐛 Issues: [GitHub Issues](https://github.com/py-config-ai/py-config-ai/issues)
+- 📖 Documentation: [Read the Docs](https://py-config-ai.readthedocs.io/)
+
+---
+
+**Made with ❤️ for developers who want to focus on code, not configuration.** 

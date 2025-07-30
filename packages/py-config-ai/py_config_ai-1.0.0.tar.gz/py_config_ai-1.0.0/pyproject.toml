@@ -1,0 +1,310 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "py-config-ai"
+version = "1.0.0"
+description = "AI-powered configuration file generator for developers with natural language processing and context-aware generation"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Sherin Joseph Roy", email = "sherin.joseph2217@gmail.com"}
+]
+maintainers = [
+    {name = "Sherin Joseph Roy", email = "sherin.joseph2217@gmail.com"}
+]
+keywords = ["ai", "configuration", "generator", "developer-tools", "automation", "autonomous-systems", "robotics", "natural-language", "context-aware"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Code Generators",
+    "Topic :: Utilities",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: User Interfaces",
+    "Topic :: System :: Systems Administration",
+    "Environment :: Console",
+    "Framework :: Pytest",
+    "Typing :: Typed",
+]
+dependencies = [
+    "typer>=0.9.0",
+    "rich>=13.0.0",
+    "halo>=0.0.31",
+    "keyring>=23.0.0",
+    "openai>=1.0.0",
+    "anthropic>=0.7.0",
+    "google-generativeai>=0.3.0",
+    "groq>=0.4.0",
+    "pyyaml>=6.0",
+    "toml>=0.10.2",
+    "jsonschema>=4.17.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-mock>=3.10.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+    "ruff>=0.1.0",
+    "pre-commit>=3.0.0",
+    "build>=1.0.0",
+    "twine>=4.0.0",
+]
+test = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-mock>=3.10.0",
+]
+lint = [
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+    "ruff>=0.1.0",
+]
+docs = [
+    "sphinx>=6.0.0",
+    "sphinx-rtd-theme>=1.2.0",
+    "myst-parser>=1.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Sherin-SEF-AI/py-config-ai"
+Documentation = "https://sherin-sef-ai.github.io/"
+Repository = "https://github.com/Sherin-SEF-AI/py-config-ai.git"
+"Bug Tracker" = "https://github.com/Sherin-SEF-AI/py-config-ai/issues"
+"Source Code" = "https://github.com/Sherin-SEF-AI/py-config-ai"
+"Download" = "https://pypi.org/project/py-config-ai/#files"
+"Changelog" = "https://github.com/Sherin-SEF-AI/py-config-ai/blob/main/CHANGELOG.md"
+
+[project.scripts]
+py-config-ai = "py_config_ai.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["py_config_ai*"]
+exclude = ["tests*", "examples*"]
+
+[tool.setuptools.package-data]
+py_config_ai = ["templates/*", "*.json", "*.toml", "*.yaml", "*.yml"]
+
+[tool.setuptools.dynamic]
+version = {attr = "py_config_ai.__version__"}
+
+# Black configuration
+[tool.black]
+line-length = 88
+target-version = ["py38", "py39", "py310", "py311", "py312"]
+include = "\\.pyi?$"
+extend-exclude = """
+/(
+  # directories
+  \\.eggs
+  | \\.git
+  | \\.hg
+  | \\.mypy_cache
+  | \\.tox
+  | \\.venv
+  | build
+  | dist
+)/
+"""
+
+# isort configuration
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+known_first_party = ["py_config_ai"]
+known_third_party = ["typer", "rich", "halo", "keyring", "openai", "anthropic", "google", "groq"]
+sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+default_section = "THIRDPARTY"
+force_sort_within_sections = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+lines_after_imports = 2
+
+# Ruff configuration
+[tool.ruff]
+target-version = "py38"
+line-length = 88
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "B",  # flake8-bugbear
+    "C4", # flake8-comprehensions
+    "UP", # pyupgrade
+]
+ignore = [
+    "E501",  # line too long, handled by black
+    "B008",  # do not perform function calls in argument defaults
+    "C901",  # too complex
+    "W503",  # line break before binary operator
+    "E203",  # whitespace before ':'
+]
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+]
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]
+"tests/**/*" = ["B011", "S101", "S603", "S607"]
+
+# MyPy configuration
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+show_error_codes = true
+
+[[tool.mypy.overrides]]
+module = [
+    "keyring.*",
+    "halo.*",
+    "anthropic.*",
+    "google.*",
+    "groq.*",
+]
+ignore_missing_imports = true
+
+# Pytest configuration
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "--cov=py_config_ai",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--cov-report=xml",
+    "--cov-fail-under=80",
+    "--asyncio-mode=auto",
+]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+    "ai: marks tests that require AI providers",
+]
+
+# Coverage configuration
+[tool.coverage.run]
+source = ["src/py_config_ai"]
+omit = [
+    "*/tests/*",
+    "*/test_*",
+    "*/__pycache__/*",
+    "*/venv/*",
+    "*/\\.venv/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\\\bProtocol\\):",
+    "@(abc\\\\.)?abstractmethod",
+]
+
+# Pre-commit configuration
+[tool.check-manifest]
+ignore = [
+    ".pre-commit-config.yaml",
+    ".github/*",
+    "docs/*",
+    "examples/*",
+    "tests/*",
+    "*.md",
+    "*.txt",
+    "*.toml",
+    "*.yaml",
+    "*.yml",
+]
+
+# Towncrier configuration
+[tool.towncrier]
+package = "py_config_ai"
+package_dir = "src"
+filename = "CHANGELOG.md"
+directory = "changes"
+template = "changes/template.md"
+start_string = "<!-- towncrier release notes start -->\n"
+title_format = "## [{version}](https://github.com/Sherin-SEF-AI/py-config-ai/releases/tag/{version}) - {date}"
+issue_format = "[#{issue}](https://github.com/Sherin-SEF-AI/py-config-ai/issues/{issue})"
+underlines = ["", "", ""]
+version = "1.0.0"
+
+[[tool.towncrier.type]]
+directory = "feature"
+name = "Features"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "bugfix"
+name = "Bug Fixes"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "doc"
+name = "Improved Documentation"
+showcontent = true
