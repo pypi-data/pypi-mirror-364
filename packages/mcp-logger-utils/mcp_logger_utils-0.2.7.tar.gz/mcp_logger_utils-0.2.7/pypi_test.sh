@@ -1,0 +1,5 @@
+twine upload --verbose --username __token__ --password 'pypi-AgEIcHlwaS5vcmcCJDk5NmEzYzVjLTEzZDMtNDA3NS04Y2QzLTdjMjYyMDdlNDRjZQACKlszLCJmNmY3YWJmNC01ZjQ4LTQwZWUtODE4MC0xZDM2MDQ0MTRiNzciXQAABiAQLz32lA1WOBa3k2jGcNz5zLCbe6ffky8VX7mUu4ezLQ' dist/*
+
+
+
+
