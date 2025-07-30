@@ -1,0 +1,12 @@
+# Inclure la doc principale
+include README.md
+include STYLE_GUIDE.md
+include LICENSE
+include MANIFEST.in
+
+# Exclure les fichiers inutiles
+exclude build_upload.bat
+prune build
+prune dist
+prune EzQt_Widgets.egg-info
+prune __pycache__
