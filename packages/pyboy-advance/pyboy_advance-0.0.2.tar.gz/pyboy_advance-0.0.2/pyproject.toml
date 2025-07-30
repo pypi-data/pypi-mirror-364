@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyboy-advance"
+version = "0.0.2"
+authors = [{ name = "William Ha" }]
+description = "Game Boy Advance emulator written in Python"
+readme = "README.md"
+requires-python = ">=3.10"
+keywords = [
+    "gameboy",
+    "game boy",
+    "game boy advance",
+    "gameboy advance",
+    "emulator",
+    "pypy"
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Operating System :: OS Independent",
+    "Topic :: System :: Emulators",
+]
+dependencies = [
+    "pysdl2",
+    "pysdl2-dll"
+]
+
+[tool.setuptools.packages.find]
+include = ["pyboy_advance**"]
+
+[project.scripts]
+pyboy_advance = "pyboy_advance.__main__:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = [
+    "ignore:Using SDL2 binaries from pysdl2-dll.*",
+    "ignore:pysdl2-dll is installed as source-only.*"
+]
+
+[tool.ruff]
+line-length = 100
