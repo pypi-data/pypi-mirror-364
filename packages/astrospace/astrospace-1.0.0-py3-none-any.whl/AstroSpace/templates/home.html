@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block content %}
+<script src="//unpkg.com/alpinejs" defer></script>
+
+<!-- Safely embed image JSON -->
+<script type="application/json" id="topImagesData">
+{{ top_images | tojson }}
+</script>
+
+<div class="h-screen w-full overflow-hidden relative" x-data="{
+         images: [],
+         currentIndex: 0,
+         touchStartX: 0,
+         get currentImage() {
+             return this.images[this.currentIndex] || {};
+         },
+         nextImage() {
+             if (this.currentIndex < this.images.length - 1) {
+                 this.currentIndex++;
+             }
+             // else do nothing to stop cycling after last image
+         },
+         prevImage() {
+             this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+         },
+         handleSwipeStart(e) {
+             this.touchStartX = e.touches[0].clientX;
+         },
+         handleSwipeEnd(e) {
+             const endX = e.changedTouches[0].clientX;
+             const diffX = endX - this.touchStartX;
+             if (Math.abs(diffX) > 50) {
+                 if (diffX < 0) this.nextImage();
+                 else this.prevImage();
+             }
+         },
+         cycleImages() {
+             const interval = setInterval(() => {
+                 if (this.currentIndex >= this.images.length - 1) {
+                     clearInterval(interval); // stop after last image
+                 } else {
+                     this.nextImage();
+                 }
+             }, 5000); // 5 seconds per image
+         }
+     }" x-init="
+         images = JSON.parse(document.getElementById('topImagesData').textContent);
+         cycleImages();
+     " @touchstart="handleSwipeStart($event)" @touchend="handleSwipeEnd($event)">
+
+    <!-- Slideshow Progress Dots + Title -->
+    <div class="absolute top-20 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center gap-2">
+        <!-- Dots -->
+        <div class="flex gap-2">
+            <template x-for="(image, index) in images" :key="index">
+                <div class="w-2 h-2 rounded-full border border-white cursor-pointer"
+                    :class="{ 'bg-white': index === currentIndex, 'bg-white/30': index !== currentIndex }"
+                    @click="currentIndex = index"></div>
+            </template>
+        </div>
+
+        <!-- Title -->
+        <a :href="currentImage.blog_url"
+            class="text-white text-5xl font-patung hover:text-amber-500 text-center max-w-xs sm:max-w-none mx-auto"
+            x-text="currentImage.title"></a>
+    </div>
+
+    <!-- Slideshow Background Layers -->
+    <template x-for="(image, index) in images" :key="index">
+        <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-500 ease-in-out"
+            :style="`background-image: url('${image.url}')`" :class="{
+                 'opacity-100 z-0': index === currentIndex,
+                 'opacity-0 z-0': index !== currentIndex
+             }"></div>
+    </template>
+
+    <!-- Dark Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/80 z-10"></div>
+
+    <!-- Intro -->
+    <div
+        class="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 px-4 max-w-lg w-[90%] shadow-lg text-white text-center flex flex-col gap-6">
+
+        <!-- Intro -->
+        <p class="leading-relaxed text-gray-200 font-lato font-light text-xl">
+            Ever caught yourself lost in the beauty of a starry night?
+            <a href="{{ url_for('blog.home') }}"
+                class="font-scribble text-3xl text-white hover:text-amber-400 transition-colors duration-200">
+                {{ WebName }}
+            </a>
+            is all about peeking into the vastness of space through the lenses of an amateur astronomer.
+            Feel free to
+            <a href="{{ url_for('blog.collection') }}"
+                class="text-blue-200 hover:text-blue-400 font-lato-Medium transition-colors duration-200">
+                explore
+            </a>
+            these high-resolution images and dive deeper into the techniques and equipment I use to capture the wonders
+            of the
+            cosmos.
+        </p>
+
+        <!-- Signature -->
+        <p class="text-5xl text-gray-200 font-scribble">Sharons AstroSpace</p>
+    </div>
+</div>
+
+{% endblock %}
