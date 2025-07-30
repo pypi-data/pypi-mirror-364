@@ -1,0 +1,2 @@
+[console_scripts]
+doc-track = doctrack.cli:main
