@@ -1,0 +1,22 @@
+Metadata-Version: 2.4
+Name: floodrisk
+Version: 0.1.1
+Summary: Flood inundation detection and damage assessment using Google Earth Engine and OSM data
+Author: Mahfujur Rahman Joy
+Author-email: mahfuj2sust@gmail.com
+Requires-Python: >=3.8
+License-File: LICENSE
+Requires-Dist: geemap
+Requires-Dist: earthengine-api
+Requires-Dist: osmnx
+Requires-Dist: geopandas
+Requires-Dist: rasterio
+Requires-Dist: shapely
+Requires-Dist: pandas
+Requires-Dist: matplotlib
+Dynamic: author
+Dynamic: author-email
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
