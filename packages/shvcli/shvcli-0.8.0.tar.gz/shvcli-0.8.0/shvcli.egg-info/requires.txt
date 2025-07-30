@@ -1,0 +1,5 @@
+pyshv>=0.10.0
+prompt_toolkit
+pygments
+pyxdg
+more-itertools
