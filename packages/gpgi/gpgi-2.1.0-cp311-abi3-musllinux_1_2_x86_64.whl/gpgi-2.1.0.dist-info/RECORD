@@ -1,0 +1,13 @@
+gpgi/__init__.py,sha256=3NFssJRnhdY0XmYEVA3m-euk8OPK4Qa29WaVCqYGU28,412
+gpgi/_boundaries.py,sha256=mGG3rdRoWNOJdWq8VjRm_SZJsbgZBYielB_i8H_SAsM,6788
+gpgi/_data_types.py,sha256=68y7NB16Z3b3Wj8rsRmcJ8Rney2ugSR9fnorCFzUxD0,31527
+gpgi/_lib.abi3.so,sha256=xgxpsBznNtkUbU7jIi-cS_mw7xU8wMZoshCic_CByn8,644624
+gpgi/_lib.pyi,sha256=wTPgsEDcPQpdU8hqwnmyWEZpvMDmr0QPtjNh2qr5eVg,3409
+gpgi/_load.py,sha256=xZUHVMl_HwYkPj0DcQlqBX6iDEx9elQ8BoR5ZRZL6J4,2989
+gpgi/_spatial_data.py,sha256=Ig1TQX6ZoPEJWevnme-pFkQBMgJGJR2Ul5EuwlMULMw,7079
+gpgi/_typing.py,sha256=5hgbXd0n7zcFNqK9CGwC9eU-EhR4dWrL12Nnc0_6df4,1509
+gpgi/py.typed,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+gpgi/typing.py,sha256=DeiQdee4iwfQdhgAaTXnCPl_e5_asGNswuuba9gIyNk,1364
+gpgi-2.1.0.dist-info/METADATA,sha256=16NPEChO2CQ_ej3at9wY_G7nTSFkgTImAeIHZSE21UQ,16431
+gpgi-2.1.0.dist-info/WHEEL,sha256=QcyeVHggTQMWJGi1yDxh9_ErGqu2Hh06aKbhTJQT3VA,97
+gpgi-2.1.0.dist-info/RECORD,,
