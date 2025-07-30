@@ -1,0 +1,34 @@
+[project]
+name = "auto-video-generator-mcp"
+version = "1.0.6"
+description = "基于MCP协议的智能视频自动生成与剪辑工具，支持字幕、TTS、音色克隆、批量处理等。"
+authors = [
+    {name = "Your Name", email = "your@email.com"}
+]
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "httpx>=0.24.0",
+    "fastmcp>=0.1.0",
+    "azure-cognitiveservices-speech>=1.31.0",
+    "pydub>=0.25.1",
+    "moviepy>=1.0.3",
+    "opencv-python>=4.8.0",
+    "Pillow>=10.0.0",
+    "jieba>=0.42.1",
+    "openai-whisper",
+    "torch",
+    "psutil>=5.9.0",
+    "numpy>=1.21.0"
+]
+
+[project.scripts]
+auto_video_generator_mcp = "auto_video_modules.main:main"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta" 
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["auto_video_modules*"] 
