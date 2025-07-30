@@ -1,0 +1,9 @@
+LICENSE
+README.md
+pyproject.toml
+Qelm.egg-info/PKG-INFO
+Qelm.egg-info/SOURCES.txt
+Qelm.egg-info/dependency_links.txt
+Qelm.egg-info/requires.txt
+Qelm.egg-info/top_level.txt
+qelm/__init__.py
