@@ -1,0 +1,49 @@
+# Entornos virtuales
+.venv/
+env/
+venv/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Archivos temporales
+*.log
+*.tmp
+*.swp
+*.bak
+
+# Archivos de tests
+.coverage
+.tox/
+htmlcov/
+.cache/
+
+# Archivos creados por pytest
+.pytest_cache/
+
+# Distribución
+build/
+dist/
+*.egg-info/
+
+# IDEs y editores
+.vscode/
+.idea/
+*.iml
+
+# Archivos de configuración local
+.env
+.env.*
+*.local
+
+# Datos sensibles
+*.key
+*.pem
+
+# Otros
+.DS_Store
+Thumbs.db
+
+# Ejemplo de configuración no repositada
+locust_config.json
