@@ -1,0 +1,2 @@
+[console_scripts]
+login-activity = login_activity.cli:main
