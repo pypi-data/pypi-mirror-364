@@ -1,0 +1,13 @@
+scaleinvariance/__init__.py,sha256=F6iCUU8-bnsTN7VcvXtbOrQz9Y9U-SnCPvwHCcmuMYc,868
+scaleinvariance/analysis/__init__.py,sha256=5t8mOjomqZUzH5YJfO1hrBF9yi8B_u2aPNMQqPjFJuY,361
+scaleinvariance/analysis/haar_fluctuation.py,sha256=OrKuKGrqvl3NzvIbYjFvrMEaUt5rLXKNGbPnvhEYkRM,6545
+scaleinvariance/analysis/spectral.py,sha256=oDX48-MeTIzoAPDSXepoZ2a0RNst2vRY5BCG2TxH4CU,6043
+scaleinvariance/analysis/structure_function.py,sha256=7vfRLFnBSzaxvr-FPkPw3GzweoZGstfBRe2jmyWhWzc,5440
+scaleinvariance/simulation/FIF.py,sha256=lp-mXSS3192ZmWV1IoOrGcly7wmfqnFUxkv4ITQpyj4,90
+scaleinvariance/simulation/__init__.py,sha256=5u68pgGxJLUY9tT383_AnKrAjNsN54IbVkNkbyTaR00,252
+scaleinvariance/simulation/fbm.py,sha256=fPV_ocff6B0QR31nMzdSX2WmWHEvWEaNHEHciff5vIg,4302
+scaleinvariance/utils/__init__.py,sha256=cQU_rvPuSqcq_dvex2WM7nbrkoNyyhRSJIhGjkgwXxU,4465
+scaleinvariance-0.1.0.dist-info/METADATA,sha256=vvGIRylVCV2TNj4BmG98ZVxHC2LNBUW0mlgoSJ6ew64,2420
+scaleinvariance-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+scaleinvariance-0.1.0.dist-info/top_level.txt,sha256=xZebZzRYV5DXCsC7fwU7JK4OnOMketql20Fgggt_JOg,16
+scaleinvariance-0.1.0.dist-info/RECORD,,
