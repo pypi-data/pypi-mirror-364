@@ -1,0 +1,3 @@
+include README.md
+recursive-include monnaie_converter/templates *
+recursive-include monnaie_converter/static *

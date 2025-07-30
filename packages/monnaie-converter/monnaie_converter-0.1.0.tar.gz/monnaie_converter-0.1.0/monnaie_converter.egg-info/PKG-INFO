@@ -1,0 +1,21 @@
+Metadata-Version: 2.4
+Name: monnaie-converter
+Version: 0.1.0
+Summary: Un package Django pour convertir les monnaies avec un formulaire simple
+Author-email: Nicosidick <exemple@email.com>
+License: MIT
+Project-URL: Homepage, https://pypi.org/project/monnaie-converter/
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: Django>=3.2
+Dynamic: license-file
+
+# monnaie-converter
+
+Un package Django simple pour convertir des monnaies via un formulaire.
+
+## Installation
+
+```bash
+pip install monnaie-converter

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Convertisseur de Monnaie</title>
+    <link rel="stylesheet" href="{% static 'monnaie_converter/style.css' %}">
+</head>
+<body>
+    <h1>Convertisseur de Monnaie</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Convertir</button>
+    </form>
+    {% if result %}
+        <p>Résultat : {{ result }}</p>
+    {% endif %}
+</body>
+</html>
