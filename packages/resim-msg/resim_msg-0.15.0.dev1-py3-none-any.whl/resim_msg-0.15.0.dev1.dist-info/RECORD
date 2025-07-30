@@ -1,0 +1,16 @@
+resim/actor/state/proto/observable_state_pb2.py,sha256=3SnPTqt1ECfjGSw3OFMAgpPM4TtKFMaq8SCUNtRziTY,2232
+resim/curves/proto/two_jet_pb2.py,sha256=-Mof_y1ZVNNU-qHGqdTqdQOIJjQE2ktZ6bTM3gnXr0Y,2674
+resim/msg/detection_pb2.py,sha256=aWl69i_dQNaFX3bn9BioRvpQdZtxTuDBj9WLYmEJbyM,3522
+resim/msg/header_pb2.py,sha256=-q9B6AVOyit_NRFkSIMV8A5dnB1KAM14Fyu7WvflL_w,1483
+resim/msg/navsat_pb2.py,sha256=7xkrz_-Vmj0DdDAomdimturn4K7AtWQXZMU03K46ir8,2381
+resim/msg/odometry_pb2.py,sha256=Cu3gn8HGLqSjUO1Jw_ypnoBn9eM7nM8Ogup9ZvsMQ9I,1707
+resim/msg/pose_pb2.py,sha256=4jH8LCv1-t3Vhp7dkU8OHomznp4WjklpJzCMQdo0x4I,1901
+resim/msg/primitives_pb2.py,sha256=-gTTvTiHDxfEGbUByAAa2QOC9xQbuE3vaWkiNrudb60,3291
+resim/msg/transform_pb2.py,sha256=2yMpbDhF6Lzjo_mpnO0dSveXho_3j8baI04AGGuIckk,1891
+resim/transforms/proto/frame_3_pb2.py,sha256=na_0_CI_12ZfNL9HP1nechPLAsX62Ng_M6krSdylMQE,1502
+resim/transforms/proto/framed_vector_3_pb2.py,sha256=q5aIpQsD7MfoGKooctbes9dnk9Fi_tu0KK2nhJFRxh4,1637
+resim/transforms/proto/se3_pb2.py,sha256=AhIyYXX6uzQ_Hy5uLZOqYZ2fUF5hyR16sz0KF0HmAic,1623
+resim/transforms/proto/so3_pb2.py,sha256=U7ZljmjOfV7FsiAN3qyWpP3WoMsfobga_2C9YERLK-A,1623
+resim_msg-0.15.0.dev1.dist-info/WHEEL,sha256=sobxWSyDDkdg_rinUth-jxhXHqoNqlmNMJY3aTZn2Us,91
+resim_msg-0.15.0.dev1.dist-info/METADATA,sha256=EB-xSQMYNU559i9RUzC4NX4VKGEJ1i6T3I2Ds6dNfcw,1597
+resim_msg-0.15.0.dev1.dist-info/RECORD,,
