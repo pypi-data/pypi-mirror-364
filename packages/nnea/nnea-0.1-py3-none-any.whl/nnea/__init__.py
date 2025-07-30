@@ -1,0 +1,1 @@
+from .hello import greet  # 允许通过包直接访问greet函数
