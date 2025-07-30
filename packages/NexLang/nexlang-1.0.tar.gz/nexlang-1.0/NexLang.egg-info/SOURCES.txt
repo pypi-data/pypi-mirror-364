@@ -1,0 +1,7 @@
+setup.cfg
+setup.py
+NexLang.egg-info/PKG-INFO
+NexLang.egg-info/SOURCES.txt
+NexLang.egg-info/dependency_links.txt
+NexLang.egg-info/top_level.txt
+nex/__init__.py
