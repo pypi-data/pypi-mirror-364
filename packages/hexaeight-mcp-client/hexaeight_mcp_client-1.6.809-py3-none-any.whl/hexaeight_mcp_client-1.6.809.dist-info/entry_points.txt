@@ -1,0 +1,2 @@
+[console_scripts]
+hexaeight-start = hexaeight_mcp_client.cli.main:hexaeight_start
