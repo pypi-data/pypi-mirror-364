@@ -1,0 +1,42 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Sensitive
+
+.env
+
+# Virtual environments
+.venv
+
+# PyCharm
+.idea
+*.iml
+
+# macOS
+
+## General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+## Thumbnails
+._*
+
+# Packages
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs
+*.log
+
