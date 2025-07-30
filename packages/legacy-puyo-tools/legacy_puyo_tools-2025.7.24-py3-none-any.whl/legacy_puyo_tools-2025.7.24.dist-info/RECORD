@@ -1,0 +1,15 @@
+legacy_puyo_tools/__init__.py,sha256=LjS0jFv5pdhJceptQG9WtToZKBMzwCCXRiCa9YofnO0,277
+legacy_puyo_tools/__main__.py,sha256=LCp7zRagZzAyqpsJSzgMlRF36sWvMMNC7Ufq52cUdVQ,232
+legacy_puyo_tools/cli.py,sha256=HaU8MeqUKL3eIRg6ZedVN77OXd2Nkix6Ad1A6huX0Lo,4978
+legacy_puyo_tools/io.py,sha256=V3oCOQKkwz8GEYJCH75LxATAqr92hdi9_N9p1jb6c8M,1901
+legacy_puyo_tools/py.typed,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+legacy_puyo_tools/formats/__init__.py,sha256=4KQ-c1yM1Y3e5ByPHmGpNTllXeTLsfPDJ81jXzDG0ko,117
+legacy_puyo_tools/formats/base.py,sha256=MnuqKzdGIN6r3VOessTdKinmdpLPKaC3QB-jfOeNQf0,2503
+legacy_puyo_tools/formats/fmp.py,sha256=0DXzQNb16J91kxiCcaoaWVUHXVDCVh4DyuockVgAXJ0,3909
+legacy_puyo_tools/formats/fpd.py,sha256=MFz7VK9jl422FYETH7GQJo-oQwPeOwf4jApK8IjbXos,7947
+legacy_puyo_tools/formats/mtx.py,sha256=vTgM1t7GQnkDIGu-qwexDQGbiarXI7L8eI_nIHWz1Vc,5457
+legacy_puyo_tools-2025.7.24.dist-info/METADATA,sha256=qM07k654__lDlXt0QDi5dE5NLE-bHMHtg2RJjkGZoeo,4193
+legacy_puyo_tools-2025.7.24.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+legacy_puyo_tools-2025.7.24.dist-info/entry_points.txt,sha256=U1UoBDFd576Xi_8PuLVUXZcGV6Idk1Bc-UlF9UNYYh0,64
+legacy_puyo_tools-2025.7.24.dist-info/licenses/LICENSE,sha256=9ZCyMkpeNqCihREMjuJV52nxOtR48iNHB30KzOnuBLY,1117
+legacy_puyo_tools-2025.7.24.dist-info/RECORD,,
