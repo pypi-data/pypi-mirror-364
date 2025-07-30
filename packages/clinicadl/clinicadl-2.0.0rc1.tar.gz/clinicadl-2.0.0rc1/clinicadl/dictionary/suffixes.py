@@ -1,0 +1,10 @@
+TSV = ".tsv"
+TXT = ".txt"
+JSON = ".json"
+LOG = ".log"
+PT = ".pt"
+PTH = ".pth"
+TAR = ".tar"
+NII = ".nii"
+GZ = ".gz"
+NII_GZ = NII + GZ
