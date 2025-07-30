@@ -1,0 +1,193 @@
+[build-system]
+# keep in sync with dependency-groups
+requires = [
+    "meson-python>=0.17.1",
+    "Cython>=3.0.12",
+    "numpy>=1.25.0",
+]
+build-backend = "mesonpy"
+
+[project]
+name = "gpgi"
+version = "2.1.0"
+description = "A Generic Particle+Grid Interface"
+authors = [
+    { name = "C.M.T. Robert" },
+]
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Programming Language :: Cython",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: Free Threading :: 3 - Stable",
+    "Typing :: Typed",
+]
+# keep in sync with limited_api (meson.build)
+requires-python = ">=3.11"
+dependencies = [
+    # keep in sync with build-time requirements (dev group)
+    # keep in sync with NPY_TARGET_VERSION (meson.build)
+    "numpy>=1.25, <3",
+]
+
+[project.readme]
+file = "README.md"
+content-type = "text/markdown"
+
+[project.license]
+text = "GPL-3.0"
+
+[project.urls]
+Homepage = "https://github.com/neutrinoceros/gpgi"
+Changelog = "https://github.com/neutrinoceros/gpgi/blob/main/CHANGELOG.md"
+
+[dependency-groups]
+test = [
+    "pytest>=8.4.0",
+]
+test-image = [
+    {include-group = "test"},
+    "matplotlib>=3.6.0",
+    "pytest-mpl>=0.16.1",
+]
+covcheck = [
+    {include-group = "test"},
+    "coverage>=7.6.1",
+]
+concurrency = [
+    {include-group = "test"},
+    "pytest-repeat>=0.9.3",
+]
+typecheck = [
+    "mypy>=1.13.0",
+    "pyright>=1.1.391",
+]
+# For convenience, the dev group contains build time requirements because
+# - meson-python supports editable installs or build isolation, but not both
+# - uv special cases this group name and includes it by default via uv sync
+#
+# Combined with no-build-isolation set in [tool.uv],
+# this allows to bootstrap an editable in just two simple steps:
+# uv sync --only-dev && uv sync
+#
+# This could be simplified/reunifed depending on what happens on the following
+# upstream issue
+# https://github.com/astral-sh/uv/issues/7052
+#
+# ninja is a system level requirement to meson-python
+# it is automatically obtained from PyPI if lacking at the system level
+# when building a package in isolation, which is why it's not listed
+# under build-system requires.
+dev = [
+    "meson-python>=0.17.1",
+    "ninja>=1.11.1.3",
+    "Cython>=3.0.12",
+    "numpy>=1.25.0, <3", # keep in sync with runtime requirement
+]
+
+[tool.meson-python]
+# disallow limited-api builds by default
+# - users building from source generally do not need portable binaries
+# - this is overridden in the cibuildwheel section
+limited-api = true
+args.setup = ['-Dpython.allow_limited_api=false']
+
+[tool.uv]
+no-build-isolation-package = ["gpgi"]
+
+[tool.coverage.run]
+source = [
+    "src/gpgi",
+    "tests",
+]
+omit = [
+    "src/gpgi/_typing.py",
+    "src/gpgi/typing.py",
+]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+exclude_lines = [
+    # a more strict default pragma
+    "\\# pragma: no cover\\b",
+
+    # allow defensive code
+    "^\\s*raise NotImplementedError\\b",
+
+    # typing-related code
+    "^if TYPE_CHECKING:",
+    ": \\.\\.\\.(\\s*#.*)?$",
+    "^ +\\.\\.\\.$",
+    "-> ['\"]?NoReturn['\"]?:",
+]
+
+[tool.ruff.lint]
+ignore = ["E501", "D101"]
+select = [
+    "E",
+    "F",
+    "W",
+    "D",   # pydocstyle
+    "C4",  # flake8-comprehensions
+    "B",   # flake8-bugbear
+    "TCH", # flake8-type-checking
+    "YTT", # flake8-2020
+    "I",   # isort
+    "UP",  # pyupgrade
+    "NPY", # numpy specific rules
+]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+known-first-party = ["gpgi"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["D"]
+
+[tool.mypy]
+python_version = "3.11"
+show_error_codes = true
+pretty = true
+warn_return_any = true
+warn_unused_configs = true
+warn_unreachable = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+follow_imports = "silent"
+
+[tool.pytest.ini_options]
+filterwarnings = [
+  "error",
+  'ignore:Matplotlib is currently using agg, which is a non-GUI backend:UserWarning',
+  'ignore:in 3.12 __contains__ will no longer raise TypeError:DeprecationWarning',
+]
+addopts = "-ra"
+
+[tool.cibuildwheel]
+skip = ["cp314t-*"]
+build-frontend = "build[uv]; args: -Csetup-args='-Dpython.allow_limited_api=true'"
+build-verbosity = 1
+test-groups = ["test", "concurrency"]
+test-sources = ["tests", "pyproject.toml"]
+test-command = [
+    "python -m pytest --color=yes tests",
+    "python -m pytest --color=yes --count 500 tests/test_concurrent.py",
+]
+
+[tool.cibuildwheel.linux]
+archs = "auto"
+
+[tool.cibuildwheel.macos]
+archs = "auto64"
+
+[tool.cibuildwheel.windows]
+archs = "AMD64"
+
+[[tool.cibuildwheel.overrides]]
+# Install numpy from nightly wheels as not yet on PyPI.
+select = "cp314*"
+before-test = "uv pip install --pre --extra-index-url https://pypi.anaconda.org/scientific-python-nightly-wheels/simple numpy"
