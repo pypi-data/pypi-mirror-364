@@ -1,0 +1,56 @@
+[build-system]
+requires = ["hatchling", "uv-dynamic-versioning"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sage-timer"
+dynamic = ["version"]
+description = "Sage is an easy-to-use command line timer that looks good and accepts natural language time formats."
+keywords = ["timer", "stopwatch", "cli", "terminal", "productivity", "pomodoro", "curses"]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["click>=8.2.1", "nava>=0.7", "platformdirs>=4.3.8"]
+license = "MIT"
+authors = [
+    {name = "Nicholas Salvatore", email = "nmsalvatore@protonmail.com"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Environment :: Console :: Curses",
+    "Intended Audience :: End Users/Desktop",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Office/Business :: Scheduling",
+    "Topic :: System :: Shells",
+    "Topic :: Terminals",
+    "Topic :: Utilities",
+]
+
+[project.scripts]
+sage = "sage.cli.main:sage"
+
+[project.urls]
+Repository = "https://github.com/nmsalvatore/sage"
+Issues = "https://github.com/nmsalvatore/sage/issues"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.1",
+    "twine>=6.1.0",
+]
+
+[tool.hatch.build.targets.wheel]
+include = [
+    "sage/",
+    "sounds/",
+]
+
+[tool.hatch.version]
+source = "uv-dynamic-versioning"
