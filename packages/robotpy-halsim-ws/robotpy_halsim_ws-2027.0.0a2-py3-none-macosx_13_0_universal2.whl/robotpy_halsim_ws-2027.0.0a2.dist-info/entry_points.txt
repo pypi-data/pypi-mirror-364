@@ -1,0 +1,3 @@
+[robotpysimext]
+ws-client = halsim_ws.client
+ws-server = halsim_ws.server
