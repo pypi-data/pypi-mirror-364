@@ -1,0 +1,60 @@
+[build-system]
+requires = [
+    "pdm-backend",
+]
+build-backend = "pdm.backend"
+
+[project]
+name = "bili-listener"
+dynamic = []
+description = "Python获取bilibili直播弹幕的库, 使用WebSocket协议"
+readme = "README.md"
+keywords = [
+    "bilibili",
+    "bilibili-live",
+    "danmaku",
+]
+requires-python = ">=3.8"
+authors = [
+    { name = "xfgryujk", email = "xfgryujk@126.com" },
+    { name = "Shadow403", email = "admin@shadow403.cn" },
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Framework :: AsyncIO",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development :: Libraries",
+]
+dependencies = [
+    "aiohttp~=3.9.0",
+    "Brotli~=1.1.0",
+    "yarl~=1.18.3",
+    "loguru>=0.7.3",
+]
+version = "1.1.8"
+
+[project.license]
+file = "LICENSE"
+
+[project.urls]
+Homepage = "https://github.com/Shadow403/blivedm"
+Repository = "https://github.com/Shadow403/blivedm"
+Issues = "https://github.com/Shadow403/blivedm/issues"
+
+[tool.pdm]
+distribution = true
+
+[tool.pdm.version]
+source = "file"
+path = "blivedm/__init__.py"

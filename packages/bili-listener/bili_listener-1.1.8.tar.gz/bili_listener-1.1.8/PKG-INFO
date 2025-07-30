@@ -1,0 +1,71 @@
+Metadata-Version: 2.1
+Name: bili-listener
+Version: 1.1.8
+Summary: Python获取bilibili直播弹幕的库, 使用WebSocket协议
+Keywords: bilibili,bilibili-live,danmaku
+Author-Email: xfgryujk <xfgryujk@126.com>, Shadow403 <admin@shadow403.cn>
+License: MIT License
+         
+         Copyright (c) 2018 xfgryujk
+         Copyright (c) 2024 Shadow403
+         
+         Permission is hereby granted, free of charge, to any person obtaining a copy
+         of this software and associated documentation files (the "Software"), to deal
+         in the Software without restriction, including without limitation the rights
+         to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+         copies of the Software, and to permit persons to whom the Software is
+         furnished to do so, subject to the following conditions:
+         
+         The above copyright notice and this permission notice shall be included in all
+         copies or substantial portions of the Software.
+         
+         THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+         IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+         FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+         AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+         LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+         OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+         SOFTWARE.
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Framework :: AsyncIO
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Software Development :: Libraries
+Project-URL: Homepage, https://github.com/Shadow403/blivedm
+Project-URL: Repository, https://github.com/Shadow403/blivedm
+Project-URL: Issues, https://github.com/Shadow403/blivedm/issues
+Requires-Python: >=3.8
+Requires-Dist: aiohttp~=3.9.0
+Requires-Dist: Brotli~=1.1.0
+Requires-Dist: yarl~=1.18.3
+Requires-Dist: loguru>=0.7.3
+Description-Content-Type: text/markdown
+
+# bili-listener
+
+- [协议解释](https://open-live.bilibili.com/document/657d8e34-f926-a133-16c0-300c1afc6e6b)
+- 原属于 [xfgryujk/blivedm](https://github.com/xfgryujk/blivedm)
+- 基于本库开发的应用：[BiliListener](https://github.com/Shadow403/BiliListener)
+
+### 使用说明
+
+- 需要Python 3.10及以上版本
+- 创建虚拟环境
+- 安装依赖 `pdm install`
+- web端例程在 [`sample.py`](./blivedm/test/example/sample.py)，直播开放平台例程在[`open_live_sample.py`](./blivedm/test/example/open_live_sample.py)
+- `cmd` 类型在 [`ws_json`](./blivedm/test/ws_json/) 文件夹下
+
+### 打包
+- 创建虚拟环境
+- 安装依赖 `pdm install`
+- 打包 `pdm build`
