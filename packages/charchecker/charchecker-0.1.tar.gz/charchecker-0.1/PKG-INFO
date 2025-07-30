@@ -1,0 +1,35 @@
+Metadata-Version: 2.4
+Name: charchecker
+Version: 0.1
+Summary: Une app Django pour vérifier le type d’un caractère.
+Home-page: https://github.com/tonpseudo/charchecker
+Author: David GBONGUE
+Author-email: davidmade92@gmail.com
+License: MIT
+Classifier: Framework :: Django
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: summary
+
+# CharChecker
+
+Une petite application Django qui vérifie si un caractère est une lettre, un chiffre ou un symbole spécial. Elle fournit une vue HTML simple.
+
+## Utilisation
+
+Ajoutez `"charchecker"` dans `INSTALLED_APPS`, incluez ses `urls.py` dans votre projet principal, et visitez `/checker/` pour utiliser l'app.
+
+## Installation
+
+```bash
+pip install -i https://test.pypi.org/simple/ charchecker
