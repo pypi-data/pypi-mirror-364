@@ -1,0 +1,8 @@
+Metadata-Version: 2.4
+Name: p2pchat
+Version: 0.1.26
+License-File: LICENSE
+Requires-Dist: aiohttp
+Requires-Dist: asyncio
+Dynamic: license-file
+Dynamic: requires-dist
