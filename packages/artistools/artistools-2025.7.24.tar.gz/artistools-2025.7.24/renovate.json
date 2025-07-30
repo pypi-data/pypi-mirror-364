@@ -1,0 +1,22 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "labels": ["dependencies"],
+  "bumpVersion": "minor",
+  "pre-commit": {
+    "enabled": true
+  },
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true,
+    "schedule": [
+      "* 9 * * 2"
+    ]
+  },
+  "rangeStrategy": "update-lockfile",
+  "schedule": [
+    "* 9 * * 2"
+  ]
+}
