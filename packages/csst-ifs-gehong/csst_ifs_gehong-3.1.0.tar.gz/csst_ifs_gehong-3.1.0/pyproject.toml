@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "csst-ifs-gehong"
+version = "3.1.0"
+description = "Simulate realistic IFS datacubes for the CSST mission, including stellar population, ionized gas, and AGN spectra."
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+  { name = "Shuai Feng", email = "sfeng@hebtu.edu.cn" }
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: Astronomy",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+]
+
+dependencies = [
+  "numpy",
+  "scipy",
+  "astropy",
+  "matplotlib"
+]
+
+[project.urls]
+Homepage = "https://github.com/fengshuai0210/csst-ifs-gehong"
+Documentation = "https://csst-ifs-gehong.readthedocs.io"
+Source = "https://github.com/fengshuai0210/csst-ifs-gehong"
+
+[tool.setuptools]
+packages = ["gehong"]
+include-package-data = true
