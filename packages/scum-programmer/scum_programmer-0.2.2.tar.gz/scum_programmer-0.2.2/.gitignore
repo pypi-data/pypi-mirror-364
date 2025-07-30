@@ -1,0 +1,17 @@
+build/
+.cache/
+.vscode/
+.DS_Store
+*.swp
+*.orig
+
+# Python
+dist/
+*.pyc
+.coverage
+coverage.xml
+
+# Segger Embedded Studio artifacts
+Output/
+*.emSession
+*.jlink
