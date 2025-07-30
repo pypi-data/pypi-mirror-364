@@ -1,0 +1,9 @@
+beautifulsoup4
+defusedxml
+networkx
+pandas
+rdflib
+thefuzz
+tldextract
+build
+twine
