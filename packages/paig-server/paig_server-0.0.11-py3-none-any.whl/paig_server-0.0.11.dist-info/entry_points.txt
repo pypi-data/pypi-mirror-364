@@ -1,0 +1,4 @@
+[console_scripts]
+paig = paig.__main__:main
+paig-server = paig.__main__:main
+paig_server = paig.__main__:main

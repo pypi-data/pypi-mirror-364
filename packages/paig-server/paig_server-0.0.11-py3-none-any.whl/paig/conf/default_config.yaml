@@ -1,0 +1,44 @@
+database:
+  url: "sqlite+aiosqlite:///db/database.db"
+
+api_key:
+  expire_days: 365
+  header_name: "x-paig-api-key"
+
+
+security:
+  expire_minutes: 1440
+  basic_auth:
+    secret: "$2b$12$1ykJ4rnE3yKNa05mPiDTluso17gdFyUux/qSLsCv0tzIBeVqnmMmG"
+
+opensearch:
+  endpoint: "https://localhost:9200"
+  username: "admin"
+  secret: "<Replace with OpenSearch Password>"
+
+authz:
+  rds_authorizer:
+    cache_expiry:
+      get_user_groups: 60
+      get_application_details: 60
+      get_application_config: 60
+      get_application_policies: 3
+      get_vector_db_details: 60
+      get_vector_db_policies: 3
+
+
+# disable_remote_eval_plugins: "false"
+# target_application_connection_timeout: 60
+# max_eval_concurrent_limit: 2
+# eval_timeout_in_min: 3600
+# disable_eval_concurrent_limit: "false"
+# enable_eval_verbose: "false"
+
+# default_shield_server_url: "<Replace with Shield Server URL>"
+
+# skip_default_user_creation: false
+# skip_default_application_creation: false
+# audit_storage_datasource: "<RDS or OPENSEARCH>"
+
+# eval_category_file: "<Replace with Eval Category File Path>"
+
