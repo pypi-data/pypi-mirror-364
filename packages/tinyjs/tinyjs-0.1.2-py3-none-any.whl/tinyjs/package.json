@@ -1,0 +1,21 @@
+{
+  "name": "generator_part",
+  "version": "1.0.0",
+  "description": "",
+  "main": "code_annotation.js",
+  "scripts": {
+    "annotate": "node code_annotation.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/almajd3713/TinyJS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/almajd3713/TinyJS/issues"
+  },
+  "homepage": "https://github.com/almajd3713/TinyJS#readme"
+}
