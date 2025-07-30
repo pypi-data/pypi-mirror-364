@@ -1,0 +1,72 @@
+Metadata-Version: 2.4
+Name: pyelasticdsl
+Version: 0.1.0
+Summary: A Python DSL for Elasticsearch queries
+License: MIT
+Project-URL: Homepage, https://github.com/AlaricZy/pyelasticdsl
+Project-URL: Repository, https://github.com/AlaricZy/pyelasticdsl
+Keywords: elasticsearch,dsl,query,python
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# pyelasticdsl
+
+A minimal, Pythonic DSL for building Elasticsearch queries with method chaining.  
+Supports common query types such as `MatchQuery`, `TermQuery`, `QueryStringQuery`, `RegexpQuery`, `ExistsQuery`, `PercolatorQuery`, and more.
+
+> ✅ Compatible with Python 3.12+
+
+---
+
+## 📦 Installation
+
+```bash
+pip install pyelasticdsl
+````
+
+## 🧱 Basic Usage
+
+```python
+from pyelasticdsl.query import QueryStringQuery
+
+query = (
+    QueryStringQuery("user:kimchy AND message:search")
+    .DefaultField("content")
+    .DefaultOperator("AND")
+    .AnalyzeWildcard(True)
+    .Boost(2.0)
+)
+
+print(query.to_dict())
+```
+
+Produces:
+
+```json
+{
+  "query_string": {
+    "query": "user:kimchy AND message:search",
+    "default_field": "content",
+    "default_operator": "AND",
+    "analyze_wildcard": true,
+    "boost": 2.0
+  }
+}
+```
+
+---
+
+## 🧪 Supported Queries
+
+* `MatchQuery`
+* `TermQuery`
+* `QueryStringQuery`
+* `RegexpQuery`
+* `ExistsQuery`
+* `PercolatorQuery`
+* ...more coming soon
