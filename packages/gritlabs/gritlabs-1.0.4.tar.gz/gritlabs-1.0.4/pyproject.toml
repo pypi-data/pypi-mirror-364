@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gritlabs"
+version = "1.0.4"
+description = "This package is experimental, non-working, and not intended for real-world use. Do not install."
+readme = "README.md"
+requires-python = ">=3.7"
+authors = [{name = "Grit Labs"}]
+
+[tool.setuptools]
+packages = []
+
+[tool.setuptools.package-data]
+
