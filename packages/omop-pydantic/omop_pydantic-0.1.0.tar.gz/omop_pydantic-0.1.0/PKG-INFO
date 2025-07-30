@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: omop-pydantic
+Version: 0.1.0
+Summary: Simple Pydantic models for OMOP CDM
+License-File: LICENSE
+Requires-Python: >=3.12
+Requires-Dist: hypothesis>=6.131.30
+Requires-Dist: pydantic>=2.11.5
+Requires-Dist: pytest-lazy-fixture>=0.6.3
+Description-Content-Type: text/markdown
+
+# omop-pydantic
+A lightweight library for serializing data from OHDSI's OMOP Common Data Model using Pydantic
+
+
+
+## Related works
+
+For the OMOP CDM source, check out the [original project GitHub](https://github.com/OHDSI/CommonDataModel) + [Wiki](https://ohdsi.github.io/CommonDataModel/index.html)
+
+For the true OMOP geeks, check these out too!
+- [DZD-eV-Diabetes-Research/dzd-omop-cdm-python-models](https://github.com/DZD-eV-Diabetes-Research/dzd-omop-cdm-python-models/tree/main)
+- [OHDSI/Hestia](https://github.com/OHDSI/Hestia)
