@@ -1,0 +1,186 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  KinesisMultipleBucketsApp
+Parameters:
+  Stage:
+    Type: String
+    Default: dev
+Globals:
+  Function:
+    Runtime: python3.13
+    Handler: index.handler
+    Architectures:
+      - x86_64
+    Timeout: 30
+    Environment:
+      Variables:
+        ENV: !Ref Stage
+  Api:
+    Cors:
+      AllowOrigin: "'*'"
+      AllowHeaders: "'*'"
+      AllowMethods: "'*'"
+      AllowCredentials: False
+Resources:
+    # paths
+  kinesismultiplebucketsappDeliveryStreamPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      Roles:
+        - !Ref kinesismultiplebucketsappDeliveryStreamRole
+      PolicyName: kinesismultiplebucketsapp_firehose_delivery_policy
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action:
+              - 's3:AbortMultipartUpload'
+              - 's3:GetBucketLocation'
+              - 's3:GetObject'
+              - 's3:ListBucket'
+              - 's3:ListBucketMultipartUploads'
+              - 's3:PutObject'
+            Resource:
+              - !Sub arn:aws:s3:::${kinesismultiplebucketsappprivateBucket}/*
+              - !Sub arn:aws:s3:::${kinesismultiplebucketsappprivateBucket}/*
+              - arn:aws:s3:::easysam-kinesis-external/*
+          - Effect: Allow
+            Action:
+              - 'kinesis:DescribeStream'
+              - 'kinesis:GetShardIterator'
+              - 'kinesis:GetRecords'
+              - 'kinesis:ListShards'
+            Resource:
+              - !GetAtt kinesismultiplebucketsappsimpleStream.Arn
+              - !GetAtt kinesismultiplebucketsappcomplexStream.Arn
+  kinesismultiplebucketsappDeliveryStreamRole:
+    Type: AWS::IAM::Role
+    Properties:
+#ToDo 
+#      RoleName: !Sub "DeliveryStreamRole-${Stage}"
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Sid: ''
+            Effect: Allow
+            Principal:
+              Service: firehose.amazonaws.com
+            Action: 'sts:AssumeRole'
+            Condition:
+              StringEquals:
+                'sts:ExternalId': !Ref 'AWS::AccountId'
+    # streams
+    # tables
+    # queues
+  kinesismultiplebucketsappsimpleStream:
+    Type: AWS::Kinesis::Stream
+    Properties:
+      Name: !Sub "kinesismultiplebucketsapp-simple-${Stage}"
+      RetentionPeriodHours: 24
+      StreamModeDetails:
+        StreamMode: ON_DEMAND
+  kinesismultiplebucketsappsimpleprivateDelivery:
+    Type: AWS::KinesisFirehose::DeliveryStream
+    DependsOn:
+      - kinesismultiplebucketsappDeliveryStreamPolicy    
+    Properties:
+      DeliveryStreamName: !Sub "kinesismultiplebucketsapp-simpleprivate-${Stage}"
+      DeliveryStreamType: "KinesisStreamAsSource"
+      KinesisStreamSourceConfiguration:
+        KinesisStreamARN: !GetAtt kinesismultiplebucketsappsimpleStream.Arn
+        RoleARN: !GetAtt kinesismultiplebucketsappDeliveryStreamRole.Arn
+      ExtendedS3DestinationConfiguration:
+        BucketARN: !GetAtt kinesismultiplebucketsappprivateBucket.Arn
+        BufferingHints:
+          SizeInMBs: 128
+          IntervalInSeconds: 60
+        CompressionFormat: "GZIP"
+        EncryptionConfiguration:
+          NoEncryptionConfig: "NoEncryption"
+        Prefix: "simple/"
+        RoleARN: !GetAtt kinesismultiplebucketsappDeliveryStreamRole.Arn
+  kinesismultiplebucketsappcomplexStream:
+    Type: AWS::Kinesis::Stream
+    Properties:
+      Name: !Sub "kinesismultiplebucketsapp-complex-${Stage}"
+      RetentionPeriodHours: 24
+      StreamModeDetails:
+        StreamMode: ON_DEMAND
+  kinesismultiplebucketsappcomplexprivateDelivery:
+    Type: AWS::KinesisFirehose::DeliveryStream
+    DependsOn:
+      - kinesismultiplebucketsappDeliveryStreamPolicy    
+    Properties:
+      DeliveryStreamName: !Sub "kinesismultiplebucketsapp-complexprivate-${Stage}"
+      DeliveryStreamType: "KinesisStreamAsSource"
+      KinesisStreamSourceConfiguration:
+        KinesisStreamARN: !GetAtt kinesismultiplebucketsappcomplexStream.Arn
+        RoleARN: !GetAtt kinesismultiplebucketsappDeliveryStreamRole.Arn
+      ExtendedS3DestinationConfiguration:
+        BucketARN: !GetAtt kinesismultiplebucketsappprivateBucket.Arn
+        BufferingHints:
+          SizeInMBs: 128
+          IntervalInSeconds: 60
+        CompressionFormat: "GZIP"
+        EncryptionConfiguration:
+          NoEncryptionConfig: "NoEncryption"
+        Prefix: "complex/"
+        RoleARN: !GetAtt kinesismultiplebucketsappDeliveryStreamRole.Arn
+  kinesismultiplebucketsappcomplexexternalDelivery:
+    Type: AWS::KinesisFirehose::DeliveryStream
+    DependsOn:
+      - kinesismultiplebucketsappDeliveryStreamPolicy    
+    Properties:
+      DeliveryStreamName: !Sub "kinesismultiplebucketsapp-complexexternal-${Stage}"
+      DeliveryStreamType: "KinesisStreamAsSource"
+      KinesisStreamSourceConfiguration:
+        KinesisStreamARN: !GetAtt kinesismultiplebucketsappcomplexStream.Arn
+        RoleARN: !GetAtt kinesismultiplebucketsappDeliveryStreamRole.Arn
+      ExtendedS3DestinationConfiguration:
+        BucketARN: arn:aws:s3:::easysam-kinesis-external
+        BufferingHints:
+          SizeInMBs: 128
+          IntervalInSeconds: 60
+        CompressionFormat: "GZIP"
+        EncryptionConfiguration:
+          NoEncryptionConfig: "NoEncryption"
+        Prefix: ""
+        RoleARN: !GetAtt kinesismultiplebucketsappDeliveryStreamRole.Arn
+    # streams
+  kinesismultiplebucketsappprivateBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "kinesismultiplebucketsappprivate-${Stage}"
+    # buckets
+    # queues
+    # tables
+  PythonLambdaLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: !Sub pythonthirdparty-${Stage}
+      Description: Dependencies for all python lambdas
+      ContentUri: thirdparty/.
+      CompatibleRuntimes:
+        - python3.13
+    Metadata:
+      BuildMethod: python3.13
+      BuildArchitecture: x86_64
+  myfunctionFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "myfunction-${Stage}"
+      CodeUri: backend/function/myfunction
+      Policies:
+        - AWSSecretsManagerGetSecretValuePolicy:
+            SecretArn: !Sub arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:*
+        - SSMParameterReadPolicy:
+            ParameterName: "*"
+        - KinesisCrudPolicy:
+            StreamName: !Ref kinesismultiplebucketsappsimpleStream
+        - KinesisCrudPolicy:
+            StreamName: !Ref kinesismultiplebucketsappcomplexStream
+      Layers:
+        - !Ref PythonLambdaLayer
+      Events:
+    # functions
