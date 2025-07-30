@@ -1,0 +1,15 @@
+README.md
+pyproject.toml
+src/portfolio_analytics/__init__.py
+src/portfolio_analytics/data_provider.py
+src/portfolio_analytics/optimization.py
+src/portfolio_analytics/performance.py
+src/portfolio_analytics/portfolio.py
+src/portfolio_analytics/risk_models.py
+src/portfolio_analytics/visualization.py
+src/portfolio_analytics_ai.egg-info/PKG-INFO
+src/portfolio_analytics_ai.egg-info/SOURCES.txt
+src/portfolio_analytics_ai.egg-info/dependency_links.txt
+src/portfolio_analytics_ai.egg-info/requires.txt
+src/portfolio_analytics_ai.egg-info/top_level.txt
+tests/test_portfolio.py
