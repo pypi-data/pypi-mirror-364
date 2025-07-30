@@ -1,0 +1,14 @@
+wsogram/__init__.py,sha256=h0rwCwKPwgOqzfx2aBZDR8iJCi6a8FCHiQ7SMFKIi_k,580
+wsogram/dispatcher.py,sha256=C6eN-X6xUU-vCsO7-4eyjl0fZ8BV33yMhfl4KtsNgao,2753
+wsogram/exceptions.py,sha256=4eB9azJcCB4nvruwkIY_AcEkwzthQuTfb-Ivxy_DDJE,1091
+wsogram/filters.py,sha256=kezWKOyN9eYqvyghl1TEO0EbAEOfQ49jxrDJZCWS5UM,49
+wsogram/router.py,sha256=4DLMEJCT7UAFYRDMqjshFU1hH5YzjTHaqcfeSgBlOV8,2211
+wsogram/server.py,sha256=A1TB0NvIYHeKsDPJepLnFwdhTyCnDBc6SV5p3-DzT2M,3027
+wsogram/websocket.py,sha256=bSEgaVrq3oJTMymLka6mFHnxffweqzB9kVEss-CAB48,3048
+wsogram/middleware/__init__.py,sha256=WbEYjKGl2Pm3ZswGt-X-V2Wh8rMscuHOkzfa7CquTO4,38
+wsogram/types/__init__.py,sha256=eGWBWc4njptFjJlonNXCYmsspTo3mTUE0sOuSJdUY_Y,903
+wsogram-0.0.1.dist-info/licenses/LICENSE,sha256=N8a5Ow6jP9d9lWCNFHqst5kUTYCo2z8bGxHSokvc01c,1077
+wsogram-0.0.1.dist-info/METADATA,sha256=NY4WKVm6N_zBNMW4mkT0MJATbhIsvJOOcNw5tH6Z7no,2953
+wsogram-0.0.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+wsogram-0.0.1.dist-info/top_level.txt,sha256=l5ORgc3TcTm55_U3SRdhhWio3Kz8TCKUDxWaUIjocvU,8
+wsogram-0.0.1.dist-info/RECORD,,
