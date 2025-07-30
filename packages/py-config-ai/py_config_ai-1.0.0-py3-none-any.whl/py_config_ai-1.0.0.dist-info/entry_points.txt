@@ -1,0 +1,2 @@
+[console_scripts]
+py-config-ai = py_config_ai.cli:app
