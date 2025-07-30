@@ -1,0 +1,2 @@
+[console_scripts]
+image-generation-fastmcp-server = image_generation_fastmcp_server:main

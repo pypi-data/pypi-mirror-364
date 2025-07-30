@@ -1,0 +1,22 @@
+Metadata-Version: 2.4
+Name: image-generation-fastmcp-server
+Version: 0.1.1
+Summary: a mcp server for image generation.
+Author-email: ikatt <1649980398@qq.com>
+License: MIT
+License-File: LICENSE
+Requires-Python: >=3.10
+Requires-Dist: fastmcp>=2.0.0
+Requires-Dist: httpx>=0.24.0
+Requires-Dist: mcp[cli]>=1.9.0
+Requires-Dist: pydantic>=2.8.0
+Requires-Dist: typing>=3.5.0
+Description-Content-Type: text/markdown
+
+# mcp server for image generation
+`maked by fastmcp`
+
+## function
+- image_generation(str: image_prompt) -> str:
+    - prompt: your generation prompt
+    - return: url
