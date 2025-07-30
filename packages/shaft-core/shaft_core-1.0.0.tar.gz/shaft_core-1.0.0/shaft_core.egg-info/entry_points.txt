@@ -1,0 +1,2 @@
+[console_scripts]
+shaft = shaft_cli.cli:cli

@@ -1,0 +1,10 @@
+pyproject.toml
+setup.py
+shaft_cli/__init__.py
+shaft_cli/cli.py
+shaft_core.egg-info/PKG-INFO
+shaft_core.egg-info/SOURCES.txt
+shaft_core.egg-info/dependency_links.txt
+shaft_core.egg-info/entry_points.txt
+shaft_core.egg-info/requires.txt
+shaft_core.egg-info/top_level.txt
