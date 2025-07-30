@@ -1,0 +1,198 @@
+Metadata-Version: 2.1
+Name: fpe-plus
+Version: 1.1.1
+Summary: Format Preserving Encryption with support for dates, numbers, floats, and strings with any character
+Home-page: https://github.com/vasudevjaiswal/fpe_plus
+Author: Vasudev Jaiswal
+Author-email: vasudevjaiswal786@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+
+# FPE Plus
+
+<p align="center">
+  <b>Format Preserving Encryption for Python</b><br>
+  <sub>Encrypt dates, numbers, floats, and strings while preserving format and length.</sub>
+</p>
+
+<p align="center">
+  <a href="https://pypi.org/project/fpe-plus/"><img src="https://img.shields.io/pypi/v/fpe-plus.svg?color=blue" alt="PyPI version"></a>
+  <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License">
+  <img src="https://img.shields.io/badge/python-3.7%2B-blue.svg" alt="Python Version">
+</p>
+
+---
+
+## Table of Contents
+1. [Features](#features)
+2. [Installation](#installation)
+3. [Usage](#usage)
+    - [Encrypt/Decrypt Date](#encryptdecrypt-a-date)
+    - [Encrypt/Decrypt Float](#encryptdecrypt-a-float)
+    - [Encrypt/Decrypt String](#encryptdecrypt-a-string-with-special-characters)
+    - [Encrypt/Decrypt Number](#encryptdecrypt-a-number)
+    - [Encrypt/Decrypt CSV](#encryptdecrypt-a-csv-file)
+4. [Dependencies](#dependencies)
+5. [License](#license)
+6. [Author & Contact](#author--contact)
+
+---
+
+## Features
+
+
+- 🔒 Format Preserving Encryption (FPE) for dates, numbers, floats, and strings
+- 🆕 **Type-safe encryption/decryption:**
+    - Encrypted integers are returned as `int`
+    - Encrypted floats are returned as `float`
+    - Encrypted dates are returned as `datetime`
+    - No conversion issues with databases (Oracle, PostgreSQL, SQL Server)
+- 🔤 Supports all characters (letters, digits, special characters)
+- 📄 CSV encryption/decryption with column format specification
+- 🛡️ No external dependencies (pure Python)
+- 🏷️ Preserves length and format for structured data
+
+---
+
+## Installation
+
+```bash
+pip install fpe_plus
+```
+
+---
+
+
+## Usage
+
+### Quick Start
+
+```python
+from fpe_plus import FPETypeHandler, FPEExtended, FPECSVHandler
+
+# Generate secure key and tweak
+key = FPEExtended.generate_key()
+tweak = FPEExtended.generate_tweak(7)
+
+# Create a type handler
+handler = FPETypeHandler(key, tweak, mode="FF3-1")
+
+
+# Encrypt and decrypt a date (returns datetime)
+date = "2023-12-25"
+enc_date = handler.encrypt_date(date)  # returns datetime
+dec_date = handler.decrypt_date(enc_date)  # returns datetime
+print(f"Date: {date} -> {enc_date} -> {dec_date}")
+
+# Encrypt and decrypt a float (returns float)
+float_val = 123.456
+enc_float = handler.encrypt_float(float_val)  # returns float
+dec_float = handler.decrypt_float(enc_float)  # returns float
+print(f"Float: {float_val} -> {enc_float} -> {dec_float}")
+
+# Encrypt and decrypt a string (returns str)
+text = "hello@world!123"
+enc_str = handler.encrypt_string(text)
+dec_str = handler.decrypt_string(enc_str)
+print(f"String: {text} -> {enc_str} -> {dec_str}")
+
+# Encrypt and decrypt digits (returns int)
+number = 123456
+enc_num = handler.encrypt_digit(number)  # returns int
+dec_num = handler.decrypt_digit(enc_num)  # returns int
+print(f"Digits: {number} -> {enc_num} -> {dec_num}")
+
+# Encrypt and decrypt a CSV file
+csv_handler = FPECSVHandler(key, tweak, mode="FF3-1")
+formats = ['STRING', 'DATE', 'FLOAT', 'DIGITS']
+csv_handler.encrypt_csv('input.csv', 'encrypted.csv', formats)
+csv_handler.decrypt_csv('encrypted.csv', 'decrypted.csv', formats)
+```
+
+---
+
+## API Reference
+
+### `FPEExtended`
+**Core format-preserving encryption engine.**
+
+- `FPEExtended(key: bytes, tweak: bytes, mode: str = "FF3-1")`
+    - `key`: 16, 24, or 32 bytes
+    - `tweak`: 7 bytes for FF3-1
+    - `mode`: "FF3-1" (default)
+- `generate_key()`: Generate a secure random key
+- `generate_tweak(length=7)`: Generate a secure random tweak
+- `encrypt(plaintext: str, radix: int = None) -> str`: Encrypt any string
+- `decrypt(ciphertext: str, radix: int = None) -> str`: Decrypt any string
+
+
+### `FPETypeHandler`
+**Type-specific encryption/decryption.**
+
+- `FPETypeHandler(key: bytes, tweak: bytes, mode: str = "FF3-1")`
+- `encrypt_date(date_input, date_format: str = "%Y-%m-%d", return_type=datetime) -> datetime|str`
+- `decrypt_date(ciphertext, date_format: str = "%Y-%m-%d", return_type=datetime) -> datetime|str`
+- `encrypt_float(value, return_type=float) -> float|str`
+- `decrypt_float(ciphertext, return_type=float) -> float|str`
+- `encrypt_digit(value, return_type=int) -> int|str`
+- `decrypt_digit(ciphertext, return_type=int) -> int|str`
+- `encrypt_string(plaintext: str) -> str`
+- `decrypt_string(ciphertext: str) -> str`
+
+### `FPECSVHandler`
+**CSV column-wise encryption/decryption.**
+
+- `FPECSVHandler(key: bytes, tweak: bytes, mode: str = "FF3-1")`
+- `encrypt_csv(input_path: str, output_path: str, formats: list)`
+- `decrypt_csv(input_path: str, output_path: str, formats: list)`
+    - `formats`: List of column types (`'DATE'`, `'FLOAT'`, `'STRING'`, `'DIGITS'`)
+
+---
+
+## Developer Tips & Best Practices
+
+- Always use secure random keys and tweaks for production.
+- Specify correct column formats for CSV encryption.
+- For digits, ensure even length for FF3-1 compatibility (handler pads automatically).
+- Use caching for repeated values to improve performance.
+- All encryption is reversible if you keep the key and tweak safe.
+- No external dependencies: works out-of-the-box with Python 3.7+.
+
+---
+
+---
+
+## Dependencies
+
+None (uses Python standard library).
+
+---
+
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+## Author & Contact
+
+**Vasudev Jaiswal**  
+Email: vasudevjaiswal786@gmail.com
+
+---
+
+<p align="center">
+  <i>Made with ❤️ by Vasudev Jaiswal</i>
+</p>
+
