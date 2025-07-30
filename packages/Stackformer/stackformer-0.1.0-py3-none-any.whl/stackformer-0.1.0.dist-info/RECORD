@@ -1,0 +1,14 @@
+models/GPT_2.py,sha256=DgZHhZUYl5eSCTtv4vzICaV9YR_B8FHFm8oaMkJZycU,9499
+models/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+modules/Attention.py,sha256=Uivgd3Dd9atYSEhSbH_s1xRpIpfcNyxpZp9d5-QO388,26240
+modules/Feed_forward.py,sha256=8LEsV-9E4-i91HKh69k4US913zdT4BlZFYGTfuSkkl0,2141
+modules/Normalization.py,sha256=omSCs3r5QzlWoxzvI5zo2ZEI2DsuxjC9JUgkHcrP1QA,1350
+modules/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+modules/mask.py,sha256=x0nj0Rc2m7Z7bv8XAMkNpl7Xa69GCeknlx36S9OTLd4,1252
+modules/position_embedding.py,sha256=C9m176HvpQBFGRIcstVrEzpTVdIMYPm32Ds_Uq-sbhc,2639
+modules/tokenizer.py,sha256=hrtM2zVbnj1OTw3yg8Dbvra_uYkRUiQkmzDrUE9KMXM,821
+stackformer-0.1.0.dist-info/licenses/LICENSE,sha256=UgtbALSbKVzaUDMBYGM9DGsGQAbBusqJrnvRkmsa_-c,1089
+stackformer-0.1.0.dist-info/METADATA,sha256=oZ8XiHJIsN-3jqNQWizGLsSXZrqL1FNtu-sd4ftl918,3078
+stackformer-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+stackformer-0.1.0.dist-info/top_level.txt,sha256=fBybt_nsQ72dKMDZb_X6FYrhNgOVWmC3PfXHMP3Xz7E,15
+stackformer-0.1.0.dist-info/RECORD,,
