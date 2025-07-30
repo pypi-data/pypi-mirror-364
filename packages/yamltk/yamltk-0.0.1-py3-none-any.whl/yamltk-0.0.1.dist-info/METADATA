@@ -1,0 +1,57 @@
+Metadata-Version: 2.4
+Name: yamltk
+Version: 0.0.1
+Summary: A utility for building Tkinter widget trees from YAML files.
+Project-URL: Homepage, https://github.com/yannprada/yaml_tkinter
+Project-URL: Issues, https://github.com/yannprada/yaml_tkinter/issues
+Author-email: Yannick Pradayrol <pradayrol.yannick@gmail.com>
+License-Expression: GPL-3.0-only
+License-File: LICENSE
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.13.3
+Requires-Dist: pyyaml>=6.0.2
+Description-Content-Type: text/markdown
+
+# YAML Tkinter
+
+A utility for building Tkinter widget trees from YAML files.
+
+This module provides the `Builder` class, which reads a YAML file describing the 
+widget hierarchy and properties, then instantiates and configures Tkinter widgets 
+accordingly. It supports custom branch classes, variable binding, and flexible 
+widget configuration, making it easy to define complex GUIs declaratively.
+
+YAML files should specify the widget structure, options, and variables. See the 
+example YAML and widget classes for details.
+
+## Install
+
+`pip install yamltk`
+
+## Demo
+
+```python
+import tkinter as tk
+import yamltk
+
+class Demo(tk.Tk):
+    yaml_file = 'demo.yaml'
+
+root = yamltk.build(Demo)
+root.mainloop()
+```
+
+demo.yaml:
+
+```yaml
+Demo:
+    title: Demo application
+    geometry: 300x200
+    children:
+        - Label:
+            text: Hello world!
+            pack: top
+```
+
+For more details, see the example folder.
