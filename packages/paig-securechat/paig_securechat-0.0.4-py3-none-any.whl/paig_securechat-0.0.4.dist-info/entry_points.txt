@@ -1,0 +1,3 @@
+[console_scripts]
+paig-securechat = paig_securechat.__main__:main
+paig_securechat = paig_securechat.__main__:main

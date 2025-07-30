@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.cee98e64.css",
+    "main.js": "/static/js/main.c8a3ab81.js",
+    "static/media/paig-ai_lockup-dark.svg": "/static/media/paig-ai_lockup-dark.690d88a9b99bbc1f975cbc01313fa9a1.svg",
+    "index.html": "/index.html",
+    "main.cee98e64.css.map": "/static/css/main.cee98e64.css.map",
+    "main.c8a3ab81.js.map": "/static/js/main.c8a3ab81.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cee98e64.css",
+    "static/js/main.c8a3ab81.js"
+  ]
+}
