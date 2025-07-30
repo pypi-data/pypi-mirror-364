@@ -1,0 +1,11 @@
+x64dbg_automate/__init__.py,sha256=5kGydk9zL2EpXaSILYaBqM2b50Bd8_Sm_KhJ4XqQwgw,11405
+x64dbg_automate/client_base.py,sha256=0W5RrI62k8oMQguhHSqX4V0YX8C05rcTg6xcDXS1GsE,506
+x64dbg_automate/commands_xauto.py,sha256=HAjMtxzNxd1oZNll7wsQb6umfnUGiUW5PovMUhkMjW4,18966
+x64dbg_automate/events.py,sha256=EQzNa6v0fDl6OPtj6Xko67QYpPFEvzwdYiBzFbep4Bk,8260
+x64dbg_automate/hla_xauto.py,sha256=aH20sVDFg5uW1JOmoe-2tDMBhDnzWS-lg7rEtwoWn40,24008
+x64dbg_automate/models.py,sha256=MMoR09FpheLCY7w0aB_2G3koajIa7vc7UojPbn2Ee98,7043
+x64dbg_automate/win32.py,sha256=UfX7h7MlrRQW_qkp0IQurQpw3-3P5HOo4B2DaZzcixU,1210
+x64dbg_automate-0.5.0.dist-info/LICENSE,sha256=cC2PyQ3sD0AbTWHM70E-dg7G5oRJxQgUXsKCtsch6zQ,1066
+x64dbg_automate-0.5.0.dist-info/METADATA,sha256=LLGDZ2FTYqHXZ78wMWUcXeIACgtq4YvOE4vc2Rq37hE,2665
+x64dbg_automate-0.5.0.dist-info/WHEEL,sha256=b4K_helf-jlQoXBBETfwnf4B04YC67LOev0jo4fX5m8,88
+x64dbg_automate-0.5.0.dist-info/RECORD,,
