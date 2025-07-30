@@ -1,0 +1,19 @@
+[project]
+name = "brickdjango"
+version = "0.3.0"
+description = "A custom Django project structure optimized for scalability, modularity, and maintainability—ideal for both small and large-scale web applications."
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [{name = "Amol Balpande", email = "amolbalpande2020@gmail.com"}]
+keywords = ["django", "project-structure", "starter", "boilerplate", "brick django"]
+dependencies = [
+  "Django>=4.0"
+]
+
+# 👇 This is what enables the CLI `brickdjango` command
+[project.scripts]
+brickdjango = "django_custom_structure.__main__:main"
+
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
