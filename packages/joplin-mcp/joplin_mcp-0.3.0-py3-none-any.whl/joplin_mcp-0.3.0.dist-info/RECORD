@@ -1,0 +1,15 @@
+joplin_mcp/__init__.py,sha256=ui3tibCipZIzeAmWMYhPzQShZpoCDZ2sEUdAlA7M9g8,2518
+joplin_mcp/__main__.py,sha256=Y_5j4qYjq5ov6MDKncUdOnvhSsLgvWkjZW4YOktpcK0,286
+joplin_mcp/config.py,sha256=4APZOLs5-ooCY5Tm4_C3HXEp4c66V190jmvB-Ynv8_I,47515
+joplin_mcp/fastmcp_server.py,sha256=BQbf6VBCicokn67einxDBLGKbpikFcwlJR027X7cz4k,96335
+joplin_mcp/install.py,sha256=X0FnEm8mrEU8H4rxNTEhzhnw_CICcdlFiXn3gF7wWCI,1193
+joplin_mcp/install_embedded.py,sha256=quuimCoU85JSMw8fFVyOsdS38MMViSp6HzqwDRrELFY,1412
+joplin_mcp/py.typed,sha256=7JfEK0jVOodBpnO6rTSOOyZFDxDfpgqTvQZUqeKTjbU,99
+joplin_mcp/server.py,sha256=pN0xmIL876k7vyO3VTxyW4iaYsg-ySELUjGDgJl-K-A,1605
+joplin_mcp/ui_integration.py,sha256=nnCqmMrth6Kj29IjvcI-VEq0yfFnGzvG3jwyMONBjU8,27649
+joplin_mcp-0.3.0.dist-info/licenses/LICENSE,sha256=EzRGuIpIYkjoaQw-h2SQJxjsy7UCL4QFcvewxNEX4OQ,1069
+joplin_mcp-0.3.0.dist-info/METADATA,sha256=cMqZLv4YJGOo-J0nC4CnKzuO9BpgwKK9ftHv0AknJ0s,11807
+joplin_mcp-0.3.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+joplin_mcp-0.3.0.dist-info/entry_points.txt,sha256=VYZfNtGfQZm8L1jBCsLUfwC7L9nT8r-GTNWzO5phV3o,142
+joplin_mcp-0.3.0.dist-info/top_level.txt,sha256=ISjJLldy_WKoaMuCeqAwGzh1CfZEEXqXN9HA8C6pmdM,11
+joplin_mcp-0.3.0.dist-info/RECORD,,
