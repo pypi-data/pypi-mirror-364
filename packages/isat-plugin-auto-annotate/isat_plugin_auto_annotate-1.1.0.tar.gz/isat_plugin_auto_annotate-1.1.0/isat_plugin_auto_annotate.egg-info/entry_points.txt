@@ -1,0 +1,2 @@
+[isat.plugins]
+auto_annotate_plugin = ISAT_plugin_auto_annotate.main:AutoAnnotatePlugin
