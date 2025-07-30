@@ -1,0 +1,3 @@
+[console_scripts]
+wintree=wintree.cli:main
+
