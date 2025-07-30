@@ -1,0 +1,10 @@
+LICENSE
+README.md
+setup.py
+adventure_x_shitventure.egg-info/PKG-INFO
+adventure_x_shitventure.egg-info/SOURCES.txt
+adventure_x_shitventure.egg-info/dependency_links.txt
+adventure_x_shitventure.egg-info/top_level.txt
+shitventure/__init__.py
+shitventure/methods.py
+shitventure/users.py
