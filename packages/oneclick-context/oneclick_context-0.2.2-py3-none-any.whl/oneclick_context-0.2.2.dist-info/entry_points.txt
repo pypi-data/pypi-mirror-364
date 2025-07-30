@@ -1,0 +1,3 @@
+[console_scripts]
+oneclick=oneclick_context.cli:app
+
