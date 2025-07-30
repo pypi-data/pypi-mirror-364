@@ -1,0 +1,16 @@
+ChangeLog.md
+LICENSE
+MANIFEST.in
+README-CN.md
+README.md
+setup.cfg
+setup.py
+alibabacloud_dingtalk/__init__.py
+alibabacloud_dingtalk.egg-info/PKG-INFO
+alibabacloud_dingtalk.egg-info/SOURCES.txt
+alibabacloud_dingtalk.egg-info/dependency_links.txt
+alibabacloud_dingtalk.egg-info/requires.txt
+alibabacloud_dingtalk.egg-info/top_level.txt
+alibabacloud_dingtalk/robot_1_0/__init__.py
+alibabacloud_dingtalk/robot_1_0/client.py
+alibabacloud_dingtalk/robot_1_0/models.py
