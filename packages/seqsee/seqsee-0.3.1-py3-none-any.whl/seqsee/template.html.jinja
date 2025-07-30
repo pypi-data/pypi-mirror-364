@@ -1,0 +1,827 @@
+<!-- template.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>{{ collection.header.metadata.htmltitle }}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css" />
+  <!-- KaTeX for math rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <!-- svg-pan-zoom for obvious reasons -->
+  <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+  <!-- Hammer.js for touch controls -->
+  <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
+  <!-- Path data polyfill for SVG path manipulation -->
+  <script src="https://cdn.jsdelivr.net/npm/path-data-polyfill@1.0.9/path-data-polyfill.min.js"></script>
+  <style>
+    :root {
+      --spacing: {{ collection.header.chart.scale }}px;
+    }
+
+    body {
+      font-family: "Computer Modern Serif", serif;
+      font-size: 20pt;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    /* KaTeX font size fix */
+    .katex {
+      font-size: 1em !important;
+    }
+
+    #chart-container {
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+    }
+
+    .background-style {
+      background-color: var(--backgroundColor);
+    }
+
+    #tooltip {
+      position: absolute;
+      display: none;
+      pointer-events: none;
+      color: var(--textColor);
+      border: 1px solid var(--borderColor);
+      padding: 5px;
+      z-index: 10;
+    }
+
+    #floating-title {
+      position: absolute;
+      top: calc(var(--spacing) / 3);
+      left: var(--spacing);
+      padding: 0.5rem;
+      color: var(--textColor);
+      border: 2px solid var(--borderColor);
+      z-index: 20;
+    }
+
+    #floating-title:empty {
+      display: none;
+    }
+
+    .block {
+      fill: var(--backgroundColor);
+    }
+
+    .axis {
+      stroke: var(--borderColor);
+      stroke-width: 2px;
+    }
+
+    #ticks text, .katex {
+      color: var(--textColor);
+      fill: currentColor;
+    }
+
+    #ticks {
+      font-size: 12pt;
+    }
+
+    #x-ticks {
+      text-anchor: middle;
+      dominant-baseline: hanging;
+    }
+
+    #y-ticks {
+      text-anchor: end;
+      dominant-baseline: middle;
+    }
+
+    /* Customized CSS styles */
+    :root {
+      --backgroundColor: white;
+      --borderColor: black;
+      --textColor: black;
+    }
+
+    #index-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      color: var(--textColor);
+      overflow-y: scroll;
+
+      .container {
+        justify-content: space-between;
+      }
+
+      .column {
+        flex: 1;
+        margin: 0 10px;
+      }
+
+      h1 {
+        text-align: center;
+        margin-top: 0rem;
+        padding-top: 1rem;
+      }
+
+      ul {
+        list-style-type: none;
+        padding-left: 0;
+      }
+
+      .big-link {
+        display: block;
+        padding: 8px 0;
+        text-align: center;
+      }
+
+      .big-link button {
+        font: inherit;
+        text-decoration: none;
+        background: inherit;
+        border: none;
+        color: inherit;
+      }
+
+      .big-link button:hover {
+        text-decoration: underline;
+      }
+
+      {{ collection.header.css().generate() -}}
+    }
+
+    {% for chart in collection %}
+    {% set config = chart.header -%}
+    .chart-{{ config.metadata.id }} {
+      {{ config.css().generate() -}}
+    }
+    {% endfor -%}
+  </style>
+  <script>
+    // Define global constants
+
+    const spacing = {{ collection.header.chart.scale }};
+    const axisSpacing = 0.6 * spacing;
+
+    const isCollection = {{ "true" if collection._is_collection else "false" }}
+  </script>
+</head>
+
+<body>
+  <div id="index-page" class="background-style" style="display: none;">
+    <h1 id="index-title" class="use-katex">{{ collection.header.metadata.title }}</h1>
+    <div class="container">
+      <div class="column">
+        <ul>
+          {%- for chart in collection %}
+          {%- set meta = chart.header.metadata %}
+          <li class="big-link"><button class="use-katex" data-id="{{ meta.id }}">
+            {% if meta.displaytitle -%}
+              {{- meta.displaytitle -}}
+            {%- elif meta.title -%}
+              {{- meta.title -}}
+            {%- elif meta.htmltitle -%}
+              {{- meta.htmltitle -}}
+            {%- else -%}
+              {{- meta.id -}}
+            {%- endif %}
+          </button></li>
+          {%- endfor %}
+        </ul>
+      </div>
+    </div>
+    <script>
+      function hideAllContents() {
+        document.getElementById("chart-container").style.display = "none";
+        document.getElementById("index-page").style.display = "none";
+      }
+
+      function showChartWithId(id, { center = null, zoom = null, pushState = true } = {}) {
+        hideAllContents();
+
+        const container = document.getElementById("chart-container");
+        container.innerHTML = document.getElementById(`chart-${id}`).innerHTML;
+        container.className = `chart-${id}`;
+
+        onChartLoad();
+        container.style.display = "block";
+
+        const svg = container.querySelector("svg");
+        zoom = zoom || 1;
+        if (center) {
+          centerOn(svg, center.x, center.y, zoom);
+        }
+
+        if (pushState) {
+          const current = getCurrentCenter(svg);
+          updateHash(id, { x: current.x, y: current.y }, current.zoom);
+        }
+      }
+
+      function showChartAtOffset(offset) {
+        const currentId = parseInt(document.getElementById("chart-container").className.split('-')[1]);
+        var columnIds = Array.from(document.querySelectorAll(".column button")).map(b => parseInt(b.dataset.id));
+        columnIds.sort((a, b) => a - b); // Ensure IDs are sorted
+        const currentIndex = columnIds.indexOf(currentId);
+        const targetIndex = currentIndex + offset;
+
+        if (targetIndex < 0 || targetIndex >= columnIds.length) return;
+
+        const targetId = columnIds[targetIndex];
+        const svg = document.querySelector("#chart-container svg");
+        const { x, y, zoom } = getCurrentCenter(svg);
+
+        showChartWithId(targetId, {
+          center: { x, y },
+          zoom,
+          pushState: true
+        });
+      }
+
+      function showIndexPage(pushState = true) {
+        hideAllContents();
+        document.getElementById("index-page").style.display = "block";
+        if (pushState) {
+          history.pushState({}, "", "#index");
+        }
+      }
+
+      function currentChartId() {
+        const container = document.getElementById("chart-container");
+        if (container.style.display === "none") return null;
+        return parseInt(container.className.split('-')[1]);
+      }
+
+      // Index page button handlers
+      document.querySelectorAll("#index-page .big-link button").forEach(button => {
+        button.addEventListener("click", function () {
+          const chartId = parseInt(this.dataset.id);
+          showChartWithId(chartId);
+        });
+      });
+
+      // Katex
+      const katexOptions = {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false },
+          { left: '\\(', right: '\\)', display: false },
+          { left: '\\[', right: '\\]', display: true }
+        ],
+        throwOnError: false
+      };
+      document.querySelectorAll(".use-katex").forEach(el => {
+        window.renderMathInElement(el, katexOptions);
+      });
+
+      // Coordinate conversion
+      function getCurrentCenter(svg) {
+        const { x: panX, y: panY } = window.panZoom.getPan();
+        const zoom = window.panZoom.getZoom();
+        const width = svg.clientWidth;
+        const height = svg.clientHeight;
+        const pxPerSpace = 1 / spacing;
+
+        const centerX = (width / 2 - panX) / zoom * pxPerSpace;
+        const centerY = (height - (height / 2 - panY) / zoom) * pxPerSpace;
+
+        return { x: centerX, y: centerY, zoom };
+      }
+
+      function centerOn(svg, centerX, centerY, zoom) {
+        const width = svg.clientWidth;
+        const height = svg.clientHeight;
+        const pxPerSpace = 1 / spacing;
+
+        const viewX = centerX / pxPerSpace * zoom;
+        const viewY = (height - centerY / pxPerSpace) * zoom;
+
+        const panX = width / 2 - viewX;
+        const panY = height / 2 - viewY;
+
+        window.panZoom.zoom(zoom);
+        window.panZoom.pan({ x: panX, y: panY });
+      }
+
+      // Hash helpers
+      function parseHash() {
+        const hash = window.location.hash.slice(1);
+        const params = new URLSearchParams(hash);
+
+        const chartId = params.has("chart") ? parseInt(params.get("chart")) : null;
+        const zoom = params.has("zoom") ? parseFloat(params.get("zoom")) : null;
+        const center = (params.has("x") && params.has("y"))
+          ? { x: parseFloat(params.get("x")), y: parseFloat(params.get("y")) }
+          : null;
+
+        return { chartId, center, zoom };
+      }
+
+      function updateHash(chartId, center, zoom) {
+        const params = new URLSearchParams();
+        params.set("chart", chartId);
+        if (center) {
+          params.set("x", center.x.toFixed(2));
+          params.set("y", center.y.toFixed(2));
+        }
+        if (zoom != null) {
+          params.set("zoom", zoom.toFixed(2));
+        }
+        window.location.hash = params.toString();
+      }
+
+      // Unified state renderer
+      function renderFromHash(pushState = false) {
+        const parsed = parseHash();
+        if (parsed.chartId != null) {
+          showChartWithId(parsed.chartId, {
+            center: parsed.center,
+            zoom: parsed.zoom,
+            pushState
+          });
+        } else {
+          showIndexPage(pushState);
+        }
+      }
+
+      // Show the chart on hashless load if it is unique
+      if (window.location.hash === "" && !isCollection) {
+        const charts = Array.from(document.querySelectorAll(".column button"));
+        const chartId = parseInt(charts[0].dataset.id);
+        window.location.hash = `#chart=${chartId}`;
+      }
+
+      // Set up event listeners for hash changes and initial rendering
+      window.addEventListener("DOMContentLoaded", () => renderFromHash(true));
+      window.addEventListener("hashchange", () => renderFromHash(false));
+      window.addEventListener("popstate", () => renderFromHash(false));
+    </script>
+  </div>
+  {% for chart in collection.charts -%}
+  {% set config = chart.header -%}
+  <template id="chart-{{ config.metadata.id }}">
+    <svg id="svg-canvas" class="background-style" width="100%" height="100%">
+      <defs>
+        <!-- Define the arrowhead markers -->
+        <marker id='arrow-simple' orient="auto" markerWidth='3' markerHeight='4' refX='0.1' refY='2' fill="context-fill"
+          stroke="context-stroke">
+          <path d='M0,0 V4 L2,2 Z' />
+        </marker>
+        <!-- Define the grid pattern -->
+        <pattern id="grid" width="{{ 2 * config.chart.scale }}" height="{{ 2 * config.chart.scale }}" patternUnits="userSpaceOnUse">
+          <path id="grid-path" d="M {{ 2 * config.chart.scale }} 0 L 0 0 0 {{ 2 * config.chart.scale }}" class="grid" style="fill: none;"/>
+        </pattern>
+      </defs>
+      <g id="chart-content" class="svg-pan-zoom_viewport">
+        <!-- Translate the grid so that it covers the appropriate region outside the first quadrant -->
+        <g id="origin-translate" transform="translate({{ config.chart.width.min * config.chart.scale }} {{ -config.chart.height.min * config.chart.scale }})">
+          <!-- Apply the grid pattern to a background rectangle -->
+          <rect
+            id="grid-background"
+            width="{{ (config.chart.width.max - config.chart.width.min) * config.chart.scale }}px"
+            height="{{ (config.chart.height.max - config.chart.height.min) * config.chart.scale }}px"
+            fill="url(#grid)"
+          />
+        </g>
+        <g id="edges">
+          {%- for edge in chart.edges %}
+          {{ edge.svg(config.chart.scale) }}
+          {%- endfor %}
+        </g>
+        <g id="nodes">
+          {%- for node in chart.nodes.values() %}
+          {{ node.svg(config.chart.scale) }}
+          {%- endfor %}
+        </g>
+      </g>
+      <g id="chart-axes">
+        <!-- X-axis -->
+        <line id="x-axis" class="axis" />
+        <!-- Y-axis -->
+        <line id="y-axis" class="axis" />
+        <!-- Blocks under and to the left to hide the content -->
+        <rect id="x-block" x="0" y="0" class="block" />
+        <rect id="y-block" x="0" y="0" class="block" />
+        <!-- Tick marks. We use Jinja2 templating syntax to place them automatically -->
+        <g id="ticks">
+          <g id="x-ticks">
+            {%- for i in range(config.chart.width.min, config.chart.width.max + 1, 2) %}
+            <text x="{{ i * config.chart.scale }}" y="{{ 0.5 * config.chart.scale }}">{{ i }}</text>
+            {%- endfor %}
+          </g>
+          <g id="y-ticks">
+            {%- for j in range(config.chart.height.min, config.chart.height.max + 1, 2) %}
+            <text x="{{ 0.5 * config.chart.scale }}" y="{{ j * config.chart.scale }}">{{ j }}</text>
+            {%- endfor %}
+          </g>
+        </g>
+      </g>
+    </svg>
+    <div id="floating-title" class="background-style">{{ config.metadata.displaytitle }}</div>
+    <div id="tooltip" class="background-style"></div>
+  </template>
+  {% endfor -%}
+  <!-- This div will be filled with the correct template dynamically -->
+  <div id="chart-container"></div>
+  <script>
+    function applyFunctionToPath(path, fn) {
+      let pathData = [];
+      for (let seg of path.getPathData()) {
+        if (seg.type === "M") {
+          let [x, y] = seg.values;
+          pathData.push({ type: "M", values: fn(x, y) });
+        } else if (seg.type === "L") {
+          let [x, y] = seg.values;
+          pathData.push({ type: "L", values: fn(x, y) });
+        } else if (seg.type === "C") {
+          let [x1, y1, x2, y2, x, y] = seg.values;
+          pathData.push({ type: "C", values: [...fn(x1, y1), ...fn(x2, y2), ...fn(x, y)] });
+        } else if (seg.type === "Q") {
+          let [x1, y1, x, y] = seg.values;
+          pathData.push({ type: "Q", values: [...fn(x1, y1), ...fn(x, y)] });
+        }
+      }
+      path.setPathData(pathData);
+    }
+
+    function applyFunctionToElement(element, attributeName, fn) {
+      const currentValue = parseFloat(element.getAttribute(attributeName));
+      element.setAttribute(attributeName, fn(currentValue));
+    }
+
+    const applyOffsetToElement = (element, attributeName, offset) => {
+      applyFunctionToElement(element, attributeName, (value) => value + offset)
+    };
+
+    const negateValueInElement = (element, attributeName) => {
+      applyFunctionToElement(element, attributeName, (value) => -value)
+    };
+
+    const applyYOffsetToPath = (path, offset) => {
+      applyFunctionToPath(path, (x, y) => [x, y + offset])
+    };
+
+    const negateYValuesInPath = (path) => {
+      applyFunctionToPath(path, (x, y) => [x, -y])
+    };
+
+    function initialZoom() {
+      window.panZoom.reset();
+      window.panZoom.panBy({ x: 2 * axisSpacing, y: -2 * axisSpacing });
+    }
+
+    const onChartLoad = () => {
+      var canvasHeight = 0;
+      var canvasWidth = 0;
+
+      const half_grid_width = parseFloat(window.getComputedStyle(document.getElementById("grid-path")).strokeWidth) / 2;
+
+      // Displace the gridlines slightly. If we don't do this, the gridlines will appear to be
+      // at half thickness because of clipping.
+      applyFunctionToPath(document.getElementById("grid-path"), (x, y) => [x + half_grid_width, y + half_grid_width]);
+
+      // Negate all y-coordinates:
+
+      // - all chart contents
+      document
+        .querySelectorAll("#chart-content *")
+        .forEach((element) => {
+          if (element.tagName === "line") {
+            negateValueInElement(element, "y1");
+            negateValueInElement(element, "y2");
+          } else if (element.tagName === "circle") {
+            negateValueInElement(element, "cy");
+          } else if (element.tagName === "path") {
+            negateYValuesInPath(element);
+          }
+        });
+
+      // - axes
+      document
+        .querySelectorAll("#chart-axes line")
+        .forEach((element) => {
+          if (element.id === "x-axis") {
+            element.setAttribute("x1", axisSpacing);
+            element.setAttribute("y1", -axisSpacing);
+            element.setAttribute("x2", canvasWidth);
+            element.setAttribute("y2", -axisSpacing);
+          } else if (element.id === "y-axis") {
+            element.setAttribute("x1", axisSpacing);
+            element.setAttribute("y1", -axisSpacing);
+            element.setAttribute("x2", axisSpacing);
+            element.setAttribute("y2", canvasHeight);
+          }
+        });
+
+      // - axis blocks
+      document
+        .querySelectorAll("#chart-axes rect")
+        .forEach((element) => {
+          if (element.id === "x-block") {
+            element.setAttribute("width", canvasWidth);
+            element.setAttribute("height", axisSpacing);
+            element.setAttribute("y", -axisSpacing);
+          } else if (element.id === "y-block") {
+            element.setAttribute("width", axisSpacing);
+            element.setAttribute("height", 0);
+          }
+        });
+
+      // - ticks
+      document
+        .querySelectorAll("#chart-axes text")
+        .forEach((element) => {
+          negateValueInElement(element, "y");
+        });
+
+      // Handler for resizing the canvas. Adjusts all y-values by comparing the
+      // new and old canvas sizes. Since we have already negated all y-values,
+      // we only need to add an offset everywhere.
+      function onResize() {
+        const newCanvasHeight = document.documentElement.clientHeight;
+        const newCanvasWidth = document.documentElement.clientWidth;
+        const xOffset = newCanvasWidth - canvasWidth;
+        const yOffset = newCanvasHeight - canvasHeight;
+
+        // Adjust y-values for all elements in content-group and chart definitions
+        document
+          .querySelectorAll("#chart-content *")
+          .forEach((element) => {
+            if (element.tagName === "line") {
+              applyOffsetToElement(element, "y1", yOffset);
+              applyOffsetToElement(element, "y2", yOffset);
+            } else if (element.tagName === "circle") {
+              applyOffsetToElement(element, "cy", yOffset);
+            } else if (element.tagName === "path") {
+              applyYOffsetToPath(element, yOffset);
+            }
+          });
+
+        // Adjust y-value for grid transformation. We also undo the displacement we applied earlier
+        document
+          .getElementById("grid-background")
+          .setAttribute(
+            "transform",
+            `scale(1 -1) translate(${-half_grid_width} ${-half_grid_width}) translate(0 ${-newCanvasHeight})`
+          );
+
+        // Put in end values for axes and apply y-flip
+        document
+          .querySelectorAll("#chart-axes line")
+          .forEach((element) => {
+            if (element.id === "x-axis") {
+              applyOffsetToElement(element, "y1", yOffset);
+              applyOffsetToElement(element, "x2", xOffset);
+              applyOffsetToElement(element, "y2", yOffset);
+            } else if (element.id === "y-axis") {
+              applyOffsetToElement(element, "y1", yOffset);
+            }
+          });
+
+        // Do the same for axis blocks
+        document
+          .querySelectorAll("#chart-axes rect")
+          .forEach((element) => {
+            if (element.id === "x-block") {
+              applyOffsetToElement(element, "width", xOffset);
+              applyOffsetToElement(element, "y", yOffset);
+            } else if (element.id === "y-block") {
+              applyOffsetToElement(element, "height", yOffset);
+            }
+          });
+
+        // And ticks
+        document
+          .querySelectorAll("#chart-axes text")
+          .forEach((element) => {
+            applyOffsetToElement(element, "y", yOffset);
+          });
+
+        // Reset pan, then pan slightly so the origin is visible
+        initialZoom();
+
+        canvasHeight = newCanvasHeight;
+        canvasWidth = newCanvasWidth;
+      }
+      window.addEventListener("resize", onResize);
+
+      // Handler to zoom axes when grid is zoomed
+      function handleCTM(ctm) {
+        const scale = ctm.a;
+        const xTranslate = ctm.e;
+        const yTranslate = ctm.f;
+
+        document.getElementById("x-ticks").setAttribute("transform", `translate(${xTranslate} 0)`);
+
+        document.getElementById("y-ticks").setAttribute("transform", `translate(0 ${yTranslate})`);
+
+        document.querySelectorAll("#x-ticks text").forEach((element) => {
+          const xCoord = parseInt(element.textContent) * spacing;
+          element.setAttribute("x", xCoord * scale);
+        });
+        document.querySelectorAll("#y-ticks text").forEach((element) => {
+          const yCoord = parseInt(element.textContent) * spacing;
+          element.setAttribute("y", (canvasHeight - yCoord) * scale);
+        });
+      }
+
+      // Initialize Hammer.js for touch controls.
+      // Taken from https://github.com/bumbu/svg-pan-zoom/blob/master/demo/mobile.html
+      const hammerEventsHandler = {
+        haltEventListeners: ['touchstart', 'touchend', 'touchmove', 'touchleave', 'touchcancel'],
+        init: function (options) {
+          var instance = options.instance
+            , initialScale = 1
+            , pannedX = 0
+            , pannedY = 0
+
+          // Init Hammer
+          // Listen only for pointer and touch events
+          this.hammer = Hammer(options.svgElement, {
+            inputClass: Hammer.SUPPORT_POINTER_EVENTS ? Hammer.PointerEventInput : Hammer.TouchInput
+          })
+
+          // Enable pinch
+          this.hammer.get('pinch').set({ enable: true })
+
+          // Handle double tap
+          this.hammer.on('doubletap', function (ev) {
+            instance.zoomAtPoint(ev.center.x, ev.center.y)
+          })
+
+          // Handle pan
+          this.hammer.on('panstart panmove', function (ev) {
+            // Fix https://github.com/hammerjs/hammer.js/issues/1134 using
+            // https://github.com/hammerjs/hammer.js/issues/871#issuecomment-179143062
+            if (Date.now() - lastPinchTime < 200) {
+              console.log("Ignored pan after pinch!");
+              return;
+            }
+
+            // On pan start reset panned variables
+            if (ev.type === 'panstart') {
+              pannedX = 0
+              pannedY = 0
+            }
+
+            // Pan only the difference
+            instance.panBy({ x: ev.deltaX - pannedX, y: ev.deltaY - pannedY })
+            pannedX = ev.deltaX
+            pannedY = ev.deltaY
+          })
+
+          // Handle pinch
+          var lastPinchTime;
+          this.hammer.on('pinchstart pinchmove', function (ev) {
+            lastPinchTime = Date.now();
+            // On pinch start remember initial zoom
+            if (ev.type === 'pinchstart') {
+              initialScale = instance.getZoom()
+              instance.zoomAtPoint(initialScale * ev.scale, { x: ev.center.x, y: ev.center.y })
+            }
+
+            instance.zoomAtPoint(initialScale * ev.scale, { x: ev.center.x, y: ev.center.y })
+          })
+
+          // Prevent moving the page on some devices when panning over SVG
+          options.svgElement.addEventListener('touchmove', function (e) { e.preventDefault(); });
+        },
+        destroy: function () {
+          this.hammer.destroy()
+        }
+      }
+
+      // Initialize svg-pan-zoom for panning and zooming
+      window.panZoom = svgPanZoom("#svg-canvas", {
+        zoomEnabled: true,
+        panEnabled: true,
+        fit: false,
+        center: false,
+        minZoom: 0.1,
+        maxZoom: 10,
+        zoomScaleSensitivity: 0.15,
+        onUpdatedCTM: handleCTM,
+        customEventsHandler: hammerEventsHandler,
+
+      });
+
+      onResize();
+
+      // Render latex in the floating title
+      const floatingTitle = document.getElementById("floating-title");
+      window.renderMathInElement(floatingTitle, katexOptions);
+
+      // Add hover events to nodes for tooltips
+      document.querySelectorAll("circle").forEach((node) => {
+        node.addEventListener("mouseover", function (event) {
+          const label = this.getAttribute("data-label");
+          if (label) {
+            tooltip.innerHTML = label;
+            tooltip.setAttribute("data-text", label)
+            window.renderMathInElement(tooltip, katexOptions);
+            tooltip.style.display = "block";
+          }
+        });
+        node.addEventListener("mousemove", function (event) {
+          tooltip.style.left = event.clientX + 10 + "px";
+          tooltip.style.top = event.clientY + 10 + "px";
+        });
+        node.addEventListener("mouseout", function (event) {
+          tooltip.style.display = "none";
+        });
+      });
+    };
+
+    // Set up keyboard shortcuts
+    window.addEventListener("keydown", function (event) {
+      const panSpeed = spacing;
+      if (currentChartId() === null) {
+        // Don't handle key events if we're on the index page
+        return;
+      }
+
+      switch (event.key) {
+        // -- Inter-chart navigation --
+        // Return to the index page
+        case "Escape":
+          event.preventDefault();
+          showIndexPage();
+          break;
+        // Previous chart
+        case "w":
+        case "W":
+          event.preventDefault();
+          showChartAtOffset(-1);
+          break;
+        // Next chart
+        case "s":
+        case "S":
+          event.preventDefault();
+          showChartAtOffset(1);
+          break;
+
+        // -- Intra-chart navigation --
+        // Pan
+        case "ArrowUp":
+          event.preventDefault();
+          window.panZoom.panBy({ x: 0, y: panSpeed });
+          break;
+        case "ArrowDown":
+          event.preventDefault();
+          window.panZoom.panBy({ x: 0, y: -panSpeed });
+          break;
+        case "ArrowLeft":
+          if (!event.altKey) {
+            // Only pan if we're not holding alt
+            // Alt + left arrow is the shortcut for going back in browser history
+            event.preventDefault();
+            window.panZoom.panBy({ x: panSpeed, y: 0 });
+          }
+          break;
+        case "ArrowRight":
+          if (!event.altKey) {
+            // Only pan if we're not holding alt
+            // Alt + right arrow is the shortcut for going forward in browser history
+            event.preventDefault();
+            window.panZoom.panBy({ x: -panSpeed, y: 0 });
+          }
+          break;
+        // Zoom
+        case "+":
+        case "=":
+          event.preventDefault();
+          window.panZoom.zoomIn();
+          break;
+        case "-":
+        case "_":
+          event.preventDefault();
+          window.panZoom.zoomOut();
+          break;
+        // Reset pan and zoom
+        case "Backspace":
+        case "0":
+        case ")":
+          event.preventDefault();
+          initialZoom();
+          break;
+
+        // -- Other --
+        // Copy tooltip text to clipboard
+        case "c":
+        case "C":
+          if (tooltip.style.display != "none" && tooltip.getAttribute("data-text")) {
+            const text = tooltip.getAttribute("data-text");
+            navigator.clipboard.writeText(text).then(() => {
+              console.log("Copied to clipboard:", text);
+            }).catch(err => {
+              console.error("Failed to copy text:", err);
+            });
+          }
+          break;
+      }
+    });
+  </script>
+</body>
+
+</html>
