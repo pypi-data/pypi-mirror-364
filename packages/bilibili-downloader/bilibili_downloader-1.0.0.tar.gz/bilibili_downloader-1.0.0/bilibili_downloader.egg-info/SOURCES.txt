@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+requirements.txt
+setup.py
+bilibili_downloader/__init__.py
+bilibili_downloader/downloader.py
+bilibili_downloader/exceptions.py
+bilibili_downloader/models.py
+bilibili_downloader/utils.py
+bilibili_downloader.egg-info/PKG-INFO
+bilibili_downloader.egg-info/SOURCES.txt
+bilibili_downloader.egg-info/dependency_links.txt
+bilibili_downloader.egg-info/not-zip-safe
+bilibili_downloader.egg-info/requires.txt
+bilibili_downloader.egg-info/top_level.txt
