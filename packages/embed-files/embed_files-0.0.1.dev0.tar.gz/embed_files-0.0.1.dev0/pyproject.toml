@@ -1,0 +1,17 @@
+[project]
+name = "embed-files"
+version = "0.0.1.dev0"
+description = "LLM embeddings for text files."
+authors = [
+    {name = "Josiah Kaviani",email = "proofit404@gmail.com"}
+]
+license = {text = "BSD-2-Clause"}
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
