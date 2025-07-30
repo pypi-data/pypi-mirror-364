@@ -1,0 +1,21 @@
+Metadata-Version: 2.4
+Name: generatorappmaya
+Version: 0.3
+Summary: Un générateur d’application Django personnalisé
+Home-page: https://github.com/Estherkouao/generatorappmaya.git
+Author: amah
+Author-email: estherkouao9@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: Framework :: Django
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: Django>=5.2.4
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
