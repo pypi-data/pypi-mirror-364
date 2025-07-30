@@ -1,0 +1,15 @@
+Metadata-Version: 2.4
+Name: soga-video
+Version: 0.1.0
+Summary: A CLI tool to create videos from text tasks
+Author-email: Your Name <your.email@example.com>
+License-Expression: MIT
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: openai>=1.0.0
+Requires-Dist: pillow>=10.0.0
+Requires-Dist: click>=8.0.0
+Requires-Dist: python-dotenv>=1.0.0
+Requires-Dist: requests>=2.31.0
+Requires-Dist: edge-tts>=6.1.9
+Requires-Dist: moviepy>=1.0.3

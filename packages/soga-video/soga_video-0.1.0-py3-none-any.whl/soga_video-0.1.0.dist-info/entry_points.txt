@@ -1,0 +1,2 @@
+[console_scripts]
+soga_video = soga_video.cli:main
