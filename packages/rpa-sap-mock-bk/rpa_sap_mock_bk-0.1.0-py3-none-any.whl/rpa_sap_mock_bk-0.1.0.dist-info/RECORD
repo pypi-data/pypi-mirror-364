@@ -1,0 +1,9 @@
+rpa_sap/__init__.py,sha256=qsC9OQabKo1PtOZTqMZLnAUBagi7c_XWVvq2NOwd8lM,203
+rpa_sap/auth.py,sha256=Lw_BqIcvY5NKimdVjhrTRkvpfp6MYt-HbwoNIg3Ca3w,374
+rpa_sap/sap_client.py,sha256=S7fmmVKXF6dqEvOTslkVzRG_Qc6oHnSeaWLBj5VHrh4,1502
+rpa_sap/sap_keywords.py,sha256=iT8MHbekhIwk15A0noof72gbwdYnk__giIldIB6NPKs,1265
+rpa_sap_mock_bk-0.1.0.dist-info/licenses/LICENSE,sha256=SjU_Qw6GenMAGRADyW8SshkvCU5RkNJteeForE8U8-s,1067
+rpa_sap_mock_bk-0.1.0.dist-info/METADATA,sha256=wRHM_BghUVKxSrriZ-6mjTPlfpv2IBnuMVbz6TfzoV0,1195
+rpa_sap_mock_bk-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+rpa_sap_mock_bk-0.1.0.dist-info/top_level.txt,sha256=UE9rLUdPNwUmlCToUiNX5CcXdZ6e6-0OK8AWUaddbS4,8
+rpa_sap_mock_bk-0.1.0.dist-info/RECORD,,
