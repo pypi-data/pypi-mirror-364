@@ -1,0 +1,229 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "polymatch"
+dynamic = ["version"]
+description = "A polymorphic pattern matching library for Python"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.9"
+authors = [{ name = "linuxdaemon", email = "linuxdaemon.irc@gmail.com" }]
+keywords = ["library", "pattern-matching", "utility", "regex"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = ["typing-extensions", "regex"]
+
+[project.urls]
+Homepage = "https://github.com/TotallyNotRobots/polymatch"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.targets.sdist]
+exclude = ["/.github"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["polymatch"]
+
+[tool.hatch.build.hooks.vcs]
+version-file = "polymatch/_version.py"
+
+[tool.hatch.envs.default]
+dependencies = [
+    "coverage[toml]>=6.5",
+    "pytest>=6.0",
+    "pre-commit",
+    "mypy>=1.8",
+    "types-regex",
+    "ruamel.yaml",
+]
+
+[tool.hatch.envs.default.scripts]
+setup-dev = ["hatch run pre-commit install"]
+fix-pre-commit = ["hatch run python3 -m scripts.fix_pre_commit"]
+
+[tool.hatch.envs.hatch-test]
+default-args = ["tests", "polymatch"]
+extra-args = ["-vv"]
+[tool.hatch.envs.hatch-test.scripts]
+run = "pytest{env:HATCH_TEST_ARGS:} {args}"
+run-cov = "coverage run -m pytest{env:HATCH_TEST_ARGS:} {args}"
+cov-combine = "coverage combine"
+cov-report = ["coverage report --show-missing --skip-covered", "coverage xml"]
+[[tool.hatch.envs.hatch-test.matrix]]
+python = ["3.13", "3.12", "3.11", "3.10", "3.9"]
+
+[tool.hatch.envs.types]
+extra-dependencies = ["mypy>=1.0.0"]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:polymatch tests}"
+
+[tool.isort]
+profile = "black"
+line_length = 80
+include_trailing_comma = true
+use_parentheses = true
+known_first_party = ["polymatch"]
+float_to_top = true
+
+[tool.black]
+line-length = 80
+target-version = ["py39"]
+include = '\.pyi?$'
+
+[tool.ruff]
+line-length = 80
+target-version = 'py39'
+
+[tool.ruff.format]
+docstring-code-format = true
+line-ending = "lf"
+skip-magic-trailing-comma = true
+
+[tool.ruff.lint]
+extend-safe-fixes = [
+    "EM101",
+    "EM102",
+    "EM103",
+    "FLY002",
+    "TCH001",
+    "TCH002",
+    "TRY400",
+    "SIM102",
+    "SIM117",
+    "SIM108",
+    "ANN201",
+    "D415",
+    "D200",
+    "RUF005",
+    "S311",
+    "PT006",
+]
+ignore = [
+    "TRY003", # TODO(aspen): Switch to custom exceptions
+    "ANN101", # Due to be deprecated in ruff
+    "ANN102", # Due to be deprecated in ruff
+    "COM812", # Conflicts with formatter
+    "ISC001", # Conflicts with formatter
+    "EXE002", # pre-commit does it better, works with SMB shares
+    "FA100",
+    "D100",    # TODO(aspen): Document modules
+    "D101",    # TODO(aspen): Document classes
+    "D102",    # TODO(aspen): Document public methods
+    "D103",    # TODO(aspen): Document public functions
+    "D104",    # TODO(aspen): Document package
+    "D105",    # TODO(aspen): Document __*__ methods
+    "D107",    # TODO(aspen): Document __init__ methods
+    "S607",    # Partial executable paths are an accepted risk to allow cross-platform use -aspen
+    "PLR0913", # TODO(aspen): Set specific ignores for cli handlers
+    "FIX002",  # Ignore todo comments
+]
+select = ["ALL"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*.py" = [
+    "PLR2004", # Allow "magic values" in tests -aspen
+    "S101",    # Allow asserts in tests
+    "S301",    # Allow pickle in tests
+    "SIM201",  # We need to test weird comparison operators
+    "SIM202",  # We need to test weird comparison operstors
+    "SIM300",  # We need to test both forward and reverse comparisons
+    "FBT001",  # Boolean parameters are fine for test cases
+]
+
+[tool.ruff.lint.pycodestyle]
+max-line-length = 100
+
+[tool.ruff.lint.isort]
+split-on-trailing-comma = false
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.flynt]
+aggressive = true
+transform-joins = true
+transform-concats = true
+line-length = 120
+
+[tool.mypy]
+namespace_packages = true
+python_version = "3.9"
+warn_unused_configs = true
+strict = true
+strict_optional = true
+check_untyped_defs = true
+show_error_codes = true
+warn_unused_ignores = true
+no_implicit_reexport = true
+warn_redundant_casts = true
+strict_equality = true
+disallow_any_generics = true
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+disallow_untyped_decorators = true
+extra_checks = true
+warn_unreachable = true
+warn_return_any = true
+warn_no_return = true
+enable_error_code = [
+    "redundant-self",
+    "redundant-expr",
+    "possibly-undefined",
+    "truthy-bool",
+    "truthy-iterable",
+    "ignore-without-code",
+]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--doctest-modules"
+testpaths = ["polymatch", "tests"]
+filterwarnings = ["error"]
+
+[tool.coverage.paths]
+polymatch = [
+  "polymatch",
+  "*/polymatch/polymatch",
+]
+tests = ["tests", "*/polymatch/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]
+
+[tool.coverage.run]
+branch = true
+relative_files = true
+source_pkgs = ["polymatch", "tests"]
+omit = ["polymatch/_version.py"]
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "v$version"
+version_scheme = "semver"
+version_provider = "scm"
+update_changelog_on_bump = true
+major_version_zero = true
+
+[tool.nitpick]
+style = ["gh://TotallyNotRobots/nitpick/lib-style-3.9.toml"]
+
+[tool.check-spdx-header]
+headers = ["2018-present linuxdaemon <linuxdaemon.irc@gmail.com>"]
