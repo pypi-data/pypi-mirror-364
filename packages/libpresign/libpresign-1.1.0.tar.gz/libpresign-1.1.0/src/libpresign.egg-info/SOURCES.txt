@@ -1,0 +1,13 @@
+MANIFEST.in
+README.md
+definitions.py
+pyproject.toml
+setup.py
+src/module.cpp
+src/module.h
+src/presign.cpp
+src/presign.h
+src/libpresign.egg-info/PKG-INFO
+src/libpresign.egg-info/SOURCES.txt
+src/libpresign.egg-info/dependency_links.txt
+src/libpresign.egg-info/top_level.txt
