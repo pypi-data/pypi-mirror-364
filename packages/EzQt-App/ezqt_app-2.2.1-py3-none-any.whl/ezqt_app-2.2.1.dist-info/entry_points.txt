@@ -1,0 +1,3 @@
+[console_scripts]
+ezqt_init = ezqt_app.utils.cli:main
+ezqt_qm_convert = ezqt_app.utils.create_qm_files:main
