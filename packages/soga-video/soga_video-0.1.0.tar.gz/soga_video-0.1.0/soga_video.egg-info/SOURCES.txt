@@ -1,0 +1,12 @@
+PIP_USAGE.md
+README.md
+pyproject.toml
+soga_video/cli.py
+soga_video/config.py
+soga_video/generator.py
+soga_video.egg-info/PKG-INFO
+soga_video.egg-info/SOURCES.txt
+soga_video.egg-info/dependency_links.txt
+soga_video.egg-info/entry_points.txt
+soga_video.egg-info/requires.txt
+soga_video.egg-info/top_level.txt

@@ -1,0 +1,24 @@
+[project]
+name = "soga-video"
+version = "0.1.0"
+description = "A CLI tool to create videos from text tasks"
+authors = [{ name = "Your Name", email = "your.email@example.com" }]
+dependencies = [
+    "openai>=1.0.0",
+    "pillow>=10.0.0",
+    "click>=8.0.0",
+    "python-dotenv>=1.0.0",
+    "requests>=2.31.0",
+    "edge-tts>=6.1.9",
+    "moviepy>=1.0.3",
+]
+requires-python = ">=3.9"
+readme = "PIP_USAGE.md"
+license = "MIT"
+
+[project.scripts]
+soga_video = "soga_video.cli:main"
+
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
