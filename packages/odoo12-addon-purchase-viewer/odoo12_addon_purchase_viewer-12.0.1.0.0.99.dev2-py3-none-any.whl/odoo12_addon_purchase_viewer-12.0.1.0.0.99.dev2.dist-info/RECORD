@@ -1,0 +1,12 @@
+odoo/addons/purchase_viewer/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+odoo/addons/purchase_viewer/__manifest__.py,sha256=YoxBN8-7ZiZUBsQFUCcYrSDpUnfHL4e-DDEPikYvGzw,1062
+odoo/addons/purchase_viewer/security/ir.model.access.csv,sha256=YJz1Ct9Kg-Hd31UZVAqjTLkIPszDEyezj04Uf2TcsiU,873
+odoo/addons/purchase_viewer/security/purchase_security.xml,sha256=jUndGh8pacD_relKEhySp7AHteQnrl6LXuJyYDe6RME,577
+odoo/addons/purchase_viewer/static/description/icon.png,sha256=6xBPJauaFOF0KDHfHgQopSc28kKvxMaeoQFQWZtfZDo,9455
+odoo/addons/purchase_viewer/views/partner.xml,sha256=i-ZIxPSn_nT88s3Z1nd9Xf5B7oVmJ-dVJDQN8IFwH6I,785
+odoo/addons/purchase_viewer/views/product.xml,sha256=HXjrCU-slIMMLMEG3Z0ngUJ_AxeAPjRub2krcGshqsU,620
+odoo/addons/purchase_viewer/views/purchase.xml,sha256=-oFcBsqoDzJNsn5ZRco--3Y5davJPmnAzsqS01cfpi4,598
+odoo12_addon_purchase_viewer-12.0.1.0.0.99.dev2.dist-info/METADATA,sha256=o5iT1mQoGYyXNi1dGKBmZ3qhr3Niacm-AKsqxNS4-N8,970
+odoo12_addon_purchase_viewer-12.0.1.0.0.99.dev2.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+odoo12_addon_purchase_viewer-12.0.1.0.0.99.dev2.dist-info/top_level.txt,sha256=qBj40grFkGOfDZ2WDSw3y1RnDlgG0u8rP8pvGNdbz4w,5
+odoo12_addon_purchase_viewer-12.0.1.0.0.99.dev2.dist-info/RECORD,,
