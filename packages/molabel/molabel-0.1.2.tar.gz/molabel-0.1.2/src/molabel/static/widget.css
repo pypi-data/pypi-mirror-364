@@ -1,0 +1,292 @@
+.molabel-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    position: relative;
+}
+
+.molabel-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.molabel-status {
+    text-align: center;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+
+.molabel-progress-container {
+    margin-bottom: 1rem;
+}
+
+.molabel-progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.molabel-progress-fill {
+    height: 100%;
+    background-color: #6c757d;
+    transition: width 0.3s ease;
+    border-radius: 4px;
+}
+
+.molabel-example {
+    border-radius: 4px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    min-height: 150px;
+    overflow-x: auto;
+}
+
+.molabel-controls {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.molabel-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    flex: 1;
+    min-width: 80px;
+}
+
+.molabel-btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.molabel-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.molabel-btn-prev {
+    background: #6c757d;
+    color: white;
+}
+
+.molabel-btn-prev:hover:not(:disabled) {
+    background: #5a6268;
+}
+
+.molabel-btn-yes {
+    background: #28a745;
+    color: white;
+}
+
+.molabel-btn-yes:hover:not(:disabled) {
+    background: #218838;
+}
+
+.molabel-btn-no {
+    background: #dc3545;
+    color: white;
+}
+
+.molabel-btn-no:hover:not(:disabled) {
+    background: #c82333;
+}
+
+.molabel-btn-skip {
+    background: #ffc107;
+    color: #212529;
+}
+
+.molabel-btn-skip:hover:not(:disabled) {
+    background: #e0a800;
+}
+
+.molabel-notes-container {
+    margin-bottom: 1rem;
+}
+
+.molabel-notes-label-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.25rem;
+}
+
+.molabel-notes-container label {
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.molabel-mic-btn {
+    background: none;
+    border: 1px solid #ced4da;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    padding: 0.2rem 0.4rem;
+    transition: all 0.2s;
+}
+
+.molabel-mic-btn:hover:not(:disabled) {
+    background: #f8f9fa;
+    border-color: #80bdff;
+}
+
+.molabel-mic-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.molabel-button-container {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.molabel-gamepad-indicator {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.molabel-mic-btn.recording {
+    background: #dc3545;
+    border-color: #dc3545;
+    color: white;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+.molabel-notes {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-family: inherit;
+    resize: vertical;
+    font-size: 0.9rem;
+}
+
+.molabel-notes:focus {
+    outline: none;
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+.molabel-notes.recording {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.2rem rgba(220,53,69,.25);
+}
+
+.molabel-shortcuts {
+    margin-top: 1rem;
+    color: #6c757d;
+    font-size: 0.85rem;
+}
+
+.shortcuts-details {
+    margin-top: 0.5rem;
+}
+
+.shortcuts-details summary {
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.shortcuts-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+}
+
+.shortcuts-table th {
+    background: #f8f9fa;
+    padding: 0.5rem;
+    text-align: left;
+    font-weight: 600;
+    color: #495057;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.shortcuts-table td {
+    padding: 0.5rem;
+    border-bottom: 1px solid #f1f3f4;
+    vertical-align: middle;
+}
+
+.shortcuts-table tr:last-child td {
+    border-bottom: none;
+}
+
+.action-name {
+    font-weight: 500;
+    color: #495057;
+    text-transform: capitalize;
+}
+
+.shortcut-key {
+    font-family: 'SF Mono', 'Monaco', 'Consolas', 'Roboto Mono', monospace;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 3px;
+    padding: 0.1rem 0.3rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #495057;
+    margin-right: 0.5rem;
+}
+
+
+/* Visual feedback for actions */
+@keyframes button-flash {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 var(--feedback-color);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px 3px var(--feedback-color);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 var(--feedback-color);
+    }
+}
+
+.molabel-btn.success-feedback {
+    --feedback-color: rgba(40, 167, 69, 0.6);
+    animation: button-flash 0.3s ease-out;
+}
+
+.molabel-btn.error-feedback {
+    --feedback-color: rgba(220, 53, 69, 0.6);
+    animation: button-flash 0.3s ease-out;
+}
+
+.molabel-btn.skip-feedback {
+    --feedback-color: rgba(255, 193, 7, 0.6);
+    animation: button-flash 0.3s ease-out;
+}
+
+.molabel-btn.prev-feedback {
+    --feedback-color: rgba(108, 117, 125, 0.6);
+    animation: button-flash 0.3s ease-out;
+}
+
