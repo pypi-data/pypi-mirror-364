@@ -1,0 +1,15 @@
+LICENSE
+README.md
+pyproject.toml
+buildingregulariser/__init__.py
+buildingregulariser/__version__.py
+buildingregulariser/coordinator.py
+buildingregulariser/geometry_utils.py
+buildingregulariser/neighbor_alignment.py
+buildingregulariser/regularization.py
+buildingregulariser.egg-info/PKG-INFO
+buildingregulariser.egg-info/SOURCES.txt
+buildingregulariser.egg-info/dependency_links.txt
+buildingregulariser.egg-info/requires.txt
+buildingregulariser.egg-info/top_level.txt
+tests/test_end_to_end.py
