@@ -1,0 +1,235 @@
+# Royal SDK
+
+A Python SDK for Royal TSX/TS services, allowing you to programmatically create and manage connections, credentials, and folders.
+
+## Installation
+
+```bash
+pip install royal-sdk
+```
+
+## Quick Start
+
+### Basic Usage
+
+```python
+from royal_sdk import (
+    DynamicFolder, 
+    TerminalConnection, 
+    TerminalConnectionType,
+    FileTransferConnection,
+    FileTransferConnectionType,
+    UsernameAndPassword,
+    KeySequenceTask,
+    Folder
+)
+
+# Create a dynamic folder (for Royal TSX dynamic folder scripts)
+folder = DynamicFolder()
+
+# Create credentials
+cred = UsernameAndPassword(
+    cred_id=1,
+    name="My Server Credentials", 
+    username="admin",
+    password="secret123"
+)
+
+# Create SSH terminal connection
+ssh_conn = TerminalConnection(
+    conn_type=TerminalConnectionType.SSH,
+    name="Production Server",
+    host="192.168.1.100",
+    port=22
+)
+ssh_conn.set_credential(cred)
+
+# Create SFTP file transfer connection
+sftp_conn = FileTransferConnection(
+    conn_type=FileTransferConnectionType.SFTP,
+    name="File Transfer",
+    host="192.168.1.100",
+    port=22
+)
+sftp_conn.set_credential(cred)
+sftp_conn.set_local_path("/Users/username/Downloads")
+sftp_conn.set_remote_path("/home/admin")
+
+# Create key sequence tasks
+task1 = KeySequenceTask(
+    name="System Check",
+    key_sequence="whoami\nuptime\ndf -h"
+)
+
+task2 = KeySequenceTask(
+    name="Switch to Root",
+    key_sequence="sudo su -",
+    no_confirmation_required=True
+)
+
+# Add everything to folder
+folder.add(cred.objectify())
+folder.add(ssh_conn.objectify())
+folder.add(sftp_conn.objectify())
+folder.add(task1.objectify())
+folder.add(task2.objectify())
+
+# Output the dynamic folder JSON
+folder.execute()
+```
+
+### Creating Static Folders
+
+```python
+from royal_sdk import Folder, TerminalConnection, TerminalConnectionType
+
+# Create connections
+conn1 = TerminalConnection(
+    conn_type=TerminalConnectionType.SSH,
+    name="Server 1",
+    host="server1.example.com"
+)
+
+conn2 = TerminalConnection(
+    conn_type=TerminalConnectionType.SSH,
+    name="Server 2", 
+    host="server2.example.com"
+)
+
+# Create a static folder
+server_folder = Folder("Production Servers", [
+    conn1.objectify(),
+    conn2.objectify()
+])
+
+print(server_folder.objectify())
+```
+
+## API Reference
+
+### Credentials
+
+#### UsernameAndPassword
+Create username/password credentials.
+
+```python
+cred = UsernameAndPassword(
+    cred_id=1,
+    name="My Credentials",
+    username="user",
+    password="pass"
+)
+```
+
+#### PrivateKey
+Create private key credentials.
+
+```python
+from royal_sdk import PrivateKey
+
+cred = PrivateKey(
+    cred_id=2,
+    name="SSH Key",
+    private_key_content="-----BEGIN PRIVATE KEY-----...",
+    passphrase="key_passphrase"
+)
+```
+
+### Connections
+
+#### TerminalConnection
+Create SSH terminal connections.
+
+```python
+from royal_sdk import TerminalConnection, TerminalConnectionType
+
+conn = TerminalConnection(
+    conn_type=TerminalConnectionType.SSH,
+    name="My Server",
+    host="example.com",
+    port=22  # optional, defaults to 22
+)
+```
+
+#### FileTransferConnection  
+Create SFTP file transfer connections.
+
+```python
+from royal_sdk import FileTransferConnection, FileTransferConnectionType
+
+conn = FileTransferConnection(
+    conn_type=FileTransferConnectionType.SFTP,
+    name="File Server", 
+    host="files.example.com",
+    port=22  # optional, defaults to 22
+)
+
+# Set local and remote paths
+conn.set_local_path("/Users/username/Downloads")
+conn.set_remote_path("/home/user/files")
+```
+
+### Tasks
+
+#### KeySequenceTask
+Create key sequence tasks for automation.
+
+```python
+from royal_sdk import KeySequenceTask
+
+# Basic key sequence task
+task = KeySequenceTask(
+    name="Switch to root user",
+    key_sequence="sudo su -"
+)
+
+# Advanced key sequence task with options
+task = KeySequenceTask(
+    name="Check system status",
+    key_sequence="whoami{ENTER}uptime{ENTER}df -h",
+    no_confirmation_required=True,  # Don't ask for confirmation
+    execution_mode=2  # 0=No change, 1=Keyboard simulation, 2=Direct mode
+)
+
+# Get the task object for use in folders
+task_obj = task.objectify()
+```
+
+**Parameters:**
+- `name`: Task display name
+- `key_sequence`: Commands/keys to execute (use `\n` for new lines)
+- `no_confirmation_required`: Skip confirmation dialog (default: False)
+- `execution_mode`: How to execute the keys (default: 2)
+  - 0 = Do not change
+  - 1 = Keyboard input simulation  
+  - 2 = Direct mode (where supported)
+
+
+### Folders
+
+#### DynamicFolder
+For Royal TSX dynamic folder scripts.
+
+```python
+from royal_sdk import DynamicFolder
+
+folder = DynamicFolder()
+folder.add(connection.objectify())
+folder.execute()  # Outputs JSON to stdout
+```
+
+#### Folder
+For static folder structures.
+
+```python
+from royal_sdk import Folder
+
+folder = Folder("My Folder", [
+    connection1.objectify(),
+    connection2.objectify()
+])
+```
+
+## License
+
+MIT
