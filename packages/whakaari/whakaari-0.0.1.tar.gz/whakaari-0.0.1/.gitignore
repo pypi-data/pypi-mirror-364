@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+models/
+features/
+predictions/
+plots/
+controller/
+_tmp_BTP/
+.vscode/
+.idea/
+*.png
+/download
+/input
+/output_bak
+*.csv
+/output/_extract_features
+/dist
