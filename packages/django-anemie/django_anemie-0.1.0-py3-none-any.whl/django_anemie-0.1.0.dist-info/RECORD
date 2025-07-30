@@ -1,0 +1,11 @@
+django_anemie/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_anemie/apps.py,sha256=PBaejeeec2jFnTWoIxlJae4zXgWdBajuIR7uB47wYeI,144
+django_anemie/urls.py,sha256=ZFdc0G9ZJdBZaTSGtp6ghevX1wbl78brSG43Gw5B-0o,162
+django_anemie/views.py,sha256=UxX6xAXdikLL4aQdWeCmRzDuRUYUZUgAFFkLR5og9NE,137
+django_anemie/static/django_anemie/css/style.css,sha256=KxgxeTDGevUTJTe2uouIrDsXZU0mQUKFoM9mP2ZyUSc,447
+django_anemie/templates/django_anemie/sensibilisation.html,sha256=qZDKqjRiq6DAhCof8urtHyNiFsU16vcPtj7KbuyA7OU,642
+django_anemie-0.1.0.dist-info/licenses/LICENSE,sha256=q7KJbcPCqUAvkBuI1QNc8Kg9XPfBfnNkLN9WKwudO8U,11
+django_anemie-0.1.0.dist-info/METADATA,sha256=cUA8cvz6vTZBANpteaV75bBEGhQv9dI7tmyyXAT08hg,753
+django_anemie-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+django_anemie-0.1.0.dist-info/top_level.txt,sha256=8iuQ6511I91zbxjU4zol6ptejyNlIA26-BbZECkFdug,14
+django_anemie-0.1.0.dist-info/RECORD,,
