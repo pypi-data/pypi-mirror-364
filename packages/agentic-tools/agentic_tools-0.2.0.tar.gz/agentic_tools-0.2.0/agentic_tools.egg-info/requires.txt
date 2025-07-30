@@ -1,0 +1,7 @@
+langchain-ollama
+langchain
+
+[dev]
+pytest
+black
+build
