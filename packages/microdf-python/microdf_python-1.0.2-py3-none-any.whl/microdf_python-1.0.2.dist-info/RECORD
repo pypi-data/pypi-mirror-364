@@ -1,0 +1,10 @@
+microdf/__init__.py,sha256=ldRvhE8t4cD7qlxQ5yLndMnWEUYpDw4m-jCDV_psXkY,319
+microdf/microdataframe.py,sha256=TU4MPHlGSICibPgGkATJYDpVBQ2NNXnyBAqw3kjteeI,25771
+microdf/microseries.py,sha256=MFBStp1IaNVABaf3_Ap_VwXSC3bA8V7rXD4TEG_091g,22452
+microdf/tests/conftest.py,sha256=u-EMyX1-u_nM-YO0RJYCzYHQDXxUI2WQE6GkyJlErqg,150
+microdf/tests/test_microseries_dataframe.py,sha256=2pm_fLZPbv-ccDKnEyqIiw-_pTZwt9J2lnM5YsZHzx4,9401
+microdf_python-1.0.2.dist-info/licenses/LICENSE,sha256=uPs-ASYnzlldpf2z8jeRgQFeEH3FLhSuX0rw0OKWoDU,1067
+microdf_python-1.0.2.dist-info/METADATA,sha256=sOLX9w2xCHwyNeLcW7BpXu6iiTTeaTmxNdMsdJpmD7s,2486
+microdf_python-1.0.2.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+microdf_python-1.0.2.dist-info/top_level.txt,sha256=T2WFPTygQQMdS3GF8YpZ12DKfMGrspbZ3r7z-e3KfiM,8
+microdf_python-1.0.2.dist-info/RECORD,,
