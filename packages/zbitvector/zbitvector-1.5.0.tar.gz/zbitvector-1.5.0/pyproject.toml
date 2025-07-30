@@ -1,0 +1,95 @@
+[project]
+name = "zbitvector"
+description = "A well-typed library for symbolic bitvectors"
+readme = "README.md"
+license = { text = "MIT License" }
+
+dynamic = ["version"]
+
+requires-python = ">= 3.8"
+dependencies = ["typing-extensions >= 4.0"]
+
+[project.urls]
+"Documentation" = "https://zbitvector.btidor.dev"
+"Source Code" = "https://github.com/btidor/zbitvector"
+
+[build-system]
+requires = [
+    "cython",
+    # Workaround for error "TypeError: 'NoneType' object is not subscriptable
+    # (key slice(None, None, None))". See:
+    # https://github.com/pypa/distutils/issues/283
+    "setuptools<72.2.0",
+    "setuptools_scm[toml]",
+]
+build-backend = "setuptools.build_meta"
+
+[tool.cibuildwheel]
+before-all = ["make ci"]
+test-requires = ["pytest", "setuptools", "z3-solver"]
+test-command = """ \
+    pytest --import-mode=append {project}/tests && \
+    pytest --pyargs --doctest-modules zbitvector && \
+    ZBITVECTOR_SOLVER=z3 pytest --import-mode=append {project}/tests && \
+    ZBITVECTOR_SOLVER=z3 pytest --pyargs --doctest-modules zbitvector
+"""
+
+manylinux-x86_64-image = "manylinux2014"
+manylinux-aarch64-image = "manylinux2014"
+manylinux-pypy_x86_64-image = "manylinux2014"
+manylinux-pypy_aarch64-image = "manylinux2014"
+
+musllinux-x86_64-image = "musllinux_1_2"
+musllinux-aarch64-image = "musllinux_1_2"
+
+[tool.cibuildwheel.macos]
+# Problem: on macOS runners, libgmp is pre-installed through Homebrew (in
+# /opt/homebrew). This version of the library isn't backwards-compatible with
+# older macOS releases, so we always want to use our version (in /usr/local).
+
+# This makes Bitwuzla build against our version of libgmp:
+environment = { CMAKE_PREFIX_PATH = "/usr/local" }
+
+# This makes `delocate` link against our version of the libraries (and prints
+# debugging information). Note that for security reasons, DYLD_LIBRARY_PATH must
+# be explicitly set per-call:
+# https://github.com/pypa/cibuildwheel/issues/816#issuecomment-916197079
+repair-wheel-command = """ \
+    DYLD_LIBRARY_PATH=/usr/local/lib delocate-listdeps {wheel} && \
+    DYLD_LIBRARY_PATH=/usr/local/lib delocate-wheel --require-archs {delocate_archs} -w {dest_dir} -v {wheel}
+"""
+
+# Z3 doesn't distribute pre-built binaries for these platforms
+[[tool.cibuildwheel.overrides]]
+select = "*{musllinux,aarch64}*"
+test-requires = ["pytest"]
+test-command = """ \
+    pytest --import-mode=append {project}/tests && \
+    pytest --pyargs --doctest-modules zbitvector
+"""
+
+[tool.pyright]
+strict = ["**/*"]
+reportUnnecessaryTypeIgnoreComment = true
+
+[tool.pytest.ini_options]
+addopts = "--doctest-modules"
+
+[tool.ruff.lint]
+extend-select = ["D"]
+exclude = ["zbitvector/pybitwuzla.pyi"]
+ignore = ["D205", "D400"]
+pydocstyle.convention = "pep257"
+
+[tool.ruff.lint.per-file-ignores]
+"**/conftest.py" = ["D"]
+".github/**" = ["D"]
+"benchmarks/**" = ["D"]
+"tests/**" = ["D"]
+"setup.py" = ["D"]
+
+[tool.setuptools]
+packages = ["zbitvector", "zbitvector.pybitwuzla"]
+license-files = ["LICENSE", "THIRDPARTY"]
+
+[tool.setuptools_scm]

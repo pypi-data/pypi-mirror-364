@@ -1,0 +1,34 @@
+name: documentation
+on: [push, pull_request, workflow_dispatch]
+concurrency:
+  group: documentation
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.8'
+          cache: 'pip'
+      - run: pip install -r requirements.txt
+      - run: make -C docs html
+        env:
+          O: -W # fail on warning
+          ZBITVECTOR_SOLVER: dummy
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/_build/html
+
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deploy-pages
