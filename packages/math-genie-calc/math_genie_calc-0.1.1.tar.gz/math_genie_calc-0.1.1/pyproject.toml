@@ -1,0 +1,16 @@
+[project]
+name = "math_genie_calc"
+version = "0.1.1"
+description = "math genie calculator"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "build>=1.2.2.post1",
+    "mcp>=1.12.1",
+    "twine>=6.1.0",
+]
+[project.scripts]
+math_genie_calc = "math_genie_calc:main"
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
