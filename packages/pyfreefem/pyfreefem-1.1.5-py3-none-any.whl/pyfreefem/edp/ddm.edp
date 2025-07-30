@@ -1,0 +1,73 @@
+load "PETSc"    
+include "macro_ddm.idp"
+
+// Projecting quantity defined on a mesh to a submesh and vice versa
+// First argument is output
+macro globToLoc(phiLocal,phiGlobal,rest) for [i, v : rest ] phiLocal[i] = phiGlobal[v]; //EOM
+macro locToGlob(phiGlobal,phiLocal,rest) for [i, v : rest ] phiGlobal[v] = phiLocal[i];//EOM
+    
+NewMacro initDmesh(Th)    
+int[int] n2o#Th;    
+macro Th#N2O()n2o#Th //
+DmeshCreate(Th); 
+EndMacro 
+    
+NewMacro createDFespace(Fh,Th,ThGlobal,Pk)   
+fespace Fh(Th,Pk);  
+fespace Fh#Global(ThGlobal,Pk);   
+real[int] D#Fh(Fh.ndof); 
+PartitionCreate(Th, D#Fh, Pk); 
+int[int] rest#Fh = restrict(Fh, Fh#Global, Th#N2O); 
+EndMacro
+
+NewMacro localToGlobalImpl(uGlobal, uLocal, Fh, mpiComm)
+uLocal[] .*= D#Fh; 
+{
+Fh#Global uG; 
+locToGlob(uG[], uLocal[], rest#Fh); 
+mpiReduce(uG[], uGlobal[], mpiComm, mpiSUM);
+}
+EndMacro
+    
+NewMacro localToGlobalVectImpl(uGlobal, uLocal, Fh, mpiComm, def, ini)
+uLocal[] .*= D#Fh; 
+{
+Fh#Global def(uG)=ini(0); 
+locToGlob(uG[], uLocal[], rest#Fh); 
+mpiReduce(uG[], uGlobal[], mpiComm, mpiSUM);
+}
+EndMacro
+
+NewMacro truncMesh(ThTrunc,Th,region)  
+int[int] n2o#ThTrunc;  
+meshN ThTrunc=trunc(Th, region, new2old=n2o#ThTrunc); 
+EndMacro
+    
+NewMacro initTFespace(FhTrunc, Fh, ThTrunc, Pk)   
+int[int] rest#FhTrunc = restrict(FhTrunc, Fh, n2o#ThTrunc); 
+EndMacro    
+    
+NewMacro localToGlobalImplT(uGlobal, uLocal, Fh) 
+locToGlob(uGlobal[], uLocal[], rest#Fh);  
+EndMacro 
+    
+NewMacro createDFespaceVect(Fh,Th,ThGlobal,Pk,df,ini) 
+fespace Fh(Th,Pk);  
+fespace Fh#Global(ThGlobal,Pk);   
+real[int] D#Fh(Fh.ndof); 
+{   
+    macro def(u) df// 
+    macro init(u) ini//
+    PartitionCreate(Th, D#Fh, Pk); 
+}
+int[int] rest#Fh = restrict(Fh, Fh#Global, Th#N2O); 
+EndMacro
+
+macro DmeshInit(Th) initDmesh(Th)//
+macro DFespaceCreate(Fh,Th,ThGlobal,Pk) createDFespace(Fh,Th,ThGlobal,Pk)//
+macro DFespaceCreateVect(Fh,Th,ThGlobal,Pk,def,init) createDFespaceVect(Fh,Th,ThGlobal,Pk,def,init)//
+macro TFespaceCreate(FhTrunc,ThTrunc,Th,Pk) createTFespace(FhTrunc,ThTrunc,Th,Pk)//
+macro localToGlobal(uGlobal, uLocal, Fh, mpiComm) localToGlobalImpl(uGlobal, uLocal, Fh, mpiComm)//
+macro localToGlobalVect(uGlobal, uLocal, Fh, mpiComm,def,init) localToGlobalVectImpl(uGlobal, uLocal, Fh, mpiComm,def,init)//
+macro localToGlobalT(uGlobal, uLocal, Fh) localToGlobalImplT(uGlobal, uLocal, Fh)//
+macro MeshTrunc(ThTrunc,Th,region) truncMesh(ThTrunc,Th,region)//

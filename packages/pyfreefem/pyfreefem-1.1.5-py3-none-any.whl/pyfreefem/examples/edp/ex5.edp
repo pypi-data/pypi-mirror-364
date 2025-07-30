@@ -1,0 +1,6 @@
+//** Default values for the Reynolds number
+//** This comment will NOT be visible in the executable edp file.
+DEFAULT (Re,"100")
+
+// Display the Reynolds number
+cout << "Re=$Re;" << endl;

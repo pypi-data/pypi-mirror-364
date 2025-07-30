@@ -1,0 +1,15 @@
+IMPORT "io.edp"
+
+DEFAULT (N,10)
+mesh Th = square($N,$N);
+fespace Fh1(Th,P1);
+
+Fh1 u, v;
+
+func f=1;
+solve laplace(u,v) = int2d(Th)(dx(u)*dx(v)+dy(u)*dy(v))      
+                    -int2d(Th)(f*v) 
+                    +on(1,2,3,4,u=0);
+
+exportMesh(Th);
+exportArray(u[]);

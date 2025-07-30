@@ -1,0 +1,2 @@
+mesh Th=square($N,$N);  
+plot(Th);

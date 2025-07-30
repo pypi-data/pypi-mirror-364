@@ -1,0 +1,7 @@
+DEFAULT (N,10)
+FOR (I,1,N)
+//Create a square mesh of size ${I}x${I}
+mesh Th$I = square(10,10,[$I*x,$I*y]);
+
+ENDFOR
+

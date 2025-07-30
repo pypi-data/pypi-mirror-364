@@ -1,0 +1,141 @@
+Metadata-Version: 2.1
+Name: pyfreefem
+Version: 1.1.5
+Summary: Package PyFreeFEM for interfacing Python and FreeFEM.
+Home-page: https://pyfreefem.readthedocs.io/en/latest/
+Author: Florian Feppon
+Author-email: florian.feppon@kuleuven.be
+License: GNU GPL version 3
+Keywords: FreeFEM
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy >=1.12.1
+Requires-Dist: scipy >=0.19.1
+Requires-Dist: colored >=1.3.93
+Requires-Dist: pymedit >=1.2
+
+# PyFreeFEM
+
+PyFreeFEM is a python package interfacing
+[FreeFEM](https://freefem.org/) scripts with Python. `.edp` scripts
+become small modules that can be used as building blocks of a main
+python project.
+
+> PyFreeFEM is different from the alternative
+> [pyFreeFEM](https://github.com/odevauchelle/pyFreeFem) module from
+> Olivier Devauchelle, which has been developped rather simultaneously for
+> similar purposes.
+
+[Official documentation](https://pyfreefem.readthedocs.io/en/latest/index.html)
+
+## Features
+
+PyFreeFEM has the following capabilities:
+
+-   **Running FreeFEM** `.edp` **scripts that support python input
+    parameters:**
+
+    ```python   
+    from pyfreefem import FreeFemRunner   
+    FreeFemRunner("script.edp").execute({'f':'x+1','N':10, 'THREEDIM':0})
+    ```
+
+-   **Executing portions of** `.edp` **scripts conditionally to python
+    input parameters by using special preprocessing instructions:**
+
+    ```freefem  
+    DEFAULT (THREEDIM,0)    
+
+    IF THREEDIM    
+    mesh3 Th=cube($N,$N,$N);
+    ELSE   
+    mesh Th=square($N,$N);
+    ENDIF
+    ```
+
+-   **Automated imports and exports of data structures (floats, arrays,
+    matrices, meshes) from FreeFEM to Python and vice-versa:**
+
+    ```python
+    from pyfreefem import FreeFemRunner   
+
+    fem_matrix=""" 
+    IMPORT "io.edp"
+    mesh Th=square($N,$N); 
+    fespace Fh1(Th,P1);    
+    varf laplace(u,v)=int2d(Th)(dx(u)*dx(v)+dy(u)*dy(v));  
+    matrix A = laplace(Fh1,Fh1,tgv=-2);    
+
+    exportMatrix(A);"""    
+
+    #Get the sparse matrix (scipy csc_matrix format) A:    
+    runner = FreeFemRunner(fem_matrix)
+    exports = runner.execute({'N':100}) 
+    A = exports['A']
+    print('A=\n',A.todense())
+    ```
+
+-   **Flexible debugging and capturing of FreeFEM standard output**:
+    running the previous script with
+
+    ```python
+    runner = FreeFemRunner(fem_matrix,debug=10)
+    exports = runner.execute({'N':100},verbosity=0) 
+    ```
+
+    yields the following output:
+
+    ``` console
+    $ python test.py 
+    Write /tmp/pyfreefem_xsd1x5dw/run.edp
+    Reset directory /tmp/pyfreefem_xsd1x5dw/ffexport
+    FreeFem++ /tmp/pyfreefem_xsd1x5dw/run.edp -v 0 -nw
+    Saved /tmp/pyfreefem_xsd1x5dw/ffexport/matrix_A
+    Finished in (0.06s)
+    A=
+     [[ 1.  -0.5  0.  ...  0.   0.   0. ]
+     [-0.5  2.  -0.5 ...  0.   0.   0. ]
+     [ 0.  -0.5  2.  ...  0.   0.   0. ]
+     ...
+     [ 0.   0.   0.  ...  2.  -0.5  0. ]
+     [ 0.   0.   0.  ... -0.5  2.  -0.5]
+     [ 0.   0.   0.  ...  0.  -0.5  1. ]]
+    ```
+
+## Contribute and support
+
+-   Issue tracker:
+    <https://gitlab.com/florian.feppon/pyfreefem/-/issues>
+-   Source code: <https://gitlab.com/florian.feppon/pyfreefem>
+
+If I am not responding on the issue tracker, feel free to send me an
+email to florian.feppon\[at\]kuleuven.be
+
+## Citation
+
+Please cite the following reference when using this package:
+
+> FEPPON, Florian. *Shape and topology optimization of multiphysics
+> systems.* 2019. Université Paris-Saclay. Thèse préparée à l'École
+> polytechnique.
+
+``` bibtex
+@phdthesis{feppon2020,
+   author = {Feppon, Florian},
+   title =  {Shape and topology optimization of multiphysics systems},
+   school = {Th\`{e}se de doctorat de l'Universit'{e} Paris-Saclay pr'{e}par'{e}e
+      \`a l''{E}cole polytechnique},
+   year = {2019}
+}
+```
+
+## Licence
+
+PyFreeFEM is a free software distributed under the terms of the GNU
+General Public Licence
+[GPL3](https://www.gnu.org/licenses/gpl-3.0.html).

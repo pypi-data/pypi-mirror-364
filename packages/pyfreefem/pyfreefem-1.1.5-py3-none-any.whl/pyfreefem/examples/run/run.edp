@@ -1,0 +1,30 @@
+
+include "run/io.edp"
+
+real var = pi;
+real[int] arr = [1,2,3,4];
+
+mesh Th = square(10,10);
+fespace Fh1(Th,P1);
+
+macro grad(u) [dx(u),dy(u)]//
+varf laplace(u,v) = int2d(Th)(u*v+grad(u)'*grad(v));
+varf rhs(u,v) = int1d(Th,1)(v);
+
+matrix A = laplace(Fh1,Fh1);
+real[int] f= rhs(0,Fh1);
+
+real[int] u=A^-1*f;
+    
+real[int,int] B = [[1,2,3],[4,5,6]]; 
+
+dispVar(var);
+exportVar(var);
+export2DArray(B); 
+
+exportMesh(Th);
+
+exportArray(arr);
+exportArray(f);
+exportArray(u);
+exportMatrix(A);

@@ -1,0 +1,6 @@
+DEFAULT (Re,10)
+SET (Pe,30)
+SET (ratioRePe,$Re/$Pe)
+real Re=$Re;
+real Pe=$Pe;
+real ratio=$ratioRePe;

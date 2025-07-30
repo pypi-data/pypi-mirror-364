@@ -1,0 +1,20 @@
+DEFAULT (n,30)
+int n=$n;
+load "medit"
+
+mesh Th=square(n,n);
+func f=x^2+y^2;
+fespace Fh(Th,P1);
+Fh phi=f;
+
+// Save in the temporary directory
+savemesh(Th,"$RUNDIR/Th.mesh");
+savesol("$RUNDIR/phi.sol",Th,phi,order=1);
+
+real result = int2d(Th)(f);
+
+{
+    ofstream file("$RUNDIR/result.gp");
+    file.precision(16);
+    file << result;
+}

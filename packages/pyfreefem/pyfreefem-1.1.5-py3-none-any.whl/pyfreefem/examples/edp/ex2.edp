@@ -1,0 +1,13 @@
+DEFAULT (hmin_loc,"0.001")
+DEFAULT (hmin,0.1*$hmin_loc)
+DEFAULT (hmax,"0.003")
+DEFAULT (hgrad,"1.3")
+DEFAULT (hausd,0.1*$hmin)
+
+SET_TEXTVAR params.mmg2d
+Parameters
+1
+ 
+10 Edges $hmin $hmin_loc $hausd
+END_TEXTVAR
+
