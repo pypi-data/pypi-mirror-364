@@ -1,0 +1,8 @@
+include README.md
+include requirements.txt
+include run-mcp-server.sh
+include CLAUDE.md
+recursive-include localgenius *.py
+global-exclude *.pyc
+global-exclude __pycache__
+global-exclude .DS_Store

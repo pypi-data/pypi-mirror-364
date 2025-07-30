@@ -1,0 +1,3 @@
+[console_scripts]
+localgenius = localgenius.cli.main:cli
+localgenius-mcp = localgenius.mcp.fastmcp_server:main
