@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+mouse_patrol/__init__.py
+mouse_patrol/main.py
+mouse_patrol.egg-info/PKG-INFO
+mouse_patrol.egg-info/SOURCES.txt
+mouse_patrol.egg-info/dependency_links.txt
+mouse_patrol.egg-info/entry_points.txt
+mouse_patrol.egg-info/requires.txt
+mouse_patrol.egg-info/top_level.txt
