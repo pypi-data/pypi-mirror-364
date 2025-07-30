@@ -1,0 +1,1109 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "$schema": {
+            "type": "string",
+            "format": "uri"
+        },
+        "configuration_identifier": {
+            "type": "string",
+            "description": "An unique identifier for this configuration. Only save files created with this identifier can be loaded."
+        },
+        "layout_uuid": {
+            "description": "An UUID exposed via a global lua variable",
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+            "default": "00000000-0000-1111-0000-000000000000"
+        },
+        "starting_location": {
+            "$ref": "#/$defs/actor_reference"
+        },
+        "pickups": {
+            "type": "array",
+            "minItems": 146,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "pickup_type": {
+                        "type": "string",
+                        "enum": [
+                            "actor",
+                            "emmi",
+                            "corex",
+                            "corpius",
+                            "cutscene"
+                        ]
+                    },
+                    "caption": {
+                        "type": "string",
+                        "description": "The message displayed when this pickup is collected"
+                    },
+                    "resources": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/$defs/item"
+                            },
+                            "minItems": 1,
+                            "description": "An array of all resources that will be gained from a particular stage of progression."
+                        },
+                        "minItems": 1,
+                        "description": "An array of arrays representing progressive item stages and resource gains for each stage.",
+                        "examples": [
+                            [
+                                [
+                                    { "item_id": "ITEM_WEAPON_WIDE_BEAM", "quantity": 1 }
+                                ],
+                                [
+                                    { "item_id": "ITEM_WEAPON_PLASMA_BEAM", "quantity": 1 }
+                                ],
+                                [
+                                    { "item_id": "ITEM_WEAPON_WAVE_BEAM", "quantity": 1 }
+                                ]
+                            ],
+                            [
+                                [
+                                    { "item_id": "ITEM_WEAPON_POWER_BOMB", "quantity": 1 },
+                                    { "item_id": "ITEM_WEAPON_POWER_BOMB_MAX", "quantity": 2 }
+                                ]
+                            ]
+                        ]
+                    }
+                },
+                "required": [
+                    "pickup_type",
+                    "caption",
+                    "resources"
+                ],
+                "if": {
+                    "properties": {
+                        "pickup_type": {
+                            "const": "actor"
+                        }
+                    }
+                },
+                "then": {
+                    "properties": {
+                        "pickup_actor": {
+                            "$ref": "#/$defs/actor_reference_with_layer"
+                        },
+                        "model": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "minItems": 1,
+                            "description": "A list of model identifiers used by this pickup. Non-progressive items will only have one model identifier."
+                        },
+                        "map_icon": {
+                            "type": "object",
+                            "properties": {
+                                "original_actor": {
+                                    "$ref": "#/$defs/actor_reference_with_layer"
+                                }
+                            },
+                            "oneOf": [
+                                {
+                                    "additionalProperties": false
+                                },
+                                {
+                                    "properties": {
+                                        "icon_id": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "icon_id"
+                                    ]
+                                },
+                                {
+                                    "properties": {
+                                        "custom_icon": {
+                                            "type": "object",
+                                            "properties": {
+                                                "label": {
+                                                    "type": "string",
+                                                    "default": ""
+                                                },
+                                                "player": {
+                                                    "type": "string"
+                                                },
+                                                "base_icon": {
+                                                    "type": "string"
+                                                },
+                                                "coords": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "row": {
+                                                            "type": "integer"
+                                                        },
+                                                        "col": {
+                                                            "type": "integer"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "row",
+                                                        "col"
+                                                    ],
+                                                    "default": {
+                                                        "row": 0,
+                                                        "col": 4
+                                                    }
+                                                },
+                                                "is_global": {
+                                                    "type": "boolean",
+                                                    "default": true
+                                                },
+                                                "full_zoom_scale": {
+                                                    "type": "boolean",
+                                                    "default": true
+                                                },
+                                                "extras": {
+                                                    "type": "object",
+                                                    "additionalProperties": true
+                                                }
+                                            },
+                                            "required": [
+                                                "label"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "custom_icon"
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    "required": [
+                        "pickup_actor",
+                        "model"
+                    ]
+                },
+                "else": {
+                    "properties": {
+                        "pickup_lua_callback": {
+                            "$ref": "#/$defs/scenario_lua_callback"
+                        }
+                    },
+                    "required": [
+                        "pickup_lua_callback"
+                    ],
+                    "if": {
+                        "not": {
+                            "properties": {
+                                "pickup_type": {
+                                    "const": "cutscene"
+                                }
+                            }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "pickup_actordef": {
+                                "type": "string",
+                                "pattern": "[a-zA-Z0-9_/]+?\\.bmsad"
+                            },
+                            "pickup_string_key": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "pickup_actordef",
+                            "pickup_string_key"
+                        ]
+                    }
+                }
+            }
+        },
+        "elevators": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "teleporter": {
+                        "$ref": "#/$defs/actor_reference_with_layer"
+                    },
+                    "destination": {
+                        "$ref": "#/$defs/actor_reference"
+                    },
+                    "connection_name": {
+                        "type": "string",
+                        "description": "The destination transport's name, used to name elevators",
+                        "examples": [
+                            "Artaria - Thermal Device",
+                            "Ghavoran - Flipper"
+                        ]
+                    }
+                },
+                "required": [
+                    "teleporter",
+                    "destination",
+                    "connection_name"
+                ]
+            }
+        },
+        "debug_export_modified_files": {
+            "type": "boolean",
+            "default": false,
+            "description": "Saves all modified files to a _debug sub-directory."
+        },
+        "starting_items": {
+            "type": "object",
+            "propertyNames": {
+                "$ref": "#/$defs/item_id"
+            }
+        },
+        "starting_text": {
+            "type": "array",
+            "items": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            }
+        },
+        "energy_per_tank": {
+            "description": "How much energy collecting an Energy Tank gives. Energy Parts give 1/4 of this value.",
+            "type": "number",
+            "default": 100.0
+        },
+        "immediate_energy_parts": {
+            "description": "If true, Energy Parts increases maximum energy when collected by 1/4 of the tank capacity.",
+            "type": "boolean",
+            "default": false
+        },
+        "hints": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "accesspoint_actor": {
+                        "$ref": "#/$defs/actor_reference_with_layer"
+                    },
+                    "hint_id": {
+                        "type": "string",
+                        "pattern": "[A-Z]+?_[0-9]+"
+                    },
+                    "text": {
+                        "type": ["string", "array"],
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "If a string, the Adam dialogue will be replaced with a single page containing the string. If an array, a page will be created for each element."
+                    }
+                },
+                "required": [
+                    "accesspoint_actor",
+                    "hint_id",
+                    "text"
+                ]
+            }
+        },
+        "text_patches": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "string"
+            }
+        },
+        "mod_compatibility": {
+            "type": "string",
+            "enum": [
+                "ryujinx",
+                "atmosphere"
+            ],
+            "description": "Decides how the files are organized in the output path, in order to be compatible with different mod formats.",
+            "default": "ryujinx"
+        },
+        "mod_category": {
+            "type": "string",
+            "enum": [
+                "pkg",
+                "romfs"
+            ],
+            "description": "When pkg, outputs fully modified pkg files. On romfs, output just the modified files but requires an exefs patch to load.",
+            "default": "pkg"
+        },
+        "cosmetic_patches": {
+            "type": "object",
+            "properties": {
+                "config": {
+                    "type": "object"
+                },
+                "lua": {
+                    "type": "object",
+                    "properties": {
+                        "custom_init": {
+                            "type": "object",
+                            "properties": {
+                                "enable_death_counter": {
+                                    "type": "boolean",
+                                    "default": false,
+                                    "description": "Enables an in-game death counter shown in the player's HUD"
+                                },
+                                "enable_room_name_display": {
+                                    "type": "string",
+                                    "enum": [
+                                        "NEVER",
+                                        "ALWAYS",
+                                        "WITH_FADE"
+                                    ],
+                                    "default": "NEVER",
+                                    "description": "Configures how the room name is displayed on the HUD. Defaults to disabled."
+                                }
+                            },
+                            "additionalProperties": false
+                        },
+                        "camera_names_dict": {
+                            "type": "object",
+                            "description": "A dictionary of dictionaries mapping scenario and collision camera to room name in the database",
+                            "additionalProperties": false,
+                            "default": {},
+                            "patternProperties": {
+                                ".*": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "patternProperties": {
+                                        ".*": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "shield_versions": {
+                    "type": "object",
+                    "description": "Contains a list of all shields and whether they are default or alternate cosmetic",
+                    "properties": {
+                        "ice_missile": {
+                            "type": "string",
+                            "enum": ["DEFAULT", "ALTERNATE"],
+                            "default": "DEFAULT"
+                        },
+                        "diffusion_beam": {
+                            "type": "string",
+                            "enum": ["DEFAULT", "ALTERNATE"],
+                            "default": "DEFAULT"
+                        },
+                        "storm_missile": {
+                            "type": "string",
+                            "enum": ["DEFAULT", "ALTERNATE"],
+                            "default": "DEFAULT"
+                        },
+                        "bomb": {
+                            "type": "string",
+                            "enum": ["DEFAULT", "ALTERNATE"],
+                            "default": "DEFAULT"
+                        },
+                        "cross_bomb": {
+                            "type": "string",
+                            "enum": ["DEFAULT", "ALTERNATE"],
+                            "default": "DEFAULT"
+                        },
+                        "power_bomb": {
+                            "type": "string",
+                            "enum": ["DEFAULT", "ALTERNATE"],
+                            "default": "DEFAULT"
+                        },
+                        "closed": {
+                            "type": "string",
+                            "enum": ["DEFAULT", "ALTERNATE"],
+                            "default": "DEFAULT"
+                        }
+                    }
+                }
+            },
+            "required": [
+                "config",
+                "lua",
+                "shield_versions"
+            ]
+        },
+        "tunables": {
+            "type": "object",
+            "description": "Non-cosmetic tunables to be patched, applied after cosmetic patches",
+            "additionalProperties": false,
+            "default": {},
+            "patternProperties": {
+                "^[a-zA-Z]+$": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "default": {},
+                    "patternProperties": {
+                        "^[a-zA-Z0-9_.]+$": {
+                            "type": ["number", "boolean", "string"]
+                        }
+                    }
+                }
+            }
+        },
+        "enable_remote_lua": {
+            "type": "boolean",
+            "default": false,
+            "description": "When true, the game will start a socket that receives lua code to run"
+        },
+        "constant_environment_damage": {
+            "description": "Each property, when not null, will change the damage from that type to be that much per second",
+            "default": {},
+            "type": "object",
+            "properties": {
+                "heat": {
+                    "title": "Heated Rooms",
+                    "$ref": "#/$defs/constant_damage_value"
+                },
+                "cold": {
+                    "title": "Cold Rooms",
+                    "$ref": "#/$defs/constant_damage_value"
+                },
+                "lava": {
+                    "title": "Lava",
+                    "$ref": "#/$defs/constant_damage_value"
+                }
+            },
+            "additionalProperties": false
+        },
+        "game_patches": {
+            "type": "object",
+            "properties": {
+                "raven_beak_damage_table_handling": {
+                    "type": "string",
+                    "enum": ["unmodified", "consistent_low", "consistent_high"],
+                    "description": "Change Raven Beak's damage multiplier for all beams and missiles to be consistent.",
+                    "default": "consistent_low"
+                },
+                "remove_grapple_blocks_hanubia_shortcut": {
+                    "type": "boolean",
+                    "description": "Remove the two Grapple Blocks in the entrance to Hanubia from Ferenia.",
+                    "default": true
+                },
+                "remove_grapple_block_path_to_itorash": {
+                    "type": "boolean",
+                    "description": "Remove the Grapple Block in the path to Itorash in upper Hanubia.",
+                    "default": true
+                },
+                "default_x_released": {
+                    "type": "boolean",
+                    "description": "When enabled, the game starts with the X Parasites being released already.",
+                    "default": false
+                },
+                "enable_experiment_boss": {
+                    "type": "boolean",
+                    "description": "Enable the Experiment Z-57 boss fight when entering its arena through the Morph Ball Launcher after releasing the X.",
+                    "default": true
+                },
+                "warp_to_start": {
+                    "type": "boolean",
+                    "description": "Enable warping to the starting location from Save Stations.",
+                    "default": true
+                },
+                "nerf_power_bombs": {
+                    "type": "boolean",
+                    "description": "Changes weaknesses for certain enemies and props to make Power Bombs less overpowered.",
+                    "default": false
+                },
+                "remove_water_platform_water": {
+                    "type": "boolean",
+                    "description": "Remove the water that shows up in Artaria after raising the water platform in the EMMI Zone",
+                    "default": true
+                },
+                "remove_early_cloak_water": {
+                    "type": "string",
+                    "enum": ["unmodified", "right_only", "both_sides"],
+                    "description": "Remove the water underneath the first entrance to the Artaria EMMI Zone. both_sides also removes the blob",
+                    "default": "right_only"
+                },
+                "remove_arbitrary_enky": {
+                    "type": "string",
+                    "enum": ["unmodified", "never", "always"],
+                    "description": "Change how the enky that appears in Artaria after defeating the EMMI spawns",
+                    "default": "unmodified"
+                }
+            },
+            "additionalProperties": false
+        },
+        "objective": {
+            "type": "object",
+            "properties": {
+                "required_artifacts": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 12,
+                    "default": 9
+                },
+                "hints": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "default": []
+                }
+            },
+            "additionalProperties": false,
+            "default": {}
+        },
+        "mass_delete_actors": {
+            "description": "Deletes actors en masse",
+            "type": "object",
+            "properties": {
+                "to_remove": {
+                    "type": "array",
+                    "items": {
+                        "examples": [
+                            {
+                                "scenario": "s010_cave",
+                                "actor_layer": "rLightsLayer",
+                                "method": "all"
+                            },
+                            {
+                                "scenario": "s010_cave",
+                                "method": "remove_from_groups",
+                                "actor_groups": [
+                                    "eg_collision_camera_067_Default"
+                                ]
+                            },
+                            {
+                                "scenario": "s030_baselab",
+                                "actor_layer": "rLightsLayer",
+                                "method": "keep_from_groups",
+                                "actor_groups": [
+                                    "lg_collision_camera_011_Default"
+                                ]
+                            }
+                        ],
+                        "type": "object",
+                        "properties": {
+                            "scenario": {
+                                "description": "The scenario to remove actors from",
+                                "$ref": "#/$defs/scenario_name"
+                            },
+                            "actor_layer": {
+                                "description": "The actor layer to remove actors from",
+                                "type": "string",
+                                "enum": [
+                                    "rEntitiesLayer",
+                                    "rSoundsLayer",
+                                    "rLightsLayer"
+                                ],
+                                "default": "rEntitiesLayer"
+                            },
+                            "method": {
+                                "description": "The method for removing actors. all removes all in the scenario, remove_from_groups will remove all actors in the provided actor groups, and keep_from_groups will remove from all actor groups not provided",
+                                "type": "string",
+                                "enum": [
+                                    "all",
+                                    "remove_from_groups",
+                                    "keep_from_groups"
+                                ],
+                                "default": "all"
+                            },
+                            "actor_groups": {
+                                "description": "The actor group the actors are in. Required if method is not all",
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "required": ["scenario"],
+                        "if": {
+                            "anyOf": [
+                                {
+                                    "properties": {
+                                        "method": { "const": "remove_from_groups" }
+                                    },
+                                    "required": ["method"]
+                                },
+                                {
+                                    "properties": {
+                                        "method": { "const": "keep_from_groups" }
+                                    },
+                                    "required": ["method"]
+                                }
+                            ]
+                        },
+                        "then": {
+                            "required": ["actor_groups"]
+                        }
+                    },
+                    "default": []
+                },
+                "to_keep": {
+                    "description": "A list of actors not to remove. Use this to keep specific actors from a scenario or actor group that has been removed",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/actor_reference_with_layer"
+                    },
+                    "default": []
+                }
+            },
+            "required": ["to_remove"],
+            "default": {}
+        },
+        "show_shields_on_minimap": {
+            "type": "boolean",
+            "description": "Deprecated. Used to remove shields from the minimaps in Door Lock Rando.",
+            "default": false
+        },
+        "door_patches": {
+            "type": "array",
+            "description": "Changes the door types",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "actor": {
+                        "$ref": "#/$defs/actor_reference_with_layer"
+                    },
+                    "door_type": {
+                        "type": "string",
+                        "enum": [
+                            "frame",
+                            "power_beam",
+                            "charge_beam",
+                            "diffusion_beam",
+                            "wide_beam",
+                            "plasma_beam",
+                            "wave_beam",
+                            "missile",
+                            "super_missile",
+                            "storm_missile",
+                            "ice_missile",
+                            "grapple_beam",
+                            "sensor_door",
+                            "bomb",
+                            "cross_bomb",
+                            "power_bomb",
+                            "closed"
+                        ]
+                    }
+                },
+                "required": [
+                    "actor",
+                    "door_type"
+                ],
+                "additionalProperties": false
+            },
+            "default": []
+        },
+        "tile_group_patches": {
+            "type": "array",
+            "description": "Changes breakable tile group types",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "actor": {
+                        "$ref": "#/$defs/actor_reference_with_layer"
+                    }
+                },
+                "oneOf": [
+                    {
+                        "description": "Changes every tile in the group to the specified tile type",
+                        "properties": {
+                            "tiletype": {
+                                "$ref": "#/$defs/tiletype"
+                            }
+                        },
+                        "required": ["tiletype"]
+                    },
+                    {
+                        "description": "For each entry in the list, the corresponding tile in the tilegroup will be changed to that tile type. Cannot have more entries than the group has tiles",
+                        "properties": {
+                            "tiles": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "tiletype": {
+                                            "$ref": "#/$defs/tiletype"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "required": ["tiles"]
+                    }
+                ],
+                "required": [
+                    "actor"
+                ]
+            },
+            "default": []
+        },
+        "actor_patches": {
+            "description": "Edits actors",
+            "properties": {
+                "modify": {
+                    "description": "Actors to modify",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "actor": {
+                                "description": "A reference to the actor to modify",
+                                "$ref": "#/$defs/actor_reference_with_layer"
+                            },
+                            "new_reference": {
+                                "description": "A reference to where the actor should be placed in/copied to",
+                                "$ref": "#/$defs/actor_reference_with_layer"
+                            },
+                            "actor_groups": {
+                                "description": "The actor groups the actor should be present in. If omitted, new_reference is present, and the scenario is the same, the actor groups will be copied from the original actor",
+                                "examples": [
+                                    [
+                                        "eg_collision_camera_007_Default"
+                                    ],
+                                    [
+                                        "eg_collision_camera_042_Default",
+                                        "eg_collision_camera_042_PostXRelease",
+                                        "eg_collision_camera_042_Cooldown"
+                                    ]
+                                ],
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "modifications": {
+                                "description": "A list of patches to be applied",
+                                "examples": [
+                                    [
+                                        {
+                                            "path": ["vPos", 0],
+                                            "update_to": 5000.0
+                                        },
+                                        {
+                                            "path": ["vAng"],
+                                            "update_to": [0.0, 0.0, 0.0]
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "path": ["pComponents", "LIFE", "bStayOpen"],
+                                            "update_to": true
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "path": ["pComponents", "SPAWNGROUP", "vectSpawnPoints", 1]
+                                        }
+                                    ]
+                                ],
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "path": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": ["string", "number"]
+                                            }
+                                        },
+                                        "update_to": {}
+                                    },
+                                    "required": ["path"]
+                                },
+                                "default": []
+                            },
+                            "make_copy": {
+                                "description": "If true, the original actor will be left as is and all modifications will be applied to a copy instead",
+                                "type": "boolean",
+                                "default": false
+                            }
+                        },
+                        "required": ["actor"],
+                        "if": {
+                            "properties": {
+                                "make_copy": {
+                                    "const": true
+                                }
+                            },
+                            "required": ["make_copy"]
+                        },
+                        "then": {
+                            "required": ["new_reference"]
+                        }
+                    }
+                },
+                "remove": {
+                    "description": "Actors to remove",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "actor": {
+                                "$ref": "#/$defs/actor_reference_with_layer"
+                            },
+                            "map_category": {
+                                "description": "The map category to remove the actor from in the BMMAP",
+                                "examples": [
+                                    "mapItems",
+                                    "mapProps",
+                                    "mapOccluderGeos"
+                                ],
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "default": {}
+        },
+        "new_spawn_points": {
+            "type": "array",
+            "description": "Creates new spawn points",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "new_actor": {
+                        "$ref": "#/$defs/actor_reference"
+                    },
+                    "location": {
+                        "$ref": "#/$defs/position"
+                    },
+                    "collision_camera_name": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "new_actor",
+                    "location",
+                    "collision_camera_name"
+                ],
+                "additionalProperties": false
+            },
+            "default": []
+        },
+        "spoiler_log": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "string"
+            },
+            "description": "A dict mapping item names to a string describing their location.",
+            "default": {}
+        }
+    },
+    "required": [
+        "configuration_identifier",
+        "starting_location",
+        "starting_items",
+        "pickups"
+    ],
+    "allOf": [
+        {
+            "if": {
+                "properties": {
+                    "immediate_energy_parts": {
+                        "const": false
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "energy_per_tank": {
+                        "const": 100.0
+                    }
+                }
+            }
+        }
+    ],
+    "additionalProperties": false,
+    "$defs": {
+        "scenario_lua_callback": {
+            "type": "object",
+            "properties": {
+                "scenario": {
+                    "$ref": "#/$defs/scenario_name"
+                },
+                "function": {
+                    "type": "string"
+                },
+                "args": {
+                    "type": "number",
+                    "default": 0
+                }
+            }
+        },
+        "actor_reference_with_layer": {
+            "type": "object",
+            "properties": {
+                "scenario": {
+                    "$ref": "#/$defs/scenario_name"
+                },
+                "actor_layer": {
+                    "type": "string",
+                    "enum": [
+                        "rEntitiesLayer",
+                        "rSoundsLayer",
+                        "rLightsLayer"
+                    ],
+                    "default": "rEntitiesLayer"
+                },
+                "sublayer": {
+                    "type": "string"
+                },
+                "layer": {
+                    "type": "string",
+                    "default": "default",
+                    "deprecated": true
+                },
+                "actor": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "scenario",
+                "actor"
+            ]
+        },
+        "actor_reference": {
+            "type": "object",
+            "properties": {
+                "scenario": {
+                    "$ref": "#/$defs/scenario_name"
+                },
+                "actor": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "scenario",
+                "actor"
+            ]
+        },
+        "scenario_name": {
+            "type": "string",
+            "enum": [
+                "s010_cave",
+                "s020_magma",
+                "s030_baselab",
+                "s040_aqua",
+                "s050_forest",
+                "s060_quarantine",
+                "s070_basesanc",
+                "s080_shipyard",
+                "s090_skybase"
+            ]
+        },
+        "constant_damage_value": {
+            "default": null,
+            "anyOf": [
+                {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1000
+                },
+                {
+                    "type": "null"
+                }
+            ]
+        },
+        "item_id": {
+            "type": "string",
+            "enum": [
+                "ITEM_NONE",
+                "ITEM_WEAPON_WIDE_BEAM",
+                "ITEM_WEAPON_PLASMA_BEAM",
+                "ITEM_WEAPON_WAVE_BEAM",
+                "ITEM_WEAPON_HYPER_BEAM",
+                "ITEM_WEAPON_CHARGE_BEAM",
+                "ITEM_WEAPON_DIFFUSION_BEAM",
+                "ITEM_WEAPON_GRAPPLE_BEAM",
+                "ITEM_WEAPON_SUPER_MISSILE",
+                "ITEM_WEAPON_ICE_MISSILE",
+                "ITEM_MULTILOCKON",
+                "ITEM_OPTIC_CAMOUFLAGE",
+                "ITEM_GHOST_AURA",
+                "ITEM_SONAR",
+                "ITEM_VARIA_SUIT",
+                "ITEM_GRAVITY_SUIT",
+                "ITEM_HYPER_SUIT",
+                "ITEM_MORPH_BALL",
+                "ITEM_WEAPON_BOMB",
+                "ITEM_WEAPON_LINE_BOMB",
+                "ITEM_WEAPON_POWER_BOMB",
+                "ITEM_MAGNET_GLOVE",
+                "ITEM_SPEED_BOOSTER",
+                "ITEM_DOUBLE_JUMP",
+                "ITEM_SPACE_JUMP",
+                "ITEM_SCREW_ATTACK",
+                "ITEM_ENERGY_TANKS",
+                "ITEM_LIFE_SHARDS",
+                "ITEM_MAX_LIFE",
+                "ITEM_CURRENT_LIFE",
+                "ITEM_WEAPON_MISSILE_CURRENT",
+                "ITEM_WEAPON_MISSILE_MAX",
+                "ITEM_WEAPON_POWER_BOMB_CURRENT",
+                "ITEM_WEAPON_POWER_BOMB_MAX",
+                "ITEM_FLOOR_SLIDE",
+                "ITEM_METROIDNIZATION",
+                "ITEM_RANDO_ARTIFACT_1",
+                "ITEM_RANDO_ARTIFACT_2",
+                "ITEM_RANDO_ARTIFACT_3",
+                "ITEM_RANDO_ARTIFACT_4",
+                "ITEM_RANDO_ARTIFACT_5",
+                "ITEM_RANDO_ARTIFACT_6",
+                "ITEM_RANDO_ARTIFACT_7",
+                "ITEM_RANDO_ARTIFACT_8",
+                "ITEM_RANDO_ARTIFACT_9",
+                "ITEM_RANDO_ARTIFACT_10",
+                "ITEM_RANDO_ARTIFACT_11",
+                "ITEM_RANDO_ARTIFACT_12",
+                "ITEM_UPGRADE_FLASH_SHIFT_CHAIN",
+                "ITEM_UPGRADE_SPEED_BOOST_CHARGE"
+            ]
+        },
+        "item": {
+            "type": "object",
+            "properties": {
+                "item_id": {
+                    "$ref": "#/$defs/item_id"
+                },
+                "quantity": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "item_id",
+                "quantity"
+            ],
+            "additionalProperties": false
+        },
+        "position": {
+            "type": "object",
+            "properties": {
+                "x": {
+                    "type": "number"
+                },
+                "y": {
+                    "type": "number"
+                },
+                "z": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "x",
+                "y",
+                "z"
+            ]
+        },
+        "tiletype": {
+            "type": "string",
+            "enum": [
+                "POWERBEAM",
+                "BOMB",
+                "MISSILE",
+                "SUPERMISSILE",
+                "POWERBOMB",
+                "SCREWATTACK",
+                "WEIGHT",
+                "BABYHATCHLING",
+                "SPEEDBOOST"
+            ]
+        }
+    }
+}
