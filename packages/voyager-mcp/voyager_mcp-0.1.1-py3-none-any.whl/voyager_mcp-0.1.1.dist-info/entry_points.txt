@@ -1,0 +1,2 @@
+[console_scripts]
+voyager-mcp = voyager_mcp:main
