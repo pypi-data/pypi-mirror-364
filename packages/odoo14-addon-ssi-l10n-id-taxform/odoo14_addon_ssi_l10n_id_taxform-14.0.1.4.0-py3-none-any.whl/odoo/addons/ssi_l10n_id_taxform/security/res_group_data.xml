@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 OpenSynergy Indonesia
+     Copyright 2022 PT. Simetri Sinergi Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+<!-- Configurator (Data Master) -->
+<record id="l10n_id_tax_year_configurator_group" model="res.groups">
+    <field name="name">Tax Year</field>
+    <field name="category_id" ref="indonesia_taxform_configurator_module_category" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
+
+<record id="l10n_id_tax_period_configurator_group" model="res.groups">
+    <field name="name">Tax Period</field>
+    <field name="category_id" ref="indonesia_taxform_configurator_module_category" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
+
+<record id="l10n_id_object_pajak_configurator_group" model="res.groups">
+    <field name="name">Objek Pajak</field>
+    <field name="category_id" ref="indonesia_taxform_configurator_module_category" />
+    <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+</record>
+</odoo>
