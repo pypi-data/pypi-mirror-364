@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "enabledModules": [
+    "UserJourney",
+    "DirectoryConfig",
+    "ArchiveUnusedFiles",
+    "ContentType",
+    "EntityReference",
+    "CrossReference",
+    "ExampleBlock",
+    "ContextAnalyzer",
+    "ContextMigrator",
+    "ValeFlagger"
+  ],
+  "disabledModules": [],
+  "moduleOverrides": {
+    "ContentType": {
+      "cache_enabled": false,
+      "supported_types": ["text", "image"]
+    }
+  }
+}
