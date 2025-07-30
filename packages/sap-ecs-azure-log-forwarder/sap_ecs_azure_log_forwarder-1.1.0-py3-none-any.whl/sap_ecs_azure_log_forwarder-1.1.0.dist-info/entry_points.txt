@@ -1,0 +1,3 @@
+[console_scripts]
+sap-ecs-azure-log-forwarder=sap_ecs_azure_log_forwarder.queue_consumer:consume_queue
+

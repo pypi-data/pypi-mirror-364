@@ -1,0 +1,9 @@
+sap_ecs_azure_log_forwarder/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+sap_ecs_azure_log_forwarder/config.py,sha256=QJRilWy_jozp8N6_HHquiYhflclswMsakcthBWZukkk,3952
+sap_ecs_azure_log_forwarder/log_processor.py,sha256=K8shQBBA8DWg4iaBkyPuNSjv8wTTERb8cjdm7I3p_qg,3485
+sap_ecs_azure_log_forwarder/queue_consumer.py,sha256=lyaq88EFVxOsWWj71jvrrVWcF4QDIVhw7JbiqdzFrHM,6330
+sap_ecs_azure_log_forwarder-1.1.0.dist-info/LICENSE,sha256=RTHTDJe35fXCEJkg3wT9DHAO8QQZWRNd9NELcyj4jN0,13528
+sap_ecs_azure_log_forwarder-1.1.0.dist-info/METADATA,sha256=t-UEC5pMBbBJIChtEWOo-oFki_GBTbqyKXDvgqSidxM,10475
+sap_ecs_azure_log_forwarder-1.1.0.dist-info/WHEEL,sha256=sP946D7jFCHeNz5Iq4fL4Lu-PrWrFsgfLXbbkciIZwg,88
+sap_ecs_azure_log_forwarder-1.1.0.dist-info/entry_points.txt,sha256=_aUAa4Btp8kid7vR59xsbLPtxxRIHK6tMCqShFhOpcI,104
+sap_ecs_azure_log_forwarder-1.1.0.dist-info/RECORD,,
