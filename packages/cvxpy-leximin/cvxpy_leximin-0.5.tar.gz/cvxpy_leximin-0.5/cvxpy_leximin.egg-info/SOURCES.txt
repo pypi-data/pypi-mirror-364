@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+requirements.txt
+setup.py
+cvxpy_leximin/VERSION
+cvxpy_leximin/__init__.py
+cvxpy_leximin/objective.py
+cvxpy_leximin/problem.py
+cvxpy_leximin.egg-info/PKG-INFO
+cvxpy_leximin.egg-info/SOURCES.txt
+cvxpy_leximin.egg-info/dependency_links.txt
+cvxpy_leximin.egg-info/requires.txt
+cvxpy_leximin.egg-info/top_level.txt
