@@ -1,0 +1,159 @@
+Metadata-Version: 2.4
+Name: darknet2any
+Version: 0.1.2
+Summary: converts from darknet weights to tf, onnx, trt and other model formats
+Author-email: James Edmondson <james@koshee.ai>
+License-Expression: Apache-2.0
+Project-URL: Homepage, https://github.com/jredmondson/darknet2any
+Project-URL: Issues, https://github.com/jredmondson/darknet2any/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Classifier: Environment :: GPU :: NVIDIA CUDA :: 12 :: 12.0
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: Implementation
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Scientific/Engineering :: Image Processing
+Classifier: Topic :: Utilities
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: ai_edge_litert
+Requires-Dist: numpy
+Requires-Dist: torch
+Requires-Dist: tensorboardX
+Requires-Dist: scikit_image
+Requires-Dist: matplotlib
+Requires-Dist: tqdm
+Requires-Dist: easydict
+Requires-Dist: Pillow
+Requires-Dist: opencv_python
+Requires-Dist: pycocotools
+Requires-Dist: simple_onnx_processing_tools
+Requires-Dist: onnx
+Requires-Dist: onnxruntime-gpu
+Requires-Dist: onnxsim-prebuilt
+Requires-Dist: onnx-graphsurgeon
+Requires-Dist: tensorflow
+Requires-Dist: onnx2tf
+Requires-Dist: tf-keras
+Requires-Dist: psutil
+Requires-Dist: h5py
+Requires-Dist: ml_dtypes
+Provides-Extra: tensorrt
+Requires-Dist: nvidia-cublas-cu12; extra == "tensorrt"
+Requires-Dist: nvidia-cuda-cupti-cu12; extra == "tensorrt"
+Requires-Dist: nvidia-cuda-nvrtc-cu12; extra == "tensorrt"
+Requires-Dist: nvidia-cuda-runtime-cu12; extra == "tensorrt"
+Requires-Dist: nvidia-cudnn-cu12; extra == "tensorrt"
+Requires-Dist: nvidia-cufft-cu12; extra == "tensorrt"
+Requires-Dist: nvidia-curand-cu12; extra == "tensorrt"
+Requires-Dist: nvidia-cusolver-cu12; extra == "tensorrt"
+Requires-Dist: nvidia-cusparse-cu12; extra == "tensorrt"
+Requires-Dist: nvidia-nccl-cu12; extra == "tensorrt"
+Requires-Dist: nvidia-nvjitlink-cu12; extra == "tensorrt"
+Requires-Dist: nvidia-nvtx-cu12; extra == "tensorrt"
+Requires-Dist: tensorrt; extra == "tensorrt"
+Requires-Dist: pycuda; extra == "tensorrt"
+Dynamic: license-file
+
+# darknet2any
+
+## Introduction
+
+darknet2any helps you convert darknet trained models into most modern
+formats including tflite, keras, onnx, and trt. It also includes sample
+prediction implementations for some of these model formats so you can
+make your own translations.
+
+## Installation
+
+```
+pip install darknet2any
+```
+
+## Tool Listing
+
+* darknet2onnx: converts from darknet to onnx
+* darknet2torch: converts from darknet to torch
+* darknet2visual: visualizes all layers within darknet models
+* onnx2tf: external tool for converting from onnx to tensorflow formats
+* onnx2trt: converts from onnx to tensorrt engines
+* predict_darknet: predicts a directory of images with darknet weights
+* predict_onnx: predicts a directory of images with onnx session
+* predict_tflite: predicts a directory of images with tflite model
+* predict_trt: predicts a directory of images with trt engine
+
+
+## Usage
+
+### Converting darknet to other formats
+
+In general, any modern script has `-h` built in from the command line. If
+you run into any problems, try passing in `-h`, e.g.,
+
+```
+source .venv/bin/activate
+darknet2onnx -h
+```
+
+To generate all kinds of fun formats, try:   
+
+```
+source .venv/bin/activate
+darknet2onnx -i example.weights
+onnx2tf -i example.onnx -o .  -otfv1pb -okv3 -oh5
+onnx2trt -i example.onnx
+```
+
+The generated formats will include:   
+* onnx (op11 is default atm)
+* tensorrt (pretty much most optimal format on any CUDA)
+* TF v1 (.pb) format
+* Keras v3
+* Keras v5
+* TF lite
+
+See [onnx2tf cli options](https://github.com/PINTO0309/onnx2tf?tab=readme-ov-file#cli-parameter)
+for some of the extensive options available for quant options like int8, uint8, float32, etc.
+
+### Running your trt model on image directories
+
+```
+source .venv/bin/activate
+predict_trt -i example.trt --image-dir ~/Pictures
+```
+
+This will by default create labeled images in the local `labeled_images` directory.
+Check it out to see how accurate your model is.
+
+### darknet2visualize
+
+This script visualizes each layer of a yolo cnn, provided some example input
+image to help you see how the layers of the cnn convolve toward the boxes.
+
+**Recommended usage**
+```
+source .venv/bin/activate
+darknet2visual -i {weight_path}/example.weights -o {output_image_path} --image {image_path}/my_image.jpg
+```
+
+The above would load the darknet weights at `{weight_path}/example.weights`, read the image at `{image_path}/my_image.jpg`
+and save every layer of the cnn's outputs to `{output_image_path}/{image_name}_layer_{layer_id}.png`. You can start from
+the minimum layer (0) by default or you can specify a starting layer such as 35 with `-l {starting_layer_id}`.
+
+## Bugs/Issues
+
+Feel free to make an issue on this repo if you have trouble
+
+## Project Sponsorship
+
+* darknet2any is maintained by the team at Koshee (https://koshee.ai)
+
+## Additional Help with Darknet/Yolo/onnx2tf.
+
+* Darknet project (maintained by Hank.ai): [Github repo](https://github.com/hank-ai/darknet) | [Discord](https://discord.gg/zSq8rtW)
+* onnx2tf project: [Github repo](https://github.com/PINTO0309/onnx2tf)
+
