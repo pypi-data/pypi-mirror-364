@@ -1,0 +1,2 @@
+[console_scripts]
+gdcfa = cli.main:main
