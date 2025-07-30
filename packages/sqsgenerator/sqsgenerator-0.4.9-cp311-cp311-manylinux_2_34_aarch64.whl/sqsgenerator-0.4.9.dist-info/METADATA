@@ -1,0 +1,17 @@
+Metadata-Version: 2.2
+Name: sqsgenerator
+Version: 0.4.9
+Summary: Create atomic structures for solid solutions for molecular simulations
+Author-Email: Dominik Gehringer <dgehringer@protonmail.com>
+Maintainer-Email: Dominik Gehringer <dgehringer@protonmail.com>, David Holec <david.holec@unileoben.ac.at>
+Project-URL: Homepage, https://github.com/dgehringer/sqsgenerator
+Project-URL: Issues, https://github.com/dgehringer/sqsgenerator/issues
+Requires-Python: >=3.9
+Requires-Dist: numpy
+Requires-Dist: click
+Provides-Extra: test
+Requires-Dist: pytest; extra == "test"
+Requires-Dist: pymatgen; extra == "test"
+Requires-Dist: ase; extra == "test"
+Description-Content-Type: text/markdown
+
