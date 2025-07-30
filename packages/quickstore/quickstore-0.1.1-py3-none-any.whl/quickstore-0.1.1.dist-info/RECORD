@@ -1,0 +1,12 @@
+quickdb/__init__.py,sha256=Nqnn8clbgv-5l0PgxcTOldg8mkMKrFn4TvPL-rYUUGg,1
+quickdb/cli.py,sha256=4PP_66C6t4zT0AW-79wnieSoN0a9HivbEA_tBe2-sIw,7353
+quickdb/cli_entry.py,sha256=aHUEwL9IRjO-rPguQCla_0jA2Fv3NED78qaAnDIfYH4,74
+quickdb/constants.py,sha256=sb5pSbknXiIHdkbGkVpKloFaOkXi5T_7DZLZy8GzzVs,62
+quickdb/db.py,sha256=JVWlbLUDR3wMJMsinpKIj8Z2CR1M7duyp7R6LHCxUXU,1660
+quickdb/filedb.py,sha256=zhK1gxgdblAEW2n1xRQSMCA1UNde9BhAQHsZLppycuA,5143
+quickdb/utils.py,sha256=seoojMKcwflN2dyZJdC7IKBsIZW-EU9J_IsOWYhzVyo,165
+quickstore-0.1.1.dist-info/licenses/LICENSE,sha256=hrevUivaXdCFH6iBRTvT--nUNFEXiPnu1wQ1qk6AVdw,1086
+quickstore-0.1.1.dist-info/METADATA,sha256=Bfy60e9CaIBfo2SW0yj84m-aUhzu7R2yhpw3Qkfpuf4,9178
+quickstore-0.1.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+quickstore-0.1.1.dist-info/top_level.txt,sha256=eMiPUCDbqB5Jm4zQoqcUnGOI0mGfoNSfe4zgYqGFpYk,8
+quickstore-0.1.1.dist-info/RECORD,,
