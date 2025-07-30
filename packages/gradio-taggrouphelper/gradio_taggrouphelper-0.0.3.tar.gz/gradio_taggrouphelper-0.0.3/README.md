@@ -1,0 +1,407 @@
+---
+tags: [gradio-custom-component, ]
+title: gradio_taggrouphelper
+short_description: A fast prompt generator based on tagged words
+colorFrom: blue
+colorTo: yellow
+sdk: gradio
+pinned: false
+app_file: space.py
+---
+
+# `gradio_taggrouphelper`
+<a href="https://pypi.org/project/gradio_taggrouphelper/" target="_blank"><img alt="PyPI - Version" src="https://img.shields.io/pypi/v/gradio_taggrouphelper"></a>  
+
+A fast text generator based on tagged words
+
+## Installation
+
+```bash
+pip install gradio_taggrouphelper
+```
+
+## Usage
+
+```python
+#
+# demo/app.py
+#
+import gradio as gr
+from gradio_taggrouphelper import TagGroupHelper 
+
+# Example data structure for the tags and groups
+TAG_DATA = {
+    "Quality": [
+        "best quality", "masterpiece", "high resolution", "4k", "8k", 
+        "sharp focus", "detailed", "photorealistic"
+    ],
+    "Lighting": [
+        "cinematic lighting", "volumetric lighting", "god rays", 
+        "golden hour", "studio lighting", "dramatic lighting"
+    ],
+    "Style": [
+        "anime style", "oil painting", "concept art", "fantasy", 
+        "steampunk", "vaporwave", "line art"
+    ],
+    "Negative Prompts": [
+        "blurry", "noisy", "low resolution", "low quality", "watermark",
+        "text", "bad anatomy", "extra limbs", "disfigured"
+    ]
+}
+
+css=""" 
+body {    
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;    
+    margin: 0;
+    padding: 0;
+}
+.gradio-container {    
+    border-radius: 15px;
+    padding: 30px 40px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    margin: 40px 340px;    
+}
+.gradio-container h1 {    
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+.fillable {
+    width: 100% !important;
+    max-width: unset !important;
+}
+#examples_container {
+    margin: auto;
+    width: 90%;
+}
+#examples_row {
+    justify-content: center;
+}
+#tips_row{    
+    padding-left: 20px;
+}
+.sidebar {    
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.sidebar .toggle-button {    
+    background: linear-gradient(90deg, #34d399, #10b981) !important;
+    border: none;    
+    padding: 12px 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+.toggle-button:hover {
+    transform: scale(1.05);
+}
+.sidebar .sidebar-content {
+    padding-left: 10px !important;
+}
+.sidebar .sidebar-content .column .block div .prose {
+    text-align: center;
+}
+"""
+with gr.Blocks(theme=gr.themes.Ocean(), css=css) as demo:
+    gr.Markdown("# Tag Group Helper Demo")
+    gr.Markdown("Click on the tags below to add them to the prompt textboxes.")
+    gr.Markdown("<span>💻 <a href='https://github.com/DEVAIEXP/gradio_component_taggrouphelper'>GitHub Code</a></span>")
+    with gr.Row():
+        with gr.Column(scale=2): # Give more space to the textboxes
+            # Create the target Textbox and give it a unique `elem_id`.
+            positive_prompt_box = gr.Textbox(
+                label="Positive Prompt",
+                placeholder="Click tags from 'Prompt Keywords' to add them here...",
+                lines=5,
+                elem_id="positive-prompt-textbox" # This ID must be unique
+            )
+            negative_prompt_box = gr.Textbox(
+                label="Negative Prompt",
+                placeholder="Click tags from 'Negative Keywords' to add them here...",
+                lines=5,
+                elem_id="negative-prompt-textbox" # This ID must be unique
+            )
+        with gr.Sidebar(position="right"):           
+            # Create an instance of the TagGroupHelper for the Positive Prompt box.
+            TagGroupHelper(
+                label="Positive Prompt Keywords",
+                value={k: v for k, v in TAG_DATA.items() if "Negative" not in k},
+                target_textbox_id="positive-prompt-textbox",
+                separator=", ",
+                interactive=True,
+                width=250,
+                font_size_scale=90
+                
+            )
+            
+            # Create another instance for the Negative Prompt box.
+            TagGroupHelper(
+                label="Negative Prompt Keywords",
+                value={"Negative Prompts": TAG_DATA["Negative Prompts"]},
+                target_textbox_id="negative-prompt-textbox",
+                separator=", ",
+                interactive=True,
+                width=250,                
+                font_size_scale=90
+            )
+
+if __name__ == '__main__':
+    demo.launch()
+```
+
+## `TagGroupHelper`
+
+### Initialization
+
+<table>
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left" style="width: 25%;">type</th>
+<th align="left">default</th>
+<th align="left">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>value</code></td>
+<td align="left" style="width: 25%;">
+
+```python
+typing.Optional[typing.Dict[str, typing.List[str]]][
+    typing.Dict[str, typing.List[str]][
+        str, typing.List[str][str]
+    ],
+    None,
+]
+```
+
+</td>
+<td align="left"><code>None</code></td>
+<td align="left">A dictionary where keys are group names and values are lists of tags.</td>
+</tr>
+
+<tr>
+<td align="left"><code>height</code></td>
+<td align="left" style="width: 25%;">
+
+```python
+int | None
+```
+
+</td>
+<td align="left"><code>None</code></td>
+<td align="left">The height of the component container in pixels.</td>
+</tr>
+
+<tr>
+<td align="left"><code>width</code></td>
+<td align="left" style="width: 25%;">
+
+```python
+int | None
+```
+
+</td>
+<td align="left"><code>None</code></td>
+<td align="left">The width of the component container in pixels.</td>
+</tr>
+
+<tr>
+<td align="left"><code>label</code></td>
+<td align="left" style="width: 25%;">
+
+```python
+str | None
+```
+
+</td>
+<td align="left"><code>None</code></td>
+<td align="left">The label for this component, displayed above the groups.</td>
+</tr>
+
+<tr>
+<td align="left"><code>font_size_scale</code></td>
+<td align="left" style="width: 25%;">
+
+```python
+int
+```
+
+</td>
+<td align="left"><code>100</code></td>
+<td align="left">A percentage to scale the font size of group headers and tags. Defaults to 100.</td>
+</tr>
+
+<tr>
+<td align="left"><code>every</code></td>
+<td align="left" style="width: 25%;">
+
+```python
+float | None
+```
+
+</td>
+<td align="left"><code>None</code></td>
+<td align="left">If `value` is a callable, run the function 'every' seconds while the client connection is open.</td>
+</tr>
+
+<tr>
+<td align="left"><code>show_label</code></td>
+<td align="left" style="width: 25%;">
+
+```python
+bool | None
+```
+
+</td>
+<td align="left"><code>None</code></td>
+<td align="left">If False, the label is not displayed.</td>
+</tr>
+
+<tr>
+<td align="left"><code>container</code></td>
+<td align="left" style="width: 25%;">
+
+```python
+bool
+```
+
+</td>
+<td align="left"><code>True</code></td>
+<td align="left">If False, the component will not be wrapped in a container.</td>
+</tr>
+
+<tr>
+<td align="left"><code>scale</code></td>
+<td align="left" style="width: 25%;">
+
+```python
+int | None
+```
+
+</td>
+<td align="left"><code>None</code></td>
+<td align="left">The relative size of the component compared to others in a `gr.Row` or `gr.Column`.</td>
+</tr>
+
+<tr>
+<td align="left"><code>min_width</code></td>
+<td align="left" style="width: 25%;">
+
+```python
+int
+```
+
+</td>
+<td align="left"><code>160</code></td>
+<td align="left">The minimum width of the component in pixels.</td>
+</tr>
+
+<tr>
+<td align="left"><code>interactive</code></td>
+<td align="left" style="width: 25%;">
+
+```python
+bool | None
+```
+
+</td>
+<td align="left"><code>None</code></td>
+<td align="left">if True, will be rendered as an selectable component; if False, editing will be disabled. If not provided, this is inferred based on whether the component is used as an input or output.</td>
+</tr>
+
+<tr>
+<td align="left"><code>target_textbox_id</code></td>
+<td align="left" style="width: 25%;">
+
+```python
+str | None
+```
+
+</td>
+<td align="left"><code>None</code></td>
+<td align="left">The `elem_id` of the `gr.Textbox` component to target. Required.</td>
+</tr>
+
+<tr>
+<td align="left"><code>separator</code></td>
+<td align="left" style="width: 25%;">
+
+```python
+str
+```
+
+</td>
+<td align="left"><code>", "</code></td>
+<td align="left">The string to use as a separator between tags. Defaults to ", ". Can be set to " " for space separation.</td>
+</tr>
+
+<tr>
+<td align="left"><code>visible</code></td>
+<td align="left" style="width: 25%;">
+
+```python
+bool
+```
+
+</td>
+<td align="left"><code>True</code></td>
+<td align="left">If False, the component will be hidden.</td>
+</tr>
+
+<tr>
+<td align="left"><code>elem_id</code></td>
+<td align="left" style="width: 25%;">
+
+```python
+str | None
+```
+
+</td>
+<td align="left"><code>None</code></td>
+<td align="left">An optional string that is assigned as the id of this component in the HTML DOM.</td>
+</tr>
+
+<tr>
+<td align="left"><code>elem_classes</code></td>
+<td align="left" style="width: 25%;">
+
+```python
+list[str] | str | None
+```
+
+</td>
+<td align="left"><code>None</code></td>
+<td align="left">An optional list of strings to assign as CSS classes to the component.</td>
+</tr>
+</tbody></table>
+
+
+
+
+### User function
+
+The impact on the users predict function varies depending on whether the component is used as an input or output for an event (or both).
+
+- When used as an Input, the component only impacts the input signature of the user function.
+- When used as an output, the component only impacts the return signature of the user function.
+
+The code snippet below is accurate in cases where the component is used as both an input and an output.
+
+
+
+ ```python
+ def predict(
+     value: Any
+ ) -> typing.Optional[typing.Dict[str, typing.List[str]]][
+    typing.Dict[str, typing.List[str]][
+        str, typing.List[str][str]
+    ],
+    None,
+]:
+     return value
+ ```
+ 
