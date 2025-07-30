@@ -1,0 +1,140 @@
+Metadata-Version: 2.4
+Name: clfits
+Version: 0.4.0
+Summary: A command-line FITS header editor.
+Author-email: Amber Malpas <malpas.1@osu.edu>
+License: MIT License
+        
+        Copyright (c) 2024 Amber Malpas
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE. 
+Project-URL: Homepage, https://github.com/AmberLee2427/CLFits
+Project-URL: Bug Tracker, https://github.com/AmberLee2427/CLFits/issues
+Project-URL: Repository, https://github.com/AmberLee2427/CLFits.git
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Scientific/Engineering :: Astronomy
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: astropy
+Requires-Dist: typer[all]
+Requires-Dist: rich
+Requires-Dist: pyyaml
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-cov; extra == "dev"
+Requires-Dist: pytest-doctestplus; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
+Requires-Dist: mypy; extra == "dev"
+Requires-Dist: bump-my-version; extra == "dev"
+Requires-Dist: sphinx; extra == "dev"
+Requires-Dist: furo; extra == "dev"
+Requires-Dist: pre-commit; extra == "dev"
+Requires-Dist: numpydoc; extra == "dev"
+Provides-Extra: docs
+Requires-Dist: sphinx; extra == "docs"
+Requires-Dist: furo; extra == "docs"
+Requires-Dist: numpydoc; extra == "docs"
+Dynamic: license-file
+
+# CLFits: FITS Header Editor
+
+A command-line tool for viewing and editing the headers of FITS files.
+
+[![PyPI Version](https://img.shields.io/pypi/v/clfits.svg)](https://pypi.org/project/clfits)
+[![CI Status](https://github.com/AmberLee2427/CLFits/actions/workflows/ci.yml/badge.svg)](https://github.com/AmberLee2427/CLFits/actions/workflows/ci.yml)
+[![Test Coverage](https://codecov.io/gh/AmberLee2427/CLFits/branch/main/graph/badge.svg)](https://codecov.io/gh/AmberLee2427/CLFits)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
+## Installation
+
+```bash
+pip install clfits
+```
+
+## Quick Start
+
+### View a Header
+
+To view the primary header of a FITS file:
+```bash
+clfits view my_image.fits
+```
+
+To view the header of a specific extension (e.g., the second HDU, index 1):
+```bash
+clfits view my_image.fits --hdu 1
+```
+
+Or view an extension by name:
+```bash
+clfits view my_image.fits --hdu "OBSERVATIONS"
+```
+
+### Get, Set, and Delete Keywords
+
+```bash
+# Get the value of a keyword
+clfits get my_image.fits OBJECT
+
+# Set a new value for a keyword
+clfits set my_image.fits OBJECT "NGC 42"
+
+# Set a keyword with a comment
+clfits set my_image.fits OBSERVER "Webb" --comment "James Webb Space Telescope"
+
+# Delete a keyword from the first extension's header
+clfits del my_image.fits --hdu 1 TFORM1
+```
+
+### Search and Filter Keywords
+
+Find all keywords starting with "NAXIS":
+```bash
+clfits search my_image.fits --key "NAXIS*"
+```
+
+Find all keywords in the "EVENTS" extension where the value is a specific string:
+```bash
+clfits search my_image.fits --hdu "EVENTS" --value "GTI"
+```
+
+### Export Headers
+
+Export the primary header to a JSON file:
+```bash
+clfits export my_image.fits --output header.json
+```
+
+Export the header of the second HDU to YAML, printing to the console:
+```bash
+clfits export my_image.fits --hdu 1 --format yaml
+```
+
+## Documentation
+
+Full documentation is available at [clfits.readthedocs.io](https://clfits.readthedocs.io). 

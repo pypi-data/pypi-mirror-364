@@ -1,0 +1,2 @@
+[console_scripts]
+clfits = clfits.main:app
