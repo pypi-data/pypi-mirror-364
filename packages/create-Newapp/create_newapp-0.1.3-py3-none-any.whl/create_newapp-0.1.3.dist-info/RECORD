@@ -1,0 +1,17 @@
+create_django/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+create_django/__main__.py,sha256=iGO38tO6jYjAiV_ubaH1NJZBZ4IlykOH2T1HANnY9TY,954
+create_django/Myapp/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+create_django/Myapp/admin.py,sha256=KDinuFOB7j8aGSpXcZa77ydeEXOGyOwQY7fL0-B-cL4,32
+create_django/Myapp/apps.py,sha256=09SMj7g_V_kCaNqbiV_4KlRo-kooagWvQ-JRhR7_GZg,146
+create_django/Myapp/tests.py,sha256=lrJ4GSVMlKtdlYxHonFLpgxYWLBhlLfTJJs3mDr-LLg,32
+create_django/Myapp/urls.py,sha256=Na9MIuc4souFjvcnywfAUo4u9amOoG0gLt_7qMKZ2uw,106
+create_django/Myapp/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+create_django/Myapp/models/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+create_django/Myapp/static/mon_app/style.css,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+create_django/Myapp/templates/mon_app/my_template.html,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+create_django/Myapp/views/__init.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+create_newapp-0.1.3.dist-info/METADATA,sha256=Knm6-CyL4FRe87O0hHYKSePZcLXBGK9PpprMI4KVKSE,720
+create_newapp-0.1.3.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+create_newapp-0.1.3.dist-info/entry_points.txt,sha256=QFPQq0ACvY_oCMqzZcYdmZld8LtNnEvpYHCTQ-X-NF0,62
+create_newapp-0.1.3.dist-info/top_level.txt,sha256=lan3Qens-7x0w_KS7AMPmSd-q9K-P-nb0DEe8nIR1F4,14
+create_newapp-0.1.3.dist-info/RECORD,,
