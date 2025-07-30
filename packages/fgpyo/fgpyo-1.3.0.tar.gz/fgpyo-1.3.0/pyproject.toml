@@ -1,0 +1,113 @@
+[project]
+name = "fgpyo"
+version = "1.3.0"
+description = "Python bioinformatics and genomics library"
+authors = [
+    { name = "Nils Homer" },
+    { name = "Tim Fennell" },
+    { name = "Nathan Roach" },
+]
+requires-python = ">=3.9.0,<4.0"
+readme = "README.md"
+license = "MIT"
+keywords = ["bioinformatics"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+dependencies = [
+    "attrs>=19.3.0",
+    "pysam>=0.22.1",
+    "typing_extensions>=4.12.2 ; python_version < '3.13'",
+    "strenum>=0.4.15,<0.5",
+    "zlib-ng>=0.5.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/fulcrumgenomics/fgpyo"
+Repository = "https://github.com/fulcrumgenomics/fgpyo"
+
+[dependency-groups]
+dev = [
+    "mypy>=1.7.0",
+    "pytest>=7.4.0",
+    "pytest-cov>=2.8.1",
+    "ruff==0.4.8",
+    "setuptools>=68.0.0",
+]
+docs = [
+    "mkdocs-autorefs>=0.5.0",
+    "mkdocs-include-markdown-plugin>=6.0.1",
+    "mkdocs-material>=9.2.8",
+    "mkdocs-table-reader-plugin>=2.0.1",
+    "mkdocs>=1.5.2",
+    "mkdocs-gen-files>=0.5.0",
+    "mkdocs-literate-nav>=0.6.1",
+    "mkdocs-section-index>=0.3.9",
+    "mkdocstrings-python>=1.6.2",
+    "mkdocstrings>=0.23.0",
+    "numpy>=1.26.4,<2 ; python_version >= '3.12'",
+    "numpy>=1.25.2,<2 ; python_version >= '3.9' and python_version < '3.12'",
+    "numpy>=1.24.4,<2 ; python_version < '3.9'",
+]
+
+[tool.uv]
+default-groups = [
+    "dev",
+    "docs",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+line-length    = 100
+target-version = "py38"
+output-format  = "full"
+
+[tool.ruff.lint]
+select    = ["C901", "B", "E", "F", "I", "W", "Q"]
+ignore    = ["E203", "E701"]
+unfixable = ["B"]
+
+[tool.ruff.lint.isort]
+force-single-line = true
+
+[tool.mypy]
+strict_optional             = false
+check_untyped_defs          = true
+disallow_incomplete_defs    = true
+disallow_untyped_calls      = true
+disallow_untyped_decorators = true
+disallow_untyped_defs       = true
+no_implicit_optional        = true
+warn_no_return              = true
+warn_redundant_casts        = true
+warn_return_any             = true
+warn_unreachable            = true
+warn_unused_configs         = true
+warn_unused_ignores         = true
+enable_error_code           = "ignore-without-code"
+exclude                     = ["site/", "docs/"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: not covered",
+    "@overload"
+]
