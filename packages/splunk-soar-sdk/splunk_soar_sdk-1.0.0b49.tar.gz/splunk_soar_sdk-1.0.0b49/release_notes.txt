@@ -1,0 +1,23 @@
+# [1.0.0-beta.49](https://github.com/phantomcyber/splunk-soar-sdk/compare/1.0.0-beta.48...1.0.0-beta.49) (2025-07-24)
+
+
+### Bug Fixes
+
+* handle asset decryption correctly ([75864ae](https://github.com/phantomcyber/splunk-soar-sdk/commit/75864ae6b5612eb46136672f89f8de206d7c7891))
+* use platform encryption for asset instead of normal encryption_helper ([6f0dfa1](https://github.com/phantomcyber/splunk-soar-sdk/commit/6f0dfa1f472579b566aeed502c434ff9a4e86bc1))
+
+
+
+
+
+# [1.0.0-beta.49](https://github.com/phantomcyber/splunk-soar-sdk/compare/1.0.0-beta.48...1.0.0-beta.49) (2025-07-24)
+
+
+### Bug Fixes
+
+* handle asset decryption correctly ([75864ae](https://github.com/phantomcyber/splunk-soar-sdk/commit/75864ae6b5612eb46136672f89f8de206d7c7891))
+* use platform encryption for asset instead of normal encryption_helper ([6f0dfa1](https://github.com/phantomcyber/splunk-soar-sdk/commit/6f0dfa1f472579b566aeed502c434ff9a4e86bc1))
+
+
+
+
