@@ -1,0 +1,2 @@
+[console_scripts]
+entity-agent = entityAgent.agent:runtime
