@@ -1,0 +1,10 @@
+LICENSE
+README.md
+setup.py
+voiladata/__init__.py
+voiladata/main.py
+voiladata.egg-info/PKG-INFO
+voiladata.egg-info/SOURCES.txt
+voiladata.egg-info/dependency_links.txt
+voiladata.egg-info/requires.txt
+voiladata.egg-info/top_level.txt
