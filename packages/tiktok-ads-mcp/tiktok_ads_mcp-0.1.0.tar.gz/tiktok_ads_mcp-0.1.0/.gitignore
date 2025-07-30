@@ -1,0 +1,14 @@
+# Environment variables
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Local cache directory from your config
+.cache/
+
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
