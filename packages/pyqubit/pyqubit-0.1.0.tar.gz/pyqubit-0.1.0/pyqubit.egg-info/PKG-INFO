@@ -1,0 +1,10 @@
+Metadata-Version: 2.1
+Name: pyqubit
+Version: 0.1.0
+Summary: A simple quantum qubit simulator in Python
+Home-page: https://github.com/yourusername/pyqubit
+Author: Your Name
+Author-email: your.email@example.com
+License: MIT
+Requires-Python: >=3.6
+License-File: LICENSE
