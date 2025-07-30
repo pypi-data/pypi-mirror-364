@@ -1,0 +1,2 @@
+[console_scripts]
+oceancrow-feedback = oceancrow_feedback.src.feedback:run_feedback_portal
