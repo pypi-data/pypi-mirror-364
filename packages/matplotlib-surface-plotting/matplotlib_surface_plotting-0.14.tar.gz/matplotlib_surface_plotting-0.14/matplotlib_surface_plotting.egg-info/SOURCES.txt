@@ -1,0 +1,15 @@
+LICENSE
+README.md
+setup.py
+matplotlib_surface_plotting/__init__.py
+matplotlib_surface_plotting/colors.py
+matplotlib_surface_plotting/geometry.py
+matplotlib_surface_plotting/matplotlib_surface_plotting.py
+matplotlib_surface_plotting/transformations.py
+matplotlib_surface_plotting.egg-info/PKG-INFO
+matplotlib_surface_plotting.egg-info/SOURCES.txt
+matplotlib_surface_plotting.egg-info/dependency_links.txt
+matplotlib_surface_plotting.egg-info/requires.txt
+matplotlib_surface_plotting.egg-info/top_level.txt
+test/test-pip.py
+test/test_matplotlib_surface_plotting.py
