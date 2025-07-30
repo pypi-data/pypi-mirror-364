@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+activity/__init__.py
+activity/admin.py
+activity/apps.py
+activity/middleware.py
+activity/models.py
+activity/tests.py
+activity/views.py
+activity/migrations/__init__.py
+django_user_activity.egg-info/PKG-INFO
+django_user_activity.egg-info/SOURCES.txt
+django_user_activity.egg-info/dependency_links.txt
+django_user_activity.egg-info/requires.txt
+django_user_activity.egg-info/top_level.txt
