@@ -1,0 +1,16 @@
+finatic_server/__init__.py,sha256=M6DZ75v0qK4xOAVLYPzCfCiyNFiFVPTqCIv2yf6LqX8,2558
+finatic_server/core/__init__.py,sha256=j47dRgumMlE0CDAJw-VgFinGwgrxrYeXq1r65gKD3tg,190
+finatic_server/core/api_client.py,sha256=aCGaQFdqd-SggNPptIrNVSeS6eS14N1GrPw_TurU6G0,34131
+finatic_server/core/client.py,sha256=kR9uT1RtjKloDrgDsDtLTSgoR7QInv_j-IuqnZM6SGM,22202
+finatic_server/types/__init__.py,sha256=9tqj5qIUXWmPvvNxdzZ_1ju2dXb6XiV7u986USH66Ew,2002
+finatic_server/types/auth.py,sha256=toeeWxkx_0jLUxJpaANBrqVo7Rys5aQ9DD-biWijXw4,5975
+finatic_server/types/broker.py,sha256=mOA7JKUQpssnji-plJ011U-9izA-K90RHa7wd_PFq2g,8286
+finatic_server/types/common.py,sha256=rrfpA9g3oMZp32sJ7dhhetVGEV442hXYWrEJ-D9ksIc,7472
+finatic_server/types/orders.py,sha256=TW0j6g7eS3cex3SEs1fu8MF9QFViirxMF6S1C3VgQmo,3345
+finatic_server/types/portfolio.py,sha256=_EtUwQy6GmvU9UAMD59d4KePHJkxbQYA0xX5de2D4L8,3031
+finatic_server/utils/__init__.py,sha256=qL0pv3fto3Jy2h8FY3iRg1IMVm9D1-1Oy3w7aNHh_bI,327
+finatic_server/utils/errors.py,sha256=Z_-UVDnorwHfAiZ819BSxki2xVHn6AnOi9_9hpDwW48,1802
+finatic_server_python-0.1.0.dist-info/METADATA,sha256=1q6MBj9arHc9tLGiRAuNTvrv5_T5M9Av8NFGucLPN14,10361
+finatic_server_python-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+finatic_server_python-0.1.0.dist-info/top_level.txt,sha256=5eAfjxxwueQwIup4GCHEyKWX8PNvqhx1BV7C7TA4z50,15
+finatic_server_python-0.1.0.dist-info/RECORD,,
