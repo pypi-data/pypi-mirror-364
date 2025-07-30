@@ -1,0 +1,3 @@
+[console_scripts]
+DS9CADET = pycadet.DS9CADET:main
+
