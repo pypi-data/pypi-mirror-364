@@ -1,0 +1,243 @@
+Metadata-Version: 2.4
+Name: pydoc-markdown-nuxt
+Version: 0.1.1
+Summary: A Nuxt.js renderer for pydoc-markdown that generates documentation compatible with Nuxt Content and MDC
+Author-email: Uriel Curiel <kratoz.00616@gmail.com>
+License: MIT License
+        
+        Copyright (c) 2025 Uriel Curiel
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Keywords: pydoc-markdown,nuxt,documentation,python,mdc,nuxt-content
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Documentation
+Classifier: Topic :: Software Development :: Documentation
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pydoc-markdown>=4.8.2
+Requires-Dist: pytest>=8.3.5
+Requires-Dist: pytest-cov>=5.0.0
+Requires-Dist: PyYAML>=5.0
+Requires-Dist: twine>=6.1.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.1.0; extra == "dev"
+Dynamic: license-file
+
+# pydoc-markdown-nuxt
+
+A pydoc-markdown renderer for generating documentation compatible with Nuxt Content and MDC (Markdown Components).
+
+## Overview
+
+`pydoc-markdown-nuxt` extends [pydoc-markdown](https://github.com/NiklasRosenstein/pydoc-markdown) with a renderer that generates Markdown files following the [Nuxt Content](https://content.nuxtjs.org/) structure and conventions. This allows you to seamlessly integrate Python API documentation into Nuxt.js websites.
+
+## Features
+
+- **Nuxt Content Compatible**: Generates Markdown files with YAML frontmatter that work with Nuxt Content's file-based routing
+- **Flexible Directory Structure**: Configure custom directory structures and file organization
+- **YAML Frontmatter**: Full control over page metadata through configurable frontmatter
+- **MDC Support**: Ready for MDC (Markdown Components) syntax extensions
+- **Clean Integration**: Works with existing pydoc-markdown configurations and processors
+
+## Installation
+
+```bash
+pip install pydoc-markdown-nuxt
+```
+
+## Quick Start
+
+Create a `pydoc-markdown.yml` configuration file:
+
+```yaml
+loaders:
+  - type: python
+    search_path: [src]
+
+renderers:
+  - type: nuxt
+    content_directory: content/docs
+    default_frontmatter:
+      layout: docs
+      navigation: true
+    pages:
+      - title: API Documentation
+        contents:
+          - '*'
+```
+
+Then run:
+
+```bash
+pydoc-markdown
+```
+
+This will generate Nuxt Content compatible Markdown files in the `content/docs` directory.
+
+## Configuration
+
+### Basic Options
+
+- `content_directory`: Directory where content files are generated (default: `content`)
+- `clean_render`: Whether to clean previous files before rendering (default: `true`)
+- `default_frontmatter`: Default YAML frontmatter applied to all pages
+- `use_mdc`: Enable MDC syntax features (default: `true`)
+- `base_url`: Base URL for documentation (default: `/`)
+
+### Page Configuration
+
+Pages support all standard pydoc-markdown page options plus:
+
+- `frontmatter`: Custom YAML frontmatter for the page
+- `directory`: Custom subdirectory for the page
+- `extension`: File extension (default: `.md`)
+
+### Example Configuration
+
+```yaml
+loaders:
+  - type: python
+    search_path: [src]
+
+processors:
+  - type: filter
+    expression: not name.startswith('_')
+  - type: smart
+  - type: crossref
+
+renderers:
+  - type: nuxt
+    content_directory: content/docs
+    use_mdc: true
+    base_url: /docs/
+    default_frontmatter:
+      layout: docs
+      navigation: true
+      sidebar: true
+    pages:
+      - title: Home
+        name: index
+        source: README.md
+        frontmatter:
+          description: "Welcome to our API documentation"
+          icon: "home"
+      - title: Getting Started
+        name: getting-started
+        source: docs/getting-started.md
+        frontmatter:
+          description: "Quick start guide"
+          icon: "rocket"
+      - title: API Reference
+        name: api
+        directory: reference
+        frontmatter:
+          description: "Complete API reference"
+          icon: "code"
+        contents:
+          - mypackage.*
+```
+
+## Generated Output
+
+The renderer generates Markdown files with YAML frontmatter:
+
+```markdown
+---
+title: API Documentation
+layout: docs
+navigation: true
+description: Complete API reference
+icon: code
+---
+
+# MyClass
+
+A sample class for demonstration.
+
+## Methods
+
+### my_method(param1, param2='default')
+
+A sample method that does something useful.
+
+**Arguments:**
+- `param1`: First parameter
+- `param2`: Second parameter with default value
+
+**Returns:**
+Something useful
+```
+
+## Integration with Nuxt Content
+
+The generated files work seamlessly with Nuxt Content:
+
+1. **File-based Routing**: Files in `content/` automatically become pages
+2. **Navigation**: Use frontmatter to control navigation appearance
+3. **Layouts**: Specify custom layouts through frontmatter
+4. **Metadata**: Rich metadata support for SEO and organization
+
+## MDC Support
+
+When `use_mdc: true`, the renderer is ready for MDC enhancements:
+
+```markdown
+::alert{type="info"}
+This is an info alert using MDC syntax
+::
+
+::code-group
+```python
+# Python example
+def hello():
+    return "Hello, World!"
+```
+::
+```
+
+## Development
+
+To contribute to this project:
+
+```bash
+git clone https://github.com/UrielCuriel/pydoc-markdown-nuxt
+cd pydoc-markdown-nuxt
+pip install -e .
+```
+
+Run tests:
+
+```bash
+python test_renderer.py
+```
+
+## License
+
+MIT License - see LICENSE file for details.
