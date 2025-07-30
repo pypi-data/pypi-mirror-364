@@ -1,0 +1,25 @@
+[project]
+name = "logto-dj"
+version = "0.0.5"
+description = "This Django app adds support for Logto authentication from logto.io, easily integrate modern authentication workflows into your Django project."
+authors = [
+    {name = "Nameer Haider",email = "nmeer5242@gmail.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.12,<4.0"
+dependencies = [
+    "pyjwt (>=2.10.1,<3.0.0)",
+    "cryptography (>=45.0.5,<46.0.0)",
+    "requests (>=2.32.4,<3.0.0)",
+    "djangorestframework (>=3.16.0,<4.0.0)",
+    "django (>=5.2.4,<6.0.0)",
+    "python-jose[ecdsa] (>=3.5.0,<4.0.0)",
+]
+
+[tool.poetry]
+packages = [{ include = "logto_dj" }]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
