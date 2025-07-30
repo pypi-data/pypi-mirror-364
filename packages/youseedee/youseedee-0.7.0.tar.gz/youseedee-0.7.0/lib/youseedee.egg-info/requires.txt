@@ -1,0 +1,3 @@
+requests
+filelock
+platformdirs>=4.3
