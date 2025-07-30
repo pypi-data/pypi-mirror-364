@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+requirements.txt
+setup.py
+bbox_annotation_tools.egg-info/PKG-INFO
+bbox_annotation_tools.egg-info/SOURCES.txt
+bbox_annotation_tools.egg-info/dependency_links.txt
+bbox_annotation_tools.egg-info/entry_points.txt
+bbox_annotation_tools.egg-info/requires.txt
+bbox_annotation_tools.egg-info/top_level.txt
+bbox_tools/__init__.py
+bbox_tools/bbox_gui_editor.py
+bbox_tools/config.py
+bbox_tools/drug_code_viewer.py
+tests/test_imports.py

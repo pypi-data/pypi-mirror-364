@@ -1,0 +1,145 @@
+Metadata-Version: 2.4
+Name: bbox-annotation-tools
+Version: 1.0.0
+Summary: 바운딩 박스 어노테이션 편집 및 분석 도구
+Home-page: https://github.com/LEEYH205/bbox-annotation-tools
+Author: LEEYH205
+Author-email: LEEYH205 <ejrdkachry@gmail.com>
+Maintainer-email: LEEYH205 <ejrdkachry@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/LEEYH205/bbox-annotation-tools
+Project-URL: Repository, https://github.com/LEEYH205/bbox-annotation-tools
+Project-URL: Bug Tracker, https://github.com/LEEYH205/bbox-annotation-tools/issues
+Keywords: bbox,annotation,computer-vision,image-processing,drug-detection
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Scientific/Engineering :: Image Processing
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: opencv-python>=4.5.0
+Requires-Dist: numpy>=1.19.0
+Requires-Dist: matplotlib>=3.3.0
+Requires-Dist: Pillow>=8.0.0
+Dynamic: author
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+
+# 바운딩 박스 어노테이션 편집 도구
+
+약품 이미지의 바운딩 박스 어노테이션을 편집하고 분석하는 GUI 도구입니다.
+
+## 주요 기능
+
+### 1. 바운딩 박스 편집기 (BBoxEditor)
+- COCO 형식의 어노테이션 파일 편집
+- 마우스 드래그로 바운딩 박스 그리기
+- 기존 어노테이션과 비교 분석
+- 약품별 그룹화된 어노테이션 관리
+
+### 2. 약품 코드 뷰어 (DrugCodeViewer)
+- 약품 코드별 이미지 및 어노테이션 조회
+- 바운딩 박스 오버랩 분석
+- 어노테이션 불일치 분석
+
+## 설치 방법
+
+### 1. Git에서 설치
+```bash
+git clone https://github.com/LEEYH205/bbox-annotation-tools.git
+cd drug_obj_detection
+pip install -e .
+```
+
+### 2. PyPI에서 설치 (배포 후)
+```bash
+pip install bbox-annotation-tools
+```
+
+## 사용 방법
+
+### GUI 도구 실행
+```bash
+# 바운딩 박스 편집기
+bbox-editor
+
+# 약품 코드 뷰어
+drug-viewer
+```
+
+### Python에서 사용
+```python
+from bbox_tools import BBoxEditor, DrugCodeViewer
+import tkinter as tk
+
+# 바운딩 박스 편집기
+root = tk.Tk()
+editor = BBoxEditor(root)
+root.mainloop()
+
+# 약품 코드 뷰어
+root = tk.Tk()
+viewer = DrugCodeViewer(root)
+root.mainloop()
+```
+
+## 프로젝트 구조
+
+```
+drug_obj_detection/
+├── bbox_tools/                    # 메인 패키지
+│   ├── __init__.py               # 패키지 초기화
+│   ├── bbox_gui_editor.py        # 바운딩 박스 편집기
+│   ├── drug_code_viewer.py       # 약품 코드 뷰어
+│   └── config.py                 # 설정 관리
+├── tests/                        # 테스트 파일들
+│   ├── __init__.py
+│   └── test_imports.py
+├── .github/workflows/            # GitHub Actions
+│   └── build-and-test.yml
+├── setup.py                      # 패키지 설정
+├── pyproject.toml                # 현대적 패키지 설정
+├── requirements.txt              # 의존성 목록
+├── README.md                     # 프로젝트 설명
+├── LICENSE                       # MIT 라이선스
+├── .gitignore                    # Git 무시 파일
+├── MANIFEST.in                   # 패키지 포함 파일
+├── build_and_distribute.py       # 배포 스크립트
+```
+
+## 의존성
+
+- Python 3.7+
+- OpenCV (opencv-python)
+- NumPy
+- Matplotlib
+- Pillow (PIL)
+- tkinter (Python 기본 라이브러리)
+
+## 라이선스
+
+MIT License
+
+## 기여하기
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 연락처
+
+- 이메일: ejrdkachry@gmail.com
+- 프로젝트 링크: https://github.com/LEEYH205/bbox-annotation-tools 
