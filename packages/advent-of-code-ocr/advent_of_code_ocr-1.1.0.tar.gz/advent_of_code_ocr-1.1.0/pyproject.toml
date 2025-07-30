@@ -1,0 +1,97 @@
+[project]
+name = "advent-of-code-ocr"
+version = "1.1.0"
+description = "A library to parse Advent of Code ASCII art"
+authors = [{ name = "Ben Soyka", email = "hello@bsoyka.me" }]
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+    "click>=8.2.1",
+]
+
+[dependency-groups]
+dev = [
+    "bump-my-version>=1.2.1",
+    "coverage>=7.10.0",
+    "numpy>=2.0.2",
+    "poethepoet>=0.36.0",
+    "pre-commit>=4.2.0",
+    "pytest>=8.4.1",
+    "ruff>=0.12.5",
+]
+
+[project.urls]
+Changelog = "https://github.com/bsoyka/advent-of-code-ocr/releases"
+Source = "https://github.com/bsoyka/advent-of-code-ocr"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.poe.tasks]
+_format = "ruff format"
+_lint = "ruff check --fix"
+bump = "bump-my-version bump"
+pc = "pre-commit run --all-files"
+ruff = ["_lint", "_format"]
+
+[tool.ruff]
+preview = true
+
+[tool.ruff.format]
+docstring-code-format = true
+line-ending = "lf"
+quote-style = "single"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "CPY001", # Don't require file-level copyright notices.
+    "COM812", # Ignore trailing commas. Causes conflicts between checker and formatter.
+    "PLR6301" # Ignore making methods into functions, class methods, or static methods.
+]
+pydocstyle.convention = "google"
+flake8-quotes.inline-quotes = "single"
+
+[tool.ruff.lint.per-file-ignores]
+"*_test.py" = ["PLR2004", "S101"] # Allow magic values and assertions in tests.
+
+[tool.mypy]
+strict = true
+
+[tool.bumpversion]
+current_version = "1.1.0"
+parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)"
+serialize = ["{major}.{minor}.{patch}"]
+search = "{current_version}"
+replace = "{new_version}"
+regex = false
+ignore_missing_version = false
+ignore_missing_files = false
+tag = true
+sign_tags = false
+tag_name = "v{new_version}"
+tag_message = "chore: bump {current_version} → {new_version}"
+allow_dirty = false
+commit = true
+message = "chore: bump {current_version} → {new_version}"
+moveable_tags = []
+commit_args = ""
+setup_hooks = []
+pre_commit_hooks = ["uv lock --upgrade-package advent-of-code-ocr", "git add uv.lock"]
+post_commit_hooks = []
+
+[[tool.bumpversion.files]]
+filename = "advent_of_code_ocr/__init__.py"
