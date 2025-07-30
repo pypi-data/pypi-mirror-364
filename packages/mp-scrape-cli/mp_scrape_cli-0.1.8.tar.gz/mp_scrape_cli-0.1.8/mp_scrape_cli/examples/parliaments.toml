@@ -1,0 +1,41 @@
+# SPDX-FileCopyrightText: 2025 Free Software Foundation Europe e.V. <mp-explore@fsfe.org>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+[workflow]
+sources = ["europarl", "bundestag", "nrw", "aarhus"]
+processes = []
+consumers = ["csv", "sqlite"]
+
+[sources.aarhus]
+module = "mp_explore_source_aarhus"
+display_browser = true
+
+[sources.bundestag]
+module = "mp_explore_source_bundestag"
+check_cdu_csu = false
+check_grune = false
+infer_email = false
+display_browser = true
+
+[sources.nrw]
+module = "mp_explore_source_nrw"
+retrieve_emails = false
+
+[sources.europarl]
+module = "mp_explore_source_euparl"
+retrieve_emails = false
+retrieve_committees = false
+
+[consumers.csv]
+module = "mp_explore_export_csv"
+dest = "result.csv"
+index = false
+
+[consumers.sqlite]
+module = "mp_explore_export_sqlite"
+dest = "result.sqlite3"
+table_name = "parliaments"
+track_changes = true
+separate_sources = true
+overwrite = false
