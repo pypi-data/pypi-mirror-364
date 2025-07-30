@@ -1,0 +1,3 @@
+[console_scripts]
+PyDCSL=PyDCSL.__main__:main
+
