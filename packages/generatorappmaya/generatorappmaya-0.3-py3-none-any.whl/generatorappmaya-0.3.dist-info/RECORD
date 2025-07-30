@@ -1,0 +1,17 @@
+generatorappmaya/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+generatorappmaya/cli.py,sha256=KPTc4HxWVuF3H6Sq4Q7xaAMVfb3MK0QDGHKcBXqPNlg,422
+generatorappmaya/generator.py,sha256=ck4O4Dvq237RLnW4j1kEEI_9JgfkEK8cs7VifRetAJ4,2662
+generatorappmaya/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+generatorappmaya/models/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+generatorappmaya/templates/app/admin.py.template,sha256=suMo4x8I3JBxAFBVIdE-5qnqZ6JAZV0FESABHOSc-vg,63
+generatorappmaya/templates/app/apps.py.template,sha256=q9_xVxr0_-PcLcSJicKTSJEvmve1apGZj9mawloTPPA,161
+generatorappmaya/templates/app/models.py.template,sha256=Vjc0p2XbAPgE6HyTF6vll98A4eDhA5AvaQqsc4kQ9AQ,57
+generatorappmaya/templates/app/tests.py.template,sha256=mrbGGRNg5jwbTJtWWa7zSKdDyeB4vmgZCRc2nk6VY-g,60
+generatorappmaya/templates/app/urls.py.template,sha256=YppXm0aHTxdt-jzYUSwrh_oGdp9RyvpaX0AzC6jiCCs,123
+generatorappmaya/templates/app/views.py.template,sha256=kgiuHobccEPOrwnpi6J97-cLfOOsHcMcxIuZ08z37Xg,109
+generatorappmaya/views/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+generatorappmaya-0.3.dist-info/METADATA,sha256=EXyOR-F5E531E9VfO1HAcvwdGEpjT7mQKbuKXyBzkFw,633
+generatorappmaya-0.3.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+generatorappmaya-0.3.dist-info/entry_points.txt,sha256=hhv9kdDTgZt9nhctiMDIxCz79lM9B2xF4m6oIZYSODc,63
+generatorappmaya-0.3.dist-info/top_level.txt,sha256=nmelsFZhQI_qJnGggp3fdibYO7S0DDAdcy8iPr1W2Fw,17
+generatorappmaya-0.3.dist-info/RECORD,,
