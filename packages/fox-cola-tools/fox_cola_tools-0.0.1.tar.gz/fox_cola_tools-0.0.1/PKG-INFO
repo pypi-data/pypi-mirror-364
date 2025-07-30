@@ -1,0 +1,42 @@
+Metadata-Version: 2.4
+Name: fox-cola-tools
+Version: 0.0.1
+Summary: fox-cola-tools
+Home-page: https://github.com/Joker-Pro-Max/fox-cola-tools
+Author: Sun Jia Peng
+Author-email: zybancao@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+Dynamic: summary
+
+# Fox-Cola-Tools
+
+一个简单的 Python 工具库示例。
+
+## 安装
+
+```bash
+    pip install fox-cola-tools
+```
+
+
+
+### Django settings 配置示例
+
+你可以在 Django 的 `settings.py` 中设置以下变量：
+```text
+CUSTOM_KEY = "you CUSTOM_KEY"
+CUSTOM_IV = "you CUSTOM_IV"
+```
