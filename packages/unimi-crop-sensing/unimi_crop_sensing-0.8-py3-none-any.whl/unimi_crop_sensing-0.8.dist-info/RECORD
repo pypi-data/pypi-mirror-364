@@ -1,0 +1,10 @@
+crop_sensing/__init__.py,sha256=RFC88nQfw7thuCpyaCA1C3Eev7-wKJPRJpOxd14Zk4c,262
+crop_sensing/cobot_manager.py,sha256=7bKbN49QWFGo3fgjBEsuAIl2tgujeEMdT6kiFyHdwDQ,4922
+crop_sensing/create_plc.py,sha256=-pPBdDZqcOV1ftbInbkvqZjlYAD9CxjRnOMT6FxuO5E,3446
+crop_sensing/find_plant.py,sha256=LSmDZJlA7XOIe4Uy03cFEzfPI-jMWqJ-WRUzVF3bqFo,5792
+crop_sensing/main.py,sha256=ph4bVqkWzk5iXFhUJhbEQ2ADZr4fATpwPGywaI3Ze4M,1381
+crop_sensing/zed_manager.py,sha256=Y_xNq0aQhFAUA8DFqH9nv0it1L2oba4FRwhMDM9WLTs,4193
+unimi_crop_sensing-0.8.dist-info/METADATA,sha256=U21Z1j8VNxy51zDDOaF0hwn29qkPAG7Sbn5Ly3Xj_bM,3619
+unimi_crop_sensing-0.8.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+unimi_crop_sensing-0.8.dist-info/top_level.txt,sha256=Cstn07EzzCnpu3otF2irAYIY_A6EuEgKGQYmPPC12Vk,13
+unimi_crop_sensing-0.8.dist-info/RECORD,,
