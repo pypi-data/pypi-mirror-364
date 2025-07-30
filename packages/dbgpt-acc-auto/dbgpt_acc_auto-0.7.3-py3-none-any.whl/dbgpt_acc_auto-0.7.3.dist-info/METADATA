@@ -1,0 +1,60 @@
+Metadata-Version: 2.4
+Name: dbgpt-acc-auto
+Version: 0.7.3
+Summary: Add your description here
+Project-URL: Homepage, https://github.com/eosphoros-ai/DB-GPT
+Project-URL: Documentation, http://docs.dbgpt.cn/docs/overview
+Project-URL: Repository, https://github.com/eosphoros-ai/DB-GPT.git
+Project-URL: Issues, https://github.com/eosphoros-ai/DB-GPT/issues
+Author-email: csunny <cfqcsunny@gmail.com>
+License-Expression: MIT
+Requires-Python: >=3.10
+Provides-Extra: auto
+Requires-Dist: torch<2.3,>=2.2.1; (sys_platform == 'darwin' and platform_machine == 'x86_64') and extra == 'auto'
+Requires-Dist: torch>=2.2.1; (sys_platform != 'darwin' or platform_machine != 'x86_64') and extra == 'auto'
+Requires-Dist: torchaudio<2.3,>=2.2.1; (sys_platform == 'darwin' and platform_machine == 'x86_64') and extra == 'auto'
+Requires-Dist: torchaudio>=2.2.1; (sys_platform != 'darwin' or platform_machine != 'x86_64') and extra == 'auto'
+Requires-Dist: torchvision<0.18.0,>=0.17.1; (sys_platform == 'darwin' and platform_machine == 'x86_64') and extra == 'auto'
+Requires-Dist: torchvision>=0.17.1; (sys_platform != 'darwin' or platform_machine != 'x86_64') and extra == 'auto'
+Provides-Extra: cpu
+Requires-Dist: torch<2.3,>=2.2.1; (sys_platform == 'darwin' and platform_machine == 'x86_64') and extra == 'cpu'
+Requires-Dist: torch>=2.2.1; (sys_platform != 'darwin' or platform_machine != 'x86_64') and extra == 'cpu'
+Requires-Dist: torchaudio<2.3,>=2.2.1; (sys_platform == 'darwin' and platform_machine == 'x86_64') and extra == 'cpu'
+Requires-Dist: torchaudio>=2.2.1; (sys_platform != 'darwin' or platform_machine != 'x86_64') and extra == 'cpu'
+Requires-Dist: torchvision<0.18.0,>=0.17.1; (sys_platform == 'darwin' and platform_machine == 'x86_64') and extra == 'cpu'
+Requires-Dist: torchvision>=0.17.1; (sys_platform != 'darwin' or platform_machine != 'x86_64') and extra == 'cpu'
+Provides-Extra: cuda118
+Requires-Dist: torch>=2.2.1; (sys_platform == 'win32' or sys_platform == 'linux') and extra == 'cuda118'
+Requires-Dist: torchaudio>=2.2.1; (sys_platform == 'win32' or sys_platform == 'linux') and extra == 'cuda118'
+Requires-Dist: torchvision>=0.17.1; (sys_platform == 'win32' or sys_platform == 'linux') and extra == 'cuda118'
+Provides-Extra: cuda121
+Requires-Dist: torch>=2.2.1; (sys_platform == 'win32' or sys_platform == 'linux') and extra == 'cuda121'
+Requires-Dist: torchaudio>=2.2.1; (sys_platform == 'win32' or sys_platform == 'linux') and extra == 'cuda121'
+Requires-Dist: torchvision>=0.17.1; (sys_platform == 'win32' or sys_platform == 'linux') and extra == 'cuda121'
+Provides-Extra: cuda124
+Requires-Dist: torch>=2.2.1; (sys_platform == 'win32' or sys_platform == 'linux') and extra == 'cuda124'
+Requires-Dist: torchaudio>=2.2.1; (sys_platform == 'win32' or sys_platform == 'linux') and extra == 'cuda124'
+Requires-Dist: torchvision>=0.17.1; (sys_platform == 'win32' or sys_platform == 'linux') and extra == 'cuda124'
+Provides-Extra: flash-attn
+Requires-Dist: dbgpt-acc-flash-attn; extra == 'flash-attn'
+Provides-Extra: mlx
+Requires-Dist: mlx-lm>=0.25.2; (sys_platform == 'darwin') and extra == 'mlx'
+Provides-Extra: quant-bnb
+Requires-Dist: accelerate; extra == 'quant-bnb'
+Requires-Dist: bitsandbytes>=0.39.0; (sys_platform == 'win32' or sys_platform == 'linux') and extra == 'quant-bnb'
+Provides-Extra: quant-gptq
+Requires-Dist: auto-gptq; extra == 'quant-gptq'
+Requires-Dist: optimum; extra == 'quant-gptq'
+Provides-Extra: quant-gptqmodel
+Requires-Dist: device-smi>=0.3.3; extra == 'quant-gptqmodel'
+Requires-Dist: gptqmodel; extra == 'quant-gptqmodel'
+Requires-Dist: optimum; extra == 'quant-gptqmodel'
+Requires-Dist: tokenicer; extra == 'quant-gptqmodel'
+Provides-Extra: vllm
+Requires-Dist: vllm>=0.7.0; (sys_platform == 'linux') and extra == 'vllm'
+Description-Content-Type: text/markdown
+
+# DB-GPT Accelerator Module
+
+Building across multiple platforms and hardware is complex, and the DB-GPT Accelerator aims to provide compatibility handling for this, offering as consistent an interface as possible for other core models.
+
