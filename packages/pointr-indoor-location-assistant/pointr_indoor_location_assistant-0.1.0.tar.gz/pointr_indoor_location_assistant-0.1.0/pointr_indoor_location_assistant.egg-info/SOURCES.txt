@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+pointr_indoor_location_assistant.egg-info/PKG-INFO
+pointr_indoor_location_assistant.egg-info/SOURCES.txt
+pointr_indoor_location_assistant.egg-info/dependency_links.txt
+pointr_indoor_location_assistant.egg-info/requires.txt
+pointr_indoor_location_assistant.egg-info/top_level.txt
+src/PointrAgent.py
+src/__init__.py
+src/app.py
+src/requirements.txt
