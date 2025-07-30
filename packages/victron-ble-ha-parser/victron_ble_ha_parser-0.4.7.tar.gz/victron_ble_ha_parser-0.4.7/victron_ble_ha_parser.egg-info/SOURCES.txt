@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+setup.cfg
+victron_ble_ha_parser/__init__.py
+victron_ble_ha_parser/custom_state_data.py
+victron_ble_ha_parser/parser.py
+victron_ble_ha_parser.egg-info/PKG-INFO
+victron_ble_ha_parser.egg-info/SOURCES.txt
+victron_ble_ha_parser.egg-info/dependency_links.txt
+victron_ble_ha_parser.egg-info/requires.txt
+victron_ble_ha_parser.egg-info/top_level.txt
