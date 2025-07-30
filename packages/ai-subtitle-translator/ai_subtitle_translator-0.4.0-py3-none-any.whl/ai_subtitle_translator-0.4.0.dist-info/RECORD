@@ -1,0 +1,14 @@
+ai_subtitle_translator/__init__.py,sha256=KstpdR45WCnRymq09M54UlT5vDTwoRUsitb1RAFjdO8,199
+ai_subtitle_translator/ai_translation.py,sha256=KMpBTLNXW7RGOh3rhjrlVyCrmxyWd5Iqc1LZPzHcWsw,12436
+ai_subtitle_translator/app.py,sha256=RHkyBi6Y-MAJfhrFrfs-Hm5tkdVWRXuD-diPE2XHAkI,17522
+ai_subtitle_translator/config.py,sha256=OErGuIRLFjnhHPRuDLDQN5tfjKZ1gLNFPVoLp-jgEds,730
+ai_subtitle_translator/console_utils.py,sha256=BVhK25LMXBi4oVjs6Xs70mRdYBl3uDZkOK7R4euQtn8,7855
+ai_subtitle_translator/main.py,sha256=nHbIcmjXBYNL93YECZ2wnqP6SO7iARFtFKejXQvNLwM,217
+ai_subtitle_translator/subtitle_handler.py,sha256=hyrbYeih2_vcDTeCDfHsvjgXTzHmc4MKE5_AsZTnZS4,5897
+ai_subtitle_translator/translate_subtitles.py,sha256=gitCA0Y4mapHRP7NjmWAcQq7ko-2sypG3bbsF5etqEg,11077
+ai_subtitle_translator/utils.py,sha256=zFgwseaxjGeyIMi3Yhh4fcs6SCBc5U9xYLf-BUSAazo,2351
+ai_subtitle_translator-0.4.0.dist-info/METADATA,sha256=bBJZegNhPTUWhY5SKVN07-PfKZUKvb8VAJERGsDNX4M,7687
+ai_subtitle_translator-0.4.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+ai_subtitle_translator-0.4.0.dist-info/entry_points.txt,sha256=wwNIx4QuJ_IxP_aLzhq3UYT_oLZyXAjtx0RI0_ku0cg,91
+ai_subtitle_translator-0.4.0.dist-info/licenses/LICENSE,sha256=9vCEDe0WWGZZB65dM28vrHMfiDSMSX5doTWgdUJLarI,1091
+ai_subtitle_translator-0.4.0.dist-info/RECORD,,
