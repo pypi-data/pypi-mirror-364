@@ -1,0 +1,4 @@
+[console_scripts]
+check_gpu = lablink_client_service.check_gpu:main
+subscribe = lablink_client_service.subscribe:main
+update_inuse_status = lablink_client_service.update_inuse_status:main
