@@ -1,0 +1,6 @@
+customer_id,name,email,region
+CUST001,John Doe,john@example.com,North
+CUST002,Jane Smith,jane@example.com,South
+CUST003,Bob Johnson,bob@example.com,East
+CUST004,Alice Brown,alice@example.com,West
+CUST005,Charlie Wilson,charlie@example.com,North 
