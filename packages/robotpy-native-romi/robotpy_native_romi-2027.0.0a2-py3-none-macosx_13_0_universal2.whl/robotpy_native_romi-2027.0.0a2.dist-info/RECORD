@@ -1,0 +1,10 @@
+native/romi/_init_robotpy_native_romi.py,sha256=_jAtNSqtRLTCXbtbOSdaasDEi7KJ3nWBlDJAKyTsc6Q,717
+native/romi/robotpy-native-romi.pc,sha256=NJXm2n5KegVY1-p2TIKDqV-CerzcWFmv4Jrcnbm05zk,291
+native/romi/include/frc/romi/OnBoardIO.h,sha256=8E7y1Jzz_3MmMVse6kdRFortwAtwFCievUSKaqzP9BQ,1737
+native/romi/include/frc/romi/RomiGyro.h,sha256=OQkil-zW6IB0RX6iplXDV7h_9zOpSS9fKZEyxbqAi1M,2591
+native/romi/include/frc/romi/RomiMotor.h,sha256=Lw7fVyDakRvAd7c_5k4kbg_QvUTXFPJHfKMlx5Zj3GM,811
+native/romi/lib/libromiVendordep.dylib,sha256=TEQcQPQZWoekgq5reNOH1I8KTL7KDdQpfP2jF_GvJno,160144
+robotpy_native_romi-2027.0.0a2.dist-info/METADATA,sha256=tZfg3wm6v7PKaKGpV2r5ScFukw2XtnVV6beX_LNshSw,187
+robotpy_native_romi-2027.0.0a2.dist-info/WHEEL,sha256=6ZWwIj5x7EQOvwrpZOwfxWQCNG8jjr9qLkQoo5EXVf8,107
+robotpy_native_romi-2027.0.0a2.dist-info/entry_points.txt,sha256=Xc0U2GpkqIPz_QT8WlVnn_B3LVysxH3WfKu9oe2gZSY,32
+robotpy_native_romi-2027.0.0a2.dist-info/RECORD,,
