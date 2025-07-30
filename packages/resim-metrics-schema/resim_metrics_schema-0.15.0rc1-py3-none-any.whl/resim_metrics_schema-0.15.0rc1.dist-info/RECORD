@@ -1,0 +1,6 @@
+resim/metrics/proto/metrics_pb2.py,sha256=gtVqjRhLfwHSUI8DIoEQY79ZU1BlRuxTVpEKm9Vr93Q,18718
+resim/metrics/proto/validate_metrics_proto.py,sha256=LNj8bqWwUKyl-DeBPh29uS309xwgrmOTsxHPCFBsN0w,33742
+resim/utils/proto/uuid_pb2.py,sha256=dav4QRpn42n9pLbEFQLKh2WSNu2EMktSqHGteS_UTwM,1315
+resim_metrics_schema-0.15.0rc1.dist-info/WHEEL,sha256=sobxWSyDDkdg_rinUth-jxhXHqoNqlmNMJY3aTZn2Us,91
+resim_metrics_schema-0.15.0rc1.dist-info/METADATA,sha256=58nQzC3g2v-eOiMstTbooyQHC4ZSj8IsADKHaC1ikkQ,1611
+resim_metrics_schema-0.15.0rc1.dist-info/RECORD,,
