@@ -1,0 +1,128 @@
+Metadata-Version: 2.1
+Name: baltech-sdk
+Version: 3.19.4
+Summary: SDK to communicate with Baltech RFID readers.
+License: MIT
+Author: Baltech AG
+Author-email: info@baltech.de
+Requires-Python: >=3.9,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Dist: typing-extensions
+Description-Content-Type: text/markdown
+
+# Baltech SDK
+
+***Warning: While the underlying SDK is stable, the Python API is not stable yet, and future releases are not guaranteed to be backwards compatible. Pinning this project to a specific version in your dependency management is recommended.***
+
+## Installation
+```bash
+pip install baltech-sdk
+```
+
+## Usage
+
+```python
+from baltech_sdk import Brp, UsbHid
+
+# Sample code for GetInfo
+with Brp(UsbHid()) as brp:
+    print(brp.Sys_GetInfo())
+
+# This is a shortcut for:
+io = UsbHid()
+brp = Brp(io, open=False)
+brp.open()
+print(brp.Sys_GetInfo())
+brp.close()
+```
+A complete reference of the supported commands can be found [here](https://docs.baltech.de/refman/cmds/index.html).
+
+### Supported IO protocols
+```python
+from baltech_sdk import Brp, UsbHid, RS232, Tcp
+
+# USB HID autodetect connected reader
+brp = Brp(UsbHid())
+
+# USB HID by serialnumber
+brp = Brp(UsbHid(serialnumber=99999999))
+
+# Serial with (optional) custom settings
+brp = Brp(RS232("COM1", baudrate=115200, parity=b"N"))
+
+# TCP by ip address
+brp = Brp(Tcp(ipaddr="192.168.0.1"))
+```
+
+### Access Reader Configuration
+```python
+from baltech_sdk import Config
+
+cfg_src = {(0x0201, 0x02): b'\x01'}   # instead of a confDict also a brp object 
+                                     # can be passed to modify reader's 
+                                     # configuration directly
+cfg = Config(cfg_src)
+
+# set value
+cfg.Device_Boot_StartAutoreadAtPowerup("EnableOnce")
+
+# get value
+print(cfg.Device_Boot_StartAutoreadAtPowerup.get())
+
+# delete value
+cfg.Device_Boot_StartAutoreadAtPowerup.delete()
+```
+
+### Templates and BaltechScripts
+```python
+from baltech_sdk import Config, Template, BaltechScript, TemplateFilter
+
+confdict = {}
+cfg = Config(confdict)
+
+cfg.Scripts_Events_OnAccepted(
+    BaltechScript()
+        .ToggleInverted("RedLed", RepeatCount=3, Delay=20)
+        .Toggle("GreenLed", RepeatCount=1, Delay=20)
+        .DefaultAction()
+)
+cfg.Autoread_Rule_Template(
+    0, 
+    Template()
+        .Static(b"SNR:")
+        .Serialnr(TemplateFilter(BinToAscii=True, Unpack=True, BinToBcd=True))
+)
+print(confdict)
+```
+
+### Linux or macOS
+To use ``baltech-sdk`` under Linux or macOS you need to build your own binary of the [BaltechSDK](https://docs.baltech.de/developers/sdk.html) and manually set the path to your binary.
+```python
+from pathlib import Path
+from baltech_sdk import set_brp_lib_path
+
+set_brp_lib_path(Path("path/to/brp_lib"))
+```
+
+
+### Further parameters on connections fors sensible data 
+
+Additional Options: 
+ * [AES based Encryption](https://docs.baltech.de/developers/add-aes-auth-and-encryption.html) can be activated
+ * [Enabled monitoring](https://docs.baltech.de/developers/analyze-communication.html#enable-monitoring) can be suppressed or extended to plaintext
+
+```python
+from baltech_sdk import Brp, UsbHid, SecureChannel
+
+KEY = b'abcdefghijklmnuk'
+brp = Brp(UsbHid(), 
+          crypto=SecureChannel(security_level=1, key=KEY),  # encrypt communication
+          monitor="plaintext"                               # log unencrypted data (if activated by user)
+)
+```
+
