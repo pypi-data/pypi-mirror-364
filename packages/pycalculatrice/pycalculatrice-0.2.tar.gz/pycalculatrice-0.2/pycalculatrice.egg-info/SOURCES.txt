@@ -1,0 +1,14 @@
+MANIFEST.in
+README.md
+setup.py
+pycalculatrice/__init__.py
+pycalculatrice/apps.py
+pycalculatrice/operations.py
+pycalculatrice/urls.py
+pycalculatrice/views.py
+pycalculatrice.egg-info/PKG-INFO
+pycalculatrice.egg-info/SOURCES.txt
+pycalculatrice.egg-info/dependency_links.txt
+pycalculatrice.egg-info/requires.txt
+pycalculatrice.egg-info/top_level.txt
+pycalculatrice/templates/pycalculatrice/index.html
