@@ -1,0 +1,8 @@
+LICENSE
+README.md
+pyproject.toml
+adcustom/__init__.py
+adcustom.egg-info/PKG-INFO
+adcustom.egg-info/SOURCES.txt
+adcustom.egg-info/dependency_links.txt
+adcustom.egg-info/top_level.txt

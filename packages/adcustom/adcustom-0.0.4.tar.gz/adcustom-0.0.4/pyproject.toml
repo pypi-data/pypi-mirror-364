@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61.0"] 
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "adcustom"
+version = "0.0.4" 
+authors = [
+  { name="Amit Dutta", email="amitdutta4255@gmail.com" }, # Replace with your actual email
+]
+description = "A custom Python module containing various mathematical, string, and matrix operations."
+readme = "README.md" 
+requires-python = ">=3.9" 
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License", 
+    "Operating System :: OS Independent",
+    "Development Status :: 3 - Alpha", 
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Utilities",
+]
+keywords = ["mathematics", "matrix", "string", "utility", "prime", "factorial", "permutation", "combination", "mean", "median", "mode"]
+
+[project.urls]
+"Github" = "https://github.com/notamitgamer" 
+
+[tool.setuptools]
+packages = ["adcustom"]
