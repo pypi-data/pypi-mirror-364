@@ -1,0 +1,2 @@
+Version: 1.11.0
+Arguments: ['C:\\Python312\\Scripts\\delvewheel', 'repair', 'C:\\gitlab-runner\\builds\\ehTiiTbyF\\7\\tango-controls\\pytango\\dist\\pytango-10.0.3-cp312-cp312-win_amd64.whl']
