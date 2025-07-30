@@ -1,0 +1,4 @@
+[console_scripts]
+esql-agent = fastmcp_agents.library.agent.elasticsearch.esql.agent:run
+esql-expert = fastmcp_agents.library.agent.elasticsearch.esql.expert:run
+
