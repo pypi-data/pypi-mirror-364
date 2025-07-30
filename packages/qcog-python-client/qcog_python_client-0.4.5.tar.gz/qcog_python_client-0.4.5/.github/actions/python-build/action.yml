@@ -1,0 +1,10 @@
+name: "python build package"
+description: "build client wheel"
+
+runs:
+  using: "composite"
+  steps:
+  - name: Compile our extensions locally to allow for testing
+    run: |
+      make build
+    shell: bash
