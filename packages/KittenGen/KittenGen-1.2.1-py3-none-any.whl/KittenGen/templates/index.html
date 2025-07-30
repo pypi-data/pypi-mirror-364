@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KittenGen - 数据生成器</title>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <link href="/static/css/codemirror.min.css" rel="stylesheet">
+    <script src="/static/js/codemirror.min.js"></script>
+    <script src="/static/js/clike.min.js"></script>
+    <script src="/static/js/python.min.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #5e35b1;
+            --secondary-color: #7e57c2;
+            --accent-color: #ff6f00;
+            --light-bg: #f8f9fa;
+            --dark-bg: #1a1a1a;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7f4 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .card-header {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 20px 25px;
+            border-bottom: none;
+            font-weight: 600;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .section-title {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 12px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border: none;
+            padding: 12px 24px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary: hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(94, 53, 177, 0.4);
+        }
+
+        .CodeMirror {
+            min-height: 200px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+
+        .form-control, .form-select {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 12px 15px;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-control: focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(94, 53, 177, 0.15);
+        }
+
+        .nav-tabs .nav-link {
+            border: none;
+            padding: 12px 20px;
+            font-weight: 500;
+            color: #555;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .nav-tabs .nav-link.active {
+            background: linear-gradient(to bottom, #f8f9fa, #fff);
+            border-bottom: 3px solid var(--primary-color);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .form-check-input: checked {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .compiler-options-section {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid #eaeaea;
+            margin-bottom: 25px;
+        }
+
+        .custom-option-input {
+            margin-top: 10px;
+            display: none;
+        }
+
+        .help-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .help-link: hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        .logo-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #ddd, transparent);
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body class="bg-light">
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-8">
+            <form method="post" action="/" class="card shadow" onsubmit="syncCodeEditors()">
+                <div class="card-header">
+                    <div class="logo-header">
+                        <div class="logo-icon">KG</div>
+                        <h1 class="logo-text">KittenGen</h1>
+                    </div>
+                    <p class="mb-0">强大的数据生成工具，支持多种语言和配置</p>
+                </div>
+
+                <div class="card-body">
+                    {% if error %}
+                    <div class="alert alert-danger" id="errAlert" role="alert">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        <h5 class="alert-heading">错误！</h5>
+                        {{ error }}
+                    </div>
+                    {% endif %}
+
+                    <!-- Std.cpp 输入区域 -->
+                    <h4 class="section-title">标准程序</h4>
+                    <label class="form-label text-muted mb-2">C++ 标程 (std.cpp)</label>
+                    <div class="mb-4">
+                        <div id="std-editor" class="border rounded overflow-hidden"></div>
+                        <textarea class="d-none" id="std" name="std"></textarea>
+                    </div>
+
+                    <div class="section-divider"></div>
+
+                    <!-- 数据生成器区域 -->
+                    <h4 class="section-title">数据生成器</h4>
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <label class="form-label fw-bold">选择生成器语言</label>
+                            <a href="/help" class="help-link">查看帮助文档？</a>
+                        </div>
+
+                        <ul class="nav nav-tabs mb-3" id="makerLangTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="python-tab" data-bs-toggle="tab"
+                                        data-bs-target="#python" type="button" role="tab">Python</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="cpp-tab" data-bs-toggle="tab"
+                                        data-bs-target="#cpp" type="button" role="tab">C++</button>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content" id="makerTabContent">
+                            <div class="tab-pane fade show active" id="python" role="tabpanel">
+                                <label class="form-label text-muted mb-2">Python 生成器 (maker.py)</label>
+                                <div id="maker-python-editor" class="border rounded overflow-hidden"></div>
+                                <textarea class="d-none" id="maker" name="maker"></textarea>
+                            </div>
+                            <div class="tab-pane fade" id="cpp" role="tabpanel">
+                                <label class="form-label text-muted mb-2">C++ 生成器 (maker.cpp)</label>
+                                <div id="maker-cpp-editor" class="border rounded overflow-hidden"></div>
+                                <textarea class="d-none" id="maker-cpp" name="maker-cpp"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-divider"></div>
+
+                    <!-- 数据组数 -->
+                    <h4 class="section-title">数据配置</h4>
+                    <div class="mb-4">
+                        <label for="num" class="form-label fw-bold">数据组数</label>
+                        <input type="number" class="form-control" id="num" name="num"
+                            min="1" value="10" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="num" class="form-label fw-bold">数据前缀名</label>
+                        <input type="text" class="form-control" id="prefix" name="prefix"
+                               value="">
+                        <div class="form-text">指定数据前缀名，如输入game时数据文件形如game1.in，若留空则无前缀名</div>
+                    </div>
+
+                    <div class="section-divider"></div>
+
+                    <!-- C++编译命令设置 -->
+                    <h4 class="section-title">C++ 编译命令设置</h4>
+                    <div class="compiler-options-section">
+                        <div class="mb-4">
+                            <label for="gpp-path" class="form-label fw-bold">G++ 路径</label>
+                            <input type="text" class="form-control" id="gpp-path" name="gpp-path"
+                                value="g++.exe" required>
+                            <div class="form-text">指定G++编译器的路径，默认为g++.exe</div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="options" class="form-label fw-bold">C++ 编译选项</label>
+                            <select class="form-select mb-2" id="options-select">
+                                <option value="-O2 -std=c++14 -Wl,--stack=204800000">64位默认选项: -O2 -std=c++14 -Wl,--stack=204800000</option>
+                                <option value="-O2 -std=c++11 -Wl,--stack=204800000 -m32 -DDEBUG">32位默认选项: -O2 -std=c++11 -Wl,--stack=204800000 -m32 -DDEBUG</option>
+                                <option value="custom">自定义选项</option>
+                            </select>
+
+                            <input type="text" class="form-control custom-option-input" id="custom-options">
+
+                            <input type="hidden" id="options" name="options"
+                                value="-O2 -std=c++14 -Wl,--stack=204800000">
+                        </div>
+                    </div>
+
+                    <div class="section-divider"></div>
+
+                    <!-- SPJ 开关 -->
+                    <div class="mb-3 form-check form-switch">
+                        <input type="checkbox" class="form-check-input" id="useSpj"
+                            name="useSpj" role="switch">
+                        <label class="form-check-label fw-bold" for="useSpj">使用SPJ</label>
+                    </div>
+
+                    <!-- SPJ 输入区域（默认隐藏） -->
+                    <div id="spjSection" style="display: none;">
+                        <div class="mb-4">
+                            <label class="form-label text-muted mb-2">Special Judge (checker.cpp)</label>
+                            <div id="checker-editor" class="border rounded overflow-hidden"></div>
+                            <textarea class="d-none" id="checker" name="checker"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Config 开关 -->
+                    <div class="mb-3 form-check form-switch">
+                        <input type="checkbox" class="form-check-input" id="useCfg"
+                            name="useCfg" role="switch">
+                        <label class="form-check-label fw-bold" for="useCfg">使用配置文件</label>
+                    </div>
+
+                    <!-- config.yml 输入区域（默认隐藏） -->
+                    <div id="cfgSection" style="display: none;">
+                        <div class="mb-4">
+                            <label class="form-label text-muted mb-2">配置文件 (config.yml)</label>
+                            <div id="config-editor" class="border rounded overflow-hidden"></div>
+                            <textarea class="d-none" id="config" name="config"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- 提交按钮 -->
+                    <input type="submit" class="btn btn-primary btn-lg w-100 mt-4 py-3 fw-bold" id="submit" value="生成数据">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 初始化代码编辑器
+    const editors = {
+        std: CodeMirror(document.getElementById('std-editor'), {
+            mode: 'text/x-c++src',
+            lineNumbers: true,
+            theme: 'default',
+            indentUnit: 4,
+            extraKeys: {"Ctrl-Space": "autocomplete"},
+            value: document.getElementById('std').value
+        }),
+        makerPython: CodeMirror(document.getElementById('maker-python-editor'), {
+            mode: 'python',
+            lineNumbers: true,
+            theme: 'default',
+            indentUnit: 4,
+            value: document.getElementById('maker').value
+        }),
+        makerCpp: CodeMirror(document.getElementById('maker-cpp-editor'), {
+            mode: 'text/x-c++src',
+            lineNumbers: true,
+            theme: 'default',
+            indentUnit: 4,
+            value: document.getElementById('maker-cpp').value
+        }),
+        checker: CodeMirror(document.getElementById('checker-editor'), {
+            mode: 'text/x-c++src',
+            lineNumbers: true,
+            theme: 'default',
+            indentUnit: 4,
+            value: document.getElementById('checker').value
+        }),
+        config: CodeMirror(document.getElementById('config-editor'), {
+            lineNumbers: true,
+            theme: 'default',
+            indentUnit: 4,
+            value: document.getElementById('config').value
+        })
+    };
+
+    // 同步编辑器内容到表单
+    function syncCodeEditors() {
+        document.getElementById('std').value = editors.std.getValue();
+
+        // 根据当前选择的语言同步对应的生成器代码
+        const activeTab = document.querySelector('#makerLangTab .nav-link.active');
+        if (activeTab.id === 'python-tab') {
+            document.getElementById('maker').value = editors.makerPython.getValue();
+            document.getElementById('maker-cpp').value = '';
+        } else {
+            document.getElementById('maker').value = '';
+            document.getElementById('maker-cpp').value = editors.makerCpp.getValue();
+        }
+
+        document.getElementById('checker').value = editors.checker.getValue();
+        document.getElementById('config').value = editors.config.getValue();
+    }
+
+    // SPJ 切换逻辑
+    document.getElementById('useSpj').addEventListener('change', function() {
+        const spjSection = document.getElementById('spjSection');
+        spjSection.style.display = this.checked ? 'block' : 'none';
+    });
+
+    // Config 切换逻辑
+    document.getElementById('useCfg').addEventListener('change', function() {
+        const cfgSection = document.getElementById('cfgSection');
+        cfgSection.style.display = this.checked ? 'block' : 'none';
+    });
+
+    // 编译选项切换逻辑
+    const optionsSelect = document.getElementById('options-select');
+    const customOptionsInput = document.getElementById('custom-options');
+    const optionsHidden = document.getElementById('options');
+
+    optionsSelect.addEventListener('change', function() {
+        if (this.value === 'custom') {
+            customOptionsInput.style.display = 'block';
+            customOptionsInput.value = optionsHidden.value;
+        } else {
+            customOptionsInput.style.display = 'none';
+            optionsHidden.value = this.value;
+        }
+    });
+
+    customOptionsInput.addEventListener('input', function() {
+        optionsHidden.value = this.value;
+    });
+
+    // 初始化选项卡
+    const firstTab = new bootstrap.Tab(document.querySelector('#python-tab'));
+    firstTab.show();
+</script>
+</body>
+</html>
