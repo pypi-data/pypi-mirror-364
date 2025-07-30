@@ -1,0 +1,6 @@
+uv init --lib test
+uv run python3 main.py
+uv add requests
+uv sync -U # aggiorna le librerie
+
+rm -rf .venv/ dist/

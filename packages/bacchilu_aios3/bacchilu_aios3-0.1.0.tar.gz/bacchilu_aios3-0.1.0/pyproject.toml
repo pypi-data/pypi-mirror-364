@@ -1,0 +1,18 @@
+[project]
+name = "bacchilu_aios3"
+version = "0.1.0"
+description = "Upload files to S3 using asyncio"
+readme = "README.md"
+authors = [
+    { name = "Luca Bacchi", email = "bacchilu@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "aioboto3>=15.0.0",
+    "python-dotenv>=1.1.1",
+    "python-magic>=0.4.27",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
