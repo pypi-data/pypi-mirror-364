@@ -1,0 +1,2 @@
+[console_scripts]
+aeon = aeon.__main__:main
