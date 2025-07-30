@@ -1,0 +1,2 @@
+[console_scripts]
+pyzmap = pyzmap.cli:main
