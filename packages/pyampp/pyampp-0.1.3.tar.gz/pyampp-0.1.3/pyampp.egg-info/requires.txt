@@ -1,0 +1,27 @@
+sunpy[all]
+numpy>=1.25
+ipympl
+ipywidgets
+matplotlib
+pyvista
+pyvistaqt
+pyqt5
+scipy
+pyAMaFiL
+typer
+
+[dev]
+pytest
+pytest-cov
+
+[docs]
+sphinx
+sphinx-automodapi
+
+[docs:python_version < "3.11"]
+tomli
+
+[tests]
+pytest
+pytest-doctestplus
+pytest-cov

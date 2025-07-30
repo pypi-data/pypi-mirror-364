@@ -1,0 +1,3 @@
+[console_scripts]
+gxbox = pyampp.gxbox.gxbox_factory:app
+pyampp = pyampp.gxbox.gxampp:app
