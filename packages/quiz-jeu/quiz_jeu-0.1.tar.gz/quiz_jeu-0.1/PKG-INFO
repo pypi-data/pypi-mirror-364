@@ -1,0 +1,20 @@
+Metadata-Version: 2.4
+Name: quiz_jeu
+Version: 0.1
+Summary: Un nettoyeur de texte simple pour Django.
+Home-page: https://github.com/votrecompte/quiz_jeu
+Author: Votre Nom
+Author-email: votre.email@example.com
+Classifier: Programming Language :: Python :: 3
+Classifier: Framework :: Django
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Requires-Dist: Django>=3.2
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
