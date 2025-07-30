@@ -1,0 +1,2 @@
+[console_scripts]
+cryptography-suite = cryptography_suite.cli:main
