@@ -1,0 +1,13 @@
+LICENSE
+README.md
+setup.py
+quipy/__init__.py
+quipy/calculate.py
+quipy/geographic.py
+quipy/matrix.py
+quipy/projected.py
+quipy.egg-info/PKG-INFO
+quipy.egg-info/SOURCES.txt
+quipy.egg-info/dependency_links.txt
+quipy.egg-info/requires.txt
+quipy.egg-info/top_level.txt
