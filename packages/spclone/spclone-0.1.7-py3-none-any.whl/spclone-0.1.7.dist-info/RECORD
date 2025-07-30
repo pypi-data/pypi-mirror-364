@@ -1,0 +1,10 @@
+spclone/__init__.py,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
+spclone/cli.py,sha256=uHEmtQsscyELl-_KVh7mo6wDopUnHRNjWXn3uictFvs,627
+spclone/clone_.py,sha256=iGmI8NCEOXciwHqZufCYLxls2_oNs-wqW88ca5PJtkg,3275
+spclone/tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+spclone/tests/test_install.py,sha256=LhilM1g20Ky8Wje_85hubDiunNJsP42yZ5flLSey6G8,33
+spclone-0.1.7.dist-info/METADATA,sha256=4GFLEh9pJYQqLboKJ4CMSt56l7fV3jqHPvh5qbT3Z0w,2252
+spclone-0.1.7.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+spclone-0.1.7.dist-info/entry_points.txt,sha256=P33MRmtO7DK5X6eusJdq_Ey9OKrjV9qiF8_crt4xu4U,75
+spclone-0.1.7.dist-info/top_level.txt,sha256=oq5UhJyhBPrrjcj8DbBLDWrSP9leURxTglGBaJ5UKxc,8
+spclone-0.1.7.dist-info/RECORD,,
