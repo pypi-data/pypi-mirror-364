@@ -1,0 +1,53 @@
+Metadata-Version: 2.4
+Name: aws_lambda_invoker
+Version: 0.0.2
+Summary: AWS Lambda invoker
+Author-email: SirPaulO <me@sirpauloliver.com>
+License: MIT License
+Project-URL: Homepage, https://github.com/SirPaulO/aws_lambda_invoker
+Project-URL: Bug Tracker, https://github.com/SirPaulO/aws_lambda_invoker/issues
+Project-URL: Repository, https://github.com/SirPaulO/aws_lambda_invoker.git
+Keywords: aws,lambda,invoke,sqs,sns,eventbridge,apigateway
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: boto3~=1.39.13
+Requires-Dist: orjson~=3.11.1
+
+# AWS Lambda invoker
+
+Simple package for lambda invocation with AWS boto3.
+This package is intended to be used as an interface for invoking AWS Lambda functions emulating AWS API Gateway, SNS, Event bridge and SQS.
+
+## Installation
+
+```console
+$ pip install aws-lambda-invoker
+```
+
+
+## Example
+
+```python
+invoker = LambdaInvoker(
+    lambda_name="TEST-LAMBDA",
+    payload="{\"key\": \"value\"}",
+    invoke_type=InvokeType.RequestResponse,
+)
+response = invoker.invoke()
+
+# or using AGLambdaInvoker
+
+invoker = AGLambdaInvoker(
+    lambda_name="TEST-LAMBDA",
+    method="GET",
+    path="TEST-path",
+    body="TEST-body",
+    headers={"key": "value"},
+    query_params={"key": "value"},
+    path_params={"key": "value"},
+)
+response = invoker.invoke()
+```

@@ -1,0 +1,7 @@
+aws_lambda_invoker/__init__.py,sha256=kZ1zzqnhGrzSVezTfX-oj5rKarA1Z6oFC2v28Y6vWTQ,178
+aws_lambda_invoker/ag_lambda_invoker.py,sha256=TfgAZCJBuCFkdmNPwyTm_zp49APMAMcvz83OSTum5Ik,3457
+aws_lambda_invoker/lambda_invoker.py,sha256=RkGdyeagNqojdT4BG67Z_dl66JE6SmV0bQn80GirD9s,2842
+aws_lambda_invoker-0.0.2.dist-info/METADATA,sha256=ydjlKR9e35qhUenKZNmjOqz_C-NIRiM0NGnzbSr407c,1465
+aws_lambda_invoker-0.0.2.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+aws_lambda_invoker-0.0.2.dist-info/top_level.txt,sha256=CnH_Tp77wq7Kj6HNL3WQ1FP4nC8SPMs74ac_C1cQ-cg,19
+aws_lambda_invoker-0.0.2.dist-info/RECORD,,
