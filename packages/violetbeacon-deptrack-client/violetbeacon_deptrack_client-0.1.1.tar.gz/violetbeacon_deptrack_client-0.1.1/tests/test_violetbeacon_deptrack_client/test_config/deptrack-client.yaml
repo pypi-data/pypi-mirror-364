@@ -1,0 +1,5 @@
+autocreate: false
+dtrack_apikey: env:DTRACK_APIKEY
+dtrack_baseurl: env:DTRACK_BASEURL
+project_name: violetbeacon-deptrack-client
+project_version: 0.1.0
