@@ -1,0 +1,12 @@
+numpy<2
+scipy
+pandas
+sortedcollections
+pyomo>=6.4
+
+[doc]
+sphinx_rtd_theme
+sphinx
+
+[mpi]
+mpi4py>=3.0.3
