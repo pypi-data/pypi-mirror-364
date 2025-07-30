@@ -1,0 +1,50 @@
+Metadata-Version: 2.4
+Name: rhit
+Version: 0.1.0
+Summary: A brief description of the rhit package
+Home-page: https://github.com/imrohit/rhit
+Author: Rohit
+Author-email: rohitmbl24@gmail.com.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+Dynamic: summary
+
+# rhit package
+
+## Overview
+`rhit` is a Python package designed to provide a simple yet effective function named `vilo`. This package aims to streamline specific tasks and enhance productivity in Python programming.
+
+## Installation
+You can install the `rhit` package using pip. Run the following command in your terminal:
+
+```
+pip install rhit
+```
+
+## Usage
+To use the `vilo` function from the `rhit` package, you can import it as follows:
+
+```python
+from rhit import vilo
+
+# Example usage of the vilo function
+result = vilo(arguments)
+```
+
+## Contributing
+Contributions are welcome! Please feel free to submit a pull request or open an issue for any enhancements or bug fixes.
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for more details.
