@@ -1,0 +1,16 @@
+pyproject.toml
+guriz/__init__.py
+guriz/cli.py
+guriz/core.py
+guriz/repository.py
+guriz/repository_protocol.py
+guriz.egg-info/PKG-INFO
+guriz.egg-info/SOURCES.txt
+guriz.egg-info/dependency_links.txt
+guriz.egg-info/entry_points.txt
+guriz.egg-info/requires.txt
+guriz.egg-info/top_level.txt
+guriz/SQL/__init__.py
+guriz/SQL/config.py
+guriz/SQL/connection.py
+guriz/SQL/query.py
