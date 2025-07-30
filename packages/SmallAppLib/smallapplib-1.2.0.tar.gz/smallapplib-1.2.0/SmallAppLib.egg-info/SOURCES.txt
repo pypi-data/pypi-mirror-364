@@ -1,0 +1,15 @@
+README.md
+pyproject.toml
+setup.cfg
+setup.py
+SmallAppLib.egg-info/PKG-INFO
+SmallAppLib.egg-info/SOURCES.txt
+SmallAppLib.egg-info/dependency_links.txt
+SmallAppLib.egg-info/top_level.txt
+core/BotLogger.py
+core/SimpleMenus.py
+core/TextAnsiFormater.py
+core/UserInput.py
+core/UserOutput.py
+core/__init__.py
+core/__version__.py
