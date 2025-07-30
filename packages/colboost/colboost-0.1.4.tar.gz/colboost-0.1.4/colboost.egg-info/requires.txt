@@ -1,0 +1,11 @@
+numpy
+scikit-learn
+gurobipy
+pandas
+tqdm
+
+[dev]
+pytest
+
+[test]
+pytest
