@@ -1,0 +1,22 @@
+Metadata-Version: 2.4
+Name: sheetiq
+Version: 0.1.0
+Summary: Python SDK for accessing and updating Google Sheets via docapi.datafetchpro.com
+Author-email: Ali Raza <you@example.com>
+License: MIT
+Project-URL: Homepage, https://docapi.datafetchpro.com
+Project-URL: Repository, https://github.com/your-username/sheetiq
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests
+Dynamic: license-file
+
+# SheetIQ
+
+> Python SDK for reading and writing to Google Sheets using [docapi.datafetchpro.com](https://docapi.datafetchpro.com)
+
+## 🚀 Installation
+
+```bash
+pip install sheetiq
