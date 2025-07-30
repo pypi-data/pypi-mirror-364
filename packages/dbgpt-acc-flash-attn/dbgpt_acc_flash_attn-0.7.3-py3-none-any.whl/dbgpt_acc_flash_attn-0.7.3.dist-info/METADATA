@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: dbgpt-acc-flash-attn
+Version: 0.7.3
+Summary: Add your description here
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+
+# DB-GPT-Accelerator for Flash Attention
+
+Wrapper for the Flash Attention module in the DB-GPT-Accelerator.
