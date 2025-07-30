@@ -1,0 +1,7 @@
+numpy
+attrs
+cffi
+findlibs
+
+[:platform_system != "Windows"]
+eccodeslib
