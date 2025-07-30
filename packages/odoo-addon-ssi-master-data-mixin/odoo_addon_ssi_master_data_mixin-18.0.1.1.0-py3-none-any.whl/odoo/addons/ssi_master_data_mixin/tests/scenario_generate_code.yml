@@ -1,0 +1,19 @@
+scenario:
+  data:
+    name: "Test"
+    code: "TEST-001"
+    value: 100
+    note: "Test Create Data"
+  sequence:
+    name: "Test Sequence"
+    code: "dummy_model"
+    prefix: "TEST-"
+    number_next: 1
+    number_increment: 1
+    padding: 6
+  template:
+    name: "Test Sequence"
+    initial_string: "/"
+    computation_method: "use_python"
+    python_code: "result = document.value > 0"
+    sequence_selection_method: "use_sequence"

@@ -1,0 +1,6 @@
+scenario:
+  data:
+    name: "Test"
+    code: "TEST-001"
+    value: 20
+    note: "Test Create Data"

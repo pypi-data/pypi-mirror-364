@@ -1,0 +1,11 @@
+scenario:
+  data1:
+    name: "Test 1"
+    code: "TEST-001"
+    value: 10
+    note: "First record"
+  data2:
+    name: "Test 2"
+    code: "TEST-001"
+    value: 20
+    note: "Second record"
