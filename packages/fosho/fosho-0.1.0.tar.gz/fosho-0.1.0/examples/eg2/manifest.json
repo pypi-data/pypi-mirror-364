@@ -1,0 +1,11 @@
+{
+  "datasets": {
+    "data/text_example.csv": {
+      "crc32": "c34af232",
+      "schema_md5": "b96f9ef9b25b9dd9ccf48d885f03b048",
+      "signed": false,
+      "signed_at": null
+    }
+  },
+  "manifest_md5": "7c694c86220f7e70908b9ca6613e1eff"
+}
