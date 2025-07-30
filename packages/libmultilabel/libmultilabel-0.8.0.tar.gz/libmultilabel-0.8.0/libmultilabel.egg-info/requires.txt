@@ -1,0 +1,17 @@
+liblinear-multicore>=2.49.0
+numba
+pandas>1.3.0
+PyYAML
+scikit-learn
+scipy
+tqdm
+psutil
+sparsekmeans
+
+[nn]
+lightning
+nltk
+torch<=2.3
+torchmetrics==0.10.3
+torchtext
+transformers<=4.51.3
