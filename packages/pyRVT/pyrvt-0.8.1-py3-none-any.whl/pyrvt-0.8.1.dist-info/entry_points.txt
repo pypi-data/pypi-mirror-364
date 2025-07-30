@@ -1,0 +1,2 @@
+[console_scripts]
+pyrvt = pyrvt.runner:main
