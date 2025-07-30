@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+setup.py
+flowstats.egg-info/PKG-INFO
+flowstats.egg-info/SOURCES.txt
+flowstats.egg-info/dependency_links.txt
+flowstats.egg-info/top_level.txt
+mathplotlib/__init__.py
+mathplotlib/parser.py

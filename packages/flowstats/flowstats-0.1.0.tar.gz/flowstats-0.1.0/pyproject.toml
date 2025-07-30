@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "flowstats"
+version = "0.1.0"
+description = "mathplotlib"
+authors = [
+  { name = "Ayush Chadha", email = "elegantShock3307@gmail.com" }
+]
+readme = "README.md"
+license = { file = "LICENSE" }
+keywords = ["math", "simulator"]
+requires-python = ">=3.7"
+dependencies = []
+
+[project.urls]
+"Homepage" = "https://github.com/elegantShock2258/mathplotlib"
