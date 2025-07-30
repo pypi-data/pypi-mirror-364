@@ -1,0 +1,7 @@
+[console_scripts]
+aims-cli = aims_immune.aims_cli:run
+aims-notebook = aims_immune.launch_notebook:launchit
+aims-tests = aims_immune.get_tests:getit
+
+[gui_scripts]
+aims-gui = aims_immune.aims:main
