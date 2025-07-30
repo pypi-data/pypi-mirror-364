@@ -1,0 +1,1 @@
+from agentwebsearch.websearch.prompts.prompts import PromptGenerator  # noqa
