@@ -1,0 +1,17 @@
+Metadata-Version: 2.4
+Name: microprojects
+Version: 0.0.3
+Summary: MicroProjects in Python
+Project-URL: Documentation, https://github.com/nyx-4/MicroProjects/wiki
+Project-URL: Repository, https://github.com/nyx-4/MicroProjects
+Project-URL: Issues, https://github.com/nyx-4/MicroProjects/issues
+Project-URL: Changelog, https://github.com/nyx-4/MicroProjects/blob/main/CHANGELOG.md
+Project-URL: DOWNLOAD, https://example.com/abc.tar.gz
+Author-email: Nyx <241463@students.au.edu.pk>
+Maintainer-email: Nyx <241463@students.au.edu.pk>
+License-Expression: GPL-3.0-or-later
+License-File: LICENSE
+Keywords: calculator,ideas,microprojects,project ideas
+Requires-Python: >=3.8
+Provides-Extra: cli
+Provides-Extra: gui
