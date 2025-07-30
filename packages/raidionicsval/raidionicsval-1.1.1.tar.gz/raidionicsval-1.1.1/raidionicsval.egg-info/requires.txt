@@ -1,0 +1,11 @@
+arch
+h5py
+nibabel
+pandas
+SimpleITK<=2.4.1
+statsmodels
+scikit-image
+tqdm
+scikit-learn
+seaborn
+Jinja2
