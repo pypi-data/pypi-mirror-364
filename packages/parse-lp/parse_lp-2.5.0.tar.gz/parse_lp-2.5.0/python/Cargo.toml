@@ -1,0 +1,29 @@
+[package]
+name = "parse_lp"
+version = "2.5.0"
+edition = "2021"
+authors = ["Dan Dixey", "Dan Dixey <dan@functorml.co.uk>"]
+rust-version = "1.70.0"
+license = "MIT OR Apache-2.0"
+description = "A Rust parser for the LP file format."
+keywords = [
+    "linear-programming",
+    "optimisation",
+    "parser",
+    "integer-programming",
+    "math",
+]
+categories = ["mathematics", "algorithms", "science"]
+repository = "https://github.com/dandxy89/lp_parser_rs"
+
+[lib]
+name = "parse_lp"
+crate-type = ["cdylib"]
+
+[dependencies]
+lp_parser_rs = { path = "../rust", features = ["csv", "diff", "serde"] }
+pyo3 = { version = "0.25.1", features = [
+    "extension-module",
+    "abi3",
+    "abi3-py39",
+] }
