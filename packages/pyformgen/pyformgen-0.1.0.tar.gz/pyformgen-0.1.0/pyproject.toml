@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyformgen"  # ← must be unique on PyPI
+version = "0.1.0"
+description = "A tool to generate form JSON schemas from prompts"
+readme = "README.md"
+requires-python = ">=3.7"
+authors = [
+  { name="Pradnyesh Bhalekar", email="you@example.com" }
+]
+license = { text = "MIT" }
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/your-username/formgen"
+"Bug Tracker" = "https://github.com/your-username/formgen/issues"
