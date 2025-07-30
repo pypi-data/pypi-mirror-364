@@ -1,0 +1,67 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "yai-loguru-sinks"
+version = "0.5.0a1"
+description = "企业级 Loguru Sink 工厂，基于 loguru-config 的简洁架构，专注于阿里云 SLS 支持"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+    { name = "Harry Tang", email = "harry@example.com" }
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: System :: Logging",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+keywords = ["loguru", "logging", "sls", "aliyun", "sink", "enterprise"]
+requires-python = ">=3.8"
+dependencies = [
+    "loguru>=0.7.0",
+    "loguru-config>=0.1.0",
+    "aliyun-log-python-sdk>=0.8.0",
+    "pydantic>=2.0.0",
+    "pytest>=8.3.5",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/your-org/yai-loguru-sinks"
+Repository = "https://github.com/your-org/yai-loguru-sinks"
+Documentation = "https://github.com/your-org/yai-loguru-sinks#readme"
+Issues = "https://github.com/your-org/yai-loguru-sinks/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/yai_loguru_sinks"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.mypy]
+python_version = "0.5.0a1"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
