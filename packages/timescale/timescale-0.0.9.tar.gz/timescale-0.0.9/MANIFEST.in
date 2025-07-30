@@ -1,0 +1,8 @@
+graft timescale/data
+prune .github*
+prune doc*
+prune test*
+exclude *.cfg
+exclude *.yml
+include requirements.txt
+include version.txt
