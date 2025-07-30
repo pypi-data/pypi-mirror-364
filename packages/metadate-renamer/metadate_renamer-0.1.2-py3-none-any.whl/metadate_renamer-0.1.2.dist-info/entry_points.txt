@@ -1,0 +1,3 @@
+[console_scripts]
+metadate-renamer = metadate_renamer:main
+
