@@ -1,0 +1,52 @@
+{
+    "title": "Android",
+    "version": "0.0.0",
+    "cmdsets": [
+        {
+            "name": "root",
+            "cmds": [
+                {
+                    "name": "reboot bootloader",
+                    "cmd": "adb reboot bootloader"
+                },
+                {
+                    "name": "unlock",
+                    "cmd": "fastboot flashing unlock"
+                },
+                {
+                    "name": "fastboot reboot",
+                    "cmd": "fastboot reboot"
+                },
+                {
+                    "name": "root",
+                    "cmd": "adb root"
+                },
+                {
+                    "name": "disable-verity",
+                    "cmd": "adb disable-verity"
+                },
+                {
+                    "name": "reboot",
+                    "cmd": "adb reboot"
+                },
+                {
+                    "name": "root",
+                    "cmd": "adb root"
+                },
+                {
+                    "name": "remount",
+                    "cmd": "adb remount"
+                }
+            ]
+        },
+        {
+            "name": "device",
+            "cmds": [
+                {
+                    "name": "device",
+                    "cmd": "adb devices"
+                }
+            ]
+        }
+    ]
+}
