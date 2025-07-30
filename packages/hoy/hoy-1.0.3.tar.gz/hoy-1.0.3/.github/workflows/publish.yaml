@@ -1,0 +1,21 @@
+name: Publish on PyPI
+run-name: Publish ${{ github.ref_name }}
+
+on:
+  push:
+    tags: [v*]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: publish
+      url: https://pypi.org/project/hoy/${{ github.ref_name }}
+    permissions:
+      id-token: write # Needed to generate token for trusted publishing
+    steps:
+    - uses: actions/checkout@v4
+    - run: pipx install hatch
+    - run: hatch run types:check
+    - run: hatch build
+    - uses: pypa/gh-action-pypi-publish@release/v1
