@@ -1,0 +1,12 @@
+evatygram/__init__.py,sha256=yST9UwlTQ8xWY-zl-qqleG-ph-Po1ccR9pXU-uM-OnY,156
+evatygram/rubika.py,sha256=eheCZDUobDy4qQqtNMEzBexdi5PBGYl1raFVDypvrtY,30666
+evatygram/connections/__init__.py,sha256=10_w7o2juYBrGMh32_KbveULW9jk2tejpyUAD-uC6PE,4
+evatygram/connections/requests.py,sha256=GjDCqfOxhvBtF3hZmEel8kvQPAEq8iM-DIaY5jwr3_I,6228
+evatygram/connections/websocket.py,sha256=pcmz_ALLYHdHJFjIEAtDm7EjaQrojUIYvzYGI3TIY3E,1871
+evatygram/encryption/__init__.py,sha256=F2mUk67e-xDyKacLjsif29NtwCo9FwKwgG0TiVInTY0,821
+evatygram/exceptions/__init__.py,sha256=T1bED87U8A7tZ3RDTdUHrp7hibQn5vEzKcWlq7QkTqI,219
+evatygram/tools/__init__.py,sha256=jsctTeKZCrtEPRQSH08fdFJeRJDUVaNf0_FImHKYW_s,2307
+evatygram-2.1.1.dist-info/METADATA,sha256=rQSlbtesZckETkNlxtYF-Usjf22bDSNQKbNdHs7Jrew,2393
+evatygram-2.1.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+evatygram-2.1.1.dist-info/top_level.txt,sha256=PUJLmtGEa7BG-1_hosTlciHOO2IAN2I_p_cLcEPCv2k,10
+evatygram-2.1.1.dist-info/RECORD,,
