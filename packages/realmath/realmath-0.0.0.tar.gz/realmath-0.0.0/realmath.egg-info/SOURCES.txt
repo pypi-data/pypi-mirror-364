@@ -1,0 +1,9 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+pyproject.toml
+realmath.py
+realmath.egg-info/PKG-INFO
+realmath.egg-info/SOURCES.txt
+realmath.egg-info/dependency_links.txt
+realmath.egg-info/top_level.txt
