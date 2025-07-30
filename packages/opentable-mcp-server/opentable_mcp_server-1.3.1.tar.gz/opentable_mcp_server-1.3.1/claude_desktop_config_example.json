@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "opentable": {
+      "command": "uvx",
+      "args": ["--force-reinstall", "opentable-mcp-server"],
+      "env": {
+        "OPENTABLE_ORG_KEY": "a7a7a7a7-a7a7-a7a7-a7a7-a7a7a7a7a7a7"
+      }
+    }
+  }
+} 
