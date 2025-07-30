@@ -1,0 +1,13 @@
+LICENSE
+README.md
+pyproject.toml
+ZettyColor/Box.py
+ZettyColor/Logger.py
+ZettyColor/Menu.py
+ZettyColor/Table.py
+ZettyColor/ZtColors.py
+ZettyColor/__init__.py
+ZettyColor.egg-info/PKG-INFO
+ZettyColor.egg-info/SOURCES.txt
+ZettyColor.egg-info/dependency_links.txt
+ZettyColor.egg-info/top_level.txt
