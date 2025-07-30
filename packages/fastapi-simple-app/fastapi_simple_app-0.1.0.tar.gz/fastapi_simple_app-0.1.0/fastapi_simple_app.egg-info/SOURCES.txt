@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+fastapi_app/__init__.py
+fastapi_app/app.py
+fastapi_app/static/index.html
+fastapi_simple_app.egg-info/PKG-INFO
+fastapi_simple_app.egg-info/SOURCES.txt
+fastapi_simple_app.egg-info/dependency_links.txt
+fastapi_simple_app.egg-info/entry_points.txt
+fastapi_simple_app.egg-info/requires.txt
+fastapi_simple_app.egg-info/top_level.txt
