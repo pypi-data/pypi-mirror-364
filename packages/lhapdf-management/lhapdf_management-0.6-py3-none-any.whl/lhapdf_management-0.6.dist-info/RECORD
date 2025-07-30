@@ -1,0 +1,13 @@
+lhapdf_management/__init__.py,sha256=0sFLZwz5p2p5JaPJ4dr0YfKeDMv_FCvi18ObuYYptdI,1374
+lhapdf_management/configuration.py,sha256=Bus-EyXJtjc6-MUS-01El4paQQexJvJLPjTcfEH_5jU,6343
+lhapdf_management/management.py,sha256=xe8n7PZ99di0jG6rgzcmuO_WSXsU_Sgl-Vx4vjUHihM,4390
+lhapdf_management/net_utilities.py,sha256=fXIRly8jXV-Vuw-0RbFRGS6URpWKk3BWrDUtezMTX48,4693
+lhapdf_management/pdfsets.py,sha256=BRUs_jr0IKOI4liKmH435WSP7ZRxehqb65xfhOmc94E,6141
+lhapdf_management/scripts/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+lhapdf_management/scripts/lhapdf_script.py,sha256=6NJkjlWipD_fVgLDAPcfadUPOMNvNw-RBsNjMpOj-68,8290
+lhapdf_management-0.6.dist-info/licenses/LICENSE,sha256=OXLcl0T2SZ8Pmy2_dmlvKuetivmyPd5m1q-Gyd-zaYY,35149
+lhapdf_management-0.6.dist-info/METADATA,sha256=W3aoJi3YDvWvP8sAZMCNXcJ76wiQUbGRkVgk2vODD34,4468
+lhapdf_management-0.6.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+lhapdf_management-0.6.dist-info/entry_points.txt,sha256=x6kLJCvoTiN7QJrXgfCl9Qy0cr0jc08rRn48ezDlQfA,83
+lhapdf_management-0.6.dist-info/top_level.txt,sha256=BvhSbf6zC3HgDgUX-9P9e9caZsn2yltIgckR-FlpvPQ,18
+lhapdf_management-0.6.dist-info/RECORD,,
