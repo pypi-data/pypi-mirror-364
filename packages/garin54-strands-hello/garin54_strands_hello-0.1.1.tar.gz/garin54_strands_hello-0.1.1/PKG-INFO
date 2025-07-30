@@ -1,0 +1,8 @@
+Metadata-Version: 2.4
+Name: garin54.strands.hello
+Version: 0.1.1
+Summary: Add your description here
+Requires-Python: >=3.13
+Requires-Dist: flake8>=7.3.0
+Requires-Dist: mypy>=1.17.0
+Requires-Dist: pylint>=3.3.7
