@@ -1,0 +1,14 @@
+cvdpack/__init__.py,sha256=1qnxy3-14bwNHDjE8bzp79LDhtxYTlwISisWhRTDORM,967
+cvdpack/checkdiff.py,sha256=gGri4lBFskQRpsdgnUP7nu7x20GfWnBEwSuW5oeBa_U,3914
+cvdpack/main.py,sha256=dM1XrccTIwiORxv3wLg8uRMis-4rsjfQRHf6tt_3k90,28620
+cvdpack/pack_frames.py,sha256=HQBgtxGVoGZwe_oeaWKa0_NhzYsz1f3ls59OHup3rG4,14324
+cvdpack/pack_timeseries.py,sha256=j6rbjNYeiHdEMJg6ezkMWaLygSu5wWFcvQ8NzAXQpyk,10541
+cvdpack/util.py,sha256=PXMATib4U_S1cex5MKkbjje3w8QIWCNfq0MxqVbLlVI,7227
+cvdpack/presets/infinigen_2023_10_13_preview.json,sha256=uX2axnbVw1yvsAOyokWeAvjIHpdClNF3nBaT7wwJYNg,9800
+cvdpack/presets/tartanair_floatingpoint.json,sha256=ytOucLagp_aU0dNR7naVidLR96xbykshu-0sIYRz0dM,2345
+cvdpack/presets/tartanair_quantized.json,sha256=5mJhC7Lwcd0y2DY1V-DDmiYc6CmK0gFOw06iJpK7Q2c,2637
+cvdpack-0.0.4.dist-info/METADATA,sha256=MbmayGPlmtEWNESoUcIS-9JxX3D-X1cs7akVwvnlwwE,12649
+cvdpack-0.0.4.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+cvdpack-0.0.4.dist-info/entry_points.txt,sha256=jFJsgpPmmLUiv9mfrCky4fiyOf8pUDnIdoqYKfDppQI,46
+cvdpack-0.0.4.dist-info/licenses/LICENSE,sha256=zv_Tup_el3b4p2kJEuViLpQUs-pXcH5x3U01BFg5CAc,1506
+cvdpack-0.0.4.dist-info/RECORD,,
