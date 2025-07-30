@@ -1,0 +1,2 @@
+[console_scripts]
+topl = topl.__main__:main
