@@ -1,0 +1,13 @@
+"""
+chunklet/__init__.py
+
+A smart sentence-based tokenizer for splitting multilingual or multi-format text
+into overlapping chunks. Ideal for pre-processing tasks such as LLM prompting,
+summarization, and context-aware NLP.
+"""
+
+from .core import Chunklet
+
+__version__ = "1.0.4"
+__author__ = "Speedyk_005"
+__license__ = "MIT"
