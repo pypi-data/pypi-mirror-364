@@ -1,0 +1,3 @@
+[console_scripts]
+yzm-mcp-txt-from-url = yzm_mcp_txt_from_url:main
+
