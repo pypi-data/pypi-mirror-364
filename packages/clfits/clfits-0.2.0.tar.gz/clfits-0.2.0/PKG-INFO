@@ -1,0 +1,121 @@
+Metadata-Version: 2.4
+Name: clfits
+Version: 0.2.0
+Summary: A command-line FITS header editor.
+Author-email: Amber Malpas <malpas.1@osu.edu>
+License: MIT License
+        
+        Copyright (c) 2024 Amber Malpas
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE. 
+Project-URL: Homepage, https://github.com/AmberLee2427/CLFits
+Project-URL: Bug Tracker, https://github.com/AmberLee2427/CLFits/issues
+Project-URL: Repository, https://github.com/AmberLee2427/CLFits.git
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Scientific/Engineering :: Astronomy
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: astropy
+Requires-Dist: typer[all]
+Requires-Dist: rich
+Requires-Dist: pyyaml
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-cov; extra == "dev"
+Requires-Dist: pytest-doctestplus; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
+Requires-Dist: mypy; extra == "dev"
+Requires-Dist: bump-my-version; extra == "dev"
+Requires-Dist: sphinx; extra == "dev"
+Requires-Dist: furo; extra == "dev"
+Requires-Dist: pre-commit; extra == "dev"
+Requires-Dist: numpydoc; extra == "dev"
+Provides-Extra: docs
+Requires-Dist: sphinx; extra == "docs"
+Requires-Dist: furo; extra == "docs"
+Requires-Dist: numpydoc; extra == "docs"
+Dynamic: license-file
+
+# CLFits: Command-Line FITS Header Editor
+
+[![PyPI Version](https://img.shields.io/pypi/v/clfits.svg)](https://pypi.org/project/clfits)
+[![CI Status](https://github.com/AmberLee2427/CLFits/actions/workflows/ci.yml/badge.svg)](https://github.com/AmberLee2427/CLFits/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/github/AmberLee2427/CLFits/graph/badge.svg?token=C9FTGOCJ4M)](https://codecov.io/github/AmberLee2427/CLFits)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+A simple, robust command-line tool for viewing and editing FITS file headers.
+
+## 🚀 Installation
+
+Install `CLFits` directly from PyPI:
+
+```bash
+pip install clfits
+```
+
+## ✨ Quick Start
+
+`CLFits` provides a straightforward, command-based interface for header manipulation.
+
+**View the entire header:**
+
+```bash
+clfits view my_image.fits
+```
+
+**Get the value of a specific keyword:**
+
+```bash
+clfits get my_image.fits OBJECT
+```
+
+**Set a keyword's value and comment:**
+
+```bash
+clfits set my_image.fits OBJECT "NGC 4993" --comment "Corrected object name"
+```
+
+**Delete a keyword:**
+
+```bash
+clfits del my_image.fits HISTORY
+```
+
+**Export the header to JSON:**
+
+```bash
+clfits export my_image.fits --format json
+```
+
+**Export the header to a YAML file (format is inferred from filename):**
+
+```bash
+clfits export my_image.fits --output header.yml
+```
+
+For more detailed instructions, see the [full documentation](https://clfits.readthedocs.io/). 
