@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+myneuralnet/__init__.py
+myneuralnet/activations.py
+myneuralnet/layers.py
+myneuralnet/loss.py
+myneuralnet/network.py
+myneuralnet.egg-info/PKG-INFO
+myneuralnet.egg-info/SOURCES.txt
+myneuralnet.egg-info/dependency_links.txt
+myneuralnet.egg-info/requires.txt
+myneuralnet.egg-info/top_level.txt

@@ -1,0 +1,94 @@
+Metadata-Version: 2.4
+Name: myneuralnet
+Version: 0.1.0
+Summary: A simple neural network library built from scratch using NumPy
+Author: Om Asanani
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# myneuralnet
+
+A simple, lightweight neural network library built from scratch using NumPy.  
+This project is designed for educational purposes to help understand how neural networks work under the hood — without relying on high-level frameworks like TensorFlow or PyTorch.
+
+## 🚀 Features
+
+- Fully connected feedforward neural network
+- Supports custom architectures (you define number of layers and neurons)
+- Activation functions: ReLU, Sigmoid, Softmax, Linear (more can be added)
+- Forward propagation & backpropagation
+- MSE loss for regression tasks (you can extend to classification easily)
+- Training with gradient descent
+- Designed to be minimal and beginner-friendly
+
+## 📦 Installation
+
+Once you’ve built your package, you can install it locally using:
+
+```bash
+pip install -e .
+```
+
+## 🧠 Example Usage
+
+```python
+from myneuralnet.network import NeuralNetwork
+from myneuralnet.layers import Layer
+
+# Create a network
+net = NeuralNetwork()
+net.add(Layer(units=4, activation_function="relu", input_dim=2))
+net.add(Layer(units=4, activation_function="relu"))
+net.add(Layer(units=1))  # No activation = linear for regression
+
+# Train
+net.train(X_train, y_train, epochs=1000)
+
+# Predict
+predictions = net.predict(X_test)
+```
+
+## 📁 Project Structure
+
+```
+myneuralnet/
+│
+├── network.py         # NeuralNetwork class: manages training, prediction
+├── layers.py          # Layer class: handles weights, activation, backprop
+├── activations.py     # Activation functions and their derivatives
+├── utils.py           # Utility functions (e.g., loss, metrics)
+├── __init__.py        # Makes the folder a Python package
+```
+
+## 🧪 Dependencies
+
+- numpy
+
+## 📈 Future Improvements
+
+- Add support for classification with softmax & cross-entropy
+- Include optimizers like Adam or Momentum
+- Add regularization (L2, dropout)
+- Save/load trained models
+- Add unit tests
+
+## 📄 License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+---
+
+Made with ❤️ by Om Asanani
