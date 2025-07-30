@@ -1,0 +1,286 @@
+# LLM Wrapper
+
+A comprehensive Python wrapper for Azure OpenAI with built-in PostgreSQL integration and usage tracking. Provides detailed analytics for LLM usage with support for both text and JSON response formats.
+
+## Features
+
+- 🚀 **Easy Integration**: Simple API for interacting with Azure OpenAI services
+- 📊 **Usage Tracking**: Comprehensive logging and analytics for all LLM requests
+- 💾 **PostgreSQL Integration**: Built-in PostgreSQL database support with automatic table creation
+- ⚡ **High Performance**: Optimized for concurrent requests and high throughput
+- 🔒 **Secure**: Built-in security features and API key management
+- 📈 **Analytics**: Detailed usage statistics and reporting
+- 🎯 **Response Types**: Support for both text and JSON response formats
+- 🐳 **Production Ready**: Robust error handling and logging
+
+## Installation
+
+### Basic Installation
+
+```bash
+pip install llm_wrapper_biz
+```
+
+## Quick Start
+
+### Basic Usage
+
+```python
+from llm_wrapper_biz import LLMWrapper
+
+# Initialize the wrapper (database connection is automatic)
+wrapper = LLMWrapper(
+    service_url="https://your-azure-openai-instance.openai.azure.com",
+    api_key="your-azure-openai-api-key",
+    deployment_name="your-deployment-name",
+    api_version="2023-05-15",
+    default_model='gpt-4'
+)
+
+# Send a text request
+response = wrapper.send_request(
+    input_text="What are the benefits of renewable energy?",
+    customer_id=1,
+    organization_id=1,
+    response_type="text",  # "text" or "json"
+    temperature=0.7,
+    max_tokens=2000
+)
+
+print(f"Response: {response['processed_output']}")
+print(f"Tokens used: {response['total_tokens']}")
+print(f"Response type: {response['response_type']}")
+
+# Send a JSON request
+json_response = wrapper.send_request(
+    input_text="Create a JSON object with information about Python programming including name, creator, and year_created.",
+    customer_id=1,
+    organization_id=1,
+    response_type="json"
+)
+
+print(f"JSON Response: {json_response['processed_output']}")
+print(f"Creator: {json_response['processed_output'].get('creator', 'N/A')}")
+
+# Get usage statistics
+stats = wrapper.get_usage_stats()
+print(f"Total requests: {stats['total_requests']}")
+print(f"Total tokens: {stats['total_tokens']}")
+
+# Clean up
+wrapper.close()
+```
+
+### Simplified Usage
+
+For easier integration, use the simplified methods:
+
+```python
+# Get just the processed output (text)
+text_result = wrapper.send_request(
+    input_text="Explain quantum computing",
+    customer_id=1,
+    organization_id=1,
+    response_type="text"
+)
+print(text_result)
+
+# Get just the processed output (JSON)
+json_result = wrapper.send_request(
+    input_text="Create JSON with weather data for London",
+    customer_id=1,
+    organization_id=1,
+    response_type="json"
+)
+```
+
+## Response Types
+
+### Text Response (Default)
+
+```python
+response = wrapper.send_request(
+    input_text="Explain artificial intelligence",
+    customer_id=1,
+    organization_id=1,
+    response_type="text"
+)
+
+# Response structure:
+{
+    "output_text": "raw response from API",
+    "processed_output": "same as output_text for text responses",
+    "response_type": "text",
+    "input_tokens": 10,
+    "output_tokens": 150,
+    "total_tokens": 160,
+    "response_time_ms": 1200,
+    "model": "gpt-4",
+    "full_response": {...}
+}
+```
+
+### JSON Response
+
+```python
+response = wrapper.send_request(
+    input_text="Create a JSON object with user information including name, age, and skills array",
+    customer_id=1,
+    organization_id=1,
+    response_type="json"
+)
+
+# Response structure:
+{
+    "output_text": '{"name": "John", "age": 30, "skills": ["Python", "AI"]}',
+    "processed_output": {"name": "John", "age": 30, "skills": ["Python", "AI"]},
+    "response_type": "json",
+    "input_tokens": 15,
+    "output_tokens": 25,
+    "total_tokens": 40,
+    "response_time_ms": 1500,
+    "model": "gpt-4",
+    "full_response": {...}
+}
+```
+
+
+## Database Schema
+
+The wrapper automatically creates the following PostgreSQL table:
+
+```sql
+CREATE TABLE token_usage_log (
+    id SERIAL PRIMARY KEY,
+    customer_id INTEGER NOT NULL,
+    organization_id INTEGER NOT NULL,
+    model_name VARCHAR(255) NOT NULL,
+    request_params JSON,
+    response_params JSON,
+    input_tokens INTEGER NOT NULL,
+    output_tokens INTEGER NOT NULL,
+    total_tokens INTEGER NOT NULL,
+    request_timestamp TIMESTAMP DEFAULT NOW(),
+    response_time_ms INTEGER NOT NULL,
+    status VARCHAR(50) DEFAULT 'success'
+);
+```
+
+## Usage Analytics
+
+```python
+# Get overall statistics
+stats = wrapper.get_usage_stats()
+
+# Get customer-specific statistics
+customer_stats = wrapper.get_usage_stats(customer_id=1)
+
+# Get organization-specific statistics
+org_stats = wrapper.get_usage_stats(organization_id=1)
+
+# Get statistics for a specific time period
+period_stats = wrapper.get_usage_stats(
+    start_date="2024-01-01T00:00:00",
+    end_date="2024-01-31T23:59:59"
+)
+
+# Example stats output:
+{
+    "total_requests": 150,
+    "total_tokens": 45000,
+    "models": [
+        {
+            "model_name": "gpt-4",
+            "requests": 100,
+            "input_tokens": 15000,
+            "output_tokens": 20000,
+            "total_tokens": 35000,
+            "avg_response_time_ms": 1200
+        },
+        {
+            "model_name": "gpt-3.5-turbo",
+            "requests": 50,
+            "input_tokens": 5000,
+            "output_tokens": 5000,
+            "total_tokens": 10000,
+            "avg_response_time_ms": 800
+        }
+    ]
+}
+```
+
+## Configuration Options
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `service_url` | str | Required | Azure OpenAI service endpoint URL |
+| `api_key` | str | Required | Azure OpenAI API key |
+| `deployment_name` | str | Required | Azure OpenAI deployment name |
+| `api_version` | str | Required | Azure OpenAI API version |
+| `default_model` | str | 'gpt-4' | Default model identifier |
+| `timeout` | int | 30 | Request timeout in seconds |
+
+## API Reference
+
+### Core Methods
+
+#### `send_request(input_text, customer_id, organization_id, response_type="text", **kwargs)`
+
+Send a request to the Azure OpenAI service.
+
+**Parameters:**
+- `input_text` (str): The prompt text
+- `customer_id` (int): Customer identifier
+- `organization_id` (int): Organization identifier
+- `response_type` (str): Response format - "text" or "json"
+- `model` (str, optional): Model to use for this request
+- `temperature` (float, optional): Sampling temperature (0.0-1.0)
+- `max_tokens` (int, optional): Maximum tokens in response
+
+**Returns:**
+- `dict`: Response containing output text, processed output, token counts, and metadata
+
+#### `send_request_simple(input_text, customer_id, organization_id, response_type="text", **kwargs)`
+
+Simplified method that returns only the processed output.
+
+**Parameters:**
+- Same as `send_request()`
+
+**Returns:**
+- `str` (for text) or `dict` (for JSON): Direct processed output
+
+#### `get_usage_stats(**filters)`
+
+Get usage statistics with optional filtering.
+
+**Parameters:**
+- `customer_id` (int, optional): Filter by customer
+- `organization_id` (int, optional): Filter by organization
+- `start_date` (str, optional): Start date in ISO format
+- `end_date` (str, optional): End date in ISO format
+
+**Returns:**
+- `dict`: Usage statistics including request counts, token usage, and performance metrics
+
+#### `close()`
+
+Close database connections and clean up resources.
+
+
+## Requirements
+
+- Python 3.8+
+
+## License
+
+This project is licensed under the MIT License.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## Acknowledgments
+
+- Thanks to all contributors who have helped shape this project
+- Built with love for the AI/ML community
