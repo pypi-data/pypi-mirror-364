@@ -1,0 +1,352 @@
+Metadata-Version: 2.4
+Name: auto-genesis-telemetry
+Version: 0.0.3
+Summary: A unified OpenTelemetry-based SDK for metrics, logging, and tracing in Python applications.
+Author-email: Muhamed Shahabas C <muhamed@autonomize.ai>
+Requires-Python: >=3.12
+Requires-Dist: aiohttp<4.0.0,>=3.12.14
+Requires-Dist: confluent-kafka<3.0.0,>=2.11.0
+Requires-Dist: cryptography<46.0.0,>=45.0.5
+Requires-Dist: opentelemetry-api>=1.20.0
+Requires-Dist: opentelemetry-exporter-otlp-proto-grpc>=1.20.0
+Requires-Dist: opentelemetry-instrumentation-fastapi>=0.41b0
+Requires-Dist: opentelemetry-instrumentation-requests>=0.41b0
+Requires-Dist: opentelemetry-instrumentation>=0.41b0
+Requires-Dist: opentelemetry-sdk>=1.20.0
+Requires-Dist: tenacity<10.0.0,>=9.1.2
+Provides-Extra: dev
+Requires-Dist: black>=23.10.0; extra == 'dev'
+Requires-Dist: commitizen>=3.12.0; extra == 'dev'
+Requires-Dist: isort>=5.12.0; extra == 'dev'
+Requires-Dist: mypy>=1.6.1; extra == 'dev'
+Requires-Dist: pytest-cov>=4.1.0; extra == 'dev'
+Requires-Dist: pytest>=7.4.3; extra == 'dev'
+Description-Content-Type: text/markdown
+
+# Telemetry SDK
+
+![Python Version](https://img.shields.io/badge/Python-3.12+-blue?style=for-the-badge&logo=python)
+![PyPI Version](https://img.shields.io/pypi/v/auto-genesis-telemetry?style=for-the-badge&logo=pypi)
+![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg?style=for-the-badge)
+![Imports](https://img.shields.io/badge/imports-isort-1674b1?style=for-the-badge&logo=pycharm)
+![Type Checking](https://img.shields.io/badge/type%20checking-mypy-blue?style=for-the-badge&logo=python)
+![Tests](https://img.shields.io/badge/tests-pytest-0A9EDC?style=for-the-badge&logo=pytest)
+
+A comprehensive OpenTelemetry-based SDK for application monitoring and observability in Python applications. This SDK provides unified APIs for metrics, logging, and tracing, making it easier to instrument your applications with observability features.
+
+## Features
+
+The Telemetry SDK offers comprehensive observability capabilities:
+
+- **Unified Telemetry**: Seamlessly integrate metrics, logs, and traces through a single, cohesive interface
+- **OpenTelemetry Integration**: Built on OpenTelemetry's robust observability standards
+- **Auto-instrumentation**: Built-in support for FastAPI and HTTP request instrumentation
+- **Simple API**: Easy-to-use interface for all telemetry operations
+- **Configurable**: Flexible configuration options for different environments
+- **Service-Based Architecture**: Clean separation of metrics, logging, and tracing functionalities
+- **Resource Attribution**: Automatic resource attribution for all telemetry signals
+- **Batch Processing**: Efficient batch processing for logs, metrics, and traces
+- **Graceful Lifecycle Management**: Proper startup and shutdown handling
+- **Context Propagation**: Advanced support for distributed tracing context management
+
+## Prerequisites
+
+- Python 3.12 or higher
+- A running OpenTelemetry collector (default endpoint: http://localhost:4317)
+
+## Installation
+
+Install using pip:
+
+```bash
+pip install auto-genesis-telemetry
+```
+
+Or using Poetry:
+
+```bash
+poetry add auto-genesis-telemetry
+```
+
+## Quick Start
+
+Here's a simple example to get you started:
+
+```python
+from telemetry import Telemetry, TelemetryConfig, MetricOptions
+
+# Initialize with configuration
+config = TelemetryConfig(
+    service_name="my-service",
+    environment="production",
+    otlp_endpoint="http://localhost:4317",
+    version="1.0.0",
+    metric_interval_ms=5000,
+    log_level="INFO"
+)
+
+# Start telemetry services
+telemetry = Telemetry(config)
+await telemetry.start()
+
+try:
+    # Create and use metrics
+    request_counter = telemetry.metrics.create_counter(
+        MetricOptions(
+            name="http.requests",
+            description="Number of HTTP requests"
+        )
+    )
+    request_counter.add(1)
+
+    # Log information
+    telemetry.logging.info("Application started", {"version": "1.0.0"})
+
+    # Create traced operation
+    async def my_operation():
+        return "result"
+
+    result = await telemetry.tracing.create_span(
+        "my-operation",
+        my_operation,
+        attributes={"custom.attribute": "value"}
+    )
+finally:
+    # Ensure proper shutdown
+    await telemetry.shutdown()
+```
+
+## Configuration
+
+The SDK is configured using the `TelemetryConfig` class:
+
+```python
+@dataclass
+class TelemetryConfig:
+    service_name: str                                       # Required: Name of your service
+    environment: str                                        # Required: Deployment environment
+    version: Optional[str] = "1.0.0"                        # Service version
+    otlp_endpoint: Optional[str] = "http://localhost:4317"  # OpenTelemetry collector endpoint
+    metric_interval_ms: Optional[int] = 5000                # Metrics export interval
+    log_level: Optional[str] = "INFO"                       # Logging level
+    resource_attributes: Optional[Dict[str, str]] = None    # Additional resource attributes
+```
+
+## Services
+
+### Metrics Service
+
+The Metrics Service provides different types of metrics:
+
+```python
+# Counter
+counter = telemetry.metrics.create_counter(
+    MetricOptions(
+        name="requests.total",
+        description="Total requests",
+        unit="requests"
+    )
+)
+counter.add(1)
+
+# Histogram
+latency = telemetry.metrics.create_histogram(
+    MetricOptions(
+        name="request.latency",
+        description="Request latency",
+        unit="ms"
+    )
+)
+latency.record(0.025)
+
+# Up/Down Counter
+active_requests = telemetry.metrics.create_up_down_counter(
+    MetricOptions(
+        name="requests.active",
+        description="Active requests"
+    )
+)
+active_requests.add(1)
+active_requests.add(-1)
+```
+
+### Logging Service
+
+The Logging Service provides structured logging with different severity levels:
+
+```python
+# Info logging
+telemetry.logging.info("Operation completed", {"operation_id": "123"})
+
+# Error logging with exception
+try:
+    raise ValueError("Invalid input")
+except Exception as e:
+    telemetry.logging.error(
+        "Operation failed",
+        error=e,
+        attributes={"operation_id": "123"}
+    )
+
+# Warning logging
+telemetry.logging.warn("Resource running low", {"resource": "memory"})
+
+# Debug logging
+telemetry.logging.debug("Processing request", {"request_id": "abc"})
+```
+
+### Tracing Service
+
+The Tracing Service provides span creation, context management, and advanced distributed tracing capabilities:
+
+```python
+# Create a span for an operation
+async def process_request():
+    async def operation():
+        # Your operation logic here
+        return "processed"
+
+    return await telemetry.tracing.create_span(
+        "process-request",
+        operation,
+        {"request_type": "user_data"}
+    )
+
+# Create a span with a specific context
+current_context = telemetry.tracing.get_context()
+result = await telemetry.tracing.create_span(
+    "process-request",
+    operation,
+    {"request_type": "user_data"},
+    ctx=current_context
+)
+
+# Add attributes to current span
+telemetry.tracing.add_attributes({"user_id": "456"})
+
+# Record errors in current span
+try:
+    raise ValueError("Invalid input")
+except Exception as e:
+    telemetry.tracing.record_error(e)
+
+# Context Propagation
+# Inject current context for cross-service communication
+carrier = telemetry.tracing.inject_current_context()
+# Send this carrier to another service
+
+# In the receiving service, extract the context
+received_carrier = ... # Received from another service
+extracted_context = telemetry.tracing.extract_context(received_carrier)
+
+# Create a span using the extracted context
+await telemetry.tracing.create_span(
+    "cross-service-operation",
+    operation,
+    ctx=extracted_context
+)
+```
+
+## Context Propagation
+
+The Telemetry SDK now supports advanced context propagation for distributed tracing:
+
+- **Inject Current Context**: Extract the current tracing context for cross-service communication
+- **Inject Specific Context**: Inject a specific context into a carrier
+- **Extract Context**: Reconstruct a context from a carrier received from another service
+
+### Context Injection Methods
+
+```python
+# Inject the current active context
+carrier = telemetry.tracing.inject_current_context()
+
+# Inject a specific context
+specific_context = telemetry.tracing.get_context()
+specific_carrier = telemetry.tracing.inject_context(specific_context)
+
+# Extract context from a carrier
+extracted_context = telemetry.tracing.extract_context(carrier)
+```
+
+## Best Practices
+
+Here are some recommended practices when using the Telemetry SDK:
+
+### Resource Management
+
+Always ensure proper initialization and cleanup:
+
+```python
+try:
+    await telemetry.start()
+    # Your application code
+finally:
+    await telemetry.shutdown()
+```
+
+### Structured Logging
+
+Use structured logging with context:
+
+```python
+telemetry.logging.info("API request processed", {
+    "request_id": "req_123",
+    "method": "POST",
+    "path": "/api/v1/users",
+    "status_code": 200,
+    "duration_ms": 45.2
+})
+```
+
+### Meaningful Metrics
+
+Create descriptive metrics with proper units:
+
+```python
+latency_histogram = telemetry.metrics.create_histogram(
+    MetricOptions(
+        name="http.response_time",
+        description="HTTP request latency distribution",
+        unit="ms"
+    )
+)
+```
+
+### Operation Context
+
+Use spans to track operation context:
+
+```python
+async def process_user_request(user_id: str):
+    async def operation():
+        result = await db.fetch_user(user_id)
+        telemetry.tracing.add_attributes({
+            "db.result": "success",
+            "user.found": "true"
+        })
+        return result
+
+    return await telemetry.tracing.create_span(
+        "process-user-request",
+        operation,
+        attributes={
+            "user.id": user_id,
+            "operation.type": "read"
+        }
+    )
+```
+
+## Error Handling
+
+The SDK provides a `TelemetryError` class for handling telemetry-specific errors:
+
+```python
+from telemetry import TelemetryError
+
+try:
+    await telemetry.start()
+except TelemetryError as e:
+    print(f"Telemetry error: {e}")
+    print(f"Caused by: {e.cause}")
+```
