@@ -1,0 +1,5 @@
+[console_scripts]
+claude-code-adk-validator = claude_code_adk_validator.main:main
+
+[pytest11]
+claude_adk_validator = claude_code_adk_validator.pytest_plugin
