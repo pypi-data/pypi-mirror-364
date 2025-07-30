@@ -1,0 +1,18 @@
+# Включаем все файлы из папки bin
+recursive-include energympc/Cbc-refactor-win64-msvc14-mt/bin *
+
+# Включаем все файлы из папки include
+recursive-include energympc/Cbc-refactor-win64-msvc14-mt/include *
+
+# Включаем все файлы из папки lib
+recursive-include energympc/Cbc-refactor-win64-msvc14-mt/lib *
+
+# Включаем все файлы из папки share
+recursive-include energympc/Cbc-refactor-win64-msvc14-mt/share *
+
+recursive-include energympc/cbc/bin *
+
+# Включаем файлы документации
+include energympc/AUTHORS
+include energympc/LICENSE
+include energympc/README.md

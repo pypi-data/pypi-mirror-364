@@ -1,0 +1,39 @@
+Metadata-Version: 2.4
+Name: energympc
+Version: 1.0.0
+Home-page: 
+Author: imby
+Author-email: 
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: pyomo
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: typing
+Requires-Dist: matplotlib
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: requires-dist
+
+# energympc
+"energympc" is a flexible and extensible Python library for simulating and optimizing energy systems using
+Model Predictive Control (MPC).
+It includes modular components representing various energy assets and infrastructure,
+enabling realistic simulations and control strategies across different use cases.
+
+
+## Installation
+### Win or Mac
+```bash for
+pip install energympc 
+```
+
+ ### Linux 
+```bash for win or mac
+sudo apt install coinor-cbc 
+pip install energympc 
+```
