@@ -1,0 +1,119 @@
+[build-system]
+requires = ["poetry-core>=2.0.0", ]
+build-backend = "poetry.core.masonry.api"
+
+[project]
+name = "singleton_decorator1"
+description = "Packaged selections from Python Decorator Library on wiki.python.org"
+authors = [{name = "Editor 82 of wiki.python.org"}, {name = "Doug Sojourner", email = "<doug@sojournings.org>"}]
+readme = "README.md"
+requires-python = ">=3.10,<4.0"
+license = { text = "GNU General Public License v3 (GPLv3)" }
+version="0.5.0"
+
+dependencies = []
+
+classifiers=[
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development",
+]
+
+keywords = ["decorators", "singleton", ]
+
+
+[project.urls]
+repository = "https://codeberg.org/Sojournings/singleton-decorator1.git"
+
+[tool.poetry.requires-plugins]
+poethepoet = { version = ">=0.10.0", extras = ["poetry_plugin"]}
+
+[project.entry-points."poetry.plugin"]
+#poetry-git-version-plugin = "poetry_git_version_plugin.plugins:PoetryGitVersionPlugin"
+
+[project.entry-points."poetry.application.plugin"]
+#poetry-git-version-plugin = "poetry_git_version_plugin.plugins:PoetryGitVersionApplicationPlugin"
+
+[tool.poetry.dependencies]
+#importlib-metadata = {version = "^1.0", python = "<3.8"}
+
+[tool.poetry.group.dev.dependencies]
+#mypy  = ">=0.942"  
+#isort = ">=5.12.0"
+#pytest = ">=7.4.4" # included for audit issues
+#black = ">=24.4.0" # included for audit issues
+#poetry-githooks = ">=3.0.1,<4.0.0"
+
+[[tool.poetry.source]]
+name = "testpypi"
+url = "https://test.pypi.org/simple/"
+priority = "primary"
+
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+ignore_missing_imports = true
+check_untyped_defs = true
+
+# siginificantly speed up pytest
+[tool.pytest.ini_options]
+testpaths = [ "tests"]
+
+[tool.poe]
+shell_interpreter = "bash"
+
+[tool.poe.poetry_hooks]
+pre_build  = "test_seq_1"
+#         Set version, propogate to module
+post_build = "test_seq_2"
+pre_publish = "test_seq_3"
+#         push
+
+[tool.poe.tasks]
+test_seq_1 = ["black", "mypy" ]
+test_seq_2 = ["local_source", "pytest", "local_source_stop"]
+test_seq_3 = ["local_source", "pytest", "mypy", "local_source_stop"]
+
+[tool.poe.tasks.local_source]
+shell = """
+   PID_SIMPLEINDEX=$(pgrep simpleindex)
+   if [[ "x${PID_SIMPLEINDEX}" != "x" ]] ; then
+      kill ${PID_SIMPLEINDEX}
+   fi
+   simple503 -B ${PWD}/tests/simple -e -s  -c ${PWD}/dist ${PWD}/tests/simple
+   nohup simpleindex ${PWD}/tests/simple/configuration.toml &
+"""
+
+[tool.poe.tasks.local_source_stop]
+shell = """
+   PID_SIMPLEINDEX=$(pgrep simpleindex)
+   if [[ "x${PID_SIMPLEINDEX}" != "x" ]] ; then
+      kill ${PID_SIMPLEINDEX}
+   fi
+"""
+
+[tool.poe.tasks.black]
+shell = """
+   $(poetry env activate)
+   black .
+"""
+
+[tool.poe.tasks.pytest]
+shell = """
+   poetry update
+   pytest -v 
+"""
+cwd = "tests"
+
+[tool.poe.tasks.mypy]
+shell = """
+   mypy singleton_decorator1 tests
+"""
