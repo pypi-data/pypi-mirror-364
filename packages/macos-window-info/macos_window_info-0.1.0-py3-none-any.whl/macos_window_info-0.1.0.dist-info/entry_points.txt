@@ -1,0 +1,3 @@
+[console_scripts]
+macos-window-info=macos_window_info.main:main
+
