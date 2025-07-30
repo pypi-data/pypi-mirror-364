@@ -1,0 +1,9 @@
+fastmcp
+slack-sdk
+python-dotenv
+
+[dev]
+pytest
+black
+flake8
+mypy
