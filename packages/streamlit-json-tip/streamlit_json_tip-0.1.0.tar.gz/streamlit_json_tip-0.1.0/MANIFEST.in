@@ -1,0 +1,5 @@
+include README.md
+include LICENSE
+recursive-include streamlit_json_tip/frontend/build *
+global-exclude *.pyc
+global-exclude __pycache__
