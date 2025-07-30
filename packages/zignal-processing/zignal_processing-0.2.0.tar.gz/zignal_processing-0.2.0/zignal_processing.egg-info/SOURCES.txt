@@ -1,0 +1,16 @@
+MANIFEST.in
+README.md
+pyproject.toml
+setup.py
+tests/__init__.py
+tests/test_colors.py
+tests/test_comprehensive.py
+tests/test_numpy.py
+zignal/__init__.py
+zignal/py.typed
+zignal_processing.egg-info/PKG-INFO
+zignal_processing.egg-info/SOURCES.txt
+zignal_processing.egg-info/dependency_links.txt
+zignal_processing.egg-info/not-zip-safe
+zignal_processing.egg-info/requires.txt
+zignal_processing.egg-info/top_level.txt

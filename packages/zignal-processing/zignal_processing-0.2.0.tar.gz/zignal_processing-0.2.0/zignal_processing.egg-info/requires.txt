@@ -1,0 +1,12 @@
+
+[dev]
+pytest
+uv
+ruff
+
+[docs]
+pdoc
+
+[test]
+pytest
+numpy
