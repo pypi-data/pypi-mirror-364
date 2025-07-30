@@ -1,0 +1,16 @@
+simple_ans/EncodedSignal.py,sha256=LOWZ7MrC9Pb8sKCY3KHuSjMI4_xI2tox_77Iu3-_H4U,2623
+simple_ans/__init__.py,sha256=afHqDuNYCT2SEP622V2sDDLvmlrfopscDVsnvcWQUmI,295
+simple_ans/_simple_ans.cpython-312-x86_64-linux-musl.so,sha256=0t7Vc-YCLE3PqHq8USs_Iz4XM2bIHWGyG4TTDgLYBpA,324969
+simple_ans/choose_symbol_counts.py,sha256=qXvUhNsuJkJk076i11h0WcgqommDcVU0EDsOIj6KbVo,2310
+simple_ans/encode_decode.py,sha256=X5fWLejszodhs0ySYYBDcspENKquUnqs8Y4yAM_MXeA,6141
+simple_ans/cpp/libdivide.h,sha256=F4hK_qKpYvvQVzaihKpVV2HgF3B3lY3dwRMFmyB8hG0,133138
+simple_ans/cpp/simple_ans.cpp,sha256=-2xwS975ny2-d9TKl-WyJCvzADPgp6IfCLtsTaqYDIM,26
+simple_ans/cpp/simple_ans.hpp,sha256=eGdjfve6bVCtnQR-E3jPJ3RLSvkA4KJ7Nfaz3ZwwrIQ,9795
+simple_ans/pure_python/__init__.py,sha256=_ShiqTBgK7Vbbs8XH7RFV1goXX5rfjR6Ign1XyYkvts,105
+simple_ans/pure_python/py_encode_decode.py,sha256=bfBvmQ3JfyF4gdufMwR0Ekg_B5noJDR0pyag-5ZjF7o,8637
+simple_ans.libs/libgcc_s-0cd532bd.so.1,sha256=yPk0-VjyKzucjnkP3mvC0vVaua6Ln17qZUJbICcXgtA,181737
+simple_ans.libs/libstdc++-5d72f927.so.6.0.33,sha256=fogxHsmB1_D6C-a_-uHh8Ei_6Qh52a8vLlicJRM3ehk,3562401
+simple_ans-0.3.1.dist-info/METADATA,sha256=taU5KiK_ZI6LuMKlE0AjyrV_IW9gTLdnzE-nPRAawcA,6099
+simple_ans-0.3.1.dist-info/WHEEL,sha256=30KbH6g1jjzF2O0tVNXMusuwDW6YdUM18J77HxGNOwo,117
+simple_ans-0.3.1.dist-info/RECORD,,
+simple_ans-0.3.1.dist-info/licenses/LICENSE,sha256=xx0jnfkXJvxRnG63LTGOxlggYnIysveWIZ6H3PNdCrQ,11357
