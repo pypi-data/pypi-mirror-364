@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "hanzo-mcp-client"
+version = "0.1.0"
+description = "MCP (Model Context Protocol) client library for Hanzo Dev"
+authors = ["Hanzo Industries Inc <dev@hanzo.ai>"]
+license = "MIT"
+readme = "README.md"
+packages = [
+  { include = "hanzo_mcp_client" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+mcp = ">=1.9.4"
+fastmcp = ">=2.5.2"
+pydantic = "^2.11.1"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+pytest-asyncio = "^0.25.0"
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = [
+  "poetry-core",
+]
