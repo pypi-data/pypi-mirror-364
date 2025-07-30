@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools", "wheel","hatchling", "uv-dynamic-versioning"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "uv-dynamic-versioning"
+
+[project]
+name = "iteroo"
+dynamic= ["version"]
+description = "Object orientated iterator wrapper."
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+keywords = ["iterators", "functional"]
+
+authors = [
+  {name = "Chris Burbridge", email = "cburbridge@gmail.com" }
+]
+
+maintainers = [
+  {name = "Chris Burbridge", email = "cburbridge@gmail.com" }
+]
+
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Libraries",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3 :: Only",
+]
+
+dependencies = [
+    # No runtime dependencies
+]
+
+[project.optional-dependencies]
+test = ["pytest", "pytest-cov"]
+
+[project.urls]
+"Homepage" = "https://github.com/cburbridge/iteroo"
+"Bug Reports" = "https://github.com/cburbridge/iteroo/issues"
+"Source" = "https://github.com/cburbridge/iteroo"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/iteroo"]
+
+[tool.pytest.ini_options]
+addopts = "--cov=src/iteroo --cov-report=term-missing"
