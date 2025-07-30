@@ -1,0 +1,33 @@
+{
+  "timestamp": 1753360997.095176,
+  "summary": {
+    "total_tests": 1,
+    "passed_tests": 1,
+    "failed_tests": 0,
+    "success_rate": 100.0,
+    "total_errors": 0,
+    "total_warnings": 0,
+    "total_time": 64.47701907157898
+  },
+  "results": {
+    "mimic-iv-demo": {
+      "database_info": {
+        "name": "mimic-iv-demo",
+        "title": "MIMIC-IV Clinical Database Demo",
+        "access_type": "AccessType.OPEN",
+        "size_gb": 0.1,
+        "patient_count": 100
+      },
+      "download_success": true,
+      "download_time": 60.82082486152649,
+      "conversion_success": true,
+      "conversion_time": 3.598449945449829,
+      "query_success": true,
+      "errors": [],
+      "warnings": [],
+      "cache_used": true,
+      "cache_path": "/Users/pedro/physionet_test_cache",
+      "overall_success": true
+    }
+  }
+}

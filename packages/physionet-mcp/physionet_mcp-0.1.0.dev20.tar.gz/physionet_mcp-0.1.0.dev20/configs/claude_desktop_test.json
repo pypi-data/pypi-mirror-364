@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "physionet-test": {
+      "command": "python",
+      "args": ["/Users/pedro/Desktop/physionet-mcp/physionetmcp/cli.py", "run"],
+      "db": ["mimic-iv-demo", "eicu-demo"],
+      "dataRoot": "~/physionet_test_data",
+      "storageFormat": "duckdb",
+      "maxResultRows": 100,
+      "queryTimeoutSeconds": 60,
+      "env": {
+        "PHYSIONET_USERNAME": "pedromoreira",
+        "PHYSIONET_PASSWORD": "Peter5h3!"
+      }
+    }
+  }
+} 

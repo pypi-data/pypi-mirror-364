@@ -1,0 +1,72 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "physionet-mcp"
+version = "0.1.0.dev20"
+description = "PhysioNet MCP Server for accessing physiological databases"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Your Name", email = "your.email@example.com"},
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+    "fastmcp>=0.2.0",
+    "duckdb>=0.9.0",
+    "polars>=0.20.0",
+    "pyarrow>=14.0.0",
+    "wfdb>=4.1.0",
+    "boto3>=1.34.0",
+    "requests>=2.31.0",
+    "pydantic>=2.5.0",
+    "typer>=0.9.0",
+    "rich>=13.7.0",
+    "httpx>=0.26.0",
+    "aiofiles>=23.2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.7.0",
+]
+
+[project.scripts]
+physionetmcp = "physionetmcp.cli:app"
+
+[project.urls]
+Homepage = "https://github.com/yourusername/physionetmcp"
+Repository = "https://github.com/yourusername/physionetmcp"
+Issues = "https://github.com/yourusername/physionetmcp/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["physionetmcp"]
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+
+[tool.ruff]
+line-length = 88
+target-version = "0.1.0.dev20"
+
+[tool.mypy]
+python_version = "0.1.0.dev20"
+strict = true
+warn_return_any = true
+warn_unused_configs = true 

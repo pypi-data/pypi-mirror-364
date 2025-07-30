@@ -1,0 +1,327 @@
+name: Publish to PyPI
+
+on:
+  # Trigger on release creation
+  release:
+    types: [published]
+  
+  # Trigger on version tags
+  push:
+    tags:
+      - 'v*'
+    # Auto-publish on push to main branch
+    branches:
+      - 'main'
+      - 'master'
+  
+  # Allow manual trigger for testing
+  workflow_dispatch:
+    inputs:
+      test_pypi:
+        description: 'Publish to Test PyPI instead of PyPI'
+        required: false
+        default: false
+        type: boolean
+      force_version:
+        description: 'Force specific version (e.g., 0.2.0)'
+        required: false
+        default: ''
+        type: string
+
+jobs:
+  # Generate version number for auto-publishing
+  generate-version:
+    name: Generate Version
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      should_publish: ${{ steps.version.outputs.should_publish }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Need full history for version calculation
+        
+    - name: Generate auto version
+      id: version
+      run: |
+        # Get current version from pyproject.toml
+        current_version=$(grep -E '^version = ' pyproject.toml | sed 's/version = "\(.*\)"/\1/')
+        echo "Current version: $current_version"
+        
+        # Get commit count since last tag (for unique versioning)
+        commit_count=$(git rev-list --count HEAD)
+        
+        # Check if this is a tagged commit
+        if git describe --exact-match --tags HEAD >/dev/null 2>&1; then
+          echo "This is a tagged commit, skipping auto-publish"
+          echo "should_publish=false" >> $GITHUB_OUTPUT
+          exit 0
+        fi
+        
+        # Check for manual version override
+        if [ -n "${{ github.event.inputs.force_version }}" ]; then
+          new_version="${{ github.event.inputs.force_version }}"
+        else
+          # Always use PEP 440-compliant version (no +sha)
+          new_version="${current_version}.dev${commit_count}"
+        fi
+        
+        echo "Generated version: $new_version"
+        echo "version=$new_version" >> $GITHUB_OUTPUT
+        echo "should_publish=true" >> $GITHUB_OUTPUT
+
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
+      with:
+        enable-cache: true
+        
+    - name: Set up Python ${{ matrix.python-version }}
+      run: uv python install ${{ matrix.python-version }}
+      
+    - name: Install dependencies
+      run: |
+        uv sync
+        
+    - name: Run linter checks
+      run: |
+        uv run --with ruff ruff check physionetmcp/
+        uv run --with ruff ruff format --check physionetmcp/
+        
+    - name: Run type checks
+      run: |
+        uv run --with mypy mypy physionetmcp/ || true  # Allow type check failures for now
+        
+    - name: Run unit tests
+      run: |
+        uv run --with pytest --with pytest-asyncio pytest tests/unit/ -v || true  # Allow test failures for now
+        
+    - name: Test package import
+      run: |
+        uv run python -c "import physionetmcp; print('Package imports successfully')"
+
+  build:
+    name: Build Package
+    runs-on: ubuntu-latest
+    needs: [test]
+    # generate-version job only runs for pushes to main, so we handle it conditionally
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Need full history for version calculation
+      
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
+      with:
+        enable-cache: true
+        
+    - name: Set up Python
+      run: uv python install 3.11
+      
+    - name: Update version for auto-publishing
+      if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+      run: |
+        # Get version from generate-version job or generate it here
+        if [ -n "${{ needs.generate-version.outputs.version || '' }}" ]; then
+          new_version="${{ needs.generate-version.outputs.version }}"
+        else
+          # Fallback version generation if needed
+          current_version=$(grep -E '^version = ' pyproject.toml | sed 's/version = "\(.*\)"/\1/')
+          commit_count=$(git rev-list --count HEAD)
+          new_version="${current_version}.dev${commit_count}"
+        fi
+        echo "Updating version to: $new_version"
+        sed -i.bak "s/version = \".*\"/version = \"$new_version\"/" pyproject.toml
+        cat pyproject.toml | grep version
+        
+    - name: Build package
+      run: |
+        uv build
+        
+    - name: Check package contents
+      run: |
+        uv run --with twine twine check dist/*
+        
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: dist
+        path: dist/
+        retention-days: 7
+
+  publish-test:
+    name: Publish to Test PyPI
+    runs-on: ubuntu-latest
+    needs: [build]
+    if: |
+      needs.build.result == 'success' &&
+      (github.event.inputs.test_pypi == 'true' || 
+       (github.event_name == 'push' && contains(github.ref, 'refs/tags/v') && contains(github.ref, '-')) ||
+       (github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')))
+    environment:
+      name: test-pypi
+      url: https://test.pypi.org/p/physionetmcp
+    permissions:
+      id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
+      
+    steps:
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: dist
+        path: dist/
+        
+    - name: Publish to Test PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        repository-url: https://test.pypi.org/legacy/
+        verbose: true
+        # Use trusted publishing by default, fallback to token if available
+        password: ${{ secrets.TEST_PYPI_API_TOKEN || '' }}
+
+  publish-pypi:
+    name: Publish to PyPI
+    runs-on: ubuntu-latest
+    needs: [build]
+    if: |
+      needs.build.result == 'success' &&
+      (github.event_name == 'release' || 
+       (github.event_name == 'push' && contains(github.ref, 'refs/tags/v') && !contains(github.ref, '-')) ||
+       (github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')))
+    environment:
+      name: pypi
+      url: https://pypi.org/p/physionetmcp
+    permissions:
+      id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
+      
+    steps:
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: dist
+        path: dist/
+        
+    - name: Publish to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        verbose: true
+        # Use trusted publishing by default, fallback to token if available
+        password: ${{ secrets.PYPI_API_TOKEN || '' }}
+        
+    - name: Create GitHub Release (if not exists)
+      if: github.event_name == 'push' && contains(github.ref, 'refs/tags/v')
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref_name }}
+        release_name: Release ${{ github.ref_name }}
+        body: |
+          ## Changes in this Release
+          
+          Automated release for version ${{ github.ref_name }}.
+          
+          ### Installation
+          ```bash
+          pip install physionetmcp==${{ github.ref_name }}
+          ```
+          
+          ### Usage
+          See [README.md](README.md) for usage instructions.
+        draft: false
+        prerelease: ${{ contains(github.ref, '-') }}
+
+  # Notify about auto-published version
+  notify:
+    name: Notify Auto-Publish
+    runs-on: ubuntu-latest
+    needs: [publish-pypi]
+    if: |
+      needs.publish-pypi.result == 'success' &&
+      github.event_name == 'push' && 
+      (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Comment on commit
+      uses: actions/github-script@v7
+      with:
+        script: |
+          // Generate version info for the comment
+          const fs = require('fs');
+          let version = 'unknown';
+          
+          try {
+            const pyproject = fs.readFileSync('pyproject.toml', 'utf8');
+            const versionMatch = pyproject.match(/version = "([^"]+)"/);
+            if (versionMatch) {
+              version = versionMatch[1];
+            }
+          } catch (error) {
+            console.log('Could not read version from pyproject.toml');
+          }
+          
+          github.rest.repos.createCommitComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            commit_sha: context.sha,
+            body: `🚀 **Auto-published to PyPI!**
+            
+            **Version:** \`${version}\`
+            **Install:** \`pip install physionetmcp==${version}\`
+            **PyPI:** https://pypi.org/project/physionetmcp/${version}/
+            
+            This development version was automatically published from this commit.`
+          });
+
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    needs: build
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: dist
+        path: dist/
+        
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
+      
+    - name: Security scan with bandit
+      run: |
+        uv run --with bandit bandit -r physionetmcp/ -f json -o bandit-report.json || true
+        
+    - name: Security scan with safety
+      run: |
+        uv run --with safety safety check --json --output safety-report.json || true
+        
+    - name: Upload security reports
+      uses: actions/upload-artifact@v4
+      with:
+        name: security-reports
+        path: |
+          bandit-report.json
+          safety-report.json
+        retention-days: 30

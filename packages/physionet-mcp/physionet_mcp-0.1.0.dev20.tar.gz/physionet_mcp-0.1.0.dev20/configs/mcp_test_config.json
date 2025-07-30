@@ -1,0 +1,7 @@
+{
+  "db": ["mimic-iv-demo", "eicu-demo"],
+  "dataRoot": "~/physionet_test_data",
+  "storageFormat": "duckdb",
+  "maxResultRows": 100,
+  "queryTimeoutSeconds": 30
+} 

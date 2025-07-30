@@ -1,0 +1,40 @@
+{
+  "mcpServers": {
+    "physionetmcp": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--with",
+        "physionetmcp",
+        "physionetmcp",
+        "run"
+      ],
+      "db": [
+        "mimic-iv",
+        "eicu-demo",
+        "eicu",
+        "mitdb",
+        "ptb-xl"
+      ],
+      "dataRoot": "~/physionet_data",
+      "storageFormat": "duckdb",
+      "auth": {
+        "username": "your_physionet_username",
+        "password": "your_physionet_password"
+      },
+      "maxConcurrentDownloads": 2,
+      "queryTimeoutSeconds": 300,
+      "maxResultRows": 10000,
+      "enableQueryCache": true,
+      "compressData": true,
+      "databaseConfigs": {
+        "mimic-iv": {
+          "downloadOptions": {
+            "includeNotes": false,
+            "sampleSize": 1000
+          }
+        }
+      }
+    }
+  }
+}
