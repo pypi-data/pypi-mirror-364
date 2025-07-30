@@ -1,0 +1,34 @@
+Metadata-Version: 2.4
+Name: exlibris
+Version: 0.4.0
+Summary: Exlibris is a Python library that provides statistical comparisons between different binary classification models. This library is specifically designed to compare the GSGP classifier with other models.
+Home-page: https://github.com/CesarLepeITT/exlibris
+Author: Lepe Garcia Cesar
+Author-email: l22212360@tijuana.tecnm.mx
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: matplotlib>=3.10.0
+Requires-Dist: pandas>=2.2.3
+Requires-Dist: scikit_learn>=1.6.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary
+
+# ExLibris
+
+**ExLibris** is a Python library that provides statistical comparisons between different binary classification models. This library is specifically designed to compare the GSGP classifier with other models.
+
+## Installation
+
+To install **ExLibris**, use `pip`:
+
+```bash
+pip install exlibris
