@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+requirements.txt
+setup.py
+vcfzap/__init__.py
+vcfzap/vcfzap.py
+vcfzap.egg-info/PKG-INFO
+vcfzap.egg-info/SOURCES.txt
+vcfzap.egg-info/dependency_links.txt
+vcfzap.egg-info/entry_points.txt
+vcfzap.egg-info/requires.txt
+vcfzap.egg-info/top_level.txt
