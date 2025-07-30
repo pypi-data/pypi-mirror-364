@@ -1,0 +1,189 @@
+Metadata-Version: 2.4
+Name: django-migration-testgen
+Version: 0.1.0
+Summary: Auto-generate test files for Django migration files
+Home-page: https://github.com/yourusername/django-migration-testgen
+Author: Vijayasankar Murugan
+Author-email: Vijayasankar Murugan <vijayasankarsoftware@gmail.com>
+Project-URL: Homepage, https://github.com/yourusername/django-migration-testgen
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: Django
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: Django>=3.2
+Dynamic: author
+Dynamic: home-page
+Dynamic: requires-python
+
+**Auto-generate test files for Django migration files.**
+
+This Django app scans all your apps for migration files and scaffolds migration test templates using `MigrationExecutor`. Quickly build migration coverage and ensure schema integrity across versions — ideal for CI, large teams, and enterprise projects.
+
+## 🚀 Features
+
+* 🔍 **Scans all apps** for migration files automatically
+* 📁 **Creates organized test files** at `tests/migrations/test_<migration_name>.py` per migration
+* 🧪 **Pre-filled test classes** using Django's `MigrationExecutor` for real migration testing
+* ⚙️ **Fully integrated** with Django's management command system
+* ✅ **Simple plug-and-play**: install, configure, and run
+* 🎯 **Smart detection**: Automatically identifies operation types and dependencies
+* 🔄 **Rollback testing**: Tests both forward and backward migration capabilities
+* ⚡ **Performance optimized**: Uses regex parsing for fast migration analysis
+
+## 📦 Installation
+
+```bash
+pip install django-migration-testgen
+```
+
+## ⚙️ Configuration
+
+Add to your Django `settings.py`:
+
+```python
+INSTALLED_APPS = [
+    # ... your existing apps
+    'django_migration_testgen',
+]
+```
+
+## 🎯 Usage
+
+### Generate tests for all migrations
+```bash
+python manage.py generate_migration_tests
+```
+
+### Generate tests for a specific app
+```bash
+python manage.py generate_migration_tests --app myapp
+```
+
+### Preview what would be generated (dry run)
+```bash
+python manage.py generate_migration_tests --dry-run
+```
+
+### Force overwrite existing test files
+```bash
+python manage.py generate_migration_tests --force
+```
+
+### Custom output directory
+```bash
+python manage.py generate_migration_tests --output-dir /path/to/tests
+```
+
+## 📁 Generated Test Structure
+
+For a migration `myapp/migrations/0001_initial.py`, the tool generates:
+
+```
+myapp/
+├── migrations/
+│   └── 0001_initial.py
+└── tests/
+    └── migrations/
+        └── test_0001_initial.py  # Generated test file
+```
+
+## 🧪 Generated Test Content
+
+Each generated test file includes:
+
+```python
+class Test0001Initial(TestCase):
+    """
+    Test migration: myapp.0001_initial
+    
+    Migration Details:
+    - App: myapp
+    - Migration: 0001_initial
+    - Dependencies: [('auth', '0001_initial')]
+    - Operations: CreateModel, AddField
+    """
+    
+    def test_migration_exists(self):
+        """Test that the migration file exists and is loadable."""
+        # Validates migration can be loaded
+    
+    def test_migration_forward(self):
+        """Test forward migration execution."""
+        # Tests migration applies successfully
+        # Compares before/after database state
+    
+    def test_migration_backward(self):
+        """Test migration rollback capability."""
+        # Tests migration can be rolled back
+    
+    def test_migration_sql_generation(self):
+        """Test that migration generates valid SQL."""
+        # Validates SQL generation without execution
+    
+    # ... additional test methods
+```
+
+## 🔧 Customization
+
+### Custom Templates
+
+You can create custom test templates by extending `TestFileGenerator`:
+
+```python
+from django_migration_testgen.utils import TestFileGenerator
+
+class CustomTestFileGenerator(TestFileGenerator):
+    def generate_test_file(self, migration_info, output_dir):
+        # Your custom generation logic
+        pass
+```
+
+### Custom Scanning
+
+Extend `MigrationScanner` for custom migration discovery:
+
+```python
+from django_migration_testgen.utils import MigrationScanner
+
+class CustomMigrationScanner(MigrationScanner):
+    def get_filtered_migrations(self, **filters):
+        # Your custom filtering logic
+        pass
+```
+
+## 🎯 Testing Your Migrations
+
+Run the generated tests with your normal test runner:
+
+```bash
+# Run all migration tests
+python manage.py test tests.migrations
+
+# Run specific migration test
+python manage.py test tests.migrations.test_0001_initial
+
+# Run with coverage
+coverage run manage.py test tests.migrations
+coverage report
+```
+
+## 📊 CI/CD Integration
+
+Perfect for continuous integration:
+
+```yaml
+# .github/workflows/test.yml
+- name: Generate and run migration tests
+  run: |
+    python manage.py generate_migration_tests
+    python manage.py test tests.migrations --verbosity=2
+```
+
+## 🏗️ How It Works
+
+1. **Discovery**: Scans all Django apps for migration files
+2. **Analysis**: Extracts metadata (dependencies, operations) using regex parsing
+3. **Generation**: Creates test files from templates with migration-specific data
+4. **Testing**: Generated tests use Django's `MigrationExecutor` for real migration testing

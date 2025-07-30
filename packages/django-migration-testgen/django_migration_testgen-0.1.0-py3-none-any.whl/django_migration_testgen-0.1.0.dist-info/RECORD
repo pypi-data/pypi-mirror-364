@@ -1,0 +1,14 @@
+django_migration_testgen/__init__.py,sha256=pFOj3Un2DJoy7eQIgedWSHGD54uNjd3oJmA3u7gQnx0,262
+django_migration_testgen/apps.py,sha256=S0Aw-ToW5hE_7dNFhJzgFzDaKjI1uJb_4UTrba_MA1E,230
+django_migration_testgen/utils.py,sha256=bZlxSoqrphqmoyMUf5UiXRUMuPsE-VJk4DayWtr-wFg,5250
+django_migration_testgen/management/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_migration_testgen/management/commands/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_migration_testgen/management/commands/generate_migration_tests.py,sha256=yH_VD-2Rm4LXGdhSO8LHLZQMry_Zs8SXght14Q5xFS4,3451
+django_migration_testgen/templates/migration_test_template.py,sha256=C58FS3N40_GXQxlDfNzP7dLYpSmvJ3mLqsKtfHHQavU,10565
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/test_management_command.py,sha256=8Kyx3M_pes9e3imxPFuf0Dkkb1IRXvMqjocYQq_92XY,5802
+tests/test_utils.py,sha256=uFCEGa37mEx6YAeIYqTcVW6afnIeUhiMKEwqBNvUUlI,6098
+django_migration_testgen-0.1.0.dist-info/METADATA,sha256=RIfXR-_FTng5uhUtPzWjsOBC1MppYVljOu2SosZPovU,5325
+django_migration_testgen-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+django_migration_testgen-0.1.0.dist-info/top_level.txt,sha256=mAwHwU4UunO-Niz5twboOn182P-hzyWjI0a4IFvlKSw,31
+django_migration_testgen-0.1.0.dist-info/RECORD,,
