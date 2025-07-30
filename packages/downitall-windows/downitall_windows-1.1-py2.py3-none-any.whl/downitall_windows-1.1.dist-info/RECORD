@@ -1,0 +1,15 @@
+downitall/__main__.py,sha256=rTysq7NrnjZeYfrfhFdW5JXtAuGLfDS5Iswh-Whzqv0,69
+downitall/core.py,sha256=5FYCmEYmOBgiArzbaxrzfAZuZJOv0kLF31Q5Gix11kI,13410
+downitall/resources/__init__.py,sha256=YKhfIDpD-ANOM0_en70bjy_X_DPck2I9PJrMUFTHC4k,410
+downitall/resources/animesources.py,sha256=CUMhcFvWfrpQo5Mu_cvsY4zOvV6mGACMGYcrNQ2SCcw,44854
+downitall/resources/booksources.py,sha256=SrO-80HRvJc8rPHkvU6I07BljonRTUCEISOq-jn-rSY,36534
+downitall/resources/mangasources.py,sha256=ILOiq5iFSgpTXV8VHrsMiml2gZOEvhjvac2nsmX2Lz4,45254
+downitall/resources/musicsources.py,sha256=RZny4AnTZm6O9PqS5ZGsVzpp25itcg57rizeuF3iC5A,26598
+downitall/resources/streamsources.py,sha256=g4XfeHMYySvs1ylWs6p3gIjflHbJqqfIDATJa3Gjge4,27819
+downitall/resources/tvsources.py,sha256=whdgauNEIToH5o7QcB_p0bJeKF_HVC4gZj53BTz0XIk,32821
+downitall_windows-1.1.data/scripts/downitall,sha256=ceJoAnzZY9w0zWoic99kbtoVBazfP4LJpJJEdON35b8,81
+downitall_windows-1.1.dist-info/licenses/LICENSE.txt,sha256=7C-dmnC1myN1R5rcgwBDjVWUZm0ukcgCjYN-SMzS7gk,1070
+downitall_windows-1.1.dist-info/METADATA,sha256=pa7faVp7tYoxVlkYnvT1UNbNlu0gwRzmidovtOE5lRA,2954
+downitall_windows-1.1.dist-info/WHEEL,sha256=JNWh1Fm1UdwIQV075glCn4MVuCRs0sotJIq-J6rbxCU,109
+downitall_windows-1.1.dist-info/top_level.txt,sha256=vRdKLTr0q6q07qiyP7KRoMYTC7A7E4mpTAk9AKM2DkA,10
+downitall_windows-1.1.dist-info/RECORD,,
