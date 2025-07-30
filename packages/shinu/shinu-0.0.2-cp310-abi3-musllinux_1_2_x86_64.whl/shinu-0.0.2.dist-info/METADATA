@@ -1,0 +1,60 @@
+Metadata-Version: 2.4
+Name: shinu
+Version: 0.0.2
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Rust
+Classifier: Topic :: Multimedia :: Graphics
+Classifier: Topic :: Multimedia :: Sound/Audio
+Classifier: Topic :: Multimedia :: Video
+Provides-Extra: image
+Provides-Extra: video
+Provides-Extra: audio
+Provides-Extra: pdf
+Summary: High-performance Rust-based media compression for Python and FastAPI
+Author-email: Swapnil Jagadale <swapnilwork999@gmail.com>
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+
+// README.md
+# Shinu
+
+**Shinu** is a blazing-fast, memory-safe media compression library written in Rust with Python . It supports compressing **images**, **videos**, **audio**, and **PDFs** with customizable quality settings.
+
+## 🚀 Features
+
+- 📷 **Images** — JPEG, PNG, WebP, AVIF, BMP, TIFF, GIF, ICO
+- 🎞️ **Videos** — MP4, AVI, MKV (via FFmpeg)
+- 🎵 **Audio** — MP3, WAV, OGG, etc. (via FFmpeg)
+- 📄 **PDFs** — Compressed using Ghostscript
+- 🧠 **Memory-safe**, **fast**, and built in Rust
+- ✅ Per-media configurable compression settings
+- 🔌 Easy integration into Python & FastAPI apps
+
+---
+## Install
+```bash
+pip install shinu
+```
+
+## Usage in Python
+```python
+from shinu import compress_file, CompressorConfig
+
+config = CompressorConfig()
+config.quality = 0.7
+config.pdf_quality = "ebook"
+config.image_format = "png"
+config.image_colorspace = "rgb"
+config.audio_bitrate = "128k"
+config.video_crf = 28
+
+output = compress_file("input.pdf", config)
+print(output)
+```
