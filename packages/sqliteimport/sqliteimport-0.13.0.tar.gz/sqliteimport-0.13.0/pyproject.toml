@@ -1,0 +1,142 @@
+[project]
+name = "sqliteimport"
+version = "0.13.0"
+description = "Import Python code from sqlite databases"
+authors = [
+    { name = "Kurt McKee", email = "contactme@kurtmckee.org" },
+]
+license = "MIT"
+readme = "README.rst"
+requires-python = ">=3.9"
+keywords = [
+    "sqlite",
+    "import",
+    "importlib",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[project.optional-dependencies]
+cli = [
+    "click >=8,<9",
+    "prettytable >=3.15.1,<4",
+]
+
+[project.urls]
+Source = "https://github.com/kurtmckee/sqliteimport"
+Documentation = "https://sqliteimport.readthedocs.io/en/latest/"
+Changelog = "https://sqliteimport.readthedocs.io/en/latest/changelog/"
+
+[project.scripts]
+sqliteimport = "sqliteimport.cli:group"
+si = "sqliteimport.cli:group"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+# chipshot
+# --------
+
+[tool.chipshot]
+template = """
+This file is a part of sqliteimport <https://github.com/kurtmckee/sqliteimport>
+Copyright 2024-{{ year }} Kurt McKee <contactme@kurtmckee.org>
+SPDX-License-Identifier: MIT
+"""
+exclusions = [
+    "docs/conf.py",
+    "docs/_static/custom.css",
+    "docs/flake8/assets/",
+    "docs/isort/assets/",
+    "docs/ruff/assets/",
+    "tests/installed-projects/",
+    "tests/source-projects/",
+]
+
+
+# coverage
+# --------
+
+[tool.coverage.run]
+relative_files = true
+parallel = true
+branch = true
+source = [
+    "sqliteimport",
+    "tests",
+]
+
+[tool.coverage.paths]
+source = [
+    "src",
+    "*/site-packages",
+]
+
+[tool.coverage.report]
+skip_covered = true
+fail_under = 60
+
+
+# isort
+# -----
+
+[tool.isort]
+profile = "black"
+force_single_line = true
+extend_skip_glob = [
+    "demo.py",
+    "docs/flake8/*",
+    "docs/isort/*",
+    "docs/ruff/*",
+]
+
+
+# mypy
+# ----
+
+[tool.mypy]
+packages = "sqliteimport"
+strict = true
+sqlite_cache = true
+
+
+# pytest
+# ------
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--color=yes"
+filterwarnings = [
+    "error",
+]
+
+
+# scriv
+# -----
+
+[tool.scriv]
+version = "literal: pyproject.toml: project.version"
+categories = [
+    "Python support",
+    "Added",
+    "Fixed",
+    "Removed",
+    "Changed",
+    "Deprecated",
+    "Security",
+    "Documentation",
+    "Development",
+]
+entry_title_template = "{{ version }} - {{ date.strftime('%Y-%m-%d') }}"
+format = "rst"
+fragment_directory = "changelog.d"
+insert_marker = "scriv-insert-here"
+main_branches = ["main", "releases"]
+new_fragment_template = "file: fragment-template.rst.txt"
