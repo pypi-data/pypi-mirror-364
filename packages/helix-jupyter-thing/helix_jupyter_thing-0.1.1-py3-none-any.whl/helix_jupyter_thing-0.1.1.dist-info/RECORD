@@ -1,0 +1,13 @@
+helix_jupyter_thing/__about__.py,sha256=DO5LlMTccVwwC-leiQ2bxDSXIW_Wc_3ez9Dw4IRVryw,144
+helix_jupyter_thing/__init__.py,sha256=XajBEcb4ilmHazJbaU76JpCyrrevsDKf67I1mK5B9ow,122
+helix_jupyter_thing/entrypoint.py,sha256=byq_kJjjp6Xa4_A2fLxMMVakowvd7bD7Ou5UNzNjHM0,119
+helix_jupyter_thing/kernel.py,sha256=BX1qxxa96LWhXci7FPgpr-3T2NFx0EhwLBFNrKN4d6g,2633
+helix_jupyter_thing/state.py,sha256=MP3yhEx7tpMEuWe3Y5OtZMGRyo51Lar90zYl_p_I56Y,1991
+helix_jupyter_thing/cli/__init__.py,sha256=M5105i8dQi5xIERpA1qMFbusKyCezx8-yuevYbVbZ8c,276
+helix_jupyter_thing/cli/exec.py,sha256=b5To0gEyCCu8cuy8nwOzVYtSx7OxB6dPeY-5kBxvmH4,319
+helix_jupyter_thing/cli/kernel.py,sha256=IpGmH9zw7N-q0G4GRov2FtqfN2gjBcBhpNDk3DwHI2I,522
+helix_jupyter_thing-0.1.1.dist-info/METADATA,sha256=Jy8yweBO6EkTOUXCIWID0BO8dyFD2dFO05s32MIshPc,1964
+helix_jupyter_thing-0.1.1.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+helix_jupyter_thing-0.1.1.dist-info/entry_points.txt,sha256=17_cmikw8d34sEMTonBByQ24qQuVgzkP_BbfwEfHJKA,60
+helix_jupyter_thing-0.1.1.dist-info/licenses/LICENSE.txt,sha256=VvgvZ3DJu3q_tNwJ0jcSxVAEDiha5DSshflIS16I0E4,1114
+helix_jupyter_thing-0.1.1.dist-info/RECORD,,
