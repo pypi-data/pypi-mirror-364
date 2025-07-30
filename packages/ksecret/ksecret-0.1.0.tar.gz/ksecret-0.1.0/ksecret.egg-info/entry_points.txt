@@ -1,0 +1,2 @@
+[console_scripts]
+ksecret = ksecret.cli:cli

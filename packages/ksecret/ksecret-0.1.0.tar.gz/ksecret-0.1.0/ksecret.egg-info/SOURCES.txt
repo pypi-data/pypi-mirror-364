@@ -1,0 +1,10 @@
+README.md
+pyproject.toml
+ksecret/__init__.py
+ksecret/cli.py
+ksecret.egg-info/PKG-INFO
+ksecret.egg-info/SOURCES.txt
+ksecret.egg-info/dependency_links.txt
+ksecret.egg-info/entry_points.txt
+ksecret.egg-info/requires.txt
+ksecret.egg-info/top_level.txt
