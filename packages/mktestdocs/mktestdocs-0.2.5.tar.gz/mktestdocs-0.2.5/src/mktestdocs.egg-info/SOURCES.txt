@@ -1,0 +1,16 @@
+LICENSE
+README.md
+pyproject.toml
+src/mktestdocs/__init__.py
+src/mktestdocs/__main__.py
+src/mktestdocs.egg-info/PKG-INFO
+src/mktestdocs.egg-info/SOURCES.txt
+src/mktestdocs.egg-info/dependency_links.txt
+src/mktestdocs.egg-info/requires.txt
+src/mktestdocs.egg-info/top_level.txt
+tests/test_actual_docstrings.py
+tests/test_class.py
+tests/test_codeblock.py
+tests/test_format_docstring.py
+tests/test_markdown.py
+tests/test_mktestdocs.py
