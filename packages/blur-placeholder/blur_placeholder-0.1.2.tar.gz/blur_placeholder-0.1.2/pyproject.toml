@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=63.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "blur_placeholder"
+version = "0.1.2"
+description = "Generate blurred image placeholders for lazy loading"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.7"
+keywords = ["image", "placeholder", "blur", "lazy-loading"]
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Operating System :: OS Independent",
+  "Topic :: Multimedia :: Graphics",
+  "Intended Audience :: Developers",
+]
+dependencies = [
+  "Pillow>=9.0.0",
+  "requests>=2.26.0"
+]
+
+[project.optional-dependencies]
+async = ["aiohttp>=3.8.0"]
+dev = [
+  "pytest>=7.1.2",
+  "pytest-asyncio>=0.18.3",
+  "requests-mock>=1.9.3",
+  "twine>=4.0.0",
+  "build>=0.10.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/Njoro410/blur_placeholder"
+Documentation = "https://github.com/Njoro410/blur_placeholder#readme"
+BugTracker = "https://github.com/Njoro410/blur_placeholder/issues"
+
+[tool.setuptools]
+# No need to specify 'packages'—setuptools will auto-discover since we only configure package-dir
+# when using a src-layout
+[tool.setuptools.package-dir]
+"" = "src"  # Tell setuptools to look inside src/ for our blur_placeholder package
