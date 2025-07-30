@@ -1,0 +1,14 @@
+astropy
+typer[all]
+rich
+
+[dev]
+pytest
+pytest-cov
+pytest-doctestplus
+ruff
+mypy
+bump-my-version
+sphinx
+furo
+pre-commit
