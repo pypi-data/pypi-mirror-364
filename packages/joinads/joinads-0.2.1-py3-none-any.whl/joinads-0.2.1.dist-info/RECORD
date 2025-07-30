@@ -1,0 +1,14 @@
+joinads/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+joinads/cli.py,sha256=ZZUooaDC9AkKM4vAqrRr2hyaNxBP1FYFAgeOosUcl0U,2139
+joinads/core.py,sha256=dr1zMcXoTAAGjVlgXLUKx10xr5tGU1rHoxlV5Q3TR0k,2634
+joinads/repository.py,sha256=YSbnUUE3CAO82WPvjz46IwzLbvzcrUw58TzDi6ciM2E,719
+joinads/repository_protocol.py,sha256=QeMiYw3B5c1ey_uFFIUzILQ9ehTMOwXxHAMEY97YOPY,228
+joinads/SQL/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+joinads/SQL/config.py,sha256=GHpRYJ9CEo_XPYFaN4GJ0sLj041CAr5bCHVHS6HvhbA,930
+joinads/SQL/connection.py,sha256=TTzhRzE-GV4lNP3L1sibAXjrzzgew-0b4vEkuYG2mrc,9857
+joinads/SQL/query.py,sha256=qIIS347Jp97gFwAiXz8asbr_7fc_YTkgVzfChqG0xW0,46609
+joinads-0.2.1.dist-info/METADATA,sha256=zBh5cqmS2Ax_HHqDaoXMswnvRPq8x-UbnQ5pkFQDy5o,269
+joinads-0.2.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+joinads-0.2.1.dist-info/entry_points.txt,sha256=LNcL41VmXGZpt5auEb9FjHAK121J5VEsKtvK42QUCto,45
+joinads-0.2.1.dist-info/top_level.txt,sha256=A_TA2gDTrbq5A-iVKn6aDSKIy3O01l9S7rIcaV2QiYc,8
+joinads-0.2.1.dist-info/RECORD,,
