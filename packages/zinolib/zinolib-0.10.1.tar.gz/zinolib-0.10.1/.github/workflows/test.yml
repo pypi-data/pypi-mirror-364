@@ -1,0 +1,70 @@
+name: Test zinolib
+
+on:
+  push:
+    branches: main
+  pull_request:
+
+jobs:
+  test:
+    name: "Python ${{ matrix.python-version }}"
+    runs-on: ubuntu-latest
+
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: ["3.9", "3.10", "3.11"]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'pip'
+        cache-dependency-path: pyproject.toml
+
+    - name: Install dependencies
+      # if: steps.cache.outputs.cache-hit != 'true'
+      run: |
+        set -xe
+        python -VV
+        python -m site
+        python -m pip install --upgrade pip setuptools setuptools-scm wheel
+        python -m pip install --upgrade virtualenv tox tox-gh-actions coverage
+        python -m pip freeze
+
+    - name: Run tests
+      run: |
+        python -m tox
+
+    - name: Upload test reports (${{ matrix.python-version }})
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: reports-${{ matrix.python-version }}
+        path: |
+          reports/**/*
+
+  upload-pr-number-base-sha:
+    name: Save PR number and base SHA in artifact
+    runs-on: ubuntu-latest
+    if: ${{ github.event.number && always() }}
+    env:
+      PR_NUMBER: ${{ github.event.number }}
+      BASE_SHA: ${{ github.event.pull_request.base.sha }}
+    steps:
+      - name: Make PR number file
+        run: |
+          mkdir -p ./extra
+          echo $PR_NUMBER > ./extra/pr_number
+      - name: Make base SHA file
+        run: |
+          echo $BASE_SHA > ./extra/base_sha
+      - name: Upload PR number file and base SHA file
+        uses: actions/upload-artifact@v4
+        with:
+          name: extra
+          path: extra/
