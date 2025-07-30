@@ -1,0 +1,12 @@
+MANIFEST.in
+claude_desktop_config_example.json
+opentable_mcp_README.md
+opentable_mcp_server.py
+requirements.txt
+setup.py
+opentable_mcp_server.egg-info/PKG-INFO
+opentable_mcp_server.egg-info/SOURCES.txt
+opentable_mcp_server.egg-info/dependency_links.txt
+opentable_mcp_server.egg-info/entry_points.txt
+opentable_mcp_server.egg-info/requires.txt
+opentable_mcp_server.egg-info/top_level.txt
