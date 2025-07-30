@@ -1,0 +1,11 @@
+MANIFEST.in
+README.md
+pyproject.toml
+lightdash/__init__.py
+lightdash/main.py
+lightdash_game.egg-info/PKG-INFO
+lightdash_game.egg-info/SOURCES.txt
+lightdash_game.egg-info/dependency_links.txt
+lightdash_game.egg-info/entry_points.txt
+lightdash_game.egg-info/requires.txt
+lightdash_game.egg-info/top_level.txt
