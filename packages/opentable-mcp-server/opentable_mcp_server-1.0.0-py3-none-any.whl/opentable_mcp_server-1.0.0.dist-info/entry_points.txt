@@ -1,0 +1,2 @@
+[console_scripts]
+opentable-mcp-server = opentable_mcp_server:main
