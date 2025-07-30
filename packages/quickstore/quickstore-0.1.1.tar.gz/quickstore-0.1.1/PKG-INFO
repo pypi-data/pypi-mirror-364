@@ -1,0 +1,325 @@
+Metadata-Version: 2.4
+Name: quickstore
+Version: 0.1.1
+Summary: A developer-friendly, zero-dependency key-value database with TTL, file management, and in-memory search.
+Home-page: https://github.com/yourusername/quickstore
+Author: Avishek Devnath
+Author-email: Avishek Devnath <avishekdevnath@gmail.com>
+License: MIT License
+        
+        Copyright (c) 2024 Your Name
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE. 
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: author
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+
+# Quickstore
+
+A developer-friendly, zero-dependency key-value database with TTL support, file management, in-memory search, and optional authentication. Usable as a CLI tool or importable Python package.
+
+---
+
+## Table of Contents
+- [Features](#features)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [How It Works](#how-it-works)
+- [CLI Usage](#cli-usage)
+- [Python API Usage](#python-api-usage)
+- [TTL Example](#ttl-time-to-live-example)
+- [Example Outputs](#example-outputs)
+- [Troubleshooting / FAQ](#troubleshooting--faq)
+- [Contributing](#contributing)
+- [Security Notes](#security-notes)
+- [License](#license)
+- [Author](#author)
+
+---
+
+## Features
+- Set/get/delete/list keys with optional TTL (auto-expiry)
+- Save/load to JSON file
+- In-memory, case-insensitive substring search
+- File management: store, retrieve, delete, search, and edit files (text, JSON, CSV)
+- CLI commands and Python API
+- Optional persistent user/password authentication for sensitive actions
+- Advanced wipe/cleanup command
+- Zero external dependencies (stdlib only)
+
+---
+
+## Installation
+You can install Quickstore from PyPI or for local development.
+
+```bash
+pip install quickstore
+# For local development:
+pip install .
+```
+
+---
+
+## Quick Start
+
+### CLI
+1. Set a key-value pair:
+   ```bash
+   quickstore set hello world
+   ```
+2. Retrieve the value:
+   ```bash
+   quickstore get hello
+   # Output: world
+   ```
+
+### Python
+```python
+from quickstore.db import Quickstore
+
+db = Quickstore()
+db.set("hello", "world")
+print(db.get("hello"))  # Output: world
+```
+
+---
+
+## How It Works
+- **Key-Value Store:** Stores data as key-value pairs in a JSON file. Supports TTL (time-to-live) for auto-expiry.
+- **File Management:** Lets you store, retrieve, delete, search, and edit files (text, JSON, CSV) with metadata tracking.
+- **CLI & Python API:** Use all features from the command line or in your Python code.
+- **Authentication:** Optionally protect sensitive actions (like wipe) with a username and password.
+- **No Dependencies:** Uses only Python’s standard library.
+
+---
+
+## CLI Usage
+
+### General Options
+```bash
+quickstore --help        # Show help for all commands
+quickstore <command> --help  # Show help for a specific command
+quickstore --version     # Show the installed version
+quickstore -v            # Show the installed version (short flag)
+```
+
+### Key-Value Operations
+```bash
+quickstore set mykey myvalue
+quickstore set tempkey tempvalue --ttl 10
+quickstore get mykey
+quickstore list
+quickstore delete mykey
+quickstore search my
+```
+
+### File Management
+```bash
+quickstore storefile path/to/file.txt
+quickstore listfiles
+quickstore getfile file.txt
+quickstore deletefile file.txt
+quickstore searchfiles txt
+```
+
+### File Editing (Text, JSON, CSV only)
+```bash
+quickstore editfile file.txt --content "new content"
+quickstore editfile file.txt --from-file path/to/newfile.txt
+quickstore editfile file.txt --content "append this" --append
+```
+
+### Security & Wipe
+```bash
+quickstore setpass myuser mypass      # Set DB credentials
+quickstore removepass                 # Remove credentials
+quickstore wipe                       # Wipe all data/files (requires auth if set)
+```
+
+---
+
+## Python API Usage
+
+### Key-Value Store
+```python
+from quickstore.db import Quickstore
+
+db = Quickstore()
+db.set("foo", "bar")
+print(db.get("foo"))
+db.set("temp", "expire", ttl=5)
+print(db.list_keys())
+print(db.search("foo"))
+db.delete("foo")
+```
+
+### File Management
+```python
+from quickstore.filedb import FileDB
+filedb = FileDB()
+filedb.store_file("test_files/test.txt")
+print(filedb.list_files())
+print(filedb.get_file("test.txt"))
+filedb.delete_file("test.txt")
+filedb.search_files("test")
+```
+
+### File Editing (Text, JSON, CSV only)
+```python
+filedb.edit_file("test.txt", content="new content")
+filedb.edit_file("test.txt", from_file="newfile.txt")
+filedb.edit_file("test.txt", content="append this", append=True)
+```
+
+### Security & Wipe
+```python
+filedb.setpass("myuser", "mypass")
+filedb.removepass()
+filedb.wipe(require_auth=False)  # Set to True to require auth if set
+```
+
+---
+
+## TTL (Time-to-Live) Example
+```python
+from quickstore.db import Quickstore
+import time
+
+db = Quickstore()
+db.set("temp", "should_expire", ttl=2)
+print(db.get("temp"))  # Output: should_expire
+print("Waiting...")
+time.sleep(3)
+print(db.get("temp"))  # Output: None (expired)
+```
+
+---
+
+## Example Outputs
+
+### CLI
+```
+$ quickstore set foo bar
+Set foo
+$ quickstore get foo
+bar
+$ quickstore set temp expire --ttl 2
+Set temp
+$ quickstore get temp
+expire
+$ sleep 3
+$ quickstore get temp
+Key not found
+$ quickstore storefile test.txt
+Stored file: test.txt
+$ quickstore listfiles
+['test.txt']
+$ quickstore editfile test.txt --content "new content"
+Edited file: test.txt
+$ quickstore editfile test.txt --content "append this" --append
+Appended to file: test.txt
+$ quickstore wipe
+Username: myuser
+Password: mypass
+Are you sure you want to wipe ALL Quickstore data and files? This cannot be undone. (yes/no): yes
+Deleted quickstore.json
+Deleted filemeta.json
+Deleted quickstore/files directory
+Database and file storage wiped.
+```
+
+### Python
+```
+from quickstore.db import Quickstore
+from quickstore.filedb import FileDB
+import time
+
+db = Quickstore()
+db.set("foo", "bar")
+print(db.get("foo"))  # bar
+filedb = FileDB()
+filedb.store_file("test.txt")
+print(filedb.list_files())  # ['test.txt']
+filedb.edit_file("test.txt", content="new content")
+filedb.edit_file("test.txt", content="append this", append=True)
+filedb.delete_file("test.txt")
+filedb.setpass("myuser", "mypass")
+filedb.wipe(require_auth=True)  # Prompts for username/password
+```
+
+---
+
+## Troubleshooting / FAQ
+
+**Q: Why is my key missing?**
+- The key may have expired if you set a TTL.
+- Use `quickstore list` or `db.list_keys()` to see all current keys.
+
+**Q: Can I store images or binary files?**
+- Yes, but you cannot edit them in-place. Use `storefile` and `getfile` to manage them.
+
+**Q: How do I reset everything?**
+- Use `quickstore wipe` or `filedb.wipe()` to delete all data and files.
+
+**Q: What if I forget my password?**
+- Delete `quickstore_auth.json` manually to remove authentication (local use only).
+
+**Q: Where is my data stored?**
+- Key-value data: `quickstore.json`
+- File metadata: `filemeta.json`
+- Files: `quickstore/files/`
+
+---
+
+## Contributing
+
+Contributions are welcome! To contribute:
+1. Fork this repository
+2. Create a new branch for your feature or bugfix
+3. Make your changes and add tests
+4. Submit a pull request
+
+For questions or suggestions, open an issue or email the author.
+
+---
+
+## Security Notes
+- Passwords are stored as SHA-256 hashes in quickstore_auth.json.
+- Authentication is only required for sensitive actions (e.g., wipe) if credentials are set.
+- If no credentials are set, all actions are open.
+- For production-grade security, consider additional encryption or access controls.
+
+---
+
+## License
+MIT
+
+---
+
+## Author
+
+**Avishek Devnath**  
+[avishekdevnath@gmail.com](mailto:avishekdevnath@gmail.com) 
