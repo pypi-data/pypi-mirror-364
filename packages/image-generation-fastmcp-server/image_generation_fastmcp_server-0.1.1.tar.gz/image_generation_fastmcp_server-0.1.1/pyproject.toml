@@ -1,0 +1,24 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "image-generation-fastmcp-server"
+version = "0.1.1"
+description = "a mcp server for image generation."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [
+    { name = "ikatt", email = "1649980398@qq.com" }
+]
+dependencies = [
+    "httpx>=0.24.0",
+    "pydantic>=2.8.0",
+    "mcp[cli]>=1.9.0",
+    "fastmcp>=2.0.0",
+    "typing>=3.5.0",
+]
+
+[project.scripts]
+image-generation-fastmcp-server = "image_generation_fastmcp_server:main"
