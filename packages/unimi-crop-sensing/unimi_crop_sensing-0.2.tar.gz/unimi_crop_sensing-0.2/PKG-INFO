@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: unimi_crop_sensing
+Version: 0.2
+Requires-Dist: opencv-python
+Requires-Dist: pyzed==5.0
+Requires-Dist: numpy
+Requires-Dist: scikit-image
+Requires-Dist: scikit-learn
+Requires-Dist: websocket
+Dynamic: requires-dist
