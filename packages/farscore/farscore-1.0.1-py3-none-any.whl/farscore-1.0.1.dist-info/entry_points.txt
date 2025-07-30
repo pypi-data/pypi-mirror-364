@@ -1,0 +1,5 @@
+[console_scripts]
+farscore = model.farscore:main
+farscore-cli = model.cli:main
+farscore-finetune = model.farscore_finetune:main
+farscore-pretrain = model.farscore_pretrain:main
