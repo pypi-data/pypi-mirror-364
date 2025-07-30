@@ -1,0 +1,108 @@
+name: Build MCP Server Docker Image
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'kg_mcp_server/**'
+      - 'src/**'
+      - 'setup.py'
+      - '.github/workflows/build-docker-image.yml'
+  pull_request:
+    branches: [main, master]
+    paths:
+      - 'kg_mcp_server/**'
+      - 'src/**'
+      - 'setup.py'
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      platforms:
+        description: 'Target platforms for build'
+        required: false
+        default: 'linux/amd64,linux/arm64'
+        type: string
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}/kg-mcp-server
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    
+    outputs:
+      image-tags: ${{ steps.meta.outputs.tags }}
+      image-digest: ${{ steps.build.outputs.digest }}
+      image-labels: ${{ steps.meta.outputs.labels }}
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Docker Build
+      uses: docker/setup-buildx-action@v3
+
+    - name: Log in to Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Extract metadata
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        tags: |
+          # Branch-based tags for pushes
+          type=ref,event=branch
+          
+          # PR-based tags for pull requests
+          type=ref,event=pr
+          
+          # Semantic version tags for releases
+          type=semver,pattern={{version}}
+          type=semver,pattern={{major}}.{{minor}}
+          type=semver,pattern={{major}}
+          
+          # Git SHA tags for all events
+          type=sha,prefix={{branch}}-
+          
+          # Latest tag for main branch only
+          type=raw,value=latest,enable={{is_default_branch}}
+
+    - name: Build and push Docker image
+      id: build
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: kg_mcp_server/Dockerfile
+        platforms: ${{ github.event.inputs.platforms || 'linux/amd64,linux/arm64' }}
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+        build-args: |
+          BUILDKIT_INLINE_CACHE=1
+
+    - name: Generate build summary
+      run: |
+        echo "## 🐳 Docker Build Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Repository:** \`${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}\`" >> $GITHUB_STEP_SUMMARY
+        echo "**Digest:** \`${{ steps.build.outputs.digest }}\`" >> $GITHUB_STEP_SUMMARY
+        echo "**Platforms:** \`${{ github.event.inputs.platforms || 'linux/amd64,linux/arm64' }}\`" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        echo "### 🏷️ Tags Built" >> $GITHUB_STEP_SUMMARY
+        echo '```' >> $GITHUB_STEP_SUMMARY
+        echo "${{ steps.meta.outputs.tags }}" >> $GITHUB_STEP_SUMMARY
+        echo '```' >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY

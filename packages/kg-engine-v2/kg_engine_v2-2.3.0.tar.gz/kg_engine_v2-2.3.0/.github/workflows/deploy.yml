@@ -1,0 +1,73 @@
+name: Restart kg-mcp-server Container
+
+on:
+  workflow_run:
+    workflows: ["Build MCP Server Docker Image"]
+    types:
+      - completed
+
+env:
+  CONTAINER_NAME: kg-mcp-server
+  IMAGE_TAG: main
+  IMAGE_REPO: ghcr.io/dasein108/kg_semantic
+  GHCR_USER: dasein108
+
+jobs:
+  restart-on-success:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Restart Docker container over SSH
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          port: ${{ secrets.DEPLOY_PORT }}
+          script: |
+            export CONTAINER_NAME="${{ env.CONTAINER_NAME }}"
+            export IMAGE_REPO="${{ env.IMAGE_REPO }}"
+            export IMAGE_TAG="${{ env.IMAGE_TAG }}"
+            export NEO4J_URI="${{ secrets.NEO4J_URI }}"
+            export NEO4J_USERNAME="${{ secrets.NEO4J_USERNAME }}"
+            export NEO4J_PASSWORD="${{ secrets.NEO4J_PASSWORD }}"
+            export NEO4J_DATABASE="${{ secrets.NEO4J_DATABASE }}"
+            export LLM_BASE_URL="${{ secrets.LLM_BASE_URL }}"
+            export LLM_BEARER_KEY="${{ secrets.LLM_BEARER_KEY }}"
+            export OPENAI_MODEL="${{ secrets.OPENAI_MODEL }}"
+            export GHCR_PAT="${{ secrets.GHCR_PAT }}"
+            export GHCR_USER="${{ env.GHCR_USER }}"
+
+            sudo su -c '
+              echo "Logging into GitHub Container Registry..."
+              echo "'$GHCR_PAT'" | docker login ghcr.io -u '$GHCR_USER' --password-stdin
+
+              echo "Stopping existing container..."
+              docker stop '$CONTAINER_NAME' || true
+
+              echo "Removing existing container..."
+              docker rm '$CONTAINER_NAME' || true
+
+              echo "Removing old Docker image..."
+              docker rmi '$IMAGE_REPO'/'$CONTAINER_NAME':'$IMAGE_TAG' || true
+
+              echo "Pulling latest image..."
+              echo "${GHCR_PAT}" | docker login ghcr.io -u <your-username> --password-stdin
+              docker pull '$IMAGE_REPO'/'$CONTAINER_NAME':'$IMAGE_TAG'
+
+              echo "Starting new container..."
+              docker run -d \
+                --name '$CONTAINER_NAME' \
+                --restart always \
+                -p 3333:3000 \
+                -e NEO4J_URI="'$NEO4J_URI'" \
+                -e NEO4J_USERNAME="'$NEO4J_USERNAME'" \
+                -e NEO4J_PASSWORD="'$NEO4J_PASSWORD'" \
+                -e NEO4J_DATABASE="'$NEO4J_DATABASE'" \
+                -e LLM_BASE_URL="'$LLM_BASE_URL'" \
+                -e LLM_BEARER_KEY="'$LLM_BEARER_KEY'" \
+                -e OPENAI_MODEL="'$OPENAI_MODEL'" \
+                -e LOG_LEVEL="INFO" \
+                '$IMAGE_REPO'/'$CONTAINER_NAME':'$IMAGE_TAG'
+            '

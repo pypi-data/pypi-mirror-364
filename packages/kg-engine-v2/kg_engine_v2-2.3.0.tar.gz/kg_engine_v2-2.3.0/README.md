@@ -1,0 +1,446 @@
+# Knowledge Graph Engine v2
+
+Modern Neo4j-based knowledge graph engine with semantic search capabilities, intelligent relationship management, and performance optimizations.
+
+## 🎯 Overview
+
+A production-ready knowledge graph system built entirely on **Neo4j** for persistent graph storage and vector search. Combines graph database operations with semantic vector search to provide intelligent information storage, retrieval, and reasoning.
+
+## ✨ Key Features
+
+- **🏗️ Neo4j-Native Architecture**: Complete Neo4j integration for both graph and vector operations
+- **🔍 Enhanced Semantic Search**: Improved vector search with dynamic thresholds and contextual boosting
+- **🤖 LLM Integration**: OpenAI/Ollama support for entity extraction and query processing  
+- **⚔️ Conflict Resolution**: Intelligent handling of contradicting information with temporal tracking
+- **⏰ Temporal Tracking**: Complete relationship history with date ranges and conflict resolution
+- **🎯 Smart Query Understanding**: Context-aware search with semantic category matching
+- **📊 Optimized Performance**: 50-74% faster queries with smart caching and lazy loading
+- **🚀 Production Ready**: ACID compliance, comprehensive error handling, modern architecture
+- **🏷️ Edge Classification**: Intelligent edge categorization with vector similarity (85% threshold)
+- **🔄 Complete CRUD API**: Full create, read, update, delete operations for edges and nodes
+- **📦 External Package Support**: Clean API exports for use as external dependency
+
+## 🆕 New in v2.1.0
+
+- **⚡ Performance Optimizations**: GraphQueryOptimizer and Neo4jOptimizer for 50-74% faster queries
+- **💾 Smart Caching**: Query result caching with 5-minute TTL for near-instant repeated queries
+- **🔧 Refactored GraphEdge**: Lazy loading with safe accessors, 18% smaller codebase
+- **🛠️ Dynamic Relationships**: WORKS_AT, LIVES_IN instead of generic RELATES_TO
+- **🐛 Bug Fixes**: Fixed "Relationship not populated" errors, enhanced source filtering
+- **🏷️ Edge Classifier System**: Vector similarity-based edge classification (replaced LLM approach)
+- **🔄 CRUD Operations**: Complete API for edge and node management including merge operations
+- **📦 API Exports**: All types exported for external package usage
+- **🌐 Separate API Server**: Production-ready FastAPI server as external project
+
+## 📁 Project Structure
+
+```
+src/                                  # Main source directory
+├── kg_engine/                        # Knowledge Graph Engine
+│   ├── core/                         # Core engine
+│   │   └── engine.py                 # Main KG Engine
+│   ├── models/                       # Data models
+│   │   ├── models.py                 # Graph data structures
+│   │   └── classifier_map.py         # Edge classifier management
+│   ├── storage/                      # Storage components
+│   │   ├── graph_db.py               # Neo4j graph operations
+│   │   ├── neo4j_vector_store.py     # Vector storage
+│   │   ├── vector_store.py           # Vector store interface
+│   │   └── ...                       # Other storage components
+│   ├── llm/                          # LLM integration
+│   │   └── llm_interface.py          # OpenAI/Ollama interface
+│   ├── config/                       # Configuration
+│   │   ├── neo4j_config.py           # Neo4j settings
+│   │   └── neo4j_schema.py           # Schema management
+│   ├── utils/                        # Utilities
+│   │   ├── date_parser.py            # Date parsing utilities
+│   │   ├── graph_query_optimizer.py  # Query optimization
+│   │   ├── neo4j_optimizer.py        # Neo4j optimizations
+│   │   └── classifier_detector.py    # Edge classification
+│   └── __init__.py                   # Package exports
+├── api/                              # API endpoints
+│   └── main.py                       # FastAPI CRUD operations
+├── examples/                         # Usage examples
+│   ├── examples.py                   # Basic examples
+│   ├── bio_example.py                # Biographical demo
+│   └── simple_bio_demo.py            # Simple demo
+└── tests/                            # Test suite
+
+kg_api_server/                        # Separate API server project
+├── app/                              # FastAPI application
+│   ├── __init__.py                   # Package init
+│   └── main.py                       # API server implementation
+├── tests/                            # API tests
+├── requirements.txt                  # Dependencies
+├── Dockerfile                        # Container configuration
+├── docker-compose.yml                # Full stack deployment
+└── README.md                         # API documentation
+
+docs/                                 # Comprehensive documentation
+├── architecture/                     # System design
+├── user-guide/                       # Getting started
+├── api/                              # API reference
+└── development/                      # Development guides
+```
+
+## 🚀 Quick Start
+
+### Prerequisites
+```bash
+# Install Neo4j (required)
+docker run --name neo4j -p7474:7474 -p7687:7687 -d \
+    -e NEO4J_AUTH=neo4j/password \
+    neo4j:latest
+```
+
+### Installation
+```bash
+pip install -e .
+```
+
+### Basic Usage
+
+#### As a Library
+```python
+from kg_engine import KnowledgeGraphEngineV2, InputItem, Neo4jConfig
+
+# Initialize with Neo4j
+engine = KnowledgeGraphEngineV2(
+    api_key="your-openai-key",  # or "ollama" for local LLM
+    neo4j_config=Neo4jConfig()
+)
+
+# Add knowledge
+result = engine.process_input([
+    InputItem(description="Alice works as a software engineer at Google"),
+    InputItem(description="Bob lives in San Francisco")
+])
+
+# Search with natural language
+response = engine.search("Who works at Google?")
+print(response.answer)  # "Alice works as a software engineer at Google."
+```
+
+#### Using the API Server
+```bash
+# Start the API server
+cd kg_api_server
+python app/main.py
+
+# Process text via API
+curl -X POST "http://localhost:8080/process" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "texts": ["Alice works at Google", "Bob lives in San Francisco"]
+     }'
+
+# Search via API
+curl -X POST "http://localhost:8080/search" \
+     -H "Content-Type: application/json" \
+     -d '{"query": "Who works at Google?"}'
+```
+
+## 🤖 LLM Setup Options
+
+### Option 1: OpenAI (Recommended for Production)
+```bash
+export OPENAI_API_KEY="your-api-key"
+```
+
+```python
+engine = KnowledgeGraphEngineV2(
+    api_key="your-openai-key",
+    model="gpt-4.1-nano"  # Fast and cost-effective
+)
+```
+
+### Option 2: Local Ollama (Privacy & Cost-Free)
+```bash
+# Install Ollama
+curl -fsSL https://ollama.ai/install.sh | sh
+
+# Start server
+ollama serve
+
+# Pull a model
+ollama pull llama3.2:3b  # Recommended: good balance of size/performance
+```
+
+```python
+engine = KnowledgeGraphEngineV2(
+    api_key="ollama",
+    base_url="http://localhost:11434/v1",
+    model="llama3.2:3b"
+)
+```
+
+## 🏗️ Optimized Architecture
+
+```
+┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│   LLM Interface │    │   Graph Database │    │  Vector Store   │
+│                 │    │                  │    │                 │
+│ • Entity Extract│    │ • Neo4j Native   │    │ • Neo4j Vectors │
+│ • Query Parse   │    │ • Query Cache    │    │ • Semantic      │
+│ • Answer Gen.   │    │ • Optimizations  │    │ • Search        │
+└─────────────────┘    └──────────────────┘    └─────────────────┘
+         │                       │                       │
+         └───────────────────────┼───────────────────────┘
+                                 │
+                    ┌─────────────────────┐
+                    │ KG Engine v2        │
+                    │  (Optimized)        │
+                    │                     │
+                    │ • Process Input     │
+                    │ • Smart Updates     │
+                    │ • Hybrid Search     │
+                    │ • Query Caching     │
+                    │ • Safe Accessors    │
+                    └─────────────────────┘
+```
+
+## 📊 Advanced Features
+
+### Edge Classification System
+```python
+# Automatic edge classification with vector similarity (85% threshold)
+engine.process_input([
+    InputItem(description="Alice works at Google"),      # → category: "business"
+    InputItem(description="Bob lives in Paris"),         # → category: "location"
+    InputItem(description="Charlie loves photography")   # → category: "interests"
+])
+
+# Similar edges are grouped intelligently
+# "works_at", "employed_by", "works_for" → all map to WORKS_AT relationship
+```
+
+### Complete CRUD Operations
+```python
+# Create edges manually
+from kg_engine import EdgeData, EdgeMetadata, RelationshipStatus
+
+metadata = EdgeMetadata(
+    summary="John is the CTO of TechCorp",
+    confidence=0.95,
+    category="business",
+    status=RelationshipStatus.ACTIVE
+)
+
+edge_data = EdgeData(
+    subject="John",
+    relationship="WORKS_AS",
+    object="CTO at TechCorp",
+    metadata=metadata
+)
+
+# Node operations
+engine.graph_db.merge_nodes_auto("John Smith", "J. Smith")  # Auto merge
+engine.graph_db.merge_nodes_manual("John", "Jonathan", "John Smith")  # Manual
+```
+
+### Intelligent Conflict Resolution
+```python
+# Initial information
+engine.process_input([InputItem(description="Alice lives in Boston")])
+
+# Update with conflicting information (automatically resolves)
+engine.process_input([InputItem(description="Alice moved to Seattle in 2024")])
+
+# System automatically:
+# 1. Marks old relationship as obsolete
+# 2. Adds new relationship as active
+# 3. Maintains complete history
+```
+
+### Optimized Search Performance
+```python
+# Fast cached queries (< 1ms for repeated searches)
+response = engine.search("Who works in technology?")  # First call: ~100ms
+response = engine.search("Who works in technology?")  # Cached: < 1ms
+
+# Enhanced semantic understanding with contextual boosting
+response = engine.search("Who was born in Europe?")
+# ✅ Returns all European births: Berlin, Lyon, Barcelona, Paris
+
+# Safe relationship access (no more "Relationship not populated" errors)
+for result in response.results:
+    edge = result.triplet.edge
+    subject = edge.get_subject_safe()  # Safe accessor
+    relationship = edge.get_relationship_safe()  # Safe accessor
+    obj = edge.get_object_safe()  # Safe accessor
+```
+
+### Temporal Relationship Tracking
+```python
+# Natural language dates with simple parse_date utility
+from kg_engine import parse_date
+
+engine.process_input([
+    InputItem(description="Project started", from_date=parse_date("2 months ago")),
+    InputItem(description="Alice joined", from_date=parse_date("last week"))
+])
+```
+
+## 📦 Using as External Package
+
+The KG Engine is designed to be used as an external dependency in your projects:
+
+```python
+# Import all needed components
+from kg_engine import (
+    KnowledgeGraphEngineV2, InputItem, Neo4jConfig,
+    EdgeData, EdgeMetadata, RelationshipStatus,
+    SearchType, parse_date, __version__
+)
+
+print(f"Using KG Engine v{__version__}")
+
+# Full API available for external applications
+# See kg_api_server/ for a complete FastAPI example
+```
+
+### API Server Example
+
+A complete FastAPI server is provided as a separate project in `kg_api_server/`:
+
+```bash
+cd kg_api_server
+pip install -r requirements.txt
+python app/main.py  # Starts at http://localhost:8080
+```
+
+Features:
+- Complete REST API with all CRUD operations
+- Interactive documentation at `/docs`
+- Docker support for production deployment
+- Comprehensive test suite
+
+## 📚 Documentation
+
+- **[📖 Quick Start](docs/user-guide/quick-start.md)**: Get running in 5 minutes
+- **[🏗️ Architecture](docs/architecture/overview.md)**: System design and components
+- **[📊 Workflows](docs/architecture/workflows.md)**: Process flows with diagrams
+- **[🔧 API Reference](docs/api/README.md)**: Complete API documentation
+- **[👩‍💻 Development](docs/development/README.md)**: Development setup and guidelines
+- **[🌐 API Server](kg_api_server/README.md)**: External API server documentation
+
+## 🚦 Running Examples
+
+```bash
+# Run basic examples
+python src/examples/examples.py
+
+# Run biographical knowledge graph demo  
+python src/examples/simple_bio_demo.py
+
+# Verify project structure
+python verify_structure.py
+```
+
+Expected output:
+```
+✅ Neo4j connection verified
+🚀 Knowledge Graph Engine v2 initialized
+   - Vector store: kg_v2 (neo4j)
+   - Graph database: Neo4j (persistent)
+   
+=== Example: Semantic Relationship Handling ===
+1. Adding: John Smith teaches at MIT
+   Result: 1 new edge(s) created
+...
+```
+
+## 🔍 Search Capabilities
+
+The Knowledge Graph Engine v2 features advanced semantic search with:
+
+- **Performance Optimizations**: Query caching, lazy loading, and optimized Cypher queries
+- **Dynamic Similarity Thresholds**: Base threshold of 0.3 with context-specific adjustments
+- **Semantic Category Matching**: Understands relationships between concepts (e.g., "technology" → "software engineer")
+- **Query-Specific Boosting**: Different query types get tailored relevance scoring
+- **Geographic Intelligence**: Recognizes European cities and other geographic relationships
+- **Safe Data Access**: Robust error handling with safe accessor methods
+
+### Example Queries
+```python
+# Technology and profession queries
+"Who works in technology?" → Finds software engineers, developers, tech professionals
+"Tell me about engineers" → Returns all engineering-related professions
+
+# Geographic queries  
+"Who was born in Europe?" → Finds Berlin, Lyon, Barcelona, Paris births
+"Who lives in Paris?" → Returns all Paris residents
+
+# Activity and interest queries
+"What do people do for hobbies?" → Returns all "enjoys" relationships
+"Tell me about photographers" → Finds people who enjoy or specialize in photography
+
+# Entity-specific queries
+"Tell me about Emma Johnson" → Returns all relationships for Emma
+```
+
+## 🧪 Testing
+
+Run the comprehensive test suite:
+
+```bash
+# Core integration tests
+python test_neo4j_integration.py
+
+# Performance optimization tests
+python test_optimizations.py
+
+# Relationship fix validation
+python test_relationship_fix.py
+
+# Edge classifier tests
+python test_classifier_system.py
+
+# API export tests
+python test_api_exports.py
+
+# Quick validation
+python test_quick_relationship_fix.py
+
+# API server tests (from kg_api_server directory)
+cd kg_api_server && pytest tests/
+```
+
+## 📈 Performance Benchmarks
+
+| Operation | Before Optimization | After Optimization | Improvement |
+|-----------|-------------------|-------------------|-------------|
+| Entity Exploration | 20-50ms | 8-15ms | ~60% faster |
+| Vector Search | 100-200ms | 40-80ms | ~50% faster |
+| Conflict Detection | 150-300ms | 50-100ms | ~67% faster |
+| Path Finding | 80-160ms | 25-50ms | ~70% faster |
+| Cached Queries | N/A | < 1ms | Near-instant |
+
+## 🔧 Development
+
+For development setup and contributing guidelines, see [docs/development/README.md](docs/development/README.md).
+
+### Key Implementation Details
+
+```python
+# Safe edge property access
+edge = result.triplet.edge
+if edge.has_graph_data():
+    subject, relationship, obj = edge.get_graph_data()
+else:
+    subject = edge.get_subject_safe() or "Unknown"
+    relationship = edge.get_relationship_safe() or "Unknown"
+    obj = edge.get_object_safe() or "Unknown"
+
+# Optimized queries with caching
+cache_key = f"entity_exploration_{entity_name}"
+if cached_result := self.graph_db._get_cache(cache_key):
+    return cached_result
+    
+result = self.graph_db.get_entity_relationships_optimized(entity_name)
+self.graph_db._set_cache(cache_key, result)
+```
+
+## License
+
+MIT License
