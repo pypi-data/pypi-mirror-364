@@ -1,0 +1,2 @@
+[console_scripts]
+vpn-chainer = vpn_chainer.vpn_chainer:main
