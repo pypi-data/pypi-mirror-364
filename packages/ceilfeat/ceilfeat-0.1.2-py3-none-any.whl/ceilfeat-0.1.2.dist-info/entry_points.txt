@@ -1,0 +1,2 @@
+[console_scripts]
+ceilfeat-run = ceilfeat.pipeline:main
