@@ -1,0 +1,142 @@
+# steyr
+
+A small static site generator which tries to be dumb, simple, and easy to
+use. The available configuration options permit control of Markdown feature
+flags, codeblock highlight style, input/output paths, and HTML templates.
+
+
+## Installation
+
+```bash
+uv tool install steyr
+```
+
+## Overview
+
+Each file of the input tree is copied to a file in the same position of the
+output tree. Markdown files are converted to HTML. For any `index.md` in the
+input tree, a feed which comprises each other Markdown file in its folder will
+be appended to its contents.
+
+## Usage
+
+See `steyr --help` for command-line usage information.
+
+The root of a project is defined with a `steyr.toml` file, to which all paths
+within are relative.
+
+```toml
+[markdown]
+options = [
+  "tables",
+  "footnotes",
+  "strikethrough",
+  "tasklists",
+  "smart_punctuation",
+  "heading_attributes",
+  "yaml_style_metadata_blocks",
+  "pluses_delimited_metadata_blocks",
+  "old_footnotes",
+  "gfm",
+  "definition_list",
+  "superscript",
+  "subscript",
+  "wikilinks",
+  "math",
+  "code",
+]
+
+[paths]
+input = "input"
+output = "output"
+template = "template/page.html"
+rss = "output/feeds/rss.xml"
+
+[paths.styles]
+everforest-light = "output/styles/syntax-light.css"
+everforest-dark = "output/styles/syntax-dark.css"
+
+[rss]
+url = "https://mysite.org"
+title = "mysite.org"
+subtitle = "built with steyr!"
+name = "my name"
+email = "me@mysite.org"
+language = "en"
+```
+
+### `[markdown]`
+
+The `markdown.options` key takes a list of Markdown extensions to enable; the
+example shows all available entries. A description of each entry is given by
+[`pulldown-cmark-py`](https://git.sr.ht/~orchid/pulldown-cmark-py/tree/main/item/src/options.rs).
+
+Each Markdown file _must_ begin with a TOML frontmatter block with a title and
+date, as given below.
+```toml
++++
+title = "home"
+date = 2025-07-24
++++
+```
+
+### `[paths]`
+
+The `paths.input` directory is parsed (or watched by the `serve` subcommand), and
+the resultant site is stored in the `paths.output` directory.
+
+The `paths.template` key defines the _parent_ of a page template file for
+[`jinja2`](https://jinja.palletsprojects.com/en/stable). The template environment
+is given four keys:
+
+| Key       | Expansion                                                                                             |
+| ---       | ---                                                                                                   |
+| `page`    | An object with fields `path` (`Path`), `title` (`str`), `date` (`datetime.date`), and `href` (`str`). |
+| `content` | The page's rendered Markdown.                                                                         |
+| `posts`   | The page's feed if it exists, else `()`.                                                              |
+| `links`   | A sequence of `page` objects for each Markdown file at the site's root.                               |
+
+A simplified template example is given below.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ... -->
+  <title>{{ title }}</title>
+</head>
+<body>
+  {% if links %}
+    <nav>
+      {% for link in links %}
+        <a href="{{ link.href }}"{% if link.href == page.href %} class="visiting"{% endif %}>{{ link.title }}</a>
+      {% endfor %}
+    </nav>
+  {% endif %}
+  {% if page.href != "/" %}
+    <h2>{{ page.title }}</h2>
+  {% endif %}
+  {{ content | safe }}
+  {% if posts %}
+    <div id="posts">
+      {% for post in posts %}
+        <div class="post">
+          <h3><a href="{{ post.href }}">{{ post.title }}</a></h3>
+          <span class="date">{{ post.date }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+  <div id="footer">
+    This page was last updated on {{ page.date }}.
+  </div>
+</body>
+</html>
+```
+
+An RSS feed file is placed at the _optional_ `paths.rss`. If it is defined, so
+too must each key in `[rss]`.
+
+Each key in `[paths.styles]` is a [`pygments` style](https://pygments.org/styles),
+and each respective value is the desired output location of the style's CSS file.
+Styles `everforest-light` and `everforest-dark` are added by `steyr`.
