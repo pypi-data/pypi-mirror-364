@@ -1,0 +1,2 @@
+[console_scripts]
+context-overflow-mcp = context_overflow_mcp.server:main
