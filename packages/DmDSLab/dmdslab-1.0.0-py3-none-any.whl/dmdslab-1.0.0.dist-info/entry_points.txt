@@ -1,0 +1,2 @@
+[console_scripts]
+dmdslab-init-uci = scripts.initialize_uci_database:main
