@@ -1,0 +1,23 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    >
+
+
+  <genericsetup:upgradeSteps
+      profile="collective.volto.slotseditor:default"
+      source="1000"
+      destination="1001"
+      >
+    <genericsetup:upgradeDepends
+        title="Update registry value"
+        import_steps="plone.app.registry"
+        />
+    <genericsetup:upgradeStep
+        title="remove plone.richtext from Plone Site, Document, News Item, Event"
+        handler=".to_1001.update_controlpanel_value_type"
+        />
+  </genericsetup:upgradeSteps>
+
+
+</configure>

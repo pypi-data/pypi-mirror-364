@@ -1,0 +1,13 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+  xmlns:plone="http://namespaces.plone.org/plone">
+
+  <adapter factory=".get.VoltoSlotsEditorSettings"
+    name="slotseditor_settings"/>
+
+  <plone:service method="GET"
+    for="zope.interface.Interface"
+    factory=".get.VoltoSlotsEditorSettingsGet"
+    name="@VoltoSlotsEditor"
+    permission="zope2.View" />
+
+</configure>

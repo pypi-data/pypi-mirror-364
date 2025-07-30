@@ -1,0 +1,18 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:i18n="http://namespaces.zope.org/i18n"
+  xmlns:plone="http://namespaces.plone.org/plone"
+  i18n_domain="collective.volto.slotseditor">
+
+  <browser:page name="slotseditor-controlpanel"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    class=".controlpanel.CollectiveVoltoSlotsEditorControlPanelView"
+    layer="collective.volto.slotseditor.interfaces.ICollectiveVoltoSlotsEditorLayer"
+    permission="cmf.ManagePortal" />
+
+  <include package="plone.restapi" />
+  <adapter factory=".controlpanel.CollectiveVoltoSlotsEditorControlPanelConfigletPanel"
+    name="slotseditor" />
+
+
+</configure>
