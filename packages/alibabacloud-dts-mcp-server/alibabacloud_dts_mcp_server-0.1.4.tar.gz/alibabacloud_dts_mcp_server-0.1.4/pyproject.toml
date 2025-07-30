@@ -1,0 +1,17 @@
+[project]
+name = "alibabacloud-dts-mcp-server"
+version = "0.1.4"
+description = "MCP Server for AlibabaCloud DTS"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "alibabacloud-dts20200101>=5.8.1",
+    "httpx>=0.28.1",
+    "mcp[cli]>=1.8.1",
+]
+
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+
+[project.scripts]
+alibabacloud-dts-mcp-server = "alibabacloud_dts_mcp_server.server:main"
