@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+elpie/__init__.py
+elpie/__main__.py
+elpie.egg-info/PKG-INFO
+elpie.egg-info/SOURCES.txt
+elpie.egg-info/dependency_links.txt
+elpie.egg-info/entry_points.txt
+elpie.egg-info/top_level.txt
