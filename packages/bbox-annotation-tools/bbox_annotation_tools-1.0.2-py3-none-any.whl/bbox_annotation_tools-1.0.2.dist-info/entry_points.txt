@@ -1,0 +1,3 @@
+[console_scripts]
+bbox-editor = bbox_tools.bbox_gui_editor:main
+drug-viewer = bbox_tools.drug_code_viewer:main
