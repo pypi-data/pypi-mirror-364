@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: sepia2-client-py
+Version: 0.3.0
+Summary: Sepia2 gRPC client for python, automatically derived from current proto definition
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: grpcio-tools>=1.71.0
+Requires-Dist: setuptools
+
+# PicoQuant Sepia2 Client for Python
+
+This is an automated client packaged from the protobuf definition used for the
+`sepia2-grpc` server.

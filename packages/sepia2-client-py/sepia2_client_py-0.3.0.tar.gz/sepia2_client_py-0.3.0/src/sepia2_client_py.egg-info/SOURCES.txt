@@ -1,0 +1,13 @@
+README.md
+pyproject.toml
+src/sepia2_client_py/__init__.py
+src/sepia2_client_py/api_pb2.py
+src/sepia2_client_py/api_pb2.pyi
+src/sepia2_client_py/api_pb2_grpc.py
+src/sepia2_client_py/py.typed
+src/sepia2_client_py.egg-info/PKG-INFO
+src/sepia2_client_py.egg-info/SOURCES.txt
+src/sepia2_client_py.egg-info/dependency_links.txt
+src/sepia2_client_py.egg-info/requires.txt
+src/sepia2_client_py.egg-info/top_level.txt
+tests/test_sepia2_grpc.py

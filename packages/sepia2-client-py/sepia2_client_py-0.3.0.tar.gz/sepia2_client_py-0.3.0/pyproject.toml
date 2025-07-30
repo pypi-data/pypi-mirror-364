@@ -1,0 +1,32 @@
+[project]
+name = "sepia2-client-py"
+version = "0.3.0"
+description = "Sepia2 gRPC client for python, automatically derived from current proto definition"
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = [
+    "grpcio-tools>=1.71.0",
+    "setuptools",
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+
+# FIXME: This is a workaround for hatchling not supporting the layout of package down the repo hierarchy
+[tool.hatch.build.targets.wheel]
+packages = ["src/sepia2_client_py"]
+
+[dependency-groups]
+dev = [
+  "ruff>=0.7.2",
+  {include-group = "test"},
+  "mypy-protobuf>=3.6.0",
+]
+test = ["pytest>=8.3.5"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_functions = "test_*"
