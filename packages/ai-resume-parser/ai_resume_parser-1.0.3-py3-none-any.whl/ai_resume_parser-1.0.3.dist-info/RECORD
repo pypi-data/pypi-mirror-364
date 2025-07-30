@@ -1,0 +1,12 @@
+ai_resume_parser-1.0.3.dist-info/licenses/LICENSE,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+resumeparser_pro/__init__.py,sha256=xjxJ2PJ3diuTu72kJzu0zq0MG5DRqt-1_WE7NlZ5eoY,731
+resumeparser_pro/extractors.py,sha256=GXQAEvSKVP9Wr2kLk8sIpFrVeeJmwcJYAMgw2wV5ytE,4934
+resumeparser_pro/models.py,sha256=TYcRINCVSoAXi7PXxr9Sn6BcJj1FmDseB60eEHjP6oQ,6881
+resumeparser_pro/parser.py,sha256=cFterq9mg8WcMNR8W5ItdjjfGTZoMpqUScH9TvW86-I,13925
+resumeparser_pro/utils.py,sha256=Ndy6KTyDbkfYpUwmKgyga5XlKQg-rrDXhah4eE14nlk,4342
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/test_parser.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+ai_resume_parser-1.0.3.dist-info/METADATA,sha256=1wM7pdK1w7tyxcH8ebfUENchYL0LCYrwgBZABOzpPKc,11222
+ai_resume_parser-1.0.3.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+ai_resume_parser-1.0.3.dist-info/top_level.txt,sha256=D5HXoVPDchDvln3XM9k8kdPadL-kMK29l_eWNFtSIhY,23
+ai_resume_parser-1.0.3.dist-info/RECORD,,
