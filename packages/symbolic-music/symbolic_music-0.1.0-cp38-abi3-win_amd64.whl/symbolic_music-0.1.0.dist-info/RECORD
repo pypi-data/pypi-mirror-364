@@ -1,0 +1,8 @@
+symbolic_music-0.1.0.dist-info/METADATA,sha256=A4Suk4v9U82zR0eCong5e3-P9mPuScMAY908fWZC7Mc,2738
+symbolic_music-0.1.0.dist-info/WHEEL,sha256=jXXXnFq1lMnQGkwJwdMPY4-n4ga_raKn8NABSsZqRTg,94
+symbolic_music-0.1.0.dist-info/licenses/LICENSE,sha256=JlMQjIUzvs94npxgXvrp6SkQ-TXjLDARGEDoyolbqrA,1090
+symbolic_music/__init__.py,sha256=4_7cIykAbaJ0XwahSOgxUHAxEvkd8V55X2zbKcIw-0A,50
+symbolic_music/_symbolic_music.pyd,sha256=PIbMAqbw--Qag6VvQJ-iMBXuVTEGD2wVVW7MKIc4yk4,965120
+symbolic_music/aria/__init__.py,sha256=UgqgQot6OxBnOsRbyI526BXKjmM2Hj1YCybJL8htOXY,551
+symbolic_music/aria/abs_tokenizer.py,sha256=OHBkmfa8jPbUUyiRb9dhNu0JszECV50QmxQlTqFc6gA,1125
+symbolic_music-0.1.0.dist-info/RECORD,,
