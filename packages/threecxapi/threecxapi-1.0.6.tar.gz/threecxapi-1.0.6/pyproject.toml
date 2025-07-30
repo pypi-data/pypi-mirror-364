@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=61.0", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "threecxapi"
+authors = [{ name = "Matt Henry", email = "matthttam@gmail.com" }]
+description = "This is a python wrapper for the 3CX API. It is designed to make it easier to interact with the 3CX API. It is a work in progress and is not yet feature complete. It is designed to be used with the official 3CX v20 API."
+readme = "README.md"
+requires-python = ">=3.12"
+license = "GPL-3.0-or-later"
+classifiers = [
+    "Programming Language :: Python :: 3"
+]
+dynamic = ["version"]
+
+[project.urls]
+Home = "https://github.com/matthttam/ThreeCXAPI"
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+    "-vvvv",
+    "--showlocals",
+    "-p no:xvfb",
+    "-r a",
+    "--doctest-glob=",
+]
+pythonpath = "."
+
+[tool.black]
+line-length = 120
+
+[tool.setuptools_scm]
+write_to = "threecxapi/_version.py"  # Optional: Writes the version to a file for runtime use
+version_scheme = "post-release"
+local_scheme = "no-local-version"
