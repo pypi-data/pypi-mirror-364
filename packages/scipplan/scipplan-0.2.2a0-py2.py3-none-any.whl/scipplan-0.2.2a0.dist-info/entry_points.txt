@@ -1,0 +1,2 @@
+[console_scripts]
+scipplan = scipplan.scipplan:main
