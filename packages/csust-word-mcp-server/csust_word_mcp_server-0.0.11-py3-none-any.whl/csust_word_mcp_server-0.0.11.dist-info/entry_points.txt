@@ -1,0 +1,3 @@
+[console_scripts]
+csust-word-mcp-server = csust_word_mcp_server:main
+
