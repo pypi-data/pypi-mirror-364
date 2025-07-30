@@ -1,0 +1,149 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "engramic"
+dynamic = ["version"]
+description = 'An open source (for companies less than 250 employees) AI library for processing, storing, and retrieving proprietary, unstructured data.'
+readme = { file = "README.md", content-type = "text/markdown" }
+requires-python = ">=3.10"
+license = { file = "LICENSE.txt" }
+keywords = ["AI", "LLM", "RAG", "Retrieval Augmented Generation", "Memory"]
+authors = [
+  { name = "Preisz Consulting, LLC", email = "license@engramic.org" }
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = [
+  "pluggy>=1.5,<2.0",
+  "mako>=1.3.0,<2.0",
+  "tomli>=2.2.1,<3.0",
+  "pyzmq>=26.4.0,<27.0",
+  "cachetools>=5.5.2,<6.0",
+  "websockets>=15.0.1,<16.0",
+  "pymupdf>=1.25,<2.0",
+  "PyJWT>=2.10.1,<3.0"
+  ]
+
+[tool.hatch.envs.dev]
+template = "default"
+dependencies = []
+
+[tool.hatch.envs.dev.scripts]
+post-install = "pre-commit install"
+web_server = "python -m http.server 8000 --directory ./web/"
+delete_dbs = "rm -rf ./local_storage/sqlite ./local_storage/chroma_db"
+
+[project.urls]
+Documentation = "https://github.com/engramic/engramic#readme"
+Issues = "https://github.com/engramic/engramic/issues"
+Source = "https://github.com/engramic/engramic"
+
+[tool.hatch.version]
+path = "src/engramic/__about__.py"
+
+[tool.hatch.envs.test]
+template = "dev"
+dependencies = ["pytest","pytest-asyncio","mypy","types-cachetools"]
+
+[tool.hatch.envs.test.scripts]
+typecheck = "mypy --strict --ignore-missing-imports -p engramic"
+
+[tool.hatch.envs.hatch-test]
+extra-dependencies = ["engramic","pytest-asyncio","pytest-timeout"]
+
+[tool.hatch.envs.docs]
+template = "default"
+dependencies = [
+  "mkdocs",
+  "mkdocs-material",
+  "mkdocstrings[python]",
+  "pylint",
+  "mike",
+  "mkdocs-mermaid2-plugin"
+]
+
+[tool.hatch.envs.docs.scripts]
+build = "mkdocs build"
+serve = "mkdocs serve -a 0.0.0.0:8000"
+deploy-docs = "hatch version | cut -d. -f1,2 | xargs mike deploy --push"
+deploy-docs-local = "hatch version | cut -d. -f1,2 | xargs mike deploy"
+set-default-docs = "hatch version | cut -d. -f1,2 | xargs mike set-default --push"
+
+[[tool.hatch.envs.hatch-test.matrix]]
+python = ["3.10","3.11","3.12","3.13"]
+
+[tool.coverage.run]
+source_pkgs = ["engramic", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/engramic/__about__.py",
+]
+
+[tool.pytest.ini_options]
+asyncio_default_fixture_loop_scope = "function"
+log_level = "INFO"
+log_cli = true
+
+[tool.coverage.paths]
+engramic = ["src/engramic", "*/engramic/src/engramic"]
+tests = ["tests", "*/engramic/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
+omit = ["*/__init__.py"]
+
+[tool.ruff.format]
+preview = true
+quote-style = "single"
+
+[tool.ruff.lint]
+preview = true
+extend-select = ["C901"]
+ignore = ["PLC0414","RET504","PLR6301","S105","TRY301","S702","S324","S608","RUF029"] 
+
+#ignores
+#PLC0414 - Redundant "as" in init files
+#RET504 - Allowing assignments before a return
+#PLR6301 - Not using self in a method. Should add back later.
+#S105 - Hardcoded password assigned
+#TRY301 - Make an inner function for raising. Incompatible with mypy.
+#S702 - Escaping mako text
+#S324 - MD5, not using for insecure hashing
+#S608 - Possible SQL injection vector through string-based query construction
+#RUF029 - Async function doesn't await.
+
+[tool.ruff.lint.extend-per-file-ignores]
+"docs/.hooks/*" = ["INP001", "T201"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["engramic"]
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+  "examples/",
+  ".github/",
+  ".vscode/",
+  "docs/",
+  "web/",
+  ".gitignore",
+  ".pre-commit-config.yaml",
+  "mkdocs.yml",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/engramic"]
