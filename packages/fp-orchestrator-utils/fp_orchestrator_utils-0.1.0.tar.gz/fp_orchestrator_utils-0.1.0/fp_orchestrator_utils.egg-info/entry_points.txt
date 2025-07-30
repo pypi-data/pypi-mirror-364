@@ -1,0 +1,2 @@
+[console_scripts]
+fp-orchestrator-utils = fp_orchestrator_utils.cli.main:main
