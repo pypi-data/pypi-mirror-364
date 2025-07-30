@@ -1,0 +1,25 @@
+Metadata-Version: 2.4
+Name: metorial-core
+Version: 1.0.0
+Summary: Core SDK components for Metorial
+Project-URL: Homepage, https://metorial.com
+Project-URL: Documentation, https://metorial.com/docs
+Project-URL: Repository, https://github.com/metorial/metorial-enterprise
+Author-email: Metorial Team <support@metorial.com>
+License: MIT
+License-File: LICENSE
+Keywords: core,metorial,sdk
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.9
+Requires-Dist: aiohttp>=3.8.0
+Requires-Dist: metorial-generated>=1.0.0
+Requires-Dist: metorial-util-endpoint>=1.0.0
+Requires-Dist: typing-extensions>=4.0.0
