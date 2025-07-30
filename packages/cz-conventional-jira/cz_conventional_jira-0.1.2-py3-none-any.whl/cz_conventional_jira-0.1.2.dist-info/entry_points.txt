@@ -1,0 +1,3 @@
+[commitizen.plugin]
+cz_conventional_jira=cz_conventional_jira.cz_conventional_jira:CzConventionalJira
+
