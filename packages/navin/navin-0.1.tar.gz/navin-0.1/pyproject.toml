@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "navin"
+version = "0.1"
+description = "A simple local server with static HTML/CSS, started via 'navin runserver' command."
+authors = [
+    { name="Your Name", email="your.email@example.com" }
+]
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = [
+    "flask>=2.0"
+]
+
+[project.scripts]
+navin = "navin.cli:main" 
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-data]
+"navin" = ["static/*"] 

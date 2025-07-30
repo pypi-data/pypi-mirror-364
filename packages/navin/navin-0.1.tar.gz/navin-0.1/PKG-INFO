@@ -1,0 +1,32 @@
+Metadata-Version: 2.4
+Name: navin
+Version: 0.1
+Summary: A simple local server with static HTML/CSS, started via 'navin runserver' command.
+Author-email: Your Name <your.email@example.com>
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: flask>=2.0
+
+# navin
+
+A simple Python package to start a local server and serve a styled HTML page.
+
+## Installation
+
+```bash
+pip install .
+```
+
+## Usage
+
+Start the local server:
+
+```bash
+navin runserver
+```
+
+Visit [http://localhost:2401](http://localhost:2401) to view the page.
+
+## Version
+
+0.1 

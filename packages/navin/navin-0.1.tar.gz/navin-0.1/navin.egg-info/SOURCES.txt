@@ -1,0 +1,13 @@
+MANIFEST.in
+README.md
+pyproject.toml
+navin/__init__.py
+navin/cli.py
+navin/server.py
+navin.egg-info/PKG-INFO
+navin.egg-info/SOURCES.txt
+navin.egg-info/dependency_links.txt
+navin.egg-info/entry_points.txt
+navin.egg-info/requires.txt
+navin.egg-info/top_level.txt
+navin/static/style.css
