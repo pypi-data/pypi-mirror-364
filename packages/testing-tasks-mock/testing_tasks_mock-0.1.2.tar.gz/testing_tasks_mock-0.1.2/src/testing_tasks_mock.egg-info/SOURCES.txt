@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+src/testing_tasks_mock/__FRACTAL_MANIFEST__.json
+src/testing_tasks_mock/__init__.py
+src/testing_tasks_mock/generic_task.py
+src/testing_tasks_mock/generic_task_parallel.py
+src/testing_tasks_mock.egg-info/PKG-INFO
+src/testing_tasks_mock.egg-info/SOURCES.txt
+src/testing_tasks_mock.egg-info/dependency_links.txt
+src/testing_tasks_mock.egg-info/requires.txt
+src/testing_tasks_mock.egg-info/top_level.txt
