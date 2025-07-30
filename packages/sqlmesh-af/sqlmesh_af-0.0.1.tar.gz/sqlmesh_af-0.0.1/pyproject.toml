@@ -1,0 +1,17 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sqlmesh-af"
+version = "0.0.1"
+description = "Reserved package name for sqlmesh-af."
+authors = [
+  { name = "Your Name", email = "your@email.com" }
+]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.8" 
+
+[tool.hatch.build]
+packages = ["src/sqlmesh_af"] 
