@@ -1,0 +1,26 @@
+Metadata-Version: 2.3
+Name: doonook-chinese-calendar
+Version: 0.1.3
+Summary: A Chinese calendar and astrology API with lunar calendar conversion
+License: MIT
+Author: Rex Xu
+Author-email: doonookltd@gmail.com
+Requires-Python: >=3.11
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: alembic (>=1.14.1,<2.0.0)
+Requires-Dist: chinesecalendar (>=1.10.0)
+Requires-Dist: click (>=8.1.7,<9.0.0)
+Requires-Dist: fastapi (>=0.115.8)
+Requires-Dist: psycopg2-binary (>=2.9.10,<3.0.0)
+Requires-Dist: pydantic (>=2.10.6)
+Requires-Dist: pydantic-settings (>=2.8.0,<3.0.0)
+Requires-Dist: sqlalchemy (>=2.0.38,<3.0.0)
+Requires-Dist: sxtwl (>=2.0.7,<3.0.0)
+Project-URL: Homepage, https://github.com/ruifan831/doonook_chinese_calendar
+Description-Content-Type: text/markdown
+
+
