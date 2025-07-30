@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "EzQt_Widgets"
+version = "1.0.8"
+description = "A collection of custom Qt widgets to enhance applications built with EzQt-App. This module provides advanced, reusable, and stylish graphical components, making it easier to develop modern and user-friendly interfaces."
+readme = "README.md"
+requires-python = ">=3.9,<3.13"
+license = { text = "MIT" }
+authors = [{ name = "Florian Salort", email = "floriansalort@gmail.com" }]
+keywords = ["application", "framework"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Office/Business",
+]
+
+dependencies = [
+    "PySide6==6.7.3"
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=6.2.5", "pytest-cov>=3.0.0", "flake8>=4.0.1"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["ezqt_widgets", "ezqt_widgets.*"]
