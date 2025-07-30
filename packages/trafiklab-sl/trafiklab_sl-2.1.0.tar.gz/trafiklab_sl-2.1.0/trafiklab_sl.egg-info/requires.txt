@@ -1,0 +1,11 @@
+aiohttp
+
+[dev]
+wheel
+build
+twine
+tox
+
+[test]
+pytest==8.0.0
+pytest-asyncio==0.23.5
