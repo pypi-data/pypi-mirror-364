@@ -1,0 +1,2 @@
+[console_scripts]
+calc = microprojects:calc_main
