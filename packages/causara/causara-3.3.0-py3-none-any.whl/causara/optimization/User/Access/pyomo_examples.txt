@@ -1,0 +1,1264 @@
+```python
+import pyomo.environ as pyo
+
+
+def get_pyomo_model(p, c):
+    """
+    p['totalTime']          : int
+    p['difficulty_of_road'] : 1-D numpy array (length = totalTime)
+    (c is unused)
+
+    Decision variables
+    ------------------
+    pause1, pause2, pause3 : Integers in [0, totalTime-1]
+    eq1[t], eq2[t], eq3[t] : Binary   (selectors   – exactly one 1 in each set)
+    rest[t]                : Binary   (OR of eq1/eq2/eq3)
+    tired[t]               : Real     (state 0 … totalTime)
+    tired_pre[t]           : Real
+    redux[t]               : Real
+    max_tired              : Real     (objective)
+    """
+    # data
+    totalTime  = int(p["totalTime"])
+    diff       = list(p["difficulty_of_road"])
+    M_lin      = 0.1 * totalTime * max(abs(d) for d in diff) + 1.0
+
+    T  = range(totalTime)          # 0 … totalTime-1
+    Tp = range(totalTime + 1)      # 0 … totalTime
+
+    # model
+    m = pyo.ConcreteModel()
+
+    # main integer pause variables
+    m.pause1 = pyo.Var(domain=pyo.Integers, bounds=(0, totalTime - 1))
+    m.pause2 = pyo.Var(domain=pyo.Integers, bounds=(0, totalTime - 1))
+    m.pause3 = pyo.Var(domain=pyo.Integers, bounds=(0, totalTime - 1))
+
+    # one-hot selectors for each pause
+    m.eq1 = pyo.Var(T, domain=pyo.Binary)
+    m.eq2 = pyo.Var(T, domain=pyo.Binary)
+    m.eq3 = pyo.Var(T, domain=pyo.Binary)
+
+    # exactly one time index per pause
+    m.exact1 = pyo.Constraint(expr=sum(m.eq1[t] for t in T) == 1)
+    m.exact2 = pyo.Constraint(expr=sum(m.eq2[t] for t in T) == 1)
+    m.exact3 = pyo.Constraint(expr=sum(m.eq3[t] for t in T) == 1)
+
+    # integer ↔ selector linkage   (no big-M needed!)
+    m.pause1_def = pyo.Constraint(expr=m.pause1 == sum(t * m.eq1[t] for t in T))
+    m.pause2_def = pyo.Constraint(expr=m.pause2 == sum(t * m.eq2[t] for t in T))
+    m.pause3_def = pyo.Constraint(expr=m.pause3 == sum(t * m.eq3[t] for t in T))
+
+    # forbid two pauses at the same index
+    m.no_overlap = pyo.Constraint(T, rule=lambda m, t: m.eq1[t] + m.eq2[t] + m.eq3[t] <= 1)
+
+    # ordering pause1 < pause2 ≤ pause3
+    m.order12 = pyo.Constraint(expr=m.pause1 + 1 <= m.pause2)
+    m.order23 = pyo.Constraint(expr=m.pause2     <= m.pause3)
+
+    # rest[t]  =  OR(eq1, eq2, eq3)
+    m.rest = pyo.Var(T, domain=pyo.Binary)
+    m.rest_lb1 = pyo.Constraint(T, rule=lambda m, t: m.rest[t] >= m.eq1[t])
+    m.rest_lb2 = pyo.Constraint(T, rule=lambda m, t: m.rest[t] >= m.eq2[t])
+    m.rest_lb3 = pyo.Constraint(T, rule=lambda m, t: m.rest[t] >= m.eq3[t])
+    m.rest_ub  = pyo.Constraint(T, rule=lambda m, t: m.rest[t] <= m.eq1[t] + m.eq2[t] + m.eq3[t])
+
+    # tiredness states
+    m.tired     = pyo.Var(Tp, bounds=(-M_lin, M_lin))
+    m.tired_pre = pyo.Var(T,  bounds=(-M_lin, M_lin))
+    m.redux     = pyo.Var(T,  bounds=(-M_lin, M_lin))
+
+    # initial condition
+    m.t0 = pyo.Constraint(expr=m.tired[0] == 0)
+
+    # dynamics
+    m.dyn = pyo.ConstraintList()
+    m.lin = pyo.ConstraintList()
+    for t in T:
+        m.dyn.add(m.tired_pre[t] == m.tired[t] + 0.1 * diff[t])
+
+        # McCormick linearisation: redux = tired_pre * rest
+        m.lin.add(m.redux[t] - m.tired_pre[t] <=  M_lin * (1 - m.rest[t]))
+        m.lin.add(m.tired_pre[t] - m.redux[t] <=  M_lin * (1 - m.rest[t]))
+        m.lin.add(m.redux[t] <=  M_lin * m.rest[t])
+        m.lin.add(m.redux[t] >= -M_lin * m.rest[t])
+
+        m.dyn.add(m.tired[t + 1] == m.tired_pre[t] - 0.8 * m.redux[t])
+
+    # maximum tiredness
+    m.max_tired = pyo.Var(bounds=(-M_lin, M_lin))
+    m.max_ct = pyo.Constraint(Tp, rule=lambda m, t: m.max_tired >= m.tired[t])
+
+    m.obj = pyo.Objective(expr=m.max_tired, sense=pyo.minimize)
+    return m
+
+```
+
+```python
+import math
+import pyomo.environ as pyo
+import numpy as np
+
+
+def get_pyomo_model(p, c):
+    """
+    p['sizeOfQ']   : float
+    p['maxPoints'] : int
+    p['d']         : float
+    p['z']         : float
+    (c is unused)
+
+    Decision variables
+    ------------------
+    points[i,0], points[i,1]     : Continuous, shape (maxPoints, 2), bounds (0, sizeOfQ)
+    pointUsed[i]                : Binary,     shape (maxPoints)
+    dist_sq[i,j]                : NonNegativeReals, shape (num_pairs)
+    b_dist_lt_d[i,j]            : Binary,     shape (num_pairs)
+    q_increment_binary[i,j]     : Binary,     shape (num_pairs)
+    q                           : NonNegativeIntegers, scalar
+    (objective is sum(pointUsed))
+    """
+    # Parameters from p
+    sizeQ = float(p["sizeOfQ"])
+    P = int(p["maxPoints"])
+    d = float(p["d"])
+    z = float(p["z"])
+
+    # Derived constants
+    d_sq = d**2
+    z_sq = z**2
+    # Max possible squared Euclidean distance + a small epsilon for Big-M terms
+    BIG_M_SQ = 2.0 * sizeQ**2 + 1.0
+
+    # Model
+    m = pyo.ConcreteModel("demo2")
+
+    # Index sets
+    m.I = pyo.RangeSet(0, P - 1)                     # Points 0..P-1
+    m.L = pyo.Set(initialize=[0, 1])                 # Coordinate index 0/x, 1/y
+    # Pairs (p1, p2) such that p1 < p2
+    m.PAIRS = pyo.Set(dimen=2, initialize=lambda _m: [(i, j) for i in _m.I for j in _m.I if i < j])
+
+    # Variables
+    m.points = pyo.Var(m.I, m.L, bounds=(0.0, sizeQ)) # (P, 2) Continuous
+    m.pointUsed = pyo.Var(m.I, within=pyo.Binary)       # (P) Binary
+
+    # Squared Euclidean distance for each pair
+    m.dist_sq = pyo.Var(m.PAIRS, within=pyo.NonNegativeReals) # (num_pairs) Real
+
+    # Binary variable: 1 if dist_sq < d_sq, 0 otherwise
+    m.b_dist_lt_d = pyo.Var(m.PAIRS, within=pyo.Binary) # (num_pairs) Binary
+
+    # Binary variable: 1 if pointUsed[i] AND pointUsed[j] AND dist_sq < d_sq
+    m.q_increment_binary = pyo.Var(m.PAIRS, within=pyo.Binary) # (num_pairs) Binary
+
+    # Integer variable for the sum of q_increment_binary
+    m.q = pyo.Var(domain=pyo.NonNegativeIntegers) # Scalar
+
+    # Constraints
+    # 1. Define dist_sq[i,j] for each pair
+    def _dist_sq_rule(mdl, i, j):
+        dx = mdl.points[i, 0] - mdl.points[j, 0]
+        dy = mdl.points[i, 1] - mdl.points[j, 1]
+        return mdl.dist_sq[i, j] == dx**2 + dy**2
+    m.dist_sq_eq = pyo.Constraint(m.PAIRS, rule=_dist_sq_rule)
+
+    # 2. Assert distance >= z: if pointUsed[i] AND pointUsed[j], then dist_sq[i,j] >= z_sq
+    #    This implies: dist_sq[i,j] >= z_sq - FeasibilityTol - BIG_M_SQ * (2 - pointUsed[i] - pointUsed[j])
+    def _assert_z_rule(mdl, i, j):
+        return mdl.dist_sq[i, j] >= z_sq - FeasibilityTol - BIG_M_SQ * (2 - mdl.pointUsed[i] - mdl.pointUsed[j])
+    m.assert_z_con = pyo.Constraint(m.PAIRS, rule=_assert_z_rule)
+
+    # 3. Link b_dist_lt_d with dist_sq < d_sq (using standard Big-M for binary indicator)
+    #    b_dist_lt_d[i,j] = 1  <=>  dist_sq[i,j] <= d_sq - FeasibilityTol
+    def _b_dist_lt_d_up_rule(mdl, i, j):
+        return mdl.dist_sq[i,j] <= (d_sq - FeasibilityTol) + BIG_M_SQ * (1 - mdl.b_dist_lt_d[i,j])
+    m.b_dist_lt_d_up = pyo.Constraint(m.PAIRS, rule=_b_dist_lt_d_up_rule)
+
+    def _b_dist_lt_d_lo_rule(mdl, i, j):
+        return mdl.dist_sq[i,j] >= (d_sq - FeasibilityTol) + FeasibilityTol - BIG_M_SQ * mdl.b_dist_lt_d[i,j]
+    m.b_dist_lt_d_lo = pyo.Constraint(m.PAIRS, rule=_b_dist_lt_d_lo_rule)
+
+    # 4. Define q_increment_binary using an AND of pointUsed[i], pointUsed[j], and b_dist_lt_d[i,j]
+    #    q_increment_binary[i,j] = 1  <=>  pointUsed[i]=1 AND pointUsed[j]=1 AND b_dist_lt_d[i,j]=1
+    def _q_inc_b_up1_rule(mdl, i, j):
+        return mdl.q_increment_binary[i,j] <= mdl.pointUsed[i]
+    m.q_inc_b_up1 = pyo.Constraint(m.PAIRS, rule=_q_inc_b_up1_rule)
+
+    def _q_inc_b_up2_rule(mdl, i, j):
+        return mdl.q_increment_binary[i,j] <= mdl.pointUsed[j]
+    m.q_inc_b_up2 = pyo.Constraint(m.PAIRS, rule=_q_inc_b_up2_rule)
+
+    def _q_inc_b_up3_rule(mdl, i, j):
+        return mdl.q_increment_binary[i,j] <= mdl.b_dist_lt_d[i,j]
+    m.q_inc_b_up3 = pyo.Constraint(m.PAIRS, rule=_q_inc_b_up3_rule)
+
+    def _q_inc_b_lo_rule(mdl, i, j):
+        return mdl.q_increment_binary[i,j] >= mdl.pointUsed[i] + mdl.pointUsed[j] + mdl.b_dist_lt_d[i,j] - 2
+    m.q_inc_b_lo = pyo.Constraint(m.PAIRS, rule=_q_inc_b_lo_rule)
+
+    # 5. Sum q_increment_binary to get q
+    m.q_sum = pyo.Constraint(expr=m.q == pyo.quicksum(m.q_increment_binary[pair] for pair in m.PAIRS))
+
+    # 6. Assert q <= 4
+    m.q_max = pyo.Constraint(expr=m.q <= 4)
+
+    # Objective: maximize sum(pointUsed)
+    m.obj = pyo.Objective(
+        expr=pyo.quicksum(m.pointUsed[i] for i in m.I),
+        sense=pyo.maximize
+    )
+
+    return m
+
+
+def get_python_x(p, c, x):
+    """
+    Convert Pyomo solution `x` back to the original Python format.
+    """
+    P = int(p["maxPoints"])
+
+    # Reconstruct points array
+    points_arr = np.zeros((P, 2), dtype=float)
+    for i in range(P):
+        points_arr[i, 0] = x["points"][i, 0]
+        points_arr[i, 1] = x["points"][i, 1]
+
+    # Reconstruct pointUsed array
+    pointUsed_arr = np.array([int(round(x["pointUsed"][i])) for i in range(P)], dtype=bool)
+
+    return {"points": points_arr, "pointUsed": pointUsed_arr}
+```
+
+```python
+import numpy as np
+import pyomo.environ as pyo
+
+
+def get_pyomo_model(p, c):
+    """
+    Parameters in `p`
+    -----------------
+    p['distances']   : np.ndarray, shape (num_cities, num_cities),  non-negative floats
+    p['num_cities']  : int  > 2
+    p['num_agents']  : int  > 0
+    (the dict `c` is not used)
+
+    Decision variables
+    ------------------
+    route[t,a,c]     : Binary                – agent *a* sits in city *c* at position *t*
+    edge[t,a,i,j]    : Continuous  [0,1]     – 1 ↔ agent *a* travels i→j between t and t+1
+    path_len[a]      : Non-negative real     – total distance of agent *a*
+    cost             : Non-negative real     – makespan (max path length, objective)
+    """
+
+    dist        = np.asarray(p["distances"], dtype=float)
+    num_cities  = int(p["num_cities"])
+    num_agents  = int(p["num_agents"])
+
+    m = pyo.ConcreteModel()
+
+    # index sets
+    m.T      = pyo.RangeSet(0, num_cities - 1)       # route positions
+    m.Te     = pyo.RangeSet(0, num_cities - 2)       # transition positions  (t , t+1)
+    m.A      = pyo.RangeSet(0, num_agents - 1)       # agents
+    m.C      = pyo.RangeSet(0, num_cities - 1)       # cities
+
+    # variables
+    m.route     = pyo.Var(m.T,  m.A, m.C, within=pyo.Binary)
+    m.edge      = pyo.Var(m.Te, m.A, m.C, m.C, bounds=(0.0, 1.0))
+    m.path_len  = pyo.Var(m.A, within=pyo.NonNegativeReals)
+    m.cost      = pyo.Var(within=pyo.NonNegativeReals)
+
+    # constraints
+    # (1) exactly one city per (t, a)
+    def _one_city(m, t, a):
+        return sum(m.route[t, a, c] for c in m.C) == 1
+    m.one_city = pyo.Constraint(m.T, m.A, rule=_one_city)
+
+    # (2) start & end at city 0
+    m.start = pyo.Constraint(m.A, rule=lambda m, a: m.route[0,            a, 0] == 1)
+    m.end   = pyo.Constraint(m.A, rule=lambda m, a: m.route[num_cities-1, a, 0] == 1)
+
+    # (3) each city visited by at least one agent/position
+    def _visit(m, c):
+        return sum(m.route[t, a, c] for t in m.T for a in m.A) >= 1
+    m.visit = pyo.Constraint(m.C, rule=_visit)
+
+    # (4) linearise edge = route[t,a,i] ⋂ route[t+1,a,j]
+    m.edge_link = pyo.ConstraintList()
+    for t in range(num_cities - 1):
+        for a in range(num_agents):
+            for i in range(num_cities):
+                for j in range(num_cities):
+                    e = m.edge[t, a, i, j]
+                    m.edge_link.add(e <= m.route[t,     a, i])
+                    m.edge_link.add(e <= m.route[t + 1, a, j])
+                    m.edge_link.add(e >= m.route[t, a, i] + m.route[t + 1, a, j] - 1)
+
+    # (5) define path lengths
+    def _len_rule(m, a):
+        return m.path_len[a] == sum(
+            float(dist[i, j]) * m.edge[t, a, i, j]
+            for t in range(num_cities - 1)
+            for i in range(num_cities)
+            for j in range(num_cities)
+        )
+    m.len_def = pyo.Constraint(m.A, rule=_len_rule)
+
+    # (6) makespan
+    m.makespan = pyo.Constraint(m.A, rule=lambda m, a: m.cost >= m.path_len[a])
+
+    # objective
+    m.obj = pyo.Objective(expr=m.cost, sense=pyo.minimize)
+
+    return m
+
+
+def get_python_x(p, c, x):
+    """
+    Convert Pyomo solution `x` back to a (num_cities, num_agents) integer array
+    identical to the original `routes` format.
+    """
+    n  = int(p["num_cities"])
+    A  = int(p["num_agents"])
+    routes_arr = np.zeros((n, A), dtype=int)
+    for t in range(n):
+        for a in range(A):
+            # pick the unique city with value ≈1
+            for c_city, val in enumerate(x["route"][t, a]):
+                if val > 0.5:
+                    routes_arr[t, a] = c_city
+                    break
+    return {"routes": routes_arr}
+
+```
+
+```python
+import pyomo.environ as pyo
+import numpy as np
+
+def get_pyomo_model(p, c):
+    """
+    Data (types / shapes)
+    ---------------------
+      p['n']         : int
+      p['target_z']  : int
+      p['V']         : np.ndarray, shape (k, n)
+      p['A']         : np.ndarray, shape (k,)
+      c              : unused
+
+    Decision variables
+    ------------------
+      Z[i]           : Binary,          i = 0..n-1
+      z_val          : Integer scalar
+      diff           : Integer scalar   (-5 … +5, ≠0)
+      s_pos          : Binary scalar    (sign selector for diff)
+      v[i]           : Real,            i = 0..k-1
+      y[i]           : Binary,          one-hot selector, i = 0..k-1
+      out_val        : Real scalar      (= Σ A[i]·y[i])
+    """
+    # ------------------------------------------------------------------
+    # unpack data
+    # ------------------------------------------------------------------
+    n         = int(p["n"])
+    target_z  = int(p["target_z"])
+    Vmat      = np.asarray(p["V"])
+    Avec      = np.asarray(p["A"])
+    k         = int(len(Avec))
+
+    # big-M for v-based constraints
+    row_abs_sums = np.sum(np.abs(Vmat), axis=1)
+    BIG_V        = float(np.max(row_abs_sums)) + 1.0
+
+    # upper bound for z_val (safe, avoids huge numbers)
+    z_upper = (1 << n) - 1 if n < 61 else 2**60 - 1
+
+    # ------------------------------------------------------------------
+    # model
+    # ------------------------------------------------------------------
+    m = pyo.ConcreteModel()
+
+    # ── index sets
+    m.I = pyo.RangeSet(0, n - 1)
+    m.K = pyo.RangeSet(0, k - 1)
+
+    # ── variables
+    m.Z      = pyo.Var(m.I, within=pyo.Binary)
+    m.z_val  = pyo.Var(within=pyo.Integers, bounds=(0, z_upper))
+    m.diff   = pyo.Var(within=pyo.Integers, bounds=(-5, 5))
+    m.s_pos  = pyo.Var(within=pyo.Binary)                       # 1 ⇒ diff ≥ 1, 0 ⇒ diff ≤ –1
+
+    m.v      = pyo.Var(m.K)
+    m.y      = pyo.Var(m.K, within=pyo.Binary)
+    m.out_val = pyo.Var()
+
+    # ── z encoding
+    m.z_def = pyo.Constraint(expr=m.z_val == sum((2**i) * m.Z[i] for i in m.I))
+
+    # ── diff = z_val – target_z
+    m.diff_eq = pyo.Constraint(expr=m.diff == m.z_val - target_z)
+
+    # ── enforce  diff ∈ {-5,…,-1,1,…,5}
+    m.diff_pos = pyo.Constraint(expr=m.diff >= 1   - 6 * (1 - m.s_pos))
+    m.diff_neg = pyo.Constraint(expr=m.diff <= -1  + 6 * m.s_pos)
+
+    # ── linear relations for v = V * Z
+    def _v_rule(mod, j):
+        return mod.v[j] == sum(Vmat[j, i] * mod.Z[i] for i in mod.I)
+    m.v_def = pyo.Constraint(m.K, rule=_v_rule)
+
+    # ── one-hot selector
+    m.one_hot = pyo.Constraint(expr=sum(m.y[j] for j in m.K) == 1)
+
+    # ── minimal v with earliest-index tie-break
+    # a) chosen v is not larger than any other
+    m.min_up = pyo.Constraint(
+        m.K, m.K,
+        rule=lambda mod, i, j: mod.v[i] - mod.v[j] <= FeasibilityTol + BIG_V * (1 - mod.y[i])
+    )
+    # b) chosen index must be strictly smaller than any earlier equal-valued v
+    m.tie_break = pyo.ConstraintList()
+    for i in range(k):
+        for j in range(i):
+            m.tie_break.add(
+                m.v[j] - m.v[i] >= FeasibilityTol - BIG_V * (1 - m.y[i])
+            )
+
+    # output value
+    m.out_eq = pyo.Constraint(expr=m.out_val == sum(Avec[j] * m.y[j] for j in m.K))
+
+    # objective
+    m.obj = pyo.Objective(expr=m.out_val, sense=pyo.minimize)
+
+    return m
+
+
+def get_python_x(p, c, x):
+    n   = p["n"]
+    Z   = np.array([int(round(x["Z"][i])) for i in range(n)], dtype=int)
+
+    z = sum((2**i) * Z[i] for i in range(n))
+    V = np.asarray(p["V"])
+    A = np.asarray(p["A"])
+
+    v_vals = V @ Z
+    idx    = int(np.argmin(v_vals))
+    output = float(A[idx])
+
+    return {"Z": Z, "z": z, "idx": idx, "output": output}
+
+```
+
+```python
+import pyomo.environ as pyo
+
+
+def demo5(p, c):
+
+    # ------------- data ----------------
+    j  = p["j"]                 # not used in the model, kept for API
+    w  = int(p["w"])            # number of workers
+    u  = int(p["u"])            # number of jobs
+    Wm = p["W"]                 # 2-D list, shape (w , j)  (proc times)
+    Uv = p["U"]                 # 1-D list, len u,   job class indexes
+
+    # ------------- sets ----------------
+    JOB   = range(u)            # 0 .. u-1
+    WORK  = range(w)            # 0 .. w-1
+    STEP  = range(u + 1)        # for last_completion_time (incl. 0)
+
+    # ------------- model ---------------
+    m = pyo.ConcreteModel("demo5")
+
+    # ---------- assignment variables ----------
+    m.assignment = pyo.Var(JOB, within=pyo.Integers, bounds=(0, w - 1))
+
+    # delta_worker[i,w_i] : 1 if job i runs on worker w_i
+    m.delta_worker = pyo.Var(JOB, WORK, within=pyo.Binary)
+
+    # each job assigned to exactly one worker
+    def _one_worker(mod, i):
+        return sum(mod.delta_worker[i, wi] for wi in WORK) == 1
+    m.one_worker = pyo.Constraint(JOB, rule=_one_worker)
+
+    # link integer assignment[i] = sum wi * delta_worker[i,wi]
+    def _assign_def(mod, i):
+        return mod.assignment[i] == sum(wi * mod.delta_worker[i, wi] for wi in WORK)
+    m.assign_def = pyo.Constraint(JOB, rule=_assign_def)
+
+    # ---------- processing times ----------
+    m.processing_time = pyo.Var(JOB)
+
+    def _proc_def(mod, i):
+        return mod.processing_time[i] == sum(
+            mod.delta_worker[i, wi] * Wm[wi][int(Uv[i])]
+            for wi in WORK
+        )
+    m.proc_def = pyo.Constraint(JOB, rule=_proc_def)
+
+    # ---------- last completion times ----------
+    m.last_completion_time = pyo.Var(WORK, STEP)
+
+    # initial value zero
+    m.lct_init = pyo.Constraint(WORK,
+        rule=lambda mod, wi: mod.last_completion_time[wi, 0] == 0)
+
+    # recursive update
+    def _lct_rule(mod, wi, i):
+        if i == u:                       # no step u -> u+1 exists
+            return pyo.Constraint.Skip
+        return mod.last_completion_time[wi, i + 1] == \
+               mod.last_completion_time[wi, i] + \
+               mod.processing_time[i] * mod.delta_worker[i, wi]
+    m.lct_update = pyo.Constraint(WORK, STEP, rule=_lct_rule)
+
+    # ---------- waiting times ----------
+    m.waiting_time = pyo.Var(JOB)
+
+    def _wt_def(mod, i):
+        return mod.waiting_time[i] == sum(
+            mod.delta_worker[i, wi] * mod.last_completion_time[wi, i]
+            for wi in WORK
+        )
+    m.wt_def = pyo.Constraint(JOB, rule=_wt_def)
+
+    # ---------- objective ----------
+    m.obj = pyo.Objective(
+        expr=sum(m.waiting_time[i] * m.waiting_time[i] for i in JOB),
+        sense=pyo.minimize
+    )
+
+    return m
+
+```
+
+```python
+import numpy as np
+import pyomo.environ as pyo
+
+
+def get_pyomo_model(p, c):
+    """
+    Types & shapes
+    --------------
+    p['n'] : int
+    p['M'] : ndarray  (m_rows, n)      – integer coefficients
+    p['f'] : ndarray  (m_rows,)        – integer weights
+
+    Decision variables
+    ------------------
+    result[j]      : Integers,   (0‥9 999)               j = 0 … n-1
+    B[i,j]         : Binary                              (i,j) index
+    a1, b1         : Integers,   (1‥10)
+
+    Selector / linearisation
+    ------------------------
+    z[k]           : Binary       – picks exactly one   (a,b)∈{1…10}²
+    U[i,j]         : Integers ≥0  – B[i,j]·result[j]
+    S              : Integers     – Σ_i Σ_j f_i · U[i,j]
+    T[k]           : Integers     – S·z[k]
+    cost_ab[k]     : Integers     – scale_k · T[k]
+    cost           : Integers     – Σ_k cost_ab[k]      (objective)
+    """
+    # data
+    n = int(p["n"])
+    Mmat = p["M"]                          # shape (m_rows, n)
+    f_vec = p["f"]
+    m_rows = int(Mmat.shape[0])
+
+    I = range(m_rows)                      # rows
+    J = range(n)                           # columns
+    AB_pairs = [(a, b) for a in range(1, 11) for b in range(1, 11)]
+    K = range(len(AB_pairs))               # 100 selector indices
+
+    # scale_k =  a·b  if a ≤ b  else  2·a·b
+    scale = [ab[0] * ab[1] if ab[0] <= ab[1] else 2 * ab[0] * ab[1]
+             for ab in AB_pairs]
+
+    BIG_U   = 9_999                       # ≥ max(result)
+    BIG_S   = m_rows * int(np.max(f_vec)) * n * BIG_U + 1
+
+    # model
+    m = pyo.ConcreteModel(name="demo6_exact_int")
+
+    # ----- primary vars -----
+    m.result = pyo.Var(J, domain=pyo.Integers, bounds=(0, BIG_U))
+    m.B      = pyo.Var(I, J, domain=pyo.Binary)
+    m.a1     = pyo.Var(domain=pyo.Integers, bounds=(1, 10))
+    m.b1     = pyo.Var(domain=pyo.Integers, bounds=(1, 10))
+
+    # ----- selector for (a,b) -----
+    m.z = pyo.Var(K, domain=pyo.Binary)
+    m.one_pair = pyo.Constraint(expr=sum(m.z[k] for k in K) == 1)
+    m.a1_def   = pyo.Constraint(expr=m.a1 == sum(AB_pairs[k][0] * m.z[k] for k in K))
+    m.b1_def   = pyo.Constraint(expr=m.b1 == sum(AB_pairs[k][1] * m.z[k] for k in K))
+
+    # ----- linearise B·result -----
+    m.U = pyo.Var(I, J, domain=pyo.Integers, bounds=(0, BIG_U))
+
+    m.U_c1 = pyo.Constraint(I, J, rule=lambda mod, i, j: mod.U[i, j] <= BIG_U * mod.B[i, j])
+    m.U_c2 = pyo.Constraint(I, J, rule=lambda mod, i, j: mod.U[i, j] - mod.result[j] <= BIG_U * (1 - mod.B[i, j]))
+    m.U_c3 = pyo.Constraint(I, J, rule=lambda mod, i, j: mod.result[j] - mod.U[i, j] <= BIG_U * (1 - mod.B[i, j]))
+
+    # ----- strict inequality  M·result < f  -----
+    m.y_lim = pyo.Constraint(I, rule=lambda mod, i: sum(int(Mmat[i, j]) * mod.result[j] for j in J) <= int(f_vec[i]) - 1)
+
+    # ----- S = Σ_i Σ_j f_i · U[i,j]  -----
+    m.S = pyo.Var(domain=pyo.Integers, bounds=(0, BIG_S))
+    m.S_def = pyo.Constraint(expr=m.S == sum(int(f_vec[i]) * m.U[i, j] for i in I for j in J))
+
+    # ----- linearise   T[k] = S·z[k] -----
+    m.T = pyo.Var(K, domain=pyo.Integers, bounds=(0, BIG_S))
+    m.T_c1 = pyo.Constraint(K, rule=lambda mod, k: mod.T[k] <= BIG_S * mod.z[k])
+    m.T_c2 = pyo.Constraint(K, rule=lambda mod, k: mod.T[k] - mod.S <= BIG_S * (1 - mod.z[k]))
+    m.T_c3 = pyo.Constraint(K, rule=lambda mod, k: mod.S - mod.T[k] <= BIG_S * (1 - mod.z[k]))
+
+    # ----- cost_ab[k] = scale_k · T[k]  (scale_k is constant) -----
+    m.cost_ab = pyo.Var(K, domain=pyo.Integers)
+    m.cost_ab_def = pyo.Constraint(K, rule=lambda mod, k: mod.cost_ab[k] == scale[k] * mod.T[k])
+
+    # ----- total cost & objective -----
+    m.cost = pyo.Var(domain=pyo.Integers)
+    m.cost_def = pyo.Constraint(expr=m.cost == sum(m.cost_ab[k] for k in K))
+    m.obj = pyo.Objective(expr=m.cost, sense=pyo.maximize)
+
+    return m
+
+
+def get_python_x(p, c, x):
+    """Convert solver result `x` back to the original Python format."""
+    n = int(p["n"])
+    m_rows = int(p["M"].shape[0])
+
+    result_arr = np.array([x["result"][j] for j in range(n)], dtype=float)
+    B_mat = np.zeros((m_rows, n), dtype=int)
+    for i in range(m_rows):
+        for j in range(n):
+            B_mat[i, j] = int(round(x["B"][i, j]))
+
+    a1_val = int(round(x["a1"]))
+    b1_val = int(round(x["b1"]))
+
+    return {"result": result_arr, "B": B_mat, "a1": a1_val, "b1": b1_val}
+
+```
+
+```python
+import pyomo.environ as pyo
+
+
+def demo7(p, c):
+
+    # ------------- data -------------
+    G   = p["graph"]            # 0/1 adjacency matrix (n x n)
+    n   = int(p["n"])           # number of nodes
+    z   = int(p["z"])           # max allowed equal-colour neighbours
+    BIG = 200                   # big-M (> max colour diff of 99)
+
+    N   = range(n)              # node index set
+
+    # ------------- model ------------
+    m = pyo.ConcreteModel("demo7")
+
+    # Integer colour of each node (0 … 99)
+    m.colors = pyo.Var(N, within=pyo.Integers, bounds=(0, 99))
+
+    # ---------- helper binaries per directed edge ----------
+    edges = [(i, j) for i in N for j in N if G[i][j] == 1]
+
+    m.is_leq = pyo.Var(edges, within=pyo.Binary)
+    m.is_geq = pyo.Var(edges, within=pyo.Binary)
+    m.violation = pyo.Var(edges, within=pyo.Binary)
+
+    # --- encode is_leq : colours[i] <= colours[j] + 0.5  iff is_leq == 1 ---
+    def _leq_hi(mod, i, j):
+        return mod.colors[i] - mod.colors[j] <= 0.5 + BIG * (1 - mod.is_leq[i, j])
+    def _leq_lo(mod, i, j):
+        return mod.colors[i] - mod.colors[j] >= 0.5 - BIG * mod.is_leq[i, j]
+    m.leq_hi = pyo.Constraint(edges, rule=_leq_hi)
+    m.leq_lo = pyo.Constraint(edges, rule=_leq_lo)
+
+    # --- encode is_geq : colours[i] >= colours[j] - 0.5  iff is_geq == 1 ---
+    def _geq_lo(mod, i, j):
+        return mod.colors[i] - mod.colors[j] >= -0.5 - BIG * (1 - mod.is_geq[i, j])
+    def _geq_hi(mod, i, j):
+        return mod.colors[i] - mod.colors[j] <= -0.5 + BIG * mod.is_geq[i, j]
+    m.geq_lo = pyo.Constraint(edges, rule=_geq_lo)
+    m.geq_hi = pyo.Constraint(edges, rule=_geq_hi)
+
+    # --- violation_ij = AND(is_leq, is_geq) ---
+    def _viol_up1(mod, i, j):
+        return mod.violation[i, j] <= mod.is_leq[i, j]
+    def _viol_up2(mod, i, j):
+        return mod.violation[i, j] <= mod.is_geq[i, j]
+    def _viol_lo(mod, i, j):
+        return mod.violation[i, j] >= mod.is_leq[i, j] + mod.is_geq[i, j] - 1
+    m.v_up1 = pyo.Constraint(edges, rule=_viol_up1)
+    m.v_up2 = pyo.Constraint(edges, rule=_viol_up2)
+    m.v_lo  = pyo.Constraint(edges, rule=_viol_lo)
+
+    # ---------- per-node violation count ----------
+    m.numViolations = pyo.Var(N, within=pyo.Integers, bounds=(0, 9999))
+
+    def _cnt_def(mod, i):
+        return mod.numViolations[i] == sum(mod.violation[i, j] for j in N if G[i][j] == 1)
+    m.cnt_def = pyo.Constraint(N, rule=_cnt_def)
+
+    # limit numViolations_i ≤ z
+    m.cnt_lim = pyo.Constraint(N, rule=lambda mod, i: mod.numViolations[i] <= z)
+
+    # ---------- number of colours used ----------
+    m.num_colors = pyo.Var(within=pyo.Integers, bounds=(0, 99))
+
+    # num_colors ≥ colours[i]   for all i
+    m.max_link = pyo.Constraint(N, rule=lambda mod, i: mod.num_colors >= mod.colors[i])
+
+    # ---------- objective ----------
+    m.obj = pyo.Objective(expr=m.num_colors, sense=pyo.minimize)
+
+    return m
+
+```
+
+```python
+import pyomo.environ as pyo
+
+def demo8(p, c=None):
+
+    n = p["n"]
+    target_state = p["target_state"]
+
+    m = pyo.ConcreteModel(name="demo8")
+
+    # Sets
+    m.I = pyo.RangeSet(0, n - 1)        # rows
+    m.J = pyo.RangeSet(0, n - 1)        # cols
+    m.T = pyo.RangeSet(0, 2)            # 0 = initial, 1–2 simulated
+    m.Tpos = pyo.RangeSet(1, 2)         # positive times only
+    m.K = pyo.RangeSet(0, 8)            # possible neighbour counts
+
+    # Variables
+    m.initial_state = pyo.Var(m.I, m.J, within=pyo.Binary)
+
+    m.state = pyo.Var(m.T, m.I, m.J, within=pyo.Binary)
+
+    m.live_neighbors = pyo.Var(m.Tpos, m.I, m.J, within=pyo.Integers, bounds=(0, 8))
+
+    # selector binaries: 1 <-> live_neighbors == k
+    m.sel = pyo.Var(m.Tpos, m.I, m.J, m.K, within=pyo.Binary)
+
+    # convenience aliases (slices of sel)
+    def sel2(m, t, i, j):
+        return m.sel[t, i, j, 2]        # ln == 2
+    def sel3(m, t, i, j):
+        return m.sel[t, i, j, 3]        # ln == 3
+
+    m.is_in23 = pyo.Var(m.Tpos, m.I, m.J, within=pyo.Binary)
+
+    m.case1 = pyo.Var(m.Tpos, m.I, m.J, within=pyo.Binary)  # live & 2/3
+    m.case3 = pyo.Var(m.Tpos, m.I, m.J, within=pyo.Binary)  # dead & 3
+
+    m.diff_cell = pyo.Var(m.Tpos, m.I, m.J, within=pyo.Binary)
+    m.difference = pyo.Var(m.Tpos, within=pyo.NonNegativeIntegers, bounds=(0, n * n))
+    m.min_difference = pyo.Var(within=pyo.NonNegativeIntegers, bounds=(0, n * n))
+    m.y = pyo.Var(m.Tpos, within=pyo.Binary)  # selector for min()
+
+    BIGM_DIFF = n * n
+
+    # Constraints
+
+    # --- link initial_state <-> state[0]
+    def _initial_link(m, i, j):
+        return m.state[0, i, j] == m.initial_state[i, j]
+    m.initial_link = pyo.Constraint(m.I, m.J, rule=_initial_link)
+
+    # --- live neighbour sums
+    neighbor_offsets = [(-1, -1), (-1, 0), (-1, 1),
+                        ( 0, -1),          ( 0, 1),
+                        ( 1, -1), ( 1, 0), ( 1, 1)]
+
+    m.neigh_eq = pyo.ConstraintList()
+    for t in m.Tpos:
+        for i in range(n):
+            for j in range(n):
+                m.neigh_eq.add(
+                    m.live_neighbors[t, i, j]
+                    == sum(
+                        m.state[t - 1, ni, nj]
+                        for di, dj in neighbor_offsets
+                        if 0 <= (ni := i + di) < n
+                        and 0 <= (nj := j + dj) < n
+                    )
+                )
+
+    # --- selector linkage: exactly one k true & value match
+    m.sel_sum = pyo.Constraint(
+        m.Tpos, m.I, m.J,
+        rule=lambda m, t, i, j:
+            sum(m.sel[t, i, j, k] for k in m.K) == 1
+    )
+
+    m.sel_value = pyo.ConstraintList()
+    for t in m.Tpos:
+        for i in range(n):
+            for j in range(n):
+                m.sel_value.add(
+                    m.live_neighbors[t, i, j]
+                    == sum(k * m.sel[t, i, j, k] for k in m.K)
+                )
+
+    # --- is_in23 = sel2 OR sel3
+    m.in23_con = pyo.ConstraintList()
+    for t in m.Tpos:
+        for i in range(n):
+            for j in range(n):
+                m.in23_con.add(m.is_in23[t, i, j] >= sel2(m, t, i, j))
+                m.in23_con.add(m.is_in23[t, i, j] >= sel3(m, t, i, j))
+                m.in23_con.add(
+                    m.is_in23[t, i, j]
+                    <= sel2(m, t, i, j) + sel3(m, t, i, j)
+                )
+
+    # --- Game-of-Life update
+    m.gol = pyo.ConstraintList()
+    for t in m.Tpos:
+        for i in range(n):
+            for j in range(n):
+                prev = m.state[t - 1, i, j]
+                nxt  = m.state[t,     i, j]
+
+                # case1 = prev AND in23
+                m.gol.add(m.case1[t, i, j] <= prev)
+                m.gol.add(m.case1[t, i, j] <= m.is_in23[t, i, j])
+                m.gol.add(m.case1[t, i, j] >= prev + m.is_in23[t, i, j] - 1)
+
+                # case3 = (~prev) AND sel3
+                m.gol.add(m.case3[t, i, j] <= (1 - prev))
+                m.gol.add(m.case3[t, i, j] <= sel3(m, t, i, j))
+                m.gol.add(m.case3[t, i, j] >= (1 - prev) + sel3(m, t, i, j) - 1)
+
+                # nxt = case1 OR case3
+                m.gol.add(nxt >= m.case1[t, i, j])
+                m.gol.add(nxt >= m.case3[t, i, j])
+                m.gol.add(nxt <= m.case1[t, i, j] + m.case3[t, i, j])
+
+    # --- Hamming distances to target
+    m.diff_eq = pyo.ConstraintList()
+    for t in m.Tpos:
+        for i in range(n):
+            for j in range(n):
+                if target_state[i][j] == 0:
+                    m.diff_eq.add(m.diff_cell[t, i, j] == m.state[t, i, j])
+                else: # target = 1
+                    m.diff_eq.add(m.diff_cell[t, i, j] + m.state[t, i, j] == 1)
+
+        m.diff_eq.add(m.difference[t] == sum(m.diff_cell[t, i, j] for i in range(n) for j in range(n)))
+
+    # --- min(difference[1], difference[2])
+    m.sel_one = pyo.Constraint(expr=sum(m.y[t] for t in m.Tpos) == 1)
+
+    m.min_up = pyo.Constraint(m.Tpos, rule=lambda m, t: m.min_difference <= m.difference[t])
+
+    m.min_lo = pyo.Constraint(m.Tpos, rule=lambda m, t: m.min_difference >= m.difference[t] - BIGM_DIFF * (1 - m.y[t]))
+
+    # Objective
+    m.obj = pyo.Objective(expr=m.min_difference, sense=pyo.minimize)
+    return m
+
+```
+
+```python
+import pyomo.environ as pyo
+
+def demo9(p, c):
+
+    # -----------------------------------------------------------------
+    # data & helpers
+    # -----------------------------------------------------------------
+    numParts = list(p["numParts"])          # allowed inventory per part type
+    totParts = int(sum(numParts))           # upper bound on trackLength
+    XY_MAX = 10                           # coordinate range [0,10]
+    nTypes = 3                            # 0:straight, 1:left, 2:right
+    nDirs = 4                            # 0:right, 1:down, 2:left, 3:up
+
+    BIGM_LEN = totParts
+    BIGM_XY = 2 * XY_MAX
+    BIGM_DIR = nDirs
+    BIGM_TYPE = nTypes
+
+    dx, dy, nd = {}, {}, {}
+    # straight
+    dx[0,0], dy[0,0], nd[0,0] = ( 0, +1, 0)
+    dx[0,1], dy[0,1], nd[0,1] = (-1,  0, 1)
+    dx[0,2], dy[0,2], nd[0,2] = ( 0, -1, 2)
+    dx[0,3], dy[0,3], nd[0,3] = (+1,  0, 3)
+    # left curve
+    dx[1,0], dy[1,0], nd[1,0] = (-1,  0, 3)
+    dx[1,1], dy[1,1], nd[1,1] = ( 0, +1, 0)
+    dx[1,2], dy[1,2], nd[1,2] = (+1,  0, 1)
+    dx[1,3], dy[1,3], nd[1,3] = ( 0, -1, 2)
+    # right curve
+    dx[2,0], dy[2,0], nd[2,0] = (+1,  0, 1)
+    dx[2,1], dy[2,1], nd[2,1] = ( 0, -1, 2)
+    dx[2,2], dy[2,2], nd[2,2] = (-1,  0, 3)
+    dx[2,3], dy[2,3], nd[2,3] = ( 0, +1, 0)
+
+    # -----------------------------------------------------------------
+    # model & sets
+    # -----------------------------------------------------------------
+    m = pyo.ConcreteModel("demo9")
+
+    m.Isteps = pyo.RangeSet(0, totParts)            # incl. closing step
+    m.Iactive = pyo.RangeSet(0, totParts - 1)
+    m.Types = pyo.RangeSet(0, nTypes - 1)
+    m.Dirs = pyo.RangeSet(0, nDirs  - 1)
+    m.Pairs = pyo.Set(dimen=2, initialize=[(i, j) for i in range(totParts) for j in range(i + 1, totParts)])
+
+    # -----------------------------------------------------------------
+    # decision variables
+    # -----------------------------------------------------------------
+    m.trackLength = pyo.Var(within=pyo.Integers, bounds=(0, totParts))
+    # position: index 0=row, 1=col
+    m.trackPosition = pyo.Var(m.Isteps, [0, 1], within=pyo.Integers, bounds=(0, XY_MAX))
+    m.trackPart = pyo.Var(m.Isteps, within=pyo.Integers, bounds=(0, nTypes - 1))
+    m.currentDirection = pyo.Var(m.Isteps, within=pyo.Integers, bounds=(0, nDirs  - 1))
+
+    # -----------------------------------------------------------------
+    # helper binaries
+    # -----------------------------------------------------------------
+    m.isUsed = pyo.Var(m.Iactive, within=pyo.Binary)      # 1 <=> i < trackLength
+    m.isLenEq = pyo.Var(m.Isteps,  within=pyo.Binary)      # 1 <=> i == trackLength
+
+    m.selType = pyo.Var(m.Isteps, m.Types, within=pyo.Binary)
+    m.selDir = pyo.Var(m.Isteps, m.Dirs,  within=pyo.Binary)
+    m.w = pyo.Var(m.Iactive, m.Types, m.Dirs, within=pyo.Binary)
+    m.z = pyo.Var(m.Iactive, m.Types, within=pyo.Binary)        # for counting
+    m.numUsed = pyo.Var(m.Types, within=pyo.NonNegativeIntegers, bounds=(0, totParts))
+    m.bothUsed = pyo.Var(m.Pairs, within=pyo.Binary)
+
+    # split each coordinate difference into *positive* minus *negative*
+    m.posRow = pyo.Var(m.Pairs, within=pyo.NonNegativeIntegers, bounds=(0, XY_MAX))
+    m.negRow = pyo.Var(m.Pairs, within=pyo.NonNegativeIntegers, bounds=(0, XY_MAX))
+    m.posCol = pyo.Var(m.Pairs, within=pyo.NonNegativeIntegers, bounds=(0, XY_MAX))
+    m.negCol = pyo.Var(m.Pairs, within=pyo.NonNegativeIntegers, bounds=(0, XY_MAX))
+
+    m.rowSign = pyo.Var(m.Pairs, within=pyo.Binary)
+    m.colSign = pyo.Var(m.Pairs, within=pyo.Binary)
+
+    # 1-of-k codings for type and direction
+    m.typeHot = pyo.Constraint(m.Isteps, rule=lambda m, i: sum(m.selType[i, t] for t in m.Types) == 1)
+    m.dirHot = pyo.Constraint(m.Isteps, rule=lambda m, i: sum(m.selDir[i, d]  for d in m.Dirs)  == 1)
+
+    m.typeTie = pyo.ConstraintList()
+    for i in m.Isteps:
+        for t in m.Types:
+            m.typeTie.add(m.trackPart[i] - t <= BIGM_TYPE * (1 - m.selType[i, t]))
+            m.typeTie.add(t - m.trackPart[i] <= BIGM_TYPE * (1 - m.selType[i, t]))
+    m.dirTie = pyo.ConstraintList()
+    for i in m.Isteps:
+        for d in m.Dirs:
+            m.dirTie.add(m.currentDirection[i] - d <= BIGM_DIR * (1 - m.selDir[i, d]))
+            m.dirTie.add(d - m.currentDirection[i] <= BIGM_DIR * (1 - m.selDir[i, d]))
+
+    m.lenCount = pyo.Constraint(expr=m.trackLength == sum(m.isUsed[i] for i in m.Iactive))
+    m.lenMono = pyo.Constraint(m.Iactive, rule=lambda m, i: m.isUsed[i] >= m.isUsed[i + 1] if i < totParts - 1 else pyo.Constraint.Skip)
+
+    # count pieces per type
+    m.z_and = pyo.ConstraintList()
+    for i in m.Iactive:
+        for t in m.Types:
+            m.z_and.add(m.z[i, t] <= m.isUsed[i])
+            m.z_and.add(m.z[i, t] <= m.selType[i, t])
+            m.z_and.add(m.z[i, t] >= m.isUsed[i] + m.selType[i, t] - 1)
+
+    m.countPieces = pyo.Constraint(m.Types, rule=lambda m, t: m.numUsed[t] == sum(m.z[i, t] for i in m.Iactive))
+    m.limitStock  = pyo.Constraint(m.Types, rule=lambda m, t: m.numUsed[t] <= numParts[t])
+
+    # triple-AND  w[i,t,d]  (activates movement)
+    m.w_and = pyo.ConstraintList()
+    for i in m.Iactive:
+        for t in m.Types:
+            for d in m.Dirs:
+                m.w_and.add(m.w[i, t, d] <= m.isUsed[i])
+                m.w_and.add(m.w[i, t, d] <= m.selType[i, t])
+                m.w_and.add(m.w[i, t, d] <= m.selDir[i, d])
+                m.w_and.add(m.w[i, t, d] >= m.isUsed[i] + m.selType[i, t] + m.selDir[i, d] - 2)
+
+    # movement constraints
+    m.move = pyo.ConstraintList()
+    for i in m.Iactive:
+        for t in m.Types:
+            for d in m.Dirs:
+                w = m.w[i, t, d]
+                m.move.add(m.trackPosition[i + 1, 0] - m.trackPosition[i, 0] - dx[t, d] <= BIGM_XY * (1 - w))
+                m.move.add(m.trackPosition[i + 1, 0] - m.trackPosition[i, 0] - dx[t, d] >= -BIGM_XY * (1 - w))
+                m.move.add(m.trackPosition[i + 1, 1] - m.trackPosition[i, 1] - dy[t, d] <= BIGM_XY * (1 - w))
+                m.move.add(m.trackPosition[i + 1, 1] - m.trackPosition[i, 1] - dy[t, d] >= -BIGM_XY * (1 - w))
+                # next direction
+                ndir = nd[t, d]
+                m.move.add(m.currentDirection[i + 1] - ndir <= BIGM_DIR * (1 - w))
+                m.move.add(ndir - m.currentDirection[i + 1] <= BIGM_DIR * (1 - w))
+
+    # close the loop at step == trackLength
+    m.lenEqOne = pyo.Constraint(expr=sum(m.isLenEq[i] for i in m.Isteps) == 1)
+    m.lenEqBal = pyo.ConstraintList()
+    for i in m.Isteps:
+        m.lenEqBal.add(m.trackLength - i <= BIGM_LEN * (1 - m.isLenEq[i]))
+        m.lenEqBal.add(i - m.trackLength <= BIGM_LEN * (1 - m.isLenEq[i]))
+
+        for c in (0, 1):
+            m.lenEqBal.add(m.trackPosition[i, c] - m.trackPosition[0, c] <= BIGM_XY * (1 - m.isLenEq[i]))
+            m.lenEqBal.add(m.trackPosition[0, c] - m.trackPosition[i, c] <= BIGM_XY * (1 - m.isLenEq[i]))
+
+        m.lenEqBal.add(m.currentDirection[i] - m.currentDirection[0] <= BIGM_DIR * (1 - m.isLenEq[i]))
+        m.lenEqBal.add(m.currentDirection[0] - m.currentDirection[i] <= BIGM_DIR * (1 - m.isLenEq[i]))
+
+        m.lenEqBal.add(m.trackPart[i] - m.trackPart[0] <= BIGM_TYPE * (1 - m.isLenEq[i]))
+        m.lenEqBal.add(m.trackPart[0] - m.trackPart[i] <= BIGM_TYPE * (1 - m.isLenEq[i]))
+
+    m.overlap = pyo.ConstraintList()
+    for i, j in m.Pairs:
+        # bothUsed = isUsed[i] ⋂ isUsed[j]
+        m.overlap.add(m.bothUsed[i, j] <= m.isUsed[i])
+        m.overlap.add(m.bothUsed[i, j] <= m.isUsed[j])
+        m.overlap.add(m.bothUsed[i, j] >= m.isUsed[i] + m.isUsed[j] - 1)
+
+        # diff coordinates
+        m.overlap.add(m.posRow[i, j] - m.negRow[i, j] == m.trackPosition[i, 0] - m.trackPosition[j, 0])
+        m.overlap.add(m.posCol[i, j] - m.negCol[i, j] == m.trackPosition[i, 1] - m.trackPosition[j, 1])
+
+        # at most one of (pos,neg) positive – row
+        m.overlap.add(m.posRow[i, j] <= XY_MAX * m.rowSign[i, j])
+        m.overlap.add(m.negRow[i, j] <= XY_MAX * (1 - m.rowSign[i, j]))
+        # … and col
+        m.overlap.add(m.posCol[i, j] <= XY_MAX * m.colSign[i, j])
+        m.overlap.add(m.negCol[i, j] <= XY_MAX * (1 - m.colSign[i, j]))
+
+        # Manhattan distance ≥ 1  (only if bothUsed == 1)
+        m.overlap.add(m.posRow[i, j] + m.negRow[i, j] + m.posCol[i, j] + m.negCol[i, j] + BIGM_XY * (1 - m.bothUsed[i, j]) >= 1)
+
+    m.obj = pyo.Objective(expr=m.trackLength, sense=pyo.maximize)
+    return m
+
+```
+
+```python
+import pyomo.environ as pyo
+
+
+def demo10(p, c=None):
+    # -----------------------------------------------------------------
+    # data
+    # -----------------------------------------------------------------
+    n = int(p["n"])
+    graph = p["graph"]            # numpy array (n,n) with 0/1 entries
+
+    if n < 9:
+        raise ValueError("demo10 needs n >= 9 (indices 0..8 are referenced)")
+
+    LAB_MAX = n - 1               # label upper bound
+    BIGM    = 3 * n               # covers every difference we test
+
+    # -----------------------------------------------------------------
+    # model and sets
+    # -----------------------------------------------------------------
+    m = pyo.ConcreteModel("demo10")
+
+    m.V = pyo.RangeSet(0, n - 1)
+    m.NoEdge = pyo.Set(dimen=2, initialize=[(i, j) for i in range(n) for j in range(i + 1, n) if graph[i][j] == 0])
+
+    up15 = min(15, n)
+
+    # -----------------------------------------------------------------
+    # main variables
+    # -----------------------------------------------------------------
+    m.cliques = pyo.Var(m.V, within=pyo.Integers, bounds=(0, LAB_MAX))
+
+    m.max_cliques    = pyo.Var(within=pyo.Integers, bounds=(0, LAB_MAX))
+    m.argmax_cliques = pyo.Var(within=pyo.Integers, bounds=(0, n - 1))
+    m.objective      = pyo.Var(within=pyo.Integers, bounds=(0, 2 * n))
+
+    # helper binaries
+    m.argmax_sel = pyo.Var(m.V, within=pyo.Binary)      # one-hot
+    m.eq_two     = pyo.Var(m.V, within=pyo.Binary)      # 1 -> cl = 2
+    m.cond1      = pyo.Var(within=pyo.Binary)           # cl[2] >= 3*cl[3]
+    m.cond2      = pyo.Var(within=pyo.Binary)           # equality test
+    m.condition  = pyo.Var(within=pyo.Binary)           # AND(cond1,cond2)
+
+    m.floor8 = pyo.Var(within=pyo.Integers, bounds=(0, LAB_MAX))
+
+    # sign selectors for not-equal constraints
+    m.sign_noedge = pyo.Var(m.NoEdge, within=pyo.Binary)
+    m.sign15      = pyo.Var(range(up15), range(up15), within=pyo.Binary)
+
+    # -----------------------------------------------------------------
+    # 1) different labels on every missing edge
+    # -----------------------------------------------------------------
+    m.sep = pyo.ConstraintList()
+    for i, j in m.NoEdge:
+        b = m.sign_noedge[i, j]
+        m.sep.add(m.cliques[i] - m.cliques[j] >= 1 - BIGM * (1 - b))
+        m.sep.add(m.cliques[j] - m.cliques[i] >= 1 - BIGM * b)
+
+    # -----------------------------------------------------------------
+    # 2) max(cliques)
+    # -----------------------------------------------------------------
+    m.max_ge = pyo.Constraint(m.V,
+        rule=lambda m, i: m.max_cliques >= m.cliques[i])
+
+    # -----------------------------------------------------------------
+    # 3) argmax (first vertex that hits the max)
+    # -----------------------------------------------------------------
+    m.one_hot = pyo.Constraint(expr=sum(m.argmax_sel[j] for j in m.V) == 1)
+
+    m.argmax_ct = pyo.ConstraintList()
+    for j in range(n):
+        y = m.argmax_sel[j]
+        m.argmax_ct.add(m.max_cliques - m.cliques[j] <= BIGM * (1 - y))
+        m.argmax_ct.add(m.cliques[j] - m.max_cliques <= BIGM * (1 - y))
+        for k in range(j):
+            m.argmax_ct.add(m.cliques[j] - m.cliques[k] >= 1 - BIGM * (1 - y))
+        for k in range(j + 1, n):
+            m.argmax_ct.add(m.cliques[j] - m.cliques[k] >= 0 - BIGM * (1 - y))
+
+    m.argmax_link = pyo.Constraint(expr=m.argmax_cliques == sum(j * m.argmax_sel[j] for j in m.V))
+
+    # -----------------------------------------------------------------
+    # 4) at least one vertex with label 2, none with label 3
+    # -----------------------------------------------------------------
+    m.two_or = pyo.Constraint(expr=sum(m.eq_two[i] for i in m.V) >= 1)
+
+    m.no_three = pyo.ConstraintList()
+    for i in m.V:
+        #  If eq_two[i] == 1  ->  cliques[i] == 2
+        m.no_three.add(m.cliques[i] - 2 <= BIGM * (1 - m.eq_two[i]))
+        m.no_three.add(2 - m.cliques[i] <= BIGM * (1 - m.eq_two[i]))
+        #  Forbid label 3   (cliques[i] != 3)
+        b = pyo.Var(within=pyo.Binary)
+        m.add_component(f"no3_{i}", b)
+        m.no_three.add(m.cliques[i] - 3 >=  1 - BIGM * b)
+        m.no_three.add(m.cliques[i] - 3 <= -1 + BIGM * (1 - b))
+
+    # -----------------------------------------------------------------
+    # 5) forbidden joint condition
+    # -----------------------------------------------------------------
+    # cond1  (>= versus strict <)
+    m.add_component("cond1_hi", pyo.Constraint(expr=m.cliques[2] - 3 * m.cliques[3] >= 0 + BIGM * (m.cond1 - 1)))
+    m.add_component("cond1_lo", pyo.Constraint(expr=m.cliques[2] - 3 * m.cliques[3] <= -1 + BIGM * m.cond1))
+
+    # floor8 = floor(cliques[8] / 2)
+    m.add_component("floor_lo", pyo.Constraint(expr=2 * m.floor8     <= m.cliques[8]))
+    m.add_component("floor_hi", pyo.Constraint(expr=2 * m.floor8 + 1 >= m.cliques[8]))
+
+    # cond2: equality to 5
+    m.add_component("cond2_hi", pyo.Constraint(expr=m.cliques[5] - m.floor8 - 5 <= 0 + BIGM * (1 - m.cond2)))
+    m.add_component("cond2_lo", pyo.Constraint(expr=m.cliques[5] - m.floor8 - 5 >= 0 - BIGM * (1 - m.cond2)))
+
+    # condition = cond1 AND cond2
+    m.add_component("cond_and_lo", pyo.Constraint(expr=m.condition >= m.cond1 + m.cond2 - 1))
+    m.add_component("cond_and_up1", pyo.Constraint(expr=m.condition <= m.cond1))
+    m.add_component("cond_and_up2", pyo.Constraint(expr=m.condition <= m.cond2))
+
+    # forbid both
+    m.forbid_both = pyo.Constraint(expr=m.condition == 0)
+
+    # -----------------------------------------------------------------
+    # 6) allDifferent on the first min(15,n) vertices
+    # -----------------------------------------------------------------
+    m.diff15 = pyo.ConstraintList()
+    for i in range(up15):
+        for j in range(i + 1, up15):
+            s = m.sign15[i, j]
+            m.diff15.add(m.cliques[i] - m.cliques[j] >= 1 - BIGM * (1 - s) - BIGM * m.condition)
+            m.diff15.add(m.cliques[j] - m.cliques[i] >= 1 - BIGM * s       - BIGM * m.condition)
+
+    # -----------------------------------------------------------------
+    # 7) objective = max_cliques + argmax_cliques
+    # -----------------------------------------------------------------
+    m.obj_link = pyo.Constraint(expr=m.objective == m.max_cliques + m.argmax_cliques)
+    m.obj = pyo.Objective(expr=m.objective, sense=pyo.minimize)
+
+    return m
+
+```
+
+```python
+import pyomo.environ as pyo
+import numpy as np
+from pyomo.environ import ConcreteModel, Var, Constraint, Objective, RangeSet, Binary, NonNegativeReals, minimize
+
+
+def demo11_pyomo(p, c):
+    model = ConcreteModel()
+
+    # --- parameters from p ---
+    num_cities         = p["num_cities"]
+    distances          = p["distances"]           # matrix or dict of travel times
+    time_window_start  = p["time_window_start"]    # earliest arrival for each city
+    time_window_end    = p["time_window_end"]      # latest arrival for each city
+
+    # --- index sets ---
+    model.Pos    = RangeSet(0, num_cities-1)
+    model.City   = RangeSet(0, num_cities-1)
+    model.PosExt = RangeSet(0, num_cities)  # includes dummy final position
+
+    # --- decision variables ---
+    model.route = Var(model.Pos, model.City, domain=Binary)
+    model.arrival_time = Var(model.PosExt, domain=NonNegativeReals, bounds=(0, None))
+
+    # --- permutation constraints ---
+    def one_city_per_position_rule(m, pos):
+        return sum(m.route[pos, city] for city in m.City) == 1
+    model.one_city_per_position = Constraint(model.Pos, rule=one_city_per_position_rule)
+
+    def each_city_once_rule(m, city):
+        return sum(m.route[pos, city] for pos in m.Pos) == 1
+    model.each_city_once = Constraint(model.City, rule=each_city_once_rule)
+
+    # --- arrival time calculation (quadratic) ---
+    def arrival_time_rule(m, pos_ext):
+        expr = 8.0
+        for pos in range(pos_ext):
+            next_pos = pos + 1 if pos < num_cities - 1 else 0
+            for i in m.City:
+                for j in m.City:
+                    expr += distances[i, j] * m.route[pos, i] * m.route[next_pos, j]
+        return m.arrival_time[pos_ext] == expr
+    model.arrival_time_calc = Constraint(model.PosExt, rule=arrival_time_rule)
+
+    # --- time window constraints via big-M ---
+    max_dist = max(distances[i, j] for i in range(num_cities) for j in range(num_cities))
+    max_end  = max(time_window_end)
+    M = max_dist * num_cities + max_end + 8.0
+
+    def tw_lower_rule(m, pos, city):
+        if time_window_start[city] != -1:
+            return m.arrival_time[pos] >= (time_window_start[city] + FeasibilityTol - M * (1 - m.route[pos, city]))
+        return Constraint.Skip
+    model.tw_lower = Constraint(model.Pos, model.City, rule=tw_lower_rule)
+
+    def tw_upper_rule(m, pos, city):
+        if time_window_start[city] != -1:
+            return m.arrival_time[pos] <= (time_window_end[city] - FeasibilityTol + M * (1 - m.route[pos, city]))
+        return Constraint.Skip
+    model.tw_upper = Constraint(model.Pos, model.City, rule=tw_upper_rule)
+
+    # --- objective ---
+    model.obj = Objective(expr=model.arrival_time[num_cities], sense=minimize)
+    return model
+
+
+def get_python_x(p, c, x):
+    num_cities = p["num_cities"]
+    route = np.zeros(num_cities, dtype=int)
+    # For each position in the tour, identify which city was selected (i.e., where route variable is 1).
+    for position in range(num_cities):
+        for city_nr in range(num_cities):
+            if x["route"][position, city_nr] > 0.5:
+                route[position] = city_nr
+                break
+    return {"route": route}
+
+```
+
