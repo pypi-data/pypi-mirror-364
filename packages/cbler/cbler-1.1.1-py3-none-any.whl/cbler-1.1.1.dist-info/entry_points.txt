@@ -1,0 +1,3 @@
+[console_scripts]
+cbler = cbler.main:app
+
