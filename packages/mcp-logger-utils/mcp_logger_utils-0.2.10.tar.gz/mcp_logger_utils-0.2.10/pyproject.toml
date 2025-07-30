@@ -1,0 +1,94 @@
+# ===============================
+# Required build system settings
+# ===============================
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# ===============================
+# Project metadata
+# ===============================
+[project]
+name = "mcp-logger-utils"
+version = "0.2.10"
+description = "Shared utilities for MCP servers, including robust logging, JSON repair, and debug tools with automatic cache clearing."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+keywords = ["mcp", "logging", "debugging", "model-context-protocol", "json-repair"]
+
+authors = [
+  { name = "Graham Anderson", email = "graham@grahama.co" }
+]
+
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: System :: Logging",
+  "Topic :: Software Development :: Libraries :: Python Modules"
+]
+
+dependencies = [
+  "loguru>=0.7.0",
+  "json-repair>=0.19.0",
+  "psutil>=5.9.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/grahamannetts/mcp-logger-utils"
+Repository = "https://github.com/grahamannetts/mcp-logger-utils"
+"Bug Tracker" = "https://github.com/grahamannetts/mcp-logger-utils/issues"
+Documentation = "https://github.com/grahamannetts/mcp-logger-utils#readme"
+
+# ===============================
+# Optional dependency groups
+# ===============================
+[dependency-groups]
+dev = [
+  "twine>=6.1.0",
+  "pytest",
+  # Add linters, formatters, etc. as needed
+]
+
+# ===============================
+# Hatch configuration
+# ===============================
+
+# If you're doing dynamic version fetching from __init__.py:
+[tool.hatch.version]
+path = "src/mcp_logger_utils/__init__.py"
+
+[tool.hatch.build]
+# Optional: manually include/exclude certain files
+include = ["README.md", "LICENSE", "pyproject.toml"]
+exclude = ["tests/*", "docs/*"]
+
+[tool.hatch.build.targets.sdist]
+# Optional sdist customization (empty = defaults)
+
+[tool.hatch.build.targets.wheel]
+# Optional wheel customization (empty = defaults)
+
+# Optional Hatch virtual env configuration
+[tool.hatch.envs.default]
+dependencies = [
+  "loguru>=0.7.0",
+  "json-repair>=0.19.0",
+  "psutil>=5.9.0"
+]
+
+[tool.hatch.envs.dev]
+dependencies = [
+  "pytest",
+  "twine>=6.1.0"
+]
+
+[tool.hatch.envs.dev.scripts]
+test = "pytest"
