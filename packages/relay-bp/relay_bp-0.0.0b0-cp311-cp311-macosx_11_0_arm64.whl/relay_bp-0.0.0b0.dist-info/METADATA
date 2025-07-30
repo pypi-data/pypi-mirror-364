@@ -1,0 +1,41 @@
+Metadata-Version: 2.4
+Name: relay-bp
+Version: 0.0.0b0
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Rust
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Scientific/Engineering
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: matplotlib ; extra == 'dev'
+Requires-Dist: nevergrad ; extra == 'dev'
+Requires-Dist: seaborn ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pre-commit ; extra == 'dev'
+Requires-Dist: pre-commit-hooks ; extra == 'dev'
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: tomlcheck ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: stim>=1.15 ; extra == 'stim'
+Requires-Dist: beliefmatching ; extra == 'stim'
+Provides-Extra: dev
+Provides-Extra: stim
+License-File: LICENSE.txt
+Summary: Python bindings for the rust implementation of relay belief propagation for qLDPC codes.
+Keywords: relay,relay-bp,bp,belief propagation,quantum error correction,qec,decoder,quantum computing,quantum,stim,qldpc,ldpc
+Author: Thomas Alexander, Tristan Müller
+Author-email: Thomas Alexander <thomas.a.alexander@ibm.com>, Tristan Müller <tristan.mueller@ibm.com>
+License: Apache 2.0
+Requires-Python: >=3.8
