@@ -1,0 +1,16 @@
+setup.py
+django_appgen/__init__.py
+django_appgen/cli.py
+djappgen.egg-info/PKG-INFO
+djappgen.egg-info/SOURCES.txt
+djappgen.egg-info/dependency_links.txt
+djappgen.egg-info/entry_points.txt
+djappgen.egg-info/top_level.txt
+mon_app/__init__.py
+mon_app/admin.py
+mon_app/apps.py
+mon_app/tests.py
+mon_app/urls.py
+mon_app/migrations/__init__.py
+mon_app/models/__init__.py
+mon_app/views/__init__.py

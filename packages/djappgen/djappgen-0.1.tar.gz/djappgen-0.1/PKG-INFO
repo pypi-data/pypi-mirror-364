@@ -1,0 +1,7 @@
+Metadata-Version: 2.4
+Name: djappgen
+Version: 0.1
+Summary: Générateur d'applications Django avec structure personnalisée.
+Author: Ton Nom
+Dynamic: author
+Dynamic: summary
