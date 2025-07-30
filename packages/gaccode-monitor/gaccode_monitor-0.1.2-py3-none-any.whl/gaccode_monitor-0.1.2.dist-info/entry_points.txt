@@ -1,0 +1,3 @@
+[console_scripts]
+gaccode-logger = py.fetch_gaccode_balance:main
+gaccode-monitor = py.gaccode_tray_icon:setup_tray
