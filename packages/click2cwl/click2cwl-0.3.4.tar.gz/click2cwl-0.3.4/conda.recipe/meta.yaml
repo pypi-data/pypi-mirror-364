@@ -1,0 +1,40 @@
+{% set data = load_setup_py_data() %}
+
+package:
+  name: click2cwl
+  version: {{ data.get('version') }}
+
+source:
+  path: ..
+
+build:
+  noarch: python
+  script: python setup.py install
+  number: 2
+
+requirements:
+  build:
+    - python
+    - setuptools
+
+  run:
+    - python
+    - click
+    - pyyaml
+
+test:
+
+  imports:
+    - click2cwl
+    - click
+
+  commands:
+
+  requires:
+    - click
+    - pyyaml
+
+about:
+  home: https://github.com/
+  license: MIT
+  summary: "click to CWL"

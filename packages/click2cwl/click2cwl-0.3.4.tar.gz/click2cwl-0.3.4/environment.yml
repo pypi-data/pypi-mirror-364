@@ -1,0 +1,9 @@
+name: env_click2cwl
+channels:
+  - terradue
+  - conda-forge
+dependencies:
+  - python
+  - click
+  - pyyaml
+
