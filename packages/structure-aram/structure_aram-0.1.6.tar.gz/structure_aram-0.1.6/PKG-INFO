@@ -1,0 +1,43 @@
+Metadata-Version: 2.4
+Name: structure_aram
+Version: 0.1.6
+Summary: Un petit package Django qui cree des app 
+Author: ynaffit_aes
+Author-email: aramsamb02@gmail.com
+License: MIT
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 4.0
+Classifier: Framework :: Django :: 5.0
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Internet :: WWW/HTTP
+Description-Content-Type: text/markdown
+Requires-Dist: django>=4.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: summary
+
+DESCRIPTION structure_ara
+
+`structure_aram` est un package Python qui inclut une commande en ligne `generate-app` pour faciliter la génération d’applications .
+
+---
+
+ INSTALLATION
+
+- Créez un environnement virtuel (optionnel mais recommandé) :
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+
+- installe le package avec pip install structure-aram
+- genere ton application avec < generate-app "nom_app">  
