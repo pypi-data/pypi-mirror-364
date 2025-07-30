@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(rg:*)",
+      "Bash(python:*)",
+      "Bash(grep:*)",
+      "Bash(mkdir:*)",
+      "Bash(git push:*)",
+      "Bash(git remote:*)",
+      "Bash(gh auth:*)",
+      "Bash(jlpm build)",
+      "Bash(gh pr view:*)",
+      "Bash(gh api:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(gh pr comment:*)",
+      "Bash(mypy:*)",
+      "Bash(npm test)",
+      "Bash(npx:*)"
+    ],
+    "deny": []
+  }
+}
