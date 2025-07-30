@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+setup.py
+tdmlplus/__init__.py
+tdmlplus/patch/__init__.py
+tdmlplus/patch/dataframe.py
+tdmlplus/patch/dba.py
+tdmlplus/patch/random.py
+teradataml_plus.egg-info/PKG-INFO
+teradataml_plus.egg-info/SOURCES.txt
+teradataml_plus.egg-info/dependency_links.txt
+teradataml_plus.egg-info/not-zip-safe
+teradataml_plus.egg-info/requires.txt
+teradataml_plus.egg-info/top_level.txt

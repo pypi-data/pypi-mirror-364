@@ -1,0 +1,5 @@
+teradataml>=20.0.00.00
+
+[plot]
+plotly>=5.0
+seaborn>=0.11
