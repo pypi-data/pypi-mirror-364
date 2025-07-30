@@ -1,0 +1,2 @@
+[console_scripts]
+newui = newui.cli:main
