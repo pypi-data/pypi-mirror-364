@@ -1,0 +1,12 @@
+include README.md
+include LICENSE
+include requirements.txt
+include pyproject.toml
+recursive-include tsk_flask/database_templates *.sql
+recursive-include tsk_flask/ascii_art/ascii *.txt
+recursive-include tsk_flask/tsk *.tsk
+recursive-include tsk_flask/tsk *.html
+recursive-include tsk_flask/tsk *.css
+recursive-include tsk_flask/tsk *.js
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co] 
