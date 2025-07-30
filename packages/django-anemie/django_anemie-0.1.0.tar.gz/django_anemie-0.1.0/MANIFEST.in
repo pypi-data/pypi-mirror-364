@@ -1,0 +1,3 @@
+include README.md
+recursive-include django_anemie/templates *
+recursive-include django_anemie/static *

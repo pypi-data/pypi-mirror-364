@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+django_anemie/__init__.py
+django_anemie/apps.py
+django_anemie/urls.py
+django_anemie/views.py
+django_anemie.egg-info/PKG-INFO
+django_anemie.egg-info/SOURCES.txt
+django_anemie.egg-info/dependency_links.txt
+django_anemie.egg-info/requires.txt
+django_anemie.egg-info/top_level.txt
+django_anemie/static/django_anemie/css/style.css
+django_anemie/templates/django_anemie/sensibilisation.html
+tests/test_views.py

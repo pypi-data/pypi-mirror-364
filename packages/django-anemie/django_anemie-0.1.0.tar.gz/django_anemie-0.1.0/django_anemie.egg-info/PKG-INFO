@@ -1,0 +1,27 @@
+Metadata-Version: 2.4
+Name: django-anemie
+Version: 0.1.0
+Summary: Une application Django pour sensibiliser à l’anémie sévère chez les jeunes
+Home-page: https://github.com/ton-utilisateur/django-anemie
+Author: Ton Nom
+Author-email: ton.email@example.com
+License: MIT
+Classifier: Framework :: Django
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: Django>=3.2
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary
+
+# Django Anémie
+
+Une application Django pour sensibiliser à l’anémie sévère chez les jeunes.
