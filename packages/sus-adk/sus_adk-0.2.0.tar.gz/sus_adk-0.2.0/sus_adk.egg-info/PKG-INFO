@@ -1,0 +1,292 @@
+Metadata-Version: 2.4
+Name: sus-adk
+Version: 0.2.0
+Summary: A modular sus-adk for LLM interaction via cookies, inspired by LangChain and Google-ADK.
+Home-page: https://github.com/yourusername/agentic-framework
+Author: Your Name
+Author-email: Venkat Bulusu <venkatbulusu96@gmail.com>
+License: MIT
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Dynamic: author
+Dynamic: home-page
+Dynamic: requires-python
+
+# sus-adk
+
+A modular, extensible framework for interacting with LLM providers using cookies for authentication/session management. Inspired by LangChain and Google-ADK.
+
+## Features
+- Modular agent, provider, session, and tool abstractions
+- Integrates with any LLM provider using a single `GenericProvider`
+- Cookie/session-based authentication (manual or automatic via browser, with headless and browser selection)
+- Chaining and workflow support for multi-step agentic tasks
+- Tool support: register, validate, and invoke custom tools/functions
+- LLM-driven tool selection: agent can parse LLM output to invoke tools
+- Multi-step agentic loop: alternate between LLM and tool calls, inject tool results
+- OpenAI function-calling compatibility: generate OpenAI-compatible function specs from tools
+- Memory support: store and retrieve conversational/workflow state
+- Context window management: limit context passed to LLMs
+- Error recovery: handle and log tool/LLM errors
+- **Vector store memory:** semantic retrieval of relevant knowledge
+- **Streaming:** stream LLM/tool responses to the user
+- **Integration hooks:** connect to external systems (webhooks, APIs, databases)
+- **Async support:** async run/stream methods for scalable applications
+- **Distributed API:** FastAPI REST API for multi-agent and remote use
+- **UI integration:** Streamlit web UI for interactive demos
+- **Cloud deployment:** Docker/cloud-ready
+- **Automatic browser-based cookie fetching (headless, Chrome/Firefox/Edge)**
+- Extensible for plugins and custom providers
+- Fully tested and production-ready
+
+## Installation
+
+Install via pip:
+
+```bash
+pip install sus-adk
+```
+
+Or, for local development:
+
+```bash
+pip install .
+```
+
+## Usage Examples
+
+### Minimal Agent Usage
+```python
+from sus_adk import Agent, Session
+from sus_adk.providers import GenericProvider
+
+api_url = "https://fake-llm.com/api/generate"
+session = Session({"sessionid": "your-session-id"})
+provider = GenericProvider(api_url)
+agent = Agent(provider, session)
+
+# This will fail unless the endpoint exists, but shows the intended usage
+try:
+    result = agent.run("Hello, world!")
+    print("LLM Response:", result)
+except Exception as e:
+    print("Request failed (as expected for a fake endpoint):", e)
+```
+
+### Tool Registration and Usage
+```python
+from sus_adk import Agent, Session, Tool
+from sus_adk.providers import GenericProvider
+
+def add(a, b):
+    return a + b
+
+def multiply(a, b):
+    return a * b
+
+add_tool = Tool(name="add", description="Add two numbers", func=add)
+mul_tool = Tool(name="multiply", description="Multiply two numbers", func=multiply)
+
+provider = GenericProvider("https://fake-llm.com/api/generate")
+session = Session()
+agent = Agent(provider, session)
+
+agent.register_tool(add_tool)
+agent.register_tool(mul_tool)
+
+print("Add:", agent.call_tool("add", 2, 3))
+print("Multiply:", agent.call_tool("multiply", 4, 5))
+```
+
+### LLM-Driven Tool Selection
+```python
+from sus_adk import Agent, Session, Tool
+from sus_adk.providers import GenericProvider
+
+add_tool = Tool(
+    name="add",
+    description="Add two numbers",
+    func=lambda a, b: a + b,
+    arg_schema={"a": int, "b": int}
+)
+
+class DummyProvider(GenericProvider):
+    def generate(self, prompt, session, **kwargs):
+        return 'TOOL: add {"a": 2, "b": 3}'
+
+provider = DummyProvider("https://fake-llm.com/api/generate")
+session = Session()
+agent = Agent(provider, session)
+agent.register_tool(add_tool)
+
+result = agent.run_with_tools("What is 2 + 3?")
+print("Result:", result)
+```
+
+### Agentic Loop (Multi-Step)
+```python
+from sus_adk import Agent, Session, Tool
+from sus_adk.providers import GenericProvider
+
+add_tool = Tool(
+    name="add",
+    description="Add two numbers",
+    func=lambda a, b: a + b,
+    arg_schema={"a": int, "b": int}
+)
+
+class DummyProvider(GenericProvider):
+    def __init__(self, responses):
+        super().__init__("")
+        self.responses = responses
+        self.call_count = 0
+    def generate(self, prompt, session, **kwargs):
+        resp = self.responses[self.call_count]
+        self.call_count += 1
+        return resp
+
+responses = [
+    'TOOL: add {"a": 2, "b": 3}',
+    'The answer is 5.'
+]
+
+provider = DummyProvider(responses)
+session = Session()
+agent = Agent(provider, session)
+agent.register_tool(add_tool)
+
+result = agent.run_agentic_loop("What is 2 + 3?")
+print("Final result:", result)
+```
+
+### Vector Memory & Semantic Retrieval
+```python
+from sus_adk import Agent, Session, VectorMemory
+from sus_adk.providers import GenericProvider
+
+class PrintContextProvider(GenericProvider):
+    def generate(self, prompt, session, context=None, **kwargs):
+        return f"Prompt: {prompt} | Context: {context}"
+
+vector_memory = VectorMemory()
+session = Session()
+provider = PrintContextProvider("")
+agent = Agent(provider, session, vector_memory=vector_memory, context_window=2)
+
+agent.add_to_vector_memory("The Eiffel Tower is in Paris.")
+agent.add_to_vector_memory("The capital of France is Paris.")
+agent.add_to_vector_memory("Mount Everest is the tallest mountain.")
+
+result = agent.run("Where is the Eiffel Tower?", use_semantic_context=True)
+print("Result with semantic context:", result)
+```
+
+### Streaming
+```python
+from sus_adk import Agent, Session
+from sus_adk.providers import GenericProvider
+
+class StreamingProvider(GenericProvider):
+    def stream_generate(self, prompt, session, context=None, **kwargs):
+        for word in (prompt + " streamed!").split():
+            yield word
+
+provider = StreamingProvider("")
+session = Session()
+agent = Agent(provider, session)
+
+print("Streaming response:")
+for chunk in agent.stream_run("Hello world"):
+    print(chunk)
+```
+
+### Async Usage
+```python
+import asyncio
+from sus_adk import Agent, Session
+from sus_adk.providers import GenericProvider
+
+class AsyncProvider(GenericProvider):
+    async def async_generate(self, prompt, session, context=None, **kwargs):
+        await asyncio.sleep(0.1)
+        return f"Async response: {prompt} | Context: {context}"
+    async def async_stream_generate(self, prompt, session, context=None, **kwargs):
+        for word in (prompt + " streamed!").split():
+            await asyncio.sleep(0.05)
+            yield word
+
+async def main():
+    provider = AsyncProvider("")
+    session = Session()
+    agent = Agent(provider, session)
+    result = await agent.async_run("Hello async!")
+    print("Async run result:", result)
+    print("Async streaming:")
+    async for chunk in agent.async_stream_run("Hello async world"):
+        print(chunk)
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### Memory, Context Window, and Error Recovery
+```python
+from sus_adk import Agent, Session, Tool, Memory
+from sus_adk.providers import GenericProvider
+
+def error_provider_generate(prompt, session, context=None, **kwargs):
+    if "fail" in prompt:
+        raise RuntimeError("Simulated LLM failure")
+    return f"Prompt: {prompt} | Context: {context}"
+
+class ErrorProvider(GenericProvider):
+    def generate(self, prompt, session, context=None, **kwargs):
+        return error_provider_generate(prompt, session, context, **kwargs)
+
+memory = Memory()
+session = Session()
+provider = ErrorProvider("")
+agent = Agent(provider, session, memory=memory, context_window=2)
+
+agent.run("First message")
+agent.run("Second message")
+agent.run("Third message")
+
+print("Context window:", memory.get_messages(2))
+
+result = agent.run("fail now")
+print("Error recovery result:", result)
+print("Memory after error:", memory.get_messages())
+```
+
+## Testing
+
+All tests are in `backend/tests/`. To run:
+
+```bash
+python -m unittest discover backend/tests
+```
+
+## Extending
+
+To support custom request/response handling, subclass `BaseProvider` and implement `generate`:
+
+```python
+from sus_adk.provider import BaseProvider
+from sus_adk.session import Session
+
+class MyCustomProvider(BaseProvider):
+    def __init__(self, api_url):
+        self.api_url = api_url
+    def generate(self, prompt: str, session: Session, **kwargs):
+        # Custom logic here
+        pass
+```
+
+## Examples
+
+See `backend/examples/` for example scripts.
+
+## License
+MIT 
