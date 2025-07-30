@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+tranci/__init__.py
+tranci/__main__.py
+tranci/py.typed
+tranci.egg-info/PKG-INFO
+tranci.egg-info/SOURCES.txt
+tranci.egg-info/dependency_links.txt
+tranci.egg-info/top_level.txt
