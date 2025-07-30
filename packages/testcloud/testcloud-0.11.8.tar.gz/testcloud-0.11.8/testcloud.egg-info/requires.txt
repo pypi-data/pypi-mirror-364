@@ -1,0 +1,7 @@
+libvirt-python
+peewee
+requests
+packaging
+
+[image_resolve_caching]
+requests_cache>=1.2
