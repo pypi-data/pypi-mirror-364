@@ -1,0 +1,66 @@
+name: release code on Github and PyPI
+on:
+  #workflow_dispatch: # this is for manual trigger
+  push:
+    branches:
+    - main
+    tags:
+      - 'v*.*.*' # this is for version tag, e.g. v1.0.0
+      - 'v*.*' # this is for pre-release tag, e.g. v1.0.0-rc.1
+jobs:
+  github-release:
+    name: Create a GitHub release
+    environment: publishing
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Release
+        uses: softprops/action-gh-release@v2
+
+  build:
+    name: Build distribution
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        persist-credentials: false
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.x"
+    - name: Install pypa/build
+      run: >-
+        python3 -m
+        pip install
+        build
+        --user
+    - name: Build a binary wheel and a source tarball
+      run: python3 -m build
+    - name: Store the distribution packages
+      uses: actions/upload-artifact@v4
+      with:
+        name: python-package-distributions
+        path: dist/
+
+  pypi-release:
+    name: Publish to PyPI
+    needs: # Are these needs important to be added here?
+    - github-release # this is the pre-previous job
+    - build # this is the previous job
+    runs-on: ubuntu-latest
+    environment:
+      name: publishing # here I use the same with the GitHub release job. correct?
+      url: https://pypi.org/p/missensemble 
+    permissions:
+      id-token: write  # why is this important?
+    steps:
+    - name: Download all the dists
+      uses: actions/download-artifact@v4
+      with:
+        name: python-package-distributions
+        path: dist/
+    - name: Publish distribution to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1

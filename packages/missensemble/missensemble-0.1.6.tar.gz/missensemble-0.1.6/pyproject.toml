@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
+
+[project]
+name = "missensemble"
+dynamic = ["version"]  
+authors = [
+    {name = "Dimitris Katsimpokis", email = "dimi.katsimpokis@gmail.com"},
+    {name = "Frank Martin", email = "f.martin@iknl.nl"}
+]
+description = "A package for missing data imputation"
+readme = "README.md"
+requires-python = ">=3.8"
+
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+
+[project.urls]
+Homepage = "https://github.com/dkatsimpokis/MissEnsemble"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# pyproject.toml
+[tool.setuptools_scm]

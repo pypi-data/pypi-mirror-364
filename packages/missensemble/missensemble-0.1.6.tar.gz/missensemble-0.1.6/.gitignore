@@ -1,0 +1,16 @@
+*.xlsx
+*.xls
+*.csv
+*.pdf
+*.sas7bdat
+*.dta
+*.pickle
+*.docx
+*.pptx
+*.RData
+*.Rhistory
+*.svg
+*.pyc
+*.egg-info
+__pycache__
+*.ipynb_checkpoints
