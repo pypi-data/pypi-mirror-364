@@ -1,0 +1,13 @@
+cell_annotator/__init__.py,sha256=--FH00vzg_SA4fuWWf4LHXzc99s_JKOXZicmFrQV-zc,314
+cell_annotator/_constants.py,sha256=0cReqhg6A8O_6iHtBSQlvsX5g06QezCQyvTeUhv4-yo,2986
+cell_annotator/_logging.py,sha256=e2J8aGJt9XVxCEPPA4P_ishaGhvjGDpPNK5QziYoFj4,657
+cell_annotator/_prompts.py,sha256=62yG3eydJArWFg7-vqRa8SRf4FBiPSbczoT_5vmASGU,7954
+cell_annotator/_response_formats.py,sha256=m6HuzLlmmIbkEBR7fnIBw0hz-TATzykQeJOAjtfHeMs,2104
+cell_annotator/base_annotator.py,sha256=zaGyqycEjQZCSWGvH3bHU6NYAR8Bs5cXbnuN00zKVXE,2229
+cell_annotator/cell_annotator.py,sha256=OM7Y5iqedaTnV7uK6Z4Z1r-D-TiOApIkBI2KAfqZ9zc,17813
+cell_annotator/sample_annotator.py,sha256=up_qxVTRPNW2rKtgeeb-bv0w_BoHcRO8hgbCzQjr6x0,13364
+cell_annotator/utils.py,sha256=zpE2q-C7EFLiffyQZErJf7tZqEzmGA-1ZrbusFoiZI4,11123
+cell_annotator-0.1.5.dist-info/METADATA,sha256=Jw8_6WKqGa-4_kE0AknmLD72hbRx9fAyGSNaf_EjR2E,8670
+cell_annotator-0.1.5.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+cell_annotator-0.1.5.dist-info/licenses/LICENSE,sha256=vsNRfm36gcS3LpCURbHFc7ZzAyM1-8rzC9tBmHiWYm4,1069
+cell_annotator-0.1.5.dist-info/RECORD,,
