@@ -1,0 +1,12 @@
+cmost/__init__.py,sha256=PA-motjIXXlVTd6y0xQdu7-HUQYDMv1Vo8REthYYjmM,154
+cmost/download.py,sha256=HmbAYPw2IiL7FERvoQWzZuBq7XbGFoTxgapTtC_IjCA,5283
+cmost/fitting.py,sha256=8cPFrDOvvlxDAukAhThKsIKZ21MljZE5KjF0p5lIT3k,5038
+cmost/io.py,sha256=2KgsbaIJDzsmBKxOYOCqpPG6Ha5rYGfevNUIOkxacJ0,4988
+cmost/lick.py,sha256=RrZH8rD7Sskh1rJDQXwIypQ4JhDnJgXKJargrNbecU8,8574
+cmost/processing.py,sha256=QLPDGRXjS7ZP7hHdofddFXYBvioP_ACfC738SP-kYnU,1359
+cmost/assets/index.table,sha256=WSS3Fvtn0RyUqpzD3IotYBv03RTxIwaYPBuIqRqGtOs,1930
+cmost-0.1.dist-info/licenses/LICENCE,sha256=qoa3xleaAMfjZcjF0VYJOLtDWlXgUpr9ERkzX5es9cY,35811
+cmost-0.1.dist-info/METADATA,sha256=FeCNGAZHNEsbQMIlqn3O3-jf0Ojt5RfQA6TooXhJkxU,1175
+cmost-0.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+cmost-0.1.dist-info/top_level.txt,sha256=hax6Qra294O2SuQ0cnIKF5Zv8peMQZs-Hh9QftEwS9g,6
+cmost-0.1.dist-info/RECORD,,

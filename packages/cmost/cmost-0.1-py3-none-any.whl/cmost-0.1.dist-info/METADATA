@@ -1,0 +1,28 @@
+Metadata-Version: 2.4
+Name: cmost
+Version: 0.1
+Summary: A processing tool for FITS files related to LAMOST
+Author-email: Yunyu Guo <guoyunyu2017@outlook.com>, Peng Tang <1941275544@qq.com>, Qi Li <2119251347@qq.com>
+License-Expression: GPL-3.0-or-later
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Microsoft :: Windows
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENCE
+Requires-Dist: numpy>=1.23
+Requires-Dist: scipy>=1.8
+Requires-Dist: astropy>=6.0
+Requires-Dist: matplotlib
+Requires-Dist: aiohttp<=3.8.3; python_version >= "3.9" and python_version < "3.10"
+Requires-Dist: aiohttp>3.8.3; python_version >= "3.10"
+Requires-Dist: aiofiles
+Dynamic: license-file
