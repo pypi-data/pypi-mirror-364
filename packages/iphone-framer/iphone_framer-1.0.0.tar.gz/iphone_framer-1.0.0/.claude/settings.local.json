@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(uvx:*)",
+      "Bash(pip install:*)",
+      "Bash(python:*)",
+      "Bash(ruff format:*)"
+    ],
+    "deny": []
+  }
+}
