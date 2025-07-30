@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: mcp-server-shu1l
+Version: 0.2.4
+Summary: A Model Context Protocol server providing tools for time queries and timezone conversions for LLMs
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: mcp>=1.0.0
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: tzdata>=2024.2
+Requires-Dist: tzlocal>=5.3.1
