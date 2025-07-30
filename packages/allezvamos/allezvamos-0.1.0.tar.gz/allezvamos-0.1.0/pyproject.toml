@@ -1,0 +1,56 @@
+[project]
+name = "allezvamos"
+version = "0.1.0"
+description = "Display Python core and built-in modules capabilities"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[dependency-groups]
+dev = [
+  "docformatter>=1.7.5",
+  "pre-commit>=4.2.0",
+  "pyright>=1.1.400",
+  "pytest>=8.3.5",
+  "pytest-cov>=6.1.1",
+  "ruff>=0.11.7",
+  "typos>=1.31.1",
+  "debugpy-run>=1.13",
+  "pytest-split==0.10.0",
+]
+
+[build-system]
+requires = ["hatchling","hatch-vcs"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.pyright]
+reportMissingTypeStubs = false
+reportPrivateImportUsage = false
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+preview = true
+
+[tool.ruff.lint]
+preview = true
+select = [
+  "B006","E","F","W","C90","I","C4","PT","RSE","TID","TC","FLY","NPY","RUF","T10","Q"
+]
+[tool.ruff.lint.isort]
+combine-as-imports = true
+
+[tool.ruff.lint.mccabe]
+max-complexity = 20
+
+[tool.ruff.format]
+preview = true
+
+[tool.docformatter]
+black = true
