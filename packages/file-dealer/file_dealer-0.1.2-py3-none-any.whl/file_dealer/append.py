@@ -1,0 +1,14 @@
+
+def append_data():
+    file_name = input("Enter file location to append data: ").strip()
+    try:
+        with open(file_name, 'a', encoding='utf-8') as f:
+            data = input("Enter the data you want to append in the curent file: ")
+            f.write('\n' + data)  
+            print("✅ Data appended successfully.")
+    except FileNotFoundError:
+        print("❌ File not found. Please check the file path and try again.")
+        return None
+    except OSError as e:
+        print(f"❌ An error occurred: {e}")
+        return None
