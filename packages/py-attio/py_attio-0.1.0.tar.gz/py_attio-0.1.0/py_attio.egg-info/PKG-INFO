@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: py-attio
+Version: 0.1.0
+Summary: A Python wrapper for the Attio API
+Author-email: Benjamin Hawn <ben@neondeerdata.com>
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+
+### `py-attio`
+
+`py-attio` is a...
