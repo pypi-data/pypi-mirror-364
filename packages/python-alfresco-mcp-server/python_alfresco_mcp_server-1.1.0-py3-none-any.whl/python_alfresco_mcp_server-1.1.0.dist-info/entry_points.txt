@@ -1,0 +1,2 @@
+[console_scripts]
+python-alfresco-mcp-server = alfresco_mcp_server.fastmcp_server:main
