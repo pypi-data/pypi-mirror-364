@@ -1,0 +1,13 @@
+[project]
+name = "terraformreviewer"
+version = "0.1.0"
+description = "Generate Terraform READMEs and inline comments using Claude"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+dependencies = ["anthropic", "typer"]
+
+[project.scripts]
+terraformreviewer = "terraformreviewer.cli:app"
+
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"

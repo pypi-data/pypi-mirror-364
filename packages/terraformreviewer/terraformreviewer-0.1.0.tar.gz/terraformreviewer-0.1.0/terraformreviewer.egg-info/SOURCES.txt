@@ -1,0 +1,12 @@
+MANIFEST.in
+README.md
+pyproject.toml
+setup.cfg
+terraformreviewer/__init__.py
+terraformreviewer/cli.py
+terraformreviewer.egg-info/PKG-INFO
+terraformreviewer.egg-info/SOURCES.txt
+terraformreviewer.egg-info/dependency_links.txt
+terraformreviewer.egg-info/entry_points.txt
+terraformreviewer.egg-info/requires.txt
+terraformreviewer.egg-info/top_level.txt
