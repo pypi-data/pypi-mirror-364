@@ -1,0 +1,16 @@
+okit/__init__.py,sha256=xm2o3dCHi1QTzkiKBONJbBM5fY9P92Y5uHHTHL9O0jc,86
+okit/cli/__init__.py,sha256=8_1nBwCCWHn1MtpsNOx2mEdxc-Vy5ZhnodwzOK_4ZTU,137
+okit/cli/autoreg.py,sha256=dVmhWC4_QYssf56vY8nK_VycmFwQAI7uHkA-4utLFf8,1427
+okit/cli/completion.py,sha256=c9ShuDwNDTlWUNDV3vWeVxk7iWDSPKna1Kpc_zjzslQ,8583
+okit/cli/main.py,sha256=InCdHJ-H47v-zsVXENbPPOjaZIfQUyesYTGWYTSB9Bo,917
+okit/fs/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+okit/fs/pedump.py,sha256=YejW8i__fRPTjra2yNu8nGbXl-cIjquJSmBnmbOkCS4,8154
+okit/net/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+okit/net/gitdiffsync.py,sha256=XDss_hJneY48bYu06CHVhvF73IZqATXlKyT-MBvZr_o,13468
+okit/utils/log.py,sha256=PpQkOlCNpAisnaN1QOs0THEbk2xzdj5-CslkprWhE_w,1115
+okit/utils/version.py,sha256=2LKbHHdW5RMXWtpD8nxtgspOwXPBWM2RxqrNQyhfTm8,2725
+okit-1.1.0.dist-info/METADATA,sha256=svO-eZ6fMadsTef0NPwzouAU0x5B80i0RvLNMgcprU0,5961
+okit-1.1.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+okit-1.1.0.dist-info/entry_points.txt,sha256=k11X9V0tg9mhewQqaN_wA7m9_RCrj03QKGCSNsQSUH4,81
+okit-1.1.0.dist-info/licenses/LICENSE,sha256=71XtCjBX7m-RgAM8okeC2bXNvgDXIrmJgfgmAziNXHw,1066
+okit-1.1.0.dist-info/RECORD,,
