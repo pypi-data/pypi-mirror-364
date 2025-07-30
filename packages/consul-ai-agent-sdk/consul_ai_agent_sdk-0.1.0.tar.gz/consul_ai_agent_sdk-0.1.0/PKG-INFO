@@ -1,0 +1,22 @@
+Metadata-Version: 2.4
+Name: consul-ai-agent-sdk
+Version: 0.1.0
+Summary: consul-ai-agent-sdk
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: asyncclick>=8.1.8
+Requires-Dist: click>=8.1.8
+Requires-Dist: fastapi>=0.115.12
+Requires-Dist: google-adk>=1.0.0
+Requires-Dist: google-genai>=1.11.0
+Requires-Dist: httpx>=0.28.1
+Requires-Dist: httpx-sse>=0.4.0
+Requires-Dist: pydantic>=2.11.4
+Requires-Dist: python-dotenv>=1.1.0
+Requires-Dist: starlette>=0.46.2
+Requires-Dist: uvicorn>=0.34.2
+Requires-Dist: uv>=0.7.13
+Requires-Dist: python_a2a>=0.5.9
+
+# consul-ai-agent-sdk
+This is SDK to build the AI agent which is capable of auto-configuration of other AI Agent and MCP Servers. The SDK is based on Google's A2A
