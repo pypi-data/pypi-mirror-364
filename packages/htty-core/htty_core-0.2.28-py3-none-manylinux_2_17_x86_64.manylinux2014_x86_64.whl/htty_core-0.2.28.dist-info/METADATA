@@ -1,0 +1,44 @@
+Metadata-Version: 2.4
+Name: htty_core
+Version: 0.2.28
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Rust
+Classifier: Topic :: Software Development :: Testing
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: System :: Shells
+Classifier: Topic :: Terminals
+License-File: LICENSE
+Summary: Headless Terminal - Rust binary for terminal automation
+Keywords: terminal,automation,pty,headless,subprocess
+Home-Page: https://github.com/MatrixManAtYrService/ht
+Author-email: Matt Rixman <MatrixManAtYrService@users.noreply.github.com>
+License: MIT
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+Project-URL: Homepage, https://github.com/MatrixManAtYrService/ht
+Project-URL: Documentation, https://github.com/MatrixManAtYrService/ht
+Project-URL: Repository, https://github.com/MatrixManAtYrService/ht
+Project-URL: Issues, https://github.com/MatrixManAtYrService/ht/issues
+
+# htty - A fork of [ht](https://github.com/andyk/ht)
+
+`htty` controls processes that are attached to a headless terminal.
+It has both a command line interface, and a Python API.
+
+For a better idea of what it does, see [the toplevel README](https://github.com/MatrixManAtYrService/htty) or [the docs](https://matrixmanatyrservice.github.io/htty/htty.html) instead.
+
+## Components
+
+This repo includes two packages. It was necesssary to split them up because [Maturin refuses](https://github.com/PyO3/maturin/discussions/2683) to building packages with both rust binaries and python console scripts. `htty-core` got the rust binary, `htty` got the pyton API and the console script.
+
+- **[htty](../README.md)** - Contains both the `htty` command, and the `htty` python library.  It is packaged as a pure python source distribution.
+- **[htty-core](../htty-core/README.md)** You're viewing the README for this one.  It contains the `ht` binary (built by [maturin](https://github.com/PyO3/maturin)) and a minimal python interface for running it.  It's packaged as an architecture-specific wheel.
+
+`htty` depends on `htty-core`.
+It was necesssary to split them up because [Maturin objects](https://github.com/PyO3/maturin/blob/a50defe91c2c779d7f9aedb2ac0a788286f45ae8/src/build_context.rs#L1066) to building packages with both rust binaries and python console scripts.
+`htty-core` got the rust binary, `htty` got the pyton API and the console script.
+
