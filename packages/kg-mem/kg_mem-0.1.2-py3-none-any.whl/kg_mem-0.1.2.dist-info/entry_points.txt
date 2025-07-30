@@ -1,0 +1,2 @@
+[console_scripts]
+kg-mem = server:main
