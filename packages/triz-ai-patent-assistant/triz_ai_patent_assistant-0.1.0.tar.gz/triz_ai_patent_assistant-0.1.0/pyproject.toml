@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "triz-ai-patent-assistant"
+version = "0.1.0"
+description = "AI + TRIZ system for patent formula generation and analysis"
+authors = [
+    { name="Voronin Sergei", email="your@email.com" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "streamlit",
+    "openai",
+    "pymystem3",
+    "pytest"
+]
+readme = "README.md"
+license = {text = "MIT"}
