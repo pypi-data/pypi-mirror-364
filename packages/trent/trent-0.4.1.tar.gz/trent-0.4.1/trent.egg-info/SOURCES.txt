@@ -1,0 +1,16 @@
+LICENSE
+README.md
+pyproject.toml
+trent/__init__.py
+trent/coll.py
+trent/coll_aux.py
+trent/concur.py
+trent/func.py
+trent/interface.py
+trent/nth.py
+trent/pcoll.py
+trent.egg-info/PKG-INFO
+trent.egg-info/SOURCES.txt
+trent.egg-info/dependency_links.txt
+trent.egg-info/requires.txt
+trent.egg-info/top_level.txt
