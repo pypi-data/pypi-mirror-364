@@ -1,0 +1,5 @@
+[console_scripts]
+pve-cli = pve_cli.main:cli
+
+[gui_scripts]
+
