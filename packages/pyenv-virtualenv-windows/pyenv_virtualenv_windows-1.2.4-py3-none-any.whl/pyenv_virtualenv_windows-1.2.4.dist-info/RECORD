@@ -1,0 +1,15 @@
+pyenv-virtualenv-windows/bin/pyenv-virtualenv-delete.py,sha256=uLr_IuR4DYgE5qEbJUT7FZRugrf-doqsSOzs8XuGAww,6618
+pyenv-virtualenv-windows/bin/pyenv-virtualenv-init.py,sha256=haViLD3meAVIKqbT5nV5ZcbCUxN9DdqB67SSIHYfE1A,8663
+pyenv-virtualenv-windows/bin/pyenv-virtualenv-prefix.py,sha256=KFUeZWMyq0fme0e_Ndy_cmBITXPRYRQjlAeLZitOHyQ,7961
+pyenv-virtualenv-windows/bin/pyenv-virtualenv-props.py,sha256=rDZpSdhTYXyDxKsfVKDYvT8fool42u1RZW2IOVnfxG0,6175
+pyenv-virtualenv-windows/bin/pyenv-virtualenv.py,sha256=kdYgXylJurPFWXwQkG5zrSZbUJ0dmbEAdoS7fX7J7y8,13366
+pyenv-virtualenv-windows/bin/pyenv-virtualenvs.py,sha256=KK6bQaau8h7xL8vTif_catBIGOImRn3plQMGirJm2SA,6106
+pyenv-virtualenv-windows/bin/lib/hlp.py,sha256=cAV_X0wg3TZ9Y_ZYf72TyRcmrssOGKfexFHFSy-2its,28502
+pyenv-virtualenv-windows/bin/lib/log.py,sha256=K03d13h9RpPe1Z2oHWs4DNeXqxOj2gGfsKnVuSs2U9I,6312
+pyenv-virtualenv-windows/bin/lib/tbl.py,sha256=GRccj5J2OtNf53N80jnKCJhymD4YqaCMH2gMVb0ZSg4,6639
+pyenv-virtualenv-windows/bin/lib/tre.py,sha256=Z5Y96GzJortQ0iUJVYFDxccchH-oSpCGKBtEPoV-vRU,6355
+pyenv_virtualenv_windows-1.2.4.dist-info/licenses/LICENSE,sha256=JxeT9UEZ3CcVTMdmkaSteE3iSJEPZUNdYVanJo0VhcQ,36467
+pyenv_virtualenv_windows-1.2.4.dist-info/METADATA,sha256=tVCU3_CzMuZ8rrxjO9RP5eziU6IHG0tUdfAolmCyR-0,51179
+pyenv_virtualenv_windows-1.2.4.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+pyenv_virtualenv_windows-1.2.4.dist-info/top_level.txt,sha256=hYuk-uQiSYDqLVEtFmuxTve2NXCRefCWXylPktybdis,25
+pyenv_virtualenv_windows-1.2.4.dist-info/RECORD,,
