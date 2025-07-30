@@ -1,0 +1,204 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aikitx"
+version = "1.0.0"
+description = "A comprehensive GUI toolkit for Large Language Models (LLMs) with GGUF support, document processing, email automation, and multi-backend inference"
+authors = [{name = "Hussain Nazary", email = "hussainnazary475@gmail.com"}]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.8"
+keywords = [
+    "llm", "ai", "machine-learning", "gguf", "transformers", "chatbot", "nlp",
+    "gui", "pyside6", "llama-cpp", "ctransformers", "huggingface", "document-processing",
+    "email-automation", "pdf-processing", "summarization", "inference", "neural-networks",
+    "deep-learning", "language-models", "text-generation", "conversation-ai"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: End Users/Desktop",
+
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Text Processing :: Linguistic",
+    "Topic :: Communications :: Email",
+    "Topic :: Office/Business :: Office Suites",
+    "Topic :: Desktop Environment",
+    "Operating System :: OS Independent",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Environment :: X11 Applications :: Qt",
+    "Environment :: Win32 (MS Windows)",
+    "Environment :: MacOS X",
+    "Natural Language :: English",
+]
+
+dependencies = [
+    # Core UI Framework - Cross-platform Qt6 support
+    "PySide6>=6.4.0,<7.0.0",
+    
+    # Model Loading and AI Core - Platform-specific builds handled by pip
+    "llama-cpp-python>=0.2.0,<1.0.0",
+    "ctransformers>=0.2.0,<1.0.0",
+    
+    # System and Performance Monitoring - Cross-platform
+    "psutil>=5.9.0,<6.0.0",
+    "pynvml>=11.4.1,<12.0.0",
+    
+    # Configuration and Data Handling - Cross-platform
+    "pyyaml>=6.0,<7.0.0",
+    "jsonschema>=4.17.3,<5.0.0",
+    "appdirs>=1.4.4,<2.0.0",
+    "networkx>=3.0,<4.0.0",
+    
+    # Document Processing - Cross-platform
+    "PyPDF2>=3.0.0,<4.0.0",
+    "pdfplumber>=0.11.0,<1.0.0",
+    "python-docx>=0.8.11,<2.0.0",
+    
+    # HTTP and Web Requests - Cross-platform
+    "requests>=2.28.0,<3.0.0",
+    "urllib3>=1.26.0,<3.0.0",
+    
+    # Python Compatibility - Backport for older Python versions
+    "importlib-resources>=5.0.0,<7.0.0; python_version<'3.9'",
+    
+    # Platform-specific dependencies
+    "pywin32>=306; sys_platform=='win32'",  # Windows-specific
+    "pyobjc-framework-Cocoa>=9.0; sys_platform=='darwin'",  # macOS-specific (optional)
+]
+
+[project.optional-dependencies]
+# Hugging Face Transformers Support
+transformers = [
+    "transformers>=4.30.0,<5.0.0",
+    "huggingface_hub>=0.16.0,<1.0.0",
+    "safetensors>=0.3.0,<1.0.0",
+    "accelerate>=0.20.0,<1.0.0",
+    "tokenizers>=0.13.0,<1.0.0",
+]
+
+# GPU Acceleration Support
+gpu = [
+    "torch>=2.0.0,<3.0.0",
+    "torchvision>=0.15.0,<1.0.0",
+]
+
+# Google Services Integration
+google = [
+    "google-auth>=2.17.0,<3.0.0",
+    "google-auth-oauthlib>=1.0.0,<2.0.0",
+    "google-api-python-client>=2.88.0,<3.0.0",
+]
+
+# Development and Testing Tools
+dev = [
+    # Testing Framework
+    "pytest>=7.0.0,<8.0.0",
+    "pytest-qt>=4.0.0,<5.0.0",
+    "pytest-cov>=4.1.0,<5.0.0",
+    "pytest-xvfb>=3.0.0,<4.0.0",
+    "pytest-timeout>=2.1.0,<3.0.0",
+    "pytest-mock>=3.10.0,<4.0.0",
+    "pytest-benchmark>=4.0.0,<5.0.0",
+    "pytest-html>=3.1.0,<4.0.0",
+    "pytest-json-report>=1.5.0,<2.0.0",
+    "pytest-parallel>=0.1.1,<1.0.0",
+    
+    # Code Quality Tools
+    "black>=23.1.0,<25.0.0",
+    "isort>=5.12.0,<6.0.0",
+    "flake8>=6.0.0,<8.0.0",
+    "mypy>=1.0.0,<2.0.0",
+    
+    # Build Tools
+    "build>=0.10.0,<1.0.0",
+    "twine>=4.0.0,<5.0.0",
+]
+
+# Complete installation with all optional features
+all = [
+    # Transformers support
+    "transformers>=4.30.0,<5.0.0",
+    "huggingface_hub>=0.16.0,<1.0.0",
+    "safetensors>=0.3.0,<1.0.0",
+    "accelerate>=0.20.0,<1.0.0",
+    "tokenizers>=0.13.0,<1.0.0",
+    
+    # GPU support
+    "torch>=2.0.0,<3.0.0",
+    "torchvision>=0.15.0,<1.0.0",
+    
+    # Google services
+    "google-auth>=2.17.0,<3.0.0",
+    "google-auth-oauthlib>=1.0.0,<2.0.0",
+    "google-api-python-client>=2.88.0,<3.0.0",
+]
+
+[project.scripts]
+aikitx = "llmtoolkit.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/hussainnazary2/LLM-Toolkit"
+Repository = "https://github.com/hussainnazary2/LLM-Toolkit"
+Documentation = "https://github.com/hussainnazary2/LLM-Toolkit#readme"
+"Bug Tracker" = "https://github.com/hussainnazary2/LLM-Toolkit/issues"
+Changelog = "https://github.com/hussainnazary2/LLM-Toolkit/releases"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["llmtoolkit*"]
+
+[tool.setuptools.package-data]
+llmtoolkit = [
+    "resources/**/*",
+    "app/ui/themes/**/*",
+    "*.json",
+    "*.yaml",
+    "*.yml",
+    "*.ico",
+    "*.png",
+    "*.svg",
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+known_first_party = ["llmtoolkit"]
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+ignore_missing_imports = true

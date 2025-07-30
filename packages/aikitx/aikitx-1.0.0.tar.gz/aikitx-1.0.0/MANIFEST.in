@@ -1,0 +1,34 @@
+# Include package metadata
+include README.md
+include LICENSE
+include pyproject.toml
+include setup.py
+
+# Include resource files
+recursive-include llmtoolkit/resources *
+recursive-include llmtoolkit/app/ui/themes *
+
+# Include configuration files
+include llmtoolkit/*.json
+include llmtoolkit/*.yaml
+include llmtoolkit/*.yml
+
+# Include icon files
+include llmtoolkit/*.ico
+include llmtoolkit/*.png
+include llmtoolkit/*.svg
+
+# Exclude development and cache files
+global-exclude __pycache__
+global-exclude *.py[co]
+global-exclude .DS_Store
+global-exclude *.so
+global-exclude .git*
+global-exclude .pytest_cache
+global-exclude .mypy_cache
+global-exclude .coverage
+global-exclude *.egg-info
+
+# Exclude test files from distribution
+prune tests
+prune docs/_build

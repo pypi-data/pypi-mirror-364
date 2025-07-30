@@ -1,0 +1,11 @@
+{
+  "theme": "default",
+  "recent_models": [],
+  "window_size": [1200, 800],
+  "default_model_dir": "",
+  "addon_dir": "addons",
+  "log_level": "INFO",
+  "default_temperature": 0.7,
+  "default_max_tokens": 2048,
+  "default_system_prompt": "You are a helpful AI assistant."
+}
