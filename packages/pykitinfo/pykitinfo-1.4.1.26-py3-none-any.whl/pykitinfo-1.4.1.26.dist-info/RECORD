@@ -1,0 +1,16 @@
+pykitinfo/__init__.py,sha256=8nUuO52AaV1HvmDLlSerobiLWwUv11N_sIky1NpHMH0,1855
+pykitinfo/detect_edbg_tools.py,sha256=EFha0hOdQwPDboC0nmvcNrndJWmBNvRyXHb1aZdandU,7061
+pykitinfo/detect_legacy_pickit3_tools.py,sha256=k-hJcdhhg2v6fgD0aNzY5yrQ1HB5e5GI2H1Nry05Wio,1900
+pykitinfo/detect_mcp2221a_tools.py,sha256=J1cOOjRJSfuNDY74H-mB7_K9Tv90Z_DqdoTxTSIcZmA,3142
+pykitinfo/detect_microchip_tools.py,sha256=yAxc5iTu7iIug3vFsKRoGDo3FNLiq-6fYkcFK-JhvFw,7118
+pykitinfo/genx.py,sha256=6PnIPGu8HTMJQehP4EoQBg6od0nSVpsMT9bTUFpTWhQ,15032
+pykitinfo/logging.yaml,sha256=6aQ6G-yvpRWyPRKE8DEyDzrJxjs89LciUzEkRAasDIs,1752
+pykitinfo/pykitinfo.py,sha256=5z331k0gaOcFSJHJ98NjV3J2W-RD-eAAkdDWfrM-4Yk,2263
+pykitinfo/pykitinfo_cli.py,sha256=yR4G4JIdrcsILfmq-lDw_g1n14-pEjv04YLnwHDDvRU,5839
+pykitinfo/tools.py,sha256=akNVrnU4l8C_uXSTfddnXzEGmddZ6xliIr3tbnAsFRg,6341
+pykitinfo-1.4.1.26.dist-info/licenses/LICENSE.txt,sha256=rr8IxGeMbezaf8TsjF0ekPLptZuAXVAKHAE6BSG7AVY,1107
+pykitinfo-1.4.1.26.dist-info/METADATA,sha256=DeoPXGoEut8SAyEV8UwkjnJBYCn4j_NWwxCDjpbKdtA,7052
+pykitinfo-1.4.1.26.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+pykitinfo-1.4.1.26.dist-info/entry_points.txt,sha256=tIN5ybLg6uIOIg_vNTsP3FJWAroW1jc8kuyYr0Qu9Ic,59
+pykitinfo-1.4.1.26.dist-info/top_level.txt,sha256=4-6dCuZRmPHDSrogAyAxw_OCQOMtGfQwvrFj25I2Jbc,10
+pykitinfo-1.4.1.26.dist-info/RECORD,,
