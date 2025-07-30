@@ -1,0 +1,17 @@
+odoo/addons/document_page_health_safety_manual/README.rst,sha256=rBDw94v5uZNqFR9x3mWmFtCiF2ZAAX-PJPsQxVTBS74,3477
+odoo/addons/document_page_health_safety_manual/__init__.py,sha256=7IBF3oB-qsWAnjCg67bdxEuofCoY8mIwQnpgyOpgtpk,975
+odoo/addons/document_page_health_safety_manual/__manifest__.py,sha256=BJ8PG7kYSwMnXa-2xT6gR0pKD8YXyi4xGys9rrT50og,1326
+odoo/addons/document_page_health_safety_manual/data/document_page.xml,sha256=kjdcmYhUD4okUajyLlZWegzsUImakENsVZvYNjHddr8,388
+odoo/addons/document_page_health_safety_manual/i18n/document_page_health_safety_manual.pot,sha256=BIyTShSvBhiJMqh2td4QGlxB8SDDzDZd0Pqu6WZgBR8,341
+odoo/addons/document_page_health_safety_manual/i18n/es.po,sha256=TfH3Xf9ICiuG17Tj7tjipsszNXMDhkTuPqwanjrdWAA,411
+odoo/addons/document_page_health_safety_manual/i18n/it.po,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+odoo/addons/document_page_health_safety_manual/readme/CONTRIBUTORS.rst,sha256=2-5jsMIxyUKcKbqO6BaoToVUp7jt8J41ojnmWgngloQ,205
+odoo/addons/document_page_health_safety_manual/readme/DESCRIPTION.rst,sha256=CDkRZXhrP-ijUPw-4qpRUsHDLGkL1EX8GmXvklzCW98,59
+odoo/addons/document_page_health_safety_manual/readme/ROADMAP.rst,sha256=TTA0jXNt92P0GywROmBc1njjvejO2HjnThRsCMNWElA,79
+odoo/addons/document_page_health_safety_manual/readme/USAGE.rst,sha256=X9DecYrN37P50E5bHvf2gQGgl2sl37oo6kVoEUxhHYc,198
+odoo/addons/document_page_health_safety_manual/static/description/icon.png,sha256=1xiufEjkQfoKXPitFY7FJq4rbmAX-qSAdAE-n9dEN40,2397
+odoo/addons/document_page_health_safety_manual/static/description/index.html,sha256=SUOED1GRi-DGjKmcj4fekNW_wBi-FM8lh-ZrTPg6rEs,13547
+odoo_addon_document_page_health_safety_manual-15.0.1.0.0.5.dist-info/METADATA,sha256=Ess620camvBBeo35nQul-kQN4nDxq1GUiI5rznlkuOE,4086
+odoo_addon_document_page_health_safety_manual-15.0.1.0.0.5.dist-info/WHEEL,sha256=tZoeGjtWxWRfdplE7E3d45VPlLNQnvbKiYnx7gwAy8A,92
+odoo_addon_document_page_health_safety_manual-15.0.1.0.0.5.dist-info/top_level.txt,sha256=qBj40grFkGOfDZ2WDSw3y1RnDlgG0u8rP8pvGNdbz4w,5
+odoo_addon_document_page_health_safety_manual-15.0.1.0.0.5.dist-info/RECORD,,
