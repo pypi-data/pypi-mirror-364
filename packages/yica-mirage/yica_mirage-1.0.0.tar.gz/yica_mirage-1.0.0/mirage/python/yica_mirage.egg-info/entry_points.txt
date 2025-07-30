@@ -1,0 +1,4 @@
+[console_scripts]
+yica-analyze = yica_mirage.analyzer:main
+yica-benchmark = yica_mirage.benchmark:main
+yica-optimizer = yica_mirage.cli:main
