@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: sound-sleep
+Version: 0.5
+Summary: Sleep analysis features extractor
+Home-page: UNKNOWN
+Author: Trym Drag-Erlandsen and Therese Barøy Ræder
+License: UNKNOWN
+Platform: UNKNOWN
+License-File: LICENSE
+Requires-Dist: pandas
+Requires-Dist: numpy
+
+UNKNOWN
+
