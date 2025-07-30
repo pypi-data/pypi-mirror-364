@@ -1,0 +1,2 @@
+[console_scripts]
+signalflow = signalflow_cli:main
