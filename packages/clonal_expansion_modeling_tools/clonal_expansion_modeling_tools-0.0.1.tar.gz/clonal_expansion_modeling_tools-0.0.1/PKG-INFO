@@ -1,0 +1,16 @@
+Metadata-Version: 2.4
+Name: clonal_expansion_modeling_tools
+Version: 0.0.1
+Summary: a set of tools for modeling the expansion of a malignant clone in blood cells
+Author-email: Jordan Snyder <jordan@ruc.dk>
+Description-Content-Type: text/markdown
+License-Expression: MIT
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: numba
+Requires-Dist: datetime
+Requires-Dist: scipy
+Requires-Dist: statsmodels
+
+This is my nice directory with nice code in it.
