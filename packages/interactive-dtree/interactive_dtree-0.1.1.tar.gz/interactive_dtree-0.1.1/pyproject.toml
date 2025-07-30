@@ -1,0 +1,35 @@
+[project]
+name = "interactive-dtree"
+version = "0.1.1"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "flask>=3.1.1",
+    "pandas>=2.3.1",
+    "pyarrow>=21.0.0",
+    "pytest>=8.4.1",
+    "python-dotenv>=1.1.1",
+    "scikit-learn>=1.7.1",
+    "setuptools>=80.9.0",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=6.29.5",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["interactive_dtree"]
+include = [
+    "interactive_dtree*",
+    "interactive_dtree/app/build/**/*",
+]
+artifacts = ["interactive_dtree/app/build"]

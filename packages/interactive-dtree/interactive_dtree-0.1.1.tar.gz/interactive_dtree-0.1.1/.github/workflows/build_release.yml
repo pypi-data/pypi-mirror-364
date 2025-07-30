@@ -1,0 +1,46 @@
+name: Build and Publish Package
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
+
+    - name: Get frontend assets
+      uses: dsaltares/fetch-gh-release-asset@master
+      with:
+        repo: akarabaev/interactive-dtree-fe
+        version: tags/test2
+        file: react-app-test2.zip
+        token: ${{ secrets.GIT_TOKEN }}
+
+    - name: Unzip frontend assets
+      run: unzip react-app-test2.zip -d interactive_dtree/app/
+    
+    - name: Build wheel
+      run: uv build
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: ${{ github.ref_name }}
+        files: |
+          dist/*.whl
+          dist/*.tar.gz
+      env:
+        GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+
+    - name: Publish
+      run: uv publish
+      env:
+        UV_PUBLISH_TOKEN: ${{ secrets.PYPI_TOKEN }}

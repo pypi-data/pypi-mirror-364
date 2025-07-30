@@ -1,0 +1,11 @@
+*.csv
+*.json
+__pycache__
+*.ipynb
+.venv
+dist
+# build
+.env
+.pytest_cache
+*.parquet
+*.egg-info
