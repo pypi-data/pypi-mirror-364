@@ -1,0 +1,12 @@
+LICENSE,sha256=7qqytxojDvLpt8CphcCVvEQilegiJ0x_oDkwHJU-1z4,11359
+NOTICE,sha256=9bEJKCdL0MABjEknpMHXbYBZSkGVGRXYcSxSXS293X0,147
+polyglot_piranha.pyi,sha256=Aef4ZhgaF9WkC5tmBDCLSPmO2_qZUa_hIFf42fpDrD8,10802
+polyglot_piranha/__init__.py,sha256=pghVgChf0-NgAG_zd7CzKtvFuBDxg5Wh-GcHx2PoTzg,147
+polyglot_piranha/__init__.pyi,sha256=Aef4ZhgaF9WkC5tmBDCLSPmO2_qZUa_hIFf42fpDrD8,10802
+polyglot_piranha/polyglot_piranha.cpython-312-x86_64-linux-gnu.so,sha256=etujnknsuvMNZqFca6RX6p-0mk2ahWKTqRoQL47L6UQ,25531336
+polyglot_piranha/py.typed,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+polyglot_piranha-0.4.4.dist-info/METADATA,sha256=VJwVgvp3nOQ6DCJst5fBkEbtB302YCR_1Vgi3qPYAkQ,5424
+polyglot_piranha-0.4.4.dist-info/WHEEL,sha256=05SDG5J8LnC7_Yhhlfbr9OXS0ozN35I3U3hhhzQz3bE,109
+polyglot_piranha-0.4.4.dist-info/RECORD,,
+polyglot_piranha-0.4.4.dist-info/licenses/LICENSE,sha256=7qqytxojDvLpt8CphcCVvEQilegiJ0x_oDkwHJU-1z4,11359
+polyglot_piranha-0.4.4.dist-info/licenses/NOTICE,sha256=9bEJKCdL0MABjEknpMHXbYBZSkGVGRXYcSxSXS293X0,147
