@@ -1,0 +1,14 @@
+piscesORM/__init__.py,sha256=OBAWOAG6c-yd1knDUaxgvPpn9JLvizAfM8gEFJcQblg,206
+piscesORM/column.py,sha256=6VNMBfENY0mBXisPkK4bNI_76dMao4GX1LZrIf8Jrz8,8610
+piscesORM/engine.py,sha256=uD-l8Mbv_JctbC7GuOeZXD-T0I3EglBBhm1eEFUaIRQ,3514
+piscesORM/errors.py,sha256=TPolxZYZsJAApMQGTetHUDdxVa8WrKG4SaxRWZL9C18,1990
+piscesORM/generator.py,sha256=WE1Ap2fBfbdMfMwOvmDLZYj6WGTllh444wEuyA2VXWU,10048
+piscesORM/lock.py,sha256=vvPIGBitTNBaFHTEpOtL-AQ40iaf9m2NLDrlyOl30UQ,4254
+piscesORM/operator.py,sha256=gRkE1NH7am0m-Vd6WqJw8DwZMEaY2Jpa3h_Ao99cLAA,722
+piscesORM/session.py,sha256=bWknRfMtv8ivUs3bwTycUd0pNmzbPF2PfXUrSq4IcmE,21294
+piscesORM/table.py,sha256=6futRW3PNj9_kjElOPo1kig4ukh4BxkkwJhMLAf0E-I,4442
+piscesorm-0.0.1.dist-info/licenses/LICENSE,sha256=QICIlbkoZ4_eaGdWwXoSSJryNieD9gjxztoCFASI20o,1090
+piscesorm-0.0.1.dist-info/METADATA,sha256=a1rFammjkKTe8iuuyaEmdp2epsZHQP0648pEcxtsnjM,4209
+piscesorm-0.0.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+piscesorm-0.0.1.dist-info/top_level.txt,sha256=CAdUbyE15fmrDzyH_Pjlu23YI-iQDhwfXQ7wB5g7Tho,10
+piscesorm-0.0.1.dist-info/RECORD,,
