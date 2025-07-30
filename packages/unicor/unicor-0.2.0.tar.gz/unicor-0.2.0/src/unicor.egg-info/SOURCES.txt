@@ -1,0 +1,10 @@
+LICENSE
+README.md
+pyproject.toml
+src/unicor/__init__.py
+src/unicor/unicor_metric.py
+src/unicor/unicorp.py
+src/unicor.egg-info/PKG-INFO
+src/unicor.egg-info/SOURCES.txt
+src/unicor.egg-info/dependency_links.txt
+src/unicor.egg-info/top_level.txt

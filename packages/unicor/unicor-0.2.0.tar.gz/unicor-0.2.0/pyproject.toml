@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "unicor"
+version = "0.2.0"
+authors = [
+  { name="Sebastian Staab", email="sebastian.staab@uni-konstanz.de" },
+]
+description = "Hierarchical Feature Selection through Propagation of Uniquely Correlated Entities"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+
+[project.urls]
+Homepage = "https://github.com/SebastianStaab/UniCor"
+Issues = "https://github.com/SebastianStaab/UniCor/issues"
+
+
+[tool.setuptools.packages.find]
+where = ["src"]
