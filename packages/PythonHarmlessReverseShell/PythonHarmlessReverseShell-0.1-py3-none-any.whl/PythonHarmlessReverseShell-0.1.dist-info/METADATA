@@ -1,0 +1,6 @@
+Metadata-Version: 2.1
+Name: PythonHarmlessReverseShell
+Version: 0.1
+Summary: A python/pip package for testing antivirus detection for reverse shells.
+License-File: LICENSE
+
