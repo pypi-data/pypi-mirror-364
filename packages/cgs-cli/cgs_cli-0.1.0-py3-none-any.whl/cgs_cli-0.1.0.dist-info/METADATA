@@ -1,0 +1,29 @@
+Metadata-Version: 2.4
+Name: cgs-cli
+Version: 0.1.0
+Summary: A CLI tool to deploy your game server to the cloud with a single command.
+Author-email: rosmontisu <rosmontisu@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/rosmontisu/cloud-game-starter
+Project-URL: Bug Tracker, https://github.com/rosmontisu/cloud-game-starter/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: typer[all]
+Dynamic: license-file
+
+# Cloud Game Starter
+간단한 명령어로 클라우드에 게임 서버를 배포하는 오픈소스 CLI 툴입니다.
+
+## Our Goal
+- 누구나 쉽게 클라우드를 경험하게 합니다.
+- 복잡한 인프라 설정 과정을 자동화합니다.
+- '요금 폭탄' 걱정 없이 안전하게 테스트할 수 있는 환경을 제공합니다.
+
+---
+
+- 임시 정리
+
+
