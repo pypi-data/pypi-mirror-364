@@ -1,0 +1,7 @@
+
+[tasks]
+test = 'python iphone_framer.py screenshot.png -o output.png -t "Revolutionary Design" -s "Experience the future" --device 6.9_inch'
+test2 = 'python iphone_framer.py screenshot.png -o output.png -t "Revolutionary Design" -s "Experience the future" --device 6.9_inch --gradient ocean --gradient-direction vertical'
+
+[tools]
+python = "3.8"
