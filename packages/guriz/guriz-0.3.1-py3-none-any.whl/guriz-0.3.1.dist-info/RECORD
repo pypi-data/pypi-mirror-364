@@ -1,0 +1,14 @@
+guriz/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+guriz/cli.py,sha256=ud2mhkE3LCbGBdLhBQW3iRPXsY2dxTPIpJPfahu4bjc,4629
+guriz/core.py,sha256=l-v8EjqKb4LliYh5sRuwwC8Vp01Weav3v40xE_1RuRo,2625
+guriz/repository.py,sha256=YSbnUUE3CAO82WPvjz46IwzLbvzcrUw58TzDi6ciM2E,719
+guriz/repository_protocol.py,sha256=QeMiYw3B5c1ey_uFFIUzILQ9ehTMOwXxHAMEY97YOPY,228
+guriz/SQL/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+guriz/SQL/config.py,sha256=GHpRYJ9CEo_XPYFaN4GJ0sLj041CAr5bCHVHS6HvhbA,930
+guriz/SQL/connection.py,sha256=TTzhRzE-GV4lNP3L1sibAXjrzzgew-0b4vEkuYG2mrc,9857
+guriz/SQL/query.py,sha256=qIIS347Jp97gFwAiXz8asbr_7fc_YTkgVzfChqG0xW0,46609
+guriz-0.3.1.dist-info/METADATA,sha256=ocH4FF-SiRNI6kNiuY3B7_a0ACVUC6-ePm5CJ8M-ciE,267
+guriz-0.3.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+guriz-0.3.1.dist-info/entry_points.txt,sha256=LJnpgoqVZaUbjVk8Mz97EIe9hm8b4VIN9bTEfgi_eO8,41
+guriz-0.3.1.dist-info/top_level.txt,sha256=wUqZqiaFB1reK-ZUexFPUh6xAqyg3KX24sAfQ1wSBY4,6
+guriz-0.3.1.dist-info/RECORD,,
