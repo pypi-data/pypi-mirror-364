@@ -1,0 +1,24 @@
+[project]
+name = "mseep-cli"
+version = "0.1.0"
+description = "MCP (Model Context Protocol) server that proxies requests to the MseeP AI Helper app"
+requires-python = ">=3.8"
+
+dependencies = [
+    "mcp>=1.12.2",
+]
+
+[project.scripts]
+mseep-cli = "mseep_cli.server:main"
+
+[project.urls]
+Homepage = "https://mseep.ai/"
+Repository = "https://github.com/skydeckai/mseep-cli"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["mseep_cli*"]
+
+[build-system]
+requires = [ "hatchling",]
+build-backend = "hatchling.build"
