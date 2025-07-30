@@ -1,0 +1,297 @@
+# Temp Brijesh Consul
+
+A comprehensive Python client library for HashiCorp Consul that provides both synchronous and asynchronous interfaces for service discovery, key-value store operations, and service registration.
+
+## Features
+
+- **Dual Interface**: Both synchronous and asynchronous client implementations
+- **Service Discovery**: Discover and query services registered in Consul
+- **Key-Value Store**: Read and write data to Consul's distributed key-value store
+- **Service Registration**: Register services with health checks
+- **Retry Logic**: Built-in exponential backoff retry mechanism for resilient operations
+- **Default Client**: Fallback client that reads from local JSON files when Consul is unavailable
+- **Type Hints**: Full type annotation support for better IDE integration
+
+## Installation
+
+### From PyPI (when published)
+```bash
+pip install temp-brijesh-consul
+```
+
+### From Source
+```bash
+git clone <repository-url>
+cd temp_consul
+pip install .
+```
+
+### Development Installation
+```bash
+git clone <repository-url>
+cd temp_consul
+pip install -e ".[dev]"
+```
+
+## Quick Start
+
+### Synchronous Client
+
+```python
+from temp_brijesh_consul import ConsulClient
+
+# Initialize the client
+client = ConsulClient(host='localhost', port=8500)
+client.start()
+
+try:
+    # Service discovery
+    service = client.get_service('my-service')
+    print(f"Service details: {service}")
+    
+    # Get all services
+    services = client.get_services()
+    print(f"All services: {services}")
+    
+    # Key-value operations
+    data = client.get_kv('config/database')
+    print(f"Database config: {data}")
+    
+    # Register a service
+    success = client.register_service(
+        name='my-service',
+        address='127.0.0.1',
+        port=8080,
+        tags=['api', 'v1'],
+        check={'http': 'http://127.0.0.1:8080/health', 'interval': '10s'}
+    )
+    print(f"Service registered: {success}")
+    
+finally:
+    client.close()
+```
+
+### Asynchronous Client
+
+```python
+import asyncio
+from temp_brijesh_consul import AsyncConsulClient
+
+async def main():
+    # Initialize the async client
+    client = AsyncConsulClient(host='localhost', port=8500)
+    client.start()
+    
+    try:
+        # Service discovery
+        service = await client.get_service('my-service')
+        print(f"Service details: {service}")
+        
+        # Get all services
+        services = await client.get_services()
+        print(f"All services: {services}")
+        
+        # Key-value operations
+        data = await client.get_kv('config/database')
+        print(f"Database config: {data}")
+        
+        # Get key-value tree
+        tree = await client.get_kv_tree('config/')
+        print(f"Config tree: {tree}")
+        
+        # Register a service
+        success = await client.register_service(
+            name='my-async-service',
+            address='127.0.0.1',
+            port=8081,
+            tags=['async', 'api'],
+            check={'tcp': '127.0.0.1:8081', 'interval': '10s'}
+        )
+        print(f"Service registered: {success}")
+        
+    finally:
+        await client.close()
+
+# Run the async example
+asyncio.run(main())
+```
+
+### Default Client (Fallback Mode)
+
+For development or testing when Consul is not available, you can use the default clients that read from a local JSON file:
+
+```python
+from temp_brijesh_consul import DefaultConsulClient, AsyncDefaultConsulClient
+
+# Create a default_consul_data.json file in the parent directory
+# with the following structure:
+{
+    "KV": {
+        "config/database": {"host": "localhost", "port": 5432},
+        "config/redis": {"host": "localhost", "port": 6379}
+    },
+    "Services": {
+        "my-service": {
+            "Service": "my-service",
+            "Address": "127.0.0.1",
+            "Port": 8080,
+            "Tags": ["api", "v1"]
+        }
+    }
+}
+
+# Synchronous default client
+client = DefaultConsulClient()
+data = client.get_kv('config/database')
+print(f"Database config: {data}")
+
+# Asynchronous default client
+async def test_default():
+    client = AsyncDefaultConsulClient()
+    data = await client.get_kv('config/database')
+    print(f"Database config: {data}")
+```
+
+## API Reference
+
+### ConsulClient / AsyncConsulClient
+
+#### Constructor Parameters
+
+- `host` (str): Consul server host address (default: 'localhost')
+- `port` (int): Consul server port (default: 8500)
+- `timeout` (int): Request timeout in seconds (default: 3)
+- `max_retries` (int): Maximum retry attempts (default: 3)
+- `retry_delay` (float): Initial retry delay in seconds (default: 0.5)
+
+#### Methods
+
+##### Service Operations
+
+- `get_service(service_name, index=None, tag=None)`: Get service instance details
+- `get_services()`: Get all registered services
+- `register_service(name, address, port, tags=None, check=None, service_id=None)`: Register a new service
+
+##### Key-Value Operations
+
+- `get_kv(key, index=None, recurse=False)`: Get a value from the KV store
+- `get_kv_tree(prefix)`: Get all keys and values under a prefix
+
+##### Connection Management
+
+- `start()`: Initialize the Consul connection
+- `close()`: Close the connection (async version is awaitable)
+
+## Configuration
+
+### Environment Variables
+
+You can configure the client using environment variables:
+
+```bash
+export CONSUL_HOST=consul.example.com
+export CONSUL_PORT=8500
+```
+
+### Health Checks
+
+When registering services, you can specify health checks:
+
+```python
+# HTTP health check
+http_check = {
+    'http': 'http://127.0.0.1:8080/health',
+    'interval': '10s',
+    'timeout': '3s'
+}
+
+# TCP health check
+tcp_check = {
+    'tcp': '127.0.0.1:8080',
+    'interval': '10s',
+    'timeout': '3s'
+}
+
+# TTL health check
+ttl_check = {
+    'ttl': '30s'
+}
+```
+
+## Error Handling
+
+The library includes built-in retry logic with exponential backoff. You can customize the retry behavior:
+
+```python
+client = ConsulClient(
+    host='localhost',
+    port=8500,
+    max_retries=5,
+    retry_delay=1.0
+)
+```
+
+## Development
+
+### Setting up Development Environment
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd temp_consul
+
+# Install in development mode
+pip install -e ".[dev]"
+
+# Run tests
+pytest
+
+# Run linting
+flake8 temp_brijesh_consul/
+black temp_brijesh_consul/
+mypy temp_brijesh_consul/
+```
+
+### Running Tests
+
+```bash
+# Run all tests
+pytest
+
+# Run with coverage
+pytest --cov=temp_brijesh_consul --cov-report=html
+
+# Run only async tests
+pytest -k "async"
+```
+
+## Dependencies
+
+- **python-consul**: The underlying Consul client library
+- **Python 3.8+**: Minimum Python version requirement
+
+## License
+
+MIT License - see LICENSE file for details.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## Changelog
+
+### v0.1.0
+- Initial release
+- Synchronous and asynchronous Consul clients
+- Service discovery and registration
+- Key-value store operations
+- Default client with JSON fallback
+- Built-in retry logic with exponential backoff
+
+## Support
+
+For questions, bug reports, or feature requests, please open an issue on the GitHub repository. 

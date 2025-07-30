@@ -1,0 +1,11 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+temp_brijesh_consul/__init__.py
+temp_brijesh_consul/consul.py
+temp_brijesh_consul.egg-info/PKG-INFO
+temp_brijesh_consul.egg-info/SOURCES.txt
+temp_brijesh_consul.egg-info/dependency_links.txt
+temp_brijesh_consul.egg-info/requires.txt
+temp_brijesh_consul.egg-info/top_level.txt
