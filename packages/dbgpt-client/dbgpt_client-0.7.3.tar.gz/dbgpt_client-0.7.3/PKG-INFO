@@ -1,0 +1,22 @@
+Metadata-Version: 2.4
+Name: dbgpt-client
+Version: 0.7.3
+Summary: Add your description here
+Project-URL: Homepage, https://github.com/eosphoros-ai/DB-GPT
+Project-URL: Documentation, http://docs.dbgpt.cn/docs/overview
+Project-URL: Repository, https://github.com/eosphoros-ai/DB-GPT.git
+Project-URL: Issues, https://github.com/eosphoros-ai/DB-GPT/issues
+Author-email: csunny <cfqcsunny@gmail.com>
+License-Expression: MIT
+Requires-Python: >=3.10
+Requires-Dist: cloudpickle
+Requires-Dist: dbgpt-ext
+Requires-Dist: dbgpt[cli,client]
+Requires-Dist: msgpack
+Requires-Dist: shortuuid
+Requires-Dist: sqlalchemy<2.0.29,>=2.0.25
+Description-Content-Type: text/markdown
+
+# dbgpt-client
+
+Describe your project here.
