@@ -1,0 +1,82 @@
+# terraformreviewer: AI-Powered Terraform Documentation and Comment Generator
+
+`terraformreviewer` is a command-line tool that uses Anthropic’s Claude AI to automatically generate production-ready documentation (`README.md`) and add clear, helpful inline comments to your Terraform (`.tf`) files. This makes your infrastructure-as-code projects easier to understand, maintain, and onboard new team members.
+
+---
+
+## Features
+
+- **Automatic README Generation:** Produces a comprehensive, human-readable `README.md` for your Terraform project.
+- **Inline Comments:** Adds concise, informative comments to all `.tf` files, explaining resources, blocks, and configuration.
+- **Powered by Claude AI:** Leverages Anthropic’s Claude for high-quality, context-aware documentation and code explanations.
+
+---
+
+## Installation
+
+Install the tool directly from PyPI:
+
+```bash
+pip install terraformreviewer
+```
+
+Or, if you want the latest development version:
+
+```bash
+git clone https://github.com/Zayan-ahmed953/Terraform_Reviewer_AI_Tool.git
+cd Terraform_AI_Reviewer
+pip install -e .
+```
+
+---
+
+## Setup
+
+Before using the tool, you must set your Anthropic API key as an environment variable:
+
+```bash
+export ANTHROPIC_API_KEY=<your valueapi key>
+```
+
+You can obtain an API key from [Anthropic](https://docs.anthropic.com/claude/docs/quickstart-guide).
+
+---
+
+## Usage
+
+Run the tool from your terminal, pointing it to your Terraform project directory:
+
+```bash
+terraformreviewer /path/to/your/terraform/project
+```
+
+This will:
+- Generate a `README.md` describing your infrastructure.
+- Add helpful inline comments to all `.tf` files in the project.
+
+**Example:**
+
+```bash
+terraformreviewer /home/zayan/Desktop/My-Projects/AI-Generated-sample-terraform/
+```
+
+---
+
+## Notes
+
+- If you rerun the tool without changing your Terraform files, it will skip regeneration for efficiency.
+- Ensure your API key is valid and you have internet access.
+
+---
+
+## Troubleshooting
+
+- **No .tf files found:** Make sure you provide the path to a directory containing Terraform files.
+- **API key error:** Double-check that `ANTHROPIC_API_KEY` is set in your environment.
+- **Other errors:** Please open an issue with the error message and steps to reproduce.
+
+---
+
+## License
+
+MIT 
