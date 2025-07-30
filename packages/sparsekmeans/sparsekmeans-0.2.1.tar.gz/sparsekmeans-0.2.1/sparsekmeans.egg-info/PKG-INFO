@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: sparsekmeans
+Version: 0.2.1
+Summary: A package for efficient implementation of the K-means clustering on high-dimensional sparse data sets
+Home-page: https://github.com/cjlin1/sparsekmeans
+Author: Chih-Jen Lin, He-Zhe Lin, Khoi Nguyen Pham Dang
+Author-email: cjlin@csie.ntu.edu.tw
+License: MIT
+Requires-Python: >=3.10
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: python-graphblas
+Requires-Dist: scipy
+
+See documentation here: https://github.com/cjlin1/sparsekmeans

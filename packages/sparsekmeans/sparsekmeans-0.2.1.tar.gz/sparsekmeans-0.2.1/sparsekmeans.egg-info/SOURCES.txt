@@ -1,0 +1,10 @@
+LICENSE
+README.md
+setup.py
+sparsekmeans/__init__.py
+sparsekmeans/sparse_kmeans.py
+sparsekmeans.egg-info/PKG-INFO
+sparsekmeans.egg-info/SOURCES.txt
+sparsekmeans.egg-info/dependency_links.txt
+sparsekmeans.egg-info/requires.txt
+sparsekmeans.egg-info/top_level.txt
