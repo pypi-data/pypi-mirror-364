@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: ksei-mcp
+Version: 1.0.0
+Summary: MCP server for KSEI API access
+Requires-Dist: mcp>=0.9.0
+Requires-Dist: requests
+Requires-Dist: PyJWT
+Requires-Dist: fake-useragent
+Requires-Dist: python-dotenv
