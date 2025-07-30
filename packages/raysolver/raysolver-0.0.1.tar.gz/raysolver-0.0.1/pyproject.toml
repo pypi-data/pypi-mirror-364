@@ -1,0 +1,25 @@
+[project]
+name = "raysolver"
+version = "0.0.1"
+description = "RaySolver: open-source tools for ray tracing and optical analysis."
+authors = [{ name = "John Capone", email = "jicapone.optics@gmail.com" }]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "numpy",
+    "matplotlib",
+    "scipy",
+    "cupy"
+]
+
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
