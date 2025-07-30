@@ -1,0 +1,14 @@
+tifuun_sensitivity/__init__.py,sha256=EaLttqS3vOnGHmijztHblzLhj3WXImPJnrhmZCop9jA,579
+tifuun_sensitivity/atmosphere.py,sha256=yZXBHWsbB77e7EEh5WRTPc80yRUW6Qu8oZvqeHBonZQ,1317
+tifuun_sensitivity/cascade.py,sha256=qvBNI9XCu-UBSfOzbI3fqGF_7yGu7syw2UiB0PoLb40,6334
+tifuun_sensitivity/data/DESHIMA2.py,sha256=gzeQFmJYzTOmnj-axdBkDhxCZKJ9GtLXN0-rAfAIlnI,2774
+tifuun_sensitivity/data/QOfilterstack.npy,sha256=fQB-WRmHx2q58AeKb01O1bElcHDCg-ZzlzTDjDP_TTQ,3170944
+tifuun_sensitivity/data/atm.csv,sha256=kWcJQzWJyXSRS1fnYeHUqRRk4RDnWPlMJc3IaVcftnI,632957
+tifuun_sensitivity/filterbank.py,sha256=x0zCZUrHOeqM866IryfGAQNcPu7R3WbxKsXNrNB8thM,2059
+tifuun_sensitivity/instruments.py,sha256=VmXzLtk8B0yuRfqZckhrSfxl031Uo667iYkLSkVDgP0,4279
+tifuun_sensitivity/physics.py,sha256=nVuXBqk0eqWu9Qcotqracpen3iLDe30zmWXX92-yR-A,2682
+tifuun_sensitivity/simulator.py,sha256=gFji09gIAyMRyuHYFHzMiOCel3NdnYg3ARpmeDwxsGU,12833
+tifuun_sensitivity-0.1.3.dist-info/LICENSE,sha256=FeCpF7SXwG2uTUr280uAnTdkyREVnKsRzfiPkuLjAKk,1068
+tifuun_sensitivity-0.1.3.dist-info/METADATA,sha256=rA82JjauQJ50Dy1ydMv_ovdNdS2mLQDrgMaHwbZ6oUE,1499
+tifuun_sensitivity-0.1.3.dist-info/WHEEL,sha256=b4K_helf-jlQoXBBETfwnf4B04YC67LOev0jo4fX5m8,88
+tifuun_sensitivity-0.1.3.dist-info/RECORD,,
