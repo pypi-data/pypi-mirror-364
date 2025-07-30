@@ -1,0 +1,73 @@
+[project]
+name = "pydatagovgr"
+version = "1.0.1"
+description = "A Pythonic client for the official https://data.gov.gr API."
+authors = [
+    {name = "ilias-ant", email = "ilias.antonopoulos@yahoo.gr"}
+]
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.9,<3.13"
+keywords = ["client", "pip", "govgr", "open-data"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Science/Research",
+    "Natural Language :: English",
+    "Natural Language :: Greek",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Programming Language :: Python :: 3 :: Only",
+]
+dependencies = [
+    "requests>=2.32.4,<3.0.0",
+]
+
+[project.urls]
+Homepage = "https://pypi.org/project/pydatagovgr"
+Documentation = "https://pydatagovgr.readthedocs.io"
+Repository = "https://github.com/ilias-ant/pydatagovgr"
+"Bug Tracker" = "https://github.com/ilias-ant/pydatagovgr/issues"
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.3.0"
+isort = "^5.13.0"
+pytest = "^7.4.0"
+pytest-cov = "^4.1.0"
+responses = "^0.24.0"
+mkdocs = "^1.5.0"
+mkdocs-material = "^9.5.0"
+mkdocstrings = {version = "^0.24.0", extras = ["python"]}
+
+[tool.black]
+line-length = 88
+skip-string-normalization = true
+target-version = ['py39', 'py310', 'py311', 'py312']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | \.pytest_cache
+  | \.test_coverage
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+
+[tool.pytest.ini_options]
+filterwarnings = []  # https://docs.pytest.org/en/stable/warnings.html
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
