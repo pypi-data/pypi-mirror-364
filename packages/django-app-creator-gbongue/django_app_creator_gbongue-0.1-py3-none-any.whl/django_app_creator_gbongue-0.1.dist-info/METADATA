@@ -1,0 +1,17 @@
+Metadata-Version: 2.4
+Name: django-app-creator-gbongue
+Version: 0.1
+Summary: Package pour créer une app Django réutilisable rapidement.
+Author: GBONGUÉ DAVID
+Author-email: davidmade92@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: Framework :: Django
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: license-file
+Dynamic: requires-python
+Dynamic: summary

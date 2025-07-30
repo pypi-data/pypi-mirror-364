@@ -1,0 +1,16 @@
+MaNouvelleApp/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+MaNouvelleApp/admin.py,sha256=2h43pTXd3NKV8-_fkUEkzkS4zqih0qBLE8q6Yj7fpEg,33
+MaNouvelleApp/apps.py,sha256=rLTEVTU2c8OedB_ue2dqfotZbDIUuUsGJmVo2GiZRKM,100
+MaNouvelleApp/models.py,sha256=yhjwPd0WMcoVSq9gg3pllug_oWOi5HUYLgEQv63ZsqA,29
+MaNouvelleApp/tests.py,sha256=PSZUTXteVS5Fim2upOndb1HW5Pu7DoC1r25-7_1i-so,33
+MaNouvelleApp/views.py,sha256=6jvbgABlBR8c5h1RUbpJVxCjr1Losw-l39cZ8z94M9c,36
+creator/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+creator/__main__.py,sha256=C8WllSe2jNdNfbiwNMWUHtXRnv1OQhduUFEE5Cs2u8E,73
+creator/create_app.py,sha256=8uejZ9KDpq3cuP_SRjoM60no3pb5S4uoCmB-uw7GrH8,1116
+creator/creator.py,sha256=lhT4AmE9l9CyxVk5OYT-XFqW8xuPrO9Jvi8YC2XYE7s,998
+django_app_creator_gbongue-0.1.dist-info/licenses/LICENSE,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_app_creator_gbongue-0.1.dist-info/METADATA,sha256=_QW6dWFvSc25m84PM6PW4u0rJu31mJiXxR8g7n4fo3o,491
+django_app_creator_gbongue-0.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+django_app_creator_gbongue-0.1.dist-info/entry_points.txt,sha256=mabRho5y87k-t2PZ0injIhQt5hdXCeWNaH7i2ldMWKI,60
+django_app_creator_gbongue-0.1.dist-info/top_level.txt,sha256=Kt5Q7QttN5zGnE-Kus6DE_Xb_PCERCFn3O6gWJAXD1k,22
+django_app_creator_gbongue-0.1.dist-info/RECORD,,
