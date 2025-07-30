@@ -1,0 +1,11 @@
+LICENSE
+README.md
+setup.py
+funcbox/__init__.py
+funcbox/dijkstra.py
+funcbox/misc.py
+funcbox/sieve_of_eratosthenes.py
+funcbox.egg-info/PKG-INFO
+funcbox.egg-info/SOURCES.txt
+funcbox.egg-info/dependency_links.txt
+funcbox.egg-info/top_level.txt
