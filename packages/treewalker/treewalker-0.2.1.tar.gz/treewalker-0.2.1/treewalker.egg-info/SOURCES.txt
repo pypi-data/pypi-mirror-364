@@ -1,0 +1,15 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+test/test_treewalker.py
+treewalker/__init__.py
+treewalker/_nice_size.py
+treewalker/_version.py
+treewalker/treewalker.py
+treewalker.egg-info/PKG-INFO
+treewalker.egg-info/SOURCES.txt
+treewalker.egg-info/dependency_links.txt
+treewalker.egg-info/entry_points.txt
+treewalker.egg-info/requires.txt
+treewalker.egg-info/top_level.txt

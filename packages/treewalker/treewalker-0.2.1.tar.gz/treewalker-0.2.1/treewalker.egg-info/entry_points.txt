@@ -1,0 +1,2 @@
+[console_scripts]
+treewalker = treewalker.treewalker:cli_entry_point
