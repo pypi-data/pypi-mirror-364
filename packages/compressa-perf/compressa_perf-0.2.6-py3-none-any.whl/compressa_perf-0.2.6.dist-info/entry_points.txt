@@ -1,0 +1,3 @@
+[console_scripts]
+compressa-perf=compressa.perf.cli.__main__:main
+
