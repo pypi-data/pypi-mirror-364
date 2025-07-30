@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling>=1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "gregex"
+dynamic = ["version"]
+description = "gregex"
+readme = "README.md"
+authors = [
+    {name = "Jiau Zhang", email = "jiauzhang@163.com"},
+]
+license = {file = "LICENSE"}
+classifiers = []
+keywords = []
+requires-python = ">=3.8"
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/jiauzhang/gregex"
+
+[tool.hatch.version]
+path = "gregex/version.py"
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+    "/.github",
+    "/tests",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["gregex"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.4",
+]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-ra -q"
+testpaths = ["tests"]
