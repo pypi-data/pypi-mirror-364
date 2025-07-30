@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+src/surface_fitter/__init__.py
+src/surface_fitter/fit_poly_3d.py
+src/surface_fitter/main.py
+src/surface_fitter/plot_scatter_3d.py
+src/surface_fitter/surface_generator.py
+src/surface_fitter.egg-info/PKG-INFO
+src/surface_fitter.egg-info/SOURCES.txt
+src/surface_fitter.egg-info/dependency_links.txt
+src/surface_fitter.egg-info/top_level.txt
