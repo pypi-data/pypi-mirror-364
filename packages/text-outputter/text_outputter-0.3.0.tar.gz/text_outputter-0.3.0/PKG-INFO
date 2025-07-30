@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: text_outputter
+Version: 0.3.0
+Summary: 一个简单的命令行文本输出工具
+Author: Your Name
+Author-email: your_email@example.com
+Keywords: text,output,cli,tool
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# text_outputter
+
+一个简单的命令行工具，运行后输出预设文本。
+
+## 安装
+
+```bash
+pip install .
+
