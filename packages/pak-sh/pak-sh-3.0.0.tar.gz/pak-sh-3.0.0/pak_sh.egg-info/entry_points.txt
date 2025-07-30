@@ -1,0 +1,3 @@
+[console_scripts]
+pak = pak_sh:main
+pak-sh = pak_sh:main
