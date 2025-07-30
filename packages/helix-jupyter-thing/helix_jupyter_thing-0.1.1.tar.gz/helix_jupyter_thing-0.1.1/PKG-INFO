@@ -1,0 +1,55 @@
+Metadata-Version: 2.4
+Name: helix-jupyter-thing
+Version: 0.1.1
+Summary: A thing to help the Helix text editor connect to a Jupyter kernel.
+Project-URL: Documentation, https://github.com/asungy/helix-jupyter-thing#readme
+Project-URL: Issues, https://github.com/asungy/helix-jupyter-thing/issues
+Project-URL: Source, https://github.com/asungy/helix-jupyter-thing
+Author-email: asungy <62207329+asungy@users.noreply.github.com>
+License-Expression: MIT
+License-File: LICENSE.txt
+Keywords: helix,jupyter
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.8
+Requires-Dist: click
+Requires-Dist: jupyter-client
+Provides-Extra: deploy
+Requires-Dist: build; extra == 'deploy'
+Requires-Dist: twine; extra == 'deploy'
+Provides-Extra: dev
+Requires-Dist: black; extra == 'dev'
+Requires-Dist: jupyter; extra == 'dev'
+Requires-Dist: python-lsp-server; extra == 'dev'
+Description-Content-Type: text/markdown
+
+# Helix Jupyter Thing
+
+[![PyPI - Version](https://img.shields.io/pypi/v/helix-jupyter-thing.svg)](https://pypi.org/project/helix-jupyter-thing)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/helix-jupyter-thing.svg)](https://pypi.org/project/helix-jupyter-thing)
+
+A thing to help the Helix text editor connect to a Jupyter kernel.
+
+-----
+
+## Table of Contents
+
+- [Installation](#installation)
+- [License](#license)
+
+## Installation
+
+```console
+pip install helix-jupyter-thing
+```
+
+## License
+
+`helix-jupyter-thing` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
