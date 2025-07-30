@@ -1,0 +1,81 @@
+{
+  "sessionId": "session-1753211745508-yuylk957g",
+  "checkpointId": "checkpoint-1753211775510-5ko9qfsjo",
+  "checkpointName": "auto-save-1753211775510",
+  "timestamp": "2025-07-22T19:16:15.512Z",
+  "data": {
+    "timestamp": "2025-07-22T19:16:15.510Z",
+    "changeCount": 5,
+    "changesByType": {
+      "swarm_created": [
+        {
+          "type": "swarm_created",
+          "data": {
+            "swarmId": "swarm-1753211745507-tvcxpfu8l",
+            "swarmName": "hive-1753211745504",
+            "objective": "create a cli that uses the installed aceiot-models to interact with the api at flightdeck.aceiot.cloud/api/ and include test all the serdes in the codebase",
+            "workerCount": 8
+          },
+          "timestamp": "2025-07-22T19:15:45.509Z"
+        }
+      ],
+      "agent_activity": [
+        {
+          "type": "agent_activity",
+          "data": {
+            "agentId": "worker-swarm-1753211745507-tvcxpfu8l-0",
+            "activity": "spawned",
+            "data": {
+              "type": "researcher",
+              "name": "Researcher Worker 1"
+            }
+          },
+          "timestamp": "2025-07-22T19:15:45.510Z"
+        },
+        {
+          "type": "agent_activity",
+          "data": {
+            "agentId": "worker-swarm-1753211745507-tvcxpfu8l-1",
+            "activity": "spawned",
+            "data": {
+              "type": "coder",
+              "name": "Coder Worker 2"
+            }
+          },
+          "timestamp": "2025-07-22T19:15:45.511Z"
+        },
+        {
+          "type": "agent_activity",
+          "data": {
+            "agentId": "worker-swarm-1753211745507-tvcxpfu8l-2",
+            "activity": "spawned",
+            "data": {
+              "type": "analyst",
+              "name": "Analyst Worker 3"
+            }
+          },
+          "timestamp": "2025-07-22T19:15:45.511Z"
+        },
+        {
+          "type": "agent_activity",
+          "data": {
+            "agentId": "worker-swarm-1753211745507-tvcxpfu8l-3",
+            "activity": "spawned",
+            "data": {
+              "type": "tester",
+              "name": "Tester Worker 4"
+            }
+          },
+          "timestamp": "2025-07-22T19:15:45.511Z"
+        }
+      ]
+    },
+    "statistics": {
+      "tasksProcessed": 0,
+      "tasksCompleted": 0,
+      "memoryUpdates": 0,
+      "agentActivities": 4,
+      "consensusDecisions": 0
+    }
+  }
+}
