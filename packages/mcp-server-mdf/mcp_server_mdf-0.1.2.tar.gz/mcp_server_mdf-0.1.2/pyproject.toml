@@ -1,0 +1,52 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mcp-server-mdf"
+version = "0.1.2" 
+description = "MCP Server for ASAM MDF file analysis"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Shanko", email = "shanko_26@yahoo.co.in"}
+]
+keywords = ["mcp", "mdf", "automotive", "data-analysis", "model-context-protocol"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+dependencies = [
+    "mcp[cli]>=1.4.0",
+    "asammdf>=8.0.0",
+    "numpy>=1.24.0",
+    "pandas>=2.0.0",
+    "matplotlib>=3.6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=22.0.0",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+mcp-server-mdf = "mdfmcp.server:main"
+
+[project.urls]
+Homepage = "https://github.com/Shanko-26"
+Repository = "https://github.com/Shanko-26/mdfmcp"
+Issues = "https://github.com/Shanko-26/mdfmcp/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mdfmcp"]
