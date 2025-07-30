@@ -1,0 +1,9 @@
+[console_scripts]
+wikibackup = wikibot3rd.wikipush:mainBackup
+wikiedit = wikibot3rd.wikipush:mainEdit
+wikinuke = wikibot3rd.wikipush:mainNuke
+wikipush = wikibot3rd.wikipush:mainPush
+wikiquery = wikibot3rd.wikipush:mainQuery
+wikirestore = wikibot3rd.wikipush:mainRestore
+wikiupload = wikibot3rd.wikipush:mainUpload
+wikiuser = wikibot3rd.wikiuser_cmd:main
