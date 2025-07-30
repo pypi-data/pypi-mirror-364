@@ -1,0 +1,15 @@
+login_activity/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+login_activity/admin.py,sha256=ZfxK-q1BquAjsj_lCYKEjuooDhXGWwo4ICITsgxFu_I,311
+login_activity/apps.py,sha256=gVjfMc1wONS5P9XGEoUKdVr84XBdRnkTqpGYCh1uyLE,243
+login_activity/cli.py,sha256=h-pW3y94-iC8nR-5tW8P_oEBMgzTyU9v-NtTYeV2MPk,565
+login_activity/models.py,sha256=kxSrXjiyTKv_Db9SeUn5srkbfzdbuOhk061DAchlTMQ,461
+login_activity/signals.py,sha256=CEN3avLxDd5B11vDjGhH-UGluzMnII00Rt7Mm_MwNy8,667
+login_activity/tests.py,sha256=mrbGGRNg5jwbTJtWWa7zSKdDyeB4vmgZCRc2nk6VY-g,60
+login_activity/urls.py,sha256=CaHV5njhBF69V8Bgyti7lgwnRqB9318GBviapMOLgfk,172
+login_activity/views.py,sha256=jxo1HevFLMO67PfDcqfzjXeztbUYtFbGq97iQtlmHbY,312
+login_activity/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_login_activity-0.0.3.dist-info/METADATA,sha256=BB1Gd_R62q6AosX3zn5r_tCk9MkN580V_bZljmrp-8c,1012
+django_login_activity-0.0.3.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+django_login_activity-0.0.3.dist-info/entry_points.txt,sha256=vp8-E2UPIe4NA54TkVJhGVgg81Fy2ND12Et99g5zOmQ,59
+django_login_activity-0.0.3.dist-info/top_level.txt,sha256=QB4eXargMyTCtKnzgtYfpn9WlABkdZkCXcieFGSuPE0,15
+django_login_activity-0.0.3.dist-info/RECORD,,
