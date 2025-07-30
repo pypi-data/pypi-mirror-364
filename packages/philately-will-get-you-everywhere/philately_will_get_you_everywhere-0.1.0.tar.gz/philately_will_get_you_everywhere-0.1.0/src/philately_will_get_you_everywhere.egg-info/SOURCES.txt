@@ -1,0 +1,17 @@
+LICENSE
+README.md
+pyproject.toml
+src/philately/__init__.py
+src/philately/analyze_collection.py
+src/philately/llm_caller.py
+src/philately/main.py
+src/philately/philately_objects.py
+src/philately/philately_ui.py
+src/philately/processor_v2.py
+src/philately_will_get_you_everywhere.egg-info/PKG-INFO
+src/philately_will_get_you_everywhere.egg-info/SOURCES.txt
+src/philately_will_get_you_everywhere.egg-info/dependency_links.txt
+src/philately_will_get_you_everywhere.egg-info/entry_points.txt
+src/philately_will_get_you_everywhere.egg-info/requires.txt
+src/philately_will_get_you_everywhere.egg-info/top_level.txt
+tests/test_install.py
