@@ -1,0 +1,31 @@
+{
+    "name" : "woid_fetch",
+    "label": "Fetch WOID collection",
+
+    "dag": {
+        "nodes": {
+            "extract"  : "fetch.extract.wo.Designs",
+            "img"      : "fetch.common.DownloadIMG",
+            "organize" : "fetch.common.Organize"
+        },
+        "edges": [
+            {
+                "from"     : "extract",
+                "to"       : "img",
+                "bindings" : { "img.manifest" : "extract.manifest"}
+            },
+            {
+                "from"     : "img",
+                "to"       : "organize",
+                "bindings" : { "organize.manifest"  : "img.manifest" }
+            }
+        ]
+    },
+    "config" : {
+	    "steps": {
+            "extract": {
+                "file_ext": ".st96.xml"
+            }
+        }
+    }
+}
