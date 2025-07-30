@@ -1,0 +1,11 @@
+prefix=${pcfiledir}
+includedir=${prefix}/include
+libdir=${prefix}/lib
+pkgconf_pypi_initpy=native.datalog._init_robotpy_native_datalog
+
+Name: datalog
+Description: WPILib Utility Library
+Version: 2027.0.0a2
+Requires: robotpy-native-wpiutil
+Libs: -L${libdir} -ldatalog
+Cflags: -I${includedir}
