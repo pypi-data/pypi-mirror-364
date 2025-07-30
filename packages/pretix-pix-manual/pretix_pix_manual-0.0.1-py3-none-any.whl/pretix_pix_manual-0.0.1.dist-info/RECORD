@@ -1,0 +1,15 @@
+pretix_pix_manual/__init__.py,sha256=sXLh7g3KC4QCFxcZGBTpG2scR7hmmBsMjq6LqRptkRg,22
+pretix_pix_manual/apps.py,sha256=oCiULs15X8GZghcZbRu4F1afCkpffRTaYGihyDSqRgI,804
+pretix_pix_manual/payment.py,sha256=5J0T2ke6TkehR8hXbLWz57G0KnslSn5sKLIjS-03yGY,5793
+pretix_pix_manual/signals.py,sha256=5_amENUn7a6VGvV15DjpJ6m9aqMNxqZlm66IwuhhW8A,276
+pretix_pix_manual/locale/pt_BR/LC_MESSAGES/django.mo,sha256=wnzwmA2uBzGXiFDZcjkIl3Uyf5NH2b13OF3AvkCuJyQ,4467
+pretix_pix_manual/locale/pt_BR/LC_MESSAGES/django.po,sha256=3wwL0kJutq7MqztIL5Ms9C52BwJeC-a4Lnmf2Qkq18Q,5800
+pretix_pix_manual/static/pretix_pix_manual/.gitkeep,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+pretix_pix_manual/templates/pretix_pix_manual/checkout_confirm.html,sha256=o9nGV2y5gwRgpfyJo-VZ9gbY8dPx1S2hzRixFltnYLc,204
+pretix_pix_manual/templates/pretix_pix_manual/payment_pending.html,sha256=lcRMy_hre9RA48sela9t-T_VKpdlfBGznXBuwgoM4Dg,1095
+pretix_pix_manual-0.0.1.dist-info/licenses/LICENSE,sha256=DZak_2itbUtvHzD3E7GNUYSRK6jdOJ-GqncQ2weavLA,34523
+pretix_pix_manual-0.0.1.dist-info/METADATA,sha256=pGsJ0OZL7O_2VLI7cNgkSW5B0YT4QCNrr1s_wIq4xUU,2023
+pretix_pix_manual-0.0.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+pretix_pix_manual-0.0.1.dist-info/entry_points.txt,sha256=F7Y2qetwmEeJdlP4XHVsB8cXd_a5H9Z4HJ7xUXJEgAg,139
+pretix_pix_manual-0.0.1.dist-info/top_level.txt,sha256=vE3RK8OE-3V6kL2ERDaTzlwwVmRyJjrMoov5JNhqErQ,18
+pretix_pix_manual-0.0.1.dist-info/RECORD,,
