@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: autotab-ai
+Version: 0.0.5
+Summary: Autotab API
+Home-page: 
+Author: Planetary Computers
+Author-email: support@autotab.com
+Keywords: OpenAPI,OpenAPI-Generator,Autotab API
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: urllib3 <3.0.0,>=1.25.3
+Requires-Dist: python-dateutil >=2.8.2
+Requires-Dist: aiohttp >=3.8.4
+Requires-Dist: aiohttp-retry >=2.8.3
+Requires-Dist: pydantic >=2
+Requires-Dist: typing-extensions >=4.7.1
+
+    AI that does your repetitive work end to end, with superhuman reliability.
+    
