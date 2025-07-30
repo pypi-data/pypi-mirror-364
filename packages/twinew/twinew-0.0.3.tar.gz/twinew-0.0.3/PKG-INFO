@@ -1,0 +1,19 @@
+Metadata-Version: 2.4
+Name: twinew
+Version: 0.0.3
+Summary: Library allowing for endurance macro software to be configured and created.
+Author: WilsonSTW
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pyautogui
+Requires-Dist: time
+Requires-Dist: os
+Dynamic: license-file
+
+TwineW Macro v0.0.3 by WilsonSTW
+
+Open source endurance macro used for Fortnite: Save the World.
