@@ -1,0 +1,2 @@
+[console_scripts]
+iso20022-toolbox = swift_iso20022_toolbox.iso20022_toolbox:main

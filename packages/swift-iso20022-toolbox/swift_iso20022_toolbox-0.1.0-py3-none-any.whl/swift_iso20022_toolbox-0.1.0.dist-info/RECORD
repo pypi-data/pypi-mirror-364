@@ -1,0 +1,11 @@
+swift_iso20022_toolbox/__init__.py,sha256=CM-H948tURumsbDfB73NrJzSy4kJBx8gBUXVMxMI9RU,124
+swift_iso20022_toolbox/aggregate_metadata.py,sha256=RQf7uVFbTnlFyjBxKqcJQ0DWp8DsQtDeRUO4PIdVqpo,7772
+swift_iso20022_toolbox/extract_xsd_versions.py,sha256=e6n9C1agy3Y1fqjfAfI5QWTW-l25uY-kN69i8S4zT9o,4295
+swift_iso20022_toolbox/iso20022_toolbox.py,sha256=muFCyCkyLtTtdDc7fF7hHmg7Wfm2ZT_Ho6gkVy7pkKs,11790
+swift_iso20022_toolbox/xml_to_xpath.py,sha256=4LIDF6MZUtejlJ_3W7W3hyqF_ESx8qn8O8z0i7fuEx0,11000
+swift_iso20022_toolbox/xml_to_xpath_v2.py,sha256=NBNzVjx_6Uk83StPyWLRj5hX3RtmMgu5NIGCTfckWwM,9981
+swift_iso20022_toolbox-0.1.0.dist-info/METADATA,sha256=Cn15OmMJv4SmIYYenxkJFsdd0SMPXs8KXeyEeivGp-8,4091
+swift_iso20022_toolbox-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+swift_iso20022_toolbox-0.1.0.dist-info/entry_points.txt,sha256=_KyzYxx-27WIVsxicQVKe5FRBl8U2pYIS3sH9ffzR-k,82
+swift_iso20022_toolbox-0.1.0.dist-info/top_level.txt,sha256=Q-9fOCrLfsDSm4dCXUgbmc5r4FSe093ah3mFxBjMR6A,23
+swift_iso20022_toolbox-0.1.0.dist-info/RECORD,,
