@@ -1,0 +1,3 @@
+[console_scripts]
+customapp = django_custom_app_creator.cli:main
+
