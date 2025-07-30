@@ -1,0 +1,9 @@
+accelerate
+transformers
+torch
+numpy
+tqdm
+requests
+flask
+mcp[cli]>=1.2.0
+fastmcp>=2.10.6
