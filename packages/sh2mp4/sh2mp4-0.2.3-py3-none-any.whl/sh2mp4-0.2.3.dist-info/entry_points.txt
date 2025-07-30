@@ -1,0 +1,4 @@
+[console_scripts]
+cast2mp4=sh2mp4.cast2mp4:main
+sh2mp4=sh2mp4.__main__:main
+
