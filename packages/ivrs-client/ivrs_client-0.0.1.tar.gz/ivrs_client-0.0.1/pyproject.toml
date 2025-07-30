@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ivrs-client"
+version = "0.0.1"
+authors = [
+  { name="ZhihaoZhong", email="3230105732@zju.edu.cn" },
+]
+description = "智能语音应答系统客户端"
+readme = "README.md"
+requires-python = ">=3.7"
+keywords = ["Intelligent Voice Response System", "ASR", "TTS", "LLM", "IVRS"]
+license = { file="LICENSE" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "getmac",
+    "loguru",
+    "numpy",
+    "PyAudio",
+    "pydub",
+    "Requests",
+    "tqdm"
+]
