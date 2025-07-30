@@ -1,0 +1,11 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+./accessible_palatte.py
+./cm_colors.py
+./helper.py
+cm_colors.egg-info/PKG-INFO
+cm_colors.egg-info/SOURCES.txt
+cm_colors.egg-info/dependency_links.txt
+cm_colors.egg-info/top_level.txt
