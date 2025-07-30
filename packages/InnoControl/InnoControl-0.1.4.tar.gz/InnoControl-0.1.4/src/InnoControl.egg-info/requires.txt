@@ -1,0 +1,8 @@
+control>=0.9
+gymnasium>=0.28
+matplotlib>=3.7
+mujoco>=3.3
+numpy>=1.22
+pyserial>=3.5
+scipy>=1.10
+torch>=2.0
