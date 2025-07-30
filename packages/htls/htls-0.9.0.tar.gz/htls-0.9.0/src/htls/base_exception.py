@@ -1,0 +1,2 @@
+class TLSClientException(Exception):
+    pass
