@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: web_show
+Version: 0.1.0
+Summary: Un package Django simple qui affiche une page HTML
+Author: Ton Nom
+Classifier: Framework :: Django
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Dynamic: author
+Dynamic: classifier
+Dynamic: summary
