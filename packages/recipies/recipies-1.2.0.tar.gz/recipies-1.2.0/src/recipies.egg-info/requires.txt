@@ -1,0 +1,7 @@
+pandas>=2.3.0
+polars[all]>=1.21.0
+scikit-learn>=1.5.2
+
+[dev]
+pytest>=7.0
+ruff>=0.1.0
