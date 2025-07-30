@@ -1,0 +1,66 @@
+Metadata-Version: 2.4
+Name: rexplain
+Version: 0.2.0
+Summary: Explain, test, and generate examples for regular expressions
+Project-URL: Repository, https://github.com/devbm7/rexplain
+Author-email: Dev Makwana <devmakwana7704@gmail.com>
+License: MIT
+License-File: LICENSE.md
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+
+# rexplain
+
+Explain, test, and generate examples for regular expressions.
+
+## Installation
+
+```bash
+pip install rexplain
+```
+
+## Usage
+
+### CLI
+
+Explain a regex pattern:
+
+```bash
+rexplain explain "^\d{3}-\d{2}-\d{4}$"
+```
+
+Generate example strings:
+
+```bash
+rexplain examples "[A-Za-z]{5}" --count 3
+```
+
+Test if a string matches a pattern:
+
+```bash
+rexplain test "^hello.*" "hello world!"
+```
+
+### Python API
+
+```python
+from rexplain import explain, examples, test
+
+print(explain(r"\d+"))
+print(examples(r"[A-Z]{2}\d{2}", count=2))
+print(test(r"foo.*", "foobar"))
+```
+
+## License
+
+MIT
