@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "readerDAS"
+version = "1.1.5"
+description = "Package to load files saved by Cohaerentia DAS Interrogator."
+authors = ["Marco Brunero <marco.brunero@cohaerentia.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+numpy = "^2.1.2"
+h5py = "^3.12.1"
+tzlocal = "^5.2"
+tqdm = "^4.67.0"
+scipy = "^1.15.2"
+packaging = "^25.0"
+plotly = "^6.2.0"
+
+
+[tool.poetry.group.extra.dependencies]
+scikit-image = "^0.24.0"
+ipykernel = "^6.29.5"
+nbformat = "^5.10.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
