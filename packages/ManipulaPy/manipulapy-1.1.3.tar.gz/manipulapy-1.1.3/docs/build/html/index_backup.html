@@ -1,0 +1,246 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="ManipulaPy Documentation" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://manipulapy.readthedocs.io/index_backup.html" />
+<meta property="og:site_name" content="ManipulaPy Documentation" />
+<meta property="og:description" content="Python Version Version ManipulaPy is a comprehensive Python library for robotic manipulator analysis, simulation, and control. Features: Kinematics: Forward and inverse kinematics for serial manipu..." />
+<meta name="description" content="Python Version Version ManipulaPy is a comprehensive Python library for robotic manipulator analysis, simulation, and control. Features: Kinematics: Forward and inverse kinematics for serial manipu..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ManipulaPy Documentation &mdash; ManipulaPy 1.1.0 Documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=b4417981" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=b4417981" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=fc837d61"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=fd10adb8"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ManipulaPy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">🚀 Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started/index.html">Getting Started with ManipulaPy</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🛠️ API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">🔧 API Reference Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">📚 User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/Kinematics.html">Kinematics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/Dynamics.html">Dynamics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/Control.html">Control Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/Trajectory_Planning.html">Trajectory Planning User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/Simulation.html">Simulation Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/URDF_Processor.html">URDF Processor User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/Perception.html">Perception User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/vision.html">Vision User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/Potential_Field.html">Potential Field Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/Collision_Checker.html">Collision Checker Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/CUDA_Kernels.html">CUDA Kernels User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ManipulaPy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">ManipulaPy Documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index_backup.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="manipulapy-documentation">
+<h1>ManipulaPy Documentation<a class="headerlink" href="#manipulapy-documentation" title="Link to this heading"></a></h1>
+<a class="reference external image-reference" href="https://www.python.org/downloads/"><img alt="Python Version" src="https://img.shields.io/badge/python-3.8%2B-blue.svg" />
+</a>
+<img alt="Version" src="https://img.shields.io/badge/version-0.2.0-blue.svg" />
+<p><strong>ManipulaPy</strong> is a comprehensive Python library for robotic manipulator analysis, simulation, and control.</p>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Kinematics</strong>: Forward and inverse kinematics for serial manipulators</p></li>
+<li><p><strong>Dynamics</strong>: Mass matrix computation, inverse dynamics, forward dynamics</p></li>
+<li><p><strong>Trajectory Planning</strong>: CUDA-accelerated trajectory generation and execution</p></li>
+<li><p><strong>Computer Vision</strong>: Camera calibration, stereo vision, and object detection</p></li>
+<li><p><strong>Perception</strong>: Obstacle detection and 3D point cloud processing</p></li>
+<li><p><strong>Control</strong>: Various control algorithms including PID, computed torque, and adaptive control</p></li>
+<li><p><strong>Simulation</strong>: PyBullet integration for realistic robot simulation</p></li>
+<li><p><strong>URDF Processing</strong>: Automatic robot model generation from URDF files</p></li>
+</ul>
+</section>
+<section id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading"></a></h2>
+<section id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>manipulapy
+</pre></div>
+</div>
+</section>
+<section id="basic-usage">
+<h3>Basic Usage<a class="headerlink" href="#basic-usage" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">ManipulaPy.kinematics</span> <span class="kn">import</span> <span class="n">SerialManipulator</span>
+<span class="kn">from</span> <span class="nn">ManipulaPy.urdf_processor</span> <span class="kn">import</span> <span class="n">URDFToSerialManipulator</span>
+
+<span class="c1"># Load robot from URDF</span>
+<span class="n">processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;path/to/robot.urdf&quot;</span><span class="p">)</span>
+<span class="n">robot</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">serial_manipulator</span>
+
+<span class="c1"># Forward kinematics</span>
+<span class="n">joint_angles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">])</span>
+<span class="n">end_effector_pose</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">joint_angles</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/kinematics_guide.html">Kinematics Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/dynamics_guide.html">Dynamics Tutorial</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">🔧 API Reference Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#module-overview">📦 Module Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#how-to-use-this-reference">📖 How to Use This Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#quick-navigation">🔍 Quick Navigation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="modules-overview">
+<h2>Modules Overview<a class="headerlink" href="#modules-overview" title="Link to this heading"></a></h2>
+<section id="core-modules">
+<h3>Core Modules<a class="headerlink" href="#core-modules" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">ManipulaPy.kinematics</span></code> - Forward and inverse kinematics</p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">ManipulaPy.dynamics</span></code> - Robot dynamics computations</p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">ManipulaPy.path_planning</span></code> - Trajectory planning and execution</p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">ManipulaPy.control</span></code> - Control algorithms and implementations</p></li>
+</ul>
+</section>
+<section id="vision-and-perception">
+<h3>Vision and Perception<a class="headerlink" href="#vision-and-perception" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">ManipulaPy.vision</span></code> - Computer vision capabilities</p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">ManipulaPy.perception</span></code> - 3D perception and obstacle detection</p></li>
+</ul>
+</section>
+<section id="simulation-and-utilities">
+<h3>Simulation and Utilities<a class="headerlink" href="#simulation-and-utilities" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">ManipulaPy.sim</span></code> - PyBullet simulation interface</p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">ManipulaPy.urdf_processor</span></code> - URDF file processing</p></li>
+<li><p><a class="reference internal" href="api/utils.html#module-ManipulaPy.utils" title="ManipulaPy.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ManipulaPy.utils</span></code></a> - Utility functions and transformations</p></li>
+</ul>
+</section>
+</section>
+<section id="indices-and-tables">
+<h2>Indices and Tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Mohamed Aboelnar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

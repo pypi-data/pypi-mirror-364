@@ -1,0 +1,544 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Path Planning API Reference" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://manipulapy.readthedocs.io/api/path_planning.html" />
+<meta property="og:site_name" content="ManipulaPy Documentation" />
+<meta property="og:description" content="This page documents ManipulaPy.path_planning, the module for optimized trajectory generation with adaptive GPU/CPU execution, CUDA acceleration, and collision avoidance. Quick Navigation: Optimized..." />
+<meta name="description" content="This page documents ManipulaPy.path_planning, the module for optimized trajectory generation with adaptive GPU/CPU execution, CUDA acceleration, and collision avoidance. Quick Navigation: Optimized..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Path Planning API Reference &mdash; ManipulaPy 1.1.0 Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=fc837d61"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=fd10adb8"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Control API Reference" href="control.html" />
+    <link rel="prev" title="Dynamics API Reference" href="dynamics.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ManipulaPy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">🚀 Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started with ManipulaPy</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🛠️ API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">🔧 API Reference Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#module-overview">📦 Module Overview</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="kinematics.html">Kinematics API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dynamics.html">Dynamics API Reference</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Path Planning API Reference</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#quick-navigation">Quick Navigation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#optimizedtrajectoryplanning-class">OptimizedTrajectoryPlanning Class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trajectoryplanning-class">TrajectoryPlanning Class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utility-functions">Utility Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cpu-optimization-functions">CPU Optimization Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#usage-examples">Usage Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#key-features">Key Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#performance-characteristics">Performance Characteristics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuration-guidelines">Configuration Guidelines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="control.html">Control API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="urdf_processor.html">URDF Processor API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html">Simulation API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="potential_field.html">Potential Field API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda_kernels.html">CUDA Kernels API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="perception.html">Perception API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vision.html">Vision API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="singularity.html">Singularity API Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#how-to-use-this-reference">📖 How to Use This Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#quick-navigation">🔍 Quick Navigation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">📚 User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Kinematics.html">Kinematics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Dynamics.html">Dynamics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Control.html">Control Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Trajectory_Planning.html">Trajectory Planning User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Simulation.html">Simulation Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/URDF_Processor.html">URDF Processor User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Perception.html">Perception User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/vision.html">Vision User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Potential_Field.html">Potential Field Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Collision_Checker.html">Collision Checker Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/CUDA_Kernels.html">CUDA Kernels User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ManipulaPy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">🔧 API Reference Guide</a></li>
+      <li class="breadcrumb-item active">Path Planning API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/path_planning.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="path-planning-api-reference">
+<span id="api-path-planning"></span><h1>Path Planning API Reference<a class="headerlink" href="#path-planning-api-reference" title="Link to this heading"></a></h1>
+<p>This page documents <strong>ManipulaPy.path_planning</strong>, the module for optimized trajectory generation with adaptive GPU/CPU execution, CUDA acceleration, and collision avoidance.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>For conceptual explanations, see <a class="reference internal" href="../user_guide/Trajectory_Planning.html"><span class="doc">Trajectory Planning User Guide</span></a>.</p>
+</div>
+<section id="quick-navigation">
+<h2>Quick Navigation<a class="headerlink" href="#quick-navigation" title="Link to this heading"></a></h2>
+</section>
+<section id="optimizedtrajectoryplanning-class">
+<h2>OptimizedTrajectoryPlanning Class<a class="headerlink" href="#optimizedtrajectoryplanning-class" title="Link to this heading"></a></h2>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/path_planning.rst</span>, line 20)</p>
+<p>Title overline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">------------------------</span>
+<span class="n">OptimizedTrajectoryPlanning</span> <span class="n">Class</span>
+<span class="o">------------------------</span>
+</pre></div>
+</div>
+</aside>
+</section>
+<section id="trajectoryplanning-class">
+<h2>TrajectoryPlanning Class<a class="headerlink" href="#trajectoryplanning-class" title="Link to this heading"></a></h2>
+</section>
+<section id="utility-functions">
+<h2>Utility Functions<a class="headerlink" href="#utility-functions" title="Link to this heading"></a></h2>
+</section>
+<section id="cpu-optimization-functions">
+<h2>CPU Optimization Functions<a class="headerlink" href="#cpu-optimization-functions" title="Link to this heading"></a></h2>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/path_planning.rst</span>, line 363)</p>
+<p>Title overline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-------------------</span>
+<span class="n">CPU</span> <span class="n">Optimization</span> <span class="n">Functions</span>
+<span class="o">-------------------</span>
+</pre></div>
+</div>
+</aside>
+</section>
+<section id="usage-examples">
+<h2>Usage Examples<a class="headerlink" href="#usage-examples" title="Link to this heading"></a></h2>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/path_planning.rst</span>, line 397)</p>
+<p>Title overline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-------------</span>
+<span class="n">Usage</span> <span class="n">Examples</span>
+<span class="o">-------------</span>
+</pre></div>
+</div>
+</aside>
+<p><strong>Optimized Trajectory Planning</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ManipulaPy.path_planning</span> <span class="kn">import</span> <span class="n">OptimizedTrajectoryPlanning</span>
+<span class="kn">from</span> <span class="nn">ManipulaPy.urdf_processor</span> <span class="kn">import</span> <span class="n">URDFToSerialManipulator</span>
+
+<span class="c1"># Setup with optimization options</span>
+<span class="n">processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+<span class="n">planner</span> <span class="o">=</span> <span class="n">OptimizedTrajectoryPlanning</span><span class="p">(</span>
+    <span class="n">processor</span><span class="o">.</span><span class="n">serial_manipulator</span><span class="p">,</span>
+    <span class="s2">&quot;robot.urdf&quot;</span><span class="p">,</span>
+    <span class="n">processor</span><span class="o">.</span><span class="n">dynamics</span><span class="p">,</span>
+    <span class="n">joint_limits</span><span class="o">=</span><span class="p">[(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="n">use_cuda</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># Auto-detect</span>
+    <span class="n">cuda_threshold</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>  <span class="c1"># Use GPU for problems &gt; 100*6 = 600 elements</span>
+    <span class="n">memory_pool_size_mb</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span>  <span class="c1"># 256MB GPU memory pool</span>
+    <span class="n">enable_profiling</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1"># Generate trajectory with automatic GPU/CPU selection</span>
+<span class="n">trajectory</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span>
+    <span class="n">thetastart</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="n">thetaend</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],</span>
+    <span class="n">Tf</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span>
+    <span class="n">N</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span>  <span class="c1"># Large enough to trigger GPU</span>
+    <span class="n">method</span><span class="o">=</span><span class="mi">5</span>
+<span class="p">)</span>
+
+<span class="c1"># Check performance stats</span>
+<span class="n">stats</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">get_performance_stats</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GPU usage: </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;gpu_usage_percent&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average GPU time: </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;avg_gpu_time&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">ms&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Factory Function Usage</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ManipulaPy.path_planning</span> <span class="kn">import</span> <span class="n">create_optimized_planner</span>
+
+<span class="c1"># Create planner with auto-optimized settings</span>
+<span class="n">planner</span> <span class="o">=</span> <span class="n">create_optimized_planner</span><span class="p">(</span>
+    <span class="n">serial_manipulator</span><span class="o">=</span><span class="n">processor</span><span class="o">.</span><span class="n">serial_manipulator</span><span class="p">,</span>
+    <span class="n">urdf_path</span><span class="o">=</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">,</span>
+    <span class="n">dynamics</span><span class="o">=</span><span class="n">processor</span><span class="o">.</span><span class="n">dynamics</span><span class="p">,</span>
+    <span class="n">joint_limits</span><span class="o">=</span><span class="p">[(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="n">gpu_memory_mb</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span>
+    <span class="n">enable_profiling</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Batch Trajectory Processing</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate 10 trajectories simultaneously</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">num_joints</span> <span class="o">=</span> <span class="mi">6</span>
+
+<span class="n">starts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">num_joints</span><span class="p">))</span>
+<span class="n">ends</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">num_joints</span><span class="p">))</span>
+
+<span class="c1"># Process all trajectories in parallel on GPU</span>
+<span class="n">batch_trajectories</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">batch_joint_trajectory</span><span class="p">(</span>
+    <span class="n">thetastart_batch</span><span class="o">=</span><span class="n">starts</span><span class="p">,</span>
+    <span class="n">thetaend_batch</span><span class="o">=</span><span class="n">ends</span><span class="p">,</span>
+    <span class="n">Tf</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span>
+    <span class="n">N</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Batch shape: </span><span class="si">{</span><span class="n">batch_trajectories</span><span class="p">[</span><span class="s1">&#39;positions&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># (10, 500, 6)</span>
+</pre></div>
+</div>
+<p><strong>Performance Comparison</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ManipulaPy.path_planning</span> <span class="kn">import</span> <span class="n">compare_implementations</span>
+
+<span class="c1"># Compare CPU vs GPU performance</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">compare_implementations</span><span class="p">(</span>
+    <span class="n">serial_manipulator</span><span class="o">=</span><span class="n">processor</span><span class="o">.</span><span class="n">serial_manipulator</span><span class="p">,</span>
+    <span class="n">urdf_path</span><span class="o">=</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">,</span>
+    <span class="n">dynamics</span><span class="o">=</span><span class="n">processor</span><span class="o">.</span><span class="n">dynamics</span><span class="p">,</span>
+    <span class="n">joint_limits</span><span class="o">=</span><span class="p">[(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="n">test_params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;N&quot;</span><span class="p">:</span> <span class="mi">5000</span><span class="p">,</span> <span class="s2">&quot;Tf&quot;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span> <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CPU time: </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;cpu&#39;</span><span class="p">][</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;gpu&#39;</span><span class="p">][</span><span class="s1">&#39;available&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GPU time: </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;gpu&#39;</span><span class="p">][</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Speedup: </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;gpu&#39;</span><span class="p">][</span><span class="s1">&#39;speedup&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Max position difference: </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">][</span><span class="s1">&#39;max_pos_diff&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Advanced Dynamics Integration</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate trajectory</span>
+<span class="n">trajectory</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span>
+    <span class="n">thetastart</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="n">thetaend</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">],</span>
+    <span class="n">Tf</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span>
+    <span class="n">N</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="mi">5</span>
+<span class="p">)</span>
+
+<span class="c1"># Compute required torques with GPU acceleration</span>
+<span class="n">torques</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">inverse_dynamics_trajectory</span><span class="p">(</span>
+    <span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">],</span>
+    <span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;velocities&quot;</span><span class="p">],</span>
+    <span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;accelerations&quot;</span><span class="p">],</span>
+    <span class="n">gravity_vector</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">],</span>
+    <span class="n">Ftip</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># 10N downward force</span>
+<span class="p">)</span>
+
+<span class="c1"># Forward dynamics simulation</span>
+<span class="n">simulation</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">forward_dynamics_trajectory</span><span class="p">(</span>
+    <span class="n">thetalist</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="n">dthetalist</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="n">taumat</span><span class="o">=</span><span class="n">torques</span><span class="p">,</span>
+    <span class="n">g</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">],</span>
+    <span class="n">Ftipmat</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">6</span><span class="p">)),</span>
+    <span class="n">dt</span><span class="o">=</span><span class="mf">0.004</span><span class="p">,</span>
+    <span class="n">intRes</span><span class="o">=</span><span class="mi">5</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Performance Monitoring</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run multiple operations</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">trajectory</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span>
+        <span class="n">thetastart</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+        <span class="n">thetaend</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+        <span class="n">Tf</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span>
+        <span class="n">N</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+        <span class="n">method</span><span class="o">=</span><span class="mi">3</span>
+    <span class="p">)</span>
+
+<span class="c1"># Analyze performance</span>
+<span class="n">stats</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">get_performance_stats</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total operations: </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;gpu_calls&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;cpu_calls&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GPU efficiency: </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;gpu_usage_percent&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Memory transfers: </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;memory_transfers&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Benchmark different problem sizes</span>
+<span class="n">benchmark_results</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">benchmark_performance</span><span class="p">([</span>
+    <span class="p">{</span><span class="s2">&quot;N&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;joints&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Small&quot;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;N&quot;</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="s2">&quot;joints&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Large&quot;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;N&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="s2">&quot;joints&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Many joints&quot;</span><span class="p">},</span>
+<span class="p">])</span>
+
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">benchmark_results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;total_time&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">s (GPU: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;used_gpu&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Memory Management</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clean up GPU resources explicitly</span>
+<span class="n">planner</span><span class="o">.</span><span class="n">cleanup_gpu_memory</span><span class="p">()</span>
+
+<span class="c1"># Reset performance stats</span>
+<span class="n">planner</span><span class="o">.</span><span class="n">reset_performance_stats</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Cartesian Space Planning with Hybrid Computation</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define start and end poses</span>
+<span class="n">T_start</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">T_start</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]</span>
+
+<span class="n">T_end</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">T_end</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span>
+<span class="c1"># Add rotation</span>
+<span class="kn">from</span> <span class="nn">ManipulaPy.utils</span> <span class="kn">import</span> <span class="n">rotation_matrix_z</span>
+<span class="n">T_end</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">rotation_matrix_z</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Generate Cartesian trajectory (GPU for derivatives, CPU for orientations)</span>
+<span class="n">cart_traj</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">cartesian_trajectory</span><span class="p">(</span>
+    <span class="n">Xstart</span><span class="o">=</span><span class="n">T_start</span><span class="p">,</span>
+    <span class="n">Xend</span><span class="o">=</span><span class="n">T_end</span><span class="p">,</span>
+    <span class="n">Tf</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span>
+    <span class="n">N</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="mi">5</span>
+<span class="p">)</span>
+
+<span class="c1"># Visualize</span>
+<span class="n">planner</span><span class="o">.</span><span class="n">plot_cartesian_trajectory</span><span class="p">(</span><span class="n">cart_traj</span><span class="p">,</span> <span class="n">Tf</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Adaptive Threshold Tuning</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># The planner automatically adapts thresholds based on performance</span>
+<span class="n">initial_threshold</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">cpu_threshold</span>
+
+<span class="c1"># Run several operations</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">trajectory</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span>
+        <span class="n">thetastart</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+        <span class="n">thetaend</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+        <span class="n">Tf</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span>
+        <span class="n">N</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span>  <span class="c1"># Around threshold</span>
+        <span class="n">method</span><span class="o">=</span><span class="mi">3</span>
+    <span class="p">)</span>
+
+<span class="c1"># Check if threshold adapted</span>
+<span class="n">final_threshold</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">cpu_threshold</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Threshold adapted: </span><span class="si">{</span><span class="n">initial_threshold</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">final_threshold</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="key-features">
+<h2>Key Features<a class="headerlink" href="#key-features" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt><strong>Adaptive Execution:</strong></dt><dd><ul class="simple">
+<li><p>Automatic GPU/CPU selection based on problem size</p></li>
+<li><p>Intelligent threshold adaptation based on performance history</p></li>
+<li><p>Graceful fallback on GPU errors or memory constraints</p></li>
+</ul>
+</dd>
+<dt><strong>CUDA Acceleration:</strong></dt><dd><ul class="simple">
+<li><p>2D parallelized kernels for optimal GPU utilization</p></li>
+<li><p>Shared memory optimization for time-scaling computations</p></li>
+<li><p>Memory pooling to reduce allocation overhead</p></li>
+<li><p>Pinned memory transfers for maximum PCIe bandwidth</p></li>
+</ul>
+</dd>
+<dt><strong>Memory Management:</strong></dt><dd><ul class="simple">
+<li><p>Per-instance GPU array caching</p></li>
+<li><p>Global memory pool with automatic cleanup</p></li>
+<li><p>Configurable memory pool sizes</p></li>
+<li><p>Explicit memory management controls</p></li>
+</ul>
+</dd>
+<dt><strong>Performance Monitoring:</strong></dt><dd><ul class="simple">
+<li><p>Detailed timing statistics for GPU vs CPU usage</p></li>
+<li><p>Automatic performance tracking and analysis</p></li>
+<li><p>Built-in benchmarking capabilities</p></li>
+<li><p>Adaptive threshold tuning based on empirical performance</p></li>
+</ul>
+</dd>
+<dt><strong>Batch Processing:</strong></dt><dd><ul class="simple">
+<li><p>3D parallelized batch trajectory generation</p></li>
+<li><p>Efficient memory management for large batches</p></li>
+<li><p>Automatic load balancing across GPU cores</p></li>
+</ul>
+</dd>
+<dt><strong>Robust Operation:</strong></dt><dd><ul class="simple">
+<li><p>Comprehensive error handling with fallbacks</p></li>
+<li><p>Automatic recovery from GPU memory issues</p></li>
+<li><p>Extensive logging for debugging and optimization</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="performance-characteristics">
+<h2>Performance Characteristics<a class="headerlink" href="#performance-characteristics" title="Link to this heading"></a></h2>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/path_planning.rst</span>, line 633)</p>
+<p>Title overline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-----------------</span>
+<span class="n">Performance</span> <span class="n">Characteristics</span>
+<span class="o">-----------------</span>
+</pre></div>
+</div>
+</aside>
+<dl class="simple">
+<dt><strong>GPU Acceleration Thresholds:</strong></dt><dd><ul class="simple">
+<li><p><strong>Small problems</strong> (N × joints &lt; 200): CPU (lower overhead)</p></li>
+<li><p><strong>Medium problems</strong> (200 ≤ N × joints &lt; 5000): Adaptive selection</p></li>
+<li><p><strong>Large problems</strong> (N × joints ≥ 5000): GPU preferred</p></li>
+</ul>
+</dd>
+<dt><strong>Memory Usage:</strong></dt><dd><ul class="simple">
+<li><p><strong>Joint trajectory</strong>: ~12 bytes per (time, joint) element</p></li>
+<li><p><strong>Cartesian trajectory</strong>: ~36 bytes per time step</p></li>
+<li><p><strong>Dynamics computation</strong>: ~20 bytes per (time, joint) element</p></li>
+</ul>
+</dd>
+<dt><strong>Typical Speedups (on modern GPU):</strong></dt><dd><ul class="simple">
+<li><p><strong>Joint trajectories</strong>: 5-20× for N &gt; 1000</p></li>
+<li><p><strong>Batch processing</strong>: 10-50× for large batches</p></li>
+<li><p><strong>Dynamics computation</strong>: 3-15× for long trajectories</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="configuration-guidelines">
+<h2>Configuration Guidelines<a class="headerlink" href="#configuration-guidelines" title="Link to this heading"></a></h2>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/path_planning.rst</span>, line 652)</p>
+<p>Title overline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-----------------</span>
+<span class="n">Configuration</span> <span class="n">Guidelines</span>
+<span class="o">-----------------</span>
+</pre></div>
+</div>
+</aside>
+<dl class="simple">
+<dt><strong>GPU Memory Pool Sizing:</strong></dt><dd><ul class="simple">
+<li><p>Small robots (≤6 DOF): 128-256 MB</p></li>
+<li><p>Medium robots (7-12 DOF): 256-512 MB</p></li>
+<li><p>Large robots (&gt;12 DOF): 512+ MB</p></li>
+</ul>
+</dd>
+<dt><strong>CUDA Threshold Tuning:</strong></dt><dd><ul class="simple">
+<li><p>High-end GPUs: Lower threshold (50-100)</p></li>
+<li><p>Mid-range GPUs: Medium threshold (100-200)</p></li>
+<li><p>Integrated GPUs: Higher threshold (200-500)</p></li>
+</ul>
+</dd>
+<dt><strong>Batch Size Recommendations:</strong></dt><dd><ul class="simple">
+<li><p>Memory-limited: batch_size ≤ 50</p></li>
+<li><p>Compute-limited: batch_size ≤ 200</p></li>
+<li><p>High-memory systems: batch_size ≤ 1000</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="cuda_kernels.html"><span class="doc">CUDA Kernels API Reference</span></a> – Low-level CUDA acceleration functions</p></li>
+<li><p><a class="reference internal" href="kinematics.html"><span class="doc">Kinematics API Reference</span></a> – Forward and inverse kinematics for trajectory execution</p></li>
+<li><p><a class="reference internal" href="dynamics.html"><span class="doc">Dynamics API Reference</span></a> – Dynamics computations for torque calculation</p></li>
+<li><p><a class="reference internal" href="control.html"><span class="doc">Control API Reference</span></a> – Controllers for trajectory following</p></li>
+<li><p><a class="reference internal" href="potential_field.html"><span class="doc">Potential Field API Reference</span></a> – Collision avoidance and path optimization</p></li>
+<li><p><a class="reference internal" href="../user_guide/Path_Planning.html"><span class="doc">Optimized Path Planning User Guide</span></a> – Conceptual overview and planning strategies</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dynamics.html" class="btn btn-neutral float-left" title="Dynamics API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="control.html" class="btn btn-neutral float-right" title="Control API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Mohamed Aboelnar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

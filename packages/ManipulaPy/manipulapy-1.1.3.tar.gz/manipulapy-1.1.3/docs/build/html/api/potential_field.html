@@ -1,0 +1,573 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Potential Field API Reference" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://manipulapy.readthedocs.io/api/potential_field.html" />
+<meta property="og:site_name" content="ManipulaPy Documentation" />
+<meta property="og:description" content="This page documents ManipulaPy.potential_field, the module for potential field path planning with attractive and repulsive potential computations, gradient calculations, and collision checking for ..." />
+<meta name="description" content="This page documents ManipulaPy.potential_field, the module for potential field path planning with attractive and repulsive potential computations, gradient calculations, and collision checking for ..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Potential Field API Reference &mdash; ManipulaPy 1.1.0 Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=fc837d61"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=fd10adb8"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="CUDA Kernels API Reference" href="cuda_kernels.html" />
+    <link rel="prev" title="Simulation API Reference" href="simulation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ManipulaPy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">🚀 Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started with ManipulaPy</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🛠️ API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">🔧 API Reference Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#module-overview">📦 Module Overview</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="kinematics.html">Kinematics API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dynamics.html">Dynamics API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="path_planning.html">Path Planning API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="control.html">Control API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="urdf_processor.html">URDF Processor API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html">Simulation API Reference</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Potential Field API Reference</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#quick-navigation">Quick Navigation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#potentialfield-class">PotentialField Class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#potential-field-computations">Potential Field Computations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#collisionchecker-class">CollisionChecker Class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#collision-detection-methods">Collision Detection Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data-structures-and-internal-representation">Data Structures and Internal Representation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#computational-complexity-analysis">Computational Complexity Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#numerical-implementation-details">Numerical Implementation Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#error-handling-and-edge-cases">Error Handling and Edge Cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#memory-management">Memory Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#see-also">See Also</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#external-dependencies">External Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cuda_kernels.html">CUDA Kernels API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="perception.html">Perception API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vision.html">Vision API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="singularity.html">Singularity API Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#how-to-use-this-reference">📖 How to Use This Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#quick-navigation">🔍 Quick Navigation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">📚 User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Kinematics.html">Kinematics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Dynamics.html">Dynamics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Control.html">Control Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Trajectory_Planning.html">Trajectory Planning User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Simulation.html">Simulation Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/URDF_Processor.html">URDF Processor User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Perception.html">Perception User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/vision.html">Vision User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Potential_Field.html">Potential Field Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Collision_Checker.html">Collision Checker Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/CUDA_Kernels.html">CUDA Kernels User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ManipulaPy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">🔧 API Reference Guide</a></li>
+      <li class="breadcrumb-item active">Potential Field API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/potential_field.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="potential-field-api-reference">
+<span id="api-potential-field"></span><h1>Potential Field API Reference<a class="headerlink" href="#potential-field-api-reference" title="Link to this heading"></a></h1>
+<p>This page documents <strong>ManipulaPy.potential_field</strong>, the module for potential field path planning with attractive and repulsive potential computations, gradient calculations, and collision checking for robotic manipulator motion planning.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>For conceptual explanations, see <a class="reference internal" href="../user_guide/Potential_Field.html"><span class="doc">Potential Field Module User Guide</span></a>.</p>
+</div>
+<p>—</p>
+<section id="quick-navigation">
+<h2>Quick Navigation<a class="headerlink" href="#quick-navigation" title="Link to this heading"></a></h2>
+<p>—</p>
+</section>
+<section id="potentialfield-class">
+<h2>PotentialField Class<a class="headerlink" href="#potentialfield-class" title="Link to this heading"></a></h2>
+<p>—</p>
+</section>
+<section id="potential-field-computations">
+<h2>Potential Field Computations<a class="headerlink" href="#potential-field-computations" title="Link to this heading"></a></h2>
+<section id="attractive-potential">
+<h3>Attractive Potential<a class="headerlink" href="#attractive-potential" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/potential_field.rst</span>, line 50)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Attractive</span> <span class="n">Potential</span>
+<span class="o">-------------------</span>
+</pre></div>
+</div>
+</aside>
+</section>
+<section id="repulsive-potential">
+<h3>Repulsive Potential<a class="headerlink" href="#repulsive-potential" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/potential_field.rst</span>, line 73)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Repulsive</span> <span class="n">Potential</span>
+<span class="o">------------------</span>
+</pre></div>
+</div>
+</aside>
+</section>
+<section id="gradient-computation">
+<h3>Gradient Computation<a class="headerlink" href="#gradient-computation" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/potential_field.rst</span>, line 101)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Gradient</span> <span class="n">Computation</span>
+<span class="o">-------------------</span>
+</pre></div>
+</div>
+</aside>
+<p>—</p>
+</section>
+</section>
+<section id="collisionchecker-class">
+<h2>CollisionChecker Class<a class="headerlink" href="#collisionchecker-class" title="Link to this heading"></a></h2>
+<p>—</p>
+</section>
+<section id="collision-detection-methods">
+<h2>Collision Detection Methods<a class="headerlink" href="#collision-detection-methods" title="Link to this heading"></a></h2>
+<section id="hull-generation">
+<h3>Hull Generation<a class="headerlink" href="#hull-generation" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/potential_field.rst</span>, line 167)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hull</span> <span class="n">Generation</span>
+<span class="o">--------------</span>
+</pre></div>
+</div>
+</aside>
+</section>
+<section id="geometric-transformation">
+<h3>Geometric Transformation<a class="headerlink" href="#geometric-transformation" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/potential_field.rst</span>, line 186)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Geometric</span> <span class="n">Transformation</span>
+<span class="o">-----------------------</span>
+</pre></div>
+</div>
+</aside>
+</section>
+<section id="collision-detection">
+<h3>Collision Detection<a class="headerlink" href="#collision-detection" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/potential_field.rst</span>, line 212)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Collision</span> <span class="n">Detection</span>
+<span class="o">------------------</span>
+</pre></div>
+</div>
+</aside>
+<p>—</p>
+</section>
+</section>
+<section id="data-structures-and-internal-representation">
+<h2>Data Structures and Internal Representation<a class="headerlink" href="#data-structures-and-internal-representation" title="Link to this heading"></a></h2>
+<section id="convex-hull-storage">
+<h3>Convex Hull Storage<a class="headerlink" href="#convex-hull-storage" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/potential_field.rst</span>, line 240)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Convex</span> <span class="n">Hull</span> <span class="n">Storage</span>
+<span class="o">------------------</span>
+</pre></div>
+</div>
+</aside>
+<p>Internal convex_hulls dictionary structure:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">convex_hulls</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;link_name_1&quot;</span><span class="p">:</span> <span class="n">ConvexHull</span><span class="p">(</span><span class="n">vertices_1</span><span class="p">),</span>
+    <span class="s2">&quot;link_name_2&quot;</span><span class="p">:</span> <span class="n">ConvexHull</span><span class="p">(</span><span class="n">vertices_2</span><span class="p">),</span>
+    <span class="c1"># ... additional links</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="convexhull-properties">
+<h3>ConvexHull Properties<a class="headerlink" href="#convexhull-properties" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/potential_field.rst</span>, line 253)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ConvexHull</span> <span class="n">Properties</span>
+<span class="o">--------------------</span>
+</pre></div>
+</div>
+</aside>
+<p>Each ConvexHull object contains:</p>
+<ul class="simple">
+<li><p><strong>points</strong>: Original vertex coordinates</p></li>
+<li><p><strong>vertices</strong>: Indices of vertices forming the hull</p></li>
+<li><p><strong>simplices</strong>: Triangular faces of the hull</p></li>
+<li><p><strong>equations</strong>: Hyperplane equations for faces</p></li>
+</ul>
+</section>
+<section id="forward-kinematics-integration">
+<h3>Forward Kinematics Integration<a class="headerlink" href="#forward-kinematics-integration" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/potential_field.rst</span>, line 263)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Forward</span> <span class="n">Kinematics</span> <span class="n">Integration</span>
+<span class="o">-----------------------------</span>
+</pre></div>
+</div>
+</aside>
+<p>Integration with urchin URDF processing:</p>
+<ul class="simple">
+<li><p><strong>Input</strong>: Joint configuration (thetalist)</p></li>
+<li><p><strong>Method</strong>: robot.link_fk(cfg=thetalist)</p></li>
+<li><p><strong>Output</strong>: Dictionary {link_name: 4×4_transform_matrix}</p></li>
+</ul>
+<p>—</p>
+</section>
+</section>
+<section id="computational-complexity-analysis">
+<h2>Computational Complexity Analysis<a class="headerlink" href="#computational-complexity-analysis" title="Link to this heading"></a></h2>
+<section id="potential-field-methods">
+<h3>Potential Field Methods<a class="headerlink" href="#potential-field-methods" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/potential_field.rst</span>, line 277)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Potential</span> <span class="n">Field</span> <span class="n">Methods</span>
+<span class="o">----------------------</span>
+</pre></div>
+</div>
+</aside>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 40.0%" />
+<col style="width: 25.0%" />
+<col style="width: 35.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Complexity</p></th>
+<th class="head"><p>Dominant Operations</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">compute_attractive_potential</span></code></p></td>
+<td><p>O(n)</p></td>
+<td><p>Vector subtraction + norm</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">compute_repulsive_potential</span></code></p></td>
+<td><p>O(k×n)</p></td>
+<td><p>k obstacles × distance computation</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">compute_gradient</span></code></p></td>
+<td><p>O(k×n)</p></td>
+<td><p>k obstacles × gradient calculation</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id1">
+<h3>Collision Detection Methods<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/potential_field.rst</span>, line 297)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Collision</span> <span class="n">Detection</span> <span class="n">Methods</span>
+<span class="o">--------------------------</span>
+</pre></div>
+</div>
+</aside>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 40.0%" />
+<col style="width: 25.0%" />
+<col style="width: 35.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Complexity</p></th>
+<th class="head"><p>Dominant Operations</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">_create_convex_hulls</span></code></p></td>
+<td><p>O(m×v³)</p></td>
+<td><p>m links × ConvexHull(v vertices)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">_transform_convex_hull</span></code></p></td>
+<td><p>O(v)</p></td>
+<td><p>v vertices × matrix multiplication</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">check_collision</span></code></p></td>
+<td><p>O(L²×v)</p></td>
+<td><p>L² link pairs × hull intersection</p></td>
+</tr>
+</tbody>
+</table>
+<p>Where:
+- n: Configuration space dimensions
+- k: Number of obstacles
+- m: Number of robot links
+- v: Average vertices per mesh
+- L: Number of links with visual geometry</p>
+<p>—</p>
+</section>
+</section>
+<section id="numerical-implementation-details">
+<h2>Numerical Implementation Details<a class="headerlink" href="#numerical-implementation-details" title="Link to this heading"></a></h2>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/potential_field.rst</span>, line 326)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Numerical</span> <span class="n">Implementation</span> <span class="n">Details</span>
+<span class="o">===============================</span>
+</pre></div>
+</div>
+</aside>
+<section id="potential-field-scaling">
+<h3>Potential Field Scaling<a class="headerlink" href="#potential-field-scaling" title="Link to this heading"></a></h3>
+<p>Applied scaling factors in implementation:</p>
+<ul class="simple">
+<li><p><strong>Repulsive potential</strong>: 10× multiplier on final result</p></li>
+<li><p><strong>Repulsive gradient</strong>: 5× multiplier on gradient magnitude</p></li>
+<li><p><strong>Distance threshold</strong>: influence_distance parameter cutoff</p></li>
+</ul>
+</section>
+<section id="distance-computations">
+<h3>Distance Computations<a class="headerlink" href="#distance-computations" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/potential_field.rst</span>, line 338)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Distance</span> <span class="n">Computations</span>
+<span class="o">--------------------</span>
+</pre></div>
+</div>
+</aside>
+<p>All distance calculations use numpy.linalg.norm():</p>
+<ul class="simple">
+<li><p><strong>Method</strong>: Euclidean L2 norm</p></li>
+<li><p><strong>Input</strong>: Configuration space vectors</p></li>
+<li><p><strong>Precision</strong>: Double precision floating point</p></li>
+</ul>
+</section>
+<section id="matrix-operations">
+<h3>Matrix Operations<a class="headerlink" href="#matrix-operations" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/potential_field.rst</span>, line 347)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Matrix</span> <span class="n">Operations</span>
+<span class="o">----------------</span>
+</pre></div>
+</div>
+</aside>
+<p>Convex hull transformations use optimized NumPy operations:</p>
+<ul class="simple">
+<li><p><strong>Rotation</strong>: 3×3 matrix multiplication with broadcasted points</p></li>
+<li><p><strong>Translation</strong>: Vector addition with reshaped translation vector</p></li>
+<li><p><strong>Memory layout</strong>: Contiguous arrays for efficient computation</p></li>
+</ul>
+</section>
+<section id="intersection-detection">
+<h3>Intersection Detection<a class="headerlink" href="#intersection-detection" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/potential_field.rst</span>, line 356)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Intersection</span> <span class="n">Detection</span>
+<span class="o">---------------------</span>
+</pre></div>
+</div>
+</aside>
+<p>Hull intersection testing relies on scipy.spatial.ConvexHull:</p>
+<ul class="simple">
+<li><p><strong>Algorithm</strong>: Built-in intersection testing methods</p></li>
+<li><p><strong>Precision</strong>: Computational geometry tolerance handling</p></li>
+<li><p><strong>Robustness</strong>: Handles degenerate cases automatically</p></li>
+</ul>
+<p>—</p>
+</section>
+</section>
+<section id="error-handling-and-edge-cases">
+<h2>Error Handling and Edge Cases<a class="headerlink" href="#error-handling-and-edge-cases" title="Link to this heading"></a></h2>
+<section id="urdf-processing-errors">
+<h3>URDF Processing Errors<a class="headerlink" href="#urdf-processing-errors" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Missing files</strong>: URDF.load() exception handling</p></li>
+<li><p><strong>Invalid geometry</strong>: hasattr() validation for mesh.vertices</p></li>
+<li><p><strong>Empty meshes</strong>: Automatic skipping of links without valid geometry</p></li>
+</ul>
+</section>
+<section id="convex-hull-failures">
+<h3>Convex Hull Failures<a class="headerlink" href="#convex-hull-failures" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Coplanar points</strong>: scipy.spatial.ConvexHull internal handling</p></li>
+<li><p><strong>Insufficient vertices</strong>: Minimum 4 points required for 3D hulls</p></li>
+<li><p><strong>Numerical precision</strong>: Tolerance-based geometric computations</p></li>
+</ul>
+</section>
+<section id="potential-field-singularities">
+<h3>Potential Field Singularities<a class="headerlink" href="#potential-field-singularities" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Zero distance</strong>: Protected by influence_distance &gt; 0 requirement</p></li>
+<li><p><strong>Infinite gradients</strong>: Prevented by distance threshold checking</p></li>
+<li><p><strong>Numerical overflow</strong>: Managed through finite gain parameters</p></li>
+</ul>
+<p>—</p>
+</section>
+</section>
+<section id="memory-management">
+<h2>Memory Management<a class="headerlink" href="#memory-management" title="Link to this heading"></a></h2>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/potential_field.rst</span>, line 393)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Memory</span> <span class="n">Management</span>
+<span class="o">================</span>
+</pre></div>
+</div>
+</aside>
+<section id="id2">
+<h3>Convex Hull Storage<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/potential_field.rst</span>, line 396)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Convex</span> <span class="n">Hull</span> <span class="n">Storage</span>
+<span class="o">------------------</span>
+</pre></div>
+</div>
+</aside>
+<p>Memory allocation for collision checking:</p>
+<ul class="simple">
+<li><p><strong>Hull objects</strong>: Persistent storage throughout object lifetime</p></li>
+<li><p><strong>Transformed hulls</strong>: Temporary allocation during collision checks</p></li>
+<li><p><strong>Point arrays</strong>: Copy operations for transformation safety</p></li>
+</ul>
+</section>
+<section id="id3">
+<h3>Potential Field Computations<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<p>Memory usage characteristics:</p>
+<ul class="simple">
+<li><p><strong>Gradient arrays</strong>: Allocated once, reused for multiple obstacles</p></li>
+<li><p><strong>Distance scalars</strong>: Temporary variables with automatic cleanup</p></li>
+<li><p><strong>Configuration vectors</strong>: Input parameter references (no copying)</p></li>
+</ul>
+<p>—</p>
+</section>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="path_planning.html"><span class="doc">Path Planning API Reference</span></a> – Trajectory planning integration with potential fields</p></li>
+<li><p><a class="reference internal" href="kinematics.html"><span class="doc">Kinematics API Reference</span></a> – Forward kinematics for collision checking</p></li>
+<li><p><a class="reference internal" href="utils.html"><span class="doc">Utils Module</span></a> – Mathematical utilities for vector operations</p></li>
+<li><p><a class="reference internal" href="urdf_processor.html"><span class="doc">URDF Processor API Reference</span></a> – URDF loading and processing capabilities</p></li>
+</ul>
+</section>
+<section id="external-dependencies">
+<h2>External Dependencies<a class="headerlink" href="#external-dependencies" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/fishbotics/urchin">urchin</a> – URDF processing library</p></li>
+<li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/spatial.html">scipy.spatial</a> – Convex hull computations</p></li>
+<li><p><a class="reference external" href="https://numpy.org/doc/stable/">NumPy</a> – Numerical array operations</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="simulation.html" class="btn btn-neutral float-left" title="Simulation API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cuda_kernels.html" class="btn btn-neutral float-right" title="CUDA Kernels API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Mohamed Aboelnar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

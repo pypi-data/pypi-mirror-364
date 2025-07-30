@@ -1,0 +1,331 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Collision Checker Module User Guide" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://manipulapy.readthedocs.io/user_guide/Collision_Checker.html" />
+<meta property="og:site_name" content="ManipulaPy Documentation" />
+<meta property="og:description" content="This guide covers the CollisionChecker class in ManipulaPy, which performs geometry-based self-collision detection for serial manipulators using URDF meshes. Introduction: Collision checking is ess..." />
+<meta name="description" content="This guide covers the CollisionChecker class in ManipulaPy, which performs geometry-based self-collision detection for serial manipulators using URDF meshes. Introduction: Collision checking is ess..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collision Checker Module User Guide &mdash; ManipulaPy 1.1.0 Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=fc837d61"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=fd10adb8"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Potential Field Module User Guide" href="Potential_Field.html" />
+    <link rel="prev" title="Singularity Analysis User Guide" href="Singularity_Analysis.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ManipulaPy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">🚀 Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started with ManipulaPy</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🛠️ API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">🔧 API Reference Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">📚 User Guides</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">User Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#complete-guide-overview">📚 Complete Guide Overview</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Kinematics.html">Kinematics User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Dynamics.html">Dynamics User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Control.html">Control Module User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="URDF_Processor.html">URDF Processor User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Trajectory_Planning.html">Trajectory Planning User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Simulation.html">Simulation Module User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Collision Checker Module User Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mathematical-background">Mathematical Background</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#class-reference">Class Reference</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#usage-examples">Usage Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#advanced-topics">Advanced Topics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Potential_Field.html">Potential Field Module User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Perception.html">Perception User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CUDA_Kernels.html">CUDA Kernels User Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#learning-pathways">🗺️ Learning Pathways</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#guide-categories">📖 Guide Categories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#quick-reference">🎯 Quick Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#study-tips">💡 Study Tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#need-help">🆘 Need Help?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Kinematics.html">Kinematics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Dynamics.html">Dynamics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Control.html">Control Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Trajectory_Planning.html">Trajectory Planning User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Simulation.html">Simulation Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="URDF_Processor.html">URDF Processor User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Perception.html">Perception User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vision.html">Vision User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Potential_Field.html">Potential Field Module User Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Collision Checker Module User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mathematical-background">Mathematical Background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#class-reference">Class Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage-examples">Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-topics">Advanced Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CUDA_Kernels.html">CUDA Kernels User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ManipulaPy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">User Guide</a></li>
+      <li class="breadcrumb-item active">Collision Checker Module User Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user_guide/Collision_Checker.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="collision-checker-module-user-guide">
+<h1>Collision Checker Module User Guide<a class="headerlink" href="#collision-checker-module-user-guide" title="Link to this heading"></a></h1>
+<p>This guide covers the <cite>CollisionChecker</cite> class in ManipulaPy, which performs
+geometry-based self-collision detection for serial manipulators using URDF meshes.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This guide uses Python 3.10.12, SciPy 1.10+, and the <cite>urchin.urdf</cite> parser
+to load URDF meshes and compute convex hulls for collision tests.</p>
+</div>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>Collision checking is essential for safe motion planning.  The
+<cite>CollisionChecker</cite> builds convex‐hull approximations of each link’s visual mesh
+and tests for pairwise intersection at a given robot configuration.</p>
+<p>Key features:</p>
+<ul class="simple">
+<li><p><strong>Convex hull construction</strong> from URDF mesh vertices</p></li>
+<li><p><strong>Fast pairwise collision tests</strong> using SciPy’s <cite>ConvexHull.intersects</cite></p></li>
+<li><p><strong>Transforms hulls</strong> by forward‐kinematics link poses</p></li>
+<li><p><strong>Self-collision detection</strong> between any two non-adjacent links</p></li>
+</ul>
+</section>
+<section id="mathematical-background">
+<h2>Mathematical Background<a class="headerlink" href="#mathematical-background" title="Link to this heading"></a></h2>
+<p>Given a robot configuration <span class="math notranslate nohighlight">\(\mathbf q\)</span> (joint angles), the forward‐kinematics
+function <span class="math notranslate nohighlight">\(T_i(\mathbf q)\in SE(3)\)</span> returns the homogeneous transform of link <em>i</em>.
+Each link’s mesh is approximated by its convex hull <span class="math notranslate nohighlight">\(H_i\)</span>.  Under transform
+<span class="math notranslate nohighlight">\(T_i\)</span>, the hull vertices move to</p>
+<div class="math notranslate nohighlight">
+\[\{\,T_i(\mathbf q)\,p \mid p\in H_i.\}\]</div>
+<p>Two convex polyhedra intersect iff their convex hulls intersect.  SciPy’s
+<cite>ConvexHull</cite> can test intersection via oriented‐bounding‐boxes or
+half‐space tests under the hood.</p>
+<p>Workflow:</p>
+<ol class="arabic simple">
+<li><p><strong>Load URDF</strong> → extract mesh vertices.</p></li>
+<li><p><strong>Build hulls</strong> <span class="math notranslate nohighlight">\(\{H_i\}\)</span> offline.</p></li>
+<li><p>For each configuration <span class="math notranslate nohighlight">\(\mathbf q\)</span>:
+- Compute <span class="math notranslate nohighlight">\(T_i(\mathbf q)\)</span> for each link.
+- Transform <span class="math notranslate nohighlight">\(H_i\)</span> → <span class="math notranslate nohighlight">\(T_i(H_i)\)</span>.
+- Test all pairs <em>(i,j)</em>, <em>j&gt;i+1</em> (skip adjacent links) for intersection.
+- If any pair intersects → collision.</p></li>
+</ol>
+</section>
+<section id="class-reference">
+<h2>Class Reference<a class="headerlink" href="#class-reference" title="Link to this heading"></a></h2>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
+<p>Ensure dependencies are installed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>ManipulaPy<span class="o">[</span>core<span class="o">]</span><span class="w"> </span>scipy<span class="w"> </span>urchin
+</pre></div>
+</div>
+</section>
+<section id="usage-examples">
+<h2>Usage Examples<a class="headerlink" href="#usage-examples" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Basic collision check</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ManipulaPy.potential_field</span> <span class="kn">import</span> <span class="n">CollisionChecker</span>
+
+<span class="c1"># Initialize with your robot URDF</span>
+<span class="n">cc</span> <span class="o">=</span> <span class="n">CollisionChecker</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+
+<span class="c1"># Test a single joint configuration</span>
+<span class="n">q</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">]</span>
+<span class="k">if</span> <span class="n">cc</span><span class="o">.</span><span class="n">check_collision</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;In collision!&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Collision-free.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Batch checking</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ManipulaPy.potential_field</span> <span class="kn">import</span> <span class="n">CollisionChecker</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">cc</span>   <span class="o">=</span> <span class="n">CollisionChecker</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+<span class="n">poses</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">collisions</span> <span class="o">=</span> <span class="p">[</span><span class="n">cc</span><span class="o">.</span><span class="n">check_collision</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">poses</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">sum</span><span class="p">(</span><span class="n">collisions</span><span class="p">)</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">poses</span><span class="p">)</span><span class="si">}</span><span class="s2"> configurations in collision&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Integration with path planning</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ManipulaPy.path_planning</span> <span class="kn">import</span> <span class="n">TrajectoryPlanning</span>
+<span class="kn">from</span> <span class="nn">ManipulaPy.potential_field</span> <span class="kn">import</span> <span class="n">CollisionChecker</span>
+
+<span class="n">planner</span> <span class="o">=</span> <span class="n">TrajectoryPlanning</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;robot.urdf&quot;</span><span class="p">,</span> <span class="n">dynamics</span><span class="p">,</span> <span class="n">joint_limits</span><span class="p">)</span>
+<span class="n">cc</span>      <span class="o">=</span> <span class="n">CollisionChecker</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+
+<span class="n">traj</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span><span class="n">q_start</span><span class="p">,</span> <span class="n">q_goal</span><span class="p">,</span> <span class="n">Tf</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">safe</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">traj</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">cc</span><span class="o">.</span><span class="n">check_collision</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+        <span class="n">safe</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">safe</span><span class="p">)</span><span class="si">}</span><span class="s2"> collision-free waypoints&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="advanced-topics">
+<h2>Advanced Topics<a class="headerlink" href="#advanced-topics" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Skipping Adjacent Links</strong>
+By default, <cite>check_collision</cite> skips link pairs that are mechanically adjacent to
+avoid false positives at shared joints.</p></li>
+<li><p><strong>Convex Hull Caching</strong>
+Hulls are built once at initialization.  For dynamic meshes, you can rebuild
+via <cite>cc._create_convex_hulls()</cite>.</p></li>
+<li><p><strong>Custom Mesh Precision</strong>
+Simplify the mesh before hull construction (e.g., via Blender decimation) to
+speed up hull generation.</p></li>
+</ul>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Mesh loading errors</strong>
+Ensure your URDF’s <cite>&lt;mesh&gt;</cite> elements point to files with valid vertex arrays.</p></li>
+<li><p><strong>False negatives/positives</strong>
+Convex hulls approximate concave geometry.  For high‐precision needs,
+subdivide large faces or use finer mesh resolution.</p></li>
+<li><p><strong>Performance bottleneck</strong>
+- Precompute all hulls offline.
+- Use fewer sample configurations in look-ahead checks.
+- Parallelize <cite>check_collision</cite> calls with multiprocessing.</p></li>
+</ul>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>SciPy ConvexHull documentation:
+<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.ConvexHull.html">https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.ConvexHull.html</a></p></li>
+<li><p>urchin.urdf — URDF parser for Python</p></li>
+<li><p>Latombe, J.-C., _Robot Motion <a href="#id1"><span class="problematic" id="id2">Planning_</span></a>, Kluwer, 1991</p></li>
+<li><p>Ericson, C., _Real-Time Collision <a href="#id3"><span class="problematic" id="id4">Detection_</span></a>, Morgan Kaufmann, 2005</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Singularity_Analysis.html" class="btn btn-neutral float-left" title="Singularity Analysis User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Potential_Field.html" class="btn btn-neutral float-right" title="Potential Field Module User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Mohamed Aboelnar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

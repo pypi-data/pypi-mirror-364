@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Potential Field Module User Guide" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://manipulapy.readthedocs.io/user_guide/Potential_Field.html" />
+<meta property="og:site_name" content="ManipulaPy Documentation" />
+<meta property="og:description" content="This comprehensive guide covers the potential field path-planning tools in ManipulaPy, optimized for Python 3.10.12. Introduction to Potential Fields: Potential field methods treat the robot as a p..." />
+<meta name="description" content="This comprehensive guide covers the potential field path-planning tools in ManipulaPy, optimized for Python 3.10.12. Introduction to Potential Fields: Potential field methods treat the robot as a p..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Potential Field Module User Guide &mdash; ManipulaPy 1.1.0 Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=fc837d61"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=fd10adb8"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Perception User Guide" href="Perception.html" />
+    <link rel="prev" title="Collision Checker Module User Guide" href="Collision_Checker.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ManipulaPy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">🚀 Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started with ManipulaPy</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🛠️ API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">🔧 API Reference Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">📚 User Guides</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">User Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#complete-guide-overview">📚 Complete Guide Overview</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Kinematics.html">Kinematics User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Dynamics.html">Dynamics User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Control.html">Control Module User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="URDF_Processor.html">URDF Processor User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Trajectory_Planning.html">Trajectory Planning User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Simulation.html">Simulation Module User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Collision_Checker.html">Collision Checker Module User Guide</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Potential Field Module User Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction-to-potential-fields">Introduction to Potential Fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#class-reference">Class Reference</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#usage-examples">Usage Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#advanced-topics">Advanced Topics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Perception.html">Perception User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CUDA_Kernels.html">CUDA Kernels User Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#learning-pathways">🗺️ Learning Pathways</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#guide-categories">📖 Guide Categories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#quick-reference">🎯 Quick Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#study-tips">💡 Study Tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#need-help">🆘 Need Help?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Kinematics.html">Kinematics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Dynamics.html">Dynamics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Control.html">Control Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Trajectory_Planning.html">Trajectory Planning User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Simulation.html">Simulation Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="URDF_Processor.html">URDF Processor User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Perception.html">Perception User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vision.html">Vision User Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Potential Field Module User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction-to-potential-fields">Introduction to Potential Fields</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mathematical-background">Mathematical Background</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#attractive-potential">Attractive Potential</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#repulsive-potential">Repulsive Potential</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#total-potential-and-gradient">Total Potential and Gradient</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#class-reference">Class Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#usage-examples">Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-topics">Advanced Topics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#performance-tips">Performance Tips</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#combining-with-trajectory-planning">Combining with Trajectory Planning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Collision_Checker.html">Collision Checker Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CUDA_Kernels.html">CUDA Kernels User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ManipulaPy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">User Guide</a></li>
+      <li class="breadcrumb-item active">Potential Field Module User Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user_guide/Potential_Field.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="potential-field-module-user-guide">
+<h1>Potential Field Module User Guide<a class="headerlink" href="#potential-field-module-user-guide" title="Link to this heading"></a></h1>
+<p>This comprehensive guide covers the potential field path-planning tools in ManipulaPy, optimized for Python 3.10.12.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This guide is written for Python 3.10.12 users and includes version-specific examples
+and performance tips.</p>
+</div>
+<section id="introduction-to-potential-fields">
+<h2>Introduction to Potential Fields<a class="headerlink" href="#introduction-to-potential-fields" title="Link to this heading"></a></h2>
+<p>Potential field methods treat the robot as a point moving under the influence of an artificial
+potential surface. The robot is “pulled” toward the goal by an <strong>attractive</strong> potential and
+“pushed” away from obstacles by <strong>repulsive</strong> potentials. By following the negative gradient
+of the combined field, the robot can find a collision-free path.</p>
+<p>Key components:</p>
+<ul class="simple">
+<li><p><strong>Attractive potential</strong> draws the robot toward the goal.</p></li>
+<li><p><strong>Repulsive potential</strong> pushes the robot away from obstacles within an influence radius.</p></li>
+<li><p><strong>Gradient</strong> direction of steepest descent in the combined potential.</p></li>
+<li><p><strong>Collision checking</strong> rapid test whether a given configuration is in collision.</p></li>
+</ul>
+<section id="mathematical-background">
+<h3>Mathematical Background<a class="headerlink" href="#mathematical-background" title="Link to this heading"></a></h3>
+<p>Let <span class="math notranslate nohighlight">\(\mathbf{q} \in \mathbb{R}^n\)</span> be the robot’s configuration (e.g., joint angles).
+Let <span class="math notranslate nohighlight">\(\mathbf{q}_{\mathrm{goal}}\)</span> be the goal configuration, and let
+<span class="math notranslate nohighlight">\(\{\mathbf{o}_i \in \mathbb{R}^n\}\)</span> be a set of obstacle points.</p>
+<section id="attractive-potential">
+<h4>Attractive Potential<a class="headerlink" href="#attractive-potential" title="Link to this heading"></a></h4>
+<p>A common quadratic attractive potential:</p>
+<div class="math notranslate nohighlight">
+\[U_{\mathrm{att}}(\mathbf{q})
+  = \frac{1}{2} k_{\mathrm{att}} \|\mathbf{q} - \mathbf{q}_{\mathrm{goal}}\|^2\]</div>
+<p>where <span class="math notranslate nohighlight">\(k_{\mathrm{att}} &gt; 0\)</span> is the attractive gain.</p>
+</section>
+<section id="repulsive-potential">
+<h4>Repulsive Potential<a class="headerlink" href="#repulsive-potential" title="Link to this heading"></a></h4>
+<p>An inverse-distance repulsive potential, active only within an influence distance <span class="math notranslate nohighlight">\(d_0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}U_{\mathrm{rep}}(\mathbf{q})
+  = \sum_{i}
+    \begin{cases}
+      \frac{1}{2} k_{\mathrm{rep}} \left(\frac{1}{d_i} - \frac{1}{d_0}\right)^2
+        &amp; \text{if } d_i \leq d_0,\\
+      0 &amp; \text{if } d_i &gt; d_0,
+    \end{cases}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(d_i = \|\mathbf{q} - \mathbf{o}_i\|\)</span> and <span class="math notranslate nohighlight">\(k_{\mathrm{rep}} &gt; 0\)</span>.</p>
+</section>
+<section id="total-potential-and-gradient">
+<h4>Total Potential and Gradient<a class="headerlink" href="#total-potential-and-gradient" title="Link to this heading"></a></h4>
+<p>The combined potential:</p>
+<div class="math notranslate nohighlight">
+\[U(\mathbf{q})
+  = U_{\mathrm{att}}(\mathbf{q})
+    + U_{\mathrm{rep}}(\mathbf{q}).\]</div>
+<p>The control “force” is the negative gradient:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{F}(\mathbf{q})
+  = -\nabla U(\mathbf{q})
+  = -\nabla U_{\mathrm{att}}(\mathbf{q})
+    - \nabla U_{\mathrm{rep}}(\mathbf{q}).\]</div>
+<p>Closed-form gradients:</p>
+<div class="math notranslate nohighlight">
+\[\nabla U_{\mathrm{att}}(\mathbf{q})
+  = k_{\mathrm{att}} (\mathbf{q} - \mathbf{q}_{\mathrm{goal}}),\]</div>
+<div class="math notranslate nohighlight">
+\[\nabla U_{\mathrm{rep}}(\mathbf{q})
+  = \sum_{i: d_i \leq d_0}
+    k_{\mathrm{rep}}
+    \left(\frac{1}{d_i} - \frac{1}{d_0}\right)
+    \frac{1}{d_i^3} (\mathbf{q} - \mathbf{o}_i).\]</div>
+</section>
+</section>
+</section>
+<section id="class-reference">
+<h2>Class Reference<a class="headerlink" href="#class-reference" title="Link to this heading"></a></h2>
+<p>ManipulaPy provides two main classes in this module:</p>
+<ul class="simple">
+<li><p><strong>PotentialField</strong>
+Compute attractive &amp; repulsive potentials and their gradients.</p></li>
+<li><p><strong>CollisionChecker</strong>
+Use URDF geometry to build convex hulls and test for self-collision.</p></li>
+</ul>
+<section id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h3>
+<p>Ensure required packages are installed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>ManipulaPy<span class="o">[</span>core<span class="o">]</span><span class="w"> </span>scipy<span class="w"> </span>urchin
+</pre></div>
+</div>
+</section>
+</section>
+<section id="usage-examples">
+<h2>Usage Examples<a class="headerlink" href="#usage-examples" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Basic potential and gradient</strong></p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">ManipulaPy.potential_field</span> <span class="kn">import</span> <span class="n">PotentialField</span>
+
+<span class="c1"># Define goal and obstacles in configuration space</span>
+<span class="n">q_goal</span>    <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">])</span>
+<span class="n">obstacles</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">])]</span>
+
+<span class="n">pf</span> <span class="o">=</span> <span class="n">PotentialField</span><span class="p">(</span>
+    <span class="n">attractive_gain</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
+    <span class="n">repulsive_gain</span><span class="o">=</span><span class="mf">50.0</span><span class="p">,</span>
+    <span class="n">influence_distance</span><span class="o">=</span><span class="mf">0.4</span>
+<span class="p">)</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+<span class="n">U_att</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">compute_attractive_potential</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">q_goal</span><span class="p">)</span>
+<span class="n">U_rep</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">compute_repulsive_potential</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">obstacles</span><span class="p">)</span>
+<span class="n">grad</span>  <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">compute_gradient</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">q_goal</span><span class="p">,</span> <span class="n">obstacles</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;U_att = </span><span class="si">{</span><span class="n">U_att</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, U_rep = </span><span class="si">{</span><span class="n">U_rep</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total gradient = </span><span class="si">{</span><span class="n">grad</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Collision checking</strong></p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ManipulaPy.potential_field</span> <span class="kn">import</span> <span class="n">CollisionChecker</span>
+
+<span class="n">cc</span> <span class="o">=</span> <span class="n">CollisionChecker</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+<span class="n">q_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+
+<span class="k">if</span> <span class="n">cc</span><span class="o">.</span><span class="n">check_collision</span><span class="p">(</span><span class="n">q_test</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Configuration is in collision!&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Configuration is collision-free.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Gradient descent path planning</strong></p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">grad</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">compute_gradient</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">q_goal</span><span class="p">,</span> <span class="n">obstacles</span><span class="p">)</span>
+    <span class="n">q</span>    <span class="o">=</span> <span class="n">q</span> <span class="o">-</span> <span class="mf">0.05</span><span class="o">*</span><span class="n">grad</span>  <span class="c1"># step size</span>
+    <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">q</span> <span class="o">-</span> <span class="n">q_goal</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-3</span><span class="p">:</span>
+        <span class="k">break</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Planned </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="si">}</span><span class="s2"> steps to goal&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="advanced-topics">
+<h2>Advanced Topics<a class="headerlink" href="#advanced-topics" title="Link to this heading"></a></h2>
+<section id="performance-tips">
+<h3>Performance Tips<a class="headerlink" href="#performance-tips" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Vectorize obstacle list</strong>: stack obstacles into an <span class="math notranslate nohighlight">\((m \times n)\)</span> array and
+compute all distances at once for large <span class="math notranslate nohighlight">\(m\)</span>.</p></li>
+<li><p><strong>Tune gains</strong>: high <span class="math notranslate nohighlight">\(k_{\mathrm{rep}}\)</span> produces stronger obstacle avoidance but
+may create local minima.</p></li>
+<li><p><strong>Cache gradient</strong>: if you repeatedly query similar <span class="math notranslate nohighlight">\(\mathbf{q}\)</span>, memoize the result.</p></li>
+</ul>
+</section>
+<section id="combining-with-trajectory-planning">
+<h3>Combining with Trajectory Planning<a class="headerlink" href="#combining-with-trajectory-planning" title="Link to this heading"></a></h3>
+<p>You can integrate the gradient from <code class="docutils literal notranslate"><span class="pre">PotentialField</span></code> into your
+<code class="docutils literal notranslate"><span class="pre">TrajectoryPlanning</span></code> loop to adjust intermediate waypoints:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ManipulaPy.path_planning</span> <span class="kn">import</span> <span class="n">TrajectoryPlanning</span>
+
+<span class="n">planner</span> <span class="o">=</span> <span class="n">TrajectoryPlanning</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;robot.urdf&quot;</span><span class="p">,</span> <span class="n">dynamics</span><span class="p">,</span> <span class="n">joint_limits</span><span class="p">)</span>
+<span class="n">traj</span>    <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span><span class="n">q_start</span><span class="p">,</span> <span class="n">q_goal</span><span class="p">,</span> <span class="n">Tf</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">traj</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">]):</span>
+    <span class="k">if</span> <span class="n">cc</span><span class="o">.</span><span class="n">check_collision</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+        <span class="n">grad</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">compute_gradient</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">q_goal</span><span class="p">,</span> <span class="n">obstacles</span><span class="p">)</span>
+        <span class="n">traj</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">-=</span> <span class="mf">0.01</span><span class="o">*</span><span class="n">grad</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Zero repulsive gradient</strong>
+If your robot never “feels” obstacles, check that
+<code class="docutils literal notranslate"><span class="pre">influence_distance</span></code> is larger than the minimum <span class="math notranslate nohighlight">\(d_i\)</span>.</p></li>
+<li><p><strong>Local minima</strong>
+Potential fields can trap in local minima. Hybridize with RRT or rapidly-exploring
+random tree to escape.</p></li>
+<li><p><strong>Performance bottleneck</strong>
+For many obstacles, vectorize distance computations or implement a CUDA kernel
+(see CUDA Kernels guide).</p></li>
+</ul>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Latombe, J.-C., <em>Robot Motion Planning</em>, Kluwer, 1991.</p></li>
+<li><p>Khatib, O., “Real-time obstacle avoidance for manipulators and mobile robots,”
+<em>IEEE IJRR</em>, 1986.</p></li>
+<li><p>urchin.urdf — URDF parser for Python (used for mesh loading and convex hulls).</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Collision_Checker.html" class="btn btn-neutral float-left" title="Collision Checker Module User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Perception.html" class="btn btn-neutral float-right" title="Perception User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Mohamed Aboelnar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,516 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Dynamics User Guide" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://manipulapy.readthedocs.io/user_guide/Dynamics.html" />
+<meta property="og:site_name" content="ManipulaPy Documentation" />
+<meta property="og:description" content="This comprehensive guide covers robot dynamics computations in ManipulaPy, optimized for Python 3.10.12. Introduction to Robot Dynamics: Robot dynamics deals with the relationship between forces/to..." />
+<meta name="description" content="This comprehensive guide covers robot dynamics computations in ManipulaPy, optimized for Python 3.10.12. Introduction to Robot Dynamics: Robot dynamics deals with the relationship between forces/to..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dynamics User Guide &mdash; ManipulaPy 1.1.0 Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=fc837d61"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=fd10adb8"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Control Module User Guide" href="Control.html" />
+    <link rel="prev" title="Kinematics User Guide" href="Kinematics.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ManipulaPy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">🚀 Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started with ManipulaPy</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🛠️ API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">🔧 API Reference Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">📚 User Guides</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">User Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#complete-guide-overview">📚 Complete Guide Overview</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Kinematics.html">Kinematics User Guide</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Dynamics User Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction-to-robot-dynamics">Introduction to Robot Dynamics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setting-up-robot-dynamics">Setting Up Robot Dynamics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mass-matrix-computation">Mass Matrix Computation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#velocity-dependent-forces">Velocity-Dependent Forces</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Control.html">Control Module User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="URDF_Processor.html">URDF Processor User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Trajectory_Planning.html">Trajectory Planning User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Simulation.html">Simulation Module User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Collision_Checker.html">Collision Checker Module User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Potential_Field.html">Potential Field Module User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Perception.html">Perception User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CUDA_Kernels.html">CUDA Kernels User Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#learning-pathways">🗺️ Learning Pathways</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#guide-categories">📖 Guide Categories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#quick-reference">🎯 Quick Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#study-tips">💡 Study Tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#need-help">🆘 Need Help?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Kinematics.html">Kinematics User Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Dynamics User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction-to-robot-dynamics">Introduction to Robot Dynamics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mathematical-background">Mathematical Background</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#key-concepts">Key Concepts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-robot-dynamics">Setting Up Robot Dynamics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basic-setup-from-urdf">Basic Setup from URDF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#manual-setup">Manual Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#mass-matrix-computation">Mass Matrix Computation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#computing-mass-matrix">Computing Mass Matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuration-dependence">Configuration Dependence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#caching-for-performance">Caching for Performance</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#velocity-dependent-forces">Velocity-Dependent Forces</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#computing-velocity-forces">Computing Velocity Forces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#analyzing-velocity-effects">Analyzing Velocity Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#centrifugal-vs-coriolis">Centrifugal vs Coriolis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Control.html">Control Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Trajectory_Planning.html">Trajectory Planning User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Simulation.html">Simulation Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="URDF_Processor.html">URDF Processor User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Perception.html">Perception User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vision.html">Vision User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Potential_Field.html">Potential Field Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Collision_Checker.html">Collision Checker Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CUDA_Kernels.html">CUDA Kernels User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ManipulaPy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">User Guide</a></li>
+      <li class="breadcrumb-item active">Dynamics User Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user_guide/Dynamics.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dynamics-user-guide">
+<h1>Dynamics User Guide<a class="headerlink" href="#dynamics-user-guide" title="Link to this heading"></a></h1>
+<p>This comprehensive guide covers robot dynamics computations in ManipulaPy, optimized for Python 3.10.12.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This guide is written for Python 3.10.12 users and includes version-specific optimizations and performance improvements.</p>
+</div>
+<section id="introduction-to-robot-dynamics">
+<h2>Introduction to Robot Dynamics<a class="headerlink" href="#introduction-to-robot-dynamics" title="Link to this heading"></a></h2>
+<p>Robot dynamics deals with the relationship between forces/torques and motion in robotic systems. Unlike kinematics, which only considers geometric relationships, dynamics incorporates:</p>
+<ul class="simple">
+<li><p><strong>Mass properties</strong> of robot links</p></li>
+<li><p><strong>Inertial forces</strong> due to acceleration</p></li>
+<li><p><strong>Gravitational forces</strong> acting on the robot</p></li>
+<li><p><strong>External forces</strong> applied to the robot</p></li>
+<li><p><strong>Joint torques</strong> required for desired motion</p></li>
+</ul>
+<section id="mathematical-background">
+<h3>Mathematical Background<a class="headerlink" href="#mathematical-background" title="Link to this heading"></a></h3>
+<p>The core equation of motion for an n-DOF serial manipulator is the <strong>Newton–Euler</strong> (or <strong>Lagrange</strong>) form:</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol\tau
+  = M(\boldsymbol\theta)\,\ddot{\boldsymbol\theta}
+    + C(\boldsymbol\theta,\dot{\boldsymbol\theta})\,\dot{\boldsymbol\theta}
+    + G(\boldsymbol\theta)
+    + J(\boldsymbol\theta)^{T}\,\mathbf F_{\mathrm{ext}}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol\tau\in\mathbb R^{n}\)</span> is the vector of joint torques</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol\theta,\dot{\boldsymbol\theta},\ddot{\boldsymbol\theta}\in\mathbb R^{n}\)</span> are joint positions, velocities, and accelerations</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf F_{\mathrm{ext}}\in\mathbb R^{6}\)</span> is the spatial external wrench (force/torque) at the end‐effector</p></li>
+</ul>
+<p><strong>Mass Matrix</strong></p>
+<p>The symmetric, positive‐definite inertia matrix</p>
+<div class="math notranslate nohighlight">
+\[M(\boldsymbol\theta)
+  = \sum_{i=1}^{n} \bigl(\mathrm{Ad}_{T_{0}^{\,i-1}}^{T}\bigr)\;G_{i}\;\bigl(\mathrm{Ad}_{T_{0}^{\,i-1}}\bigr)\]</div>
+<p>where for each link <em>i</em>,
+<span class="math notranslate nohighlight">\(G_{i}\)</span> is its 6×6 spatial inertia, and
+<span class="math notranslate nohighlight">\(\mathrm{Ad}_{T}\)</span> denotes the SE(3) adjoint of the transform from the base to link <em>i</em>.</p>
+<p><strong>Coriolis &amp; Centrifugal</strong></p>
+<p>Combined velocity‐dependent forces:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}C(\boldsymbol{\theta}, \dot{\boldsymbol{\theta}}) \, \dot{\boldsymbol{\theta}} =
+\begin{bmatrix}
+    \sum\limits_{j,k=1}^{n} \Gamma_{1jk}(\boldsymbol{\theta}) \, \dot{\theta}_{j} \, \dot{\theta}_{k} \\[6pt]
+    \vdots \\[3pt]
+    \sum\limits_{j,k=1}^{n} \Gamma_{njk}(\boldsymbol{\theta}) \, \dot{\theta}_{j} \, \dot{\theta}_{k}
+\end{bmatrix},
+\quad
+\Gamma_{ijk} =
+\frac{1}{2} \left(
+    \frac{\partial M_{ij}}{\partial \theta_k} +
+    \frac{\partial M_{ik}}{\partial \theta_j} -
+    \frac{\partial M_{jk}}{\partial \theta_i}
+\right)\end{split}\]</div>
+<p><strong>Gravity</strong></p>
+<p>Derived from the potential energy</p>
+<div class="math notranslate nohighlight">
+\[U(\boldsymbol\theta)
+  = \sum_{i=1}^{n} m_{i}\;g^{T}\,p_{i}(\boldsymbol\theta),\]</div>
+<p>the gravity torque vector is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}G(\boldsymbol\theta)
+  = \frac{\partial U}{\partial\boldsymbol\theta}
+  = \begin{bmatrix}
+      \tfrac{\partial U}{\partial\theta_{1}}\\[3pt]
+      \vdots\\[3pt]
+      \tfrac{\partial U}{\partial\theta_{n}}
+    \end{bmatrix}.\end{split}\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(p_{i}(\boldsymbol\theta)\)</span> is the world‐frame position of link <em>i</em>’s center of mass.</p>
+<p><strong>External Wrench Mapping</strong></p>
+<p>An end‐effector wrench <span class="math notranslate nohighlight">\(\mathbf F_{\mathrm{ext}}\in\mathbb R^{6}\)</span>
+is pulled back to joint torques via the Jacobian transpose:</p>
+<div class="math notranslate nohighlight">
+\[\tau_{\mathrm{ext}}
+  = J(\boldsymbol\theta)^{T}\,\mathbf F_{\mathrm{ext}}.\]</div>
+<p>Putting it all together:</p>
+<div class="math notranslate nohighlight">
+\[\boxed{
+  \boldsymbol\tau
+    = M(\boldsymbol\theta)\,\ddot{\boldsymbol\theta}
+      + C(\boldsymbol\theta,\dot{\boldsymbol\theta})\,\dot{\boldsymbol\theta}
+      + G(\boldsymbol\theta)
+      + J(\boldsymbol\theta)^{T}\,\mathbf F_{\mathrm{ext}}
+}\]</div>
+<p>This formulation underlies both:</p>
+<ul class="simple">
+<li><p><strong>Inverse Dynamics:</strong> compute <span class="math notranslate nohighlight">\(\boldsymbol\tau\)</span> from given <span class="math notranslate nohighlight">\((\boldsymbol\theta,\dot{\boldsymbol\theta},\ddot{\boldsymbol\theta})\)</span></p></li>
+<li><p><strong>Forward Dynamics:</strong> compute <span class="math notranslate nohighlight">\(\ddot{\boldsymbol\theta}\)</span> via <span class="math notranslate nohighlight">\(\ddot{\boldsymbol\theta} = M(\theta)^{-1}\bigl(\boldsymbol\tau - C\,\dot{\boldsymbol\theta} - G - J^{T}\mathbf F_{\mathrm{ext}}\bigr)\)</span></p></li>
+</ul>
+</section>
+<section id="key-concepts">
+<h3>Key Concepts<a class="headerlink" href="#key-concepts" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt><strong>Forward Dynamics</strong></dt><dd><p>Given joint torques, compute joint accelerations: <span class="math notranslate nohighlight">\(\ddot{\boldsymbol\theta} = f(\boldsymbol\tau, \boldsymbol\theta, \dot{\boldsymbol\theta})\)</span></p>
+</dd>
+<dt><strong>Inverse Dynamics</strong></dt><dd><p>Given desired motion, compute required torques: <span class="math notranslate nohighlight">\(\boldsymbol\tau = f(\boldsymbol\theta, \dot{\boldsymbol\theta}, \ddot{\boldsymbol\theta})\)</span></p>
+</dd>
+<dt><strong>Mass Matrix</strong></dt><dd><p>Represents the robot’s inertial properties and coupling between joints</p>
+</dd>
+<dt><strong>Velocity-Dependent Forces</strong></dt><dd><p>Coriolis and centrifugal forces that arise from robot motion</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="setting-up-robot-dynamics">
+<h2>Setting Up Robot Dynamics<a class="headerlink" href="#setting-up-robot-dynamics" title="Link to this heading"></a></h2>
+<section id="basic-setup-from-urdf">
+<h3>Basic Setup from URDF<a class="headerlink" href="#basic-setup-from-urdf" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">ManipulaPy.urdf_processor</span> <span class="kn">import</span> <span class="n">URDFToSerialManipulator</span>
+<span class="kn">from</span> <span class="nn">ManipulaPy.dynamics</span> <span class="kn">import</span> <span class="n">ManipulatorDynamics</span>
+
+<span class="c1"># Load robot from URDF (automatically extracts inertial properties)</span>
+<span class="n">urdf_processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+<span class="n">robot</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">serial_manipulator</span>
+<span class="n">dynamics</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">dynamics</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Robot has </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">dynamics</span><span class="o">.</span><span class="n">Glist</span><span class="p">)</span><span class="si">}</span><span class="s2"> links with inertial properties&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="manual-setup">
+<h3>Manual Setup<a class="headerlink" href="#manual-setup" title="Link to this heading"></a></h3>
+<p>For custom robots or when URDF is not available:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ManipulaPy.dynamics</span> <span class="kn">import</span> <span class="n">ManipulatorDynamics</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Define robot parameters</span>
+<span class="n">M_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>  <span class="c1"># Home configuration</span>
+<span class="n">M_list</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]</span>  <span class="c1"># End-effector position</span>
+
+<span class="c1"># Screw axes in space frame</span>
+<span class="n">S_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>      <span class="c1"># Joint 1: rotation about z-axis</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>  <span class="c1"># Joint 2: rotation about -y-axis</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span> <span class="c1"># Joint 3: rotation about -y-axis</span>
+<span class="p">])</span><span class="o">.</span><span class="n">T</span>
+
+<span class="c1"># Inertial properties for each link (6x6 spatial inertia matrices)</span>
+<span class="n">Glist</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>  <span class="c1"># 3 links</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+    <span class="c1"># Rotational inertia (upper-left 3x3)</span>
+    <span class="n">G</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">])</span>  <span class="c1"># Ixx, Iyy, Izz</span>
+
+    <span class="c1"># Mass (lower-right 3x3)</span>
+    <span class="n">mass</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">-</span> <span class="n">i</span> <span class="o">*</span> <span class="mf">0.5</span>  <span class="c1"># Decreasing mass towards end-effector</span>
+    <span class="n">G</span><span class="p">[</span><span class="mi">3</span><span class="p">:,</span> <span class="mi">3</span><span class="p">:]</span> <span class="o">=</span> <span class="n">mass</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="n">Glist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+
+<span class="c1"># Create dynamics object</span>
+<span class="n">dynamics</span> <span class="o">=</span> <span class="n">ManipulatorDynamics</span><span class="p">(</span>
+    <span class="n">M_list</span><span class="o">=</span><span class="n">M_list</span><span class="p">,</span>
+    <span class="n">omega_list</span><span class="o">=</span><span class="n">S_list</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span> <span class="p">:],</span>  <span class="c1"># Rotation axes</span>
+    <span class="n">r_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># Will be computed from S_list</span>
+    <span class="n">b_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># Body frame (optional)</span>
+    <span class="n">S_list</span><span class="o">=</span><span class="n">S_list</span><span class="p">,</span>
+    <span class="n">B_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># Will be computed</span>
+    <span class="n">Glist</span><span class="o">=</span><span class="n">Glist</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="mass-matrix-computation">
+<h2>Mass Matrix Computation<a class="headerlink" href="#mass-matrix-computation" title="Link to this heading"></a></h2>
+<p>The mass matrix represents the robot’s inertial properties and varies with configuration.</p>
+<section id="computing-mass-matrix">
+<h3>Computing Mass Matrix<a class="headerlink" href="#computing-mass-matrix" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define joint configuration</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">])</span>  <span class="c1"># Joint angles in radians</span>
+
+<span class="c1"># Compute mass matrix</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">dynamics</span><span class="o">.</span><span class="n">mass_matrix</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mass matrix shape: </span><span class="si">{</span><span class="n">M</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mass matrix:</span><span class="se">\n</span><span class="si">{</span><span class="n">M</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Check properties</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Matrix is symmetric: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">M</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Matrix is positive definite: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="configuration-dependence">
+<h3>Configuration Dependence<a class="headerlink" href="#configuration-dependence" title="Link to this heading"></a></h3>
+<p>The mass matrix changes with robot configuration:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Test different configurations</span>
+<span class="n">configurations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">condition_numbers</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">determinants</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">angle</span> <span class="ow">in</span> <span class="n">configurations</span><span class="p">:</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">angle</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">dynamics</span><span class="o">.</span><span class="n">mass_matrix</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+
+    <span class="n">condition_numbers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">M</span><span class="p">))</span>
+    <span class="n">determinants</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">M</span><span class="p">))</span>
+
+<span class="c1"># Plot results</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">configurations</span><span class="p">,</span> <span class="n">condition_numbers</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Joint 1 Angle (rad)&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Condition Number&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Mass Matrix Conditioning&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">configurations</span><span class="p">,</span> <span class="n">determinants</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Joint 1 Angle (rad)&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Determinant&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Mass Matrix Determinant&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="caching-for-performance">
+<h3>Caching for Performance<a class="headerlink" href="#caching-for-performance" title="Link to this heading"></a></h3>
+<p>For real-time applications, cache mass matrix computations:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CachedDynamics</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dynamics</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span> <span class="o">=</span> <span class="n">dynamics</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tolerance</span> <span class="o">=</span> <span class="n">tolerance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">mass_matrix_cached</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
+        <span class="c1"># Create cache key (rounded configuration)</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">theta</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">tolerance</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">tolerance</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">mass_matrix</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">clear_cache</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+<span class="c1"># Usage</span>
+<span class="n">cached_dynamics</span> <span class="o">=</span> <span class="n">CachedDynamics</span><span class="p">(</span><span class="n">dynamics</span><span class="p">)</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">cached_dynamics</span><span class="o">.</span><span class="n">mass_matrix_cached</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="velocity-dependent-forces">
+<h2>Velocity-Dependent Forces<a class="headerlink" href="#velocity-dependent-forces" title="Link to this heading"></a></h2>
+<p>Coriolis and centrifugal forces arise from robot motion and joint coupling.</p>
+<section id="computing-velocity-forces">
+<h3>Computing Velocity Forces<a class="headerlink" href="#computing-velocity-forces" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define joint state</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">])</span>      <span class="c1"># Joint positions</span>
+<span class="n">theta_dot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span>  <span class="c1"># Joint velocities</span>
+
+<span class="c1"># Compute velocity-dependent forces</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">dynamics</span><span class="o">.</span><span class="n">velocity_quadratic_forces</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">theta_dot</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Velocity forces: </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Force magnitude: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="analyzing-velocity-effects">
+<h3>Analyzing Velocity Effects<a class="headerlink" href="#analyzing-velocity-effects" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">analyze_velocity_effects</span><span class="p">(</span><span class="n">dynamics</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">max_velocity</span><span class="o">=</span><span class="mf">2.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Analyze how joint velocities affect Coriolis forces.&quot;&quot;&quot;</span>
+
+    <span class="n">velocities</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_velocity</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="n">force_magnitudes</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">vel</span> <span class="ow">in</span> <span class="n">velocities</span><span class="p">:</span>
+        <span class="c1"># Apply same velocity to all joints</span>
+        <span class="n">theta_dot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span> <span class="o">*</span> <span class="n">vel</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">dynamics</span><span class="o">.</span><span class="n">velocity_quadratic_forces</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">theta_dot</span><span class="p">)</span>
+        <span class="n">force_magnitudes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+
+    <span class="c1"># Plot results</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">velocities</span><span class="p">,</span> <span class="n">force_magnitudes</span><span class="p">,</span> <span class="s1">&#39;b-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Joint Velocity (rad/s)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Coriolis Force Magnitude (N⋅m)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Velocity-Dependent Forces&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">force_magnitudes</span>
+
+<span class="c1"># Analyze for current configuration</span>
+<span class="n">analyze_velocity_effects</span><span class="p">(</span><span class="n">dynamics</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="centrifugal-vs-coriolis">
+<h3>Centrifugal vs Coriolis<a class="headerlink" href="#centrifugal-vs-coriolis" title="Link to this heading"></a></h3>
+<p>Separate centrifugal (velocity²) and Coriolis (cross-coupling) effects:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">decompose_velocity_forces</span><span class="p">(</span><span class="n">dynamics</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">theta_dot</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Decompose velocity forces into centrifugal and Coriolis components.&quot;&quot;&quot;</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+    <span class="n">centrifugal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">coriolis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+    <span class="c1"># Centrifugal forces (diagonal</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Kinematics.html" class="btn btn-neutral float-left" title="Kinematics User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Control.html" class="btn btn-neutral float-right" title="Control Module User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Mohamed Aboelnar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

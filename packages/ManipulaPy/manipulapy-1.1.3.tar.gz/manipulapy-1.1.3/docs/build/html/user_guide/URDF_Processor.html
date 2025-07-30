@@ -1,0 +1,700 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="URDF Processor User Guide" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://manipulapy.readthedocs.io/user_guide/URDF_Processor.html" />
+<meta property="og:site_name" content="ManipulaPy Documentation" />
+<meta property="og:description" content="This guide covers the URDF Processor module in ManipulaPy, which converts URDF (Unified Robot Description Format) files into SerialManipulator and ManipulatorDynamics objects for analytical robotic..." />
+<meta name="description" content="This guide covers the URDF Processor module in ManipulaPy, which converts URDF (Unified Robot Description Format) files into SerialManipulator and ManipulatorDynamics objects for analytical robotic..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>URDF Processor User Guide &mdash; ManipulaPy 1.1.0 Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=fc837d61"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=fd10adb8"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Trajectory Planning User Guide" href="Trajectory_Planning.html" />
+    <link rel="prev" title="Control Module User Guide" href="Control.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ManipulaPy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">🚀 Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started with ManipulaPy</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🛠️ API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">🔧 API Reference Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">📚 User Guides</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">User Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#complete-guide-overview">📚 Complete Guide Overview</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Kinematics.html">Kinematics User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Dynamics.html">Dynamics User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Control.html">Control Module User Guide</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">URDF Processor User Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#basic-usage">Basic Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#urdftoserialmanipulator-class">URDFToSerialManipulator Class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#core-methods">Core Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#joint-limit-handling">Joint Limit Handling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utility-methods">Utility Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#working-example">Working Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#error-handling">Error Handling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#best-practices">Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Trajectory_Planning.html">Trajectory Planning User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Simulation.html">Simulation Module User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Collision_Checker.html">Collision Checker Module User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Potential_Field.html">Potential Field Module User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Perception.html">Perception User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CUDA_Kernels.html">CUDA Kernels User Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#learning-pathways">🗺️ Learning Pathways</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#guide-categories">📖 Guide Categories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#quick-reference">🎯 Quick Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#study-tips">💡 Study Tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#need-help">🆘 Need Help?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Kinematics.html">Kinematics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Dynamics.html">Dynamics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Control.html">Control Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Trajectory_Planning.html">Trajectory Planning User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Simulation.html">Simulation Module User Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">URDF Processor User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-usage">Basic Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simple-urdf-loading">Simple URDF Loading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-built-in-models">Using Built-in Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#urdftoserialmanipulator-class">URDFToSerialManipulator Class</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#class-constructor">Class Constructor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#extracted-parameters">Extracted Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#core-methods">Core Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#load-urdf">load_urdf()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#initialize-serial-manipulator">initialize_serial_manipulator()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#initialize-manipulator-dynamics">initialize_manipulator_dynamics()</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#joint-limit-handling">Joint Limit Handling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pybullet-integration">PyBullet Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-joint-limits">Custom Joint Limits</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#utility-methods">Utility Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#static-methods">Static Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visualization-methods">Visualization Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#working-example">Working Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#complete-robot-setup">Complete Robot Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#kinematics-and-dynamics-usage">Kinematics and Dynamics Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#error-handling">Error Handling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#common-issues-and-solutions">Common Issues and Solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#best-practices">Best Practices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#urdf-file-requirements">URDF File Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#performance-tips">Performance Tips</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validation-checklist">Validation Checklist</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Perception.html">Perception User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vision.html">Vision User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Potential_Field.html">Potential Field Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Collision_Checker.html">Collision Checker Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CUDA_Kernels.html">CUDA Kernels User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ManipulaPy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">User Guide</a></li>
+      <li class="breadcrumb-item active">URDF Processor User Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user_guide/URDF_Processor.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="urdf-processor-user-guide">
+<h1>URDF Processor User Guide<a class="headerlink" href="#urdf-processor-user-guide" title="Link to this heading"></a></h1>
+<p>This guide covers the URDF Processor module in ManipulaPy, which converts URDF (Unified Robot Description Format) files into SerialManipulator and ManipulatorDynamics objects for analytical robotics computations.</p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>The URDF Processor bridges the gap between URDF robot descriptions and ManipulaPy’s analytical framework. It automatically extracts kinematic and dynamic parameters from URDF files and creates the necessary objects for robotics analysis.</p>
+<p><strong>Key Features:</strong>
+- Automatic parameter extraction from URDF files
+- Kinematic chain analysis and screw axis computation
+- Inertial property extraction for dynamics
+- Joint limit handling with PyBullet integration
+- Conversion to SerialManipulator and ManipulatorDynamics objects</p>
+</section>
+<section id="basic-usage">
+<h2>Basic Usage<a class="headerlink" href="#basic-usage" title="Link to this heading"></a></h2>
+<section id="simple-urdf-loading">
+<h3>Simple URDF Loading<a class="headerlink" href="#simple-urdf-loading" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ManipulaPy.urdf_processor</span> <span class="kn">import</span> <span class="n">URDFToSerialManipulator</span>
+
+<span class="c1"># Load URDF and create objects</span>
+<span class="n">processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;path/to/robot.urdf&quot;</span><span class="p">)</span>
+
+<span class="c1"># Access the created objects</span>
+<span class="n">robot</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">serial_manipulator</span>      <span class="c1"># SerialManipulator instance</span>
+<span class="n">dynamics</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">dynamics</span>             <span class="c1"># ManipulatorDynamics instance</span>
+
+<span class="c1"># Use the robot for computations</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">])</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;End-effector position: </span><span class="si">{</span><span class="n">T</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="using-built-in-models">
+<h3>Using Built-in Models<a class="headerlink" href="#using-built-in-models" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ManipulaPy.ManipulaPy_data.xarm</span> <span class="kn">import</span> <span class="n">urdf_file</span> <span class="k">as</span> <span class="n">xarm_urdf</span>
+
+<span class="c1"># Load built-in xArm robot</span>
+<span class="n">processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="n">xarm_urdf</span><span class="p">)</span>
+<span class="n">robot</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">serial_manipulator</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Robot has </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">joint_limits</span><span class="p">)</span><span class="si">}</span><span class="s2"> joints&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="urdftoserialmanipulator-class">
+<h2>URDFToSerialManipulator Class<a class="headerlink" href="#urdftoserialmanipulator-class" title="Link to this heading"></a></h2>
+<section id="class-constructor">
+<h3>Class Constructor<a class="headerlink" href="#class-constructor" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="n">urdf_name</span><span class="p">,</span> <span class="n">use_pybullet_limits</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Parameters:</strong>
+- <code class="docutils literal notranslate"><span class="pre">urdf_name</span></code> (str): Path to the URDF file
+- <code class="docutils literal notranslate"><span class="pre">use_pybullet_limits</span></code> (bool): Extract joint limits from PyBullet simulation</p>
+<p><strong>Attributes:</strong>
+- <code class="docutils literal notranslate"><span class="pre">serial_manipulator</span></code>: SerialManipulator object for kinematics
+- <code class="docutils literal notranslate"><span class="pre">dynamics</span></code>: ManipulatorDynamics object for dynamics
+- <code class="docutils literal notranslate"><span class="pre">robot_data</span></code>: Dictionary containing extracted parameters
+- <code class="docutils literal notranslate"><span class="pre">urdf_name</span></code>: Path to the loaded URDF file
+- <code class="docutils literal notranslate"><span class="pre">robot</span></code>: Loaded URDF object from urchin library</p>
+</section>
+<section id="extracted-parameters">
+<h3>Extracted Parameters<a class="headerlink" href="#extracted-parameters" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/user_guide/URDF_Processor.rst</span>, line 77)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Extracted</span> <span class="n">Parameters</span>
+<span class="o">~~~~~~~~~~~~~~~~~~~</span>
+</pre></div>
+</div>
+</aside>
+<p>The <code class="docutils literal notranslate"><span class="pre">robot_data</span></code> dictionary contains:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">robot_data</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Degrees of freedom: </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;actuated_joints_num&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Home configuration shape: </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;M&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>          <span class="c1"># (4, 4)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Space screw axes shape: </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Slist&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>        <span class="c1"># (6, n)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Body screw axes shape: </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Blist&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>         <span class="c1"># (6, n)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of inertia matrices: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Glist&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>     <span class="c1"># n links</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="core-methods">
+<h2>Core Methods<a class="headerlink" href="#core-methods" title="Link to this heading"></a></h2>
+<section id="load-urdf">
+<h3>load_urdf()<a class="headerlink" href="#load-urdf" title="Link to this heading"></a></h3>
+<p>Extracts kinematic and dynamic parameters from the URDF file:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">parameter_extraction_example</span><span class="p">():</span>
+    <span class="n">processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">robot_data</span>
+
+    <span class="c1"># Access screw axes</span>
+    <span class="n">Slist</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Slist&quot;</span><span class="p">]</span>  <span class="c1"># Shape: (6, n_joints)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Slist</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">omega</span> <span class="o">=</span> <span class="n">Slist</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>  <span class="c1"># Angular velocity part</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">Slist</span><span class="p">[</span><span class="mi">3</span><span class="p">:,</span> <span class="n">i</span><span class="p">]</span>      <span class="c1"># Linear velocity part</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Joint </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: ω=</span><span class="si">{</span><span class="n">omega</span><span class="si">}</span><span class="s2">, v=</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Access inertial properties</span>
+    <span class="n">Glist</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Glist&quot;</span><span class="p">]</span>  <span class="c1"># List of (6, 6) spatial inertia matrices</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">G</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">Glist</span><span class="p">):</span>
+        <span class="n">mass</span> <span class="o">=</span> <span class="n">G</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>  <span class="c1"># Mass (assuming diagonal)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Link </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> mass: </span><span class="si">{</span><span class="n">mass</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Home configuration</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;M&quot;</span><span class="p">]</span>  <span class="c1"># (4, 4) homogeneous transformation</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Home position: </span><span class="si">{</span><span class="n">M</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="initialize-serial-manipulator">
+<h3>initialize_serial_manipulator()<a class="headerlink" href="#initialize-serial-manipulator" title="Link to this heading"></a></h3>
+<p>Creates the SerialManipulator object:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># The processor automatically calls this during initialization</span>
+<span class="n">processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+<span class="n">robot</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">serial_manipulator</span>
+
+<span class="c1"># Access SerialManipulator properties</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Joint limits: </span><span class="si">{</span><span class="n">robot</span><span class="o">.</span><span class="n">joint_limits</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Screw axes shape: </span><span class="si">{</span><span class="n">robot</span><span class="o">.</span><span class="n">S_list</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Home configuration:</span><span class="se">\n</span><span class="si">{</span><span class="n">robot</span><span class="o">.</span><span class="n">M_list</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="initialize-manipulator-dynamics">
+<h3>initialize_manipulator_dynamics()<a class="headerlink" href="#initialize-manipulator-dynamics" title="Link to this heading"></a></h3>
+<p>Creates the ManipulatorDynamics object:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+<span class="n">dynamics</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">dynamics</span>
+
+<span class="c1"># Use dynamics for computations</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">])</span>
+<span class="n">theta_dot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span>
+
+<span class="n">M</span> <span class="o">=</span> <span class="n">dynamics</span><span class="o">.</span><span class="n">mass_matrix</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">dynamics</span><span class="o">.</span><span class="n">velocity_quadratic_forces</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">theta_dot</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">dynamics</span><span class="o">.</span><span class="n">gravity_forces</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mass matrix shape: </span><span class="si">{</span><span class="n">M</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coriolis forces: </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gravity forces: </span><span class="si">{</span><span class="n">g</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="joint-limit-handling">
+<h2>Joint Limit Handling<a class="headerlink" href="#joint-limit-handling" title="Link to this heading"></a></h2>
+<section id="pybullet-integration">
+<h3>PyBullet Integration<a class="headerlink" href="#pybullet-integration" title="Link to this heading"></a></h3>
+<p>When <code class="docutils literal notranslate"><span class="pre">use_pybullet_limits=True</span></code>, the processor extracts joint limits from PyBullet:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># With PyBullet limits (default)</span>
+<span class="n">processor_pyb</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">,</span> <span class="n">use_pybullet_limits</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Without PyBullet limits (uses default ±π)</span>
+<span class="n">processor_default</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">,</span> <span class="n">use_pybullet_limits</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Compare limits</span>
+<span class="n">pyb_limits</span> <span class="o">=</span> <span class="n">processor_pyb</span><span class="o">.</span><span class="n">serial_manipulator</span><span class="o">.</span><span class="n">joint_limits</span>
+<span class="n">default_limits</span> <span class="o">=</span> <span class="n">processor_default</span><span class="o">.</span><span class="n">serial_manipulator</span><span class="o">.</span><span class="n">joint_limits</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">pyb</span><span class="p">,</span> <span class="n">default</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">pyb_limits</span><span class="p">,</span> <span class="n">default_limits</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Joint </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  PyBullet: [</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">pyb</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">:</span><span class="s2">6.1f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">pyb</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="si">:</span><span class="s2">6.1f</span><span class="si">}</span><span class="s2">] deg&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Default:  [</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">default</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">:</span><span class="s2">6.1f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">default</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="si">:</span><span class="s2">6.1f</span><span class="si">}</span><span class="s2">] deg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="custom-joint-limits">
+<h3>Custom Joint Limits<a class="headerlink" href="#custom-joint-limits" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+<span class="n">robot</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">serial_manipulator</span>
+
+<span class="c1"># Set custom limits</span>
+<span class="n">custom_limits</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span>        <span class="c1"># Joint 1: full rotation</span>
+    <span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span>    <span class="c1"># Joint 2: ±90°</span>
+    <span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span><span class="p">),</span>    <span class="c1"># Joint 3: ±60°</span>
+<span class="p">]</span>
+
+<span class="n">robot</span><span class="o">.</span><span class="n">joint_limits</span> <span class="o">=</span> <span class="n">custom_limits</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">joint_limits</span><span class="p">)]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="utility-methods">
+<h2>Utility Methods<a class="headerlink" href="#utility-methods" title="Link to this heading"></a></h2>
+<section id="static-methods">
+<h3>Static Methods<a class="headerlink" href="#static-methods" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract position from transformation matrix</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">T</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="o">.</span><span class="n">transform_to_xyz</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Position: </span><span class="si">{</span><span class="n">pos</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># [1, 2, 3]</span>
+
+<span class="c1"># Find link by name</span>
+<span class="n">processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+<span class="n">link</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="o">.</span><span class="n">get_link</span><span class="p">(</span><span class="n">processor</span><span class="o">.</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;link_name&quot;</span><span class="p">)</span>
+
+<span class="c1"># Convert joint axes to screw axes</span>
+<span class="n">joint_axes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span><span class="o">.</span><span class="n">T</span>      <span class="c1"># 2 joints</span>
+<span class="n">joint_positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]])</span><span class="o">.</span><span class="n">T</span>
+<span class="n">Slist</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="o">.</span><span class="n">w_p_to_slist</span><span class="p">(</span><span class="n">joint_axes</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">joint_positions</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Screw axes shape: </span><span class="si">{</span><span class="n">Slist</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># (6, 2)</span>
+</pre></div>
+</div>
+</section>
+<section id="visualization-methods">
+<h3>Visualization Methods<a class="headerlink" href="#visualization-methods" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+
+<span class="c1"># Visualize robot using urchin (matplotlib)</span>
+<span class="n">processor</span><span class="o">.</span><span class="n">visualize_robot</span><span class="p">()</span>
+
+<span class="c1"># Visualize trajectory animation</span>
+<span class="n">n_joints</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">processor</span><span class="o">.</span><span class="n">serial_manipulator</span><span class="o">.</span><span class="n">joint_limits</span><span class="p">)</span>
+<span class="n">trajectory</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="n">n_joints</span><span class="p">))</span>
+
+<span class="n">processor</span><span class="o">.</span><span class="n">visualize_trajectory</span><span class="p">(</span>
+    <span class="n">cfg_trajectory</span><span class="o">=</span><span class="n">trajectory</span><span class="p">,</span>
+    <span class="n">loop_time</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span>
+    <span class="n">use_collision</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="c1"># Get joint information</span>
+<span class="n">joint_info</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">print_joint_info</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of joints: </span><span class="si">{</span><span class="n">joint_info</span><span class="p">[</span><span class="s1">&#39;num_joints&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Joint names: </span><span class="si">{</span><span class="n">joint_info</span><span class="p">[</span><span class="s1">&#39;joint_names&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="working-example">
+<h2>Working Example<a class="headerlink" href="#working-example" title="Link to this heading"></a></h2>
+<section id="complete-robot-setup">
+<h3>Complete Robot Setup<a class="headerlink" href="#complete-robot-setup" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">complete_robot_setup</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Complete example of setting up a robot from URDF.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Load URDF</span>
+    <span class="n">processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">serial_manipulator</span>
+    <span class="n">dynamics</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">dynamics</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Robot Setup Complete:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- DOF: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">joint_limits</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Joint limits: </span><span class="si">{</span><span class="n">robot</span><span class="o">.</span><span class="n">joint_limits</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Test forward kinematics</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">joint_limits</span><span class="p">))</span>
+    <span class="n">T_home</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Home position: </span><span class="si">{</span><span class="n">T_home</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Test inverse kinematics</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">target</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">]</span>
+
+    <span class="n">solution</span><span class="p">,</span> <span class="n">success</span><span class="p">,</span> <span class="n">iterations</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">iterative_inverse_kinematics</span><span class="p">(</span>
+        <span class="n">target</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">max_iterations</span><span class="o">=</span><span class="mi">500</span>
+    <span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- IK test: </span><span class="si">{</span><span class="s1">&#39;Success&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">success</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;Failed&#39;</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">iterations</span><span class="si">}</span><span class="s2"> iter)&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Test dynamics</span>
+    <span class="n">theta_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">])[:</span><span class="nb">len</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">joint_limits</span><span class="p">)]</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">dynamics</span><span class="o">.</span><span class="n">mass_matrix</span><span class="p">(</span><span class="n">theta_test</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Mass matrix condition: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">processor</span>
+
+<span class="c1"># Run complete setup</span>
+<span class="n">processor</span> <span class="o">=</span> <span class="n">complete_robot_setup</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="kinematics-and-dynamics-usage">
+<h3>Kinematics and Dynamics Usage<a class="headerlink" href="#kinematics-and-dynamics-usage" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">kinematics_dynamics_example</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Example using both kinematics and dynamics.&quot;&quot;&quot;</span>
+
+    <span class="n">processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">serial_manipulator</span>
+    <span class="n">dynamics</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">dynamics</span>
+
+    <span class="c1"># Define robot state</span>
+    <span class="n">n_joints</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">joint_limits</span><span class="p">)</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">n_joints</span><span class="p">)</span>
+    <span class="n">theta_dot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">n_joints</span><span class="p">)</span>
+    <span class="n">theta_ddot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">n_joints</span><span class="p">)</span>
+
+    <span class="c1"># Kinematics</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+    <span class="n">J</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">jacobian</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+    <span class="n">V_ee</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">end_effector_velocity</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">theta_dot</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Kinematics Results:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- End-effector position: </span><span class="si">{</span><span class="n">T</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Jacobian shape: </span><span class="si">{</span><span class="n">J</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- End-effector velocity: </span><span class="si">{</span><span class="n">V_ee</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Dynamics</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">dynamics</span><span class="o">.</span><span class="n">mass_matrix</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">dynamics</span><span class="o">.</span><span class="n">velocity_quadratic_forces</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">theta_dot</span><span class="p">)</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">dynamics</span><span class="o">.</span><span class="n">gravity_forces</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">])</span>
+
+    <span class="c1"># Inverse dynamics</span>
+    <span class="n">tau</span> <span class="o">=</span> <span class="n">dynamics</span><span class="o">.</span><span class="n">inverse_dynamics</span><span class="p">(</span>
+        <span class="n">theta</span><span class="p">,</span> <span class="n">theta_dot</span><span class="p">,</span> <span class="n">theta_ddot</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Forward dynamics</span>
+    <span class="n">theta_ddot_computed</span> <span class="o">=</span> <span class="n">dynamics</span><span class="o">.</span><span class="n">forward_dynamics</span><span class="p">(</span>
+        <span class="n">theta</span><span class="p">,</span> <span class="n">theta_dot</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Dynamics Results:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Mass matrix determinant: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Required torques: </span><span class="si">{</span><span class="n">tau</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Verification error: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">theta_ddot</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">theta_ddot_computed</span><span class="p">)</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">robot</span><span class="p">,</span> <span class="n">dynamics</span>
+
+<span class="c1"># Run example</span>
+<span class="n">robot</span><span class="p">,</span> <span class="n">dynamics</span> <span class="o">=</span> <span class="n">kinematics_dynamics_example</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="error-handling">
+<h2>Error Handling<a class="headerlink" href="#error-handling" title="Link to this heading"></a></h2>
+<section id="common-issues-and-solutions">
+<h3>Common Issues and Solutions<a class="headerlink" href="#common-issues-and-solutions" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">robust_urdf_loading</span><span class="p">(</span><span class="n">urdf_path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Robust URDF loading with error handling.&quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Attempt to load URDF</span>
+        <span class="n">processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="n">urdf_path</span><span class="p">)</span>
+
+        <span class="c1"># Validate basic properties</span>
+        <span class="n">robot</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">serial_manipulator</span>
+        <span class="n">dynamics</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">dynamics</span>
+
+        <span class="c1"># Check if robot has reasonable properties</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">joint_limits</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No actuated joints found in URDF&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Test basic computation</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">joint_limits</span><span class="p">))</span>
+        <span class="n">T</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+        <span class="n">M</span> <span class="o">=</span> <span class="n">dynamics</span><span class="o">.</span><span class="n">mass_matrix</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+
+        <span class="c1"># Check for numerical issues</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">T</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Forward kinematics produces invalid results&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">M</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e12</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Warning: Mass matrix is poorly conditioned&quot;</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Successfully loaded robot with </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">joint_limits</span><span class="p">)</span><span class="si">}</span><span class="s2"> joints&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">processor</span>
+
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ URDF file not found: </span><span class="si">{</span><span class="n">urdf_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   Check file path and permissions&quot;</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ Error loading URDF: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   Possible solutions:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - Validate URDF syntax&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - Check for missing mesh files&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - Verify joint and link definitions&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span>
+
+<span class="c1"># Example usage</span>
+<span class="n">processor</span> <span class="o">=</span> <span class="n">robust_urdf_loading</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading"></a></h2>
+<section id="urdf-file-requirements">
+<h3>URDF File Requirements<a class="headerlink" href="#urdf-file-requirements" title="Link to this heading"></a></h3>
+<p>For optimal results, ensure your URDF file has:</p>
+<ol class="arabic simple">
+<li><p><strong>Proper inertial properties</strong> for all links</p></li>
+<li><p><strong>Realistic joint limits</strong> defined</p></li>
+<li><p><strong>Consistent coordinate frames</strong> throughout the chain</p></li>
+<li><p><strong>Valid joint axis definitions</strong> (unit vectors)</p></li>
+<li><p><strong>Accessible mesh files</strong> (if using complex geometries)</p></li>
+</ol>
+</section>
+<section id="performance-tips">
+<h3>Performance Tips<a class="headerlink" href="#performance-tips" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cache the processor for repeated use</span>
+<span class="n">_urdf_cache</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">def</span> <span class="nf">get_robot_processor</span><span class="p">(</span><span class="n">urdf_path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get cached processor or create new one.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">urdf_path</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_urdf_cache</span><span class="p">:</span>
+        <span class="n">_urdf_cache</span><span class="p">[</span><span class="n">urdf_path</span><span class="p">]</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="n">urdf_path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_urdf_cache</span><span class="p">[</span><span class="n">urdf_path</span><span class="p">]</span>
+
+<span class="c1"># Use the cached version</span>
+<span class="n">processor</span> <span class="o">=</span> <span class="n">get_robot_processor</span><span class="p">(</span><span class="s2">&quot;robot.urdf&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="validation-checklist">
+<h3>Validation Checklist<a class="headerlink" href="#validation-checklist" title="Link to this heading"></a></h3>
+<p>Before using a processed URDF:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">validate_processor</span><span class="p">(</span><span class="n">processor</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Quick validation of URDF processor results.&quot;&quot;&quot;</span>
+
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">serial_manipulator</span>
+    <span class="n">dynamics</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">dynamics</span>
+
+    <span class="c1"># Check 1: Forward kinematics at home</span>
+    <span class="n">theta_home</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">joint_limits</span><span class="p">))</span>
+    <span class="n">T_home</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">theta_home</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✓ Home position: </span><span class="si">{</span><span class="n">T_home</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Check 2: Mass matrix properties</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">dynamics</span><span class="o">.</span><span class="n">mass_matrix</span><span class="p">(</span><span class="n">theta_home</span><span class="p">)</span>
+    <span class="n">is_symmetric</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">M</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">is_positive_def</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">M</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✓ Mass matrix: symmetric=</span><span class="si">{</span><span class="n">is_symmetric</span><span class="si">}</span><span class="s2">, pos_def=</span><span class="si">{</span><span class="n">is_positive_def</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Check 3: Joint limits are reasonable</span>
+    <span class="n">reasonable_limits</span> <span class="o">=</span> <span class="nb">all</span><span class="p">(</span>
+        <span class="nb">abs</span><span class="p">(</span><span class="n">limit</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">limit</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mf">0.1</span> <span class="k">for</span> <span class="n">limit</span> <span class="ow">in</span> <span class="n">robot</span><span class="o">.</span><span class="n">joint_limits</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✓ Joint limits: reasonable=</span><span class="si">{</span><span class="n">reasonable_limits</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">is_symmetric</span> <span class="ow">and</span> <span class="n">is_positive_def</span> <span class="ow">and</span> <span class="n">reasonable_limits</span>
+
+<span class="c1"># Validate before use</span>
+<span class="n">is_valid</span> <span class="o">=</span> <span class="n">validate_processor</span><span class="p">(</span><span class="n">processor</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
+<p>The URDF Processor provides seamless conversion from URDF robot descriptions to ManipulaPy’s analytical framework:</p>
+<p><strong>Key Components:</strong></p>
+<ul class="simple">
+<li><p><strong>URDFToSerialManipulator class</strong>: Main interface for URDF processing</p></li>
+<li><p><strong>Automatic parameter extraction</strong>: Kinematic and dynamic properties</p></li>
+<li><p><strong>Joint limit handling</strong>: PyBullet integration for realistic limits</p></li>
+<li><p><strong>Object creation</strong>: SerialManipulator and ManipulatorDynamics instances</p></li>
+</ul>
+<p><strong>*Typical Workflow:</strong></p>
+<ol class="arabic simple">
+<li><p>Load URDF file with <code class="docutils literal notranslate"><span class="pre">URDFToSerialManipulator(urdf_path)</span></code></p></li>
+<li><p>Access <code class="docutils literal notranslate"><span class="pre">serial_manipulator</span></code> for kinematics computations</p></li>
+<li><p>Access <code class="docutils literal notranslate"><span class="pre">dynamics</span></code> for dynamics computations</p></li>
+<li><p>Use standard ManipulaPy methods for analysis and control</p></li>
+</ol>
+<p><strong>Best Practices:</strong>
+- Validate URDF files before processing
+- Use PyBullet limits for realistic joint constraints
+- Cache processors for repeated use
+- Check extracted parameters for consistency</p>
+<p>The URDF Processor enables you to leverage existing robot models while benefiting from ManipulaPy’s analytical capabilities for advanced robotics applications.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Control.html" class="btn btn-neutral float-left" title="Control Module User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Trajectory_Planning.html" class="btn btn-neutral float-right" title="Trajectory Planning User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Mohamed Aboelnar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

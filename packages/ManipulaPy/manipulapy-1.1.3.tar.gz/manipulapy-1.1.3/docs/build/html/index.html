@@ -1,0 +1,1001 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="ManipulaPy Documentation" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://manipulapy.readthedocs.io/index.html" />
+<meta property="og:site_name" content="ManipulaPy Documentation" />
+<meta property="og:description" content="A modern, GPU-accelerated Python toolbox for robot kinematics, dynamics, trajectory planning, perception and control. Quick links: Getting Started, Documentation map, Popular Learning Paths, What’s..." />
+<meta name="description" content="A modern, GPU-accelerated Python toolbox for robot kinematics, dynamics, trajectory planning, perception and control. Quick links: Getting Started, Documentation map, Popular Learning Paths, What’s..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ManipulaPy Documentation &mdash; ManipulaPy 1.1.0 Documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=b4417981" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=b4417981" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=fc837d61"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=fd10adb8"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting Started with ManipulaPy" href="getting_started/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            ManipulaPy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">🚀 Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started/index.html">Getting Started with ManipulaPy</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🛠️ API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">🔧 API Reference Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">📚 User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/Kinematics.html">Kinematics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/Dynamics.html">Dynamics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/Control.html">Control Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/Trajectory_Planning.html">Trajectory Planning User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/Simulation.html">Simulation Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/URDF_Processor.html">URDF Processor User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/Perception.html">Perception User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/vision.html">Vision User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/Potential_Field.html">Potential Field Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/Collision_Checker.html">Collision Checker Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/CUDA_Kernels.html">CUDA Kernels User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">ManipulaPy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">ManipulaPy Documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="manipulapy-documentation">
+<span id="doc-index"></span><h1>ManipulaPy Documentation<a class="headerlink" href="#manipulapy-documentation" title="Link to this heading"></a></h1>
+<p>A modern, GPU-accelerated Python toolbox for <strong>robot kinematics, dynamics, trajectory planning, perception and control</strong>.</p>
+<div class="hero-section">
+   <div class="hero-content">
+      <h2>🤖 Modern Robotics Made Simple</h2>
+      <p>ManipulaPy brings cutting-edge robotics algorithms to your fingertips with GPU acceleration,
+         computer vision integration, and a clean Python API.</p>
+
+      <!-- Project Badges -->
+      <div class="project-badges">
+         <a href="https://pypi.org/project/manipulapy/">
+            <img src="https://img.shields.io/pypi/v/manipulapy?style=for-the-badge&logo=pypi&logoColor=white&label=PyPI&color=blue" alt="PyPI Version">
+         </a>
+         <a href="https://www.python.org/downloads/">
+            <img src="https://img.shields.io/badge/python-3.8%2B-blue.svg?style=for-the-badge&logo=python&logoColor=white" alt="Python Versions">
+         </a>
+         <a href="https://joss.theoj.org/papers/e0e68c2dcd8ac9dfc1354c7ee37eb7aa">
+            <img src="https://joss.theoj.org/papers/e0e68c2dcd8ac9dfc1354c7ee37eb7aa/status.svg?style=for-the-badge" alt="JOSS Paper">
+         </a>
+         <a href="https://github.com/boelnar/ManipulaPy/blob/main/LICENSE">
+            <img src="https://img.shields.io/badge/License-AGPL%20v3-blue.svg?style=for-the-badge" alt="License">
+         </a>
+         <a href="https://github.com/boelnar/ManipulaPy/actions">
+            <img src="https://img.shields.io/github/actions/workflow/status/boelnasr/ManipulaPy/test.yml?branch=main&style=for-the-badge&logo=github&label=CI" alt="CI Status">
+         </a>
+         <a href="https://pypi.org/project/manipulapy/">
+            <img src="https://img.shields.io/pypi/dm/manipulapy?style=for-the-badge&logo=pypi&logoColor=white&label=Downloads&color=brightgreen" alt="Monthly Downloads">
+         </a>
+         <a href="https://github.com/boelnasr/ManipulaPy">
+            <img src="https://img.shields.io/github/stars/boelnasr/ManipulaPy?style=for-the-badge&logo=github&logoColor=white&label=Stars&color=yellow" alt="GitHub Stars">
+         </a>
+      </div>
+
+      <div class="feature-grid">
+         <div class="feature">
+            <span class="feature-icon">⚡</span>
+            <strong>CUDA Accelerated</strong><br>
+            GPU-powered trajectory planning and dynamics
+         </div>
+         <div class="feature">
+            <span class="feature-icon">👁️</span>
+            <strong>Computer Vision</strong><br>
+            YOLO detection and stereo perception
+         </div>
+         <div class="feature">
+            <span class="feature-icon">🎮</span>
+            <strong>Real-time Control</strong><br>
+            PyBullet simulation and advanced controllers
+         </div>
+
+      </div>
+   </div>
+</div><nav class="contents local" id="quick-links">
+<p class="topic-title"><strong>Quick links</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#getting-started" id="id1">Getting Started</a></p></li>
+<li><p><a class="reference internal" href="#documentation-map" id="id2">Documentation map</a></p></li>
+<li><p><a class="reference internal" href="#popular-learning-paths" id="id3">Popular Learning Paths</a></p></li>
+<li><p><a class="reference internal" href="#what-s-new" id="id4">What’s New</a></p></li>
+<li><p><a class="reference internal" href="#license" id="id5">License</a></p></li>
+<li><p><a class="reference internal" href="#indices-and-tables" id="id6">Indices and tables</a></p></li>
+</ul>
+</nav>
+<section id="getting-started">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Getting Started</a><a class="headerlink" href="#getting-started" title="Link to this heading"></a></h2>
+<p>If you’re in a hurry, install the package into a fresh virtual-env and try the examples below:</p>
+<div class="installation-section">
+   <!-- Live Version Badge -->
+   <div class="live-version">
+      <a href="https://pypi.org/project/manipulapy/">
+         <img src="https://img.shields.io/pypi/v/manipulapy?style=flat-square&logo=pypi&logoColor=white&label=Latest%20Version&color=blue" alt="Latest Version">
+      </a>
+      <a href="https://pypi.org/project/manipulapy/">
+         <img src="https://img.shields.io/pypi/wheel/manipulapy?style=flat-square&color=brightgreen&label=Wheel" alt="Wheel Available">
+      </a>
+      <a href="https://img.shields.io/badge/tests-passing-brightgreen">
+         <img src="https://img.shields.io/badge/tests-passing-brightgreen?style=flat-square" alt="Test Status">
+      </a>
+   </div>
+</div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>manipulapy<span class="o">[</span>cuda<span class="o">]</span><span class="w">  </span><span class="c1"># or just manipulapy</span>
+python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import ManipulaPy; print(&#39;🎉 Installation successful!&#39;)&quot;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The docs you’re reading are generated from the source in <cite>docs/</cite>; feel free to improve them and send a pull request 🚀</p>
+</div>
+<section id="quick-start-examples">
+<h3>🚀 Quick Start Examples<a class="headerlink" href="#quick-start-examples" title="Link to this heading"></a></h3>
+<p><strong>1. Your First Robot Analysis</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">ManipulaPy.urdf_processor</span> <span class="kn">import</span> <span class="n">URDFToSerialManipulator</span>
+<span class="kn">from</span> <span class="nn">ManipulaPy.ManipulaPy_data.xarm</span> <span class="kn">import</span> <span class="n">urdf_file</span> <span class="k">as</span> <span class="n">xarm_urdf_file</span>
+
+<span class="c1"># Load the built-in xArm robot model</span>
+<span class="n">urdf_processor</span> <span class="o">=</span> <span class="n">URDFToSerialManipulator</span><span class="p">(</span><span class="n">xarm_urdf_file</span><span class="p">)</span>
+<span class="n">robot</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">serial_manipulator</span>
+<span class="n">dynamics</span> <span class="o">=</span> <span class="n">urdf_processor</span><span class="o">.</span><span class="n">dynamics</span>
+
+<span class="c1"># Compute forward kinematics at home position</span>
+<span class="n">joint_angles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>  <span class="c1"># 6-DOF robot at home</span>
+<span class="n">end_effector_pose</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">joint_angles</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="s2">&quot;space&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🏠 Home position:&quot;</span><span class="p">,</span> <span class="n">end_effector_pose</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📐 Home orientation:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">end_effector_pose</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span> <span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+<p><strong>2. Inverse Kinematics in Action</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a target pose for the end-effector</span>
+<span class="n">target_angles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+<span class="n">T_target</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">target_angles</span><span class="p">)</span>
+
+<span class="c1"># Solve inverse kinematics</span>
+<span class="n">initial_guess</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">solution</span><span class="p">,</span> <span class="n">success</span><span class="p">,</span> <span class="n">iterations</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">iterative_inverse_kinematics</span><span class="p">(</span>
+    <span class="n">T_desired</span><span class="o">=</span><span class="n">T_target</span><span class="p">,</span>
+    <span class="n">thetalist0</span><span class="o">=</span><span class="n">initial_guess</span><span class="p">,</span>
+    <span class="n">max_iterations</span><span class="o">=</span><span class="mi">1000</span>
+<span class="p">)</span>
+
+<span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ IK solved in </span><span class="si">{</span><span class="n">iterations</span><span class="si">}</span><span class="s2"> iterations!&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🎯 Solution: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> degrees&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;❌ IK solution not found&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>3. CUDA-Accelerated Trajectory Planning</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ManipulaPy.path_planning</span> <span class="kn">import</span> <span class="n">TrajectoryPlanning</span>
+
+<span class="c1"># Setup trajectory planner with GPU acceleration</span>
+<span class="n">joint_limits</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">]]</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">planner</span> <span class="o">=</span> <span class="n">TrajectoryPlanning</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">xarm_urdf_file</span><span class="p">,</span> <span class="n">dynamics</span><span class="p">,</span> <span class="n">joint_limits</span><span class="p">)</span>
+
+<span class="c1"># Plan smooth trajectory from start to end</span>
+<span class="n">start_angles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">end_angles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+
+<span class="n">trajectory</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">joint_trajectory</span><span class="p">(</span>
+    <span class="n">thetastart</span><span class="o">=</span><span class="n">start_angles</span><span class="p">,</span>
+    <span class="n">thetaend</span><span class="o">=</span><span class="n">end_angles</span><span class="p">,</span>
+    <span class="n">Tf</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span>          <span class="c1"># 5 second duration</span>
+    <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>           <span class="c1"># 100 waypoints</span>
+    <span class="n">method</span><span class="o">=</span><span class="mi">5</span>         <span class="c1"># Quintic time scaling for smoothness</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;📈 Generated trajectory with </span><span class="si">{</span><span class="n">trajectory</span><span class="p">[</span><span class="s1">&#39;positions&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> points&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🎯 Start velocity: </span><span class="si">{</span><span class="n">trajectory</span><span class="p">[</span><span class="s1">&#39;velocities&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🏁 End velocity: </span><span class="si">{</span><span class="n">trajectory</span><span class="p">[</span><span class="s1">&#39;velocities&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Visualize the trajectory</span>
+<span class="n">planner</span><span class="o">.</span><span class="n">plot_trajectory</span><span class="p">(</span><span class="n">trajectory</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Smooth Joint Trajectory&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>4. Advanced Control with Dynamics</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ManipulaPy.control</span> <span class="kn">import</span> <span class="n">ManipulatorController</span>
+
+<span class="c1"># Create intelligent controller</span>
+<span class="n">controller</span> <span class="o">=</span> <span class="n">ManipulatorController</span><span class="p">(</span><span class="n">dynamics</span><span class="p">)</span>
+
+<span class="c1"># Current robot state</span>
+<span class="n">current_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">current_vel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="c1"># Desired target state</span>
+<span class="n">desired_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+<span class="n">desired_vel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="c1"># Auto-tune PID gains using Ziegler-Nichols</span>
+<span class="n">ultimate_gain</span> <span class="o">=</span> <span class="mf">50.0</span>  <span class="c1"># Found experimentally</span>
+<span class="n">ultimate_period</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">Kp</span><span class="p">,</span> <span class="n">Ki</span><span class="p">,</span> <span class="n">Kd</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">tune_controller</span><span class="p">(</span><span class="n">ultimate_gain</span><span class="p">,</span> <span class="n">ultimate_period</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;PID&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🎛️  Auto-tuned gains - Kp: </span><span class="si">{</span><span class="n">Kp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, Ki: </span><span class="si">{</span><span class="n">Ki</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, Kd: </span><span class="si">{</span><span class="n">Kd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Compute optimal control torques</span>
+<span class="n">control_torques</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">computed_torque_control</span><span class="p">(</span>
+    <span class="n">thetalistd</span><span class="o">=</span><span class="n">desired_pos</span><span class="p">,</span>
+    <span class="n">dthetalistd</span><span class="o">=</span><span class="n">desired_vel</span><span class="p">,</span>
+    <span class="n">ddthetalistd</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span>
+    <span class="n">thetalist</span><span class="o">=</span><span class="n">current_pos</span><span class="p">,</span>
+    <span class="n">dthetalist</span><span class="o">=</span><span class="n">current_vel</span><span class="p">,</span>
+    <span class="n">g</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">]),</span>
+    <span class="n">dt</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+    <span class="n">Kp</span><span class="o">=</span><span class="n">Kp</span><span class="p">,</span> <span class="n">Ki</span><span class="o">=</span><span class="n">Ki</span><span class="p">,</span> <span class="n">Kd</span><span class="o">=</span><span class="n">Kd</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚡ Control torques: </span><span class="si">{</span><span class="n">control_torques</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>5. PyBullet Simulation</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ManipulaPy.sim</span> <span class="kn">import</span> <span class="n">Simulation</span>
+
+<span class="c1"># Create realistic physics simulation</span>
+<span class="n">sim</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">(</span>
+    <span class="n">urdf_file_path</span><span class="o">=</span><span class="n">xarm_urdf_file</span><span class="p">,</span>
+    <span class="n">joint_limits</span><span class="o">=</span><span class="n">joint_limits</span><span class="p">,</span>
+    <span class="n">torque_limits</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">]]</span> <span class="o">*</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="n">time_step</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+    <span class="n">real_time_factor</span><span class="o">=</span><span class="mf">1.0</span>
+<span class="p">)</span>
+
+<span class="c1"># Initialize robot and planning systems</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">initialize_robot</span><span class="p">()</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">initialize_planner_and_controller</span><span class="p">()</span>
+
+<span class="c1"># Execute the planned trajectory in simulation</span>
+<span class="n">waypoints</span> <span class="o">=</span> <span class="n">trajectory</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">][::</span><span class="mi">10</span><span class="p">]</span>  <span class="c1"># Subsample for demonstration</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎬 Running simulation...&quot;</span><span class="p">)</span>
+<span class="n">final_position</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">run_trajectory</span><span class="p">(</span><span class="n">waypoints</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🏁 Final end-effector position: </span><span class="si">{</span><span class="n">final_position</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>6. Computer Vision &amp; Perception</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ManipulaPy.vision</span> <span class="kn">import</span> <span class="n">Vision</span>
+<span class="kn">from</span> <span class="nn">ManipulaPy.perception</span> <span class="kn">import</span> <span class="n">Perception</span>
+
+<span class="c1"># Setup camera system</span>
+<span class="n">camera_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;workspace_camera&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;translation&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>  <span class="c1"># 1m above workspace</span>
+    <span class="s2">&quot;rotation&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>           <span class="c1"># Look down at 45°</span>
+    <span class="s2">&quot;fov&quot;</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span>
+    <span class="s2">&quot;intrinsic_matrix&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">320</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">240</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
+    <span class="s2">&quot;distortion_coeffs&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1"># Create integrated vision system</span>
+<span class="n">vision</span> <span class="o">=</span> <span class="n">Vision</span><span class="p">(</span><span class="n">camera_configs</span><span class="o">=</span><span class="p">[</span><span class="n">camera_config</span><span class="p">])</span>
+<span class="n">perception</span> <span class="o">=</span> <span class="n">Perception</span><span class="p">(</span><span class="n">vision_instance</span><span class="o">=</span><span class="n">vision</span><span class="p">)</span>
+
+<span class="c1"># Detect and analyze obstacles</span>
+<span class="n">obstacle_points</span><span class="p">,</span> <span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">perception</span><span class="o">.</span><span class="n">detect_and_cluster_obstacles</span><span class="p">(</span>
+    <span class="n">camera_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">depth_threshold</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span>  <span class="c1"># Objects within 3m</span>
+    <span class="n">eps</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>              <span class="c1"># DBSCAN clustering parameter</span>
+    <span class="n">min_samples</span><span class="o">=</span><span class="mi">3</span>         <span class="c1"># Minimum points per cluster</span>
+<span class="p">)</span>
+
+<span class="n">num_clusters</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">cluster_labels</span><span class="p">))</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">in</span> <span class="n">cluster_labels</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;👁️  Detected </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">obstacle_points</span><span class="p">)</span><span class="si">}</span><span class="s2"> obstacle points&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🔍 Found </span><span class="si">{</span><span class="n">num_clusters</span><span class="si">}</span><span class="s2"> distinct object clusters&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="getting-started-tips">
+   <h4>💡 Pro Tips for Success</h4>
+   <div class="tips-grid">
+      <div class="tip">
+         <span class="tip-icon">🎯</span>
+         <strong>Start Simple</strong><br>
+         Begin with forward kinematics before tackling complex control
+      </div>
+      <div class="tip">
+         <span class="tip-icon">🔧</span>
+         <strong>Use Built-ins</strong><br>
+         The xArm URDF model is perfect for learning and testing
+      </div>
+      <div class="tip">
+         <span class="tip-icon">📊</span>
+         <strong>Visualize Everything</strong><br>
+         Use plotting functions to understand robot behavior
+      </div>
+      <div class="tip">
+         <span class="tip-icon">⚡</span>
+         <strong>GPU Acceleration</strong><br>
+         Install CUDA for 7x faster trajectory computations
+      </div>
+   </div>
+</div></section>
+<section id="key-features-at-a-glance">
+<h3>Key Features at a Glance<a class="headerlink" href="#key-features-at-a-glance" title="Link to this heading"></a></h3>
+<div class="features-overview">
+   <div class="feature-category">
+      <h4>🔧 Core Robotics</h4>
+      <ul>
+         <li><strong>Kinematics:</strong> Forward/inverse with neural network acceleration</li>
+         <li><strong>Dynamics:</strong> Mass matrices, inverse/forward dynamics with caching</li>
+         <li><strong>Control:</strong> PID, computed torque, adaptive controllers</li>
+         <li><strong>Planning:</strong> CUDA-accelerated trajectory generation</li>
+      </ul>
+   </div>
+   <div class="feature-category">
+      <h4>👁️ Perception & Vision</h4>
+      <ul>
+         <li><strong>Vision:</strong> Monocular/stereo camera support</li>
+         <li><strong>Detection:</strong> YOLO-based object detection</li>
+         <li><strong>3D Processing:</strong> Point cloud clustering</li>
+         <li><strong>Integration:</strong> PyBullet camera debugging</li>
+      </ul>
+   </div>
+   <div class="feature-category">
+      <h4>⚡ High Performance</h4>
+      <ul>
+         <li><strong>CUDA Kernels:</strong> GPU-accelerated computations</li>
+         <li><strong>Parallel Processing:</strong> Multi-robot trajectory planning</li>
+         <li><strong>Optimized Algorithms:</strong> Cached mass matrices</li>
+         <li><strong>Real-time:</strong> Sub-millisecond kinematics</li>
+      </ul>
+   </div>
+</div></section>
+</section>
+<section id="documentation-map">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Documentation map</a><a class="headerlink" href="#documentation-map" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">🚀 Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started/index.html">Getting Started with ManipulaPy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started/index.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started/index.html#your-first-robot">Your First Robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started/index.html#your-first-trajectory">Your First Trajectory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started/index.html#your-first-simulation">Your First Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started/index.html#your-first-control-system">Your First Control System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started/index.html#your-first-vision-system">Your First Vision System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started/index.html#what-s-next">What’s Next?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started/index.html#common-issues-solutions">Common Issues &amp; Solutions</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">🛠️ API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">🔧 API Reference Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#module-overview">📦 Module Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#how-to-use-this-reference">📖 How to Use This Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#quick-navigation">🔍 Quick Navigation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">📚 User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/index.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/index.html#complete-guide-overview">📚 Complete Guide Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/index.html#learning-pathways">🗺️ Learning Pathways</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/index.html#guide-categories">📖 Guide Categories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/index.html#quick-reference">🎯 Quick Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/index.html#study-tips">💡 Study Tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/index.html#need-help">🆘 Need Help?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/Kinematics.html">Kinematics User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Kinematics.html#what-is-robot-kinematics">What is Robot Kinematics?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Kinematics.html#mathematical-foundation">Mathematical Foundation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Kinematics.html#serialmanipulator-class">SerialManipulator Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Kinematics.html#creating-a-robot-model">Creating a Robot Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Kinematics.html#forward-kinematics">Forward Kinematics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Kinematics.html#inverse-kinematics">Inverse Kinematics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Kinematics.html#jacobian-matrix">Jacobian Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Kinematics.html#velocity-kinematics">Velocity Kinematics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Kinematics.html#state-management">State Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Kinematics.html#working-examples">Working Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Kinematics.html#common-issues-and-solutions">Common Issues and Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Kinematics.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Kinematics.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/Dynamics.html">Dynamics User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Dynamics.html#introduction-to-robot-dynamics">Introduction to Robot Dynamics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Dynamics.html#setting-up-robot-dynamics">Setting Up Robot Dynamics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Dynamics.html#mass-matrix-computation">Mass Matrix Computation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Dynamics.html#velocity-dependent-forces">Velocity-Dependent Forces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/Control.html">Control Module User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Control.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Control.html#mathematical-foundation">Mathematical Foundation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Control.html#installation-and-setup">Installation and Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Control.html#quick-start">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Control.html#controller-types">Controller Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Control.html#advanced-features">Advanced Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Control.html#tuning-methods">Tuning Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Control.html#plotting-and-analysis">Plotting and Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Control.html#cartesian-space-control">Cartesian Space Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Control.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Control.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Control.html#api-reference">API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Control.html#additional-resources">Additional Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/Trajectory_Planning.html">Trajectory Planning User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Trajectory_Planning.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Trajectory_Planning.html#joint-space-time-scaling">Joint-Space Time Scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Trajectory_Planning.html#dynamics-aware-torque-computation">Dynamics-Aware Torque Computation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Trajectory_Planning.html#potential-field-collision-avoidance">Potential-Field Collision Avoidance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Trajectory_Planning.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Trajectory_Planning.html#trajectoryplanning-class">TrajectoryPlanning Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Trajectory_Planning.html#core-methods">Core Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Trajectory_Planning.html#dynamics-integration">Dynamics Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Trajectory_Planning.html#trajectory-visualization">Trajectory Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Trajectory_Planning.html#advanced-features">Advanced Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Trajectory_Planning.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Trajectory_Planning.html#real-time-applications">Real-Time Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Trajectory_Planning.html#practical-applications">Practical Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Trajectory_Planning.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Trajectory_Planning.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/Simulation.html">Simulation Module User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Simulation.html#installation-and-setup">Installation and Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Simulation.html#quick-start">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Simulation.html#module-api-reference">Module API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Simulation.html#advanced-examples">Advanced Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Simulation.html#advanced-configuration">Advanced Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Simulation.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Simulation.html#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Simulation.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Simulation.html#integration-with-other-modules">Integration with Other Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Simulation.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/URDF_Processor.html">URDF Processor User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/URDF_Processor.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/URDF_Processor.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/URDF_Processor.html#urdftoserialmanipulator-class">URDFToSerialManipulator Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/URDF_Processor.html#core-methods">Core Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/URDF_Processor.html#joint-limit-handling">Joint Limit Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/URDF_Processor.html#utility-methods">Utility Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/URDF_Processor.html#working-example">Working Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/URDF_Processor.html#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/URDF_Processor.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/URDF_Processor.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/Singularity_Analysis.html">Singularity Analysis User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Singularity_Analysis.html#theoretical-background">Theoretical Background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Singularity_Analysis.html#installation-and-setup">Installation and Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Singularity_Analysis.html#quick-start">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Singularity_Analysis.html#module-api-reference">Module API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Singularity_Analysis.html#advanced-analysis-examples">Advanced Analysis Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Singularity_Analysis.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Singularity_Analysis.html#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Singularity_Analysis.html#validation-and-testing">Validation and Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Singularity_Analysis.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Singularity_Analysis.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/Perception.html">Perception User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Perception.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Perception.html#key-features">Key Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Perception.html#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Perception.html#core-functionality">Core Functionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Perception.html#data-flow-architecture">Data Flow Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Perception.html#advanced-applications">Advanced Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Perception.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Perception.html#error-handling-and-robustness">Error Handling and Robustness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Perception.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Perception.html#common-issues-and-solutions">Common Issues and Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Perception.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/vision.html">Vision User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/vision.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/vision.html#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/vision.html#core-features">Core Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/vision.html#advanced-usage">Advanced Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/vision.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/vision.html#error-handling-and-debugging">Error Handling and Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/vision.html#common-issues-and-solutions">Common Issues and Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/vision.html#real-world-applications">Real-World Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/vision.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/vision.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/Potential_Field.html">Potential Field Module User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Potential_Field.html#introduction-to-potential-fields">Introduction to Potential Fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Potential_Field.html#class-reference">Class Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Potential_Field.html#usage-examples">Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Potential_Field.html#advanced-topics">Advanced Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Potential_Field.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Potential_Field.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/Collision_Checker.html">Collision Checker Module User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Collision_Checker.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Collision_Checker.html#mathematical-background">Mathematical Background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Collision_Checker.html#class-reference">Class Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Collision_Checker.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Collision_Checker.html#usage-examples">Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Collision_Checker.html#advanced-topics">Advanced Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Collision_Checker.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Collision_Checker.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/CUDA_Kernels.html">CUDA Kernels User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/CUDA_Kernels.html#what-is-gpu-acceleration">What is GPU Acceleration?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/CUDA_Kernels.html#mathematical-foundation">Mathematical Foundation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/CUDA_Kernels.html#installation-and-setup">Installation and Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/CUDA_Kernels.html#available-cuda-kernels">Available CUDA Kernels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/CUDA_Kernels.html#using-gpu-acceleration">Using GPU Acceleration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/CUDA_Kernels.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/CUDA_Kernels.html#cpu-fallback">CPU Fallback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/CUDA_Kernels.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/CUDA_Kernels.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/CUDA_Kernels.html#integration-with-manipulapy">Integration with ManipulaPy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/CUDA_Kernels.html#working-examples">Working Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/CUDA_Kernels.html#when-to-use-gpu-acceleration">When to Use GPU Acceleration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/CUDA_Kernels.html#getting-started-checklist">Getting Started Checklist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/CUDA_Kernels.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="popular-learning-paths">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Popular Learning Paths</a><a class="headerlink" href="#popular-learning-paths" title="Link to this heading"></a></h2>
+<div class="learning-paths">
+   <div class="path">
+      <h4>🆕 Complete Beginner</h4>
+      <ol>
+         <li><a href="getting_started/index.html">📖 Getting Started Guide</a></li>
+         <li><a href="#getting-started">🚀 Quick Start Examples ↑</a></li>
+         <li><a href="user_guide/Kinematics.html">🔧 Basic Kinematics</a></li>
+         <li><a href="tutorials/index.html">🤖 First Robot Project</a></li>
+      </ol>
+   </div>
+   <div class="path">
+      <h4>🤖 Robotics Engineer</h4>
+      <ol>
+         <li><a href="user_guide/Kinematics.html">🔧 Advanced Kinematics</a></li>
+         <li><a href="user_guide/Dynamics.html">⚖️ Robot Dynamics</a></li>
+         <li><a href="user_guide/Control.html">🎛️ Control Systems</a></li>
+         <li><a href="user_guide/Trajectory_Planning.html">🛤️ Motion Planning</a></li>
+      </ol>
+   </div>
+   <div class="path">
+      <h4>💻 Performance Engineer</h4>
+      <ol>
+         <li><a href="user_guide/CUDA_Kernels.html">⚡ CUDA Setup</a></li>
+         <li><a href="tutorials/index.html">🚀 GPU Acceleration</a></li>
+         <li><a href="tutorials/index.html">📊 Performance Profiling</a></li>
+         <li><a href="tutorials/index.html">🔧 Optimization Tips</a></li>
+      </ol>
+   </div>
+   <div class="path">
+      <h4>👁️ Vision Engineer</h4>
+      <ol>
+         <li><a href="tutorials/index.html">👁️ Vision Systems</a></li>
+         <li><a href="tutorials/index.html">🔍 Object Detection</a></li>
+         <li><a href="tutorials/index.html">🌐 3D Perception</a></li>
+         <li><a href="tutorials/index.html">🎯 Vision-Guided Control</a></li>
+      </ol>
+   </div>
+</div></section>
+<section id="what-s-new">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">What’s New</a><a class="headerlink" href="#what-s-new" title="Link to this heading"></a></h2>
+<div class="whats-new">
+   <h4>🎉 Latest in v1.1.0</h4>
+   <ul>
+      <li><strong>New:</strong> CUDA-accelerated trajectory planning</li>
+      <li><strong>New:</strong> Computer vision and perception modules</li>
+      <li><strong>New:</strong> Neural network inverse kinematics</li>
+      <li><strong>Improved:</strong> 3x faster dynamics computation with caching</li>
+      <li><strong>Added:</strong> PyBullet simulation integration</li>
+      <li><strong>Enhanced:</strong> Documentation with interactive examples</li>
+   </ul>
+</div><section id="installation-options">
+<h3>Installation Options<a class="headerlink" href="#installation-options" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Basic installation</span>
+pip<span class="w"> </span>install<span class="w"> </span>manipulapy
+
+<span class="c1"># With CUDA acceleration (recommended)</span>
+pip<span class="w"> </span>install<span class="w"> </span>manipulapy<span class="o">[</span>cuda<span class="o">]</span>
+
+<span class="c1"># With computer vision support</span>
+pip<span class="w"> </span>install<span class="w"> </span>manipulapy<span class="o">[</span>vision<span class="o">]</span>
+
+<span class="c1"># Full installation (all features)</span>
+pip<span class="w"> </span>install<span class="w"> </span>manipulapy<span class="o">[</span>all<span class="o">]</span>
+
+<span class="c1"># Development installation</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/boelnasr/ManipulaPy.git
+<span class="nb">cd</span><span class="w"> </span>ManipulaPy
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="o">[</span>dev<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="performance-showcase">
+<h3>Performance Showcase<a class="headerlink" href="#performance-showcase" title="Link to this heading"></a></h3>
+<div class="performance-showcase">
+   <div class="benchmark">
+      <h5>⚡ CUDA Acceleration</h5>
+      <p><strong>7x faster</strong> trajectory planning<br>
+      GPU vs CPU for 1000-point trajectories</p>
+   </div>
+   <div class="benchmark">
+      <h5>🧠 Neural Network IK</h5>
+      <p><strong>10x faster</strong> convergence<br>
+      Hybrid approach vs traditional methods</p>
+   </div>
+   <div class="benchmark">
+      <h5>💾 Smart Caching</h5>
+      <p><strong>3x faster</strong> dynamics<br>
+      Cached mass matrices for repeated calls</p>
+   </div>
+   <div class="benchmark">
+      <h5>👁️ Real-time Vision</h5>
+      <p><strong>30 FPS</strong> object detection<br>
+      YOLO integration with 3D localization</p>
+   </div>
+</div></section>
+<section id="citing-manipulapy">
+<h3>Citing ManipulaPy<a class="headerlink" href="#citing-manipulapy" title="Link to this heading"></a></h3>
+<p>If you use ManipulaPy in your research, please cite:</p>
+<div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@software</span><span class="p">{</span><span class="nl">manipulapy2024</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{ManipulaPy: A Modern Python Library for Robot Manipulation}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="p">=</span><span class="s">{Mohamed Aboelnar}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2024}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">url</span><span class="p">=</span><span class="s">{https://github.com/boelnasr/ManipulaPy}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">version</span><span class="p">=</span><span class="s">{1.1.0}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="license">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">License</a><a class="headerlink" href="#license" title="Link to this heading"></a></h2>
+<p>ManipulaPy is released under the <strong>AGPL-3.0 License</strong>:</p>
+<div class="license-info">
+   <div class="license-feature">
+      <span class="license-icon">✅</span>
+      <strong>Open Source</strong><br>
+      Source code freely available
+   </div>
+   <div class="license-feature">
+      <span class="license-icon">🔄</span>
+      <strong>Copyleft</strong><br>
+      Derivative works must be open source
+   </div>
+   <div class="license-feature">
+      <span class="license-icon">🌐</span>
+      <strong>Network Use</strong><br>
+      Modified network services must provide source
+   </div>
+   <div class="license-feature">
+      <span class="license-icon">💼</span>
+      <strong>Commercial Use</strong><br>
+      Permitted with AGPL compliance
+   </div>
+</div><p>For commercial licensing options or AGPL compliance questions, please contact the maintainers.</p>
+</section>
+<section id="indices-and-tables">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Indices and tables</a><a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a> - Complete index of all functions, classes, and methods</p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a> - Module index for quick navigation</p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a> - Search the documentation</p></li>
+</ul>
+<style>
+.hero-section {
+   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+   color: white;
+   padding: 2rem;
+   border-radius: 10px;
+   margin: 2rem 0;
+}
+.hero-content h2 {
+   margin-top: 0;
+   font-size: 2rem;
+}
+
+/* Enhanced Badge Styling */
+.project-badges {
+   text-align: center;
+   margin: 1.5rem 0;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   gap: 0.5rem;
+}
+
+.project-badges img {
+   height: 28px;
+   transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-badges img:hover {
+   transform: scale(1.05);
+   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.installation-section {
+   background: #f8f9fa;
+   border: 1px solid #e9ecef;
+   border-radius: 8px;
+   padding: 1rem;
+   margin: 1rem 0;
+}
+
+.live-version {
+   text-align: center;
+   margin: 1rem 0;
+   display: flex;
+   justify-content: center;
+   gap: 0.5rem;
+   flex-wrap: wrap;
+}
+
+.live-version img {
+   height: 20px;
+}
+
+/* Responsive badges */
+@media (max-width: 768px) {
+   .project-badges {
+      flex-direction: column;
+      align-items: center;
+   }
+
+   .project-badges img {
+      width: 100%;
+      max-width: 250px;
+   }
+
+   .live-version {
+      flex-direction: column;
+      align-items: center;
+   }
+}
+
+.feature-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   gap: 1rem;
+   margin-top: 1.5rem;
+}
+.feature {
+   background: rgba(255,255,255,0.5);
+   padding: 1rem;
+   border-radius: 8px;
+   text-align: center;
+}
+.feature-icon {
+   font-size: 2rem;
+   display: block;
+   margin-bottom: 0.5rem;
+}
+.getting-started-tips {
+   background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+   color: white;
+   padding: 1.5rem;
+   border-radius: 10px;
+   margin: 2rem 0;
+}
+.getting-started-tips h4 {
+   margin-top: 0;
+}
+.tips-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   gap: 1rem;
+   margin-top: 1rem;
+}
+.tip {
+   padding: 1rem;
+   border-radius: 8px;
+   text-align: center;
+}
+
+.tip:nth-child(1) {
+   background: #059669; /* Strong blue */
+}
+
+.tip:nth-child(2) {
+   background: #059669; /* Strong red */
+}
+
+.tip:nth-child(3) {
+   background: #059669; /* Strong green */
+}
+
+.tip:nth-child(4) {
+   background: #059669; /* Strong purple */
+}
+.tip-icon {
+   font-size: 1.5rem;
+   display: block;
+   margin-bottom: 0.5rem;
+}
+.features-overview {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+   gap: 1.5rem;
+   margin: 1.5rem 0;
+}
+.feature-category {
+   border: 1px solid #e1e4e8;
+   border-radius: 8px;
+   padding: 1rem;
+}
+.feature-category h4 {
+   margin-top: 0;
+   color: #0366d6;
+}
+.learning-paths {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   gap: 1rem;
+   margin: 1.5rem 0;
+}
+.path {
+   border: 1px solid #e1e4e8;
+   border-radius: 8px;
+   padding: 1rem;
+   background: #f8f9fa;
+}
+.path h4 {
+   margin-top: 0;
+   color: #0366d6;
+}
+.whats-new {
+   background: #f0f8f0;
+   border-left: 4px solid #28a745;
+   padding: 1rem;
+   margin: 1.5rem 0;
+}
+.performance-showcase {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+   gap: 1rem;
+   margin: 1.5rem 0;
+}
+.benchmark {
+   background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+   color: white;
+   padding: 1rem;
+   border-radius: 8px;
+   text-align: center;
+}
+.benchmark h5 {
+   margin-top: 0;
+}
+.license-info {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+   gap: 1rem;
+   margin: 1rem 0;
+}
+.license-feature {
+   text-align: center;
+   padding: 0.5rem;
+}
+.license-icon {
+   font-size: 1.5rem;
+   display: block;
+   margin-bottom: 0.5rem;
+}
+</style></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="getting_started/index.html" class="btn btn-neutral float-right" title="Getting Started with ManipulaPy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Mohamed Aboelnar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

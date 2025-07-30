@@ -1,0 +1,800 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ManipulaPy.utils &mdash; ManipulaPy 1.1.0 Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=b4417981" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=b4417981" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=fc837d61"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=fd10adb8"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            ManipulaPy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">🚀 Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started with ManipulaPy</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🛠️ API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">🔧 API Reference Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">📚 User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/Kinematics.html">Kinematics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/Dynamics.html">Dynamics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/Control.html">Control Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/Trajectory_Planning.html">Trajectory Planning User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/Simulation.html">Simulation Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/URDF_Processor.html">URDF Processor User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/Perception.html">Perception User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/vision.html">Vision User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/Potential_Field.html">Potential Field Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/Collision_Checker.html">Collision Checker Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/CUDA_Kernels.html">CUDA Kernels User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ManipulaPy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">ManipulaPy.utils</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ManipulaPy.utils</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># SPDX-License-Identifier: AGPL-3.0-or-later</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Utilities Module - ManipulaPy</span>
+
+<span class="sd">This module contains essential utility functions for working with rigid body motions,</span>
+<span class="sd">transformations, and related operations in robotic manipulation. Functions cover</span>
+<span class="sd">screw theory, matrix operations, Lie algebra computations, time scaling, and</span>
+<span class="sd">coordinate transformations for kinematics and dynamics calculations.</span>
+
+<span class="sd">The functions in this module support:</span>
+<span class="sd">- Extracting and manipulating screw vectors and twists</span>
+<span class="sd">- Computing transformation matrices from twists and joint angles</span>
+<span class="sd">- Matrix logarithms and exponentials for SE(3) and SO(3)</span>
+<span class="sd">- Converting between rotation matrices and Euler angles</span>
+<span class="sd">- Skew-symmetric matrix operations</span>
+<span class="sd">- Time scaling functions for trajectory generation</span>
+
+<span class="sd">Copyright (c) 2025 Mohamed Aboelnar</span>
+
+<span class="sd">This file is part of ManipulaPy.</span>
+
+<span class="sd">ManipulaPy is free software: you can redistribute it and/or modify</span>
+<span class="sd">it under the terms of the GNU Affero General Public License as published by</span>
+<span class="sd">the Free Software Foundation, either version 3 of the License, or</span>
+<span class="sd">(at your option) any later version.</span>
+
+<span class="sd">ManipulaPy is distributed in the hope that it will be useful,</span>
+<span class="sd">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="sd">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the</span>
+<span class="sd">GNU Affero General Public License for more details.</span>
+
+<span class="sd">You should have received a copy of the GNU Affero General Public License</span>
+<span class="sd">along with ManipulaPy. If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">expm</span>
+
+
+<div class="viewcode-block" id="extract_r_list">
+<a class="viewcode-back" href="../../api/utils.html#ManipulaPy.utils.extract_r_list">[docs]</a>
+<span class="k">def</span> <span class="nf">extract_r_list</span><span class="p">(</span><span class="n">Slist</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extracts the r_list from the given Slist.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        Slist (list): A list of S vectors representing the joint screws.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        np.ndarray: An array of r vectors.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Handle None or improperly shaped input</span>
+    <span class="k">if</span> <span class="n">Slist</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Slist</span><span class="p">),</span> <span class="s2">&quot;T&quot;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+
+    <span class="c1"># Continue with the original function</span>
+    <span class="n">r_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">S</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Slist</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">:</span>
+        <span class="n">omega</span> <span class="o">=</span> <span class="n">S</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="mi">3</span><span class="p">:]</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">omega</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">omega</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+            <span class="n">r_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">r_list</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>  <span class="c1"># For prismatic joints</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">r_list</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="extract_omega_list">
+<a class="viewcode-back" href="../../api/utils.html#ManipulaPy.utils.extract_omega_list">[docs]</a>
+<span class="k">def</span> <span class="nf">extract_omega_list</span><span class="p">(</span><span class="n">Slist</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extracts the first three elements from each sublist in the given list and returns them as a numpy array.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        Slist (list): A list of sublists.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        np.array: A numpy array containing the first three elements from each sublist.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Slist</span><span class="p">)[:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="extract_screw_list">
+<a class="viewcode-back" href="../../api/utils.html#ManipulaPy.utils.extract_screw_list">[docs]</a>
+<span class="k">def</span> <span class="nf">extract_screw_list</span><span class="p">(</span><span class="n">omega_list</span><span class="p">,</span> <span class="n">r_list</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Build a 6xn screw-axis matrix from (3xn) angular velocities &#39;omega_list&#39;</span>
+<span class="sd">    and (3xn) positions &#39;r_list&#39;.</span>
+<span class="sd">    For each column i:</span>
+<span class="sd">       S[:3, i] = w = omega_list[:, i]</span>
+<span class="sd">       S[3:, i] = v = - w x r</span>
+
+<span class="sd">    Returns a 6xn array of [wx, wy, wz, vx, vy, vz] in each column.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">omega_list</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">r_list</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="c1"># Convert to numpy arrays if not already</span>
+    <span class="n">omega_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">omega_list</span><span class="p">)</span>
+    <span class="n">r_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">r_list</span><span class="p">)</span>
+    
+    <span class="c1"># Handle case where r_list is empty or 1D</span>
+    <span class="k">if</span> <span class="n">r_list</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># Create a default r_list with zeros</span>
+        <span class="k">if</span> <span class="n">omega_list</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">n_joints</span> <span class="o">=</span> <span class="n">omega_list</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">n_joints</span> <span class="o">=</span> <span class="n">omega_list</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="mi">3</span> <span class="k">if</span> <span class="n">omega_list</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">1</span>
+        <span class="n">r_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_joints</span><span class="p">))</span>
+    <span class="k">elif</span> <span class="n">r_list</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># If r_list is 1D, reshape or handle appropriately</span>
+        <span class="k">if</span> <span class="n">r_list</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">omega_list</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">n_joints</span> <span class="o">=</span> <span class="n">omega_list</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">n_joints</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">r_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_joints</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">r_list</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="c1"># Single position vector, reshape to (3, 1)</span>
+            <span class="n">r_list</span> <span class="o">=</span> <span class="n">r_list</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Multiple positions in 1D array, try to reshape</span>
+            <span class="k">if</span> <span class="n">r_list</span><span class="o">.</span><span class="n">size</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">n_positions</span> <span class="o">=</span> <span class="n">r_list</span><span class="o">.</span><span class="n">size</span> <span class="o">//</span> <span class="mi">3</span>
+                <span class="n">r_list</span> <span class="o">=</span> <span class="n">r_list</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_positions</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot reshape r_list of size </span><span class="si">{</span><span class="n">r_list</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s2"> into (3, n) format&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Ensure omega_list is also 2D</span>
+    <span class="k">if</span> <span class="n">omega_list</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">omega_list</span><span class="o">.</span><span class="n">size</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">n_joints</span> <span class="o">=</span> <span class="n">omega_list</span><span class="o">.</span><span class="n">size</span> <span class="o">//</span> <span class="mi">3</span>
+            <span class="n">omega_list</span> <span class="o">=</span> <span class="n">omega_list</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_joints</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot reshape omega_list of size </span><span class="si">{</span><span class="n">omega_list</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s2"> into (3, n) format&quot;</span><span class="p">)</span>
+
+    <span class="n">w_rows</span><span class="p">,</span> <span class="n">w_cols</span> <span class="o">=</span> <span class="n">omega_list</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">r_rows</span><span class="p">,</span> <span class="n">r_cols</span> <span class="o">=</span> <span class="n">r_list</span><span class="o">.</span><span class="n">shape</span>
+    
+    <span class="k">if</span> <span class="n">w_rows</span> <span class="o">!=</span> <span class="mi">3</span> <span class="ow">or</span> <span class="n">r_rows</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;omega_list and r_list must each have 3 rows.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">w_cols</span> <span class="o">!=</span> <span class="n">r_cols</span><span class="p">:</span>
+        <span class="c1"># Try to broadcast if one has only one column</span>
+        <span class="k">if</span> <span class="n">r_cols</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">w_cols</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">r_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">r_list</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">w_cols</span><span class="p">))</span>
+            <span class="n">r_cols</span> <span class="o">=</span> <span class="n">w_cols</span>
+        <span class="k">elif</span> <span class="n">w_cols</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">r_cols</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">omega_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">omega_list</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">r_cols</span><span class="p">))</span>
+            <span class="n">w_cols</span> <span class="o">=</span> <span class="n">r_cols</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;omega_list and r_list must have the same number of columns. Got </span><span class="si">{</span><span class="n">w_cols</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">r_cols</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+    <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span> <span class="n">w_cols</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">w_cols</span><span class="p">):</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">omega_list</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">r_list</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="o">-</span><span class="n">w</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+        <span class="n">S</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span>
+        <span class="n">S</span><span class="p">[</span><span class="mi">3</span><span class="p">:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+    <span class="k">return</span> <span class="n">S</span></div>
+
+
+
+<div class="viewcode-block" id="NearZero">
+<a class="viewcode-back" href="../../api/utils.html#ManipulaPy.utils.NearZero">[docs]</a>
+<span class="k">def</span> <span class="nf">NearZero</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Determines if a given number is near zero.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        z (float): The number to check.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        bool: True if the number is near zero, False otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-6</span></div>
+
+
+
+<div class="viewcode-block" id="skew_symmetric">
+<a class="viewcode-back" href="../../api/utils.html#ManipulaPy.utils.skew_symmetric">[docs]</a>
+<span class="k">def</span> <span class="nf">skew_symmetric</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the skew symmetric matrix of a 3D vector.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        v (array-like): A 3D vector.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        np.ndarray: The corresponding skew symmetric matrix.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="o">-</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">]])</span></div>
+
+
+
+<div class="viewcode-block" id="transform_from_twist">
+<a class="viewcode-back" href="../../api/utils.html#ManipulaPy.utils.transform_from_twist">[docs]</a>
+<span class="k">def</span> <span class="nf">transform_from_twist</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the transformation matrix from a twist and a joint angle.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        S (array-like): A 6D twist vector.</span>
+<span class="sd">        theta (float): The joint angle.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        np.ndarray: The corresponding transformation matrix.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">omega</span> <span class="o">=</span> <span class="n">S</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="mi">3</span><span class="p">:]</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">omega</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># Prismatic joint</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">v</span> <span class="o">*</span> <span class="n">theta</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># Revolute joint</span>
+        <span class="n">skew_omega</span> <span class="o">=</span> <span class="n">skew_symmetric</span><span class="p">(</span><span class="n">omega</span><span class="p">)</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+            <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">skew_omega</span>
+            <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">skew_omega</span><span class="p">,</span> <span class="n">skew_omega</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">theta</span>
+            <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span> <span class="o">*</span> <span class="n">skew_omega</span>
+            <span class="o">+</span> <span class="p">(</span><span class="n">theta</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">skew_omega</span><span class="p">,</span> <span class="n">skew_omega</span><span class="p">),</span>
+            <span class="n">v</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">R</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))),</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span></div>
+
+
+
+<div class="viewcode-block" id="adjoint_transform">
+<a class="viewcode-back" href="../../api/utils.html#ManipulaPy.utils.adjoint_transform">[docs]</a>
+<span class="k">def</span> <span class="nf">adjoint_transform</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the adjoint transformation matrix for a given transformation matrix.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        T (np.ndarray): A 4x4 transformation matrix.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        np.ndarray: The corresponding adjoint transformation matrix.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+    <span class="n">skew_p</span> <span class="o">=</span> <span class="n">skew_symmetric</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">R</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))),</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">skew_p</span> <span class="o">@</span> <span class="n">R</span><span class="p">,</span> <span class="n">R</span><span class="p">))))</span></div>
+
+
+
+<div class="viewcode-block" id="logm">
+<a class="viewcode-back" href="../../api/utils.html#ManipulaPy.utils.logm">[docs]</a>
+<span class="k">def</span> <span class="nf">logm</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the logarithm of a transformation matrix.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        T (np.ndarray): A 4x4 transformation matrix.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        np.ndarray: The logarithm of the transformation matrix.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+    <span class="n">omega</span><span class="p">,</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">rotation_logm</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">omega</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-6</span><span class="p">:</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">p</span> <span class="o">/</span> <span class="n">theta</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">G_inv</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="mi">1</span> <span class="o">/</span> <span class="n">theta</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+            <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">skew_symmetric</span><span class="p">(</span><span class="n">omega</span><span class="p">)</span>
+            <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">theta</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">theta</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+            <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">skew_symmetric</span><span class="p">(</span><span class="n">omega</span><span class="p">),</span> <span class="n">skew_symmetric</span><span class="p">(</span><span class="n">omega</span><span class="p">))</span>
+        <span class="p">)</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">G_inv</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">omega</span> <span class="o">*</span> <span class="n">theta</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="rotation_logm">
+<a class="viewcode-back" href="../../api/utils.html#ManipulaPy.utils.rotation_logm">[docs]</a>
+<span class="k">def</span> <span class="nf">rotation_logm</span><span class="p">(</span><span class="n">R</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the logarithm of a rotation matrix.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        R (np.ndarray): A 3x3 rotation matrix.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: A tuple containing the rotation vector and the angle.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">R</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">theta</span> <span class="o">&lt;</span> <span class="mf">1e-6</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">theta</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">omega</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="mi">1</span>
+            <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span>
+            <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">R</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">R</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">R</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">R</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">R</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">R</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">omega</span><span class="p">,</span> <span class="n">theta</span></div>
+
+
+
+<div class="viewcode-block" id="logm_to_twist">
+<a class="viewcode-back" href="../../api/utils.html#ManipulaPy.utils.logm_to_twist">[docs]</a>
+<span class="k">def</span> <span class="nf">logm_to_twist</span><span class="p">(</span><span class="n">logm</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert the logarithm of a transformation matrix to a twist vector.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        logm (np.ndarray): The logarithm of a transformation matrix.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        np.ndarray: The corresponding twist vector.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">logm</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;logm must be a 4x4 matrix.&quot;</span><span class="p">)</span>
+
+    <span class="n">omega_matrix</span> <span class="o">=</span> <span class="n">logm</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">omega</span> <span class="o">=</span> <span class="n">skew_symmetric_to_vector</span><span class="p">(</span><span class="n">omega_matrix</span><span class="p">)</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">logm</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">omega</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="skew_symmetric_to_vector">
+<a class="viewcode-back" href="../../api/utils.html#ManipulaPy.utils.skew_symmetric_to_vector">[docs]</a>
+<span class="k">def</span> <span class="nf">skew_symmetric_to_vector</span><span class="p">(</span><span class="n">skew_symmetric</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert a skew-symmetric matrix to a vector.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        skew_symmetric (np.ndarray): A 3x3 skew-symmetric matrix.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        np.ndarray: The corresponding vector.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">skew_symmetric</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">skew_symmetric</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">skew_symmetric</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span></div>
+
+
+
+<div class="viewcode-block" id="se3ToVec">
+<a class="viewcode-back" href="../../api/utils.html#ManipulaPy.utils.se3ToVec">[docs]</a>
+<span class="k">def</span> <span class="nf">se3ToVec</span><span class="p">(</span><span class="n">se3_matrix</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert an se(3) matrix to a twist vector.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        se3_matrix (np.ndarray): A 4x4 matrix from the se(3) Lie algebra.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        np.ndarray: A 6-dimensional twist vector.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">se3_matrix</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Input matrix must be a 4x4 matrix.&quot;</span><span class="p">)</span>
+
+    <span class="n">omega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">se3_matrix</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">se3_matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">se3_matrix</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">se3_matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">omega</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="TransToRp">
+<a class="viewcode-back" href="../../api/utils.html#ManipulaPy.utils.TransToRp">[docs]</a>
+<span class="k">def</span> <span class="nf">TransToRp</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts a homogeneous transformation matrix into a rotation matrix and position vector.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        T (np.ndarray): A 4x4 transformation matrix.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: A tuple containing the rotation matrix and position vector.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">R</span><span class="p">,</span> <span class="n">p</span></div>
+
+
+
+<div class="viewcode-block" id="TransInv">
+<a class="viewcode-back" href="../../api/utils.html#ManipulaPy.utils.TransInv">[docs]</a>
+<span class="k">def</span> <span class="nf">TransInv</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Inverts a homogeneous transformation matrix.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        T (np.ndarray): A 4x4 transformation matrix.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        np.ndarray: The inverse of the transformation matrix.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">R</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">TransToRp</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">Rt</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">T</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">Rt</span><span class="p">,</span> <span class="o">-</span><span class="n">Rt</span> <span class="o">@</span> <span class="n">p</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))),</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span></div>
+
+
+
+<div class="viewcode-block" id="MatrixLog6">
+<a class="viewcode-back" href="../../api/utils.html#ManipulaPy.utils.MatrixLog6">[docs]</a>
+<span class="k">def</span> <span class="nf">MatrixLog6</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute the matrix logarithm of a given transformation matrix T.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        T (np.ndarray): The transformation matrix of shape (4, 4).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        np.ndarray: The matrix logarithm of T, with shape (4, 4).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">R</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">TransToRp</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">omega</span><span class="p">,</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">rotation_logm</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">omega</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-6</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">p</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))),</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">omega_mat</span> <span class="o">=</span> <span class="n">skew_symmetric</span><span class="p">(</span><span class="n">omega</span><span class="p">)</span>
+        <span class="n">G_inv</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="mi">1</span> <span class="o">/</span> <span class="n">theta</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+            <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">omega_mat</span>
+            <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">theta</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">theta</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span> <span class="o">*</span> <span class="n">omega_mat</span> <span class="o">@</span> <span class="n">omega_mat</span>
+        <span class="p">)</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">G_inv</span> <span class="o">@</span> <span class="n">p</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">omega_mat</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))),</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span></div>
+
+
+
+<div class="viewcode-block" id="MatrixExp6">
+<a class="viewcode-back" href="../../api/utils.html#ManipulaPy.utils.MatrixExp6">[docs]</a>
+<span class="k">def</span> <span class="nf">MatrixExp6</span><span class="p">(</span><span class="n">se3mat</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the matrix exponential of a matrix in se(3).</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        se3mat (np.ndarray): A 4x4 matrix representing a twist in se(3).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        np.ndarray: The corresponding 4x4 transformation matrix in SE(3).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">se3mat</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Input matrix must be of shape (4, 4)&quot;</span><span class="p">)</span>
+
+    <span class="n">omega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">se3mat</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">se3mat</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">se3mat</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">se3mat</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">se3mat</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">se3mat</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+    <span class="n">omega_magnitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">omega</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">omega_magnitude</span> <span class="o">&lt;</span> <span class="mf">1e-6</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">se3mat</span>
+
+    <span class="n">omega_skew</span> <span class="o">=</span> <span class="n">skew_symmetric</span><span class="p">(</span><span class="n">omega</span><span class="p">)</span>
+    <span class="n">omega_exp</span> <span class="o">=</span> <span class="n">expm</span><span class="p">(</span><span class="n">omega_skew</span> <span class="o">*</span> <span class="n">omega_magnitude</span><span class="p">)</span>
+    <span class="n">omega_skew_squared</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">omega_skew</span><span class="p">,</span> <span class="n">omega_skew</span><span class="p">)</span>
+    <span class="n">v_term</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">omega_magnitude</span>
+        <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">omega_magnitude</span><span class="p">))</span> <span class="o">*</span> <span class="n">omega_skew</span>
+        <span class="o">+</span> <span class="p">(</span><span class="n">omega_magnitude</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">omega_magnitude</span><span class="p">))</span> <span class="o">*</span> <span class="n">omega_skew_squared</span>
+    <span class="p">)</span> <span class="o">/</span> <span class="n">omega_magnitude</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">v_term</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v_term</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+
+    <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">T</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">omega_exp</span>
+    <span class="n">T</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">v_term</span>
+
+    <span class="k">return</span> <span class="n">T</span></div>
+
+
+
+<div class="viewcode-block" id="MatrixLog3">
+<a class="viewcode-back" href="../../api/utils.html#ManipulaPy.utils.MatrixLog3">[docs]</a>
+<span class="k">def</span> <span class="nf">MatrixLog3</span><span class="p">(</span><span class="n">R</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the matrix logarithm of a rotation matrix.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        R (np.ndarray): A 3x3 rotation matrix.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        np.ndarray: The matrix logarithm of the rotation matrix.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">acosinput</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">R</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
+    <span class="k">if</span> <span class="n">acosinput</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+    <span class="k">elif</span> <span class="n">acosinput</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">NearZero</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">R</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">]):</span>
+            <span class="n">omega</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">R</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">])))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+                <span class="p">[</span><span class="n">R</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span> <span class="n">R</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">R</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">]]</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">NearZero</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">R</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="n">omega</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">R</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+                <span class="p">[</span><span class="n">R</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">R</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">R</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">]]</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">omega</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">R</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+                <span class="p">[</span><span class="mi">1</span> <span class="o">+</span> <span class="n">R</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">R</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">R</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">VecToso3</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">omega</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">acosinput</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">theta</span> <span class="o">/</span> <span class="mf">2.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">R</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">R</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="VecToso3">
+<a class="viewcode-back" href="../../api/utils.html#ManipulaPy.utils.VecToso3">[docs]</a>
+<span class="k">def</span> <span class="nf">VecToso3</span><span class="p">(</span><span class="n">omega</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts a 3D angular velocity vector to a skew-symmetric matrix.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        omega (array-like): A 3D angular velocity vector.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        np.ndarray: The corresponding skew-symmetric matrix.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+        <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">omega</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">omega</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">omega</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">omega</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="o">-</span><span class="n">omega</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">omega</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">]]</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="VecTose3">
+<a class="viewcode-back" href="../../api/utils.html#ManipulaPy.utils.VecTose3">[docs]</a>
+<span class="k">def</span> <span class="nf">VecTose3</span><span class="p">(</span><span class="n">V</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts a spatial velocity vector to an se(3) matrix.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        V (array-like): A 6D spatial velocity vector.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        np.ndarray: The corresponding 4x4 matrix in se(3).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">VecToso3</span><span class="p">(</span><span class="n">V</span><span class="p">[:</span><span class="mi">3</span><span class="p">]),</span> <span class="n">V</span><span class="p">[</span><span class="mi">3</span><span class="p">:]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">))]</span></div>
+
+
+
+<div class="viewcode-block" id="MatrixExp3">
+<a class="viewcode-back" href="../../api/utils.html#ManipulaPy.utils.MatrixExp3">[docs]</a>
+<span class="k">def</span> <span class="nf">MatrixExp3</span><span class="p">(</span><span class="n">so3mat</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the matrix exponential of a matrix in so(3).</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        so3mat (np.ndarray): A 3x3 skew-symmetric matrix.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        np.ndarray: The corresponding 3x3 rotation matrix in SO(3).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">expm</span><span class="p">(</span><span class="n">so3mat</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="CubicTimeScaling">
+<a class="viewcode-back" href="../../api/utils.html#ManipulaPy.utils.CubicTimeScaling">[docs]</a>
+<span class="k">def</span> <span class="nf">CubicTimeScaling</span><span class="p">(</span><span class="n">Tf</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute the cubic time scaling factor.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        Tf (float): The total time of the motion.</span>
+<span class="sd">        t (float): The current time.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The cubic time scaling factor.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="n">Tf</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="n">Tf</span><span class="p">)</span> <span class="o">**</span> <span class="mi">3</span></div>
+
+
+
+<div class="viewcode-block" id="QuinticTimeScaling">
+<a class="viewcode-back" href="../../api/utils.html#ManipulaPy.utils.QuinticTimeScaling">[docs]</a>
+<span class="k">def</span> <span class="nf">QuinticTimeScaling</span><span class="p">(</span><span class="n">Tf</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute the quintic time scaling factor.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        Tf (float): The total time of the motion.</span>
+<span class="sd">        t (float): The current time.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The quintic time scaling factor.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mi">10</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="n">Tf</span><span class="p">)</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">-</span> <span class="mi">15</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="n">Tf</span><span class="p">)</span> <span class="o">**</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">6</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="n">Tf</span><span class="p">)</span> <span class="o">**</span> <span class="mi">5</span></div>
+
+
+
+<div class="viewcode-block" id="rotation_matrix_to_euler_angles">
+<a class="viewcode-back" href="../../api/utils.html#ManipulaPy.utils.rotation_matrix_to_euler_angles">[docs]</a>
+<span class="k">def</span> <span class="nf">rotation_matrix_to_euler_angles</span><span class="p">(</span><span class="n">R</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert a rotation matrix to Euler angles (roll, pitch, yaw).</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        R (numpy.ndarray): A 3x3 rotation matrix.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        numpy.ndarray: A 3-element array representing the Euler angles (roll, pitch, yaw).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">R</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;Expected 3x3 rotation matrix, got shape </span><span class="si">{</span><span class="n">R</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">sy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">R</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">singular</span> <span class="o">=</span> <span class="n">sy</span> <span class="o">&lt;</span> <span class="mf">1e-6</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">singular</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">R</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="o">-</span><span class="n">R</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">sy</span><span class="p">)</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">R</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="o">-</span><span class="n">R</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">R</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="o">-</span><span class="n">R</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">sy</span><span class="p">)</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">])</span></div>
+
+
+
+<div class="viewcode-block" id="euler_to_rotation_matrix">
+<a class="viewcode-back" href="../../api/utils.html#ManipulaPy.utils.euler_to_rotation_matrix">[docs]</a>
+<span class="k">def</span> <span class="nf">euler_to_rotation_matrix</span><span class="p">(</span><span class="n">euler_deg</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert Euler angles (roll_deg, pitch_deg, yaw_deg) in degrees</span>
+<span class="sd">    to a 3x3 rotation matrix.</span>
+<span class="sd">    ZYX convention is typical in robotics: yaw -&gt; pitch -&gt; roll,</span>
+<span class="sd">    but adapt as needed.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        euler_deg (array-like): [roll_deg, pitch_deg, yaw_deg]</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        np.ndarray: A 3x3 rotation matrix (float64 by default).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">roll_deg</span><span class="p">,</span> <span class="n">pitch_deg</span><span class="p">,</span> <span class="n">yaw_deg</span> <span class="o">=</span> <span class="n">euler_deg</span>
+    <span class="c1"># Convert degrees to radians</span>
+    <span class="n">roll</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">roll_deg</span><span class="p">)</span>
+    <span class="n">pitch</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">pitch_deg</span><span class="p">)</span>
+    <span class="n">yaw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">yaw_deg</span><span class="p">)</span>
+
+    <span class="c1"># Example Z-Y-X convention (yaw→pitch→roll).</span>
+    <span class="c1"># If your code uses X→Y→Z or another sequence, adapt these multiplications.</span>
+    <span class="n">Rz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+        <span class="p">[[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">yaw</span><span class="p">),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">yaw</span><span class="p">),</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">yaw</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">yaw</span><span class="p">),</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">Ry</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">pitch</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">pitch</span><span class="p">)],</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="p">[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">pitch</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">pitch</span><span class="p">)],</span>
+        <span class="p">],</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">Rx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+        <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">roll</span><span class="p">),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">roll</span><span class="p">)],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">roll</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">roll</span><span class="p">)]],</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Multiply in the correct order for your convention.</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">Rz</span> <span class="o">@</span> <span class="n">Ry</span> <span class="o">@</span> <span class="n">Rx</span>
+    <span class="k">return</span> <span class="n">R</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Mohamed Aboelnar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

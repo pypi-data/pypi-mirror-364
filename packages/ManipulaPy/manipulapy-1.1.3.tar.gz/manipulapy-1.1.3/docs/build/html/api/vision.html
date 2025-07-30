@@ -1,0 +1,556 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Vision API Reference" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://manipulapy.readthedocs.io/api/vision.html" />
+<meta property="og:site_name" content="ManipulaPy Documentation" />
+<meta property="og:description" content="This page documents ManipulaPy.vision, the module for computer vision capabilities including stereo vision, object detection, camera calibration, and PyBullet integration with optional YOLO object ..." />
+<meta name="description" content="This page documents ManipulaPy.vision, the module for computer vision capabilities including stereo vision, object detection, camera calibration, and PyBullet integration with optional YOLO object ..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vision API Reference &mdash; ManipulaPy 1.1.0 Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b4417981" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=fc837d61"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=fd10adb8"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Singularity API Reference" href="singularity.html" />
+    <link rel="prev" title="Perception API Reference" href="perception.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ManipulaPy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">🚀 Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started with ManipulaPy</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🛠️ API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">🔧 API Reference Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#module-overview">📦 Module Overview</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="kinematics.html">Kinematics API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dynamics.html">Dynamics API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="path_planning.html">Path Planning API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="control.html">Control API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="urdf_processor.html">URDF Processor API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html">Simulation API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="potential_field.html">Potential Field API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda_kernels.html">CUDA Kernels API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="perception.html">Perception API Reference</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Vision API Reference</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#quick-navigation">Quick Navigation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vision-class">Vision Class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#camera-management">Camera Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#image-acquisition">Image Acquisition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#object-detection">Object Detection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stereo-vision-pipeline">Stereo Vision Pipeline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pybullet-debug-interface">PyBullet Debug Interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#resource-management">Resource Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utility-functions">Utility Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data-structures-and-configuration">Data Structures and Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#error-handling-and-validation">Error Handling and Validation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#see-also">See Also</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#external-dependencies">External Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="singularity.html">Singularity API Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#how-to-use-this-reference">📖 How to Use This Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#quick-navigation">🔍 Quick Navigation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">📚 User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Kinematics.html">Kinematics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Dynamics.html">Dynamics User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Control.html">Control Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Trajectory_Planning.html">Trajectory Planning User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Simulation.html">Simulation Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/URDF_Processor.html">URDF Processor User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Singularity_Analysis.html">Singularity Analysis User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Perception.html">Perception User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/vision.html">Vision User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Potential_Field.html">Potential Field Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/Collision_Checker.html">Collision Checker Module User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/CUDA_Kernels.html">CUDA Kernels User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ManipulaPy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">🔧 API Reference Guide</a></li>
+      <li class="breadcrumb-item active">Vision API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/vision.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="vision-api-reference">
+<span id="api-vision"></span><h1>Vision API Reference<a class="headerlink" href="#vision-api-reference" title="Link to this heading"></a></h1>
+<p>This page documents <strong>ManipulaPy.vision</strong>, the module for computer vision capabilities including stereo vision, object detection, camera calibration, and PyBullet integration with optional YOLO object detection.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>For conceptual explanations, see <a class="reference internal" href="../user_guide/vision.html"><span class="doc">Vision User Guide</span></a>.</p>
+</div>
+<p>—</p>
+<section id="quick-navigation">
+<h2>Quick Navigation<a class="headerlink" href="#quick-navigation" title="Link to this heading"></a></h2>
+<p>—</p>
+</section>
+<section id="vision-class">
+<h2>Vision Class<a class="headerlink" href="#vision-class" title="Link to this heading"></a></h2>
+<p>—</p>
+</section>
+<section id="camera-management">
+<h2>Camera Management<a class="headerlink" href="#camera-management" title="Link to this heading"></a></h2>
+<section id="configuration-methods">
+<h3>Configuration Methods<a class="headerlink" href="#configuration-methods" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/vision.rst</span>, line 68)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Configuration</span> <span class="n">Methods</span>
+<span class="o">--------------------</span>
+</pre></div>
+</div>
+</aside>
+</section>
+<section id="extrinsic-matrix-computation">
+<h3>Extrinsic Matrix Computation<a class="headerlink" href="#extrinsic-matrix-computation" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/vision.rst</span>, line 101)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Extrinsic</span> <span class="n">Matrix</span> <span class="n">Computation</span>
+<span class="o">---------------------------</span>
+</pre></div>
+</div>
+</aside>
+<p>—</p>
+</section>
+</section>
+<section id="image-acquisition">
+<h2>Image Acquisition<a class="headerlink" href="#image-acquisition" title="Link to this heading"></a></h2>
+<section id="pybullet-integration">
+<h3>PyBullet Integration<a class="headerlink" href="#pybullet-integration" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/vision.rst</span>, line 139)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PyBullet</span> <span class="n">Integration</span>
+<span class="o">-------------------</span>
+</pre></div>
+</div>
+</aside>
+<p>—</p>
+</section>
+</section>
+<section id="object-detection">
+<h2>Object Detection<a class="headerlink" href="#object-detection" title="Link to this heading"></a></h2>
+<section id="yolo-integration">
+<h3>YOLO Integration<a class="headerlink" href="#yolo-integration" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/vision.rst</span>, line 169)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">YOLO</span> <span class="n">Integration</span>
+<span class="o">---------------</span>
+</pre></div>
+</div>
+</aside>
+<p>—</p>
+</section>
+</section>
+<section id="stereo-vision-pipeline">
+<h2>Stereo Vision Pipeline<a class="headerlink" href="#stereo-vision-pipeline" title="Link to this heading"></a></h2>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/vision.rst</span>, line 210)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Stereo</span> <span class="n">Vision</span> <span class="n">Pipeline</span>
+<span class="o">=====================</span>
+</pre></div>
+</div>
+</aside>
+<section id="rectification-setup">
+<h3>Rectification Setup<a class="headerlink" href="#rectification-setup" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/vision.rst</span>, line 213)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rectification</span> <span class="n">Setup</span>
+<span class="o">------------------</span>
+</pre></div>
+</div>
+</aside>
+</section>
+<section id="image-processing">
+<h3>Image Processing<a class="headerlink" href="#image-processing" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/vision.rst</span>, line 233)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span> <span class="n">Processing</span>
+<span class="o">---------------</span>
+</pre></div>
+</div>
+</aside>
+</section>
+<section id="d-reconstruction">
+<h3>3D Reconstruction<a class="headerlink" href="#d-reconstruction" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/vision.rst</span>, line 277)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span><span class="n">D</span> <span class="n">Reconstruction</span>
+<span class="o">----------------</span>
+</pre></div>
+</div>
+</aside>
+<p>—</p>
+</section>
+</section>
+<section id="pybullet-debug-interface">
+<h2>PyBullet Debug Interface<a class="headerlink" href="#pybullet-debug-interface" title="Link to this heading"></a></h2>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/vision.rst</span>, line 319)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PyBullet</span> <span class="n">Debug</span> <span class="n">Interface</span>
+<span class="o">=======================</span>
+</pre></div>
+</div>
+</aside>
+<section id="debug-slider-setup">
+<h3>Debug Slider Setup<a class="headerlink" href="#debug-slider-setup" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/vision.rst</span>, line 322)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Debug</span> <span class="n">Slider</span> <span class="n">Setup</span>
+<span class="o">-----------------</span>
+</pre></div>
+</div>
+</aside>
+<p>—</p>
+</section>
+</section>
+<section id="resource-management">
+<h2>Resource Management<a class="headerlink" href="#resource-management" title="Link to this heading"></a></h2>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/vision.rst</span>, line 364)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Resource</span> <span class="n">Management</span>
+<span class="o">==================</span>
+</pre></div>
+</div>
+</aside>
+<section id="cleanup-methods">
+<h3>Cleanup Methods<a class="headerlink" href="#cleanup-methods" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/vision.rst</span>, line 367)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Cleanup</span> <span class="n">Methods</span>
+<span class="o">--------------</span>
+</pre></div>
+</div>
+</aside>
+<p>—</p>
+</section>
+</section>
+<section id="utility-functions">
+<h2>Utility Functions<a class="headerlink" href="#utility-functions" title="Link to this heading"></a></h2>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/vision.rst</span>, line 394)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Utility</span> <span class="n">Functions</span>
+<span class="o">================</span>
+</pre></div>
+</div>
+</aside>
+<p>—</p>
+</section>
+<section id="data-structures-and-configuration">
+<h2>Data Structures and Configuration<a class="headerlink" href="#data-structures-and-configuration" title="Link to this heading"></a></h2>
+<section id="internal-storage-format">
+<h3>Internal Storage Format<a class="headerlink" href="#internal-storage-format" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/vision.rst</span>, line 420)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Internal</span> <span class="n">Storage</span> <span class="n">Format</span>
+<span class="o">----------------------</span>
+</pre></div>
+</div>
+</aside>
+<p><strong>Camera Storage (self.cameras):</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">cameras</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;translation&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">],</span>
+    <span class="s2">&quot;rotation&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">roll_deg</span><span class="p">,</span> <span class="n">pitch_deg</span><span class="p">,</span> <span class="n">yaw_deg</span><span class="p">],</span>
+    <span class="s2">&quot;fov&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="s2">&quot;near&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="s2">&quot;far&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="s2">&quot;intrinsic_matrix&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+    <span class="s2">&quot;distortion_coeffs&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">(</span><span class="mi">5</span><span class="p">,),</span>
+    <span class="s2">&quot;use_opencv&quot;</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+    <span class="s2">&quot;device_index&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="s2">&quot;extrinsic_matrix&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Stereo Configuration Attributes:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Stereo processing state</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">stereo_enabled</span><span class="p">:</span> <span class="nb">bool</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">left_cam_cfg</span><span class="p">:</span> <span class="nb">dict</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">right_cam_cfg</span><span class="p">:</span> <span class="nb">dict</span>
+
+<span class="c1"># Rectification maps</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">left_map_x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">left_map_y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">right_map_x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">right_map_y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+
+<span class="c1"># 3D reconstruction</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">Q</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>  <span class="c1"># 4x4 disparity-to-depth matrix</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">stereo_matcher</span><span class="p">:</span> <span class="n">cv2</span><span class="o">.</span><span class="n">StereoSGBM</span>
+</pre></div>
+</div>
+</section>
+<section id="default-camera-configuration">
+<h3>Default Camera Configuration<a class="headerlink" href="#default-camera-configuration" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/vision.rst</span>, line 460)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Default</span> <span class="n">Camera</span> <span class="n">Configuration</span>
+<span class="o">---------------------------</span>
+</pre></div>
+</div>
+</aside>
+<p>When no camera_configs provided, uses:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">default_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;default_camera&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;translation&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="s2">&quot;rotation&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="s2">&quot;fov&quot;</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span>
+    <span class="s2">&quot;near&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+    <span class="s2">&quot;far&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span>
+    <span class="s2">&quot;intrinsic_matrix&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">320</span><span class="p">],</span>
+                        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">240</span><span class="p">],</span>
+                        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+    <span class="s2">&quot;distortion_coeffs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="s2">&quot;use_opencv&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">&quot;device_index&quot;</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>—</p>
+</section>
+</section>
+<section id="error-handling-and-validation">
+<h2>Error Handling and Validation<a class="headerlink" href="#error-handling-and-validation" title="Link to this heading"></a></h2>
+<section id="yolo-model-management">
+<h3>YOLO Model Management<a class="headerlink" href="#yolo-model-management" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/vision.rst</span>, line 487)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">YOLO</span> <span class="n">Model</span> <span class="n">Management</span>
+<span class="o">--------------------</span>
+</pre></div>
+</div>
+</aside>
+<ul class="simple">
+<li><p><strong>Loading Failure</strong>: Sets yolo_model = None, continues operation</p></li>
+<li><p><strong>Detection Fallback</strong>: Returns empty arrays when YOLO unavailable</p></li>
+<li><p><strong>Input Validation</strong>: Checks rgb_image and depth_image for None/invalid</p></li>
+</ul>
+</section>
+<section id="stereo-processing-errors">
+<h3>Stereo Processing Errors<a class="headerlink" href="#stereo-processing-errors" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Configuration Validation</strong>: Checks required keys in stereo configs</p></li>
+<li><p><strong>Runtime State Checking</strong>: Validates stereo_enabled before operations</p></li>
+<li><p><strong>Map Initialization</strong>: Ensures rectification maps computed before use</p></li>
+</ul>
+</section>
+<section id="opencv-device-handling">
+<h3>OpenCV Device Handling<a class="headerlink" href="#opencv-device-handling" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Device Access Failure</strong>: Raises RuntimeError with descriptive message</p></li>
+<li><p><strong>Capture Validation</strong>: Uses cap.isOpened() to verify device accessibility</p></li>
+<li><p><strong>Resource Cleanup</strong>: Automatic release in destructor and explicit method</p></li>
+</ul>
+</section>
+<section id="pybullet-integration-safety">
+<h3>PyBullet Integration Safety<a class="headerlink" href="#pybullet-integration-safety" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/vision.rst</span>, line 508)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PyBullet</span> <span class="n">Integration</span> <span class="n">Safety</span>
+<span class="o">--------------------------</span>
+</pre></div>
+</div>
+</aside>
+<ul class="simple">
+<li><p><strong>Parameter Reading</strong>: Safe handling of missing debug parameters</p></li>
+<li><p><strong>Matrix Validation</strong>: Debug logging for view/projection matrix inspection</p></li>
+<li><p><strong>Client State</strong>: No assumptions about PyBullet connection status</p></li>
+</ul>
+<p>—</p>
+</section>
+</section>
+<section id="performance-considerations">
+<h2>Performance Considerations<a class="headerlink" href="#performance-considerations" title="Link to this heading"></a></h2>
+<section id="memory-management">
+<h3>Memory Management<a class="headerlink" href="#memory-management" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/vision.rst</span>, line 520)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Memory</span> <span class="n">Management</span>
+<span class="o">----------------</span>
+</pre></div>
+</div>
+</aside>
+<ul class="simple">
+<li><p><strong>Image Arrays</strong>: Contiguous memory layout for OpenCV operations</p></li>
+<li><p><strong>Rectification Maps</strong>: Persistent storage for repeated stereo processing</p></li>
+<li><p><strong>Point Clouds</strong>: Filtered arrays to reduce memory footprint</p></li>
+</ul>
+</section>
+<section id="computational-efficiency">
+<h3>Computational Efficiency<a class="headerlink" href="#computational-efficiency" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/vision.rst</span>, line 527)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Computational</span> <span class="n">Efficiency</span>
+<span class="o">-----------------------</span>
+</pre></div>
+</div>
+</aside>
+<ul class="simple">
+<li><p><strong>YOLO Inference</strong>: Single forward pass per image</p></li>
+<li><p><strong>Stereo Matching</strong>: StereoSGBM optimized for quality/speed balance</p></li>
+<li><p><strong>Depth Scaling</strong>: Vectorized operations for range conversion</p></li>
+</ul>
+</section>
+<section id="threading-considerations">
+<h3>Threading Considerations<a class="headerlink" href="#threading-considerations" title="Link to this heading"></a></h3>
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/home/abo/Desktop/ManipulaPy/docs/source/api/vision.rst</span>, line 534)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Threading</span> <span class="n">Considerations</span>
+<span class="o">-----------------------</span>
+</pre></div>
+</div>
+</aside>
+<ul class="simple">
+<li><p><strong>OpenCV Capture</strong>: Single-threaded device access</p></li>
+<li><p><strong>YOLO Processing</strong>: GPU acceleration when available</p></li>
+<li><p><strong>PyBullet Integration</strong>: Main thread simulation access required</p></li>
+</ul>
+<p>—</p>
+</section>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="perception.html"><span class="doc">Perception API Reference</span></a> – Higher-level perception capabilities using Vision</p></li>
+<li><p><a class="reference internal" href="utils.html"><span class="doc">Utils Module</span></a> – Mathematical utilities for transformations</p></li>
+<li><p><a class="reference internal" href="simulation.html"><span class="doc">Simulation API Reference</span></a> – PyBullet simulation integration</p></li>
+<li><p><a class="reference internal" href="potential_field.html"><span class="doc">Potential Field API Reference</span></a> – Obstacle avoidance using vision data</p></li>
+</ul>
+</section>
+<section id="external-dependencies">
+<h2>External Dependencies<a class="headerlink" href="#external-dependencies" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://opencv.org/">OpenCV</a> – Computer vision algorithms and stereo processing</p></li>
+<li><p><a class="reference external" href="https://pybullet.org/">PyBullet</a> – Physics simulation and camera rendering</p></li>
+<li><p><a class="reference external" href="https://ultralytics.com/">Ultralytics YOLO</a> – Object detection framework</p></li>
+<li><p><a class="reference external" href="https://numpy.org/">NumPy</a> – Numerical array operations</p></li>
+<li><p><a class="reference external" href="https://matplotlib.org/">Matplotlib</a> – Debug visualization</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="perception.html" class="btn btn-neutral float-left" title="Perception API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="singularity.html" class="btn btn-neutral float-right" title="Singularity API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Mohamed Aboelnar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
