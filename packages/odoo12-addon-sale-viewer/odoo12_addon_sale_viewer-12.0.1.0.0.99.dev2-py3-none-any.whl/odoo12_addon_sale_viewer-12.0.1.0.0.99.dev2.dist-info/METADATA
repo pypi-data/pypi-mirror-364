@@ -1,0 +1,30 @@
+Metadata-Version: 2.4
+Name: odoo12-addon-sale_viewer
+Version: 12.0.1.0.0.99.dev2
+Summary: Adds a group 'Sale viewer'
+Home-page: http://www.akretion.com
+Author: Akretion
+License: AGPL-3
+Classifier: Programming Language :: Python
+Classifier: Framework :: Odoo
+Classifier: Framework :: Odoo :: 12.0
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Requires-Python: >=3.5
+Requires-Dist: odoo<12.1dev,>=12.0a
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: home-page
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+
+Sale Viewer
+===========
+
+This module adds a group *Sale viewer* in the *Sales* application. This group grants read-only access to Sales Management. If you add a user to this new group, he should also be in the group *Human Ressources - Employee*.
+
+This module has been written by Alexis de Lattre from Akretion <alexis.delattre@akretion.com>.
+    
