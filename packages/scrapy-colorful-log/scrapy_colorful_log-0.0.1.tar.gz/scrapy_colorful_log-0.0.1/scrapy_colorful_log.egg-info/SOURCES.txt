@@ -1,0 +1,11 @@
+LICENSE
+README.md
+setup.py
+scrapy_colorful_log/__init__.py
+scrapy_colorful_log/default_format.py
+scrapy_colorful_log/formatter.py
+scrapy_colorful_log/utils.py
+scrapy_colorful_log.egg-info/PKG-INFO
+scrapy_colorful_log.egg-info/SOURCES.txt
+scrapy_colorful_log.egg-info/dependency_links.txt
+scrapy_colorful_log.egg-info/top_level.txt
