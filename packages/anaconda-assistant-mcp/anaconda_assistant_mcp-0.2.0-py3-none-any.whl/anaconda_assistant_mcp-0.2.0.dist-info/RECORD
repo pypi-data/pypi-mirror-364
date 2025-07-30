@@ -1,0 +1,14 @@
+anaconda_assistant_mcp/__init__.py,sha256=nLIIKDQbmuOD9V3VLokOeUreVzQOKh2Ae0acuNZPwcE,171
+anaconda_assistant_mcp/_version.py,sha256=iB5DfB5V6YB5Wo4JmvS-txT42QtmGaWcWp3udRT7zCI,511
+anaconda_assistant_mcp/plugin.py,sha256=Bbvq5Bo2m2DgndsJ_rstv_hzZLVQAklz0b0O_ZKhLi8,338
+anaconda_assistant_mcp/server.py,sha256=xRZTZGZm-8pD6fIcqUIwseRWxjTFh9wlj_HqnxCS4DE,8373
+anaconda_assistant_mcp/tools_core/create_environment.py,sha256=tr74EcxSIYTPUUScg2SUuSqUujHeCgIVk_58CFsqA7I,1699
+anaconda_assistant_mcp/tools_core/environment_details.py,sha256=9Q7-lTbNy4J3dXC3o43sjFpUH7xYQsy3T7wa40cbND8,1463
+anaconda_assistant_mcp/tools_core/list_environment.py,sha256=GY-OsogJoJ7C0CHvXP8SsqBpR319IZwsTqlP9_yQb3s,514
+anaconda_assistant_mcp/tools_core/shared.py,sha256=ofC5-8lJ5JcnvMJCE55SuwZV3-cAMHFjHmoOO5Vs0Xk,4400
+anaconda_assistant_mcp/tools_core/update_environment.py,sha256=KG63JPCNiV9z-DYkjPwgPI4iZ3lcm5acgXQQglSglUY,1696
+anaconda_assistant_mcp-0.2.0.dist-info/METADATA,sha256=uOn2jUyyspeHeNnV-WwCqEKdOW5iK-U_TeD6eFyrCf0,3572
+anaconda_assistant_mcp-0.2.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+anaconda_assistant_mcp-0.2.0.dist-info/entry_points.txt,sha256=_pqadJmALBBfb5mnsxlmutSrUnty1Mw2m0scH6vcKZY,59
+anaconda_assistant_mcp-0.2.0.dist-info/licenses/LICENSE,sha256=4ApYPUZxqM8veBt3cPhXvS9DOGoh5fXeQYj-bqIAIlg,1544
+anaconda_assistant_mcp-0.2.0.dist-info/RECORD,,
