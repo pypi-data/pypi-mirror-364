@@ -1,0 +1,11 @@
+LICENSE
+README.md
+setup.py
+arwell/__init__.py
+arwell/cli.py
+arwell/rename.py
+arwell.egg-info/PKG-INFO
+arwell.egg-info/SOURCES.txt
+arwell.egg-info/dependency_links.txt
+arwell.egg-info/entry_points.txt
+arwell.egg-info/top_level.txt
