@@ -1,0 +1,31 @@
+Metadata-Version: 2.4
+Name: heathcliff
+Version: 0.1.0
+Summary: Pull features from ArcGIS Feature Servers
+Requires-Python: >=3.13
+Description-Content-Type: text/markdown
+Requires-Dist: httpx>=0.28.1
+Requires-Dist: tqdm>=4.67.1
+
+# Heathcliff
+A Command line Interface for pulling data from ArcGIS REST servers concurrently
+
+# Installation
+```bash
+$ pip install heathcliff
+```
+
+TODO: Aliasing the command
+
+# Usage
+```bash
+$ heathcliff 'https://<server>/MapServer/0' './out/*'
+
+Using service name <Service Name>
+Extracting Features:  100%|████████████████████████████████████████| 7/7 [00:14<00:36,  7.34s/it]
+Building geojson: 100%|████████████████████████████████████████| 338/338 [00:13<00:00, 24.28it/s]
+
+$ head ./out/<Service Name>.geojson
+{"type": "FeatureCollection", "features": [{"type": "Feature", "id": 1, "geometry": {"type": "Polygon", "coordinates": [...
+...
+```
