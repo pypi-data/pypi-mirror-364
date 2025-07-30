@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "holobit-sdk"
+version = "1.0.8"
+description = "SDK para arquitectura holográfica avanzada"
+authors = [{name="Adolfo González Hernández", email="adolfogonzal@gmail.com"}]
+readme = "README.md"
+license = {text = "MIT"}
+dependencies = [
+    "numpy",
+    "matplotlib",
+]
+requires-python = ">=3.10"
+
+[project.optional-dependencies]
+qiskit = ["qiskit"]
+
+[project.scripts]
+holobit-transpiler = "holobit_sdk.transpiler.machine_code_transpiler:main"
+hololang = "holobit_sdk.multi_level.high_level.hololang_cli:main"
