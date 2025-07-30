@@ -1,0 +1,68 @@
+name: Release Workflow
+
+on:
+  push:
+    branches: [ master ]
+    tags: [ '*' ]
+  workflow_dispatch:           # still let you trigger it by hand
+
+jobs:
+  # Job: Run tests and linters on every push
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+
+      - name: Set up UV (Python 3.12)
+        uses: astral-sh/setup-uv@v6
+        with: { python-version: "3.12" }
+
+      - name: Sync deps (+dev)
+        run: uv sync --locked --all-extras --dev --no-progress -q
+
+      - name: Run tests
+        run: uv run test_ci
+
+      - name: Lint / Format / Type-check
+        run: uv run lint_ci
+
+  # Job: Build and publish package when a new version is bumped
+  publish:
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: [ test ]  # ensure tests pass before releasing
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write          # required by softprops/action‑gh‑release
+
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+
+      - name: Set up UV (Python 3.12)
+        uses: astral-sh/setup-uv@v6
+        with: { python-version: "3.12" }
+
+      - name: Build package
+        run: uv build
+
+      - name: Publish to PyPI
+        env:
+          UV_PUBLISH_TOKEN: ${{ secrets.PYPI_TOKEN }}
+        run: uv publish
+
+      - name: Get current version tag
+        id: get_tag
+        run: |
+          TAG=$(git tag --points-at HEAD)
+          echo "TAG=$TAG" >> $GITHUB_ENV
+
+      - name: Create GitHub Release
+        if: env.TAG != ''
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ env.TAG }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
