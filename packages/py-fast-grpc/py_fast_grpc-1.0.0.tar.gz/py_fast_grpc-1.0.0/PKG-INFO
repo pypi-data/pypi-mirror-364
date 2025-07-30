@@ -1,0 +1,66 @@
+Metadata-Version: 2.3
+Name: py-fast-grpc
+Version: 1.0.0
+Summary: gRPC simple and easy to use Python framework
+License: MIT
+Author: Oleg Yurchik
+Requires-Python: >=3.11,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: grpcio (>=1.59.3,<2.0.0)
+Requires-Dist: grpcio-reflection (>=1.59.3,<2.0.0)
+Requires-Dist: grpcio-tools (>=1.59.3,<2.0.0)
+Requires-Dist: jinja2 (>=3.1.2,<4.0.0)
+Requires-Dist: protobuf (>=6.31.1,<7.0.0)
+Requires-Dist: protobuf-to-pydantic[all] (>=0.3.3.1,<0.4.0.0)
+Requires-Dist: pydantic[email] (>=2.5.2,<3.0.0)
+Description-Content-Type: text/markdown
+
+# Fast-gRPC
+
+![Integration](https://github.com/OlegYurchik/fast-grpc/actions/workflows/integration.yaml/badge.svg)
+![Documentation](https://app.readthedocs.org/projects/fast-grpc/badge/?version=latest)
+
+Fast-gRPC it is simple and easy to use Python gRPC framework.
+
+## Installation
+
+```shell
+pip install py-fast-grpc
+```
+
+## Quick Start
+
+```python
+from fast_grpc import FastGRPC, FastGRPCService, grpc_method
+from pydantic import BaseModel
+
+
+class HelloRequest(BaseModel):
+    name: str
+
+
+class HelloResponse(BaseModel):
+    text: str
+
+
+class Greeter(FastGRPCService):
+    @grpc_method
+    async def say_hello(self, request: HelloRequest) -> HelloResponse:
+        return HelloResponse(text=f"Hello, {request.name}!")
+
+
+app = FastGRPC(Greeter())
+app.run()
+```
+
+## TODO
+
+* Add documentation
+* Add middlewares (interceptors) to `FastGRPC` class (for all services)
+* Add TLS support
+* Move to `uv`
+
