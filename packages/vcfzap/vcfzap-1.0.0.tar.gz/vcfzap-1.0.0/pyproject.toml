@@ -1,0 +1,36 @@
+[project]
+name = "vcfzap"
+version = "1.0.0"
+description = "A lightning-fast VCF contact extractor to CSV, TXT, JSON, or terminal preview"
+readme = "README.md"
+requires-python = ">=3.6"
+license = {file = "LICENSE"}
+keywords = ["vcf", "contact", "extractor", "csv", "json", "txt", "html"]
+authors = [
+    {name = "Mallik Mohammad Musaddiq", email = "mallikmusaddiq1@gmail.com"}
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: End Users/Desktop",
+    "Topic :: Utilities"
+]
+
+dependencies = [
+    "vobject",
+    "chardet",
+    "tqdm",
+    "colorama",
+]
+
+[project.scripts]
+vcfzap = "vcfzap.vcfzap:main"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project.urls]
+"Homepage" = "https://github.com/mallikmusaddiq1/vcfzap"
+"Bug Tracker" = "https://github.com/mallikmusaddiq1/vcfzap/issues"
