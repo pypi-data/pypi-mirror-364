@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.md
+SharedPubSub.pyi
+module.cpp
+pyproject.toml
+setup.py
+src/Examples.h
+src/FixedString.h
+src/SharedPubSub.hpp
+src/SharedPubSub.egg-info/PKG-INFO
+src/SharedPubSub.egg-info/SOURCES.txt
+src/SharedPubSub.egg-info/dependency_links.txt
+src/SharedPubSub.egg-info/not-zip-safe
+src/SharedPubSub.egg-info/top_level.txt
