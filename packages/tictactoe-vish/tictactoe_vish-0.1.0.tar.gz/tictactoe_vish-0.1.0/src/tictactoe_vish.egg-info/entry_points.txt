@@ -1,0 +1,2 @@
+[console_scripts]
+tictactoe = tictactoe.cli:main

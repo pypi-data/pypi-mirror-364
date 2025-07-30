@@ -1,0 +1,16 @@
+LICENSE
+README.md
+pyproject.toml
+src/tictactoe/__init__.py
+src/tictactoe/ai.py
+src/tictactoe/board.py
+src/tictactoe/cli.py
+src/tictactoe_vish.egg-info/PKG-INFO
+src/tictactoe_vish.egg-info/SOURCES.txt
+src/tictactoe_vish.egg-info/dependency_links.txt
+src/tictactoe_vish.egg-info/entry_points.txt
+src/tictactoe_vish.egg-info/requires.txt
+src/tictactoe_vish.egg-info/top_level.txt
+tests/test_ai.py
+tests/test_board.py
+tests/test_cli.py
