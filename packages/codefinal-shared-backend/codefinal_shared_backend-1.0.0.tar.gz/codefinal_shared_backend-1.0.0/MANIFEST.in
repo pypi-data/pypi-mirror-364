@@ -1,0 +1,11 @@
+include README.md
+include LICENSE
+recursive-include codefinal_shared *.py
+recursive-include codefinal_shared *.txt
+recursive-include codefinal_shared *.md
+exclude tests
+recursive-exclude tests *
+exclude *.pyc
+exclude __pycache__
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co] 
