@@ -1,0 +1,12 @@
+MANIFEST.in
+README.md
+pyproject.toml
+setup.py
+web_show/__init__.py
+web_show/urls.py
+web_show/views.py
+web_show.egg-info/PKG-INFO
+web_show.egg-info/SOURCES.txt
+web_show.egg-info/dependency_links.txt
+web_show.egg-info/top_level.txt
+web_show/templates/web_show/show.html
