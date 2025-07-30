@@ -1,0 +1,14 @@
+maixpy_ui/__init__.py,sha256=U-qqvzyaZiLP3MrBw9GgouWM7BKc8kEoFSPg3-_z37A,1200
+maixpy_ui/components/__init__.py,sha256=TLSf5ltuuG68EDD5Ee0-TWRWnE48XRbTYIlZNYzgNG4,222
+maixpy_ui/components/button.py,sha256=5DG3vhfzYesVt0Z_jRM6fK6rIdzkdH9f72Tvs_4drUI,7745
+maixpy_ui/components/checkbox.py,sha256=h5We0Orq92YGT2dbcbEm8kLwNGtx236I35AkWKfbmDY,8153
+maixpy_ui/components/radio.py,sha256=s45tEyv3hysMWYYGjqwKb3Wau0gZAMqVXvOscil_Eig,6838
+maixpy_ui/components/slider.py,sha256=ESxxnsNRipTmejRL755IcUYNRuD2oWhNzCDF5kCiH3o,11408
+maixpy_ui/components/switch.py,sha256=cPbACL_xs39X_PrrS8p4aNkFMzPJsUvWDhT78zKnUSk,7466
+maixpy_ui/core/__init__.py,sha256=ZAV0JGOpE-URh214FY9u7FhjGwDHg2ByGDLdbWnAC-k,90
+maixpy_ui/core/resolution_adapter.py,sha256=ycrzAx6T_S6fROmA4QZyWjB_QAa-lDlZ4cfXE9yv-y4,2696
+maixpy_ui/core/ui_manager.py,sha256=fV6LzZknLo2-YEGtapmWOe7hhSKMQnQzP7f8alFQ_CQ,12730
+maixpy_ui_lib-2.3.dist-info/METADATA,sha256=XFYZdX3n6uxvUm-IpVLA3y5q67k2Vge_JeLQnk_Rvts,44170
+maixpy_ui_lib-2.3.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+maixpy_ui_lib-2.3.dist-info/licenses/LICENSE,sha256=xx0jnfkXJvxRnG63LTGOxlggYnIysveWIZ6H3PNdCrQ,11357
+maixpy_ui_lib-2.3.dist-info/RECORD,,
