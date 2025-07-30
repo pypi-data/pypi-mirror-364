@@ -1,0 +1,157 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "detectree"
+version = "0.8.0"
+description = "Tree detection from aerial imagery in Python."
+readme = "README.md"
+authors = [
+  {name = "Martí Bosch", email = "marti.bosch@epfl.ch"}
+]
+license = {text = "GPL-3.0"}
+classifiers = [
+  "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+  "Natural Language :: English",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13"
+]
+requires-python = ">=3.9"
+dependencies = [
+  "dask[delayed,distributed]",
+  "huggingface-hub",
+  "joblib",
+  "laspy[lazrs] >= 2.0.0",
+  "lightgbm",
+  "numpy >= 1.15",
+  "opencv-python >= 4.0.0",
+  "pandas >= 0.23",
+  "pymaxflow >= 1.0.0",
+  "rasterio >= 1.0.0",
+  "scikit-image >= 0.25.0",
+  "scikit-learn",
+  "scipy >= 1.0.0",
+  "skops",
+  "shapely",
+  "tqdm"
+]
+
+[project.optional-dependencies]
+test = ["coverage[toml]", "pytest", "pytest-cov", "ruff"]
+dev = ["build", "commitizen", "pre-commit", "pip", "toml", "tox", "twine"]
+doc = ["pydata-sphinx-theme", "sphinx", "sphinx-click", "sphinx-mdinclude", "sphinxcontrib-bibtex"]
+
+[project.scripts]
+detectree = "detectree.cli.main:cli"
+
+[project.urls]
+Repository = "https://github.com/martibosch/detectree"
+
+[tool.codespell]
+skip = "CHANGELOG.md,paper/paper.bib"
+
+[tool.commitizen]
+major_version_zero = true
+name = "cz_conventional_commits"
+tag_format = "v$version"
+version_provider = "pep621"
+version_files = [
+  "detectree/__init__.py",
+  "pyproject.toml:version"
+]
+
+[tool.coverage.report]
+exclude_lines = [
+  "if self.debug:",
+  "pragma: no cover",
+  "raise NotImplementedError",
+  "except ModuleNotFoundError",
+  "except ImportError"
+]
+ignore_errors = true
+omit = ["tests/*", "docs/conf.py"]
+
+[tool.coverage.run]
+source = ["detectree"]
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["D", "E", "F", "I", "ARG"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["detectree"]
+
+[tool.ruff.lint.per-file-ignores]
+"**/__init__.py" = ["F401", "F403"]
+"tests/test_detectree.py" = ["D"]
+"docs/src/conf.py" = ["D"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.setuptools.packages.find]
+include = ["detectree", "detectree.*"]
+
+[tool.tox]
+env_list = [
+  "3.10",
+  "3.11",
+  "3.12",
+  "3.13",
+  "lint"
+]
+requires = [
+  "tox>=4.19"
+]
+
+[tool.tox.env.lint]
+commands = [
+  ["python", "-m", "build"],
+  ["sphinx-build", "docs", "docs/_build"],
+  ["twine", "check", "dist/*"]
+]
+extras = [
+  "dev",
+  "doc",
+  "test"
+]
+whitelist_externals = [
+  "build",
+  "sphinx-build",
+  "twine"
+]
+
+[tool.tox.env_run_base]
+commands = [
+  ["pytest", "-s", "--cov=detectree", "--cov-report=xml", "tests", "{posargs}"]
+]
+conda_deps = [
+  "lightgbm"
+]
+extras = [
+  "test"
+]
+whitelist_externals = [
+  "pytest"
+]
+
+[tool.tox.gh.python]
+"3.10" = [
+  "3.10"
+]
+"3.11" = [
+  "3.11"
+]
+"3.12" = [
+  "3.12"
+]
+"3.13" = [
+  "3.13",
+  "lint"
+]
