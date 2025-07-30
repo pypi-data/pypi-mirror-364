@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "unitas"
+version = "1.2.6"
+authors = [
+    { name = "f0rw4rd", email = "f0rw4rd@users.noreply.github.com" },
+]
+description = "unitas - A tool to help with nessus and nmap scans"
+requires-python = ">=3.8"
+dependencies = [
+    "requests",
+    "manuf2"
+]
+readme = "README.md"
+license = {text = "GPL-3.0"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+    "Topic :: Security",
+    "Topic :: System :: Networking :: Monitoring",
+]
+
+[project.scripts]
+unitas = "unitas:main"
+
+[tool.setuptools]
+packages = ["unitas", "unitas.resources"]
+include-package-data = true
+
+[tool.setuptools.package-data]
+"unitas.resources" = ["*.html", "static/css/*.css", "static/js/*.js"]
