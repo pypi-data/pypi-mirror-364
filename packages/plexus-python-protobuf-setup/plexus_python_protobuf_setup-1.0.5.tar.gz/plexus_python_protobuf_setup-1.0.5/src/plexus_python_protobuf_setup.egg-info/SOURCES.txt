@@ -1,0 +1,12 @@
+MANIFEST.in
+README.md
+VERSION
+pyproject.toml
+setup.py
+src/plexus/protobuf/setup/__init__.py
+src/plexus_python_protobuf_setup.egg-info/PKG-INFO
+src/plexus_python_protobuf_setup.egg-info/SOURCES.txt
+src/plexus_python_protobuf_setup.egg-info/dependency_links.txt
+src/plexus_python_protobuf_setup.egg-info/not-zip-safe
+src/plexus_python_protobuf_setup.egg-info/requires.txt
+src/plexus_python_protobuf_setup.egg-info/top_level.txt
