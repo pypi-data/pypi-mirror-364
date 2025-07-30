@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+src/code_dictionary.egg-info/PKG-INFO
+src/code_dictionary.egg-info/SOURCES.txt
+src/code_dictionary.egg-info/dependency_links.txt
+src/code_dictionary.egg-info/requires.txt
+src/code_dictionary.egg-info/top_level.txt
+src/java/__init__.py
+src/java/classes.py
+src/java/fields.py
+src/java/methods.py
