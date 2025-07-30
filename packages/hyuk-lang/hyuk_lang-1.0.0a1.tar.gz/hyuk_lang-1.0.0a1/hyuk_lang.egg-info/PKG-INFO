@@ -1,0 +1,104 @@
+Metadata-Version: 2.4
+Name: hyuk-lang
+Version: 1.0.0a1
+Summary: A Brainfuck-like esoteric language called Hyuk
+Author-email: JoonwooM <mjoonwoo@gmail.com>
+License: MIT License
+        
+        Copyright (c) 2025 JoonwooM
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# 혁랭 (Hyuk-Lang)
+
+한글 기반 난해한 포인터 언어.  
+아래 6개의 명령어만으로 동작합니다:
+
+## 명령어 문법
+
+| 명령어 | 의미 |
+|--------|------|
+| `.`    | 현재 포인터의 값을 +1 |
+| `,`    | 현재 포인터의 값을 -1 |
+| `김`   | 현재 값을 유니코드 문자로 출력 |
+| `미`   | 포인터를 왼쪽으로 이동 |
+| `민`   | 포인터를 오른쪽으로 이동 |
+| `혁`   | 실행 종료 |
+
+## 메모리 및 값 제한
+
+- 메모리: 30000개의 셀
+- 포인터 위치: 0~29999
+- 각 셀의 값 범위: 0 ~ 1114111 (유니코드 `chr()` 함수 출력 범위)
+
+값이 이 범위를 벗어나면 실행 중 오류가 발생합니다.
+
+## 필요 Python 버전
+
+Python 3.8 이상
+
+## 설치
+
+```bash
+pip install hyuk-lang
+```
+
+## 사용법
+
+### CLI
+
+```bash
+hyuk 파일명.hyuk
+```
+
+### GUI
+
+```bash
+hyuk-editor
+```
+
+## 사용 예시
+
+```bash
+hyuk examples/A.hyuk
+```
+
+출력:
+
+```
+A
+```
+
+## 예제 파일
+
+`examples/` 폴더를 참고하세요.
+
+## 라이선스
+
+MIT License  
+자세한 내용은 [LICENSE](https://github.com/JoonwooM/hyuk-lang/blob/main/LICENSE)를 참고하세요.
+
+## 개발자
+
+[JoonwooM](https://github.com/JoonwooM)

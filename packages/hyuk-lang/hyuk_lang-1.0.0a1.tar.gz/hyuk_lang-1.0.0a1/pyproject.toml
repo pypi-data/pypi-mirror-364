@@ -1,0 +1,13 @@
+[project]
+name = "hyuk-lang"
+version = "1.0.0a1"
+description = "A Brainfuck-like esoteric language called Hyuk"
+authors = [{ name = "JoonwooM", email = "mjoonwoo@gmail.com" }]
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.8"
+dependencies = []
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
