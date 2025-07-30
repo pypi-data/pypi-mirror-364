@@ -1,0 +1,18 @@
+{
+  "venvPath": ".",
+  "venv": ".venv",
+  "include": [
+    "aceiot_models",
+    "tests"
+  ],
+  "exclude": [
+    "**/node_modules",
+    "**/__pycache__",
+    "Ace-IoT-Flightdeck"
+  ],
+  "pythonVersion": "3.13",
+  "typeCheckingMode": "standard",
+  "reportCallInDefaultInitializer": "none",
+  "reportMissingParameterType": "none",
+  "reportCallIssue": "none"
+}
