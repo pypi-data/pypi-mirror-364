@@ -1,0 +1,30 @@
+vim9script
+def g:FortFold(): any
+    var level = ''
+    if getline(v:lnum) =~? '^\s*\(end\s*subroutine\)\|^\s*\(end\)\>\s*$'
+    	level = 's1'
+    elseif getline(v:lnum) =~? '^\s*subroutine'
+        level = 'a1'
+    elseif getline(v:lnum) =~? '^\s*\(end\s*module\)\|^\s*\(end\)\>\s*$'
+        level = 's1'
+    elseif getline(v:lnum) =~? '^\s*module'
+        level = 'a1'
+    elseif getline(v:lnum) =~? '^\s*\(end\s*function\)\|^\s*\(end\)\>\s*$'
+        level = 's1'
+    elseif getline(v:lnum) =~? '^\s*\(integer\|real\|logical\|type.*\)\=\s*function'
+        level = 'a1'
+    elseif getline(v:lnum) =~? '^\s*\(end\s*do\)\>\s*$'
+        level = 's1'
+    elseif getline(v:lnum) =~? '^\s*\(\d\+\s\+continue\)\>\s*$'
+        level = 's1'
+    elseif getline(v:lnum) =~? '^\s*\<do\>'
+        level = 'a1'
+    elseif getline(v:lnum) =~? '^\s*\(end\s*if\)\>'
+        level = 's1'
+    elseif getline(v:lnum) =~? '^\s*\<if.*then\>'
+        level = 'a1'
+    else
+	level = '='
+    endif
+    return level
+enddef
