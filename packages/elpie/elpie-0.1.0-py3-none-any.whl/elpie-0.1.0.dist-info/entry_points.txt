@@ -1,0 +1,2 @@
+[console_scripts]
+elpie = elpie.__main__:start_main
