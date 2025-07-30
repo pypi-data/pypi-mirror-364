@@ -1,0 +1,44 @@
+Metadata-Version: 2.3
+Name: benchmax
+Version: 0.1.1
+Summary: Framework-Agnostic RL Environments for LLM Fine-Tuning
+Author: cgft.io
+Requires-Python: >=3.11,<3.13
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Provides-Extra: crm
+Provides-Extra: excel
+Provides-Extra: excel-linux
+Provides-Extra: full
+Provides-Extra: verifiers
+Provides-Extra: verl
+Provides-Extra: wikipedia
+Requires-Dist: fastmcp (>=2.10.0,<2.11.0) ; extra == "excel-linux" or extra == "excel" or extra == "crm" or extra == "wikipedia" or extra == "full"
+Requires-Dist: openpyxl (==3.1.5) ; extra == "excel-linux" or extra == "excel" or extra == "full"
+Requires-Dist: python-dateutil (>=2.9.0,<2.10.0) ; extra == "crm" or extra == "full"
+Requires-Dist: simple-salesforce (>=1.12.3) ; extra == "crm" or extra == "full"
+Requires-Dist: verifiers[train] (>=0.1.1,<0.2.0) ; extra == "verifiers" or extra == "full"
+Requires-Dist: verl (==0.5.0) ; extra == "verl" or extra == "full"
+Requires-Dist: xlwings (==0.33.15) ; extra == "excel" or extra == "full"
+Description-Content-Type: text/markdown
+
+<picture>
+  <img alt="Benchmax" src="./static/benchmax.png"  width="full">
+</picture>
+
+## benchmax: Framework-Agnostic Reinforcement Learning Environments for LLM Fine-Tuning
+
+<div align="center">
+</div>
+<div id="badges" align="center">
+  <a href="https://cgft.io">
+    <img src="https://img.shields.io/badge/cgft.io-blue?style=for-the-badge" alt="Website"/>
+  </a>
+  <a href="https://x.com/cgftlabs">
+    <img src="https://img.shields.io/badge/Follow @cgftlabs-black?style=for-the-badge&logo=X&logoColor=white" alt="@cgftlabs"/>
+  </a>
+</div>
+<div align="center" style="line-height: 1;">
+  <a href="https://github.com/girishbarca/benchmax/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/License-Apache_2.0-blue.svg"/></a>
+</div>
