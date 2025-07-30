@@ -1,0 +1,56 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[project]
+name = "powerflex-monitoring"
+version = "1.8.1"
+description = "Tools to assist in monitoring a Python service."
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [{ name = "Powerflex" }]
+maintainers = [{ name = "Powerflex" }]
+keywords = ["monitoring", "powerflex", "python"]
+classifiers = [
+    "Intended Audience :: Developers",
+    "Operating System :: Unix",
+    "Operating System :: POSIX",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = [
+    "backoff>=2",
+    "colorlog>=6",
+    "nats-py>=2.2.0",
+    "prometheus_client>=0.14",
+    "pydantic>=1.9",
+    "requests>=2",
+    "starlette>=0.20",
+    "types-requests>=2",
+    "uvicorn>=0.18",
+    "redis>=4.3.4",
+]
+
+[project.optional-dependencies]
+pydantic2 = ["pydantic_settings>=2"]
+
+[project.urls]
+"Homepage" = "https://github.com/edf-re/powerflex_python_monitoring"
+"Issue Tracker" = "https://github.com/edf-re/powerflex_python_monitoring/issues"
+
+[tool.poetry]
+packages = [{ include = "powerflex_monitoring", from = "src" }]
+include = [
+    "src/powerflex_monitoring/VERSION",
+    "src/powerflex_monitoring/py.typed",
+]
+
+[tool.poetry.dependencies]
+python = ">=3.8,<4.0"
+pydantic_settings = { version = ">=2", optional = true }
