@@ -1,0 +1,27 @@
+Metadata-Version: 2.4
+Name: ngiab_eval
+Version: 0.1.3
+Summary: Basic KGE and NSE evaluation for the NGIAB project
+Author-email: Josh Cunningham <jcunningham8@ua.edu>
+Project-URL: Homepage, https://github.com/JoshCu/ngiab_eval
+Project-URL: Issues, https://github.com/JoshCu/ngiab_eval/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: xarray==2024.2.0
+Requires-Dist: dask==2024.4.1
+Requires-Dist: dask[distributed]==2024.4.1
+Requires-Dist: s3fs==2024.3.1
+Requires-Dist: zarr==2.17.1
+Requires-Dist: hydrotools-nwis-client>=4.1.0
+Requires-Dist: hydroeval
+Requires-Dist: netcdf4
+Requires-Dist: colorama
+Provides-Extra: plot
+Requires-Dist: seaborn; extra == "plot"
+Requires-Dist: matplotlib; extra == "plot"
+
+# Please don't use this
+If you've found this, it's a throw-away prototype to help with planning. Don't expect anything other than random numbers to come out of it. I haven't spent any time making this efficient or properly validating correctness, please don't use this as is or even as a reference. The gage_to_feature_id.py map is "correct" as far as the nwm output is stored in s3 zarrs, but I have not verified that those features are correct for those gages.
