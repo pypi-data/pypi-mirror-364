@@ -1,0 +1,8 @@
+README.md
+pyproject.toml
+setup.cfg
+setup.py
+SmallAppLib.egg-info/PKG-INFO
+SmallAppLib.egg-info/SOURCES.txt
+SmallAppLib.egg-info/dependency_links.txt
+SmallAppLib.egg-info/top_level.txt

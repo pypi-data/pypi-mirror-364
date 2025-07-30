@@ -1,0 +1,3 @@
+lib_name = 'Small app lib'
+description = 'Library for small python console applications, with user inputs and outputs'
+version = '1.0.0'
