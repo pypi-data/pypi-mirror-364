@@ -1,0 +1,67 @@
+Metadata-Version: 2.4
+Name: dbgpt-ext
+Version: 0.7.3
+Summary: Add your description here
+Project-URL: Homepage, https://github.com/eosphoros-ai/DB-GPT
+Project-URL: Documentation, http://docs.dbgpt.cn/docs/overview
+Project-URL: Repository, https://github.com/eosphoros-ai/DB-GPT.git
+Project-URL: Issues, https://github.com/eosphoros-ai/DB-GPT/issues
+Author-email: csunny <cfqcsunny@gmail.com>
+License-Expression: MIT
+Requires-Python: >=3.10
+Requires-Dist: dbgpt>=0.7.0
+Requires-Dist: pymysql
+Provides-Extra: datasource-clickhouse
+Requires-Dist: clickhouse-connect; extra == 'datasource-clickhouse'
+Provides-Extra: datasource-duckdb
+Requires-Dist: duckdb; extra == 'datasource-duckdb'
+Requires-Dist: duckdb-engine==0.9.1; extra == 'datasource-duckdb'
+Provides-Extra: datasource-hive
+Requires-Dist: pyhive; extra == 'datasource-hive'
+Requires-Dist: thrift; extra == 'datasource-hive'
+Requires-Dist: thrift-sasl; extra == 'datasource-hive'
+Provides-Extra: datasource-mssql
+Requires-Dist: pymssql; extra == 'datasource-mssql'
+Provides-Extra: datasource-mysql
+Requires-Dist: mysqlclient==2.1.0; extra == 'datasource-mysql'
+Provides-Extra: datasource-oracle
+Requires-Dist: oracledb==3.1.0; extra == 'datasource-oracle'
+Provides-Extra: datasource-postgres
+Requires-Dist: psycopg2-binary; extra == 'datasource-postgres'
+Provides-Extra: datasource-spark
+Requires-Dist: pyspark; extra == 'datasource-spark'
+Provides-Extra: datasource-vertica
+Requires-Dist: vertica-python; extra == 'datasource-vertica'
+Provides-Extra: file-oss
+Requires-Dist: oss2; extra == 'file-oss'
+Provides-Extra: file-s3
+Requires-Dist: boto3; extra == 'file-s3'
+Provides-Extra: graph-rag
+Requires-Dist: dbgpt-tugraph-plugins>=0.1.1; extra == 'graph-rag'
+Requires-Dist: neo4j; extra == 'graph-rag'
+Requires-Dist: networkx; extra == 'graph-rag'
+Provides-Extra: rag
+Requires-Dist: bs4; extra == 'rag'
+Requires-Dist: markdown; extra == 'rag'
+Requires-Dist: olefile; extra == 'rag'
+Requires-Dist: pdfplumber; extra == 'rag'
+Requires-Dist: pypdf; extra == 'rag'
+Requires-Dist: python-docx; extra == 'rag'
+Requires-Dist: python-pptx; extra == 'rag'
+Requires-Dist: spacy==3.7; extra == 'rag'
+Provides-Extra: storage-chromadb
+Requires-Dist: chromadb>=0.4.22; extra == 'storage-chromadb'
+Requires-Dist: onnxruntime<=1.18.1,>=1.14.1; extra == 'storage-chromadb'
+Provides-Extra: storage-elasticsearch
+Requires-Dist: elasticsearch; extra == 'storage-elasticsearch'
+Provides-Extra: storage-milvus
+Requires-Dist: pymilvus; extra == 'storage-milvus'
+Provides-Extra: storage-obvector
+Requires-Dist: pyobvector; extra == 'storage-obvector'
+Provides-Extra: storage-weaviate
+Requires-Dist: weaviate-client; extra == 'storage-weaviate'
+Description-Content-Type: text/markdown
+
+# dbgpt-integration
+
+Package that contains modules and utilities that can be used across packages and services.
