@@ -1,0 +1,2 @@
+[console_scripts]
+mcp_calculator_kel = math_genie_calc:main
