@@ -1,0 +1,2 @@
+[console_scripts]
+trello-tools = trello_cli.main:app
