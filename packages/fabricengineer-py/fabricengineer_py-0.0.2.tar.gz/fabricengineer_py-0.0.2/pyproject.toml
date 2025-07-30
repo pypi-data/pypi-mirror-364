@@ -1,0 +1,23 @@
+[project]
+name = "fabricengineer-py"
+version = "0.0.2"
+description = "Package for Fabric Engineers"
+readme = "README.md"
+authors = [
+    { name = "Enrico Goerlitz", email = "private.email@gmail.com" }
+]
+requires-python = ">=3.11"
+dependencies = []
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-ra -q"
+testpaths = ["src/tests"]
+pythonpath = ["src"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/fabricengineer"]
