@@ -1,0 +1,13 @@
+quickdb/__init__.py,sha256=Nqnn8clbgv-5l0PgxcTOldg8mkMKrFn4TvPL-rYUUGg,1
+quickdb/cli.py,sha256=UlmKU_RiWaaOLF_QK0XcmwHBdnvYBQhveX7gDkbsCdg,7261
+quickdb/cli_entry.py,sha256=aHUEwL9IRjO-rPguQCla_0jA2Fv3NED78qaAnDIfYH4,74
+quickdb/constants.py,sha256=sb5pSbknXiIHdkbGkVpKloFaOkXi5T_7DZLZy8GzzVs,62
+quickdb/db.py,sha256=JVWlbLUDR3wMJMsinpKIj8Z2CR1M7duyp7R6LHCxUXU,1660
+quickdb/filedb.py,sha256=zhK1gxgdblAEW2n1xRQSMCA1UNde9BhAQHsZLppycuA,5143
+quickdb/utils.py,sha256=seoojMKcwflN2dyZJdC7IKBsIZW-EU9J_IsOWYhzVyo,165
+quickstore-0.1.0.dist-info/licenses/LICENSE,sha256=hrevUivaXdCFH6iBRTvT--nUNFEXiPnu1wQ1qk6AVdw,1086
+quickstore-0.1.0.dist-info/METADATA,sha256=QSZzm77amGlokjddgrAi1uKC4mmghw--qHalYyN4X8E,7774
+quickstore-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+quickstore-0.1.0.dist-info/entry_points.txt,sha256=Iu4-X4GZXd8kW2hHpvVynFMEHHKOEoeZwJw_F2XD6uM,57
+quickstore-0.1.0.dist-info/top_level.txt,sha256=eMiPUCDbqB5Jm4zQoqcUnGOI0mGfoNSfe4zgYqGFpYk,8
+quickstore-0.1.0.dist-info/RECORD,,
