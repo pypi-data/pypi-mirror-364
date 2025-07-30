@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "echo-report-lab"
+version = "0.1.2"
+description = "Modular Keras report generator — visual embeddings, metrics, model summary, and source archive"
+authors = [
+    { name="Patrick Rutledge", email="your@email.com" }
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "tensorflow-cpu",
+    "keras",
+    "matplotlib",
+    "scikit-learn",
+    "numpy",
+    "pandas"
+]
+
+[tool.setuptools]
+packages = ["echo_report"]
+include-package-data = true
