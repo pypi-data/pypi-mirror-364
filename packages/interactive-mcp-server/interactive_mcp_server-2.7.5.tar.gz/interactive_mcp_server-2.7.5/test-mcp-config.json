@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "interactive-mcp-server": {
+      "command": "python",
+      "args": ["-m", "interactive_mcp_server"],
+      "cwd": "/Users/guoyansheng/vscodeProjects/mcp-feedback-enhanced",
+      "timeout": 600,
+      "autoApprove": ["interactive_feedback"],
+      "env": {
+        "MCP_DEBUG": "false",
+        "MCP_WEB_HOST": "127.0.0.1",
+        "MCP_WEB_PORT": "8765"
+      }
+    }
+  }
+}

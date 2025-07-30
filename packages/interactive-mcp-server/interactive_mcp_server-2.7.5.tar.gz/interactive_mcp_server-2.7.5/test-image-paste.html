@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片粘贴测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-area {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            min-height: 200px;
+        }
+        .result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <h1>🖼️ 图片粘贴 Base64 验证测试</h1>
+    
+    <div class="info result">
+        <strong>测试说明：</strong>
+        <ul>
+            <li>复制一张图片到剪贴板（右键图片 → 复制图片）</li>
+            <li>在下面的测试区域按 Ctrl+V 粘贴</li>
+            <li>查看 Base64 验证结果</li>
+        </ul>
+    </div>
+
+    <div class="test-area" id="testArea">
+        <p>📋 在此区域粘贴图片 (Ctrl+V)</p>
+        <p>支持的格式：PNG, JPEG, GIF, WebP, BMP</p>
+    </div>
+
+    <div id="results"></div>
+
+    <script>
+        // 模拟修复后的 base64 验证函数
+        function validateBase64(base64Data, fileName) {
+            if (!base64Data || typeof base64Data !== 'string') {
+                throw new Error(`${fileName}: Base64 数据无效`);
+            }
+            
+            const trimmed = base64Data.trim();
+            if (trimmed.length === 0) {
+                throw new Error(`${fileName}: Base64 数据为空`);
+            }
+            
+            // 检查 base64 格式
+            const base64Regex = /^[A-Za-z0-9+/]*={0,2}$/;
+            if (!base64Regex.test(trimmed)) {
+                throw new Error(`${fileName}: Base64 格式无效`);
+            }
+            
+            // 检查长度是否合理（base64 长度应该是 4 的倍数）
+            if (trimmed.length % 4 !== 0) {
+                throw new Error(`${fileName}: Base64 长度无效`);
+            }
+            
+            return trimmed;
+        }
+
+        function fileToBase64(file) {
+            return new Promise(function(resolve, reject) {
+                const reader = new FileReader();
+                reader.onload = function() {
+                    try {
+                        const result = reader.result;
+                        if (!result || typeof result !== 'string') {
+                            throw new Error('FileReader result is invalid');
+                        }
+                        
+                        // 检查是否包含 data URL 前缀
+                        const commaIndex = result.indexOf(',');
+                        if (commaIndex === -1) {
+                            throw new Error('Invalid data URL format');
+                        }
+                        
+                        const base64Data = result.substring(commaIndex + 1);
+                        
+                        // 验证 base64 格式
+                        if (!base64Data || base64Data.length === 0) {
+                            throw new Error('Empty base64 data');
+                        }
+                        
+                        // 简单的 base64 格式检查
+                        const base64Regex = /^[A-Za-z0-9+/]*={0,2}$/;
+                        if (!base64Regex.test(base64Data)) {
+                            throw new Error('Invalid base64 format');
+                        }
+                        
+                        console.log('✅ Base64 转换成功:', file.name, '长度:', base64Data.length);
+                        resolve(base64Data);
+                    } catch (error) {
+                        console.error('❌ Base64 转换失败:', file.name, error);
+                        reject(new Error(`Base64 conversion failed for ${file.name}: ${error.message}`));
+                    }
+                };
+                reader.onerror = function(error) {
+                    console.error('❌ FileReader 错误:', file.name, error);
+                    reject(new Error(`FileReader error for ${file.name}: ${error.message}`));
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function addResult(message, type = 'info') {
+            const resultsDiv = document.getElementById('results');
+            const resultDiv = document.createElement('div');
+            resultDiv.className = `result ${type}`;
+            resultDiv.innerHTML = message;
+            resultsDiv.appendChild(resultDiv);
+            
+            // 滚动到最新结果
+            resultDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 处理粘贴事件
+        document.addEventListener('paste', function(event) {
+            const items = event.clipboardData.items;
+            const imageFiles = [];
+
+            for (let i = 0; i < items.length; i++) {
+                const item = items[i];
+                if (item.type.indexOf('image') !== -1) {
+                    const file = item.getAsFile();
+                    if (file) {
+                        imageFiles.push(file);
+                    }
+                }
+            }
+
+            if (imageFiles.length > 0) {
+                event.preventDefault();
+                addResult(`📋 检测到 ${imageFiles.length} 个图片文件`, 'info');
+                
+                imageFiles.forEach(function(file, index) {
+                    addResult(`🔄 处理图片 ${index + 1}: ${file.name} (${file.size} bytes, ${file.type})`, 'info');
+                    
+                    fileToBase64(file)
+                        .then(function(base64Data) {
+                            try {
+                                const validatedBase64 = validateBase64(base64Data, file.name);
+                                addResult(`✅ 图片 ${file.name} 处理成功！<br>
+                                    - Base64 长度: ${validatedBase64.length}<br>
+                                    - 文件大小: ${file.size} bytes<br>
+                                    - 文件类型: ${file.type}<br>
+                                    - 预览: ${validatedBase64.substring(0, 50)}...`, 'success');
+                            } catch (error) {
+                                addResult(`❌ 图片 ${file.name} 验证失败: ${error.message}`, 'error');
+                            }
+                        })
+                        .catch(function(error) {
+                            addResult(`❌ 图片 ${file.name} 转换失败: ${error.message}`, 'error');
+                        });
+                });
+            }
+        });
+
+        // 页面加载完成后显示提示
+        document.addEventListener('DOMContentLoaded', function() {
+            addResult('🚀 图片粘贴测试页面已加载，可以开始测试了！', 'success');
+        });
+    </script>
+</body>
+</html>
