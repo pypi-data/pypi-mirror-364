@@ -1,0 +1,10 @@
+passagemath_rankwidth.libs/librw-afb892c6.so.0.0.0,sha256=E6fm24N5iHJge9nQzdseU3oGx78Xmgl-FJ7RsbRQ6Jg,330705
+sage/all__sagemath_rankwidth.py,sha256=x1Nv5uCeEV1xtY1FaEN6qPEQo9wKKUeLGzhoFWjM3J8,89
+sage/graphs/all__sagemath_rankwidth.py,sha256=8AgBFcKFGDJyb66yQXgMGdZE8BK4Q0Mj3r0uHtIvCJg,48
+sage/graphs/graph_decompositions/all__sagemath_rankwidth.py,sha256=8AgBFcKFGDJyb66yQXgMGdZE8BK4Q0Mj3r0uHtIvCJg,48
+sage/graphs/graph_decompositions/rankwidth.cpython-313-aarch64-linux-gnu.so,sha256=po8A6ks6iWEzI9GqEwqXdN8MrhMUIKV_ZJ9E5btnZtc,988441
+sage/graphs/graph_decompositions/rankwidth.pyx,sha256=XLgr3jaejMtypTubVJBHVrLLTmr0XYyBZeLSNTssV5c,10031
+passagemath_rankwidth-10.5.48.dist-info/METADATA,sha256=BvuoF0VFz6F16giWHLAAtThWd1_q1_7o29oOiRW7abM,4641
+passagemath_rankwidth-10.5.48.dist-info/WHEEL,sha256=Z_-WMKendi75Yw57PjPd3p0bWAtfF5SjXZRwFowa7TU,114
+passagemath_rankwidth-10.5.48.dist-info/top_level.txt,sha256=Kmzulf9WsphADFQuqgvdy5mvTLDj_V2zkFHU2s3UXos,6
+passagemath_rankwidth-10.5.48.dist-info/RECORD,,
