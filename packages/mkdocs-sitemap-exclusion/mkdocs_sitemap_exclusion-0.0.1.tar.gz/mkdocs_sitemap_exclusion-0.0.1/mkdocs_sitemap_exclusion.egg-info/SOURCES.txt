@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+setup.py
+mkdocs_sitemap_exclusion/__init__.py
+mkdocs_sitemap_exclusion/plugin.py
+mkdocs_sitemap_exclusion.egg-info/PKG-INFO
+mkdocs_sitemap_exclusion.egg-info/SOURCES.txt
+mkdocs_sitemap_exclusion.egg-info/dependency_links.txt
+mkdocs_sitemap_exclusion.egg-info/entry_points.txt
+mkdocs_sitemap_exclusion.egg-info/top_level.txt
