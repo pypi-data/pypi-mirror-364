@@ -1,0 +1,10 @@
+gradio_taggrouphelper/__init__.py,sha256=tJxWzau1MIMMCX4DncvKzuYfKnuOfJh-6AlVY62PjYk,78
+gradio_taggrouphelper/taggrouphelper.py,sha256=VpxmDan2ayZI8xw53nlDqQVpobIvHCKsxGXUDXXEcc4,4611
+gradio_taggrouphelper/taggrouphelper.pyi,sha256=RzilcJbtbyl2rdSldItB5p9_kCGE9o4GxSxNSAgOj1w,8287
+gradio_taggrouphelper/templates/component/index.js,sha256=8q-4UcJ7UQMv04oLIU2AStfZHBgNd1JIz9m1_ppc05c,580298
+gradio_taggrouphelper/templates/component/style.css,sha256=yjeNAvdcR2FpIXHAm-haLZu_Mj5o-aQxxM2-gwCKfDM,1481306
+gradio_taggrouphelper/templates/example/index.js,sha256=S0rQhEVCiO6TrKOl5wSmmKeYSD4WufxrYzuLtpfb-fo,1818
+gradio_taggrouphelper/templates/example/style.css,sha256=Aj4k-S41TV83pot-J9j9Fi2UonrXHFC1Jl4Zb1xaYo4,61
+gradio_taggrouphelper-0.0.3.dist-info/METADATA,sha256=SV-HPIN62jGPh15RNW1NUI18zGT_0LV9XpTzcd-LfHE,10807
+gradio_taggrouphelper-0.0.3.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+gradio_taggrouphelper-0.0.3.dist-info/RECORD,,
