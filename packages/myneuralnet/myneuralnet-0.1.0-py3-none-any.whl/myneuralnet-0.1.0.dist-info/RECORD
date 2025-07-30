@@ -1,0 +1,10 @@
+myneuralnet/__init__.py,sha256=Qhu3rtRLkwS8n-sd16Viz3rMat6WdEfkk5ow263MEVE,146
+myneuralnet/activations.py,sha256=U4IPSI6GnQo4NMBrWgP8wNZK-wTvA0qXzRd3YrA0ErU,490
+myneuralnet/layers.py,sha256=SRF4k53RCJPtfnvX8KAfJDh69Q_4gf7cu60MqBVHoGM,1339
+myneuralnet/loss.py,sha256=pN5HuVBXgKt5qsYxYNoy2Po2WH-RVjIpNCV49vPm_FM,107
+myneuralnet/network.py,sha256=AaOfGEn1lYEQd9J7wrLM2DzvHF2TDcQ0wROVpLpHj-c,1184
+myneuralnet-0.1.0.dist-info/licenses/LICENSE,sha256=A2JEx3OKVFVArECXW_0A19G_QZH4w3GyopqfLRw2WKE,1088
+myneuralnet-0.1.0.dist-info/METADATA,sha256=AbzOOhCQKjiSztknHHYXHv2mT50ybiKRnL3m1MaYUaU,2723
+myneuralnet-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+myneuralnet-0.1.0.dist-info/top_level.txt,sha256=yBd8UXhm_cR64RZdwIZdQ6yBNrkkhLncYOP5Su6aD9s,12
+myneuralnet-0.1.0.dist-info/RECORD,,
