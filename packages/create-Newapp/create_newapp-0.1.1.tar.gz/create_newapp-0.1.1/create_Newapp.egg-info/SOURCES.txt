@@ -1,0 +1,17 @@
+README.md
+pyproject.toml
+setup.py
+create_Newapp.egg-info/PKG-INFO
+create_Newapp.egg-info/SOURCES.txt
+create_Newapp.egg-info/dependency_links.txt
+create_Newapp.egg-info/entry_points.txt
+create_Newapp.egg-info/top_level.txt
+create_django/__init__.py
+create_django/__main__.py
+create_django/Myapp/__init__.py
+create_django/Myapp/admin.py
+create_django/Myapp/apps.py
+create_django/Myapp/tests.py
+create_django/Myapp/urls.py
+create_django/Myapp/migrations/__init__.py
+create_django/Myapp/models/__init__.py
