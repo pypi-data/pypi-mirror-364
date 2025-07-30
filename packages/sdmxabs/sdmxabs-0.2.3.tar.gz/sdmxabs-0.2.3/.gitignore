@@ -1,0 +1,58 @@
+# python stuff to be ignored
+__pycache__/
+*.py[cod]
+*$py.class
+
+# jupyter notebooks stuff to be ignored
+.ipynb_checkpoints/
+
+# vscode stuff
+.vscode/
+
+# MacOS stuff to be ignored
+.DS_Store
+Thumbs.db
+
+# build files
+build/
+dist/
+wheels/
+*.egg-info
+
+# cache files - wherever they occur
+.sdmxabs_cache/
+
+# Testing
+.pytest_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+.cache
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.mypy_cache/
+.ruff_cache/
+
+# Test outputs
+test-results/
+test-reports/
+pytest-*.xml
+junit.xml
+nosetests.xml
+
+# Temporary test files
+.testmondata
+.pytest_monitor/
+test_*.log
+*.log
+
+# environments
+.venv
+
+# Claude Code configuration
+CLAUDE.md
+
