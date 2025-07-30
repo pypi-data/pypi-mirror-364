@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: ai4ce-helpers
+Version: 0.1.1
+Summary: Functions to help interact with the AI4CE backend
+Author: Your Name
+Author-email: you@example.com
+Requires-Python: >=3.12,<3.14
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.12
+Requires-Dist: httpx (>=0.28,<0.29)
+Requires-Dist: streamlit (>=1.47,<2.0)
+Requires-Dist: toml (>=0.10,<0.11)
+Description-Content-Type: text/markdown
+
+empty 
