@@ -1,0 +1,12 @@
+tulflow/__init__.py,sha256=sTNadMU2X4iUx8J01FpySFn7L4AdxAleCP6WxXzupLk,60
+tulflow/_version.py,sha256=UBJYFcGUdYGr-JedA1iszF8hvCW4eJ1bxke_cO5Tya4,515
+tulflow/harvest.py,sha256=7S_cfh7-XqS6nDj2TgWWoX5BITEDUQj_2SsuG96o9Qg,10241
+tulflow/process.py,sha256=5a9yQlOX8i1F1gJkSnemNg4EEYCyNhbQWjNuknV3Y_Y,4926
+tulflow/solr_api_utils.py,sha256=boHXTLxtgpEhiGvv6kaYTC6o9FCMTy-sdJZH1IJryUw,8536
+tulflow/tasks.py,sha256=hLygmizix32cc0VSg44F15NK-SEJjoXC_7FKAuh75Xo,3428
+tulflow/transform.py,sha256=EH11zQ9u9KGLgRcH7f10zFhqSXlpfbyM-KKlxTC79yo,3099
+tulflow/validate.py,sha256=y_OQIg8Lnd7MCdELrqs2e9rPWtAcpaV0RsS70bUEorI,6409
+tulflow-0.12.13.dist-info/METADATA,sha256=iJHUhCHsqSOSe4Vs2aoLswS6fJlX5MVvjE0k30-HYxw,1934
+tulflow-0.12.13.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+tulflow-0.12.13.dist-info/top_level.txt,sha256=ZdtSD4vjJQcG7GlWxq2y0Zt7D8SjnIrQ9tbLoYZgCGk,8
+tulflow-0.12.13.dist-info/RECORD,,
