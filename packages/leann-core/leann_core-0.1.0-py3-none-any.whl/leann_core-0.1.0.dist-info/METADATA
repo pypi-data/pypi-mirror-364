@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: leann-core
+Version: 0.1.0
+Summary: Core API and plugin system for Leann.
+License: MIT
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: numpy>=1.20.0
+Requires-Dist: tqdm>=4.60.0
