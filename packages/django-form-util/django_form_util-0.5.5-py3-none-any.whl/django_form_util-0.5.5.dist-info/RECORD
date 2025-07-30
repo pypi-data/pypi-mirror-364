@@ -1,0 +1,16 @@
+django_form_util-0.5.5.dist-info/licenses/LICENSE,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+form_util/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+form_util/apps.py,sha256=f62Kj8bROs7AmzsAXCSYY-5qlrftIDniIO-y4SxqR_g,151
+form_util/forms.py,sha256=tDAqH9ivoPR4MvriMHasnBD9_PzY6KgqLM0soXoL4_k,228
+form_util/urls.py,sha256=IFQyxOSr1vDn6PT-QgxlBbIDF9-6Ban50fMroFPlOR0,139
+form_util/views.py,sha256=IfZpxwnqIdIbt_XrxZ2FJLxx9mUqIn7VlhUE6ijVaL8,191
+form_util/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+form_util/models/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+form_util/static/form_util/style.css,sha256=UqcJ-j5dG-IPRjVyknOfOBD-_KkAN8NgMlAILrN9Dhs,1986
+form_util/templates/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+form_util/templates/form_util/index.html,sha256=0hSGiMZq5PKROAYd3RWaGkJPLNNhVMS6dxn8Rx2ym8g,413
+django_form_util-0.5.5.dist-info/METADATA,sha256=yorxPw-AiirOvg-B6rIhw0ExXuiUKZgx3_vzsiGomrI,608
+django_form_util-0.5.5.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+django_form_util-0.5.5.dist-info/entry_points.txt,sha256=MRxRFQju_KIF72MpktSzTSo0W7w5J93vG8Jp95pI7EY,54
+django_form_util-0.5.5.dist-info/top_level.txt,sha256=PpbmJu0wK-45g_q0judi44dzNGEZ2dm6DDgsWXoKghs,10
+django_form_util-0.5.5.dist-info/RECORD,,

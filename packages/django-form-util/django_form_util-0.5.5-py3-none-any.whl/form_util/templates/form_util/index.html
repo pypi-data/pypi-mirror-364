@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire</title>
+        {% load static %}
+    <link rel="stylesheet" href="{% static 'form_util/style.css' %}">
+</head>
+<body>
+    <h1>Bienvenue {{ user.username|default:"invité" }} !</h1>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Envoyer</button>
+    </form>
+</body>
+</html>
