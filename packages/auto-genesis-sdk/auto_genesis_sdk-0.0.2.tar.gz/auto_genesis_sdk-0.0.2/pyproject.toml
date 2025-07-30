@@ -1,0 +1,53 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "auto-genesis-sdk"
+version = "0.0.2"
+description = "A unified Python SDK for seamless integration with Autonomize services, providing telemetry, logging, and tracing capabilities."
+authors = [
+    {name = "Muhamed Shahabas C", email = "muhamed@autonomize.ai"},
+]
+requires-python = ">=3.12"
+readme = "README.md"
+dependencies = [
+    "auto-genesis-telemetry",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=23.10.0",
+    "isort>=5.12.0",
+    "mypy>=1.6.1",
+    "pytest>=7.4.3",
+    "pytest-cov>=4.1.0",
+    "pre-commit>=3.5.0",
+    "commitizen>=3.12.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["auto_genesis_sdk"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "0.0.2"
+tag_format = "auto-genesis-sdk-v$version"
+version_scheme = "pep440"
+update_changelog_on_bump = true
+version_files = [
+    "pyproject.toml:version"
+]
+changelog_file = "CHANGELOG.md"
+changelog_incremental = true
+git_root = "../../"
+repository_url = "https://github.com/autonomize-ai/autonomize-sdk-python"
