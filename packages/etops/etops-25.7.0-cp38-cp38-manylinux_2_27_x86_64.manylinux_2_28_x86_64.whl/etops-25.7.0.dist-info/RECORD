@@ -1,0 +1,9 @@
+etops/__init__.py,sha256=AMVug3tZOKD82iscj5NnIZnqw_ad2s07Kcv1sWUOPPw,6894
+etops/_etops_core.cpython-38-x86_64-linux-gnu.so,sha256=IZ1FFnx6Xv2W4Cb9Etah8olaZTRIQhDjzrgwfQtNlEc,311681
+etops/_version.py,sha256=EHm__THgq7Nbsfg0mL2XeVRmF0WZG_tbsa_n0IRhwDo,513
+etops/libeinsum_ir.so,sha256=LUNF1GisVGUoYsK6cpg_h8dNb0xkJjodAlp9NUXhdf8,2263793
+etops.libs/libgomp-870cb1d0.so.1.0.0,sha256=Ta6ZPLbakQH8LP74JzBt0DuJIBHS4nicjkSCjKnyWDw,253289
+etops-25.7.0.dist-info/METADATA,sha256=PoBBoR4JrZ6CLF5SYfD-N3x4FmZgBjl6iOxa8JK8XxM,7163
+etops-25.7.0.dist-info/WHEEL,sha256=mC6tu5oMtxYVvK3wKQoSmrbZ9zcY1khpz452rhWCyGY,153
+etops-25.7.0.dist-info/RECORD,,
+etops-25.7.0.dist-info/licenses/LICENSE,sha256=kOES8v5XNv7wIj9W6W_dcRldlucoGVjLKgqml_nHyT0,6872
