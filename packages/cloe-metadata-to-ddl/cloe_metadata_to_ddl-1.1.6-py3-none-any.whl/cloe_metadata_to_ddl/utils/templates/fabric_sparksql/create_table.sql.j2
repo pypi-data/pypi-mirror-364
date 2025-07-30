@@ -1,0 +1,11 @@
+CREATE {% if replace %}OR REPLACE {% endif %}{% if table.is_external %}EXTERNAL {% endif -%}
+TABLE {%- if not replace %} IF NOT EXISTS{% endif %} {{ schema.name }}.{{ table.name }} {% if table.columns %}( {% endif %}
+{%- for column in table.columns %}
+    {% if not loop.first %},{% endif %}{{ column.name }} {{ column.data_type -}}
+{% if not (column.data_type_precision is none or column.data_type == "INT") -%}
+({{ column.data_type_precision }}, {{ column.data_type_numeric_scale }})
+{%- elif not (column.data_type_length is none) -%}
+({{ column.data_type_length }})
+{%- endif -%}
+{% endfor %}
+);
