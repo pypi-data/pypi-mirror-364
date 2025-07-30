@@ -1,0 +1,4 @@
+[console_scripts]
+humanmouse = humanmouse.cli:main
+humanmouse-collector = humanmouse.tools.collector:main
+humanmouse-player = humanmouse.tools.player:main
