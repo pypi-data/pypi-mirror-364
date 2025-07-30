@@ -1,0 +1,10 @@
+LICENSE
+README.md
+pyproject.toml
+lightwhisperstt/__init__.py
+lightwhisperstt/core.py
+lightwhisperstt.egg-info/PKG-INFO
+lightwhisperstt.egg-info/SOURCES.txt
+lightwhisperstt.egg-info/dependency_links.txt
+lightwhisperstt.egg-info/requires.txt
+lightwhisperstt.egg-info/top_level.txt
