@@ -1,0 +1,58 @@
+name: Build Test
+# Builds and tests dftlib with different dependencies
+
+on:
+  push:
+  schedule:
+    # run weekly
+    - cron: '0 10 * * 3'
+  # needed to trigger the workflow manually
+  workflow_dispatch:
+  pull_request:
+
+jobs:
+  stormTests:
+    name: Tests with Stormpy (${{ matrix.stormpyImg }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        stormpyImg: ["ci", "ci-debug"]
+    steps:
+      - name: Git clone
+        uses: actions/checkout@v4
+      - name: Build dftlib from Dockerfile
+        run: |
+          docker build -t volkm/dftlib . \
+            --build-arg STORMPY_BASE=movesrwth/stormpy:${{ matrix.stormpyImg }} \
+            --build-arg options="[smt,stormpy,test]"
+      - name: Run Docker
+        run: docker run -d -it --name ci volkm/dftlib
+      - name: Run tests
+        run: docker exec ci bash -c "cd /opt/dftlib; pytest"
+
+
+  BuildTest:
+    name: Test Python ${{ matrix.python-version }}, Libs ${{ matrix.dependencies }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+        dependencies: ["test", "test,smt,stormpy"]
+        exclude:
+          # Stormpy package only exists for Python >= 3.11
+          - python-version: "3.9"
+            dependencies: "test,smt,stormpy"
+          - python-version: "3.10"
+            dependencies: "test,smt,stormpy"
+
+    steps:
+      - name: Git clone
+        uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Build dftlib
+        run: pip install -e .[${{ matrix.dependencies }}]
+      - name: Run tests
+        run: pytest
