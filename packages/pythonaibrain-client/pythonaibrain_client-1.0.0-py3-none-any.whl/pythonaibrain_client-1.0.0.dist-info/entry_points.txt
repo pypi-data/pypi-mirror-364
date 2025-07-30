@@ -1,0 +1,2 @@
+[console_scripts]
+client-server = pyaibrain.client.__init__:main
