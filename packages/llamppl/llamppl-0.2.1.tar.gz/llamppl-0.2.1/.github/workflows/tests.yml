@@ -1,0 +1,43 @@
+# Builds the `llamppl` environment and runs all tests
+
+name: Codebase tests
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ParallelHoss
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up python
+        id: setup-python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11.5'
+
+      - name: Run Tests
+        run: |
+            python -m venv venv
+            source venv/bin/activate
+            pip install -e .[dev,examples]
+            # Add the project root to the PYTHONPATH for examples
+            PYTHONPATH=$PYTHONPATH:$(pwd) pytest tests --cov=llamppl --cov-report=json
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          fail_ci_if_error: false
+          disable_search: true
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage.json
+          slug: genlm/llamppl

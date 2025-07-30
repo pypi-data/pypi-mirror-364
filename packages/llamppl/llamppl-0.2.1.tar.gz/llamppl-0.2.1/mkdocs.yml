@@ -1,0 +1,40 @@
+site_name: LLaMPPL Docs
+
+theme:
+  name: "material"
+  palette:
+    scheme: slate
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+
+plugins:
+  - search
+  - mkdocstrings
+  - gen-files:
+      scripts:
+      - docs/gen_reference_page.py
+  - literate-nav:
+      nav_file: SUMMARY.md
+  - section-index
+
+nav:
+  - index.md
+  - Getting Started:
+    - getting_started.md
+    - anatomy.md
+    - transformers.md
+  - Performance Engineering:
+    - performance.md
+    - batching.md
+    - caching.md
+    - immutability.md
+  - Visualization:
+    - visualization.md
+  - Code Reference: reference/
