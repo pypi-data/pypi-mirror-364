@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+#footer {
+   position:absolute;
+   bottom:0;
+   width:100%;
+   height:200px;
+}
+</style>
+
+<head>
+  <title>PatientMatcher</title>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+
+<body class="w3-light-grey">
+
+<!-- Top container -->
+<div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
+  <a href="https://github.com/Clinical-Genomics/patientMatcher" target="_blank" rel="noopener" style="text-decoration: none;"><span class="w3-bar-item w3-left fab fa-github"></span></a>
+  <span class="w3-bar-item w3-right">PatientMatcher v.{{software_version}}</span>
+</div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-top:43px;">
+
+  <div class="w3-row-padding w3-margin-bottom">
+    <div class="w3-quarter">
+      <div class="w3-container w3-padding-16" style="background-color:#FCD271;">
+        <div class="w3-left"><em class="fas fa-hospital-alt w3-xxxlarge"></em></div>
+        <div class="w3-right">
+          <h3>{{connected_nodes|length}}</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Connected nodes <a href="#" class="fas fa-info-circle" style="text-decoration: none;" onclick="document.getElementById('connectionsModal').style.display='block'"></a></h4>
+        <h6>Requests received: {{node_stats.numberOfRequestsReceived}}</h6>
+        <h6>Potential matches sent: {{node_stats.numberOfPotentialMatchesSent }}</h6>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-padding-16" style="background-color:#F78D3F;">
+        <div class="w3-left"><em class="fas fa-notes-medical w3-xxxlarge"></em></div>
+        <div class="w3-right">
+          <h3>{{node_stats.numberOfCases}}</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Patients</h4>
+        <h6>Patients with a diagnosis: {{node_stats.numberOfCasesWithDiagnosis}}</h6>
+        <h6>Number of submitters: {{node_stats.numberOfSubmitters}}</h6>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-padding-16" style="background-color:#2BBBD8;">
+        <div class="w3-left"><em class="fas fa-dna w3-xxxlarge"></em></div>
+        <div class="w3-right">
+          <h3>{{node_stats.numberOfGenes}}</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Genes</h4>
+        <h6>Number of unique genes: {{node_stats.numberOfUniqueGenes}}</h6>
+        <h6>Number of unique genes matched: {{node_stats.numberOfUniqueGenesMatched}}</h6>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-dark-grey w3-text-white w3-padding-16">
+        <div class="w3-left"><em class="fas fa-crosshairs w3-xxxlarge"></em></div>
+        <div class="w3-right">
+          <h3>{{node_stats.numberOfVariants}}</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Variants</h4>
+        <h6>Number of unique variants: {{node_stats.numberOfUniqueVariants}}</h6>
+        <h6>-</h6>
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-container">
+    <h2>Welcome to PatientMatcher!</h2>
+
+    PatientMatcher is a <a href="https://www.matchmakerexchange.org/" target="_blank" rel="noopener">MatchMaker Exchange</a> node curated and maintained by Clinical Genomics, SciLifeLab in collaboration with the <a href="https://www.karolinska.se/for-vardgivare/karolinska-universitetslaboratoriet/genomic-medicine-center-karolinska" target="_blank" rel="noopener">Genomic Medicine Center Karolinska</a> at the <a href="https://www.karolinska.se/en/karolinska-university-hospital" target="_blank" rel="noopener">Karolinska University Hospital, Stockholm</a>.
+    <br>
+    If you are insterested in matching patients against our node, please <strong>contact us{% if node_contacts %} ({{ node_contacts|join(', ') }}) {%endif%}</strong> to become a collaborator.<br><br>
+    If you want to use this <strong>open source software</strong> for clinical laboratories and research facilities who wish to join the federated MME network as independent nodes, please visit the project's <a href="https://github.com/Clinical-Genomics/patientMatcher" target="_blank" rel="noopener">GitHub pages</a>.
+  <hr>
+  </div>
+</div>
+
+<div id="footer">
+  <div class="w3-container w3-dark-grey w3-text-white w3-padding-16">
+    <div class="w3-row">
+      <h5 class="w3-bottombar w3-border-orange">Disclaimer</h5>
+      {{ node_disclaimer }}
+    </div>
+  </div>
+  <div class="w3-container w3-light-grey w3-padding-16">
+    <span class="w3-bar-item w3-left">Powered by <a href="https://www.scilifelab.se/units/clinical-genomics-stockholm/" target="_blank" rel="noopener">Clinical Genomics, Science For Life Laboratory, Sweden</a></span>
+    <button onclick="document.getElementById('citeModal').style.display='block'" class="w3-bar-item w3-right">Cite PatientMatcher</button>
+  </div>
+</div>
+
+<!-- Modal windows -->
+<div id="citeModal" class="w3-modal">
+  <div class="w3-modal-content">
+    <div class="w3-container">
+      <span onclick="document.getElementById('citeModal').style.display='none'" class="w3-button w3-red w3-display-topright">&times;</span>
+      <p>
+        If you publish scientific papers using PatientMatcher, please cite our paper <a href="https://onlinelibrary.wiley.com/doi/10.1002/humu.24358" target="_blanl">PatientMatcher: A customizable Python-based open-source tool for matching undiagnosed rare disease patients via the Matchmaker Exchange network</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div id="connectionsModal" class="w3-modal">
+  <div class="w3-modal-content">
+    <div class="w3-container">
+      <span onclick="document.getElementById('connectionsModal').style.display='none'" class="w3-button w3-red w3-display-topright">&times;</span>
+      <div class="w3-row-padding w3-margin-top">
+        <h5 class="w3-bottombar w3-border-orange">List of connected nodes</h5>
+        <ul class="w3-ul">
+          {% for node in connected_nodes %}
+          <li>{{node.description}}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

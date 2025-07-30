@@ -1,0 +1,40 @@
+Metadata-Version: 2.4
+Name: patientmatcher
+Version: 4.6.0
+Summary: patientMatcher - a Python and MongoDB-based MatchMaker Exchange server
+Author: Chiara Rasi (northwestwitch)
+License: MIT
+License-File: LICENSE
+Requires-Python: <4.0,>=3.9
+Requires-Dist: clint<0.6.0,>=0.5.1
+Requires-Dist: coloredlogs<16.0.0,>=15.0.1
+Requires-Dist: enlighten<2.0.0,>=1.14.1
+Requires-Dist: flask-mail<0.11.0,>=0.10.0
+Requires-Dist: flask-negotiate<0.2.0,>=0.1.0
+Requires-Dist: flask<4.0.0,>=3.1.1
+Requires-Dist: importlib-resources; python_version < '3.9'
+Requires-Dist: jsonschema<5.0.0,>=4.24.1
+Requires-Dist: pymongo<5.0.0,>=4.13.2
+Requires-Dist: requests<3.0.0,>=2.32.4
+Requires-Dist: responses<0.26.0,>=0.25.7
+Provides-Extra: dev
+Requires-Dist: click<8.2; extra == 'dev'
+Requires-Dist: flask-mail>=0.10.0; extra == 'dev'
+Requires-Dist: mongomock>=4.3.0; extra == 'dev'
+Requires-Dist: pytest-cov>=6.2.1; extra == 'dev'
+Requires-Dist: pytest-test-groups>=1.2.1; extra == 'dev'
+Requires-Dist: pytest>=8.4.1; extra == 'dev'
+Requires-Dist: requests>=2.32.4; extra == 'dev'
+Description-Content-Type: text/markdown
+
+# patientMatcher - a Python and MongoDB - based MatchMaker Exchange server
+![Build Status - GitHub][actions-build-status]
+[![DOI](https://zenodo.org/badge/DOI/10.1002/humu.24358.svg)](https://doi.org/10.1002/humu.24358)
+
+
+PatientMatcher is a **Python** (Flask) and **MongoDB** - based implementation of a [MatchMaker Exchange](https://www.matchmakerexchange.org/) (MME) server, developed and actively maintained by [Clinical Genomics, Science For Life Laboratory in Stockholm](https://www.scilifelab.se/units/clinical-genomics-stockholm/). PatientMatcher is designed as a standalone application, but can easily communicate with external applications via REST API. The MME Stockholm node is being implemented in clinical production in collaboration with the Genomic Medicine Center Karolinska at the Karolinska University Hospital.    
+
+Info on how to test PatientMatcher or to set up a server containing an app frontend and backend is available on the [documentation pages](https://clinical-genomics.github.io/patientMatcher).
+
+
+[actions-build-status]: https://github.com/Clinical-Genomics/patientMatcher/actions/workflows/docker_build_n_publish_stage.yml/badge.svg
