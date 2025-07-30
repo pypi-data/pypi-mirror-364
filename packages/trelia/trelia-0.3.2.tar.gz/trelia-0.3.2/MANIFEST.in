@@ -1,0 +1,2 @@
+include trelia/data/code_signals.json
+include trelia/data/spam_patterns.json
