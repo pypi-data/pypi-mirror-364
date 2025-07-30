@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+setup.py
+matcha_ai/__init__.py
+matcha_ai.egg-info/PKG-INFO
+matcha_ai.egg-info/SOURCES.txt
+matcha_ai.egg-info/dependency_links.txt
+matcha_ai.egg-info/requires.txt
+matcha_ai.egg-info/top_level.txt
+tests/test_matcha_ai.py
