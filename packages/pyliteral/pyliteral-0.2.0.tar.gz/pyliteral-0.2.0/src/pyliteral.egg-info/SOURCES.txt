@@ -1,0 +1,14 @@
+LICENSE
+README.md
+pyproject.toml
+src/pyliteral/__init__.py
+src/pyliteral/consts.py
+src/pyliteral/load.py
+src/pyliteral/loads.py
+src/pyliteral/types.py
+src/pyliteral.egg-info/PKG-INFO
+src/pyliteral.egg-info/SOURCES.txt
+src/pyliteral.egg-info/dependency_links.txt
+src/pyliteral.egg-info/top_level.txt
+tests/test_load.py
+tests/test_loads.py

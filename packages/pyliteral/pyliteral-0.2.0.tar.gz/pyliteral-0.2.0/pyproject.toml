@@ -1,0 +1,28 @@
+[project]
+name = "pyliteral"
+version = "0.2.0"
+description = "A truly Pythonic config format - Designed for both humans and machines."
+authors = [
+    { name="Sreenath Somarajapuram", email="somarajapuram@gmail.com" }
+]
+readme = "README.md"
+requires-python = ">=3.8"
+license = { file = "LICENSE" }
+classifiers = [ "License :: OSI Approved :: Apache Software License" ]
+
+[project.urls]
+Homepage = "https://github.com/sreenaths/pyliteral"
+Repository = "https://github.com/sreenaths/pyliteral"
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["pyliteral"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+]
