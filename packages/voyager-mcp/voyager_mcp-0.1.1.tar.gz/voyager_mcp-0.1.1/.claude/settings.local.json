@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git remote remove:*)",
+      "Bash(gh repo create:*)"
+    ],
+    "deny": []
+  }
+}
