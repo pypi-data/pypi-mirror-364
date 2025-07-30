@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  # 主测试服务器 - 支持SSH和SFTP
+  test-server:
+    image: ubuntu:20.04
+    container_name: pytest-dsl-test-server
+    ports:
+      - "2222:22"  # SSH/SFTP端口
+    volumes:
+      - ./test_data/upload:/home/testuser/upload
+      - ./test_data/download:/home/testuser/download
+    environment:
+      - DEBIAN_FRONTEND=noninteractive
+    command: >
+      sh -c "
+        apt-get update &&
+        apt-get install -y openssh-server &&
+        mkdir -p /var/run/sshd &&
+        useradd -m -s /bin/bash testuser &&
+        echo 'testuser:testpass123' | chpasswd &&
+        mkdir -p /home/testuser/upload /home/testuser/download &&
+        chown -R testuser:testuser /home/testuser &&
+        sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config &&
+        sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config &&
+        sed -i 's/#Subsystem sftp/Subsystem sftp/' /etc/ssh/sshd_config &&
+        /usr/sbin/sshd -D
+      "
+    restart: unless-stopped
+    networks:
+      - ssh_test_network
+
+  # 备用SSH服务器
+  backup-server:
+    image: ubuntu:20.04
+    container_name: pytest-dsl-backup-server
+    ports:
+      - "2223:22"
+    volumes:
+      - ./test_data/upload:/home/testuser/upload
+      - ./test_data/download:/home/testuser/download
+    environment:
+      - DEBIAN_FRONTEND=noninteractive
+    command: >
+      sh -c "
+        apt-get update &&
+        apt-get install -y openssh-server &&
+        mkdir -p /var/run/sshd &&
+        echo 'root:rootpass123' | chpasswd &&
+        useradd -m -s /bin/bash testuser &&
+        echo 'testuser:testpass123' | chpasswd &&
+        mkdir -p /home/testuser/upload /home/testuser/download &&
+        chown -R testuser:testuser /home/testuser &&
+        sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config &&
+        sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config &&
+        /usr/sbin/sshd -D
+      "
+    restart: unless-stopped
+    networks:
+      - ssh_test_network
+
+networks:
+  ssh_test_network:
+    driver: bridge 

@@ -1,0 +1,119 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pytest-dsl-ssh"
+version = "0.1.1"
+description = "SSH/SFTP关键字插件，为pytest-dsl提供SSH和SFTP操作能力"
+authors = [
+    {name = "pytest-dsl团队", email = "pytest.dsl@example.com"}
+]
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.9"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Testing",
+    "Topic :: System :: Networking",
+]
+dependencies = [
+    "paramiko>=3.0.0",
+    "pyyaml>=6.0",
+    "pytest>=7.0.0",
+    "pytest-dsl>=0.16.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+    "pre-commit>=3.0.0",
+]
+test = [
+    "pytest-asyncio>=0.21.0",
+    "pytest-mock>=3.10.0",
+    "docker>=6.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/pytest-dsl/pytest-dsl-ssh"
+Documentation = "https://pytest-dsl.vercel.app/"
+Repository = "https://github.com/pytest-dsl/pytest-dsl-ssh.git"
+"Bug Tracker" = "https://github.com/pytest-dsl/pytest-dsl-ssh/issues"
+
+[project.entry-points."pytest_dsl.keywords"]
+ssh = "pytest_dsl_ssh"
+
+[tool.hatch.build.targets.wheel]
+packages = ["pytest_dsl_ssh"]
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q --strict-markers --strict-config"
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+]
+
+[tool.coverage.run]
+source = ["pytest_dsl_ssh"]
+omit = [
+    "*/tests/*",
+    "*/test_*",
+    "*/__pycache__/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+] 
