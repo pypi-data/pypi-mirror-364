@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vérificateur de Caractère</title>
+    <link rel="stylesheet" href="{% static 'charchecker/style.css' %}">
+</head>
+<body>
+    <h1>Vérifiez le type de caractère</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="char" maxlength="1" required>
+        <button type="submit">Vérifier</button>
+    </form>
+
+    {% if result %}
+        <p>Entrée : <strong>{{ char }}</strong></p>
+        <p>Résultat : {{ result }}</p>
+    {% endif %}
+</body>
+</html>
