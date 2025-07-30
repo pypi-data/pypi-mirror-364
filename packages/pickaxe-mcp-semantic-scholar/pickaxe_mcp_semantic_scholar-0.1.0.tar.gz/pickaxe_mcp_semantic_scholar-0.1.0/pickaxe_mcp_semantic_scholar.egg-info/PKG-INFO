@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: pickaxe-mcp-semantic-scholar
+Version: 0.1.0
+Summary: MCP server for https://www.semanticscholar.org/
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: httpx>=0.28.1
+Requires-Dist: mcp[cli]>=1.12.2
+Requires-Dist: semanticscholar>=0.10.0
