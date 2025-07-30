@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: ghostos-common
+Version: 0.3.5
+Summary: common library for GhostOS project
+Author-Email: thirdgerb <thirdgerb@gmail.com>
+License: MIT
+Requires-Python: >=3.10
+Requires-Dist: ghostos-container>=0.2.4
+Requires-Dist: pydantic<3.0.0,>=2.7.0
+Requires-Dist: pyyaml<7.0.0,>=6.0.1
+Requires-Dist: tree-sitter-language-pack>=0.9.0
+Description-Content-Type: text/markdown
+
+Library for GhostOS, providing common class and functions.
