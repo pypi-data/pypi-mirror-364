@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: fandango
+Version: 16.0.2
+Summary: Simplify the configuration of big Tango control systems
+Home-page: https://gitlab.com/tango-controls/fandango
+Author: Sergi Rubio
+Author-email: srubio@cells.es
+License: LGPL
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Other Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)
+Classifier: Natural Language :: English
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Software Development :: Libraries
+Requires-Python: >3.10
+Description-Content-Type: text/markdown
+Provides-Extra: tests
+License-File: LICENSE
+
+Fandango is a Python module created to simplify the configuration of big control systems; implementing the behavior of Jive (configuration) and/or Astor (deployment) tools in methods that could be called from scripts using regexp and wildcards. Fandango provides functional methods, classes and utilities to develop high-level device servers and APIs for Tango control system.
