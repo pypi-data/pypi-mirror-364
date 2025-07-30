@@ -1,0 +1,40 @@
+[tool.poetry]
+name = "ai4ce-helpers"
+version = "0.3.11"
+description = "Functions to help interact with the AI4CE backend"
+authors = [
+    "Alexander Salge <wildfire_small467@simplelogin.com>",
+    "Jan-Peter Ceglarek <ceglarek@fsr.tu-darmstadt.de>"
+]
+readme = "README.md"
+packages = [{include = "ai4ce_helpers", from = "src"}]
+license = "LICENSE"
+
+
+[project.urls]
+Homepage = "https://gitlab.com/ai4ce/public-info"
+Repository = "https://gitlab.com/ai4ce/ai4ce-helpers"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.14"
+toml = "^0"
+httpx = "^0"
+streamlit = "^1"
+deprecated = "^1.2"
+
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+classifiers = [
+    "Operating System :: OS Independent",
+    "Development Status :: 3 - Alpha",
+    "Environment :: Web Environment",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
