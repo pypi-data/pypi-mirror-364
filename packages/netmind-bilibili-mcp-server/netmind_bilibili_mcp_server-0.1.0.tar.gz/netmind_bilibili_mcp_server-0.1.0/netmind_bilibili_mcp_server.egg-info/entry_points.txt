@@ -1,0 +1,2 @@
+[console_scripts]
+netmind-bilibili-mcp-server = bilibili:main
