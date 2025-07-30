@@ -1,0 +1,15 @@
+halsim_ws/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+halsim_ws/py.typed,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+halsim_ws/version.py,sha256=m5JIPP5xLGWsNzeDUjmwb5-JU2GJQyit1d9COO9ZZps,93
+halsim_ws/client/__init__.py,sha256=r5JhuI_KklfZdxZfIvE7K86nnLAAxQBIBhQodTC8mD0,33
+halsim_ws/client/main.py,sha256=L3u5cqb3ezbyhVFjWyd5rtnEwSIBLPoUPPP5Oa0VQhc,658
+halsim_ws/client/lib/halsim_ws_client.dll,sha256=EHpJ-sRKXHCVdvMAcAGp6HPCmFw5trcN2buKzZrTCg0,340480
+halsim_ws/client/lib/halsim_ws_client.lib,sha256=AbADoXI8hzruYpjqN9dqvoEKb_ph-zN7wmG6Kzi4KK4,1952
+halsim_ws/server/__init__.py,sha256=r5JhuI_KklfZdxZfIvE7K86nnLAAxQBIBhQodTC8mD0,33
+halsim_ws/server/main.py,sha256=UoGkU_qcHZ1ZHUDEqZyO7FVHV3uPh5C6NsAuoEqIX4k,658
+halsim_ws/server/lib/halsim_ws_server.dll,sha256=mWbbwXEFt1Hpp3y1QLDU1LeI2O0lGrwvbH43LM3zBw0,369664
+halsim_ws/server/lib/halsim_ws_server.lib,sha256=wDOpLNRkjqIhE8M5MezR6OyxiZVA5Iz70_7H2ViMNZ0,1952
+robotpy_halsim_ws-2027.0.0a2.dist-info/METADATA,sha256=UnNFqmCH42SwE4vAxan4TtL3B4GAu6P3HP2ixm9BdHY,372
+robotpy_halsim_ws-2027.0.0a2.dist-info/WHEEL,sha256=Vhj7RpPOKCXcsr4rUs7q4pISuo5nT6VsOuaQwH9GILY,94
+robotpy_halsim_ws-2027.0.0a2.dist-info/entry_points.txt,sha256=8do1YDm-xF6QJPRKMz--A9X7rwAioVAsEMEvZ6GWEuA,74
+robotpy_halsim_ws-2027.0.0a2.dist-info/RECORD,,
