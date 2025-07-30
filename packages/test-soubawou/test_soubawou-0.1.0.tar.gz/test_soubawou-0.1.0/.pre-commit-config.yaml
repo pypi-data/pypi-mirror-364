@@ -1,0 +1,53 @@
+repos:
+  - repo: local
+    hooks:
+      - id: ruff lint
+        name: ruff lint
+        entry: uv run ruff check
+        language: system
+
+  - repo: local
+    hooks:
+      - id: ruff format
+        name: ruff format
+        entry: uv run ruff format
+        language: system
+
+  - repo: local
+    hooks:
+      - id: docformatter
+        name: docformatter
+        entry: uv run docformatter -ri .
+        language: system
+
+  - repo: local
+    hooks:
+      - id: typos
+        name: typos
+        entry: uv run typos
+        language: system
+
+  - repo: local
+    hooks:
+      - id: pyright
+        name: pyright
+        entry: uv run pyright
+        language: system
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-toml
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+
+# exclude any path matching this pattern
+exclude: |
+  (?x)^(
+    \.gitignore
+    | \.pre-commit-config\.yaml
+    | uv\.lock
+    | pyproject.toml
+    | \.github/.*$
+  )$

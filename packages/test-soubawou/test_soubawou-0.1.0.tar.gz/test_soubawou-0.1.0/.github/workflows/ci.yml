@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  pre-commit:
+    name: Pre-commit
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv with cache
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: "latest"
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: uv sync
+      - run: uv pip install pip
+      - run: echo "$(pwd)/.venv/bin" >> $GITHUB_PATH
+      - if: github.event_name == 'pull_request'
+        run: git fetch origin ${{ github.base_ref }}
+
+      - uses: pre-commit/action@v3.0.0
+        with:
+          extra_args: --all-files --show-diff-on-failure
