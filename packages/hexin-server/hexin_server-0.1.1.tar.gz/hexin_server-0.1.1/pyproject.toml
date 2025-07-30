@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "hexin-server"
+version = "0.1.1"
+description = "FastAPI server that proxies OpenAI API endpoints using hexin_engine backend"
+authors = ["LinXueyuanStdio <23211526+LinXueyuanStdio@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "hexin_server"}]
+
+[tool.poetry.scripts]
+hexin-server = "hexin_server.__main__:main"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+requests = "^2.28.0"
+typing-extensions = "^4.0.0"
+uvicorn = {extras = ["standard"], version = "^0.20.0"}
+fastapi = "^0.100.0"
+python-dotenv = "^1.0.0"
+loguru = "^0.7.0"
+openai = "^1.0.0"
+pydantic = "^2.0.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.0.0"
+pytest-asyncio = "^0.21.0"
+httpx = "^0.24.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
