@@ -1,0 +1,175 @@
+Below is an axiom model, representing basic human, and emergent trait model. Give me statistical model of emergent trait in the [Emotional Stability and Social-Relational - ***NOTE: we iterative between these category for quality output: (Self-Governance, Emotional Stability, Social-Relational, Cognitive-Creative, Adaptation, Moral-Normative, Self-Appraisal)***] categories. The statistical model should be concrete and realistic, that include most common but also uncommon case, and can be used to generate python implementation. Do not produce any code in your response.
+
+[BEGIN AXIOM MODEL]
+# ---------------------------------------------------------------------------
+# 🧠 Axiomatic Ranking of Parameters  (Most Foundational → Most Emergent)
+# ---------------------------------------------------------------------------
+# Critical revision: lack of a **Self-Regulation (SR)** axis causes unrealistic
+# agents that pursue goals they cannot sustain or that crumble under impulse;
+# this failure dominates typical simulations, not edge cases.  SR is therefore
+# elevated to an axiom.  All other omissions have smaller, context-specific
+# impact and are left for future extensions.
+#
+# Rank | Parameter | Rationale
+# ---- | ----------| ---------------------------------------------------------
+# 1    | MO (Motivational Orientation)      | Core driver of goal pursuit —
+#      |                                     | foundational for RI, GH, CS.
+# 2    | SR (Self-Regulation / Conscient.)  | Governs impulse control,
+#      |                                     | persistence, reliability.  Gate-
+#      |                                     | keeps expression of every
+#      |                                     | downstream trait.
+# 3    | TP (Trust Propensity)              | Shapes social strategy; influences
+#      |                                     | CA, CS, RI.
+# 4    | ET (Emotional Tone, valence)       | Baseline affective style; sets
+#      |                                     | stress reactivity & outlook.
+# 5    | CC (Cognitive Complexity)          | How richly one models the world;
+#      |                                     | conditions GH, LM, CS.
+# 6    | RI (Role Identity)                 | Semi-constructed self-concept from
+#      |                                     | MO + TP (+ VM if present).
+# 7    | CS (Coping Strategy)               | Behavioural response to threat,
+#      |                                     | derived from SR, ET, TP, CC.
+# 8    | GH (Goal Horizon)                  | Time-scope of goals, from MO, SR,
+#      |                                     | ET, CC.
+# 9    | CA (Communication Adaptability)    | Flexibility of style; from SR,
+#      |                                     | TP, ET, CS.
+# 10   | LM (Learning Mode)                 | Preferred learning style; from SR,
+#      |                                     | CC, ET.
+# 11   | VM (Value / Moral Anchor)          | Cultural / ideological anchor;
+#      |                                     | optional, context-dependent.
+
+# ---------------------------------------------------------------------------
+# 🔄 Dependencies (Simplified Graph)
+# ---------------------------------------------------------------------------
+# MO ─┬─→ GH
+#     ├─→ RI
+#     └─→ CS
+#
+# SR ─┬─→ GH
+#     ├─→ CS
+#     ├─→ CA
+#     └─→ LM
+#
+# TP ─┬─→ CA
+#     └─→ CS
+#
+# ET ─┬─→ CS
+#     ├─→ CA
+#     └─→ LM
+#
+# CC ─┬─→ CS
+#     ├─→ LM
+#     └─→ GH
+#
+# (VM feeds only into RI when VM modelling is enabled.)
+
+# ---------------------------------------------------------------------------
+# STEP 1 · Define Axiomatic Parameters + Realistic Priors
+# ---------------------------------------------------------------------------
+# 1. MO – Motivational Orientation
+#    Domain: {Intrinsic, Extrinsic, Mixed}
+#    Prior: 40 % Intrinsic | 30 % Extrinsic | 30 % Mixed   (Deci & Ryan 2000)
+#
+# 2. SR – Self-Regulation / Conscientiousness
+#    Domain: {Low, Moderate, High}
+#    Prior: 20 % Low | 50 % Moderate | 30 % High   (meta-analysis on Big-Five)
+#
+# 3. TP – Trust Propensity
+#    Domain: {Low, Moderate, High}
+#    Prior: 25 % Low | 50 % Moderate | 25 % High   (cross-national trust surveys)
+#
+# 4. ET – Emotional Tone (valence, not arousal)
+#    Domain: {Stable, Anxious, Irritable, Upbeat}
+#    Prior: 35 % Stable | 25 % Anxious | 15 % Irritable | 25 % Upbeat
+#
+# 5. CC – Cognitive Complexity
+#    Domain: {Concrete, Practical, Abstract, Strategic}
+#    Prior: 30 % Practical | 25 % Concrete | 25 % Abstract | 20 % Strategic
+#
+# (RI, CS, GH, CA, LM, VM are derived; VM is optional.)
+
+# ---------------------------------------------------------------------------
+# 🧬 STEP 2 · Derive Secondary Parameters
+# ---------------------------------------------------------------------------
+# 6. GH – Goal Horizon  (MO, SR, ET, CC)
+#    • Intrinsic & Strategic & High SR  → Long-Term
+#    • Extrinsic & Concrete            → Short-Term
+#    • Anxious ET                      → bias Short-Term
+#    • Low SR                          → caps at Medium-Term
+#
+# 7. CS – Coping Strategy  (SR, ET, TP, CC)
+#    • Low SR or Anxious ET            → Avoidance / Deflection
+#    • High SR & High CC               → Rationalization / Problem-solving
+#    • Upbeat ET                       → Humor / Confrontation
+#
+# 8. CA – Communication Adaptability  (SR, TP, ET, CS)
+#    • High SR & High TP & Stable ET   → High
+#    • Low TP or Avoidant CS           → Low
+#
+# 9. LM – Learning Mode  (SR, CC, ET)
+#    • Strategic / Abstract & High SR  → Formal or Hybrid
+#    • Concrete or Low SR              → Experiential
+#    • Anxious ET                      → tilt Experiential
+#
+# 10. RI – Role Identity  (MO, TP, CC, VM)
+#     • Intrinsic + Strategic          → Innovation / Exploration
+#     • Extrinsic + Order-seeking      → Authority / Order
+#     • High TP + Practical            → Service / Knowledge
+#     • Low TP + Adaptation need       → Adaptation / Performance
+#
+# 11. VM – Value / Moral Anchor (optional)
+#     • Requires cultural / ideological context if enabled.
+
+# ---------------------------------------------------------------------------
+# 🧩 STEP 3 · External Inputs
+# ---------------------------------------------------------------------------
+# No mandatory external data for GH, CS, CA, LM, RI.
+# Optional: RI and VM can incorporate setting-specific constraints
+#            (e.g., military role, collectivist culture).
+
+# ---------------------------------------------------------------------------
+# ✅ Final Summary
+# ---------------------------------------------------------------------------
+# Category | Parameter(s)               | Role                 | Derived From
+# -------- | -------------------------- | -------------------- | ------------
+# Axiom    | MO, SR, TP, ET, CC         | Generative base      | —
+# Derived  | GH, CS, CA, LM, RI         | Statistical mapping  | Axioms
+# Optional | VM                         | Moral anchor         | Culture / RI
+
+
+[END AXIOM MODEL]
+
+--------------
+
+[BEGIN EMERGENT MODEL]
+
+# This updated 20-trait model addresses the above gaps. Traits are grouped by functional domain. Each trait is derived stochastically using the **axiomatic base model** and early intermediates (CS, GH, RI, etc.).
+
+# > _Italicized_ traits are retained (sometimes renamed). **Bold** traits are newly introduced or significantly revised.
+
+# ### 📦 Trait Clusters and Inputs
+
+# | **Cluster**             | **Trait**                          | **Description**                                          | **Primary Inputs**         |
+# |-------------------------|------------------------------------|----------------------------------------------------------|-----------------------------|
+# | **Self-Governance**     | _Decision-Making Tempo_            | Impulsive ↔ Deliberative                                 | ET, CC, SR                  |
+# |                         | **Agency / Locus of Control**      | Internal ↔ External perceived control                    | SR, MO, TP                  |
+# |                         | **Drive / Ambition**               | Energy toward goal pursuit                               | MO, SR, GH                  |
+# |                         | _Risk Appetite_                    | Cautious ↔ Adventurous                                   | MO, ET, TP                  |
+# |                         | **Impulse Expression**             | Degree to which urges override plans                     | SR, ET                      |
+# | **Emotional Stability** | _Tonic Volatility_                 | Baseline emotional variability                           | ET, SR                      |
+# |                         | _Emotional Reactivity (phasic)_    | Magnitude of affective responses to stressors            | ET, CS                      |
+# | **Social-Relational**   | _Empathy_                          | Sensitivity to others’ emotional states                  | TP, ET                      |
+# |                         | **Attachment Style**               | Secure / Anxious / Avoidant / Chaotic                    | TP, ET, SR                  |
+# |                         | _Dominance Orientation_            | Submissive ↔ Dominant                                    | TP, MO                      |
+# |                         | _Social Boldness_                  | Introverted ↔ Extraverted                                | ET, TP                      |
+# | **Cognitive-Creative**  | _Curiosity / Openness_             | Inclination to explore new ideas                         | CC, MO                      |
+# |                         | _Inventiveness / Creativity_       | Capacity for novel or divergent thinking                 | CC, MO                      |
+# |                         | _Strategic Foresight_              | Short ↔ Long-term planning tendency                      | GH, CC, SR                  |
+# | **Adaptation**          | _Adaptability / Resilience_        | Recovery speed from disruption                           | CS, ET                      |
+# |                         | **Stress-Coping Efficiency**       | Success at returning to equilibrium                      | CS, SR, ET                  |
+# | **Moral-Normative**     | _Norm Orientation_                 | Conformist ↔ Rebellious                                  | TP, RI                      |
+# |                         | **Integrity / Machiavellianism**   | Honest-principled ↔ Exploitative-flexible                | SR, MO, TP                  |
+# |                         | _Sense of Justice / Fairness_      | Value placed on fairness or order                        | TP, VM                      |
+# |                         | **Value-Anchor Strength (rev.)**   | Rigidity of internal value system                        | RI, VM, SR                  |
+# | **Self-Appraisal**      | _Competence Confidence_            | Belief in personal effectiveness                         | MO, SR, CS                  |
+
+[END EMERGENT MODEL]
