@@ -1,0 +1,10 @@
+numpy
+scipy
+matplotlib
+endf
+
+[test]
+pre-commit
+pytest
+jupyter
+matplotlib
