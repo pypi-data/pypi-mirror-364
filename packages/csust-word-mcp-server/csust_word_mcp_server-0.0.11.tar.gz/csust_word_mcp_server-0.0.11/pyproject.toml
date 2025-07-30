@@ -1,0 +1,25 @@
+[project]
+name = "csust-word-mcp-server"
+version = "0.0.11"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "DoubleWang1", email = "1596804045@qq.com" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "bs4>=0.0.2",
+    "dotenv>=0.9.9",
+    "fastmcp>=2.10.6",
+    "flask>=3.1.1",
+    "httpx>=0.28.1",
+    "mcp[cli]>=1.12.1",
+    "python-docx>=1.2.0",
+]
+
+[project.scripts]
+csust-word-mcp-server = "csust_word_mcp_server:main"
+
+[build-system]
+requires = ["uv_build>=0.8.2,<0.9.0"]
+build-backend = "uv_build"
