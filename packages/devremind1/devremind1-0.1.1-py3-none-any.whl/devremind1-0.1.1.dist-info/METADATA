@@ -1,0 +1,19 @@
+Metadata-Version: 2.4
+Name: devremind1
+Version: 0.1.1
+Summary: A Python package that reminds developers to take breaks
+Author: Anil Thapa
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Utilities
+Requires-Python: >=3.6
+License-File: LICENSE
+Requires-Dist: plyer
+Requires-Dist: playsound
+Dynamic: author
+Dynamic: classifier
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
