@@ -1,0 +1,14 @@
+LICENSE
+README.md
+pyproject.toml
+src/code_dictionary/__init__.py
+src/code_dictionary/java_generate.py
+src/code_dictionary.egg-info/PKG-INFO
+src/code_dictionary.egg-info/SOURCES.txt
+src/code_dictionary.egg-info/dependency_links.txt
+src/code_dictionary.egg-info/requires.txt
+src/code_dictionary.egg-info/top_level.txt
+src/code_dictionary/java/__init__.py
+src/code_dictionary/java/classes.py
+src/code_dictionary/java/fields.py
+src/code_dictionary/java/methods.py
