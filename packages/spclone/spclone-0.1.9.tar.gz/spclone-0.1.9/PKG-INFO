@@ -1,0 +1,116 @@
+Metadata-Version: 2.4
+Name: spclone
+Version: 0.1.9
+Summary: A lightweight alternative to 'git clone' for installing Python packages directly from GitHub.
+Author-email: Sermet Pekin <Sermet.Pekin@gmail.com>
+License: BSD 3-Clause License
+        
+        Copyright (c) 2025, Sermet Pekin
+        
+        Redistribution and use in source and binary forms, with or without
+        modification, are permitted provided that the following conditions are met:
+        
+        1. Redistributions of source code must retain the above copyright notice, this
+           list of conditions and the following disclaimer.
+        
+        2. Redistributions in binary form must reproduce the above copyright notice,
+           this list of conditions and the following disclaimer in the documentation
+           and/or other materials provided with the distribution.
+        
+        3. Neither the name of the copyright holder nor the names of its
+           contributors may be used to endorse or promote products derived from
+           this software without specific prior written permission.
+        
+        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+        AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+        IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+        DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+        FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+        DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+        SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+        CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+        OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+        OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+        
+Project-URL: Repository, https://github.com/SermetPekin/spclone
+Project-URL: Homepage, https://github.com/SermetPekin/spclone
+Project-URL: Documentation, https://github.com/SermetPekin/spclone
+Project-URL: Issues, https://github.com/SermetPekin/spclone/issues
+Project-URL: Changelog, https://github.com/SermetPekin/spclone/releases
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests>=2.32.4
+Dynamic: license-file
+
+
+# spclone
+
+[![PyPI](https://img.shields.io/pypi/v/spclone.svg)](https://pypi.org/project/spclone/)
+[![Python Version](https://img.shields.io/pypi/pyversions/spclone.svg)](https://pypi.org/project/spclone/)
+[![License](https://img.shields.io/github/license/SermetPekin/spclone)](https://github.com/SermetPekin/spclone/blob/main/LICENSE)
+
+A lightweight CLI tool that lets you install Python packages directly from GitHub — no need to `git clone` and manually install.
+
+---
+
+## 🚀 Features
+
+- 🔗 Install packages directly from GitHub URLs or shorthand (`user/repo`)
+- 🐍 Automatically uses `pip` to install the package in your current environment
+- 🧼 Avoids cluttering your filesystem with cloned directories
+- 🧪 Lightweight and focused on Python package installation (not general cloning)
+
+---
+
+## 📦 Installation
+
+```bash
+pip install spclone
+```
+
+```bash
+# spclone
+
+[![PyPI](https://img.shields.io/pypi/v/spclone.svg)](https://pypi.org/project/spclone/)
+[![Python Version](https://img.shields.io/pypi/pyversions/spclone.svg)](https://pypi.org/project/spclone/)
+[![License](https://img.shields.io/github/license/SermetPekin/spclone)](https://github.com/SermetPekin/spclone/blob/main/LICENSE)
+
+A lightweight CLI tool that lets you install Python packages directly from GitHub — no need to `git clone` and manually install.
+
+---
+
+## 🚀 Features
+
+- 🔗 Install packages directly from GitHub URLs or shorthand (`user/repo`)
+- 🐍 Automatically uses `pip` to install the package in your current environment
+- 🧼 Avoids cluttering your filesystem with cloned directories
+- 🧪 Lightweight and focused on Python package installation (not general cloning)
+
+---
+
+## 📦 Installation
+
+```bash
+
+pip install spclone
+
+```
+
+## Examples
+
+```
+spinstall pandas-dev/pandas
+spinstall https://github.com/psf/requests
+```
+
+## Development 
+
+```bash
+
+git clone https://github.com/SermetPekin/spclone.git
+cd spclone
+pip install -e ".[dev]"
+
+ 
+```
