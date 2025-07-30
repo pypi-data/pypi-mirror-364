@@ -1,0 +1,13 @@
+YoloOnnxDet/DirectML.dll,sha256=nJ5tgiVhxsQbkOaZSz6IV88dZtv7HgxMeZx8ibTpLaE,18527776
+YoloOnnxDet/OnnxDet.dll,sha256=lRPkvMGh9R8Wqi-335a3XWZgm6ChWoRxFzXN-3OkL-E,39936
+YoloOnnxDet/OnnxDet.py,sha256=OEdvmL_MQtee3EpPybSGhHlOJn9ybY3fX1mjuI_wf98,5304
+YoloOnnxDet/OnnxDetMutTD.py,sha256=StBD298K9vWL64hVwAMhtq_5bAFlnI-aw2eOCbSuM_o,14134
+YoloOnnxDet/OnnxMutTD.dll,sha256=itVLoUm4KBsH1ePvURusB1Ew8fy0zhdtgcY8ww8cvyg,65024
+YoloOnnxDet/__init__.py,sha256=OvIiIhIhnGhb6SXgM0XoxxHtPJ3Uojz_lZvjyK3zkOQ,8714
+YoloOnnxDet/onnxruntime.dll,sha256=9yLdkaMRufpLfyNB0iw3mnL7e8W2Od8Ytkgh8jzd4Us,16468024
+YoloOnnxDet/onnxruntime_providers_shared.dll,sha256=feZlnlWg4CqOfKlKsoZNDm6lmt2Hw-lH6JkCKa5_Xjo,22048
+YoloOnnxDet/opencv_world480.dll,sha256=td7UocpOgf4HKnGD9UFj0VC2V1asYC9GuT9dwupo9FA,63153664
+yoloonnxdet-0.1.0.dist-info/METADATA,sha256=FTVO3BwwUt0dZ8b9a6TfoK9vdzVinWCpTNHY9MVHwyo,1398
+yoloonnxdet-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+yoloonnxdet-0.1.0.dist-info/top_level.txt,sha256=jas2keQTnYQQfjTqbpbyzqKSAGqalqGS-RROSeWBsCc,12
+yoloonnxdet-0.1.0.dist-info/RECORD,,
