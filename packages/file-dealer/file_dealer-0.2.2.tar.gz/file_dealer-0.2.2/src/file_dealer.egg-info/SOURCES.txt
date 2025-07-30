@@ -1,0 +1,11 @@
+README.md
+pyproject.toml
+src/file_dealer/__init__.py
+src/file_dealer/append.py
+src/file_dealer/deleter.py
+src/file_dealer/reader.py
+src/file_dealer/writer.py
+src/file_dealer.egg-info/PKG-INFO
+src/file_dealer.egg-info/SOURCES.txt
+src/file_dealer.egg-info/dependency_links.txt
+src/file_dealer.egg-info/top_level.txt

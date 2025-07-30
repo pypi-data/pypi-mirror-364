@@ -1,0 +1,24 @@
+Metadata-Version: 2.4
+Name: file_dealer
+Version: 0.2.2
+Summary: Helper functions to read, write, append and delete files easily.
+Author-email: Ghena <ghenadiesturza@gmail.com>
+License: MIT
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+
+# file_dealer
+
+**file_dealer** is a simple Python package that makes it easier to work with files — read, write, append, and delete — using interactive, beginner-friendly commands.
+
+## ✨ Features
+
+- 📖 Read the full content of any file
+- 🖊 Write new data to a file (creates the file if it doesn't exist)
+- ➕ Append new data to an existing file
+- ❌ Delete files easily
+
+## 📦 Installation
+
+```bash
+pip install file_dealer

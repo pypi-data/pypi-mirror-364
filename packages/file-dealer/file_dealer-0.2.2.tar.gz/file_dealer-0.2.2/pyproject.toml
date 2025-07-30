@@ -1,0 +1,20 @@
+
+
+[project]
+name = "file_dealer"
+version = "0.2.2"
+description = "Helper functions to read, write, append and delete files easily."
+authors = [{ name = "Ghena", email = "ghenadiesturza@gmail.com" }]
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.7"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
