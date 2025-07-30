@@ -1,0 +1,98 @@
+[project]
+name = "dokker"
+version = "2.3.0"
+description = ""
+authors = [{ name = "jhnnsrs", email = "jhnnsrs@gmail.com" }]
+requires-python = ">=3.11"
+readme = "README.md"
+dependencies = [
+    "koil>=2.0.4",
+    "aiohttp>=3.9.1,<4",
+    "certifi>=2023.11.17",
+    "pydantic>2",
+]
+
+
+[tool.uv]
+dev-dependencies =  [
+    "pytest>=8",
+    "pytest-asyncio>=0.26",
+    "mypy>=1.8.0,<2",
+    "cookiecutter>=2.5.0,<3",
+    "python-semantic-release>=9.21.1",
+]
+
+[tool.hatch.build.targets.sdist]
+include = ["dokker"]
+
+[tool.hatch.build.targets.wheel]
+include = ["dokker"]
+
+[tool.hatch.build]
+include = [
+    "dokker/py.typed"
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.mypy]
+exclude = ["venv/", "tests/", "examples/"]
+ignore_missing_imports = true
+
+[tool.ruff]
+extend-select = ["ANN", "D1"]
+extend-ignore = ["ANN101", "ANN002", "ANN003", "D100", "ANN401"]
+
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+    "tests",
+    "examples",
+]
+
+# Same as Black.
+line-length = 300
+
+[[tool.pydoc-markdown.loaders]]
+type = "python"
+search_path = ["rath"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+markers = [
+    "integration: marks tests that require a running server",
+    "public: marks tests that require a public api",
+]
+
+[tool.pydoc-markdown.renderer]
+type = "docusaurus"
+docs_base_path = "website/docs"
+
+
+[tool.semantic_release]
+version_toml = ["pyproject.toml:project.version"]
+upload_to_pypi = true
+branch = "main"
+build_command = "uv build"
+
