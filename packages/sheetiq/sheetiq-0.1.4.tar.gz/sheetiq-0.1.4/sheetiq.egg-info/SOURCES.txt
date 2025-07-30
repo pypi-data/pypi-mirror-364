@@ -1,0 +1,13 @@
+LICENSE
+README.md
+pyproject.toml
+sheetiq/__init__.py
+sheetiq/example.py
+sheetiq/sheetiq.py
+sheetiq/types.py
+sheetiq.egg-info/PKG-INFO
+sheetiq.egg-info/SOURCES.txt
+sheetiq.egg-info/dependency_links.txt
+sheetiq.egg-info/requires.txt
+sheetiq.egg-info/top_level.txt
+tests/test_core.py

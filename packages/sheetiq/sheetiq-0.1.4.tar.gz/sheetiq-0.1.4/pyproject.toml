@@ -1,0 +1,17 @@
+[project]
+name = "sheetiq"
+version = "0.1.4"
+description = "Python SDK for accessing and updating Google Sheets via docapi.datafetchpro.com"
+authors = [{ name="Ali Raza", email="you@example.com" }]
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.7"
+dependencies = [
+    "requests"
+]
+[project.urls]
+Homepage = "https://docapi.datafetchpro.com"
+Repository = "https://github.com/aliraza948/sheetiqp"  # Optiona
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
