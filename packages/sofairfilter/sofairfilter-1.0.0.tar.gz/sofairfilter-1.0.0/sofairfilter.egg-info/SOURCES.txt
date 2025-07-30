@@ -1,0 +1,16 @@
+MANIFEST.in
+README.md
+pyproject.toml
+requirements.txt
+sofairfilter/__init__.py
+sofairfilter/__main__.py
+sofairfilter/config.yaml
+sofairfilter/filter.py
+sofairfilter/model_factory.py
+sofairfilter/tokenizer_factory.py
+sofairfilter.egg-info/PKG-INFO
+sofairfilter.egg-info/SOURCES.txt
+sofairfilter.egg-info/dependency_links.txt
+sofairfilter.egg-info/entry_points.txt
+sofairfilter.egg-info/requires.txt
+sofairfilter.egg-info/top_level.txt

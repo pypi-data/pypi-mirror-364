@@ -1,0 +1,5 @@
+torch
+classconfig
+transformers
+tqdm
+bitsandbytes

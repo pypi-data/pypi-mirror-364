@@ -1,0 +1,89 @@
+# SoFair Filter
+Simple command line tool for identifying candidate documents for software mention extraction.
+
+## Installation
+
+```bash
+pip install sofairfilter
+```
+
+The default configuration uses the flash attention (https://github.com/Dao-AILab/flash-attention) that must be installed separately afterward. You can install it with:
+
+```bash
+pip install flash-attn --no-build-isolation
+```
+
+## Usage
+To process a folder containing text documents and filter them based on the presence of software mentions, you can use the following command:
+
+```bash
+sofairfilter folder_with_txt_documents
+```
+
+It will print paths to the documents that contain software mentions.
+
+### Custom Configuration
+
+You can run it with a custom configuration file using the `--config` option:
+
+```bash
+sofairfilter folder_with_txt_documents --config path/to/config.yaml
+```
+
+The default configuration is:
+
+```yaml
+model_factory:  # Model configuration.
+  model_path: SoFairOA/sofair-modernBERT-base-filter  # Name or path to the model.
+  attn_implementation: flash_attention_2 # The attention implementation to use in the model (if relevant). Can be any of "eager" (manual implementation of the attention), "sdpa" (using F.scaled_dot_product_attention), or "flash_attention_2" (using Dao-AILab/flash-attention). By default, if available, SDPA will be used for torch>=2.1.1. The default is otherwise the manual "eager" implementation.
+  cache_dir: # Path to Hugging Face cache directory.
+  quantization: # Configuration for bits and bytes quantization.
+    load_in_8bit: false  # This flag is used to enable 8-bit quantization with LLM.int8().
+    load_in_4bit: false # This flag is used to enable 4-bit quantization by replacing the Linear layers with FP4/NF4 layers from `bitsandbytes`.
+    llm_int8_threshold: 6.0 # This corresponds to the outlier threshold for outlier detection as described in `LLM.int8() : 8-bit Matrix Multiplication for Transformers at Scale` paper: https://arxiv.org/abs/2208.07339 Any hidden states value that is above this threshold will be considered an outlier and the operation on those values will be done in fp16. Values are usually normally distributed, that is, most values are in the range [-3.5, 3.5], but there are some exceptional systematic outliers that are very differently distributed for large models. These outliers are often in the interval [-60, -6] or [6, 60]. Int8 quantization works well for values of magnitude ~5, but beyond that, there is a significant performance penalty. A good default threshold is 6, but a lower threshold might be needed for more unstable models (small models, fine-tuning).
+    llm_int8_skip_modules: # An explicit list of the modules that we do not want to convert in 8-bit. This is useful for models such as Jukebox that has several heads in different places and not necessarily at the last position. For example for `CausalLM` models, the last `lm_head` is kept in its original `dtype`.
+    llm_int8_enable_fp32_cpu_offload: false # This flag is used for advanced use cases and users that are aware of this feature. If you want to split your model in different parts and run some parts in int8 on GPU and some parts in fp32 on CPU, you can use this flag. This is useful for offloading large models such as `google/flan-t5-xxl`. Note that the int8 operations will not be run on CPU.
+    llm_int8_has_fp16_weight: false # This flag runs LLM.int8() with 16-bit main weights. This is useful for fine-tuning as the weights do not have to be converted back and forth for the backward pass.
+    bnb_4bit_compute_dtype: # This sets the computational type which might be different than the input type. For example, inputs might be fp32, but computation can be set to bf16 for speedups.
+    bnb_4bit_quant_type: fp4 # This sets the quantization data type in the bnb.nn.Linear4Bit layers. Options are FP4 and NF4 data types which are specified by `fp4` or `nf4`.
+    bnb_4bit_use_double_quant: false # This flag is used for nested quantization where the quantization constants from the first quantization are quantized again.
+    bnb_4bit_quant_storage: # This sets the storage type to pack the quanitzed 4-bit prarams.
+  torch_dtype: bfloat16 # Override the default torch.dtype and load the model under a specific dtype
+  trust_remote_code: false # Whether to trust remote code.
+  config: # Configuration for the model.
+  device: cuda # Device map for the model. If not specified, the model will be loaded on the CPU. Defaults to auto.
+  labels: # Classification labels, the position is specifying label id. Leave empty for automatic detection of labels from dataset or using labels from model configuration.
+tokenizer: # Hugging Face tokenizer for the model. Leave empty if you wish to initialize it from the model.
+threshold: # The threshold for the model's confidence probability. Documents with a probability below this threshold will be filtered out. By default, no threshold is applied and a class with the highest probability is selected.
+batch_size: 32 # Batch size for processing documents.
+```
+
+See help for more options:
+
+```bash
+sofairfilter --help
+```
+
+## Evaluation
+We evaluated this model on the test set of [SoFairOA/sofair_softcite_somesci](https://huggingface.co/datasets/SoFairOA/sofair_softcite_somesci) (sofair_softcite_somesci_documents) dataset:
+
+<table>
+  <tr>
+    <th>precision</th>
+    <td>0.8625730994152047</td>
+  </tr>
+  <tr>
+    <th>recall</th>
+    <td>0.9104938271604939</td>
+  </tr>
+  <tr>
+    <th>f1</th>
+    <td>0.8858858858858859</td>
+  </tr>
+  <tr>
+    <th>accuracy</th>
+    <td>0.9268527430221367</td>
+  </tr>
+</table>
+
+Scripts used for evaluation are available in the `experiments/sofair_softcite_somesci` folder.
