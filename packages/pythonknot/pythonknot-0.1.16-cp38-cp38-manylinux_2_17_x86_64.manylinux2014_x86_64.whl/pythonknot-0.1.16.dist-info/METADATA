@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: pythonknot
+Version: 0.1.16
+Summary: pythonknot for knot theory calculation
+Home-page: UNKNOWN
+Author: yjianzhu
+Author-email: yjianzhu@mail.ustc.edu.cn
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: pybind11[global]
+Requires-Dist: rmsd
+Requires-Dist: setuptools
+Requires-Dist: wheel
+
+Python Knot is a Python package for creating and manipulating knots and links, calculating knot invariants, and more.
+
+
