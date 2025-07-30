@@ -1,0 +1,75 @@
+Metadata-Version: 2.3
+Name: pyapp-window
+Version: 2.1.3
+Summary: Launching URL with native window in WebView mode.
+License: MIT
+Author: Likianta
+Author-email: likianta@foxmail.com
+Requires-Python: >=3.8
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: argsense (>=1.0.1,<2.0.0)
+Requires-Dist: cffi (>=1.17.1,<2.0.0) ; sys_platform == "win32"
+Requires-Dist: lk-logger (>=6.0.6,<7.0.0)
+Requires-Dist: lk-utils (>=3.2.1,<4.0.0)
+Requires-Dist: pythonnet (>=3.0.5,<4.0.0) ; python_version < "3.14" and sys_platform == "win32"
+Requires-Dist: requests (>=2.32.3,<3.0.0)
+Requires-Dist: toga (<0.4.7) ; python_version >= "3.8" and python_version < "3.9" and sys_platform != "linux"
+Requires-Dist: toga (>=0.4.7,<0.5.0) ; python_version >= "3.9" and python_version < "3.14" and sys_platform != "linux"
+Requires-Dist: webui2 (>=2.5.4,<3.0.0) ; sys_platform != "win32"
+Project-URL: Homepage, https://github.com/likianta/depsland
+Description-Content-Type: text/markdown
+
+# PyApp Window
+
+A general-purpose native window launcher for a given url.
+
+## Install
+
+```sh
+pip install pyapp-window
+```
+
+## Usage
+
+Use in terminal:
+
+```sh
+py -m pyapp_window -h
+py -m pyapp_window http://localhost:3001
+```
+
+Use in script:
+
+```py
+import sys
+import pyapp_window
+from lk_utils import run_cmd_args
+
+# get a popen object
+port = 3001
+proc = run_cmd_args(
+    sys.executable, '-m', 'streamlit', 'run', your_target_script,
+    '--browser.gatherUsageStats', 'false',
+    '--global.developmentMode', 'false',
+    '--server.headless', 'true',
+    '--server.port', port,
+    blocking=False,
+    verbose=True,
+)
+
+
+pyapp_window.launch(
+    'Example App',
+    url=f'http://localhost:{port}',
+    copilot_backend=proc,
+    size=(800, 600),
+)
+```
+
