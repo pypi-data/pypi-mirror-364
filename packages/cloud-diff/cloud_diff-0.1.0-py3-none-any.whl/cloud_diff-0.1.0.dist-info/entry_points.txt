@@ -1,0 +1,3 @@
+[console_scripts]
+yaml-json-diff=yaml_json_diff.cli:app
+
