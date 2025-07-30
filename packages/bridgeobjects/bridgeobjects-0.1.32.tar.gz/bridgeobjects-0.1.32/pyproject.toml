@@ -1,0 +1,15 @@
+[project]
+name = "bridgeobjects"
+version = "0.1.32"
+requires-python = '==3.13.*'
+description = "A collection of modules that allows the user to utilise objects used in bridge games, for example, a board or a contract."
+authors = [{name = "Jeff", "email" = "<jeffwatkins2000@gmail.com>"}]
+readme = "README.md"
+include = ["HISTORY.md"]
+
+[dependency-groups]
+dev = ['pytest']
+
+[build-system]
+requires = ['uv-build']
+build-backend = 'uv_build'
