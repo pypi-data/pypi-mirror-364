@@ -1,0 +1,61 @@
+## config.yaml.example
+## Copy this file to config.yaml and update the values according to your setup
+logging:
+  level: "INFO"                   ## Log level: DEBUG, INFO, WARNING, ERROR, CRITICAL
+  log_file: "logs/alita.log"      ## Path to log file (directory will be created automatically)
+
+training:
+  learning_rate: "N/A"  ## Not applicable; the agent pipeline does not use gradient-based training.
+  batch_size: "N/A"     ## Not applicable for this experimental setup.
+  epochs: "N/A"         ## No training epochs needed.
+
+benchmark:
+  gaia:
+    dataset_path: "data/gaia.json"   ## GAIA dataset with 466 queries
+  mathvista:
+    sample_size: 100
+    dataset_path: "data/mathvista.json"  ## Randomly selected 100 samples
+  pathvqa:
+    sample_size: 100
+    dataset_path: "data/pathvqa.json"  ## Randomly selected 100 samples
+
+evaluation:
+  rounds: 3  ## Running three rounds for pass@1 and pass@3 metrics
+
+agent:
+  primary_llm: "openai/qwen-plus"            ## Primary high-capability model (e.g., gpt-4o or Claude-3.7-Sonnet)
+  secondary_llm: "openai/qwen3-32b"       ## Smaller model configuration for performance comparison
+  mcp_prompt_template: "templates/mcp_prompt.txt"  ## MCP Brainstorming prompt template
+  script_gen_prompt_template: "templates/script_template.txt"  ## Code generation prompt template
+
+environment:
+  conda_base_env: "base"          ## Base Conda environment name
+  env_prefix: "alita_env_"        ## Prefix for dynamically created environments
+  dependency_timeout: 300         ## Timeout in seconds for dependency installation
+
+api:
+  openai_api_key: "sk-f28ea6f4d6784c778118a77cc94bb3e0"  ## Replace with your actual OpenAI API key
+  openai_api_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"  ## OpenAI API endpoint
+  anthropic_api_key: "YOUR_ANTHROPIC_API_KEY_HERE"  ## Replace with your actual Anthropic API key
+  anthropic_base_url: "https://api.anthropic.com/v1"  ## Anthropic API endpoint (optional, defaults to official API)
+  temperature: 0.7                ## Temperature for LLM API calls (0.0-2.0)
+  max_tokens: 16384               ## Maximum tokens for API responses
+
+## Optional: MCP Registry configuration
+mcp_registry:
+  registry_path: "mcp_registry.json"  ## Path to store MCP registry file
+
+## Optional: Web Agent configuration (using Exa API)
+exa:
+  exa_api_key: "cfe47143-4ae0-41a1-bda9-a91a80a30c5e"  ## Replace with your actual Exa API key for semantic search
+  max_results: 10                  ## Maximum number of search results to return
+  use_autoprompt: true             ## Whether to use Exa's autoprompt feature for better search queries
+  include_text: true               ## Whether to include text content in search results
+
+## Optional: Code execution configuration
+execution_timeout: 300           ## Timeout for script execution in seconds
+max_iterations: 3                ## Maximum iterations for the CodeReAct loop
+
+misc:
+  experiment_mode: "single_task"    ## Options: "benchmark" or "single_task"
+  debug: false                    ## Enable debug mode for verbose logging
