@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "notion-db-connector"
+version = "1.0.0"
+authors = [
+  { name="乔肃", email="qiaosu@example.com" },
+]
+description = "A powerful Python library to interact with Notion databases using a simple API or raw SQL queries, with support for local caching, offline mode, and advanced SQL features like JOINs."
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Topic :: Database",
+    "Topic :: Office/Business :: Office Suites",
+    "Framework :: AsyncIO",
+]
+dependencies = [
+    "notion-client",
+    "python-dotenv",
+    "sqlglot",
+    "cachetools>=5.0.0",
+    "httpx",
+    "pandas",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "pytest-mock",
+    "pytest-asyncio",
+]
+
+[project.urls]
+Homepage = "https://github.com/example/notion-db-connector"
+Issues = "https://github.com/example/notion-db-connector/issues"

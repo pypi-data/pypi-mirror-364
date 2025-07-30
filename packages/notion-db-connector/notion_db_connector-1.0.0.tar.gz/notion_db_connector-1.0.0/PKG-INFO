@@ -1,0 +1,422 @@
+Metadata-Version: 2.4
+Name: notion-db-connector
+Version: 1.0.0
+Summary: A powerful Python library to interact with Notion databases using a simple API or raw SQL queries, with support for local caching, offline mode, and advanced SQL features like JOINs.
+Author-email: 乔肃 <qiaosu@example.com>
+Project-URL: Homepage, https://github.com/example/notion-db-connector
+Project-URL: Issues, https://github.com/example/notion-db-connector/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Database
+Classifier: Topic :: Office/Business :: Office Suites
+Classifier: Framework :: AsyncIO
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: notion-client
+Requires-Dist: python-dotenv
+Requires-Dist: sqlglot
+Requires-Dist: cachetools>=5.0.0
+Requires-Dist: httpx
+Requires-Dist: pandas
+Provides-Extra: test
+Requires-Dist: pytest; extra == "test"
+Requires-Dist: pytest-mock; extra == "test"
+Requires-Dist: pytest-asyncio; extra == "test"
+
+# Notion DB Connector
+
+`notion-db-connector` 是一个功能强大的 Python 模块，旨在将 Notion 数据库的功能封装成一个对开发者友好的、高性能的云数据库操作工具。它提供了一套简洁的 Pythonic API，并且创新性地支持通过标准 SQL 语法对 Notion 数据库进行增、删、改、查。
+
+本项目的目标是弥合 Notion 作为数据存储工具与传统数据库操作习惯之间的鸿沟，让开发者能以更熟悉、更高效的方式与 Notion 数据进行交互。
+
+## 核心特性
+
+-   **异步优先 (Async First)**: 核心采用异步架构以实现高性能 I/O，同时提供完全向后兼容的同步接口。
+-   **双重接口**: 同时提供简洁易用的 Pythonic API 和强大的 SQL 执行接口。
+-   **SQL on Notion**: 支持 `SELECT`, `INSERT`, `UPDATE`, `DELETE` 等常用 SQL 命令，无缝转换为 Notion API 调用。
+-   **自动重试**: 内置对 Notion API 速率限制的处理逻辑，采用指数退避和抖动策略，确保高负载下的稳定性。
+-   **查询缓存**: 支持可选的内存缓存（TTL），可大幅提升重复查询的性能。
+-   **类型安全**: 自动处理 Python 原生数据类型与 Notion API 特定格式之间的转换。
+-   **全面的测试**: 拥有覆盖核心功能、错误处理和边缘场景的完整测试套件。
+
+## 安装
+
+要安装 `notion-db-connector`，请使用 pip：
+
+```bash
+# 很快将发布到 PyPI，届时可使用:
+# pip install notion-db-connector
+
+# 当前，请从源码安装:
+pip install -r requirements.txt
+```
+
+## 配置
+
+### 1. 获取 Notion API 密钥
+
+-   访问 [Notion My Integrations](https://www.notion.so/my-integrations) 页面。
+-   点击 "New integration"，为其命名，并选择关联的工作区。
+-   提交后，你将获得一个 "Internal Integration Token"。这就是你的 API 密钥（以 `secret_` 开头）。
+
+### 2. 将集成共享给数据库
+
+-   打开你想要操作的 Notion 数据库。
+-   点击右上角的 "..." 菜单，选择 "Add connections"。
+-   搜索并选择你刚刚创建的集成。
+
+### 3. 初始化客户端
+
+`notion-db-connector` 提供了两种配置 API 密钥的方式：
+
+**方式一：直接在代码中传入（推荐用于快速开始）**
+
+```python
+from notion_db_connector import NotionDBClient
+
+client = NotionDBClient(api_key="YOUR_NOTION_API_KEY")
+```
+
+**方式二：使用 `.env` 文件（推荐用于生产环境）**
+
+1.  在你的项目根目录下创建一个名为 `.env` 的文件。
+2.  在文件中添加以下内容：
+
+    ```
+    NOTION_API_KEY=YOUR_NOTION_API_KEY
+    ```
+
+3.  现在，你可以不带参数地初始化客户端，它会自动加载密钥：
+
+    ```python
+    # 客户端会自动从 .env 文件中读取 NOTION_API_KEY
+    client = NotionDBClient() 
+    ```
+
+**其他初始化选项**
+
+如果你打算使用 SQL 接口，还需要提供一个数据库名称到 ID 的映射。
+
+```python
+# 为 SQL 接口提供数据库映射
+db_map = {
+    "tasks": "f1b3e9e2-c6b5-4e3c-a8d1-8a1c9a0c7b6e",
+    "projects": "d2a6b8c1-9e3b-4f2a-9c7d-5a3b1c8e4f2a"
+}
+
+# 启用缓存并设置 TTL 为 10 分钟
+sql_client = NotionDBClient(
+    db_name_to_id_map=db_map,
+    caching=True,
+    cache_ttl=600
+)
+```
+
+## Python API 用法
+
+### 查询数据库
+
+```python
+# 查询数据库中的所有页面
+pages = client.query_database(database_id="YOUR_DATABASE_ID")
+
+# 使用 Notion API filter object 进行筛选
+filter_obj = {
+    "property": "Status",
+    "status": {"equals": "Done"}
+}
+done_pages = client.query_database(
+    database_id="YOUR_DATABASE_ID",
+    filter_obj=filter_obj
+)
+
+for page in done_pages:
+    print(f"ID: {page['id']}, Properties: {page['properties']}")
+```
+
+### 创建页面
+
+```python
+new_page_data = {
+    "Name": "发布 v1.0 版本", # 对应 Title 属性
+    "Status": "In Progress",  # 对应 Status 属性
+    "Due Date": "2025-08-15" # 对应 Date 属性
+}
+
+# Notion API 要求在创建页面时明确哪个属性是 "Title" 类型。
+# 虽然库会尝试自动推断，但显式传递 title_property_name 是更稳妥的做法。
+created_page = client.create_page(
+    database_id="YOUR_DATABASE_ID",
+    data=new_page_data,
+    title_property_name="Name" 
+)
+print(f"成功创建页面: {created_page['id']}")
+```
+
+### 更新页面
+
+```python
+update_data = {
+    "Status": "Done"
+}
+
+updated_page = client.update_page(
+    page_id="PAGE_ID_TO_UPDATE",
+    data=update_data
+)
+print("页面状态已更新！")
+```
+
+### 删除页面
+
+```python
+# 这会将页面归档 (Archived)
+deleted_page = client.delete_page(page_id="PAGE_ID_TO_DELETE")
+print(f"页面 {deleted_page['id']} 已被归档。")
+```
+
+## SQL 接口用法
+
+`execute_sql` 方法提供了一个强大的同步接口，可以直接执行 SQL 语句。对于异步应用，请使用 `async_execute_sql`。
+
+### SELECT
+
+```python
+# 查询所有列
+tasks = sql_client.execute_sql("SELECT * FROM tasks")
+
+# 查询特定列并使用 WHERE 子句
+high_priority_tasks = sql_client.execute_sql(
+    "SELECT Name, Status FROM tasks WHERE Priority = 'High'"
+)
+
+for task in high_priority_tasks:
+    print(task)
+```
+
+### INSERT
+
+```python
+result = sql_client.execute_sql(
+    "INSERT INTO tasks (Name, Priority) VALUES ('编写文档', 'High')"
+)
+print(result)
+```
+
+### UPDATE
+
+```python
+# UPDATE 必须包含 WHERE 子句
+result = sql_client.execute_sql(
+    "UPDATE tasks SET Status = 'Done' WHERE Name = '编写文档'"
+)
+print(f"更新了 {result['updated_count']} 个页面。")
+```
+
+### DELETE
+
+```python
+# DELETE 必须包含 WHERE 子句
+result = sql_client.execute_sql(
+    "DELETE FROM tasks WHERE Status = 'Archived'"
+)
+print(f"删除了 {result['deleted_count']} 个页面。")
+```
+
+## 异步 API 用法
+
+为了实现最高性能，本库的核心是异步的。所有标准的同步方法都有一个对应的 `async_` 版本。这使得本库可以轻松集成到现代异步 Python 应用中（如 FastAPI, aiohttp）。
+
+下面是一个如何在异步函数中使用的例子：
+
+```python
+import asyncio
+from notion_db_connector import NotionDBClient
+
+# 使用 .env 文件或直接传入 api_key 初始化
+client = NotionDBClient()
+
+async def main():
+    # 1. 异步查询数据库
+    print("--- 异步查询 ---")
+    done_pages = await client.async_query_database(
+        database_id="YOUR_DATABASE_ID",
+        filter_obj={
+            "property": "Status",
+            "status": {"equals": "Done"}
+        }
+    )
+    for page in done_pages:
+        print(f"查询到的已完成页面: {page.get('Name', 'N/A')}")
+
+    # 2. 异步创建页面
+    print("\n--- 异步创建 ---")
+    new_page = await client.async_create_page(
+        database_id="YOUR_DATABASE_ID",
+        data={"Name": "异步创建的任务"}
+    )
+    print(f"成功创建页面: {new_page['id']}")
+
+    # 3. 异步执行 SQL
+    print("\n--- 异步执行 SQL ---")
+    high_priority_tasks = await client.async_execute_sql(
+        "SELECT Name FROM tasks WHERE Priority = 'High'"
+    )
+    print(f"查询到 {len(high_priority_tasks)} 个高优先级任务")
+
+if __name__ == "__main__":
+    # 在 Python 脚本的顶层，你需要使用 asyncio.run() 来运行主异步函数
+    asyncio.run(main())
+```
+
+## 错误处理
+
+本库定义了一套清晰的自定义异常，继承自 `NotionDBConnectorError`。
+
+-   **`RateLimitError`**: 当 API 请求达到速率限制时，库会自动进行指数退避重试。如果所有重试都失败，则会抛出此异常。
+-   **`ObjectNotFoundError`**: 当请求的数据库或页面不存在时抛出。
+-   **`ConfigurationError`**: 当配置不正确时（如未提供 API 密钥）抛出。
+-   **`SQLParsingError`**: 当提供的 SQL 语句存在语法错误时抛出。
+-   **`SQLTranslationError`**: 当 SQL 语法有效但无法被翻译为 Notion API 调用时（如使用了不支持的 `JOIN` 类型，或 `UPDATE`/`DELETE` 缺少 `WHERE` 子句）抛出。
+
+## 高级SQL与本地查询
+
+对于需要进行复杂数据聚合的场景，本库提供了一个基于 `pandas` 的本地查询引擎。
+
+### 工作流程
+1.  使用 `client.sync_to_local('database_id')` 将整个数据库的数据拉取到内存中。
+2.  执行包含 `GROUP BY` 或聚合函数（`COUNT`, `SUM`, `AVG`, `MIN`, `MAX`）的 SQL 查询。
+3.  查询将自动在本地的 `DataFrame` 上执行，无需额外的 API 调用。
+
+### 代码示例
+```python
+# 0. 初始化客户端并映射数据库
+db_map = {"my_table": "YOUR_DATABASE_ID"}
+client = NotionDBClient(db_map=db_map)
+
+# 1. 同步数据到本地
+client.sync_to_local("YOUR_DATABASE_ID")
+
+# 2. 执行聚合查询
+# 假设数据库有一个 'Category' (select类型) 和 'Value' (number类型) 的列
+df_agg = client.execute_sql("SELECT Category, COUNT(*) as count, SUM(Value) as total FROM my_table GROUP BY Category")
+print(df_agg)
+```
+
+### 使用 JOIN 连接多个数据库
+
+与 `GROUP BY` 类似，`JOIN` 操作也在本地执行。你需要先将要连接的两个数据库都同步到本地。
+
+**工作流程**
+1.  为要连接的数据库创建名称映射。
+2.  将两个数据库都使用 `sync_to_local()` 同步到本地。
+3.  执行 `SELECT` 语句，并使用 `INNER JOIN` 或 `LEFT JOIN` 进行连接。
+
+**代码示例**
+```python
+# 0. 初始化客户端并映射数据库
+db_map = {
+    "users": "YOUR_USERS_DATABASE_ID",
+    "orders": "YOUR_ORDERS_DATABASE_ID"
+}
+client = NotionDBClient(db_name_to_id_map=db_map)
+
+# 1. 同步两个数据库到本地
+client.sync_to_local("YOUR_USERS_DATABASE_ID")
+client.sync_to_local("YOUR_ORDERS_DATABASE_ID")
+
+# 2. 执行 JOIN 查询
+# 假设 'users' 表有 'user_id' 和 'name' 列
+# 'orders' 表有 'order_id', 'customer_id', 和 'amount' 列
+# 我们在 'users.user_id' 和 'orders.customer_id' 上进行连接
+join_sql = """
+SELECT
+    u.name,
+    o.order_id,
+    o.amount
+FROM
+    users u
+INNER JOIN
+    orders o ON u.user_id = o.customer_id
+"""
+df_join = client.execute_sql(join_sql)
+print(df_join)
+
+# df_join 将会是一个 pandas DataFrame，包含连接后的结果
+#    name  order_id  amount
+# 0  Alice       101     100
+# 1  Alice       103     200
+# 2    Bob       102     150
+```
+
+## 离线模式与双向同步
+
+本库支持强大的离线模式，允许您先将数据库同步到本地，在本地进行多次创建、更新或删除操作，然后一次性将所有变更推送回 Notion。这对于需要进行批量操作或在网络不稳定的环境下工作的场景非常有用。
+
+### 工作流程
+
+1.  **以离线模式初始化客户端**
+2.  **同步数据库到本地**
+3.  **在本地执行操作（API 或 SQL）**
+4.  **将本地变更同步到远程 Notion**
+
+### 代码示例
+
+```python
+from notion_db_connector import NotionDBClient
+
+db_id = "YOUR_DATABASE_ID"
+db_alias = "my_offline_db"
+
+# 1. 以离线模式初始化，并提供数据库映射
+client = NotionDBClient(
+    offline=True,
+    db_name_to_id_map={db_alias: db_id}
+)
+
+# 2. 同步数据库到本地
+print("Syncing from remote to local...")
+client.sync_to_local(db_id)
+print("Sync complete. Current data:")
+print(client.execute_sql(f"SELECT * FROM {db_alias}"))
+
+
+# 3. 在本地执行操作
+print("\nPerforming offline operations...")
+# 创建一个新页面
+client.execute_sql(f"INSERT INTO {db_alias} (Name, Value) VALUES ('Offline SQL Page', 999)")
+# 更新一个现有页面
+pages_df = client.execute_sql(f"SELECT id FROM {db_alias} WHERE _aime_status != 'deleted'")
+pages = pages_df.to_dict('records')
+
+if pages:
+    page_to_update_id = pages[0]['id']
+    client.update_page(page_to_update_id, {'Value': 111})
+    print(f"Updated page {page_to_update_id}")
+# 删除另一个页面
+if len(pages) > 1:
+    page_to_delete_id = pages[1]['id']
+    client.delete_page(page_to_delete_id)
+    print(f"Deleted page {page_to_delete_id}")
+
+print("\nLocal data after offline changes:")
+# 查询时，已删除的行会自动被过滤
+print(client.execute_sql(f"SELECT * FROM {db_alias}"))
+
+
+# 4. 将本地变更同步到远程
+print("\nSyncing local changes to remote...")
+client.sync_to_remote(db_id)
+print("Remote sync complete!")
+
+# 同步后，本地数据会从远程刷新，状态重置
+print("\nLocal data after remote sync:")
+print(client.local_store[db_id])
+```
+
+## 作者
+
+-   乔肃 (qiaosu)

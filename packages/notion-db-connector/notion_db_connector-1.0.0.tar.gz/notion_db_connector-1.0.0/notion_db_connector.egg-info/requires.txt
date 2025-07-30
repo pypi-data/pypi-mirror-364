@@ -1,0 +1,11 @@
+notion-client
+python-dotenv
+sqlglot
+cachetools>=5.0.0
+httpx
+pandas
+
+[test]
+pytest
+pytest-mock
+pytest-asyncio
