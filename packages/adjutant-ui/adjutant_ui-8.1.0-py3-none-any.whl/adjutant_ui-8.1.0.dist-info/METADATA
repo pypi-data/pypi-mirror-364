@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: adjutant-ui
+Version: 8.1.0
+Summary: Adjutant User Interface
+Home-page: https://github.com/catalyst/adjutant-ui
+Author: Adrian Turjak
+Author-email: adriant@catalyst.net.nz
+Classifier: Environment :: OpenStack
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.8
+License-File: LICENSE
+License-File: AUTHORS
+Requires-Dist: pbr !=2.1.0,>=2.0.0
+Requires-Dist: horizon >=18.1.0
+
+===========
+adjutant-ui
+===========
+
+Adjutant Dashboard
+
+* Free software: Apache license
+* Source: https://github.com/openstack/adjutant-ui
+
+This is the Horizon plugin for the Adjutant service, and provides UI elements
+to the core features that Adjutant adds.
+
+
+Documentation
+=============
+
+Documentation is stored in doc/, a sphinx build of the documentation can be
+generated with the command ``tox -e docs``.
+
