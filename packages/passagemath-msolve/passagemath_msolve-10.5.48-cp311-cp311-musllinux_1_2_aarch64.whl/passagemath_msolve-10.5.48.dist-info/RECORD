@@ -1,0 +1,17 @@
+passagemath_msolve.libs/libflint-7dd7ad94.so.19.0.0,sha256=PzP7CxzZdnBj7fOaw_Aaj3IIz_HIRFpGizWD4nH_nMo,12148265
+passagemath_msolve.libs/libgmp-8e78bd9b.so.10.5.0,sha256=_GHbOXFhW8AA6L6q0oQtWlRJSM2uRXRK8YJuaUmFmV0,668217
+passagemath_msolve.libs/libgomp-b626072d.so.1.0.0,sha256=ZFKhOzS1KdRZuqr6DmY-2-uHIK6XNWrTFBO0HpeqU6k,412217
+passagemath_msolve.libs/libmpfr-5ff10580.so.6.2.1,sha256=CN3b197tdIDHmAP9GMoHhwlHv3p87v-FznWTIBuaRLI,931905
+passagemath_msolve.libs/libneogb-150eb911.so.2.0.0,sha256=pFWNr-2QqVa1aJP-oKW-8o7jyVwmTlE5xC8VYGmgAH4,1053409
+sage/all__sagemath_msolve.py,sha256=No-scnoaPXyBy8fKkCMMH_r5NeyRWGOLoAQCE6RBJf4,126
+sage/libs/all__sagemath_msolve.py,sha256=2EBXYFXTRFy1V7G9fp76GquuW78Y8nsj9YySeR0TJqI,45
+sage/libs/msolve.cpython-311-aarch64-linux-musl.so,sha256=sWIPsB31sGz6MvTe1cuDJVquopfDJ_yvX-9exI6YH6o,114512
+sage/libs/msolve.pyx,sha256=2EBXYFXTRFy1V7G9fp76GquuW78Y8nsj9YySeR0TJqI,45
+sage/rings/all__sagemath_msolve.py,sha256=2EBXYFXTRFy1V7G9fp76GquuW78Y8nsj9YySeR0TJqI,45
+sage/rings/polynomial/all__sagemath_msolve.py,sha256=2EBXYFXTRFy1V7G9fp76GquuW78Y8nsj9YySeR0TJqI,45
+sage/rings/polynomial/msolve.py,sha256=MonqGvkPw2sSUORTXg_S0zFkigHKTkZP1VkLKbdkAcE,13746
+sage_wheels/bin/msolve,sha256=DGPS-TO3sxYFNULfHXU4JmePbeGeo4-MDEe0A7v3Sbk,1120617
+passagemath_msolve-10.5.48.dist-info/METADATA,sha256=dXpDRGffkPW1i8q9tS8xx4tDI1D6apr8q2FkNQmkt7k,4849
+passagemath_msolve-10.5.48.dist-info/WHEEL,sha256=LNZuceeFd58B9QVekwESAWqB09LEv_tgGDcYQrpkG9U,113
+passagemath_msolve-10.5.48.dist-info/top_level.txt,sha256=Kmzulf9WsphADFQuqgvdy5mvTLDj_V2zkFHU2s3UXos,6
+passagemath_msolve-10.5.48.dist-info/RECORD,,
