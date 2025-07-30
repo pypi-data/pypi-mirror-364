@@ -1,0 +1,188 @@
+Metadata-Version: 2.4
+Name: panoptes_aggregation
+Version: 5.3.0
+Summary: Aggregation code for Zooniverse panoptes projects.
+Author-email: Coleman Krawczyk <coleman@zooniverse.org>
+Requires-Python: >=3.9,<3.14
+Description-Content-Type: text/markdown
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: License :: OSI Approved :: Apache Software License
+License-File: LICENSE
+Requires-Dist: beautifulsoup4>=4.8.1,<4.13
+Requires-Dist: collatex>=2.3,<2.4
+Requires-Dist: lxml>=4.4,<5.4
+Requires-Dist: numpy>=1.26.4,<2.3
+Requires-Dist: packaging>=20.1,<24.3
+Requires-Dist: pandas>=2.0
+Requires-Dist: progressbar2>=3.39,<4.6
+Requires-Dist: python-levenshtein>=0.21.0,<0.27
+Requires-Dist: python-slugify>=7.0.0,<8.1
+Requires-Dist: pyyaml>=6.0,<6.1
+Requires-Dist: scikit-learn>=1.3.2,<1.7
+Requires-Dist: scipy>=1.10.0
+Requires-Dist: werkzeug>=2.3.0,<3.2
+Requires-Dist: shapely>=2.0,<2.1
+Requires-Dist: contourpy>=1.3.0,<1.4.0
+Requires-Dist: shapelysmooth>=0.2.0,<1.0
+Requires-Dist: matplotlib>=3.5.1,<4.0 ; extra == "doc"
+Requires-Dist: myst-nb>=0.13.2,<2.0 ; extra == "doc"
+Requires-Dist: sphinx>=5.2.0,<7.5 ; extra == "doc"
+Requires-Dist: sphinxcontrib-httpdomain>=1.7.0,<1.9 ; extra == "doc"
+Requires-Dist: sphinx_rtd_theme>=0.4.3,<4.0 ; extra == "doc"
+Requires-Dist: Gooey>=1.0.8.1,<1.1 ; extra == "gui"
+Requires-Dist: pip-licenses>=5.0 ; extra == "installer"
+Requires-Dist: nuitka>=2.6.8 ; extra == "installer"
+Requires-Dist: azure-identity>=1,<2 ; extra == "online"
+Requires-Dist: azure-storage-blob>=12,<13 ; extra == "online"
+Requires-Dist: celery>=5.3,<5.5 ; extra == "online"
+Requires-Dist: redis>=5,<6 ; extra == "online"
+Requires-Dist: flower>2,<3 ; extra == "online"
+Requires-Dist: flask>=2.3,<3.2 ; extra == "online"
+Requires-Dist: flask-cors>=3.0,<5.1 ; extra == "online"
+Requires-Dist: panoptes-client>=1.6,<1.7 ; extra == "online"
+Requires-Dist: requests>=2.28,<2.33 ; extra == "online"
+Requires-Dist: gunicorn>=20.0,<24.0 ; extra == "online"
+Requires-Dist: sentry-sdk[flask]>=2.19,<2.20 ; extra == "online"
+Requires-Dist: setuptools>=75.8,<76.0 ; extra == "online"
+Requires-Dist: standard-imghdr>=3.13,<4.0 ; extra == "online"
+Requires-Dist: newrelic>=8.4.0,<10.4 ; extra == "online"
+Requires-Dist: gitpython>=3.0.0,<3.2 ; extra == "online"
+Requires-Dist: coverage>=4.5.3,<7.7 ; extra == "test"
+Requires-Dist: coveralls>=3.0.0,<4.1 ; extra == "test"
+Requires-Dist: flake8>=7.0,<7.2 ; extra == "test"
+Requires-Dist: flake8-black>=0.3.4,<0.4 ; extra == "test"
+Requires-Dist: flake8-bugbear>=23.5,<24.11 ; extra == "test"
+Requires-Dist: pytest>=7.1.2,<8.4 ; extra == "test"
+Requires-Dist: pytest-subtests>=0.10.0,<0.14 ; extra == "test"
+Project-URL: Documentation, https://aggregation-caesar.zooniverse.org/docs
+Project-URL: Source, https://github.com/zooniverse/aggregation-for-caesar
+Provides-Extra: doc
+Provides-Extra: gui
+Provides-Extra: installer
+Provides-Extra: online
+Provides-Extra: test
+
+[![DOI](https://zenodo.org/badge/98517215.svg)](https://zenodo.org/badge/latestdoi/98517215)
+[![Coverage Status](https://coveralls.io/repos/github/zooniverse/aggregation-for-caesar/badge.svg?branch=master)](https://coveralls.io/github/zooniverse/aggregation-for-caesar?branch=master)
+
+# Getting started
+
+This is a collection of external reducers written for [caesar](https://github.com/zooniverse/caesar) and offline use.
+
+---
+
+## Documentation
+You can find the [latest documentation](https://aggregation-caesar.zooniverse.org/docs) on the aggregations code's website.
+
+---
+
+## Download and run
+You can find the latest standalone application version to download under 'Assets' on the [Github releases page](https://github.com/zooniverse/aggregation-for-caesar/releases). There are different `.zip` files for Windows/MacOS(Intel)/MacOS(ARM), choose the correct file for you operating system.
+
+Once downloaded, unzip and double click to run.
+
+```{warning}
+As this program is unsigned, there will be a warning on both Windows and on MacOS. On Windows click 'run anyway' and on MacOS allow the program in your security settings.
+```
+
+This is a standalone version that does not need a local installation of [Python](https://www.python.org/downloads/) or [any dependancies](https://github.com/zooniverse/aggregation-for-caesar/blob/master/pyproject.toml).
+
+---
+
+## Manual installing for offline use
+### With your own python install (python 3.9 or higher only)
+Install the latest stable release:
+```bash
+pip install panoptes_aggregation
+```
+
+Upgrade and existing installation:
+```bash
+pip install -U panoptes_aggregation
+```
+
+Or for development or testing, you can install the latest development version directly from GitHub:
+```bash
+pip install -U git+https://github.com/zooniverse/aggregation-for-caesar.git
+```
+
+#### Install the Graphical User Interface (GUI)
+If you would like to use the GUI instead of the command line install the package with:
+```bash
+pip install "panoptes_aggregation[gui]"
+```
+
+Or for the latest development build from GitHub:
+```bash
+pip install -U git+https://github.com/zooniverse/aggregation-for-caesar.git#egg=panoptes-aggregation[gui]
+```
+
+On linux systems you may need to install GTK3:
+```bash
+sudo apt-get install build-essential libgtk-3-dev
+```
+
+#### Mac Anaconda build
+If you are installing this code on a Mac using the anaconda build of python and you want to use the GUI instead of the command line you will have to update one line of the of code in the `panoptes_aggregation_gui` script.  Change the first line from:
+```python
+#!/path/to/anaconda/python/bin/python
+```
+to:
+```python
+#!/bin/bash /path/to/anaconda/python/bin/python.app
+```
+
+You can find the location of this file with the command:
+```bash
+which panoptes_aggregation_gui
+```
+
+You will also need to run:
+```bash
+conda install python.app
+```
+
+### With Docker
+[https://docs.docker.com/get-started/](https://docs.docker.com/get-started/)
+
+**Using docker-compose** [https://docs.docker.com/compose/](https://docs.docker.com/compose/)
+```
+docker compose -f docker-compose.local_scripts.yml build local_scripts
+```
+From the root directory of this repository, run the desired python scripts using the docker image, e.g. `config_workflow_panoptes --help`
+```
+docker compose -f docker-compose.local_scripts.yml run --rm local_scripts panoptes_aggregation --help
+```
+
+**Or directly via docker**
+```
+docker build . -f Dockerfile.bin_cmds -t aggregation_for_caesar
+```
+From the root directory of this repository, run the desired python scripts using the docker image, e.g. `panoptes_aggregation --help`
+```
+docker run -it --rm --name config_workflow_panoptes -v "$PWD":/usr/src/aggregation aggregation_for_caesar panoptes_aggregation --help
+```
+
+**Note** The GUI does not work inside a docker container.
+
+---
+
+## Installing for online use
+The docker file included is ready to be deployed on any server.  Once deployed, the extractors will be available on the `/extractors/<name of extractor function>` routes and the reducers will be available on the `/reducers/<name of reducer function>` routes.  Any keywords passed into these functions should be included as url parameters on the route (e.g. `https://aggregation-caesar.zooniverse.org/extractors/point_extractor_by_frame?task=T0`).  For more complex keywords (e.g. `details` for subtasks), python's [urllib.parse.urlencode](https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urlencode) can be used to translate a keyword list into the proper url encoding.
+
+The documentation will be built and available on the `/docs` route.
+
+### Build/run the app in docker locally
+To run a local version use:
+```bash
+docker compose build
+docker compose up
+```
+and listen on `localhost:4000`.
+
+### Running tests in the docker container
+To run the tests use:
+```bash
+docker compose run --rm aggregation coverage run -m pytest && coverage report
+```
+
