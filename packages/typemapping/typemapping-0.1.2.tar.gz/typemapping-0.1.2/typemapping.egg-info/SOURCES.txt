@@ -1,0 +1,11 @@
+LICENSE
+pyproject.toml
+tests/test_extras.py
+tests/test_typemapping.py
+typemapping/__init__.py
+typemapping/typemapping.py
+typemapping.egg-info/PKG-INFO
+typemapping.egg-info/SOURCES.txt
+typemapping.egg-info/dependency_links.txt
+typemapping.egg-info/requires.txt
+typemapping.egg-info/top_level.txt
