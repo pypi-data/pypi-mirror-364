@@ -1,0 +1,4 @@
+[console_scripts]
+fastmcp-agents-library-agent-simple-code = fastmcp_agents.library.agent.simple_code:run
+simple-code = fastmcp_agents.library.agent.simple_code:run
+
