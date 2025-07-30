@@ -1,0 +1,2 @@
+[console_scripts]
+remote_kernel = remote_kernel.cli:main
