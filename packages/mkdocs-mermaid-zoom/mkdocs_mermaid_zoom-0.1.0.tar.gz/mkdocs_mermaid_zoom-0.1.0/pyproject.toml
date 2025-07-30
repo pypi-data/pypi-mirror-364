@@ -1,0 +1,28 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mkdocs-mermaid-zoom"
+version = "0.1.0"
+authors = [
+  { name="Marvin Ma", email="marvin.lijma@outlook.com" },
+]
+description = "A MkDocs plugin to add zoom, pan, and a custom lightbox to Mermaid diagrams."
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "mkdocs>=1.4.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/lijma/mkdocs-mermaid-zooming"
+Issues = "https://github.com/lijma/mkdocs-mermaid-zooming/issues"
+
+[project.entry-points."mkdocs.plugins"]
+mermaid-zoom = "mkdocs_mermaid_zoom.plugin:MermaidZoomPlugin" 

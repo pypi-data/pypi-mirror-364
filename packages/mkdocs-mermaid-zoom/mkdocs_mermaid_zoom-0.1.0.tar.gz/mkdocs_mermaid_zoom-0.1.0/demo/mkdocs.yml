@@ -1,0 +1,20 @@
+site_name: MkDocs Mermaid Zoom - Demo
+
+theme:
+  name: material
+
+plugins:
+  - search
+  - mermaid-zoom
+
+# We are now loading Mermaid.js manually
+extra_javascript:
+  - assets/javascripts/mermaid.min.js
+  # The mermaid-zoom.js is injected automatically by our plugin
+
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format 
