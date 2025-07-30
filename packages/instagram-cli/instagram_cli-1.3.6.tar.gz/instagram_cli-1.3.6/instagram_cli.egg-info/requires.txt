@@ -1,0 +1,12 @@
+typer
+art
+pydantic
+instagrapi
+pyyaml
+pillow
+emoji
+requests
+click<8.2.0
+
+[:platform_system == "Windows"]
+windows-curses
