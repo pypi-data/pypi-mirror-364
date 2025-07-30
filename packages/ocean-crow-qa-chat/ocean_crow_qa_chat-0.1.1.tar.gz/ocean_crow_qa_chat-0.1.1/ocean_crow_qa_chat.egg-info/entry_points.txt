@@ -1,0 +1,2 @@
+[console_scripts]
+qa-chat = ocean_crow_qa_chat.ocean_crow_qa_chat:run_qa_chat

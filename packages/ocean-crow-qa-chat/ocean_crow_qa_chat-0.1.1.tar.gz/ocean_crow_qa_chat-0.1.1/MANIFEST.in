@@ -1,0 +1,4 @@
+include LICENSE README.md
+include ocean_crow_qa_chat/*.py
+exclude tests/*
+exclude test_*.py

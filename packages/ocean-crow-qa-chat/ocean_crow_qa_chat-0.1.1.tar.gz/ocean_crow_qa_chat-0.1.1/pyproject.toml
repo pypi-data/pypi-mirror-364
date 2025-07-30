@@ -1,0 +1,42 @@
+[project]
+name = "ocean-crow-qa-chat"
+version = "0.1.1"
+description = "In-game developer-player Q&A system by OceanCrow"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+    { name = "Sheldon Kenny Salmon", email = "OceanCrowtt@gmail.com" }
+]
+keywords = ["gaming", "qa", "pygame", "ocean-crow"]
+requires-python = ">=3.9"
+dependencies = [
+    "pygame>=2.0.0",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://oceancrow.carrd.co"
+Repository = "https://github.com/OceanCrow-TT/ocean_crow_qa_chat"
+Issues = "https://github.com/OceanCrow-TT/ocean_crow_qa_chat/issues"
+
+[project.scripts]
+qa-chat = "ocean_crow_qa_chat.ocean_crow_qa_chat:run_qa_chat"
+
+[build-system]
+requires = ["setuptools>=77.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["ocean_crow_qa_chat"]
+
+[tool.setuptools.package-data]
+ocean_crow_qa_chat = ["*.py"]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0.0",
+]
