@@ -1,0 +1,201 @@
+:root {
+    --tooltip-color: black;
+}
+
+
+body {
+    font-family: "Public Sans";
+    color: #001D3D
+}
+
+
+
+
+/* ------------------------------- MAIN TITLE ------------------------------- */
+
+h2 {
+    font-family: "Fjalla One";
+    color: #001D3D;
+    font-style: bold;
+    margin-bottom: 10;
+}
+
+#subtitle {
+    margin-bottom: 20;
+    margin-top: 15;
+    font-style: italic;
+    color: #002E5B;
+    font-size: 13px;
+    max-width: 350px;
+}
+
+#repo-name {
+    font-size: 40px;
+    font-family: "Fjalla One";
+    color: #001D3D;
+    /* text-align: center; */
+    font-style: bold;
+    margin-bottom: 1;
+    font-style: normal;
+}
+
+/* --------------------------------- ON SVG --------------------------------- */
+
+/* ciruclar text */
+textPath {
+    -webkit-text-stroke: 5em white;
+    text-shadow:
+        -1px -1px 0 #fff,
+        1px -1px 0 #fff,
+        -1px 1px 0 #fff,
+        1px 1px 0 #fff;
+}
+
+#card {
+    position: fixed;
+    top: 50%;
+    right: 10px;
+    height: 300px;
+    width: 300px;
+    transform: translateY(-50%);
+}
+
+#cardbody {
+    overflow-y: auto;
+    font-size: small;
+}
+
+#cardheader {
+    font-size: medium;
+    font-style: bold;
+    letter-spacing: 2px;
+    margin-top: 0px;
+}
+
+.tooltip-inner {
+    font-size: x-small;
+}
+
+.custom-tooltip {
+    --bs-tooltip-bg: var(--tooltip-color);
+    /* --bs-tooltip-color: var(--tooltip-color); */
+    pointer-events: none;
+}
+
+
+
+/* ------------------------------- SEARCH BAR ------------------------------- */
+
+/* result display */
+#searchInput {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 13px;
+    max-width: 190px;
+}
+
+.table-responsive {
+    max-height: 150px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    margin-top: -15px;
+    width: 213px;
+}
+
+#errorinfo {
+    position: absolute;
+    margin-top: -15px;
+    margin-left: 2px;
+}
+
+
+/* --------------------------------- ON MENU -------------------------------- */
+
+#menu {
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: 0;
+    border-radius: 5px;
+}
+
+#graph {
+    margin-right: -25;
+}
+
+/* title */
+h3 {
+    color: #001D3D;
+    font-family: "Fjalla One";
+    letter-spacing: 0.8px;
+    font-optical-sizing: auto;
+    font-style: bold;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+p {
+    margin-bottom: 7px;
+}
+
+/* scale */
+.form-select.form-select-sm {
+    max-width: 150;
+    margin-right: auto;
+    display: block;
+    margin-bottom: 16;
+}
+
+.input-group .input-group-text {
+    border-radius: 5px;
+    border-left: 0;
+}
+
+#log10label {
+    font-size: small;
+    color: #003566;
+    margin-top: 3px;
+}
+
+/* worst */
+#reverse {
+    margin-left: 6;
+    --bs-btn-hover-bg: #001D3D;
+    --bs-btn-color: #001D3D;
+    --bs-btn-hover-border-color: #001D3D;
+    --bs-btn-border-color: #001D3D;
+}
+
+.worst-list {
+    color: #003566;
+    display: block;
+    text-align: left;
+    font-style: italic;
+    font-size: small;
+    text-decoration: none;
+}
+
+#main {
+    display: block;
+    width: 100%;
+    height: 100%
+}
+
+.circularText {
+    pointer-events: none;
+}
+
+#help {
+    cursor: pointer;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 10;
+    margin-left: 10px;
+}
+
+#help-title {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: normal;
+}
