@@ -1,0 +1,66 @@
+import pytest
+from pathlib import Path
+from rdkit import Chem
+from helmkit.molecule import (
+    Molecule,
+    load_monomer_library,
+    load_peptides_in_parallel,
+)
+
+
+@pytest.fixture(scope="module")
+def monomer_library():
+    """Fixture to load the monomer library for testing."""
+    path = Path(__file__).parent / "data" / "monomers.sdf"
+    return load_monomer_library(path)
+
+
+def test_load_monomer_library(monomer_library):
+    """Test loading the monomer library."""
+    assert "A" in monomer_library
+    assert "G" in monomer_library
+    assert "T" in monomer_library
+    assert monomer_library["A"]["m_type"] == "aa"
+    assert monomer_library["A"]["m_romol"].GetNumAtoms() > 0
+
+
+def test_simple_peptide(monomer_library):
+    """Test creating a simple peptide from a HELM string."""
+    helm = "PEPTIDE1{A.G.T}$$$$"
+    mol = Molecule(helm, monomer_df=monomer_library)
+    assert isinstance(mol.mol, Chem.Mol)
+    # Number of atoms will vary based on monomer definitions, but it should be > 0
+    assert mol.mol.GetNumAtoms() > 0
+
+
+def test_peptide_with_connection(monomer_library):
+    """Test a peptide with a connection."""
+    helm = "PEPTIDE1{A.G.G}$PEPTIDE1,PEPTIDE1,1:R3-3:R1$$$"
+    mol = Molecule(helm, monomer_df=monomer_library)
+    assert isinstance(mol.mol, Chem.Mol)
+    assert mol.mol.GetNumAtoms() > 0
+
+
+def test_invalid_monomer(monomer_library):
+    """Test HELM string with an invalid monomer."""
+    helm = "PEPTIDE1{X.Y.Z}$$$$"
+    with pytest.raises(ValueError, match="Monomer X not found in monomer library"):
+        Molecule(helm, monomer_df=monomer_library)
+
+
+def test_invalid_helm_string(monomer_library):
+    """Test an invalid HELM string."""
+    helm = "PEPTIDE1{A.G.T}"
+    mol = Molecule(helm, monomer_df=monomer_library)
+    assert len(mol.monomers) == 3
+
+
+def test_load_peptides_in_parallel(monomer_library):
+    """Test loading peptides in parallel."""
+    helms = ["PEPTIDE1{A.G.T}$$$$", "PEPTIDE1{G.A}$$$$"]
+    molecules = load_peptides_in_parallel(helms, monomer_df=monomer_library)
+    assert len(molecules) == 2
+    assert isinstance(molecules[0].mol, Chem.Mol)
+    assert isinstance(molecules[1].mol, Chem.Mol)
+    assert molecules[0].mol.GetNumAtoms() > 0
+    assert molecules[1].mol.GetNumAtoms() > 0
