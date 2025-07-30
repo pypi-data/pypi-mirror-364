@@ -1,0 +1,11 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+redshift_utils.py
+setup.py
+sagemaker_redshift.egg-info/PKG-INFO
+sagemaker_redshift.egg-info/SOURCES.txt
+sagemaker_redshift.egg-info/dependency_links.txt
+sagemaker_redshift.egg-info/requires.txt
+sagemaker_redshift.egg-info/top_level.txt
