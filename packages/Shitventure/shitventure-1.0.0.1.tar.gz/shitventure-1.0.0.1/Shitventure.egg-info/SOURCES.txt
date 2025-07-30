@@ -1,0 +1,16 @@
+LICENSE
+README.md
+setup.py
+Shitventure.egg-info/PKG-INFO
+Shitventure.egg-info/SOURCES.txt
+Shitventure.egg-info/dependency_links.txt
+Shitventure.egg-info/entry_points.txt
+Shitventure.egg-info/requires.txt
+Shitventure.egg-info/top_level.txt
+shit/__init__.py
+shit/game.py
+shit/web/static/index.html
+shit/web/static/css/style.css
+shit/web/static/images/toilet.jpg
+shit/web/static/images/toilet1.jpg
+shit/web/static/js/game.js

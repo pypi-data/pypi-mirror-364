@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>厕所侦探 - 找出拉屎的人</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>厕所侦探 Shitventure</h1>
+        <p class="subtitle">扮演保洁阿姨，通过线索找出谁在厕所拉屎</p>
+        
+        <div class="toilet-scene">
+            <!-- 厕所场景图片 -->
+            <img src="/static/images/toilet.jpg" alt="厕所场景" class="toilet-img">
+            
+            <!-- 线索区域 -->
+            <div class="clues">
+                <button class="clue-btn" id="check-footprints">检查足迹</button>
+                <button class="clue-btn" id="check-fingerprints">检查指纹</button>
+                <button class="clue-btn" id="check-dna">检查DNA</button>
+            </div>
+        </div>
+        
+        <div class="suspects-container">
+            <h2>嫌疑人列表</h2>
+            <div class="suspects-list" id="suspects-list">
+                <!-- 嫌疑人将通过JS动态加载 -->
+            </div>
+        </div>
+        
+        <div class="nausea-meter">
+            <h3>孕吐值: <span id="nausea-level">0</span>/10</h3>
+            <div class="meter">
+                <div class="meter-fill" id="nausea-fill"></div>
+            </div>
+        </div>
+        
+        <div class="action-buttons">
+            <button id="confirm-btn" disabled>确认选择</button>
+        </div>
+        
+        <div class="result-area" id="result-area">
+            <!-- 结果显示区域 -->
+        </div>
+    </div>
+
+    <script src="/static/js/game.js"></script>
+</body>
+</html>

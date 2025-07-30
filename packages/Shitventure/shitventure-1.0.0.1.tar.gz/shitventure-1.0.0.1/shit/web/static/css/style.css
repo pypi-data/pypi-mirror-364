@@ -1,0 +1,163 @@
+/* 基础样式 */
+body {
+    font-family: 'Microsoft YaHei', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+.game-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #8B4513;
+    text-align: center;
+}
+
+.subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* 厕所场景 */
+.toilet-scene {
+    position: relative;
+    margin-bottom: 20px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.toilet-img {
+    width: 100%;
+    display: block;
+}
+
+.clues {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.clue-btn {
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.clue-btn:hover {
+    background-color: #45a049;
+}
+
+/* 嫌疑人列表 */
+.suspects-container {
+    margin-top: 20px;
+}
+
+.suspects-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.suspect-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suspect-card:hover {
+    background-color: #eee;
+}
+
+.suspect-card.selected {
+    background-color: #ffeeba;
+    border-color: #ffc107;
+}
+
+.suspect-level {
+    margin-top: 5px;
+    color: #ff6b00;
+    font-weight: bold;
+}
+
+/* 孕吐值显示 */
+.nausea-meter {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.meter {
+    height: 20px;
+    background-color: #e9ecef;
+    border-radius: 10px;
+    margin-top: 5px;
+    overflow: hidden;
+}
+
+.meter-fill {
+    height: 100%;
+    width: 0%;
+    background-color: #dc3545;
+    transition: width 0.3s;
+}
+
+/* 操作按钮 */
+.action-buttons {
+    margin: 20px 0;
+    text-align: center;
+}
+
+#confirm-btn {
+    padding: 10px 25px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#confirm-btn:hover {
+    background-color: #0069d9;
+}
+
+#confirm-btn:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+/* 结果区域 */
+.result-area {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    min-height: 50px;
+    text-align: center;
+    font-size: 18px;
+    color: #28a745;
+    font-weight: bold;
+}
