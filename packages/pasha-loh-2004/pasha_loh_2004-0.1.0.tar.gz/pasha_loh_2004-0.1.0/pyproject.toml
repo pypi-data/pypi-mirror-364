@@ -1,0 +1,12 @@
+[project]
+name = "pasha-loh-2004"
+version = "0.1.0"
+description = "A hilarious Python lib by Pasha 😎"
+authors = [{ name="Pasha", email="pasha@example.com" }]
+readme = "README.md"
+requires-python = ">=3.7"
+license = { text = "MIT" }
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
