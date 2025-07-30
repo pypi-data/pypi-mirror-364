@@ -1,0 +1,17 @@
+pyproject.toml
+src/Arrayer.egg-info/PKG-INFO
+src/Arrayer.egg-info/SOURCES.txt
+src/Arrayer.egg-info/dependency_links.txt
+src/Arrayer.egg-info/not-zip-safe
+src/Arrayer.egg-info/requires.txt
+src/Arrayer.egg-info/top_level.txt
+src/arrayer/__init__.py
+src/arrayer/dtype.py
+src/arrayer/exception.py
+src/arrayer/kabsch.py
+src/arrayer/matrix.py
+src/arrayer/pca.py
+src/arrayer/pcloud.py
+src/arrayer/rmsd.py
+src/arrayer/tensor.py
+src/arrayer/typing.py
