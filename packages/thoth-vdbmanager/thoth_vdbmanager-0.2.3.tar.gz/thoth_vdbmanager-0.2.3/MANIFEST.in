@@ -1,0 +1,10 @@
+include README.md
+include LICENSE
+include requirements.txt
+include requirements-all.txt
+recursive-include thoth_vdb *.py
+recursive-include thoth_vdb *.typed
+exclude tests/*
+exclude test_*
+exclude docker-compose*.yml
+exclude test_config.yaml
