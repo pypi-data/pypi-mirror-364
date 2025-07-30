@@ -1,0 +1,4 @@
+[console_scripts]
+hanzo-repl = hanzo_repl.cli:main
+hanzo-repl-ipython = hanzo_repl.ipython_repl:main
+hanzo-repl-tui = hanzo_repl.textual_repl:main

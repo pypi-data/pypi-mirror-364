@@ -1,0 +1,16 @@
+hanzo_repl/__init__.py,sha256=jqToPzBF7s6ew4EBYOZeU4f_pFWDQljR6HQpbWAY-wI,107
+hanzo_repl/backends.py,sha256=bGIZjUbtaLtHUAodHon85Ozhph_BGUwKJRdsb-iy1c8,14087
+hanzo_repl/cli.py,sha256=PfIwjy9CavCALtoNeddBplYgjyPal9HoH45F-7WPYL8,810
+hanzo_repl/command_palette.py,sha256=K0XA2qJHfbJqjKylM8aVi_VpjSWHC-o6xrQGK88oKk4,8318
+hanzo_repl/command_suggestions.py,sha256=dCZM9DZTIX8kLtij8qydpY-sKda8DEIOxtwgT96_1SY,6577
+hanzo_repl/ipython_repl.py,sha256=CWpkTym4nt_9Kxutw0SWfsW_32DyJunEYoaHQdRA6ik,9761
+hanzo_repl/llm_client.py,sha256=q_ZcRgUH09_uxm3vIcaT8LQwezOovaKucfYkATKO7pQ,7980
+hanzo_repl/repl.py,sha256=BlplSvFTtiniMUgx147ghDFpS8h_RaAJYLLxtUCRfpM,10056
+hanzo_repl/tests.py,sha256=KLl0yoRrbvgPiC_3YzW7O85E-gAurE-hE52jvMWfDOc,7389
+hanzo_repl/textual_repl.py,sha256=j7Du9QmNXFfmlKBgfu21EdH_0-8WW-g_XqABT8I5J4Y,33121
+hanzo_repl/tool_executor.py,sha256=ELQIhV1nBnBGbduu03988ojAE1SVP21HD0cs37WrgWs,7499
+hanzo_repl/voice_mode.py,sha256=e6Pt20XADmBhe02Gq_ANc3Tn2ughYzbKRcEQjXHSVDo,7244
+hanzo_repl-0.1.0.dist-info/METADATA,sha256=2Mt4uXByvvmCI8zVs2P6Bzqy6l_AtHD4Itc5QNHo_Zk,6319
+hanzo_repl-0.1.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+hanzo_repl-0.1.0.dist-info/entry_points.txt,sha256=ffQ23kyCJGBMt6Ykle9mQWzrGA2bfHpbditLEdkBSGc,147
+hanzo_repl-0.1.0.dist-info/RECORD,,
