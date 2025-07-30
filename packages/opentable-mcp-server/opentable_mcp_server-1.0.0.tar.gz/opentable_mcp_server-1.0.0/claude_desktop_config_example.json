@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "opentable": {
+      "command": "uvx",
+      "args": ["opentable-mcp-server"],
+      "env": {
+        "OPENTABLE_ORG_KEY": "your-org-key-here"
+      }
+    }
+  }
+} 
