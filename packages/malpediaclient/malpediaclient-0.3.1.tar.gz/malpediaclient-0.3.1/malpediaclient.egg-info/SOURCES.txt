@@ -1,0 +1,12 @@
+LICENSE
+README.md
+setup.py
+malpediaclient/Client.py
+malpediaclient/__init__.py
+malpediaclient/cli.py
+malpediaclient.egg-info/PKG-INFO
+malpediaclient.egg-info/SOURCES.txt
+malpediaclient.egg-info/dependency_links.txt
+malpediaclient.egg-info/entry_points.txt
+malpediaclient.egg-info/requires.txt
+malpediaclient.egg-info/top_level.txt
