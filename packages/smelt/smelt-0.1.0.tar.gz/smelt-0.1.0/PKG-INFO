@@ -1,0 +1,16 @@
+Metadata-Version: 2.4
+Name: smelt
+Version: 0.1.0
+Summary: Binary orchestrator for Python packages
+Author: Baptiste Pestourie
+Project-URL: Homepage, https://github.com/Hedwyn/smelt
+Requires-Python: >=3.12
+Requires-Dist: setuptools
+Requires-Dist: ziglang
+Provides-Extra: tests
+Requires-Dist: pytest; extra == "tests"
+Requires-Dist: mypy[mypyc]; extra == "tests"
+Provides-Extra: cli
+Requires-Dist: click; extra == "cli"
+Provides-Extra: nuitka
+Requires-Dist: nuitka; extra == "nuitka"
