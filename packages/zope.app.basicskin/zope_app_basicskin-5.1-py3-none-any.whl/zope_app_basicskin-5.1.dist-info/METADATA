@@ -1,0 +1,101 @@
+Metadata-Version: 2.4
+Name: zope.app.basicskin
+Version: 5.1
+Summary: Zope ZMI Basic Skin
+Home-page: https://github.com/zopefoundation/zope.app.basicskin
+Author: Zope Foundation and Contributors
+Author-email: zope-dev@zope.dev
+License: ZPL-2.1
+Keywords: zope3 skin zmi
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Zope Public License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Framework :: Zope :: 3
+Requires-Python: >=3.9
+License-File: LICENSE.txt
+Requires-Dist: setuptools
+Requires-Dist: zope.component
+Requires-Dist: zope.interface
+Requires-Dist: zope.publisher
+Provides-Extra: test
+Requires-Dist: zope.component[test]; extra == "test"
+Requires-Dist: zope.testrunner; extra == "test"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: license-file
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+A very simple skin for the original Zope 3 ZMI.
+
+
+=======
+CHANGES
+=======
+
+5.1 (2025-07-25)
+----------------
+
+- Add support for Python 3.12, 3.13.
+
+- Drop support for Python 3.7, 3.8.
+
+
+5.0 (2023-02-07)
+----------------
+
+- Drop support for Python 2.7, 3.4, 3.5, 3.6.
+
+- Add support for Python 3.7, 3.8, 3.9, 3.10, 3.11.
+
+
+4.0.0 (2017-04-22)
+------------------
+
+- Add support for Python 3.4, 3.5, and 3.6.
+- Add support for PyPy.
+
+
+3.5.1 (2010-09-25)
+------------------
+
+- Added test extra to declare test dependency on ``zope.component [test]``.
+
+
+3.5.0 (2009-12-16)
+------------------
+
+- Avoid extraneous testing dependencies and remove test extra.
+
+- Avoid zope.app.component testing dependency.
+
+- Removed BBB import for IBasicSkin.
+
+3.4.1 (2009-08-15)
+------------------
+
+- Added missing test dependency: zope.app.component.
+
+3.4.0 (2007-10-11)
+------------------
+
+- Initial release independent of the main Zope tree.
