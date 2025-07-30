@@ -1,0 +1,149 @@
+:root {
+    --tooltip-color: black;
+}
+
+h6 {
+    text-align: left;
+    margin-bottom: 5;
+    margin-left: 5;
+    line-height: 1.2;
+    font-size: 13px;
+    color: #002E5B;
+    /* font-weight: bold; */
+}
+
+h3 {
+    color: #001D3D;
+    font-family: "Fjalla One";
+    letter-spacing: 0.8px;
+    font-optical-sizing: auto;
+    font-style: bold;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.form-check-label {
+    font-size: small;
+    color: #003566;
+    margin-top: 3px;
+}
+
+#card {
+    position: fixed;
+    top: 50%;
+    right: 10px;
+    height: 300px;
+    width: 300px;
+    transform: translateY(-50%);
+}
+
+#cardbody {
+    overflow-y: auto;
+    font-size: small;
+}
+
+#cardheader {
+    font-size: medium;
+    font-style: bold;
+    letter-spacing: 2px;
+    margin-top: 0px;
+}
+
+.tooltip-inner {
+    font-size: xx-small;
+}
+
+.custom-tooltip {
+    --bs-tooltip-bg: var(--tooltip-color);
+    pointer-events: none;
+}
+
+.flag {
+    opacity: 1;
+}
+
+#repo-name {
+    font-size: 40px;
+    font-family: "Fjalla One";
+    color: #001D3D;
+    /* text-align: center; */
+    font-style: bold;
+    margin-bottom: 1;
+    font-style: normal;
+}
+
+.table-responsive {
+    max-height: 150px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    margin-top: -15px;
+    width: 213px;
+}
+
+#errorinfo {
+    position: absolute;
+    margin-top: -15px;
+    margin-left: 2px;
+}
+
+#help {
+    cursor: pointer;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 10;
+    margin-left: 10px;
+}
+
+#help-title {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: normal;
+}
+
+p {
+    margin-bottom: 4px;
+}
+
+#searchInput {
+    font-size: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 190px;
+}
+
+.orbit-group {
+    transform-origin: center center;
+    transform-box: fill-box;
+    animation: rotate 15s linear infinite;
+
+}
+
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+select {
+    pointer-events: auto;
+}
+
+.form-check {
+    pointer-events: auto;
+}
+
+
+#mask {
+    pointer-events: none;
+}
+
+.fade-mask {
+    pointer-events: none;
+}
