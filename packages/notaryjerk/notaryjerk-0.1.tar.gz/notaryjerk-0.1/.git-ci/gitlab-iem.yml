@@ -1,0 +1,39 @@
+---
+image: python:alpine
+
+variables:
+  GIT_DEPTH: 0
+
+build:
+  stage: build
+  before_script:
+    - apk add git
+    - pip install build setuptools setuptools-scm
+  script:
+    # for PyPi, we do not want the git-versions in the final version
+    - test ! -e pyproject.toml || sed -e 's|^\(.tool\.setuptools_scm\>.*\)|\1\nlocal_scheme = "no-local-version"|' -i pyproject.toml
+    # now that we've modified pyproject.toml, pretend that we didn't
+    - test ! -e pyproject.toml || git update-index --assume-unchanged pyproject.toml
+    - python -m build
+  artifacts:
+    paths:
+      - 'dist/'
+
+include:
+  - component: $CI_SERVER_FQDN/ci/pypi/publish@main
+    inputs:
+      job: testpypi
+      repository: testpypi
+      token: "${PYPI_TEST_TOKEN}"
+  - component: $CI_SERVER_FQDN/ci/pypi/publish@1
+    inputs:
+      token: "${PYPI_TOKEN}"
+  - component: $CI_SERVER_FQDN/ci/readthedocs/publish@1
+    inputs:
+      id: "${READTHEDOCS_ID}"
+      token: "${READTHEDOCS_TOKEN}"
+
+testpypi:
+  rules:
+    # Only run if it's a pipeline for the default branch:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'

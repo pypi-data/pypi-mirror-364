@@ -1,0 +1,48 @@
+[project]
+name = "notaryjerk"
+authors = [
+  { name="IOhannes m zmölnig", email="zmoelnig@iem.at" },
+]
+description = "tools for codesigning and notarization of binaries"
+readme = "README.md"
+license = {file = "LICENSE.md"}
+
+requires-python = ">=3.8"
+dependencies = [
+    "requests",
+    "boto3",
+    "authlib",
+    "asn1crypto",
+
+]
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
+    "Operating System :: OS Independent",
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Topic :: System :: Software Distribution",
+]
+
+dynamic = ["version"]
+
+[project.urls]
+Homepage = "https://git.iem.at/zmoelnig/notaryjerk"
+Documentation = "https://notaryjerk.readthedocs.io/"
+Repository = "https://git.iem.at/devtools/notaryjerk.git"
+Issues = "https://git.iem.at/zmoelnig/notaryjerk/-/issues"
+
+
+[project.scripts]
+notaryjerk = "notaryjerk.__main__:_main"
+
+
+[build-system]
+requires = ["setuptools>=64", "setuptools_scm>=8"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+local_scheme = "no-local-version"
+version_file = "src/notaryjerk/_version.py"
