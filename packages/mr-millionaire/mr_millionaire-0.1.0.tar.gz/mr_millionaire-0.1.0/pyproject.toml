@@ -1,0 +1,42 @@
+[project]
+name = "mr-millionaire"
+version = "0.1.0"
+description = "A console-based AI quiz game inspired by Who Wants to Be a Millionaire."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "dotenv>=0.9.9",
+    "litellm>=1.73.6",
+    "numpy>=2.3.1",
+    "pytest>=8.4.1",
+    "ruff>=0.12.1",
+    "tabulate>=0.9.0",
+]
+
+[tool.ruff]
+exclude = [
+    ".git",
+    ".ruff_cache",
+    ".venv",
+]
+line-length = 120
+indent-width = 4
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = ["T201", "D401", "D211", "D213", "RUF002", "FBT001", "FBT002", "ANN401", "DTZ005"]
+fixable = ["ALL"]
+unfixable = []
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.lint.pylint]
+max-args = 8
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
