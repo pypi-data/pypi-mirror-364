@@ -1,0 +1,2 @@
+[console_scripts]
+createapp = app_booster.cli:main
