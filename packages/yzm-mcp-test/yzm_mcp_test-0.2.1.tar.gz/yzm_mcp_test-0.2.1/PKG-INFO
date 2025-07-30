@@ -1,0 +1,11 @@
+Metadata-Version: 2.3
+Name: yzm-mcp-test
+Version: 0.2.1
+Summary: Add your description here
+Author: Amadeus
+Author-email: Amadeus <wangzhangsan83@foxmail.com>
+Requires-Dist: mcp[cli]>=1.12.2
+Requires-Dist: requests>=2.32.4
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+

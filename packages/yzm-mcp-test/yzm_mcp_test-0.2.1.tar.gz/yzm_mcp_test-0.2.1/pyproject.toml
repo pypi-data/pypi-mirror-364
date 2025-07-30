@@ -1,0 +1,20 @@
+[project]
+name = "yzm-mcp-test"
+version = "0.2.1"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Amadeus", email = "wangzhangsan83@foxmail.com" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "mcp[cli]>=1.12.2",
+    "requests>=2.32.4",
+]
+
+[project.scripts]
+yzm-mcp-test = "yzm_mcp_test:main"
+
+[build-system]
+requires = ["uv_build>=0.8.2,<0.9.0"]
+build-backend = "uv_build"
