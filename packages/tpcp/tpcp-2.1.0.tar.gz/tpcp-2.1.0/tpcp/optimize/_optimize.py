@@ -1,0 +1,1002 @@
+"""Higher level wrapper to run training and parameter optimizations."""
+
+import time
+import warnings
+from collections import defaultdict
+from collections.abc import Iterator
+from contextlib import AbstractContextManager, nullcontext
+from functools import partial
+from itertools import product
+from tempfile import TemporaryDirectory
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Generic,
+    Literal,
+    Optional,
+    TypeVar,
+    Union,
+)
+
+import numpy as np
+from joblib import Memory, Parallel
+from numpy.ma import MaskedArray
+from scipy.stats import rankdata
+from sklearn.model_selection import BaseCrossValidator, ParameterGrid
+from tqdm.auto import tqdm
+from typing_extensions import Self
+
+from tpcp._algorithm_utils import (
+    OPTIMIZE_METHOD_INDICATOR,
+    _check_safe_optimize,
+    _split_returns,
+)
+from tpcp._base import NOTHING, _get_annotated_fields_of_type
+from tpcp._dataset import DatasetT
+from tpcp._optimize import BaseOptimize
+from tpcp._parameters import Parameter, _ParaTypes
+from tpcp._pipeline import OptimizablePipelineT, PipelineT
+from tpcp._utils._general import (
+    _aggregate_final_results,
+    _normalize_score_results,
+    _passthrough,
+    _prefix_para_dict,
+    _split_hyper_and_pure_parameters,
+)
+from tpcp._utils._score import _optimize_and_score, _score
+from tpcp.exceptions import PotentialUserErrorWarning
+from tpcp.parallel import delayed
+from tpcp.validate import DatasetSplitter
+from tpcp.validate._scorer import ScorerTypes, _validate_scorer
+
+if TYPE_CHECKING:
+    from tpcp import OptimizablePipeline
+
+T = TypeVar("T")
+
+
+class DummyOptimize(BaseOptimize[PipelineT, DatasetT]):
+    """Provide API compatibility for SimplePipelines in optimize wrappers.
+
+    This is a simple dummy Optimizer that will **not** optimize anything, but just provide the correct API so that
+    pipelines that do not have the possibility to be optimized can be passed to wrappers like
+    :func:`tpcp.validate.cross_validate`.
+
+
+    Parameters
+    ----------
+    pipeline
+        The pipeline to wrap.
+        It will not be optimized in any way, but simply copied to `self.optimized_pipeline_` if `optimize` is called.
+    ignore_potential_user_error_warning
+        If True, the warning about using a pipeline that implements `self_optimize` with `DummyOptimize` will be
+        ignored.
+        Only use this, if you are sure about what you are doing.
+
+    Other Parameters
+    ----------------
+    dataset
+        The dataset used for optimization.
+        As no optimization is performed, this will be ignored.
+
+    Attributes
+    ----------
+    optimized_pipeline_
+        The optimized version of the pipeline.
+        In case of this class, this is just an unmodified clone of the input pipeline.
+
+    """
+
+    pipeline: Parameter[PipelineT]
+    ignore_potential_user_error_warning: Parameter[bool]
+
+    optimized_pipeline_: PipelineT
+
+    def __init__(self, pipeline: PipelineT, *, ignore_potential_user_error_warning: bool = False) -> None:
+        self.pipeline = pipeline
+        self.ignore_potential_user_error_warning = ignore_potential_user_error_warning
+
+    def optimize(self, dataset: DatasetT, **optimize_params: Any) -> Self:  # noqa: ARG002
+        """Run the "dummy" optimization.
+
+        Parameters
+        ----------
+        dataset
+            The parameter is ignored, as no real optimization is performed
+        optimize_params
+            The parameter is ignored, as no real optimization is performed
+
+        Returns
+        -------
+        self
+            The class instance with all result attributes populated
+
+        """
+        self.dataset = dataset
+        if not self.ignore_potential_user_error_warning and hasattr(self.pipeline, "self_optimize"):
+            warnings.warn(
+                "You are using `DummyOptimize` with a pipeline that implements `self_optimize` and, hence, indicates "
+                "that the pipeline can be optimized. "
+                "`DummyOptimize` does never call this method and skips any optimization steps! "
+                "Use `Optimize` if you actually want to optimize your pipeline.\n\n "
+                "If you are sure that you want to use `DummyOptimize` with this pipeline, set "
+                "``ignore_potential_user_error_warning=True`` to hide this warning in the future.",
+                PotentialUserErrorWarning,
+                stacklevel=1,
+            )
+        self.optimized_pipeline_ = self.pipeline.clone()
+        return self
+
+
+class Optimize(BaseOptimize[OptimizablePipelineT, DatasetT]):
+    """Run a generic self-optimization on the pipeline.
+
+    This is a simple wrapper for pipelines that already implement a `self_optimize` method.
+    This wrapper can be used to ensure that these algorithms can be optimized with the same interface as other
+    optimization methods and can hence be used in methods like :func:`tpcp.validate.cross_validate`.
+
+    Optimize will never modify the original pipeline, but will store a copy of the optimized pipeline as
+    `optimized_pipeline_`.
+
+    If `safe_optimize` is True, the wrapper applies the same runtime checks as provided by
+    :func:`~tpcp.make_optimize_safe`.
+
+    Parameters
+    ----------
+    pipeline
+        The pipeline to optimize. The pipeline must implement `self_optimize` to optimize its own input parameters.
+    safe_optimize
+        If True, we add additional checks to make sure the `self_optimize` method of the pipeline is correctly
+        implemented.
+        See :func:`~tpcp.make_optimize_safe` for more info.
+    optimize_with_info
+        If True, Optimize will try to call `self_optimize_with_info` by default and will fall back to `self_optimize`.
+        If you want to force optimize to use `self_optimize`, even if an implementation of `self_optimize_with_info`
+        exists, set this parameter to False.
+
+    Other Parameters
+    ----------------
+    dataset
+        The dataset used for optimization.
+
+    Attributes
+    ----------
+    optimized_pipeline_
+        The optimized version of the pipeline.
+        That is a copy of the input pipeline with modified params.
+    optimization_info_
+        If the optimized pipeline implements a `self_optimize_with_info` method, this parameter contains the
+        additional information provided as second return value from this method.
+
+    """
+
+    pipeline: Parameter[OptimizablePipelineT]
+    safe_optimize: bool
+    optimize_with_info: bool
+
+    optimized_pipeline_: OptimizablePipelineT
+    optimization_info_: Any
+
+    def __init__(
+        self,
+        pipeline: OptimizablePipelineT,
+        *,
+        safe_optimize: bool = True,
+        optimize_with_info: bool = True,
+    ) -> None:
+        self.pipeline = pipeline
+        self.safe_optimize = safe_optimize
+        self.optimize_with_info = optimize_with_info
+
+    def optimize(self, dataset: DatasetT, **optimize_params: Any) -> Self:
+        """Run the self-optimization defined by the pipeline.
+
+        The optimized version of the pipeline is stored as `self.optimized_pipeline_`.
+
+        Parameters
+        ----------
+        dataset
+            An instance of a :class:`~tpcp.Dataset` containing one or multiple data points that can
+            be used for optimization.
+            The structure of the data and the available reference information will depend on the dataset.
+        optimize_params
+            Additional parameter for the optimization process.
+            They are forwarded to `pipeline.self_optimize`.
+
+        Returns
+        -------
+        self
+            The class instance with all result attributes populated
+
+        """
+        self.dataset = dataset
+        if not hasattr(self.pipeline, "self_optimize"):
+            raise ValueError(
+                "To use `Optimize` with a pipeline, the pipeline needs to implement a `self_optimize` method."
+            )
+        # We clone just to make sure runs are independent
+        pipeline: OptimizablePipeline = self.pipeline.clone()
+        method = pipeline.self_optimize_with_info if self.optimize_with_info else pipeline.self_optimize
+        if self.safe_optimize is True:
+            # We check here, if the pipeline already has the safe decorator and if yes just call it.
+            if getattr(method, OPTIMIZE_METHOD_INDICATOR, False) is True:
+                optimized_pipeline, other_info = _split_returns(method(dataset, **optimize_params))
+            else:
+                optimized_pipeline, other_info = _split_returns(
+                    _check_safe_optimize(pipeline, method, dataset, **optimize_params)
+                )
+        else:
+            optimized_pipeline, other_info = _split_returns(method(dataset, **optimize_params))
+        # We clone again, just to be sure
+        self.optimized_pipeline_ = optimized_pipeline.clone()
+        if self.optimize_with_info and other_info is not NOTHING:
+            self.optimization_info_ = other_info
+        return self
+
+
+class GridSearch(BaseOptimize[PipelineT, DatasetT], Generic[PipelineT, DatasetT]):
+    """Perform a grid search over various parameters.
+
+    This scores the pipeline for every combination of data points in the provided dataset and parameter combinations
+    in the `parameter_grid`.
+    The scores over the entire dataset are then aggregated for each parameter combination.
+    By default, this aggregation is a simple average.
+
+    .. note::
+        This is different to how grid search works in many other cases:
+        Usually, the performance parameter would be calculated on all data points at once.
+        Here, each data point represents an entire participant or recording (depending on the dataset).
+        Therefore, the pipeline and the scoring method are expected to provide a result/score per data point
+        in the dataset.
+        Note that it is still open to your interpretation what you consider a "data point" in the context of your
+        analysis. The `run` method of the pipeline can still process multiple data points, e.g., gait tests, in a loop
+        and generate a single output if you consider a single participant *one data point*.
+
+    Parameters
+    ----------
+    pipeline
+        The pipeline object to optimize
+    parameter_grid
+        A sklearn parameter grid to define the search space.
+    scoring
+        A callable that can score a single data point given a pipeline.
+        This function should return either a single score or a dictionary of scores.
+
+        Note that if scoring returns a dictionary, `return_optimized` must be set to the name of the score that
+        should be used for ranking.
+    n_jobs
+        The number of processes that should be used to parallelize the search.
+        `None` means 1 while -1 means as many as logical processing cores.
+    pre_dispatch
+        The number of jobs that should be pre dispatched.
+        For an explanation see the documentation of :class:`~sklearn.model_selection.GridSearchCV`
+    return_optimized
+        If True, a pipeline object with the overall best params is created and stored as `optimized_pipeline_`.
+        If `scoring` returns a dictionary of score values, this must be a `str` corresponding to the name of the
+        score that should be used to rank the results.
+        If False, the respective result attributes will not be populated.
+        If multiple parameter combinations have the same score, the one tested first will be used.
+        By default, the value with the best `rank` (i.e. higher score) is used.
+        If you want to select the value with the lowest score, set `return_optimized` to the name of the score prefixed
+        with a minus sign, e.g. `-rmse`.
+        In case of a single score, use `-score` to select the value with the lowest score.
+    progress_bar
+        True/False to enable/disable a tqdm progress bar.
+
+    Other Parameters
+    ----------------
+    dataset
+        The dataset instance passed to the optimize method
+
+    Attributes
+    ----------
+    gs_results_
+        A dictionary summarizing all results of the gridsearch.
+        The format of this dictionary is designed to be directly passed into the :class:`~pandas.DataFrame` constructor.
+        Each column then represents the result for one set of parameters
+
+        The dictionary contains the following entries:
+
+        param__*
+            The value of a respective parameter
+        params
+            A dictionary representing all parameters
+        score / {scorer-name}
+            The aggregated value of a score over all data-points.
+            If a single score is used for scoring, then the generic name "score" is used.
+            Otherwise, multiple columns with the name of the respective scorer exist
+        rank__score / rank__{scorer-name}
+            A sorting for each score from the highest to the lowest value.
+            If lower or higher values are better, depends on the scoring function and needs to be interpreted
+            accordingly.
+        single__score / single__{scorer-name}
+            The individual scores per data point for each parameter combination.
+            This is a list of values with the `len(dataset)`.
+        data_labels
+            A list of data labels in the order the single score values are provided.
+            These can be used to associate the `single_score` values with a certain data point.
+    optimized_pipeline_
+        An instance of the input pipeline with the best parameter set.
+        This is only available if `return_optimized` is not False.
+    best_params_
+        The parameter dict that resulted in the best result.
+        This is only available if `return_optimized` is not False.
+    best_index_
+        The index of the result row in the output.
+        This is only available if `return_optimized` is not False.
+    best_score_
+        The score of the best result.
+        In a multimetric case, only the value of the scorer specified by `return_optimized` is provided.
+        This is only available if `return_optimized` is not False.
+    multimetric_
+        If the scorer returned multiple scores
+
+    """
+
+    parameter_grid: ParameterGrid
+    scoring: ScorerTypes[PipelineT, DatasetT]
+    n_jobs: Optional[int]
+    return_optimized: Union[bool, str]
+    pre_dispatch: Union[int, str]
+    progress_bar: bool
+
+    gs_results_: dict[str, Any]
+    best_params_: dict[str, Any]
+    best_index_: int
+    best_score_: float
+    multimetric_: bool
+
+    def __init__(
+        self,
+        pipeline: PipelineT,
+        parameter_grid: ParameterGrid,
+        *,
+        scoring: ScorerTypes[PipelineT, DatasetT],
+        n_jobs: Optional[int] = None,
+        return_optimized: Union[bool, str] = True,
+        pre_dispatch: Union[int, str] = "n_jobs",
+        progress_bar: bool = True,
+    ) -> None:
+        self.pipeline = pipeline
+        self.parameter_grid = parameter_grid
+        self.scoring = scoring
+        self.n_jobs = n_jobs
+        self.pre_dispatch = pre_dispatch
+        self.return_optimized = return_optimized
+        self.progress_bar = progress_bar
+
+    def optimize(self, dataset: DatasetT, **_: Any) -> Self:
+        """Run the grid search over the dataset and find the best parameter combination.
+
+        Parameters
+        ----------
+        dataset
+            The dataset used for optimization.
+
+        """
+        self.dataset = dataset
+        scoring = _validate_scorer(self.scoring)
+
+        # We use a similar structure as sklearn's GridSearchCV here, but instead of calling something equivalent to
+        # `fit_score`, we call `score`, which just applies and scores the pipeline on the entirety of our dataset as
+        # we do not need a "train" step.
+        # Our main loop just loops over all parameter combinations and the `_score` function then applies the parameter
+        # combination to the pipeline and scores the resulting pipeline on the dataset, by passing the entire dataset
+        # and the pipeline to the scorer.
+        # Looping over the individual data points in the dataset and aggregating the scores is handled by the scorer
+        # itself.
+        # If not explicitly changed the scorer is an instance of `Scorer` that wraps the actual `scoring`
+        # function provided by the user.
+        if self.progress_bar:
+            pbar = partial(tqdm, total=len(self.parameter_grid), desc="Parameter Combinations")
+        else:
+            pbar = _passthrough
+
+        parallel = Parallel(n_jobs=self.n_jobs, pre_dispatch=self.pre_dispatch, return_as="generator")
+        with parallel:
+            # Evaluate each parameter combination
+            results = list(
+                pbar(
+                    parallel(
+                        delayed(_score)(
+                            self.pipeline.clone(),
+                            dataset,
+                            scoring,
+                            paras,
+                            return_parameters=True,
+                            return_data_labels=True,
+                            return_times=True,
+                            error_info=f"This error occurred for the following parameter:\n\n{paras}",
+                        )
+                        for paras in self.parameter_grid
+                    )
+                )
+            )
+        assert results is not None  # For the typechecker
+        # We check here if all results are dicts. We only check the dtype of the first value, as the scorer should
+        # have handled issues with non-uniform cases already.
+        first_test_score = results[0]["scores"]
+        self.multimetric_ = isinstance(first_test_score, dict)
+
+        results = self._format_results(
+            list(self.parameter_grid),
+            results,
+        )
+
+        reverse_ranking, return_optimized = _validate_return_optimized(
+            self.return_optimized, self.multimetric_, first_test_score
+        )
+        if return_optimized:
+            assert isinstance(return_optimized, str)
+            (
+                self.best_index_,
+                self.best_score_,
+                self.best_params_,
+            ) = _extract_return_optimize_info(
+                return_optimized,
+                reverse_ranking,
+                results,
+                rank_prefix="rank__agg__",
+                score_prefix="agg__",
+            )
+            # We clone twice, in case one of the params was itself an algorithm.
+            self.optimized_pipeline_ = self.pipeline.clone().set_params(**self.best_params_).clone()
+
+        self.gs_results_ = results
+
+        return self
+
+    def _format_results(self, candidate_params, out):
+        """Format the final result dict.
+
+        This function is adapted based on sklearn's `BaseSearchCV`
+        """
+        n_candidates = len(candidate_params)
+        out = _aggregate_final_results(out)
+
+        results = {}
+
+        scores_dict = _prefix_para_dict(_normalize_score_results(out["scores"]) or {}, "agg__")
+        single_scores_dict = _prefix_para_dict(_normalize_score_results(out["single__scores"]) or {}, "single__")
+        for c, v in scores_dict.items():
+            results[c] = v
+            results[f"rank__{c}"] = np.asarray(rankdata(-v, method="min"), dtype=np.int32)
+        for c, _v in single_scores_dict.items():
+            # Because of custom aggregators, it can be that single scores dicts have different keys than the aggregated
+            # scores.
+            results[c] = single_scores_dict[c]
+
+        results["data_labels"] = out["data_labels"]
+        results["debug__score_time"] = out["debug__score_time"]
+
+        # Use one MaskedArray and mask all the places where the param is not
+        # applicable for that candidate. Use defaultdict as each candidate may
+        # not contain all the params
+        param_results = defaultdict(
+            partial(
+                MaskedArray,
+                np.empty(
+                    n_candidates,
+                ),
+                mask=True,
+                dtype=object,
+            )
+        )
+        for cand_idx, params in enumerate(candidate_params):
+            for name, value in params.items():
+                # An all masked empty array gets created for the key
+                # `"param_%s" % name` at the first occurrence of `name`.
+                # Setting the value at an index also unmasks that index
+                param_results[f"param__{name}"][cand_idx] = value
+
+        results.update(param_results)
+        # Store a list of param dicts at the key 'params'
+        results["params"] = candidate_params
+
+        return results
+
+
+class GridSearchCV(
+    BaseOptimize[OptimizablePipelineT, DatasetT],
+    Generic[OptimizablePipelineT, DatasetT],
+):
+    """Exhaustive (hyper)parameter search using a cross validation based score to optimize pipeline parameters.
+
+    This class follows as much as possible the interface of :func:`~sklearn.model_selection.GridSearchCV`.
+    If the `tpcp` documentation is missing some information, the respective documentation of `sklearn` might be helpful.
+
+    Compared to the `sklearn` implementation this method uses a couple of `tpcp`-specific optimizations and
+    quality-of-life improvements.
+
+    Parameters
+    ----------
+    pipeline
+        A tpcp pipeline implementing `self_optimize`.
+    parameter_grid
+        A sklearn parameter grid to define the search space for the grid search.
+    scoring
+        A callable that can score a single data point given a pipeline.
+        This function should return either a single score or a dictionary of scores.
+
+        .. note:: If scoring returns a dictionary, `return_optimized` must be set to the name of the score that
+                  should be used for ranking.
+    return_optimized
+        If True, a pipeline object with the overall best parameters is created and re-optimized using all provided data
+        as input.
+        The optimized pipeline object is stored as `optimized_pipeline_`.
+        If `scoring` returns a dictionary of score values, this must be a str corresponding to the name of the
+        score that should be used to rank the results.
+        If False, the respective result attributes will not be populated.
+        If multiple parameter combinations have the same mean score over all CV folds, the one tested first will be
+        used.
+        By default, the value with the best `rank` (i.e. higher score) is used.
+        If you want to select the value with the lowest score, set `return_optimized` to the name of the score prefixed
+        with a minus sign, e.g. `-rmse`.
+        In case of a single score, use `-score` to select the value with the lowest score.
+    cv
+        The cross-validation strategy to use.
+        For simple use-cases the same input as for the sklearn cross-validation function are supported.
+        For further inputs check the `sklearn` `documentation
+        <https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_validate.html>`_.
+
+        For more complex usecases like grouping or stratification, the :class:`~tpcp.TpcpSplitter` can be used.
+    pure_parameters
+        .. warning::
+            Do not use this option unless you fully understand it!
+
+        A list of parameter names (named in the `parameter_grid`) that do not affect training aka are not
+        hyperparameters.
+        This information can be used for massive performance improvements, as the training does not need to be
+        repeated if one of these parameters changes.
+        However, setting it incorrectly can lead detect errors that are very hard to detect in the final results.
+
+        Instead of passing a list of names, you can also just set the value to `True`.
+        In this case all parameters of the provided pipeline that are marked as :class:`~tpcp.PureParameter` are used.
+        Note that pure parameters of nested objects are not considered, but only top-level attributes.
+        If you need to mark nested parameters as pure, use the first method and pass the names (with `__`) as part of
+        the list of names.
+
+        For more information on this approach see the :func:`evaluation guide <algorithm_evaluation>`.
+    return_train_score
+        If True the performance on the train score is returned in addition to the test score performance.
+        Note, that this increases the runtime.
+        If `True`, the fields `train_score`, and `train_score_single` are available in the results.
+    verbose
+        Control the verbosity of information printed during the optimization (larger number -> higher verbosity).
+        At the moment this will only affect the caching done, when `pure_parameter_names` are provided.
+    n_jobs
+        The number of parallel jobs.
+        The default (`None`) means 1 job at the time, hence, no parallel computing.
+        -1 means as many as logical processing cores.
+        One job is created per cv + para combi combination.
+    pre_dispatch
+        The number of jobs that should be pre dispatched.
+        For an explanation see the documentation of :class:`~sklearn.model_selection.GridSearchCV`
+    progress_bar
+        True/False to enable/disable a tqdm progressbar.
+    safe_optimize
+        If True, we add additional checks to make sure the `self_optimize` method of the pipeline is correctly
+        implemented.
+        See :func:`~tpcp.make_optimize_safe` for more info.
+    optimize_with_info
+        If True, Optimize will try to call `self_optimize_with_info` by default and will fall back to `self_optimize`.
+        If you want to force the optimization to use `self_optimize`, even if an implementation of
+        `self_optimize_with_info` exists, set this parameter to False.
+
+    Other Parameters
+    ----------------
+    dataset
+        The dataset instance passed to the optimize method
+
+    Attributes
+    ----------
+    cv_results_
+        A dictionary summarizing all results of the gridsearch.
+        The format of this dictionary is designed to be directly passed into the :class:`~pandas.DataFrame` constructor.
+        Each column then represents the result for one set of parameters.
+
+        The dictionary contains the following entries:
+
+        param__{parameter_name}
+            The value of a respective parameter.
+        params
+            A dictionary representing all parameters.
+        test__mean__score / test__mean__{scorer_name}
+            The average test score over all folds.
+            If a single score is used for scoring, then the generic name "score" is used.
+            Otherwise, multiple columns with the name of the respective scorer exist.
+        test__std__score / test__std__{scorer_name}
+            The std of the test scores over all folds.
+        test__rank__score / test__rank__{scorer_name}
+            The rank of the mean test score assuming higher values are better.
+        split{n}__test__score / split{n}__test__{scorer_name}
+            The performance on the test set in fold n.
+        split{n}__test__single__score / split{n}__test__single__{scorer_name}
+            The performance in fold n on every single data point in the test set.
+        split{n}__test__data_labels
+            The ids of the data points used in the test set of fold n.
+        mean_train_score / mean_train_{scorer_name}
+            The average train score over all folds.
+        std_train_score / std_train_{scorer_name}
+            The std of the train scores over all folds.
+        split{n}__train__score / split{n}__train__{scorer_name}
+            The performance on the train set in fold n.
+        rank_train__score / rank_{scorer_name}
+            The rank of the mean train score assuming higher values are better.
+        split{n}__train__single__score / split{n}__train__single__{scorer_name}
+            The performance in fold n on every single datapoint in the train set.
+        split{n}__train__data_labels
+            The ids of the data points used in the train set of fold n.
+        mean__{optimize/score}_time
+            Average time over all folds spent for optimization and scoring, respectively.
+        std__{optimize/score}_time
+            Standard deviation of the optimize/score times over all folds.
+
+    optimized_pipeline_
+        An instance of the input pipeline with the best parameter set.
+        This is only available if `return_optimized` is not False.
+    best_params_
+        The parameter dict that resulted in the best result.
+        This is only available if `return_optimized` is not False.
+    best_index_
+        The index of the result row in the output.
+        This is only available if `return_optimized` is not False.
+    best_score_
+        The score of the best result.
+        In a multimetric case, only the value of the scorer specified by `return_optimized` is provided.
+        This is only available if `return_optimized` is not False.
+    multimetric_
+        If the scorer returned multiple scores
+    final_optimize_time_
+        Time spent to perform the final optimization on all data.
+        This is only available if `return_optimized` is not False.
+
+    """
+
+    pipeline: OptimizablePipelineT
+    parameter_grid: ParameterGrid
+    scoring: ScorerTypes[OptimizablePipelineT, DatasetT]
+    return_optimized: Union[bool, str]
+    cv: Optional[Union[DatasetSplitter, int, BaseCrossValidator, Iterator]]
+    pure_parameters: Union[bool, list[str]]
+    return_train_score: bool
+    verbose: int
+    n_jobs: Optional[int]
+    pre_dispatch: Union[int, str]
+    progress_bar: bool
+    safe_optimize: bool
+    optimize_with_info: bool
+
+    cv_results_: dict[str, Any]
+    best_params_: dict[str, Any]
+    best_index_: int
+    best_score_: float
+    multimetric_: bool
+    final_optimize_time_: float
+
+    def __init__(
+        self,
+        pipeline: OptimizablePipelineT,
+        parameter_grid: ParameterGrid,
+        *,
+        scoring: ScorerTypes[OptimizablePipelineT, DatasetT],
+        return_optimized: Union[bool, str] = True,
+        cv: Optional[Union[int, BaseCrossValidator, Iterator]] = None,
+        pure_parameters: Union[bool, list[str]] = False,
+        return_train_score: bool = False,
+        verbose: int = 0,
+        n_jobs: Optional[int] = None,
+        pre_dispatch: Union[int, str] = "n_jobs",
+        progress_bar: bool = True,
+        safe_optimize: bool = True,
+        optimize_with_info: bool = True,
+    ) -> None:
+        self.pipeline = pipeline
+        self.parameter_grid = parameter_grid
+        self.scoring = scoring
+        self.return_optimized = return_optimized
+        self.cv = cv
+        self.pure_parameters = pure_parameters
+        self.return_train_score = return_train_score
+        self.verbose = verbose
+        self.n_jobs = n_jobs
+        self.pre_dispatch = pre_dispatch
+        self.progress_bar = progress_bar
+        self.safe_optimize = safe_optimize
+        self.optimize_with_info = optimize_with_info
+
+    def optimize(self, dataset: DatasetT, **optimize_params) -> Self:
+        """Run the GridSearchCV on the given dataset.
+
+        Parameters
+        ----------
+        dataset
+            The dataset to optimize on.
+        """
+        self.dataset = dataset
+
+        scoring = _validate_scorer(self.scoring)
+
+        cv = self.cv if isinstance(self.cv, DatasetSplitter) else DatasetSplitter(self.cv)
+
+        n_splits = cv.get_n_splits(dataset)
+
+        optimizer = self._wrap_pipeline()
+
+        # For each para combi, we separate the pure parameters (parameters that do not affect the optimization) and
+        # the hyperparameters.
+        # This allows for massive caching optimizations in the `_optimize_and_score`.
+        pure_parameters: Optional[list[str]]
+        if self.pure_parameters is False:
+            pure_parameters = None
+        elif self.pure_parameters is True:
+            pure_parameters = _get_annotated_fields_of_type(self.pipeline, _ParaTypes.PURE)
+        elif isinstance(self.pure_parameters, list):
+            pure_parameters = self.pure_parameters
+        else:
+            raise ValueError(
+                "`self.pure_parameters` must either be a List of field names (nested are allowed) or True/False."
+            )
+
+        parameters = list(self.parameter_grid)
+        split_parameters = _split_hyper_and_pure_parameters(parameters, pure_parameters)
+        parameter_prefix = "pipeline__"
+        combinations = list(
+            product(
+                enumerate(split_parameters),
+                enumerate(cv.split(dataset)),
+            )
+        )
+
+        pbar = partial(tqdm, total=len(combinations), desc="Split-Para Combos") if self.progress_bar else _passthrough
+
+        # To enable the pure parameter performance improvement, we need to create a joblib cache in a temp dir that
+        # is deleted after the run.
+        # We only allow a temporary cache here, because the method that is cached internally is generic and the cache
+        # might not be correctly invalidated, if GridSearchCv is called with a different pipeline or when the
+        # pipeline itself is modified.
+        tmp_dir_context: Union[AbstractContextManager[None], TemporaryDirectory] = nullcontext()
+        if pure_parameters:
+            tmp_dir_context = TemporaryDirectory("joblib_tpcp_cache")
+        with tmp_dir_context as cachedir:
+            tmp_cache = Memory(cachedir, verbose=self.verbose) if cachedir else None
+            parallel = Parallel(
+                n_jobs=self.n_jobs,
+                pre_dispatch=self.pre_dispatch,
+                return_as="generator",
+            )
+            # We use a similar structure to sklearn's GridSearchCV here (see GridSearch for more info).
+            with parallel:
+                # Evaluate each parameter combination
+                out = list(
+                    pbar(
+                        parallel(
+                            delayed(_optimize_and_score)(
+                                optimizer.clone(),
+                                scoring,
+                                dataset[train],
+                                dataset[test],
+                                optimize_params=optimize_params,
+                                hyperparameters=_prefix_para_dict(hyper_paras, parameter_prefix),
+                                pure_parameters=_prefix_para_dict(pure_paras, parameter_prefix),
+                                return_train_score=self.return_train_score,
+                                return_parameters=False,
+                                return_data_labels=True,
+                                return_times=True,
+                                memory=tmp_cache,
+                                error_info=f"This error occurred in fold {split_idx} with parameters candidate "
+                                f"{cand_idx}.",
+                            )
+                            for (cand_idx, (hyper_paras, pure_paras)), (
+                                split_idx,
+                                (train, test),
+                            ) in combinations
+                        )
+                    )
+                )
+        assert out is not None  # For the type checker
+        results = self._format_results(parameters, n_splits, out)
+        self.cv_results_ = results
+
+        first_test_score = out[0]["test__scores"]
+        self.multimetric_ = isinstance(first_test_score, dict)
+        reverse_ranking, return_optimized = _validate_return_optimized(
+            self.return_optimized, self.multimetric_, first_test_score
+        )
+        if return_optimized:
+            assert isinstance(return_optimized, str)
+            (
+                self.best_index_,
+                self.best_score_,
+                self.best_params_,
+            ) = _extract_return_optimize_info(
+                return_optimized,
+                reverse_ranking,
+                results,
+                rank_prefix="rank__test__agg__",
+                score_prefix="mean__test__agg__",
+            )
+            # We clone twice, in case one of the params was itself an algorithm.
+            best_optimizer = Optimize(
+                self.pipeline.clone().set_params(**self.best_params_).clone(),
+                safe_optimize=self.safe_optimize,
+            )
+            final_optimize_start_time = time.time()
+            optimize_params_clean = optimize_params or {}
+            self.optimized_pipeline_ = best_optimizer.optimize(dataset, **optimize_params_clean).optimized_pipeline_
+            self.final_optimize_time_ = final_optimize_start_time - time.time()
+
+        return self
+
+    def _wrap_pipeline(self):
+        # We need to wrap our pipeline for a consistent interface.
+        # In the future we might be able to allow objects with optimizer Interface as input directly.
+        optimizer = Optimize(
+            self.pipeline,
+            safe_optimize=self.safe_optimize,
+            optimize_with_info=self.optimize_with_info,
+        )
+        return optimizer
+
+    def _format_results(self, candidate_params, n_splits, out, more_results=None):  # noqa: C901
+        """Format the final result dict.
+
+        This function is adapted based on sklearn's `BaseSearchCV`.
+        """
+        n_candidates = len(candidate_params)
+        out = _aggregate_final_results(out)
+
+        results = dict(more_results or {})
+
+        def _store_non_numeric(key_name: str, array):
+            """Store non-numeric scores/times to the cv_results_."""
+            # We avoid performing any sort of conversion into numpy arrays as this might modify the dtypes.
+            # Instead we use list comprehension to do the reshaping.
+            # The result is a list of lists and not a numpy array.
+            #
+            # Note that the results were produced by iterating first by splits and then by parameters.
+            # We do the same here, but directly transpose the results, as we need to access the data per parameters
+            # afterwards.
+            iterable_array = iter(array)
+            array = [[next(iterable_array) for _ in range(n_splits)] for _ in range(n_candidates)]
+            # "Transpose" the array
+            array = map(list, zip(*array))
+
+            for split_idx, split in enumerate(array):
+                # Uses closure to alter the results
+                results[f"split{split_idx}__{key_name}"] = split
+
+        def _store(key_name: str, array, weights=None, splits=False, rank=False):
+            """Store numeric scores/times to the cv_results_."""
+            # When iterated first by splits, then by parameters
+            # We want `array` to have `n_candidates` rows and `n_splits` cols.
+            array = np.array(array, dtype=np.float64).reshape(n_candidates, n_splits)
+
+            if splits:
+                for split_idx in range(n_splits):
+                    # Uses closure to alter the results
+                    results[f"split{split_idx}__{key_name}"] = array[:, split_idx]
+            array_means = np.average(array, axis=1, weights=weights)
+            results[f"mean__{key_name}"] = array_means
+
+            if key_name.startswith(("train__", "__test")) and np.any(~np.isfinite(array_means)):
+                warnings.warn(
+                    f"One or more of the {key_name.split('__')[0]} scores are non-finite: {array_means}",
+                    category=UserWarning,
+                    stacklevel=2,
+                )
+            # Weighted std is not directly available in numpy
+            array_stds = np.sqrt(np.average((array - array_means[:, np.newaxis]) ** 2, axis=1, weights=weights))
+            results[f"std__{key_name}"] = array_stds
+
+            if rank:
+                rank = np.asarray(rankdata(-array_means, method="min"), dtype=np.int32)
+                results[f"rank__{key_name}"] = rank
+
+        _store("debug__optimize_time", out["debug__optimize_time"])
+        _store("debug__score_time", out["debug__score_time"])
+        _store_non_numeric("test__data_labels", out["test__data_labels"])
+        _store_non_numeric("train__data_labels", out["train__data_labels"])
+        # Use one MaskedArray and mask all the places where the param is not
+        # applicable for that candidate. Use defaultdict as each candidate may
+        # not contain all the params
+        param_results: dict = defaultdict(
+            partial(
+                MaskedArray,
+                np.empty(
+                    n_candidates,
+                ),
+                mask=True,
+                dtype=object,
+            )
+        )
+        for cand_idx, params in enumerate(candidate_params):
+            for name, value in params.items():
+                # An all masked empty array gets created for the key
+                # `"param_{name}"` at the first occurrence of `name`.
+                # Setting the value at an index also unmasks that index
+                param_results[f"param__{name}"][cand_idx] = value
+
+        results.update(param_results)
+        # Store a list of param dicts at the key 'params'
+        results["params"] = candidate_params
+
+        test_scores_dict = _prefix_para_dict(_normalize_score_results(out["test__scores"]) or {}, "agg__")
+        test_single_scores_dict = _prefix_para_dict(
+            _normalize_score_results(out["test__single__scores"]) or {}, "single__"
+        )
+        for scorer_name in test_scores_dict:
+            # Computed the (weighted) mean and std for test scores alone
+            _store(
+                f"test__{scorer_name}",
+                test_scores_dict[scorer_name],
+                splits=True,
+                rank=True,
+                weights=None,
+            )
+        for scorer_name in test_single_scores_dict:
+            # Because of custom aggregators, it can be that single scores dicts have different keys than the aggregated
+            # scores.
+            _store_non_numeric(f"test__{scorer_name}", test_single_scores_dict[scorer_name])
+
+        if self.return_train_score:
+            train_scores_dict = _normalize_score_results(out["train__scores"])
+            train_single_scores_dict = _prefix_para_dict(
+                _normalize_score_results(out["train__single__scores"]) or {}, "single__"
+            )
+            for scorer_name in train_scores_dict:
+                _store(f"train__{scorer_name}", train_scores_dict[scorer_name], splits=True)
+            for scorer_name in train_single_scores_dict:
+                _store_non_numeric(f"train__{scorer_name}", train_single_scores_dict[scorer_name])
+
+        return results
+
+
+def _validate_return_optimized(return_optimized, multi_metric, results) -> tuple[bool, Union[str, Literal[False]]]:
+    """Check if `return_optimize` fits to the multimetric output of the scorer."""
+    if return_optimized is False:
+        return False, False
+    # Sanitize return optimized
+    reverse = False
+    if isinstance(return_optimized, str) and return_optimized.startswith("-"):
+        return_optimized = return_optimized[1:].strip()
+        reverse = True
+    if multi_metric is True:
+        # In a multimetric case, return_optimized must either be False or a string
+        if not isinstance(return_optimized, str) or return_optimized not in results:
+            raise ValueError(
+                "If multi-metric scoring is used, `return_optimized` must be a str specifying the score that "
+                "should be used to select the best result."
+            )
+        return reverse, return_optimized
+    # Single metric:
+    if return_optimized == "score" or return_optimized is True:
+        return reverse, "score"
+    if isinstance(return_optimized, str):
+        warnings.warn(
+            "You set `return_optimized` to the name of a scorer, but the provided scorer only produces a "
+            "single score."
+            "`return_optimized` is set to True. "
+            "The only allowed string value for `return_optimized` in a single metric case is `-score`, "
+            "to invert the metric before score selection.",
+            stacklevel=2,
+        )
+        return reverse, "score"
+    raise ValueError("`return_optimized` must be a bool or explicitly `score` or `-score` in a single metric case.")
+
+
+def _extract_return_optimize_info(
+    return_optimized: str,
+    reverse,
+    results,
+    rank_prefix: str = "rank__agg__",
+    score_prefix: str = "",
+) -> tuple[int, float, dict[str, Any]]:
+    """Extract the information from `return_optimized` and check if it is valid."""
+    if reverse:
+        best_index = (results[f"{rank_prefix}{return_optimized}"]).argmax()
+    else:
+        best_index = results[f"{rank_prefix}{return_optimized}"].argmin()
+    best_score = results[f"{score_prefix}{return_optimized}"][best_index]
+    best_params = results["params"][best_index]
+    return best_index, best_score, best_params
