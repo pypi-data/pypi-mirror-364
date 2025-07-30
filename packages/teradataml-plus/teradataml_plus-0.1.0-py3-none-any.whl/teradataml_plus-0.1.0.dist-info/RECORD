@@ -1,0 +1,10 @@
+tdmlplus/__init__.py,sha256=6_1nXMzg557vy7W5enVWm7gPdOijrnf4n2LusS7AdsE,1268
+tdmlplus/patch/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tdmlplus/patch/dataframe.py,sha256=KYyf1w06_JS6HoYT7nm601NYzQNyksmHrimFZmUq0Kk,475
+tdmlplus/patch/dba.py,sha256=ifs5sE7oQTJ73Ymya6a0jye6V62pgPNiaEvK_-9Tu7k,500
+tdmlplus/patch/random.py,sha256=YVF1iLF-TY9bAnwsUaxOGgLHhI88RabHpuUfvAwrS4w,1826
+teradataml_plus-0.1.0.dist-info/LICENSE,sha256=ixuiBLtpoK3iv89l7ylKkg9rs2GzF9ukPH7ynZYzK5s,35148
+teradataml_plus-0.1.0.dist-info/METADATA,sha256=ViZyNb-U_lBQyGLSsR62pjAKUQdyVaVhV2WpiILarn0,2240
+teradataml_plus-0.1.0.dist-info/WHEEL,sha256=yQN5g4mg4AybRjkgi-9yy4iQEFibGQmlz78Pik5Or-A,92
+teradataml_plus-0.1.0.dist-info/top_level.txt,sha256=0s_WbzVo65JKddf6j1qIG8IyGEnaVtuvz5bltOEDbCY,9
+teradataml_plus-0.1.0.dist-info/RECORD,,
