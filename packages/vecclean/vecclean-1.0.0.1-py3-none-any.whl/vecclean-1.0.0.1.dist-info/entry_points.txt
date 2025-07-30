@@ -1,0 +1,6 @@
+[console_scripts]
+cleanvec = vecclean.cli:main
+vecclean = vecclean.cli:main
+
+[vecclean.processors]
+default = vecclean.core.pipeline:ProcessingPipeline
