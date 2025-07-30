@@ -1,0 +1,12 @@
+.gitignore
+README.md
+pyproject.toml
+roborio-gen-whl
+setup.cfg
+xtar
+.github/workflows/dist.yml
+roborio_pkgtools.egg-info/PKG-INFO
+roborio_pkgtools.egg-info/SOURCES.txt
+roborio_pkgtools.egg-info/dependency_links.txt
+roborio_pkgtools.egg-info/requires.txt
+roborio_pkgtools.egg-info/top_level.txt
