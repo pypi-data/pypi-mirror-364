@@ -1,0 +1,2 @@
+[console_scripts]
+aceiot-models-cli = aceiot_models_cli:main
