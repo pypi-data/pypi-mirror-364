@@ -1,0 +1,3 @@
+[console_scripts]
+mlox-start-multipass = mlox.cli:start_multipass
+mlox-ui = mlox.cli:start_ui
