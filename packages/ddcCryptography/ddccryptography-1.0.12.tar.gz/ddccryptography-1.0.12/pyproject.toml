@@ -1,0 +1,68 @@
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "ddcCryptography"
+version = "1.0.12"
+description = "Encode and Decode strings with Cryptography"
+license = "MIT"
+readme = "README.md"
+authors = ["Daniel Costa <danieldcsta@gmail.com>"]
+maintainers = ["Daniel Costa"]
+repository = "https://github.com/ddc/ddcCryptography"
+homepage = "https://pypi.org/project/ddcCryptography"
+packages = [{include = "ddcCryptography"}]
+package-mode = true
+keywords = [
+    "python3", "python-3", "python",
+    "cryptography", "encode", "encoder",
+    "decode", "decoder", "ddcCryptography"
+]
+classifiers = [
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Development Status :: 5 - Production/Stable",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Environment :: Other Environment",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+]
+
+[tool.poetry.build]
+script = "build.py"
+generate-setup-file = false
+
+[tool.poetry.group.test]
+optional = true
+
+[tool.poetry.dependencies]
+python = "^3.12"
+cryptography = "^45.0.5"
+
+[tool.poetry.group.test.dependencies]
+poethepoet = "^0.36.0"
+psutil = "^7.0.0"
+pytest = "^8.4.1"
+pytest-cov = "^6.2.1"
+
+[tool.poe.tasks]
+_test = "python -m pytest -v --cov=ddcCryptography --cov-report=term --cov-report=xml --junitxml=junit.xml -o junit_family=legacy"
+tests = ["_test"]
+test = ["tests"]
+
+[tool.black]
+line-length = 120
+skip-string-normalization = true
+
+[tool.coverage.run]
+omit = [
+    "build.py",
+    "tests/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+]
