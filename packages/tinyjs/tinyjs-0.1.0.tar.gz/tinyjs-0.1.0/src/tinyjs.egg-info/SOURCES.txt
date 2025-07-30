@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+src/tinyjs/__init__.py
+src/tinyjs/code_annotation.js
+src/tinyjs/code_generator.py
+src/tinyjs/grammer_rules.py
+src/tinyjs.egg-info/PKG-INFO
+src/tinyjs.egg-info/SOURCES.txt
+src/tinyjs.egg-info/dependency_links.txt
+src/tinyjs.egg-info/requires.txt
+src/tinyjs.egg-info/top_level.txt
