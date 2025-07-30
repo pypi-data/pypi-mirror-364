@@ -1,0 +1,15 @@
+django_cog/__init__.py,sha256=3heo_mLR4CC17tNdH-EKPKxVXDUMPbo8WdyULmKX6KY,11410
+django_cog/admin.py,sha256=WYoUezigc49T-CgHPNF4hCkbqcFxUMy3ocGsRqYAwAc,5086
+django_cog/apps.py,sha256=he7R7sWIaHj7zPQfY9L1gnCK3DYBnOc_syH8CYuk67o,1883
+django_cog/celery.py,sha256=yt5Wldf1A7DLciNbZussFm-OTPAl7wRrdz_EM3lkKHk,177
+django_cog/models.py,sha256=XXeaLepDEuSzr4xp6jzp3jQ88RqGu7WlPR625N88yGg,13500
+django_cog/tests.py,sha256=TFpGrrKfvzCn8U2LwbAV1u6G2_izFXX0uk0fASQ9tj0,9442
+django_cog/migrations/0001_initial.py,sha256=cyK9GV2eKNzhZmVD45u61hAR3a2ekjACNBSA5cPYF_k,8630
+django_cog/migrations/0002_pipelinerun_arguments_as_json.py,sha256=F1ASoq1zecSX0IbQYFC6XUpKEe_OS4LQGvVn6OidUdc,400
+django_cog/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_cog/templates/cancel_run.html,sha256=IYKPVM5v0iJ_zN-FPztC8oBJG95eV0eDFyXm6y6KERY,320
+django_cog/templates/change_form.html,sha256=Sc8cNebRFtkCuams7J4sI57cnRG6iaYE-Ccfo1GGLNs,198
+django_cog-1.4.1.dist-info/METADATA,sha256=U23D9i38Ss6MR4H6zMtYitXQl7uS9Ie2CojR_l6OuXU,18255
+django_cog-1.4.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+django_cog-1.4.1.dist-info/top_level.txt,sha256=x9dslZuJqr3uo2fIH6aALU8MEATPViu-otXXijGsfUo,11
+django_cog-1.4.1.dist-info/RECORD,,
