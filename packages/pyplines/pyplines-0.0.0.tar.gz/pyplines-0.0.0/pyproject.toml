@@ -1,0 +1,7 @@
+[project]
+name = "pyplines"
+version = "0.0.0"
+description = "Automation Pipelines in Python"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = []
