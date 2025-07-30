@@ -1,0 +1,2 @@
+[pytest_dsl.keywords]
+ssh = pytest_dsl_ssh
