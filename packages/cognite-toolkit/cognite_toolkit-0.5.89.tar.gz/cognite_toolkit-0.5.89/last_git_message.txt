@@ -1,0 +1,46 @@
+[CDF-25193] 🧑‍🎨 cdf profile nicer terminal output (#1743)
+
+# Description
+
+
+
+## <code>cdf profile raw</code> Before
+<img width="2164" height="231" alt="image"
+src="https://github.com/user-attachments/assets/32eb8d76-7cea-457a-9dcf-9824a315c46c"
+/>
+
+## <code>cdf profile raw</code>After
+<img width="2177" height="205" alt="image"
+src="https://github.com/user-attachments/assets/742a3ca4-46da-42ce-aa2b-f21bd7eeb854"
+/>
+
+On `cdf profile assets`
+
+## <code>cdf profile assets</code>Before
+<img width="2545" height="568" alt="image"
+src="https://github.com/user-attachments/assets/39beb8a3-a76e-4a52-b515-e983cc52fd95"
+/>
+
+## <code>cdf profile assets</code>After
+<img width="2749" height="566" alt="image"
+src="https://github.com/user-attachments/assets/38992831-8f30-483b-a1cd-182ca1aa6bd9"
+/>
+
+
+
+## Changelog
+
+- [x] Patch
+- [ ] Minor
+- [ ] Skip
+
+## cdf
+
+### Improved
+
+- [alpha] The `cdf profile` commands now skips repeated values in the
+table terminal output. This is to increase the readability.
+
+## templates
+
+No changes.
