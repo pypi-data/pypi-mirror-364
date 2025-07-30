@@ -1,0 +1,9 @@
+LICENSE.txt
+README.md
+setup.py
+nnea/__init__.py
+nnea/hello.py
+nnea.egg-info/PKG-INFO
+nnea.egg-info/SOURCES.txt
+nnea.egg-info/dependency_links.txt
+nnea.egg-info/top_level.txt
