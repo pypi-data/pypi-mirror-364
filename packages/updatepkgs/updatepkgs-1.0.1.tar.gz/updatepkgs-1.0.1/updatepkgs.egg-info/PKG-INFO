@@ -1,0 +1,73 @@
+Metadata-Version: 2.4
+Name: updatepkgs
+Version: 1.0.1
+Summary: A command-line tool for interactively updating and installing Python packages
+Home-page: https://github.com/dnettz/updatepkgs
+Author: Dishani William
+Author-email: Dishani William <dishaniwilliam@outlook.com>
+License: MIT
+Keywords: pip,package,update,installer,search,cli
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Environment :: Console
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: pip
+Requires-Dist: requests
+Requires-Dist: rich
+Requires-Dist: tqdm
+Dynamic: author
+Dynamic: home-page
+Dynamic: requires-python
+
+# UpdatePkgs
+
+**UpdatePkgs** is a powerful and interactive command-line tool for managing Python packages. It simplifies the process of updating packages, managing `requirements.txt`, and installing new packages with intelligent search.
+
+## 🔧 Features
+
+- ✅ Update all outdated packages with progress tracking
+- 📦 Generate or clean up `requirements.txt`
+- 📄 Update using existing `requirements.txt` file
+- 🌐 Search and install new packages from PyPI
+- 🚀 Simple and intuitive CLI
+
+## 📥 Installation
+
+```bash
+pip install updatepkgs
+```
+
+## 🚀 Usage
+
+```bash
+updatepkgs
+```
+
+### Options
+1. Update all installed packages
+2. Generate requirements.txt
+3. Remove versions from requirements.txt
+4. Update using requirements.txt
+5. Smart install from PyPI by name
+6. Install new package (with search)
+0. Exit
+
+## 📦 Example CLI Output
+
+```bash
+[1/10] Updating numpy  ->  Success ✅
+[2/10] Updating pandas ->  Success ✅
+All packages updated!
+```
+
+## 🛡 License
+
+MIT License  
+© 2025 dnet brand

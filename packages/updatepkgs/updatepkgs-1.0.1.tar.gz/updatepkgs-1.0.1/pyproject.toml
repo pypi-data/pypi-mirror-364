@@ -1,0 +1,36 @@
+[project]
+name = "updatepkgs"
+version = "1.0.1"
+description = "A command-line tool for interactively updating and installing Python packages"
+authors = [
+    { name = "Dishani William", email = "dishaniwilliam@outlook.com" }
+]
+readme = "README.md"
+requires-python = ">=3.7"
+license = { text = "MIT" }
+keywords = ["pip", "package", "update", "installer", "search", "cli"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Topic :: Software Development :: Build Tools",
+    "Environment :: Console"
+]
+
+dependencies = [
+    "pip",
+    "requests",
+    "rich",
+    "tqdm",
+]
+
+[project.scripts]
+updatepkgs = "updatepkgs.__main__:main"
+
+[build-system]
+requires = ["setuptools>=42", "wheel", "beautifulsoup4", "requests"]
+build-backend = "setuptools.build_meta"
