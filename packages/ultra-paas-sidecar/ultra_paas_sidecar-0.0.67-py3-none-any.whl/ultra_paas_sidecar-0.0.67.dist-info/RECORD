@@ -1,0 +1,9 @@
+ultra_pass_sidecar/__init__.py,sha256=ZYP5imcqYJV8A8BpWwrgrhMjRPKedopzdSlwYJqVcA0,36662
+ultra_pass_sidecar/auth_service.py,sha256=OZixRWnaxgTCdnueVxCvH_zpqUKOu7bVsJyQjGekZ38,868
+ultra_pass_sidecar/cli.py,sha256=Pm84WIe605xZBbKsTKx6Br2ieL9jZ8GT_jAnIdnR5rs,4674
+ultra_pass_sidecar/publish.py,sha256=W8QFG0KjpilN9nrxRt7aEnQwhqZJF5wxwCkOhG6LAX4,11592
+ultra_paas_sidecar-0.0.67.dist-info/METADATA,sha256=TjYAhlZd2KgVg40oTG5EDkb68WS5bbcMgkDyurngYBk,14489
+ultra_paas_sidecar-0.0.67.dist-info/WHEEL,sha256=lTU6B6eIfYoiQJTZNc-fyaR6BpL6ehTzU3xGYxn2n8k,91
+ultra_paas_sidecar-0.0.67.dist-info/entry_points.txt,sha256=UjjFbcoCpm7dbC68tSUiGCYB9r6WAV5wwTXrDD9liko,67
+ultra_paas_sidecar-0.0.67.dist-info/top_level.txt,sha256=7RyH2b54Y_ZUab_d-VaRiYB3wCkgTH-XiBvTaNokfV0,19
+ultra_paas_sidecar-0.0.67.dist-info/RECORD,,
