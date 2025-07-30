@@ -1,0 +1,9 @@
+cvxpy_leximin/VERSION,sha256=xnoD8OiUT690CCFGUabbyCu3XU8Pr1kSARvc3sXDZzM,5
+cvxpy_leximin/__init__.py,sha256=RiDDtCEk6anVz_rvAverQKkX3iWe0TVaQmVU05A9Vlg,209
+cvxpy_leximin/objective.py,sha256=aw-lgOvzo0AViUvWzG9cGJmvGo8GoEK0OZnPoEWkUv4,6998
+cvxpy_leximin/problem.py,sha256=QoGxZrTNxRad5-afKGQemc4IXqbGqZVuebuLN7GEtPs,21582
+cvxpy_leximin-0.5.dist-info/licenses/LICENSE,sha256=We6oxRR70fj32FSAlfecqsRb4TZqMKNO2ZOZHYIU3fA,11545
+cvxpy_leximin-0.5.dist-info/METADATA,sha256=Q9rIeX36sXaeb7X0R4Hfy3HaztpIdoRXhTEwnd6Oygg,4805
+cvxpy_leximin-0.5.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+cvxpy_leximin-0.5.dist-info/top_level.txt,sha256=IH3m-8dvDcjfPBH_lm2BjvW1VADDEmjBWHwjyrszoH4,14
+cvxpy_leximin-0.5.dist-info/RECORD,,
