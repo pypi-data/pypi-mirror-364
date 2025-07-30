@@ -1,0 +1,16 @@
+Metadata-Version: 2.3
+Name: csust-word-mcp-server
+Version: 0.0.10
+Summary: Add your description here
+Author: DoubleWang1
+Author-email: DoubleWang1 <1596804045@qq.com>
+Requires-Dist: bs4>=0.0.2
+Requires-Dist: dotenv>=0.9.9
+Requires-Dist: fastmcp>=2.10.6
+Requires-Dist: flask>=3.1.1
+Requires-Dist: httpx>=0.28.1
+Requires-Dist: mcp[cli]>=1.12.1
+Requires-Dist: python-docx>=1.2.0
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+
