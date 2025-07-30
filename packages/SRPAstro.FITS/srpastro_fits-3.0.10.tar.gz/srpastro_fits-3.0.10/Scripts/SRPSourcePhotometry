@@ -1,0 +1,127 @@
+#! python
+""" Code to extract sources from a fits frame
+
+Context : SRP
+Module  : SRPSorcePhotometry
+Author  : Stefano Covino
+Date    : 07/04/2025
+E-mail  : stefano.covino@inaf.it
+URL:    : http://www.merate.mi.astro.it/utenti/covino
+Purpose :
+
+
+History : (07/04/2025) First version.
+"""
+
+__version__ = '0.1.0'
+
+from SRPFITS.Photometry.FitsPhotometryClass import FitsPhotometry
+#from SRPFITS.Fits import FitsConstants
+from SRPFITS.Fits.IsFits import IsFits
+from SRP.SRPSystem.ReadTextFile import ReadTextFile
+import argparse
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-a", "--airmass", action="store", type=float, default=0.0, help="Airmass", metavar='airmass')
+parser.add_argument("-e", "--exptime", action="store", type=float, default=1.0, help="Exposure time (s)", metavar='exptime')
+parser.add_argument("-f", "--fitsfile", action="store", help="Input FITS file", metavar='ifits')
+parser.add_argument("-g", "--gain", action="store", type=float, default=1.0, help="Gain (ADU/e)", metavar='gain')
+parser.add_argument("-i", "--inputtab", action="store", help="Input file with star position", metavar='itab')
+parser.add_argument("-k", "--extcoeff", action="store", type=float, default=0.0, help="Extinction coefficient (mag)", metavar='extcoeff')
+parser.add_argument("-l", "--sexlev", action="store", type=float, default=3.0, help="Deepness of SEXTractor search", metavar='sexlev')
+parser.add_argument("-n", "--ron", action="store", type=float, default=1.0, help="RON (ADU)", metavar='ron')
+parser.add_argument("-r", "--photradii", action="store", type=float, nargs=3, default=(4.0,8.0,12.0), help="Inner, Outer and Background radii", metavar='photradii')
+parser.add_argument("-w", "--whichphotalg", choices=['sex','apyap'], default='apyap', help="Photometric algorithm")
+parser.add_argument("-v", "--verbose", action="store_true", help="Fully describe operations")
+parser.add_argument("--version", action="version", version=__version__)
+parser.add_argument("-z", "--zeropoints", action="store", nargs=2, type=float, default=(25.0,0.0), help="Zero point (mag, magerr)", metavar=('mag','magerr'))
+options = parser.parse_args()
+
+
+
+if (options.fitsfile and options.inputtab) or (options.fitsfile and options.whichphotalg == 'sex'):
+    if not IsFits(options.fitsfile):
+        parser.error("Fits file %s not found." % options.fitsfile)
+    #
+    if options.inputtab:
+        ifile = ReadTextFile(options.inputtab)
+        if ifile == None:
+            parser.error("Input file %s not found or not readable." % options.inputtab)
+    else:
+        ifile = ''
+    #
+    if options.exptime <= 0:
+        parser.error("Improper exposure time: %.3f." % options.exptime)
+    #
+    if options.airmass < 0:
+        parser.error("Improper airmass: %.3f." % options.airmass)
+    #
+    if options.extcoeff < 0:
+        parser.error("Improper extinction coefficent: %.3f." % options.extcoeff)
+    #
+    if options.sexlev < 0 and options.whchhotalg == 'sex':
+        parser.error("Improper SEXtractor search level: %.1f." % options.sexlev)
+    #
+    if options.whichphotalg == 'apyap':
+        fphot = FitsPhotometry(options.fitsfile,ifile,options.exptime,options.airmass,options.extcoeff,options.zeropoints)
+        # Read fits file
+        if not fphot.GetImageData():
+            parser.error("Problem in accessing image data.")
+        # Read obj file
+        if not fphot.GetObjPos():
+            parser.error("Problem in accessing objlist data.")
+        #
+        resphot = fphot.ApyPhotometry (rds=options.photradii,backgr=True,gain=options.gain,ron=options.ron)
+    elif options.whichphotalg == 'sex':
+        fphot = FitsPhotometry(options.fitsfile,ifile,options.exptime,options.airmass,options.extcoeff,options.zeropoints)
+        # Read fits file
+        if not fphot.GetImageData():
+            parser.error("Problem in accessing image data.")
+        #
+        resphot = fphot.SexPhotometry ()
+    #
+    root,ext = os.path.splitext(options.fitsfile)
+    g = SRPFiles.SRPFile(SRPConstants.SRPLocalDir, root+SRPConstants.SRPPhotomFile, SRPFiles.WriteMode)
+    # check format resphot and convert to text accordingly.
+    #print(resphot)
+    g.close()
+    # Save results
+    froot,fext = os.path.splitext(options.fits)
+    if options.skycat:
+        fname = froot+FitsConstants.SkyData
+    else:
+        fname = froot+FitsConstants.RegData
+    if options.verbose:
+        print("Output %s creation with %d entries." % (fname, len(d.List)))
+    else:
+        print("%d %s" % (len(d.List), fname))
+    f = open(fname,'w')
+    if options.skycat:
+        # prepare skycat for both options
+        f.write(resphot.Skycat())
+    else:
+        f.write(str(resphot))
+    f.close()
+else:
+    parser.print_help()
+
+
+
+
+
+
+#    def Skycat(self, outname='SRP.cat'):
+#        msg = ''
+#        msg = msg + "long_name: SRP catalog for file %s\n" % (outname)
+#        msg = msg + "short_name: %s\n" % (outname)
+#        msg = msg + "url: ./%s\n" % (outname)
+#        msg = msg + "symbol: {} {circle blue} 4\n"
+#        msg = msg + "id_col: 0\n"
+#        msg = msg + "ra_col: 1\n"
+#        msg = msg + "dec_col: 2\n"
+#        msg = msg + "Id\tRA\tDEC\tB\teB\tV\teV\tg\teg\tr\ter\ti\tei\n"
+#        msg = msg + "---------\n"
+#        msg = msg + str(self)
+#        msg = msg + "EOD\n"
+#        return msg
