@@ -1,0 +1,1 @@
+# This file makes the 'mkdocs_mermaid_zoom' directory a Python package. 

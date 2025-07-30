@@ -1,0 +1,2 @@
+[mkdocs.plugins]
+mermaid-zoom = mkdocs_mermaid_zoom.plugin:MermaidZoomPlugin

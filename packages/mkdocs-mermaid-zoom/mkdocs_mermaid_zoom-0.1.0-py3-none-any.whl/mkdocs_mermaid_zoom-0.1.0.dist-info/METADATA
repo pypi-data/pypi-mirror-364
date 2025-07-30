@@ -1,0 +1,29 @@
+Metadata-Version: 2.4
+Name: mkdocs-mermaid-zoom
+Version: 0.1.0
+Summary: A MkDocs plugin to add zoom, pan, and a custom lightbox to Mermaid diagrams.
+Project-URL: Homepage, https://github.com/lijma/mkdocs-mermaid-zooming
+Project-URL: Issues, https://github.com/lijma/mkdocs-mermaid-zooming/issues
+Author-email: Marvin Ma <marvin.lijma@outlook.com>
+License-File: LICENSE
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.8
+Requires-Dist: mkdocs>=1.4.0
+Description-Content-Type: text/markdown
+
+# MkDocs Mermaid Zoom
+
+A MkDocs plugin that adds zoom, pan, and a custom lightbox to your Mermaid.js diagrams.
+
+Please see the `demo` directory for a working example.
+
+
+## install plugin local
+
+```sh
+
+cd mkdocs_mermaid_zoom && rm -rf venv site && python3 -m venv venv && ./venv/bin/pip install -q mkdocs mkdocs-material && ./venv/bin/pip install -q -e .
+
+```
