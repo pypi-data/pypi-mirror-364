@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>__title__</title>
+<link rel="icon" href="https://www.gstatic.com/aistudio/ai_studio_favicon_256x256.svg" sizes="256x256"
+    type="image/svg+xml">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js"></script>
+
+<style>
+    h1.title {
+        font-size: 1.75rem;
+        /* equivalent to text-4xl */
+        font-weight: 500;
+        /* font-black */
+        line-height: 1;
+        /* typical for headings */
+    }
+
+    h1 {
+        font-size: 2.25rem;
+        /* equivalent to text-4xl */
+        font-weight: 900;
+        /* font-black */
+        line-height: 1;
+        /* typical for headings */
+    }
+
+    @media (min-width: 1024px) {
+
+        /* equivalent to lg: */
+        h1 {
+            font-size: 4.5rem;
+            /* equivalent to lg:text-7xl */
+        }
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        /* equivalent to text-2xl */
+        font-weight: 700;
+        /* font-bold */
+    }
+
+    @media (min-width: 1024px) {
+        h2 {
+            font-size: 2.25rem;
+            /* equivalent to lg:text-4xl */
+        }
+    }
+
+    h3 {
+        font-size: 1.25rem;
+        /* equivalent to text-xl */
+        font-weight: 700;
+        /* font-bold */
+    }
+
+    @media (min-width: 1024px) {
+        h3 {
+            font-size: 1.875rem;
+            /* equivalent to lg:text-3xl */
+        }
+    }
+
+    h4,
+    h5 {
+        /* Assuming you meant h5 here for text-lg */
+        font-size: 1.125rem;
+        /* equivalent to text-lg */
+        font-weight: 700;
+        /* font-bold */
+    }
+
+    h4 {
+        /* Specific for h4 as text-xl */
+        font-size: 1.25rem;
+        /* equivalent to text-xl */
+    }
+
+    ol,
+    ul {
+        padding-left: 20px;
+        /* Provide some indentation */
+        margin-top: 1rem;
+        /* Space above the list */
+        margin-bottom: 1rem;
+        /* Space below the list */
+    }
+
+    ol {
+        list-style-type: decimal;
+        /* Default ordered list style */
+    }
+
+    ul {
+        list-style-type: disc;
+        /* Default unordered list style */
+    }
+
+    li {
+        margin-bottom: 0.5rem;
+        /* Space between list items */
+    }
+
+    body {
+        font-family: {
+            __font__
+        }
+    }
+
+    .user-content {
+        font-size: 1em;
+        color: blue;
+        margin-bottom: 1em;
+    }
+
+    .model-content {
+        margin-bottom: 1em;
+    }
+
+    .folded {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-height: 10em;
+        /* Adjust based on your line height */
+    }
+
+    .zoomable-image {
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .zoomable-image:hover {
+        transform: scale(1.02);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Thoughts styling */
+    .thoughts-container {
+        margin: 1rem 0;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        background-color: #f8fafc;
+    }
+
+    .thoughts-details {
+        margin: 0;
+    }
+
+    .thoughts-summary {
+        padding: 0.75rem 1rem;
+        cursor: pointer;
+        background-color: #f1f5f9;
+        border-radius: 8px 8px 0 0;
+        font-weight: 600;
+        color: #475569;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background-color 0.2s ease;
+    }
+
+    .thoughts-summary:hover {
+        background-color: #e2e8f0;
+    }
+
+    .thoughts-summary .toggle-icon {
+        margin-left: auto;
+        transition: transform 0.2s ease;
+    }
+
+    .thoughts-details[open] .toggle-icon {
+        transform: rotate(180deg);
+    }
+
+    .thoughts-content {
+        padding: 1rem;
+        border-top: 1px solid #e5e7eb;
+        background-color: #ffffff;
+        border-radius: 0 0 8px 8px;
+    }
+
+    .thoughts-content h1,
+    .thoughts-content h2,
+    .thoughts-content h3,
+    .thoughts-content h4,
+    .thoughts-content h5,
+    .thoughts-content h6 {
+        color: #6366f1;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .regular-content {
+        margin-top: 1rem;
+    }
+</style>
+<script>document.addEventListener("DOMContentLoaded", function () {
+        const contentDivs = document.querySelectorAll('.user-content, .model-content');
+
+        contentDivs.forEach(div => {
+            let copyBtn = document.createElement('button');
+            copyBtn.innerHTML = '<i class="fa fa-copy"></i>'; // Use a copy icon from Font Awesome
+            copyBtn.onclick = function () {
+                let message = div.getAttribute('data-message');
+                navigator.clipboard.writeText(message).then(function () {
+                    console.log('Copying to clipboard was successful!');
+                }, function (err) {
+                    console.error('Could not copy text: ', err);
+                });
+            };
+            // Create fold button
+            let foldBtn = document.createElement('button');
+            foldBtn.innerHTML = '<i class="fas fa-chevron-down"></i>'; // Default to 'unfold' icon
+            foldBtn.onclick = function () {
+                toggleFold(div, foldBtn);
+            };
+
+            // Create wrap toggle button
+
+            // Insert buttons before the div
+            div.parentNode.insertBefore(foldBtn, div);
+            // insert a white space span
+            div.parentNode.insertBefore(document.createTextNode(' '), div);
+            div.parentNode.insertBefore(copyBtn, div);
+
+            // Check if it's user-content and too long
+            if (div.classList.contains('user-content') && isContentTooLong(div)) {
+                toggleFold(div, foldBtn);
+            }
+        });
+    });
+        
+    
+
+    function toggleFold(div, btn) {
+        if (div.classList.contains('folded')) {
+            div.classList.remove('folded');
+            btn.innerHTML = '<i class="fas fa-chevron-down"></i>'; // Unfold icon
+        } else {
+            div.classList.add('folded');
+            btn.innerHTML = '<i class="fas fa-chevron-up"></i>'; // Fold icon
+        }
+    }
+
+    function toggleWrap(div, btn) {
+        if (div.classList.contains('text-wrap')) {
+            div.classList.remove('text-wrap');
+            btn.innerHTML = '<i class="fas fa-align-justify"></i>'; // Change icon if desired
+        } else {
+            div.classList.add('text-wrap');
+            btn.innerHTML = '<i class="fas fa-text-width"></i>'; // Change icon if desired
+        }
+    }
+
+    function isContentTooLong(div) {
+        const lineHeight = parseFloat(getComputedStyle(div).lineHeight);
+        const divHeight = div.scrollHeight;
+        return (divHeight / lineHeight) > 10;
+    }
+
+</script>
+</head>
+
+<body class="bg-gray-100">
+    <div id="conversation" class="max-w-screen-md mx-auto p-4">
+        <h1 class="title">__title__</h1>
+        <div id="conversation">
+            __content__
+        </div>
+
+        <footer class="text-gray-500">Conversation exported and converted to HTML by <a href="https://teddysc.me"
+                class="text-gray-500">Teddy</a>.</footer>
+    </div>
+    <script>hljs.highlightAll();</script>
+    <script>
+        // Initialize medium-zoom for images
+        document.addEventListener('DOMContentLoaded', function() {
+            mediumZoom('.zoomable-image', {
+                background: 'rgba(0, 0, 0, 0.8)',
+                scrollOffset: 40,
+                container: null,
+                template: null
+            });
+        });
+    </script>
+</body>
+
+</html>
