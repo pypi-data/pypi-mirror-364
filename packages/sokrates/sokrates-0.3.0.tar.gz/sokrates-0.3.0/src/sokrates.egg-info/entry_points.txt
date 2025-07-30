@@ -1,0 +1,14 @@
+[console_scripts]
+benchmark-model = sokrates.cli.benchmark_model:main
+benchmark-results-merger = sokrates.cli.benchmark_results_merger:main
+benchmark-results-to-markdown = sokrates.cli.benchmark_results_to_markdown:main
+breakdown-task = sokrates.cli.breakdown_task:main
+execute-tasks = sokrates.cli.execute_tasks:main
+fetch-to-md = sokrates.cli.fetch_to_md:main
+generate-mantra = sokrates.cli.generate_mantra:main
+idea-generator = sokrates.cli.idea_generator:main
+list-models = sokrates.cli.list_models:main
+llmchat = sokrates.cli.llm_chat:main
+refine-and-send-prompt = sokrates.cli.refine_and_send_prompt:main
+refine-prompt = sokrates.cli.refine_prompt:main
+send-prompt = sokrates.cli.send_prompt:main

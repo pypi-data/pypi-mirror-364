@@ -1,0 +1,13 @@
+openai
+psutil
+requests
+markdownify
+tabulate
+colorama
+click
+html2text
+dotenv
+pytest
+pytest-mock
+openai-whisper
+pyaudio
