@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: ksei-mcp
+Version: 1.1.0
+Summary: MCP server for KSEI API access
+Project-URL: Homepage, https://github.com/ichsanulamal/ksei-mcp
+Author-email: Ichsanul Amal <you@example.com>
+License: MIT
+Requires-Python: >=3.11
+Requires-Dist: fake-useragent
+Requires-Dist: mcp>=0.9.0
+Requires-Dist: pyjwt
+Requires-Dist: python-dotenv
+Requires-Dist: requests
