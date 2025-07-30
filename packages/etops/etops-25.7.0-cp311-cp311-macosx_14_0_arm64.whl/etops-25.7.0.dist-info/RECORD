@@ -1,0 +1,8 @@
+etops-25.7.0.dist-info/RECORD,,
+etops-25.7.0.dist-info/WHEEL,sha256=emBhFCg8-qcjB27fWAvB5QXuvx9awpzTTZvaRY6KvLw,141
+etops-25.7.0.dist-info/METADATA,sha256=DgaCeEojJz2QjIraNexuyd96nWRyPc6tHmHtEm2lfd4,7163
+etops-25.7.0.dist-info/licenses/LICENSE,sha256=kOES8v5XNv7wIj9W6W_dcRldlucoGVjLKgqml_nHyT0,6872
+etops/_version.py,sha256=EHm__THgq7Nbsfg0mL2XeVRmF0WZG_tbsa_n0IRhwDo,513
+etops/_etops_core.cpython-311-darwin.so,sha256=gVz3UqZA0j0yy7-gbyb64FNwNcfpR4x211elA4_a6MM,287568
+etops/__init__.py,sha256=AMVug3tZOKD82iscj5NnIZnqw_ad2s07Kcv1sWUOPPw,6894
+etops/libeinsum_ir.dylib,sha256=Pt0zP0JQPdRlykaqJwIX7kPO2q6u17uejRefdGGtLm0,1522176
