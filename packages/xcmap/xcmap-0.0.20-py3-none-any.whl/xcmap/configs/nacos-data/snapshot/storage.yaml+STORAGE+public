@@ -1,0 +1,31 @@
+clients:
+  3d5369f8-b85b-469c-8a5c-d1c5c0e06e36: # Ph oss client
+    storage_type: oss
+    access_id: LTAI5tGKXevqF6MDpJfj9Y9L
+    access_key: PA7yRzevBrZ3KVYV0se1H71UHtLfMK
+    oss_host: https://pathhub-cn.oss-cn-chengdu.aliyuncs.com
+    endpoint: oss-cn-chengdu.aliyuncs.com
+    bucket: pathhub-cn
+    domain: https://ph-oss.safephone.cn
+    file_base_dir: ph/files
+  10f8b6b7-9c1e-44a3-93a6-6826c1ffa845: # Ph quobject Material Library client
+    storage_type: s3
+    access_id: yds_media:qVPOYHoyNBRbKpbXvcz8
+    access_key: a0DzcG2C4m0z6oJqca3HV9Zd9c96WdJL
+    endpoint: http://192.168.2.123:8010
+    bucket: yds_media
+    file_base_dir: material-lib
+  733013d3-cadb-46d3-83a2-87eefaf082d9: # Ph minio client
+    storage_type: minio
+    access_id: AOZs1IJBr3oG2kFZplg6
+    access_key: M4k6FjwkSUKGIHXE1Zz79pW2nLqhOe6uud5H0Zcq
+    endpoint: https://minio-api.safone.ltd:6443
+    bucket: banyan
+    file_base_dir: pathhub/material-lib
+database:
+  user_name: root
+  password: '!QAZ@safone'
+  url_str: 192.168.0.168:27017
+  db_name: ph_resource_db
+  auth_db: admin
+
