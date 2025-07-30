@@ -1,0 +1,4 @@
+[console_scripts]
+pyscadeone=ansys.scadeone.core.cli:main
+stpimporter=ansys.scadeone.core.svc.simdata.stpimporter:cmd_parse
+
