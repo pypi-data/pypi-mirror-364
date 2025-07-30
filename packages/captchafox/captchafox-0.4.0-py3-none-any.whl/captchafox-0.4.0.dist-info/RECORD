@@ -1,0 +1,12 @@
+captchafox/__init__.py,sha256=fMiaiDVZzqhGHYv7eQ9dnoEbgtUaXAFdclhBNPmRmCY,101
+captchafox/browser/__init__.py,sha256=X6bBUj1hNZsgvqY0j-Wk8qPO_TT1boYBNJRSikIzn48,61
+captchafox/browser/captchafox.py,sha256=GTn1ZtSx_n3zgxXXU0q192YQbc8P6DelGslrKGaLVNw,84
+captchafox/captcha/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+captchafox/core/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+captchafox/integration/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+captchafox/services/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+captchafox/utils/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+captchafox-0.4.0.dist-info/METADATA,sha256=p9B180FK99YcekvV48k1oWL9fnzHqtY5jYhFkjolvq4,1549
+captchafox-0.4.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+captchafox-0.4.0.dist-info/top_level.txt,sha256=x7kQApGMY0dWUulbWrYqfRP7Wut7Dmnj45y1sZOfL1E,11
+captchafox-0.4.0.dist-info/RECORD,,
