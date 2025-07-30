@@ -1,0 +1,4 @@
+
+```
+pip install conf-loaders
+```

@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: conf-loaders
+Version: 0.3.0
+Summary: configuration loading utils
+Home-page: https://github.com/PasaOpasen/conf-loaders
+Author: Demetry Pascal
+Author-email: qtckpuhdsa@gmail.com
+Maintainer: Demetry Pascal
+License: UNKNOWN
+Description: 
+        ```
+        pip install conf-loaders
+        ```
+        
+Keywords: configuration,conf
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
