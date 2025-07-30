@@ -1,0 +1,250 @@
+{
+  "boj_data_mapping": {
+    "description": "Comprehensive mapping of Bank of Japan statistical data",
+    "last_updated": "2025-01-24",
+    "base_url": "https://www.stat-search.boj.or.jp",
+    "access_methods": {
+      "web_search": {
+        "endpoint": "/ssi/cgi-bin/famecgi2",
+        "methods": ["by_category", "by_name", "by_code"]
+      },
+      "flat_files": {
+        "base_path": "/info/dload_en.html",
+        "update_time": "10:00 JST"
+      }
+    },
+    "categories": {
+      "interest_rates": {
+        "id": 1,
+        "name": "Interest Rates on Deposits and Loans",
+        "subcategories": [
+          "deposit_rates",
+          "loan_rates",
+          "interest_rate_spreads"
+        ],
+        "series_prefix": "IR",
+        "update_frequency": "monthly"
+      },
+      "financial_markets": {
+        "id": 2,
+        "name": "Financial Markets",
+        "subcategories": [
+          "stock_indices",
+          "exchange_rates",
+          "bond_yields",
+          "money_market_rates"
+        ],
+        "series_prefix": "FM",
+        "update_frequency": "daily"
+      },
+      "payment_settlement": {
+        "id": 3,
+        "name": "Payment and Settlement",
+        "subcategories": [
+          "payment_volumes",
+          "electronic_payments",
+          "settlement_statistics"
+        ],
+        "series_prefix": "PS",
+        "update_frequency": "monthly"
+      },
+      "money_deposits": {
+        "id": 4,
+        "name": "Money and Deposits",
+        "subcategories": [
+          "money_supply_m1",
+          "money_supply_m2",
+          "money_supply_m3",
+          "deposit_aggregates"
+        ],
+        "series_prefix": "MD",
+        "update_frequency": "monthly"
+      },
+      "loans": {
+        "id": 5,
+        "name": "Loans",
+        "subcategories": [
+          "bank_lending_by_sector",
+          "loan_growth_rates",
+          "credit_conditions"
+        ],
+        "series_prefix": "LN",
+        "update_frequency": "monthly"
+      },
+      "balance_sheets": {
+        "id": 6,
+        "name": "Balance Sheets",
+        "subcategories": [
+          "boj_balance_sheet",
+          "financial_institution_bs",
+          "asset_liability_composition"
+        ],
+        "series_prefix": "BS",
+        "update_frequency": "monthly"
+      },
+      "flow_of_funds": {
+        "id": 7,
+        "name": "Flow of Funds",
+        "subcategories": [
+          "sectoral_accounts",
+          "financial_flows",
+          "asset_holdings"
+        ],
+        "series_prefix": "FF",
+        "flat_file": "fof_q_en.zip",
+        "update_frequency": "quarterly"
+      },
+      "other_boj_statistics": {
+        "id": 8,
+        "name": "Other Bank of Japan Statistics",
+        "subcategories": [
+          "research_series",
+          "special_surveys",
+          "historical_data"
+        ],
+        "series_prefix": "OT",
+        "update_frequency": "varies"
+      },
+      "tankan": {
+        "id": 9,
+        "name": "TANKAN (Business Survey)",
+        "subcategories": [
+          "business_confidence",
+          "economic_outlook",
+          "capital_expenditure",
+          "employment_conditions"
+        ],
+        "series_prefix": "TK",
+        "flat_file": "tankan_q_en.zip",
+        "update_frequency": "quarterly"
+      },
+      "prices": {
+        "id": 10,
+        "name": "Prices",
+        "subcategories": [
+          "consumer_price_index",
+          "producer_price_index",
+          "corporate_goods_prices",
+          "service_price_index"
+        ],
+        "series_prefix": "PR",
+        "flat_file": "prices_m_en.zip",
+        "update_frequency": "monthly"
+      },
+      "public_finance": {
+        "id": 11,
+        "name": "Public Finance",
+        "subcategories": [
+          "government_debt",
+          "fiscal_balance",
+          "bond_issuance"
+        ],
+        "series_prefix": "PF",
+        "update_frequency": "monthly"
+      },
+      "balance_of_payments": {
+        "id": 12,
+        "name": "Balance of Payments and BIS Statistics",
+        "subcategories": [
+          "current_account",
+          "trade_statistics",
+          "international_investment",
+          "bis_reporting_banks"
+        ],
+        "series_prefix": "BP",
+        "flat_file": "bp_m_en.zip",
+        "update_frequency": "monthly"
+      },
+      "others": {
+        "id": 13,
+        "name": "Others",
+        "subcategories": [
+          "miscellaneous_indicators",
+          "cross_category_data"
+        ],
+        "series_prefix": "OT",
+        "update_frequency": "varies"
+      }
+    },
+    "flat_files": {
+      "available_downloads": {
+        "prices": {
+          "filename": "prices_m_en.zip",
+          "frequency": "monthly",
+          "contents": [
+            "consumer_prices.csv",
+            "producer_prices.csv",
+            "service_prices.csv",
+            "price_indices_metadata.xlsx"
+          ]
+        },
+        "flow_of_funds": {
+          "filename": "fof_q_en.zip",
+          "frequency": "quarterly",
+          "contents": [
+            "flow_of_funds_accounts.csv",
+            "sectoral_balance_sheets.csv",
+            "financial_transactions.csv"
+          ]
+        },
+        "tankan": {
+          "filename": "tankan_q_en.zip",
+          "frequency": "quarterly",
+          "contents": [
+            "business_confidence.csv",
+            "economic_conditions.csv",
+            "forecast_data.csv"
+          ]
+        },
+        "balance_of_payments": {
+          "filename": "bp_m_en.zip",
+          "frequency": "monthly",
+          "contents": [
+            "current_account.csv",
+            "financial_account.csv",
+            "trade_balance.csv"
+          ]
+        },
+        "bis_statistics": {
+          "filename": "bis_q_en.zip",
+          "frequency": "quarterly",
+          "contents": [
+            "international_banking.csv",
+            "cross_border_claims.csv"
+          ]
+        }
+      }
+    },
+    "series_code_structure": {
+      "format": "[CATEGORY_PREFIX][SERIES_NUMBER]",
+      "examples": {
+        "IR01": "Interest rate series 01",
+        "FM02": "Financial market series 02",
+        "PR03": "Price series 03"
+      }
+    },
+    "data_specifications": {
+      "file_formats": [".csv", ".xlsx", ".xls", ".txt", ".pdf"],
+      "character_encoding": "UTF-8 or Shift_JIS",
+      "date_formats": ["YYYY-MM-DD", "YYYY/MM/DD", "YYYYMM"],
+      "missing_values": ["NA", "-", "..."],
+      "decimal_separator": ".",
+      "thousands_separator": ","
+    },
+    "update_schedule": {
+      "daily_updates": ["9:00", "12:00", "15:00"],
+      "timezone": "JST (UTC+9)",
+      "release_calendar": "Available on website"
+    },
+    "limitations": {
+      "api": "No public API available",
+      "rate_limits": "Unknown - manual access only",
+      "historical_data": "Extended history requires email request",
+      "bulk_download": "Manual download required"
+    },
+    "contact": {
+      "historical_data_requests": "post.prd8@boj.or.jp",
+      "general_inquiries": "Via website contact form"
+    }
+  }
+}
