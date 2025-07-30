@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: dxkstt
+Version: 0.1.4
+Summary: This is a speech-to-text package created by Kaushik
+Author: kaushik
+Author-email: pubgkaushik@gmail.com
+Requires-Python: >=3.6
+Requires-Dist: selenium
+Requires-Dist: webdriver-manager
+Requires-Dist: speechrecognition
+Requires-Dist: colorama
+Requires-Dist: pyaudio
+Requires-Dist: mtranslate
+
