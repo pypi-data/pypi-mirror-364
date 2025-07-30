@@ -1,0 +1,10 @@
+[project]
+name = "heathcliff"
+version = "0.1.0"
+description = "Pull features from ArcGIS Feature Servers"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "httpx>=0.28.1",
+    "tqdm>=4.67.1",
+]
