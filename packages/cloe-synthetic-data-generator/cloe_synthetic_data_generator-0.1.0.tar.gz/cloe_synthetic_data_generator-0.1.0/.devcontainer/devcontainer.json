@@ -1,0 +1,34 @@
+{
+	"name": "cloe-synthetic-data-generator-dev-environment",
+	"build":
+		{
+			"dockerfile": "Containerfile",
+			"context": "."
+		},
+	"runArgs": [
+		"--env-file",
+		".env"
+	],
+  "features": {
+    "ghcr.io/devcontainers/features/azure-cli:1": {}
+  },
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"samuelcolvin.jinjahtml",
+				"streetsidesoftware.code-spell-checker",
+				"christian-kohler.path-intellisense",
+				"charliermarsh.ruff",
+				"ms-python.mypy-type-checker",
+				"tamasfe.even-better-toml",
+				"oderwat.indent-rainbow",
+				"mhutchie.git-graph",
+				"vivaxy.vscode-conventional-commits",
+        		"databricks.databricks"
+			]
+		}
+	},
+	"postCreateCommand": "uv sync --group dev && uvx pre-commit install"
+
+}

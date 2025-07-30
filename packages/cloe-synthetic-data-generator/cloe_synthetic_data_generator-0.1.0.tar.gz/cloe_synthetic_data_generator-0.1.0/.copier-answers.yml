@@ -1,0 +1,10 @@
+# Changes here will be overwritten by Copier
+_commit: 0.4.1
+_src_path: git+https://dev.azure.com/initions-consulting/CLOE/_git/cloe-package-template-py
+project_description: A new cool package.
+project_name: cloe-synthetic-data-generator
+python_devops_environment_name: cloe-synthetic-data-generator
+python_devops_repository_name: cloe-synthetic-data-generator-py
+python_package_distribution_name: cloe-synthetic-data-generator
+python_package_import_name: cloe_synthetic_data_generator
+version: 0.1.0
