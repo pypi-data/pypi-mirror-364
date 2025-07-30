@@ -1,0 +1,78 @@
+## TEMPLATE FILE - update this file based on the individual project!
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lenskit-auto"
+version = "0.2.0"
+description = "LensKit-Auto is built as a wrapper around the Python LensKit recommender-system library. It automates algorithm selection and hyper parameter optimization and can build ensemble models based on the LensKit models."
+authors = [
+    {name = "Tobias Vente", email = "tobias.vente@uni-siegen.de"},
+    {name = "Youssef Fayad", email = "youssef.fayad@student.uni-siegen.de"},
+    {name = "Michael Ekstrand", email = "michaelekstrand@boisestate.edu"}
+]
+
+classifiers = [
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+]
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE.md"]
+requires-python = ">=3.12, <3.13"
+
+##Add this project's dependencies
+dependencies = [
+    "smac>=2.3.1",
+    "lenskit>=2025.2.0",
+    "numpy>=2.2.6",
+    "pandas>=2.2.3",
+    "scikit-learn>=1.6.1",
+    "scipy>=1.15.3",
+    "numba>=0.61.2",
+    "typing-extensions>=4.13.2",
+    "matplotlib>=3.10.0",
+]
+
+[project.urls]
+## FIXME Correct the URLs
+homepage = "https://lenskit-auto.readthedocs.io/en/latest/"
+source = "https://github.com/ISG-Siegen/lenskit-auto"
+
+[project.optional-dependencies]
+# These are the dev dependencies we use across LensKit projects.
+# Add additional ones as needed.
+dev = [
+    # tooling support
+    "conda-lock",
+    "invoke >=1",
+    "requests >=2",
+    "sphinx-autobuild >= 2021",
+
+    # quality control
+    "flake8>= 7.0.0",
+    "rstcheck",
+    "mypy ~= 1.0",
+
+    # test coverage
+    "coverage >= 5.0.0",
+    "pytest-cov>= 4.0.0",
+]
+# These are the test dependencies used for most LensKit projects.
+# Add additional dependencies here as needed.
+test = [
+    "pytest >= 8.4.1",
+]
+# These are the documentation dependencies used for most LensKit projects.
+# Add additional dependencies here as needed.
+doc = [
+    "sphinx >= 4.2",
+    "sphinxcontrib-bibtex >= 2.0",
+]
+
+# We always use conda-forge for our documentation
+[tool.conda-lock]
+channels = [
+    "conda-forge"
+]
