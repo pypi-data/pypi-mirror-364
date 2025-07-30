@@ -1,0 +1,5 @@
+fractal-task-tools==0.0.13
+
+[dev]
+build
+bumpver

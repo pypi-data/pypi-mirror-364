@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: testing-tasks-mock
+Version: 0.1.3
+Summary: Fake tasks package
+Author-email: Tommaso Comparin <tommaso.comparin@exact-lab.it>
+License: BSD-3-Clause
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: fractal-task-tools==0.0.13
+Provides-Extra: dev
+Requires-Dist: build; extra == "dev"
+Requires-Dist: bumpver; extra == "dev"
+Dynamic: license-file
+
+
+
+## How to make a release
+From the development environment:
+```
+bumpver update --patch --dry
+```
+

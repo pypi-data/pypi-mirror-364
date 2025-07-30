@@ -1,0 +1,42 @@
+[project]
+name = "testing-tasks-mock"
+version = "0.1.3"
+description = "Fake tasks package"
+
+authors = [
+    {name="Tommaso Comparin", email="tommaso.comparin@exact-lab.it"},
+]
+readme = "README.md"
+license = {text ="BSD-3-Clause"}
+
+
+requires-python = ">=3.10"
+dependencies = ["fractal-task-tools==0.0.13"]
+
+[project.optional-dependencies]
+dev = ["build", "bumpver"]
+
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["testing_tasks_mock"]
+
+# Always include the __FRACTAL_MANIFEST__.json file in the package
+[tool.setuptools.package-data]
+"*" = ["__FRACTAL_MANIFEST__.json"]
+
+[tool.bumpver]
+current_version = "0.1.3"
+version_pattern = "MAJOR.MINOR.PATCH[PYTAGNUM]"
+commit_message = "bump version {old_version} -> {new_version}"
+commit = true
+tag = true
+push = true
+
+[tool.bumpver.file_patterns]
+"pyproject.toml" = ['version = "{version}"$']
+"src/testing_tasks_mock/__init__.py" = ['__VERSION__ = "{version}"$']
+
