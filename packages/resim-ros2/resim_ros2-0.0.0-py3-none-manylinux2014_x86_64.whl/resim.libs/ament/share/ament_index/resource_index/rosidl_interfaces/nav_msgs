@@ -1,0 +1,5 @@
+msg/GridCells.msg
+msg/MapMetaData.msg
+msg/OccupancyGrid.msg
+msg/Odometry.msg
+msg/Path.msg

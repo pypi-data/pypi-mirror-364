@@ -1,0 +1,11 @@
+msg/FloatingPointRange.msg
+msg/IntegerRange.msg
+msg/ListParametersResult.msg
+msg/Log.msg
+msg/Parameter.msg
+msg/ParameterDescriptor.msg
+msg/ParameterEvent.msg
+msg/ParameterEventDescriptors.msg
+msg/ParameterType.msg
+msg/ParameterValue.msg
+msg/SetParametersResult.msg

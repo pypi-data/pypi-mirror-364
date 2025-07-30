@@ -1,0 +1,6 @@
+<library path="rosbag2_storage_default_plugins">
+<class name="sqlite3" type="rosbag2_storage_plugins::SqliteStorage" base_class_type="rosbag2_storage::storage_interfaces::ReadWriteInterface">
+<description>rosbag2_storage_plugins::SqliteStorage</description>
+</class>
+
+</library>
