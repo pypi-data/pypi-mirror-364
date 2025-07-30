@@ -1,0 +1,178 @@
+Metadata-Version: 2.4
+Name: lmstrix
+Version: 1.0.43
+Summary: A toolkit for managing and testing LM Studio models with automatic context limit discovery
+Project-URL: Homepage, https://github.com/twardoch/lmstrix
+Project-URL: Documentation, https://github.com/twardoch/lmstrix#readme
+Project-URL: Repository, https://github.com/twardoch/lmstrix.git
+Project-URL: Issues, https://github.com/twardoch/lmstrix/issues
+Project-URL: Changelog, https://github.com/twardoch/lmstrix/blob/main/CHANGELOG.md
+Author-email: Adam Twardoch <adam+github@twardoch.com>
+Maintainer-email: Adam Twardoch <adam+github@twardoch.com>
+License: MIT License
+        
+        Copyright (c) 2025 Adam Twardoch
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+License-File: LICENSE
+Keywords: ai,cli,context,developer-tools,llm,lmstudio,optimization,testing
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Quality Assurance
+Classifier: Topic :: System :: Benchmark
+Classifier: Typing :: Typed
+Requires-Python: >=3.10
+Requires-Dist: fire>=0.5
+Requires-Dist: httpx>=0.24
+Requires-Dist: hydra-core
+Requires-Dist: lmstudio>=1.4.1
+Requires-Dist: loguru>=0.7
+Requires-Dist: omegaconf
+Requires-Dist: pydantic>=2.0
+Requires-Dist: rich>=13.9.4
+Requires-Dist: tenacity>=8.5.0
+Requires-Dist: tiktoken>=0.5
+Requires-Dist: toml>=0.10
+Provides-Extra: dev
+Requires-Dist: black>=23.0; extra == 'dev'
+Requires-Dist: mypy>=1.0; extra == 'dev'
+Requires-Dist: pre-commit>=3.0; extra == 'dev'
+Requires-Dist: pytest-asyncio>=0.21; extra == 'dev'
+Requires-Dist: pytest-cov>=4.0; extra == 'dev'
+Requires-Dist: pytest-mock>=3.10; extra == 'dev'
+Requires-Dist: pytest>=7.0; extra == 'dev'
+Requires-Dist: ruff>=0.1.0; extra == 'dev'
+Requires-Dist: setuptools>=68.0.0; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: myst-parser>=2.0; extra == 'docs'
+Requires-Dist: sphinx-autodoc-typehints>=1.25; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme>=2.0; extra == 'docs'
+Requires-Dist: sphinx>=7.0; extra == 'docs'
+Description-Content-Type: text/markdown
+
+LMStrix is a professional, installable Python toolkit designed to supercharge your interaction with [LM Studio](https://lmstudio.ai/). It provides a powerful command-line interface (CLI) and a clean Python API for managing, testing, and running local language models, with a standout feature: the **Adaptive Context Optimizer**.
+
+**For the full documentation, please visit the [LMStrix GitHub Pages site](https://twardoch.github.io/lmstrix/).**
+
+## Key Features
+
+- **Automatic Context Optimization**: Discover the true context limit of any model with the `test` command.
+- **Full Model Management**: Programmatically `list` available models and `scan` for newly downloaded ones.
+- **Flexible Inference Engine**: Run inference with a powerful two-phase prompt templating system that separates prompt structure from its content.
+- **Rich CLI**: A beautiful and intuitive command-line interface built with `rich` and `fire`.
+- **Modern Python API**: An `async`-first API designed for high-performance, concurrent applications.
+
+## Installation
+
+```bash
+# Using pip
+pip install lmstrix
+
+# Using uv (recommended)
+uv pip install lmstrix
+```
+
+**For more detailed installation instructions, see the [Installation page](https://twardoch.github.io/lmstrix/installation/).**
+
+## Quick Start
+
+### Command-Line Interface (CLI)
+
+```bash
+# First, scan for available models in LM Studio
+lmstrix scan
+
+# List all models with their test status
+lmstrix list
+
+# Test the context limit for a specific model
+lmstrix test "model-id-here"
+
+# Run inference on a model
+lmstrix infer "Your prompt here" --model "model-id" --max-tokens 150
+```
+
+### Python API
+
+```python
+import asyncio
+from lmstrix import LMStrix
+
+async def main():
+    # Initialize the client
+    lms = LMStrix()
+    
+    # Scan for available models
+    await lms.scan_models()
+    
+    # List all models
+    models = await lms.list_models()
+    print(models)
+    
+    # Test a specific model's context limits
+    model_id = models[0].id if models else None
+    if model_id:
+        result = await lms.test_model(model_id)
+        print(result)
+    
+    # Run inference
+    if model_id:
+        response = await lms.infer(
+            prompt="What is the meaning of life?",
+            model_id=model_id,
+            max_tokens=100
+        )
+        print(response.content)
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+**For more detailed usage instructions and examples, see the [Usage page](https://twardoch.github.io/lmstrix/usage/) and the [API Reference](https://twardoch.github.io/lmstrix/api/).**
+
+## Development
+
+```bash
+# Clone the repository
+git clone https://github.com/twardoch/lmstrix
+cd lmstrix
+
+# Install in development mode with all dependencies
+pip install -e ".[dev]"
+
+# Run the test suite
+pytest
+```
+
+## Changelog
+
+All notable changes to this project are documented in the [CHANGELOG.md](https://twardoch.github.io/lmstrix/changelog) file.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
