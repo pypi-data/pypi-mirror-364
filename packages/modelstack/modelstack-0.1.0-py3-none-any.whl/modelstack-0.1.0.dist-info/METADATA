@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: modelstack
+Version: 0.1.0
+Summary: ModelStack - Lightweight Local Model Registry
+Author: Aniruddha
+Requires-Python: >=3.7
+License-File: LICENSE
+Requires-Dist: click
+Requires-Dist: tabulate
+Requires-Dist: joblib
+Requires-Dist: torch
+Requires-Dist: scikit-learn
+Requires-Dist: numpy
+
