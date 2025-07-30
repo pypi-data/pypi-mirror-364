@@ -1,0 +1,13 @@
+LICENSE
+README.md
+pyproject.toml
+git_glance/__init__.py
+git_glance/config.py
+git_glance/git.py
+git_glance/main.py
+git_glance.egg-info/PKG-INFO
+git_glance.egg-info/SOURCES.txt
+git_glance.egg-info/dependency_links.txt
+git_glance.egg-info/entry_points.txt
+git_glance.egg-info/requires.txt
+git_glance.egg-info/top_level.txt
