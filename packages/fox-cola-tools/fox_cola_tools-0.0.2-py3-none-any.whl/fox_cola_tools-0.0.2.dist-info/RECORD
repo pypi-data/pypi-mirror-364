@@ -1,0 +1,12 @@
+fox_cola_tools-0.0.2.dist-info/licenses/LICENSE,sha256=U4omJg-k_9FwfKCYIb9f6yGcUsTe2Mg4wZQlqw0-juU,168
+foxcola/__init__.py,sha256=IxaDLk5-l09U4zTM2fK45MequWsB1qmZPYG7fLOn0rM,60
+foxcola/api_tools.py,sha256=hNQJ64tZLTNkbgZmGcr8Wrwc4Q0r7nKX1888TgQncX0,76
+foxcola/common_tools.py,sha256=Aw0Kc0N-y7p5s-qxHtvt3z6ajLjo_15VwDhy-EdgOP8,4253
+foxcola/conf.py,sha256=AAgeGAhNvmOpXhxap7TILb9wza3rl2W3fXwijozHudY,225
+foxcola/view_tools.py,sha256=f3ZjjXrIyZCe2ckXU7eLEB-l9GsHyEkMc4QxeUk7QwY,325
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/test_tools.py,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
+fox_cola_tools-0.0.2.dist-info/METADATA,sha256=JdqoO6HAnc6bN-tfrALrdBg-11vC6kQrV6mWQVw-6eU,887
+fox_cola_tools-0.0.2.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+fox_cola_tools-0.0.2.dist-info/top_level.txt,sha256=TA9J4JBGjriKMHKegJBmlg92C4wSakH-tzkaywHNpgs,14
+fox_cola_tools-0.0.2.dist-info/RECORD,,
