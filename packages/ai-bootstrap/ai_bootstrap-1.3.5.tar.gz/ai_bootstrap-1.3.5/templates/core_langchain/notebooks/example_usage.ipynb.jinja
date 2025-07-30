@@ -1,0 +1,328 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# {{ project_name|replace('_', ' ')|title }} - Example Usage\n",
+    "\n",
+    "This notebook demonstrates how to use the LangChain application components."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import sys\n",
+    "import os\n",
+    "sys.path.append(os.path.dirname(os.getcwd()))\n",
+    "\n",
+    "from src.main import app\n",
+    "from src.config import settings\n",
+    "from src.llms.providers import get_llm\n",
+    "from src.chains.custom_chains import get_chain_by_name"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Configuration Overview"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Display current configuration\n",
+    "print(f\"Project: {settings.PROJECT_NAME}\")\n",
+    "print(f\"App Type: {settings.APP_TYPE}\")\n",
+    "print(f\"LLM Model: {settings.LLM_MODEL}\")\n",
+    "print(f\"Chain Types: {settings.CHAIN_TYPES}\")\n",
+    "print(f\"Include Tools: {settings.INCLUDE_TOOLS}\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Basic LLM Usage"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Get LLM instance\n",
+    "llm = get_llm()\n",
+    "print(f\"LLM Type: {type(llm)}\")\n",
+    "\n",
+    "# Simple completion\n",
+    "response = llm.invoke(\"What is artificial intelligence?\")\n",
+    "print(f\"Response: {response.content if hasattr(response, 'content') else response}\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Chain Examples"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "{% if "llm" in chain_types %}\n",
+    "# LLM Chain example\n",
+    "llm_chain = get_chain_by_name(\"llm\")\n",
+    "result = llm_chain.invoke({\"input\": \"Explain machine learning in simple terms\"})\n",
+    "print(f\"LLM Chain Result: {result}\")\n",
+    "{% endif %}"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "{% if "retrieval" in chain_types %}\n",
+    "# Retrieval Chain example (if vector store exists)\n",
+    "try:\n",
+    "    retrieval_chain = get_chain_by_name(\"rag\")\n",
+    "    result = retrieval_chain.invoke(\"What information is available?\")\n",
+    "    print(f\"Retrieval Result: {result}\")\n",
+    "except Exception as e:\n",
+    "    print(f\"Retrieval chain not available: {e}\")\n",
+    "    print(\"To use retrieval, add documents to the data/ directory and run ingestion.\")\n",
+    "{% endif %}"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Application Interface"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Application stats\n",
+    "stats = app.get_stats()\n",
+    "print(\"Application Statistics:\")\n",
+    "for key, value in stats.items():\n",
+    "    print(f\"  {key}: {value}\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "{% if app_type == "qa_system" %}\n",
+    "# Question answering\n",
+    "question = \"What are the benefits of using LangChain?\"\n",
+    "result = app.ask_question(question)\n",
+    "print(f\"Question: {question}\")\n",
+    "print(f\"Answer: {result.get('answer', result.get('error', 'No answer'))}\")\n",
+    "{% elif app_type == "text_processor" %}\n",
+    "# Text processing\n",
+    "text = \"LangChain is a framework for developing applications powered by language models. It provides tools for connecting language models to other sources of data and allowing them to interact with their environment.\"\n",
+    "result = app.process_text(text, \"summarize\")\n",
+    "print(f\"Original: {text}\")\n",
+    "print(f\"Summary: {result.get('processed_text', result.get('error', 'No result'))}\")\n",
+    "{% else %}\n",
+    "# Custom chain execution\n",
+    "input_data = {\"input\": \"Tell me about the future of AI\"}\n",
+    "result = app.run_chain(input_data)\n",
+    "print(f\"Input: {input_data}\")\n",
+    "print(f\"Result: {result.get('result', result.get('error', 'No result'))}\")\n",
+    "{% endif %}"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "{% if include_tools %}\n",
+    "## Tools Usage\n",
+    "{% endif %}"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "{% if include_tools %}\n",
+    "# List available tools\n",
+    "tools = app.list_tools()\n",
+    "print(f\"Available tools: {tools}\")\n",
+    "\n",
+    "# Use calculator tool\n",
+    "calc_result = app.use_tool(\"calculator\", expression=\"(10 + 5) * 2\")\n",
+    "print(f\"Calculator result: {calc_result}\")\n",
+    "\n",
+    "# Use web search tool\n",
+    "search_result = app.use_tool(\"web_search\", query=\"latest developments in AI\")\n",
+    "print(f\"Search result: {search_result.get('result', 'No result')[:200]}...\")\n",
+    "{% else %}\n",
+    "print(\"Tools are not enabled in this configuration.\")\n",
+    "{% endif %}"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Custom Prompt Examples"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from src.prompts.templates import get_basic_prompt, create_prompt_template\n",
+    "\n",
+    "# Get basic prompt\n",
+    "basic_prompt = get_basic_prompt()\n",
+    "print(f\"Basic prompt template: {basic_prompt.template[:200]}...\")\n",
+    "\n",
+    "# Create custom prompt\n",
+    "custom_template = \"You are a helpful assistant specializing in {topic}. Answer this question: {question}\"\n",
+    "custom_prompt = create_prompt_template(custom_template)\n",
+    "\n",
+    "# Use with LLM\n",
+    "formatted_prompt = custom_prompt.format(topic=\"machine learning\", question=\"What is overfitting?\")\n",
+    "response = llm.invoke(formatted_prompt)\n",
+    "print(f\"Custom prompt response: {response.content if hasattr(response, 'content') else response}\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Error Handling and Debugging"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Test error handling\n",
+    "try:\n",
+    "    # This should fail gracefully\n",
+    "    bad_chain = get_chain_by_name(\"nonexistent_chain\")\n",
+    "except Exception as e:\n",
+    "    print(f\"Expected error: {e}\")\n",
+    "\n",
+    "{% if include_tools %}\n",
+    "# Test tool error handling\n",
+    "bad_tool_result = app.use_tool(\"nonexistent_tool\")\n",
+    "print(f\"Tool error result: {bad_tool_result}\")\n",
+    "{% endif %}"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Performance Testing"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import time\n",
+    "\n",
+    "# Test response time\n",
+    "start_time = time.time()\n",
+    "{% if app_type == "qa_system" %}\n",
+    "result = app.ask_question(\"What is the current date?\")\n",
+    "{% else %}\n",
+    "result = app.run_chain({\"input\": \"What is the current date?\"})\n",
+    "{% endif %}\n",
+    "end_time = time.time()\n",
+    "\n",
+    "print(f\"Response time: {end_time - start_time:.2f} seconds\")\n",
+    "print(f\"Result: {result}\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Advanced Usage Patterns"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Batch processing example\n",
+    "questions = [\n",
+    "    \"What is Python?\",\n",
+    "    \"Explain object-oriented programming\",\n",
+    "    \"What are the benefits of type hints?\"\n",
+    "]\n",
+    "\n",
+    "print(\"Batch processing results:\")\n",
+    "for i, question in enumerate(questions, 1):\n",
+    "    {% if app_type == "qa_system" %}\n",
+    "    result = app.ask_question(question)\n",
+    "    answer = result.get('answer', result.get('error', 'No answer'))\n",
+    "    {% else %}\n",
+    "    result = app.run_chain({\"input\": question})\n",
+    "    answer = result.get('result', result.get('error', 'No result'))\n",
+    "    {% endif %}\n",
+    "    print(f\"{i}. Q: {question}\")\n",
+    "    print(f\"   A: {answer[:100]}...\\n\")"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.{{ python_version.split('.')[1] }}.0"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}

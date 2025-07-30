@@ -1,0 +1,324 @@
+# {{ project_name }}
+
+A modular LangChain application built with {{ llm_provider|title }} for {{ app_type.replace('_', ' ')|title }}.
+
+## 🚀 Features
+
+- **LLM Provider**: {{ llm_provider|title }}
+- **Application Type**: {{ app_type.replace('_', ' ')|title }}
+- **UI Framework**: {{ ui_framework|title }}
+- **Chain Types**: {{ chain_types|join(', ')|title }}
+{% if include_tools %}
+- **Tools**: Web search, calculator, file operations, Python REPL
+{% endif %}
+- **Modular Architecture**: Clean separation of concerns
+- **Type-Safe Configuration**: Pydantic-based settings
+
+## 🏗️ Architecture
+
+This application follows LangChain's modular design principles:
+
+src/
+├── chains/ # Custom chain implementations
+├── prompts/ # Prompt templates and management
+├── llms/ # LLM provider configurations
+{% if include_tools %}
+├── tools/ # Custom tool implementations
+{% endif %}
+├── config.py # Application configuration
+
+
+## 📋 Prerequisites
+
+- Python {{ python_version }}+
+{% if llm_provider == "openai" %}
+- OpenAI API key
+{% elif llm_provider == "anthropic" %}
+- Anthropic API key
+{% elif llm_provider == "ollama" %}
+- Ollama installed and running
+{% endif %}
+{% if include_tools %}
+- Optional: API keys for external tools (Serper, Tavily)
+{% endif %}
+
+## 🛠️ Installation
+
+1. **Clone and navigate to the project:**
+cd {{ project_name }}
+
+
+
+2. **Create and activate virtual environment:**
+python -m venv venv
+source venv/bin/activate # On Windows
+
+
+
+3. **Install dependencies:**
+pip install -r requirements.txt
+
+
+
+4. **Set up environment variables:**
+cp .env.example .env
+
+Edit .env with your API keys and configuration
+
+
+## 📚 Usage
+
+### 1. Configure Environment
+
+Set up your `.env` file with the required settings:
+
+{% if llm_provider == "openai" %}
+OPENAI_API_KEY=your_openai_api_key_here
+{% elif llm_provider == "anthropic" %}
+ANTHROPIC_API_KEY=your_anthropic_api_key_here
+{% elif llm_provider == "ollama" %}
+http://localhost:11434
+{% endif %}
+
+
+
+### 2. Run the Application
+
+{% if ui_framework == "streamlit" %}
+**Streamlit Web Interface:**
+streamlit run app.py
+
+
+{% elif ui_framework == "fastapi" %}
+**FastAPI Web Service:**
+python app.py
+
+Or: uvicorn app:fastapi_app --reload
+
+{% else %}
+**Command Line Interface:**
+{% if app_type == "qa_system" %}
+python app.py --question "What is LangChain?"
+
+
+{% elif app_type == "_processor" %}
+python app.py -- "Your  here" --operation summarize
+
+
+{% else %}
+python app.py --input '{"input": "your input here"}'
+
+
+{% endif %}
+{% endif %}
+
+### 3. Python API Usage
+
+from src.main import app
+
+Initialize the application
+app.initialize()
+
+{% if app_type == "qa_system" %}
+
+Ask a question
+result = app.ask_question("What is machine learning?")
+print(result["answer"])
+Process 
+result = app.process_("Long  here...", "summarize")
+print(result["processed_"])
+Run custom chain
+result = app.run_chain({"input": "your input"})
+print(result["result"])
+{% if include_tools %}
+
+Use tools
+result = app.use_tool("web_search", query="latest AI news")
+print(result["result"])
+
+
+## 🔧 Chain Types
+
+This application supports the following chain types:
+
+{% for chain_type in chain_types %}
+### {{ chain_type|title }} Chain
+{% if chain_type == "llm" %}
+Basic LLM chain for  generation and completion tasks.
+{% elif chain_type == "sequential" %}
+Sequential chain that connects multiple processing steps.
+{% elif chain_type == "retrieval" %}
+Retrieval-augmented generation for question answering with con.
+{% endif %}
+
+{% endfor %}
+
+{% if include_tools %}
+## 🛠️ Available Tools
+
+- **Web Search**: Search the web using DuckDuckGo
+- **Calculator**: Perform mathematical calculations
+- **File Reader**: Read and analyze  files
+- **Python REPL**: Execute Python code safely
+- **API Call**: Make HTTP requests to external APIs
+
+### Using Tools
+
+{% if ui_framework == "streamlit" %}
+Use the tools section in the Streamlit interface to interact with tools.
+{% elif ui_framework == "fastapi" %}
+Make POST requests to `/tool` endpoint:
+{
+"tool_name": "web_search
+, "arguments": {"query": "artificial intelligen
+
+{% else %}
+python app.py --tool web_search --tool-args '{"query": "AI news"}'
+
+
+{% endif %}
+{% endif %}
+
+## ⚙️ Configuration
+
+Key settings in `.env`:
+
+{% if llm_provider == "openai" %}
+- `OPENAI_API_KEY`: Your OpenAI API key
+- `LLM_MODEL`: Model to use (default: gpt-3.5-turbo)
+{% elif llm_provider == "anthropic" %}
+- `ANTHROPIC_API_KEY`: Your Anthropic API key
+- `LLM_MODEL`: Model to use (default: claude-3-haiku-20240307)
+{% elif llm_provider == "ollama" %}
+- `OLLAMA_BASE_URL`: Ollama server URL
+- `LLM_MODEL`: Local model to use (default: llama2)
+{% endif %}
+- `TEMPERATURE`: Response creativity (0.0-1.0)
+- `MAX_TOKENS`: Maximum response length
+{% if "retrieval" in chain_types %}
+- `CHUNK_SIZE`: Document chunk size for retrieval
+- `SIMILARITY_TOP_K`: Number of relevant chunks to retrieve
+{% endif %}
+
+## 🧪 Development
+
+{% if include_tests %}
+**Run tests:**
+pytest tests/
+
+
+{% endif %}
+
+{% if include_notebooks %}
+**Use Jupyter notebooks:**
+jupyter notebook notebooks/
+
+
+{% endif %}
+
+**Check application stats:**
+python app.py --stats
+
+
+
+## 📁 Project Structure
+
+{{ project_name }}/
+├── src/
+│ ├── chains/ # Chain implementations
+│ │ └── custom_chains.py
+│ ├── prompts/ # Prompt templates
+│ │ └── templates.py
+│ ├── llms/ # LLM providers
+│ │ └── providers.py
+{% if include_tools %}
+│ ├── tools/ # Custom tools
+│ │ └── custom_tools.py
+{% endif %}
+│ ├── config.py # Configuration
+│ └── main.py # Core application
+├── app.py # Web/CLI application
+{% if "retrieval" in chain_types %}
+├── data/ # Data storage
+{% endif %}
+├── requirements.txt # Dependencies
+{% if include_notebooks %}
+├── notebooks/ # Jupyter notebooks
+{% endif %}
+{% if include_tests %}
+├── tests/ # Test files
+{% endif %}
+
+
+## 🔧 Customization
+
+### Adding New Chains
+
+1. Create chain logic in `src/chains/custom_chains.py`
+2. Add chain type to configuration
+3. Update the main application logic
+
+### Custom Prompts
+
+1. Add prompts to `src/prompts/templates.py`
+2. Reference in your chains
+3. Use Jinja2 templating for dynamic prompts
+
+{% if include_tools %}
+### Adding New Tools
+
+1. Create tool class in `src/tools/custom_tools.py`
+2. Inherit from `BaseTool`
+3. Add to `get_available_tools()` function
+{% endif %}
+
+### Different LLM Providers
+
+1. Add provider logic to `src/llms/providers.py`
+2. Update configuration options
+3. Install required dependencies
+
+## 🐛 Troubleshooting
+
+**Application not initializing:**
+- Check API keys in `.env`
+- Verify LLM provider is accessible
+{% if llm_provider == "ollama" %}
+- Ensure Ollama is running: `ollama serve`
+{% endif %}
+
+{% if "retrieval" in chain_types %}
+**Retrieval chain issues:**
+- Check if vector store exists
+- Verify document format is supported
+- Ensure embeddings model is available
+{% endif %}
+
+{% if include_tools %}
+**Tool execution problems:**
+- Verify tool-specific API keys
+- Check internet connection for web tools
+- Ensure proper argument format
+{% endif %}
+
+
+**Performance issues:**
+- Reduce `MAX_TOKENS` for faster responses
+- Use smaller/faster models
+- Implement caching for repeated queries
+
+## 📄 License
+
+MIT License - see LICENSE file for details.
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Add new chains, tools, or improvements
+4. Include tests for new functionality
+5. Submit a pull request
+
+---
+
+Built with ❤️ using [AI Bootstrap](https://github.com/your-repo/ai-bootstrap)

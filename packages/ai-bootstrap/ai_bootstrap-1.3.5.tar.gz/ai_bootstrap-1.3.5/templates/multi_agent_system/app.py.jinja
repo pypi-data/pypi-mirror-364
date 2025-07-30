@@ -1,0 +1,303 @@
+"""Main application for {{ project_name }}."""
+
+{% if ui_framework == "streamlit" %}
+import streamlit as st
+import asyncio
+from pathlib import Path
+import logging
+from src.graph import workflow, stream_workflow
+from src.config import settings
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Page configuration
+st.set_page_config(
+    page_title="{{ project_name }}",
+    page_icon="🤖",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+def main():
+    """Main Streamlit application."""
+    st.title("🤖 {{ project_name }}")
+    st.markdown("Multi-Agent System powered by LangGraph")
+    
+    # Sidebar
+    with st.sidebar:
+        st.header("⚙️ Configuration")
+        st.info(f"🧠 Model: {settings.LLM_MODEL}")
+        st.info(f"👥 Agents: {{ agents|length }}")
+        
+        # Agent status
+        st.subheader("Agent Status")
+        {% for agent in agents %}
+        st.success(f"✅ {{ agent.name|replace('_', ' ')|title }}")
+        {% endfor %}
+        
+        # Settings
+        max_iterations = st.slider("Max Iterations", 1, 20, settings.MAX_ITERATIONS)
+        enable_streaming = st.checkbox("Stream Response", True)
+    
+    # Main interface
+    st.subheader("💬 Task Input")
+    
+    # Task input
+    task = st.text_area(
+        "Describe your task:",
+        placeholder="Enter a task for the multi-agent system to work on...",
+        height=100
+    )
+    
+    if st.button("🚀 Start Workflow", type="primary"):
+        if not task.strip():
+            st.error("Please enter a task description.")
+            return
+        
+        # Create workflow container
+        workflow_container = st.container()
+        
+        with workflow_container:
+            st.subheader("🔄 Workflow Execution")
+            
+            if enable_streaming:
+                # Streaming execution
+                status_placeholder = st.empty()
+                progress_bar = st.progress(0)
+                results_container = st.container()
+                
+                try:
+                    step_count = 0
+                    for step in stream_workflow(task):
+                        step_count += 1
+                        progress_bar.progress(min(step_count / 10, 1.0))
+                        
+                        # Display step information
+                        with results_container:
+                            for node_name, node_output in step.items():
+                                if node_name != "__end__":
+                                    st.write(f"**{node_name.replace('_', ' ').title()}:**")
+                                    
+                                    # Show messages if available
+                                    messages = node_output.get("messages", [])
+                                    for msg in messages[-1:]:  # Show last message
+                                        st.write(f"💬 {msg.content}")
+                                    
+                                    st.divider()
+                        
+                        status_placeholder.info(f"Step {step_count} completed...")
+                    
+                    status_placeholder.success("✅ Workflow completed!")
+                    
+                except Exception as e:
+                    st.error(f"Workflow error: {e}")
+            
+            else:
+                # Non-streaming execution
+                with st.spinner("Executing workflow..."):
+                    try:
+                        result = workflow.run(task)
+                        
+                        st.success("✅ Workflow completed!")
+                        
+                        # Display final result
+                        if result.get("final_result"):
+                            st.subheader("📋 Final Result")
+                            st.write(result["final_result"])
+                        
+                        # Display workflow details
+                        with st.expander("🔍 Workflow Details"):
+                            st.json(result)
+                        
+                    except Exception as e:
+                        st.error(f"Workflow error: {e}")
+
+if __name__ == "__main__":
+    main()
+
+{% elif ui_framework == "chainlit" %}
+import chainlit as cl
+import logging
+from src.graph import workflow, stream_workflow
+from src.config import settings
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+@cl.on_chat_start
+async def on_chat_start():
+    """Initialize the multi-agent system when chat starts."""
+    
+    await cl.Message(
+        content=f"🤖 Welcome to {{ project_name }}!\n\n"
+                f"This is a multi-agent system with {{ agents|length }} specialized agents:\n"
+                {% for agent in agents %}
+                f"• **{{ agent.name|replace('_', ' ')|title }}**: {{ agent.role }}\n"
+                {% endfor %}
+                f"\nDescribe a task and the agents will collaborate to complete it!"
+    ).send()
+
+@cl.on_message
+async def on_message(message: cl.Message):
+    """Handle incoming messages."""
+    
+    task = message.content
+    
+    try:
+        # Show initial message
+        await cl.Message(content="🔄 Starting multi-agent workflow...").send()
+        
+        # Stream the workflow execution
+        async with cl.Step(name="Multi-Agent Workflow") as step:
+            step_messages = []
+            
+            for workflow_step in stream_workflow(task):
+                for node_name, node_output in workflow_step.items():
+                    if node_name != "__end__":
+                        # Get messages from this step
+                        messages = node_output.get("messages", [])
+                        for msg in messages:
+                            agent_name = node_name.replace('_', ' ').title()
+                            content = msg.content
+                            
+                            step_messages.append(f"**{agent_name}**: {content}")
+                            
+                            # Send intermediate update
+                            await cl.Message(
+                                content=f"💬 **{agent_name}**: {content[:200]}..."
+                            ).send()
+            
+            # Set final step content
+            step.output = "\n\n".join(step_messages)
+        
+        # Get final result
+        final_result = workflow.run(task)
+        
+        if final_result.get("final_result"):
+            await cl.Message(
+                content=f"✅ **Final Result:**\n\n{final_result['final_result']}"
+            ).send()
+        else:
+            await cl.Message(
+                content="✅ Workflow completed! Check the step details above for the full execution trace."
+            ).send()
+        
+    except Exception as e:
+        logger.error(f"Error processing message: {e}")
+        await cl.Message(
+            content=f"❌ Error: {str(e)}"
+        ).send()
+
+if __name__ == "__main__":
+    cl.run()
+
+{% else %}
+# CLI Application
+import argparse
+import asyncio
+import logging
+from src.graph import workflow, stream_workflow
+from src.config import settings
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+def main():
+    """Main CLI application."""
+    parser = argparse.ArgumentParser(description="{{ project_name }} - Multi-Agent System CLI")
+    parser.add_argument("--task", "-t", type=str, help="Task for the agents to work on")
+    parser.add_argument("--interactive", "-i", action="store_true", help="Interactive mode")
+    parser.add_argument("--stream", "-s", action="store_true", help="Stream workflow execution")
+    parser.add_argument("--max-iterations", type=int, default=settings.MAX_ITERATIONS, help="Maximum iterations")
+    
+    args = parser.parse_args()
+    
+    print("🤖 {{ project_name }} - Multi-Agent System")
+    print(f"Configured with {{ agents|length }} agents:")
+    {% for agent in agents %}
+    print(f"  • {{ agent.name|replace('_', ' ')|title }}: {{ agent.role }}")
+    {% endfor %}
+    print()
+    
+    if args.task:
+        # Single task mode
+        print(f"📝 Task: {args.task}")
+        execute_workflow(args.task, args.stream)
+    
+    elif args.interactive:
+        # Interactive mode
+        print("🚀 Interactive mode started. Type 'quit' to exit.")
+        
+        while True:
+            try:
+                task = input("\n💬 Enter task: ").strip()
+                
+                if task.lower() in ['quit', 'exit', 'q']:
+                    print("👋 Goodbye!")
+                    break
+                
+                if not task:
+                    continue
+                
+                execute_workflow(task, args.stream)
+                
+            except KeyboardInterrupt:
+                print("\n👋 Goodbye!")
+                break
+            except Exception as e:
+                print(f"❌ Error: {e}")
+    
+    else:
+        print("Please specify --task or --interactive mode")
+        parser.print_help()
+
+def execute_workflow(task: str, stream: bool = False):
+    """Execute the workflow with the given task."""
+    
+    if stream:
+        print("\n🔄 Streaming workflow execution:")
+        print("-" * 50)
+        
+        try:
+            for step in stream_workflow(task):
+                for node_name, node_output in step.items():
+                    if node_name != "__end__":
+                        agent_name = node_name.replace('_', ' ').title()
+                        print(f"\n🤖 {agent_name}:")
+                        
+                        # Show messages
+                        messages = node_output.get("messages", [])
+                        for msg in messages:
+                            print(f"  💬 {msg.content}")
+        
+        except Exception as e:
+            print(f"❌ Workflow error: {e}")
+    
+    else:
+        print("\n🔄 Executing workflow...")
+        
+        try:
+            result = workflow.run(task)
+            
+            print("✅ Workflow completed!")
+            
+            if result.get("final_result"):
+                print(f"\n📋 Final Result:\n{result['final_result']}")
+            
+            # Show summary
+            print(f"\n📊 Summary:")
+            print(f"  • Iterations: {result.get('iteration_count', 0)}")
+            print(f"  • Research findings: {len(result.get('research_findings', []))}")
+            print(f"  • Code solutions: {len(result.get('code_solutions', []))}")
+            print(f"  • Review feedback: {len(result.get('review_feedback', []))}")
+            
+        except Exception as e:
+            print(f"❌ Workflow error: {e}")
+
+if __name__ == "__main__":
+    main()
+{% endif %}

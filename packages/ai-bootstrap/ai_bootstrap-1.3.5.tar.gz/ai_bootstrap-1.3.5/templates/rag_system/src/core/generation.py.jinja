@@ -1,0 +1,302 @@
+"""Answer generation for {{ project_name }}."""
+
+from typing import List, Dict, Any, Optional
+import logging
+{% if framework == "langchain" %}
+from langchain.schema import Document
+from langchain.prompts import PromptTemplate
+from langchain.chains import LLMChain
+{% if llm_provider == "openai" %}
+from langchain_openai import ChatOpenAI
+{% elif llm_provider == "ollama" %}
+from langchain_community.llms import Ollama
+{% endif %}
+{% elif framework == "llamaindex" %}
+from llama_index.core import get_response_synthesizer
+from llama_index.core.response_synthesizers import ResponseMode
+{% if llm_provider == "openai" %}
+from llama_index.llms.openai import OpenAI
+{% elif llm_provider == "ollama" %}
+from llama_index.llms.ollama import Ollama
+{% endif %}
+{% endif %}
+
+from ..config import settings
+
+logger = logging.getLogger(__name__)
+
+class AnswerGenerator:
+    """Answer generation system."""
+    
+    def __init__(self):
+        """Initialize the generator."""
+        # Initialize LLM
+        {% if framework == "langchain" %}
+        {% if llm_provider == "openai" %}
+        self.llm = ChatOpenAI(
+            model=settings.LLM_MODEL,
+            temperature=settings.TEMPERATURE,
+            max_tokens=settings.MAX_TOKENS,
+            openai_api_key=settings.OPENAI_API_KEY,
+        )
+        {% elif llm_provider == "ollama" %}
+        self.llm = Ollama(
+            base_url=settings.OLLAMA_BASE_URL,
+            model=settings.LLM_MODEL,
+            temperature=settings.TEMPERATURE,
+        )
+        {% endif %}
+        {% elif framework == "llamaindex" %}
+        {% if llm_provider == "openai" %}
+        self.llm = OpenAI(
+            model=settings.LLM_MODEL,
+            temperature=settings.TEMPERATURE,
+            max_tokens=settings.MAX_TOKENS,
+            api_key=settings.OPENAI_API_KEY,
+        )
+        {% elif llm_provider == "ollama" %}
+        self.llm = Ollama(
+            base_url=settings.OLLAMA_BASE_URL,
+            model=settings.LLM_MODEL,
+            temperature=settings.TEMPERATURE,
+        )
+        {% endif %}
+        {% endif %}
+        
+        # Initialize prompt template
+        self.prompt_template = self._create_prompt_template()
+        
+        {% if framework == "langchain" %}
+        # Create LLM chain
+        self.chain = LLMChain(
+            llm=self.llm,
+            prompt=self.prompt_template,
+            verbose=True,
+        )
+        {% elif framework == "llamaindex" %}
+        # Create response synthesizer
+        self.response_synthesizer = get_response_synthesizer(
+            llm=self.llm,
+            response_mode=ResponseMode.COMPACT,
+        )
+        {% endif %}
+    
+    def _create_prompt_template(self) -> Any:
+        """Create the prompt template for answer generation.
+        
+        Returns:
+            Prompt template instance.
+        """
+        {% if framework == "langchain" %}
+        template = """You are an AI assistant that answers questions based on the provided context. 
+        Use only the information from the context to answer the question. If the context doesn't contain 
+        enough information to answer the question, say so clearly.
+
+        Context:
+        {context}
+
+        Question: {question}
+
+        Instructions:
+        - Provide a clear, concise answer based on the context
+        - If the context is insufficient, acknowledge this limitation
+        - Include relevant details from the context when helpful
+        - Maintain a helpful and professional tone
+
+        Answer:"""
+        
+        return PromptTemplate(
+            template=template,
+            input_variables=["context", "question"],
+        )
+        {% elif framework == "llamaindex" %}
+        # For LlamaIndex, we'll use the default prompt template
+        # Custom templates can be created using PromptTemplate from llama_index.core.prompts
+        return None
+        {% endif %}
+    
+    def generate_answer(
+        self, 
+        question: str, 
+        retrieved_documents: List[Any],
+        **kwargs
+    ) -> Dict[str, Any]:
+        """Generate an answer based on retrieved documents.
+        
+        Args:
+            question: User question.
+            retrieved_documents: List of retrieved documents.
+            **kwargs: Additional generation parameters.
+            
+        Returns:
+            Dictionary containing the answer and metadata.
+        """
+        {% if framework == "langchain" %}
+        # Prepare context from retrieved documents
+        context_texts = []
+        sources = []
+        
+        for doc in retrieved_documents:
+            context_texts.append(doc.page_content)
+            source = doc.metadata.get('source', 'Unknown')
+            if source not in sources:
+                sources.append(source)
+        
+        context = "\n\n".join(context_texts)
+        
+        # Generate answer
+        try:
+            response = self.chain.run(
+                context=context,
+                question=question,
+                **kwargs
+            )
+            
+            result = {
+                'answer': response.strip(),
+                'sources': sources,
+                'context_length': len(context),
+                'num_documents': len(retrieved_documents),
+            }
+            
+        except Exception as e:
+            logger.error(f"Error generating answer: {e}")
+            result = {
+                'answer': "I apologize, but I encountered an error while generating the answer.",
+                'sources': [],
+                'context_length': 0,
+                'num_documents': 0,
+                'error': str(e),
+            }
+        
+        {% elif framework == "llamaindex" %}
+        try:
+            # LlamaIndex handles context preparation internally
+            response = self.response_synthesizer.synthesize(
+                query=question,
+                nodes=retrieved_documents,
+            )
+            
+            # Extract sources from retrieved documents
+            sources = []
+            for node in retrieved_documents:
+                source = node.metadata.get('source', 'Unknown')
+                if source not in sources:
+                    sources.append(source)
+            
+            result = {
+                'answer': str(response).strip(),
+                'sources': sources,
+                'num_documents': len(retrieved_documents),
+            }
+            
+        except Exception as e:
+            logger.error(f"Error generating answer: {e}")
+            result = {
+                'answer': "I apologize, but I encountered an error while generating the answer.",
+                'sources': [],
+                'num_documents': 0,
+                'error': str(e),
+            }
+        {% endif %}
+        
+        logger.info(f"Generated answer for question: {question}")
+        return result
+    
+    def generate_streaming_answer(
+        self, 
+        question: str, 
+        retrieved_documents: List[Any]
+    ):
+        """Generate a streaming answer (generator function).
+        
+        Args:
+            question: User question.
+            retrieved_documents: List of retrieved documents.
+            
+        Yields:
+            Answer tokens as they are generated.
+        """
+        {% if framework == "langchain" %}
+        # For streaming, we need to use a different approach
+        # This is a simplified version - full streaming requires callback handlers
+        
+        context_texts = [doc.page_content for doc in retrieved_documents]
+        context = "\n\n".join(context_texts)
+        
+        prompt = self.prompt_template.format(
+            context=context,
+            question=question
+        )
+        
+        # Note: Actual streaming implementation would use callbacks
+        # This is a placeholder for the streaming interface
+        try:
+            response = self.llm.generate([prompt])
+            answer = response.generations[0][0].text
+            
+            # Simulate streaming by yielding word by word
+            for word in answer.split():
+                yield word + " "
+                
+        except Exception as e:
+            logger.error(f"Error in streaming generation: {e}")
+            yield "Error generating response."
+        
+        {% elif framework == "llamaindex" %}
+        try:
+            # LlamaIndex streaming support
+            streaming_response = self.llm.stream_complete(question)
+            
+            for token in streaming_response:
+                yield token.delta
+                
+        except Exception as e:
+            logger.error(f"Error in streaming generation: {e}")
+            yield "Error generating response."
+        {% endif %}
+    
+    def update_system_prompt(self, new_prompt: str):
+        """Update the system prompt template.
+        
+        Args:
+            new_prompt: New prompt template string.
+        """
+        {% if framework == "langchain" %}
+        self.prompt_template = PromptTemplate(
+            template=new_prompt,
+            input_variables=["context", "question"],
+        )
+        
+        self.chain = LLMChain(
+            llm=self.llm,
+            prompt=self.prompt_template,
+            verbose=True,
+        )
+        {% endif %}
+        
+        logger.info("System prompt updated")
+
+def main():
+    """Main function for testing generation."""
+    from .retrieval import DocumentRetriever
+    
+    # Initialize components
+    generator = AnswerGenerator()
+    retriever = DocumentRetriever()
+    retriever.load_vector_store()
+    
+    # Test question
+    question = "What is this document about?"
+    documents = retriever.retrieve_documents(question)
+    
+    if documents:
+        result = generator.generate_answer(question, documents)
+        print(f"Question: {question}")
+        print(f"Answer: {result['answer']}")
+        print(f"Sources: {', '.join(result['sources'])}")
+    else:
+        print("No documents found for the question.")
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,190 @@
+"""Research agent for {{ project_name }}."""
+
+from typing import Dict, Any, List
+import logging
+{% if llm_provider == "openai" %}
+from langchain_openai import ChatOpenAI
+{% elif llm_provider == "anthropic" %}
+from langchain_anthropic import ChatAnthropic
+{% elif llm_provider == "ollama" %}
+from langchain_community.llms import Ollama
+{% endif %}
+from langchain.prompts import ChatPromptTemplate
+from langchain.schema import HumanMessage
+from langchain_community.tools.tavily_search import TavilySearchResults
+
+from ..state import WorkflowState
+from ..config import settings
+from ..tools.web_search import search_web
+
+logger = logging.getLogger(__name__)
+
+class ResearchAgent:
+    """Agent specialized in research and information gathering."""
+    
+    def __init__(self):
+        """Initialize the research agent."""
+        {% if llm_provider == "openai" %}
+        self.llm = ChatOpenAI(
+            model=settings.LLM_MODEL,
+            temperature=0.1,
+            openai_api_key=settings.OPENAI_API_KEY,
+        )
+        {% elif llm_provider == "anthropic" %}
+        self.llm = ChatAnthropic(
+            model=settings.LLM_MODEL,
+            temperature=0.1,
+            anthropic_api_key=settings.ANTHROPIC_API_KEY,
+        )
+        {% elif llm_provider == "ollama" %}
+        self.llm = Ollama(
+            base_url=settings.OLLAMA_BASE_URL,
+            model=settings.LLM_MODEL,
+            temperature=0.1,
+        )
+        {% endif %}
+        
+        # Initialize search tool
+        if settings.TAVILY_API_KEY:
+            self.search_tool = TavilySearchResults(
+                api_key=settings.TAVILY_API_KEY,
+                max_results=5
+            )
+        else:
+            self.search_tool = None
+    
+    def create_research_prompt(self) -> ChatPromptTemplate:
+        """Create the research prompt template."""
+        return ChatPromptTemplate.from_messages([
+            ("system", """You are a research specialist agent. Your role is to gather, analyze, and synthesize information from various sources to answer questions or support decision-making.
+
+Your capabilities:
+- Web search and information retrieval
+- Data analysis and synthesis
+- Fact-checking and verification
+- Report generation
+
+When conducting research:
+1. Break down complex queries into specific research questions
+2. Use multiple sources to verify information
+3. Provide citations and sources for your findings
+4. Summarize key insights clearly
+5. Identify any limitations or gaps in available information
+
+Current task context: {task}
+Previous findings: {previous_research}
+
+Your response should include:
+- Key findings with sources
+- Analysis and insights
+- Recommendations for next steps
+"""),
+            ("human", "{query}")
+        ])
+    
+    def conduct_research(self, query: str, context: Dict[str, Any]) -> Dict[str, Any]:
+        """Conduct research on the given query."""
+        try:
+            research_results = []
+            
+            # Perform web search if available
+            if self.search_tool:
+                search_results = self.search_tool.run(query)
+                research_results.extend(search_results)
+                logger.info(f"Found {len(search_results)} search results")
+            
+            # Use LLM to analyze and synthesize findings
+            prompt = self.create_research_prompt()
+            
+            previous_research = "\n".join(
+                context.get("research_findings", [])[-3:]  # Last 3 findings
+            )
+            
+            response = self.llm.invoke(prompt.format_messages(
+                task=context.get("task", ""),
+                previous_research=previous_research,
+                query=query
+            ))
+            
+            # Extract and structure the research findings
+            findings = {
+                "query": query,
+                "findings": response.content,
+                "sources": [r.get("url", "") for r in research_results if isinstance(r, dict)],
+                "timestamp": str(context.get("iteration_count", 0)),
+            }
+            
+            return findings
+            
+        except Exception as e:
+            logger.error(f"Error in research: {e}")
+            return {
+                "query": query,
+                "findings": f"Research error: {str(e)}",
+                "sources": [],
+                "timestamp": str(context.get("iteration_count", 0)),
+            }
+    
+    def process_task(self, state: WorkflowState) -> Dict[str, Any]:
+        """Process the research task based on current state."""
+        task = state.get("task", "")
+        
+        # Extract research query from task or messages
+        if "research" in task.lower() or "find" in task.lower():
+            query = task
+        else:
+            # Look for research-related messages
+            recent_messages = state.get("messages", [])[-3:]
+            research_queries = []
+            
+            for msg in recent_messages:
+                content = msg.get("content", "")
+                if any(keyword in content.lower() for keyword in ["research", "find", "search", "investigate"]):
+                    research_queries.append(content)
+            
+            query = "; ".join(research_queries) or task
+        
+        # Conduct the research
+        research_result = self.conduct_research(query, state)
+        
+        return {
+            "research_findings": [research_result["findings"]],
+            "messages": [
+                HumanMessage(content=f"Research Agent: {research_result['findings']}")
+            ],
+            "agent_data": {
+                **state.get("agent_data", {}),
+                "research_agent": {
+                    "last_query": query,
+                    "last_findings": research_result,
+                    "sources_found": len(research_result["sources"])
+                }
+            }
+        }
+
+def research_agent_node(state: WorkflowState) -> Dict[str, Any]:
+    """LangGraph node function for the research agent."""
+    agent = ResearchAgent()
+    
+    try:
+        result = agent.process_task(state)
+        
+        # Add iteration count
+        result["iteration_count"] = 1
+        
+        logger.info("Research agent completed task")
+        return result
+        
+    except Exception as e:
+        logger.error(f"Error in research agent node: {e}")
+        return {
+            "messages": [
+                HumanMessage(content=f"Research Agent Error: {str(e)}")
+            ],
+            "research_findings": [f"Error: {str(e)}"],
+            "iteration_count": 1,
+            "agent_data": {
+                **state.get("agent_data", {}),
+                "research_agent": {"error": str(e)}
+            }
+        }

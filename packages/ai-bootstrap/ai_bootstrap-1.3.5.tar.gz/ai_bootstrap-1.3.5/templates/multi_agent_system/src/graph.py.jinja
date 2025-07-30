@@ -1,0 +1,144 @@
+"""Main workflow graph for {{ project_name }}."""
+
+from typing import Dict, Any, Literal
+import logging
+from langgraph.graph import StateGraph, END
+from langgraph.prebuilt import ToolExecutor
+
+from .state import WorkflowState, should_continue
+from .agents.supervisor import supervisor_node
+{% for agent in agents %}
+from .agents.{{ agent.name }} import {{ agent.name }}_node
+{% endfor %}
+from .config import settings
+
+logger = logging.getLogger(__name__)
+
+class MultiAgentWorkflow:
+    """Main workflow orchestrator for the multi-agent system."""
+    
+    def __init__(self):
+        """Initialize the workflow graph."""
+        self.graph = self._create_graph()
+    
+    def _create_graph(self) -> StateGraph:
+        """Create and configure the workflow graph."""
+        
+        # Initialize the graph with our state schema
+        workflow = StateGraph(WorkflowState)
+        
+        # Add all agent nodes
+        workflow.add_node("supervisor", supervisor_node)
+        {% for agent in agents %}
+        workflow.add_node("{{ agent.name }}", {{ agent.name }}_node)
+        {% endfor %}
+        
+        # Set entry point
+        workflow.set_entry_point("supervisor")
+        
+        # Add conditional edges from supervisor to agents
+        workflow.add_conditional_edges(
+            "supervisor",
+            self._route_to_agent,
+            {
+                {% for agent in agents %}
+                "{{ agent.name }}": "{{ agent.name }}",
+                {% endfor %}
+                "FINISH": END,
+            }
+        )
+        
+        # Add edges from agents back to supervisor
+        {% for agent in agents %}
+        workflow.add_edge("{{ agent.name }}", "supervisor")
+        {% endfor %}
+        
+        return workflow.compile()
+    
+    def _route_to_agent(self, state: WorkflowState) -> Literal[{% for agent in agents %}"{{ agent.name }}", {% endfor %}"FINISH"]:
+        """Route to the appropriate agent based on supervisor decision."""
+        
+        # Check if workflow should end
+        if not should_continue(state):
+            return "FINISH"
+        
+        next_agent = state.get("next_agent")
+        
+        if next_agent == "FINISH" or state.get("is_complete"):
+            return "FINISH"
+        
+        # Route to specific agent
+        {% for agent in agents %}
+        if next_agent == "{{ agent.name }}":
+            return "{{ agent.name }}"
+        {% endfor %}
+        
+        # Default to finishing if no valid agent
+        logger.warning(f"Unknown next_agent: {next_agent}, finishing workflow")
+        return "FINISH"
+    
+    def run(self, initial_task: str, config: Dict[str, Any] = None) -> Dict[str, Any]:
+        """Run the complete workflow."""
+        
+        from .state import create_initial_state
+        
+        # Create initial state
+        initial_state = create_initial_state(initial_task)
+        
+        logger.info(f"Starting workflow for task: {initial_task}")
+        
+        try:
+            # Execute the workflow
+            final_state = self.graph.invoke(
+                initial_state,
+                config=config or {}
+            )
+            
+            logger.info("Workflow completed successfully")
+            return final_state
+            
+        except Exception as e:
+            logger.error(f"Workflow execution error: {e}")
+            return {
+                **initial_state,
+                "error_message": str(e),
+                "is_complete": True,
+                "final_result": f"Workflow failed: {str(e)}"
+            }
+    
+    def stream(self, initial_task: str, config: Dict[str, Any] = None):
+        """Stream workflow execution for real-time updates."""
+        
+        from .state import create_initial_state
+        
+        initial_state = create_initial_state(initial_task)
+        
+        logger.info(f"Starting streaming workflow for task: {initial_task}")
+        
+        try:
+            for step in self.graph.stream(
+                initial_state,
+                config=config or {}
+            ):
+                yield step
+                
+        except Exception as e:
+            logger.error(f"Streaming workflow error: {e}")
+            yield {
+                "error": {
+                    "error_message": str(e),
+                    "is_complete": True,
+                    "final_result": f"Workflow failed: {str(e)}"
+                }
+            }
+
+# Global workflow instance
+workflow = MultiAgentWorkflow()
+
+def run_workflow(task: str, config: Dict[str, Any] = None) -> Dict[str, Any]:
+    """Convenience function to run the workflow."""
+    return workflow.run(task, config)
+
+def stream_workflow(task: str, config: Dict[str, Any] = None):
+    """Convenience function to stream the workflow."""
+    return workflow.stream(task, config)

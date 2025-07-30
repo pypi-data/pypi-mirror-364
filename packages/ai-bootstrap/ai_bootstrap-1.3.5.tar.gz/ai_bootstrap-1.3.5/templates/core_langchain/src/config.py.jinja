@@ -1,0 +1,79 @@
+"""Configuration management for {{ project_name }}."""
+
+import os
+from pathlib import Path
+from typing import Optional, List, Dict, Any
+from pydantic import BaseSettings, Field
+from pydantic_settings import BaseSettings
+
+class Settings(BaseSettings):
+    """Application settings for the LangChain application."""
+    
+    # Project settings
+    PROJECT_NAME: str = "{{ project_name }}"
+    PROJECT_ROOT: Path = Path(__file__).parent.parent
+    
+    # LLM Provider settings
+    {% if llm_provider == "openai" %}
+    OPENAI_API_KEY: Optional[str] = Field(None, env="OPENAI_API_KEY")
+    LLM_MODEL: str = Field("gpt-3.5-turbo", env="LLM_MODEL")
+    EMBEDDING_MODEL: str = Field("text-embedding-ada-002", env="EMBEDDING_MODEL")
+    {% elif llm_provider == "anthropic" %}
+    ANTHROPIC_API_KEY: Optional[str] = Field(None, env="ANTHROPIC_API_KEY")
+    LLM_MODEL: str = Field("claude-3-haiku-20240307", env="LLM_MODEL")
+    {% elif llm_provider == "ollama" %}
+    OLLAMA_BASE_URL: str = Field("http://localhost:11434", env="OLLAMA_BASE_URL")
+    LLM_MODEL: str = Field("llama2", env="LLM_MODEL")
+    EMBEDDING_MODEL: str = Field("nomic-embed-text", env="EMBEDDING_MODEL")
+    {% endif %}
+    
+    # Application settings
+    APP_TYPE: str = "{{ app_type }}"
+    CHAIN_TYPES: List[str] = {{ chain_types }}
+    INCLUDE_TOOLS: bool = {{ include_tools|lower }}
+    
+    # Chain configuration
+    TEMPERATURE: float = Field(0.7, env="TEMPERATURE")
+    MAX_TOKENS: int = Field(1000, env="MAX_TOKENS")
+    
+    {% if "retrieval" in chain_types %}
+    # Retrieval settings (if retrieval chains are included)
+    VECTOR_STORE_PATH: Path = Field(
+        default_factory=lambda: Path(__file__).parent.parent / "data" / "vector_store",
+        env="VECTOR_STORE_PATH"
+    )
+    CHUNK_SIZE: int = Field(1000, env="CHUNK_SIZE")
+    CHUNK_OVERLAP: int = Field(200, env="CHUNK_OVERLAP")
+    SIMILARITY_TOP_K: int = Field(5, env="SIMILARITY_TOP_K")
+    {% endif %}
+    
+    # Tool configuration
+    {% if include_tools %}
+    SERPER_API_KEY: Optional[str] = Field(None, env="SERPER_API_KEY")
+    TAVILY_API_KEY: Optional[str] = Field(None, env="TAVILY_API_KEY")
+    {% endif %}
+    
+    # Data paths
+    DATA_PATH: Path = Field(
+        default_factory=lambda: Path(__file__).parent.parent / "data",
+        env="DATA_PATH"
+    )
+    
+    # UI settings
+    {% if ui_framework == "streamlit" %}
+    STREAMLIT_PORT: int = Field(8501, env="STREAMLIT_PORT")
+    {% elif ui_framework == "fastapi" %}
+    FASTAPI_PORT: int = Field(8000, env="FASTAPI_PORT")
+    FASTAPI_HOST: str = Field("0.0.0.0", env="FASTAPI_HOST")
+    {% endif %}
+    
+    # Logging
+    LOG_LEVEL: str = Field("INFO", env="LOG_LEVEL")
+    
+    class Config:
+        env_file = ".env"
+        env_file_encoding = "utf-8"
+        case_sensitive = True
+
+# Global settings instance
+settings = Settings()

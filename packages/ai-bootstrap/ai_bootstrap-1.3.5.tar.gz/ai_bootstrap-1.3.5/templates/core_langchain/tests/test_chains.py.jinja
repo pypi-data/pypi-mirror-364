@@ -1,0 +1,264 @@
+"""Tests for chain components."""
+
+import pytest
+from unittest.mock import Mock, patch
+from src.chains.custom_chains import (
+    {% if "llm" in chain_types %}
+    create_llm_chain,
+    {% endif %}
+    {% if "retrieval" in chain_types %}
+    create_retrieval_chain,
+    {% endif %}
+    get_chain_by_name,
+)
+from src.llms.providers import get_llm
+from src.config import settings
+
+class TestChains:
+    """Test chain functionality."""
+    
+    {% if "llm" in chain_types %}
+    def test_create_llm_chain(self):
+        """Test LLM chain creation."""
+        with patch('src.chains.custom_chains.get_llm') as mock_get_llm:
+            mock_llm = Mock()
+            mock_get_llm.return_value = mock_llm
+            
+            chain = create_llm_chain()
+            
+            assert chain is not None
+            assert hasattr(chain, 'llm')
+            assert hasattr(chain, 'prompt')
+    
+    def test_llm_chain_invoke(self):
+        """Test LLM chain invocation."""
+        with patch('src.chains.custom_chains.get_llm') as mock_get_llm:
+            mock_llm = Mock()
+            mock_llm.invoke.return_value = Mock(content="Test response")
+            mock_get_llm.return_value = mock_llm
+            
+            chain = create_llm_chain()
+            result = chain.invoke({"input": "test question"})
+            
+            assert result is not None
+    {% endif %}
+    
+    {% if "retrieval" in chain_types %}
+    def test_create_retrieval_chain(self):
+        """Test retrieval chain creation."""
+        with patch('src.chains.custom_chains.get_llm') as mock_get_llm, \
+             patch('src.chains.custom_chains._create_default_retriever') as mock_retriever:
+            mock_llm = Mock()
+            mock_get_llm.return_value = mock_llm
+            mock_retriever.return_value = Mock()
+            
+            chain = create_retrieval_chain()
+            
+            assert chain is not None
+    {% endif %}
+    
+    def test_get_chain_by_name_valid(self):
+        """Test getting chain by valid name."""
+        with patch('src.chains.custom_chains.get_llm') as mock_get_llm:
+            mock_llm = Mock()
+            mock_get_llm.return_value = mock_llm
+            
+            {% if "llm" in chain_types %}
+            chain = get_chain_by_name("llm")
+            assert chain is not None
+            {% endif %}
+    
+    def test_get_chain_by_name_invalid(self):
+        """Test getting chain by invalid name."""
+        with pytest.raises(ValueError):
+            get_chain_by_name("nonexistent_chain")
+
+class TestLLMProviders:
+    """Test LLM provider functionality."""
+    
+    {% if llm_provider == "openai" %}
+    @patch('src.llms.providers.ChatOpenAI')
+    def test_get_openai_llm(self, mock_chat_openai):
+        """Test OpenAI LLM creation."""
+        from src.llms.providers import get_openai_llm
+        
+        mock_instance = Mock()
+        mock_chat_openai.return_value = mock_instance
+        
+        llm = get_openai_llm()
+        
+        assert llm == mock_instance
+        mock_chat_openai.assert_called_once()
+    {% endif %}
+    
+    def test_get_llm_default(self):
+        """Test getting default LLM."""
+        with patch('src.llms.providers.{{ llm_provider }}_llm') as mock_provider:
+            mock_instance = Mock()
+            mock_provider.return_value = mock_instance
+            
+            # This would need to be adapted based on the actual provider
+            # For now, just test that the function exists
+            assert callable(get_llm)
+
+class TestApplicationIntegration:
+    """Test application-level integration."""
+    
+    def test_app_initialization(self):
+        """Test application initialization."""
+        from src.main import {{ project_name|replace('-', '_')|replace(' ', '_')|title }}Application
+        
+        app = {{ project_name|replace('-', '_')|replace(' ', '_')|title }}Application()
+        assert app is not None
+        assert app.llm is None  # Not initialized yet
+        assert app.chain is None  # Not initialized yet
+    
+    @patch('src.main.get_llm')
+    @patch('src.main.get_chain_by_name')
+    def test_app_initialize(self, mock_get_chain, mock_get_llm):
+        """Test application initialization."""
+        from src.main import {{ project_name|replace('-', '_')|replace(' ', '_')|title }}Application
+        
+        mock_get_llm.return_value = Mock()
+        mock_get_chain.return_value = Mock()
+        
+        app = {{ project_name|replace('-', '_')|replace(' ', '_')|title }}Application()
+        result = app.initialize()
+        
+        assert result is True
+        assert app.llm is not None
+        assert app.chain is not None
+    
+    {% if app_type == "qa_system" %}
+    def test_ask_question(self):
+        """Test question answering functionality."""
+        from src.main import {{ project_name|replace('-', '_')|replace(' ', '_')|title }}Application
+        
+        app = {{ project_name|replace('-', '_')|replace(' ', '_')|title }}Application()
+        
+        # Test without initialization
+        result = app.ask_question("test question")
+        assert "error" in result
+        
+        # Test with mock chain
+        mock_chain = Mock()
+        mock_chain.invoke.return_value = {"answer": "test answer"}
+        app.chain = mock_chain
+        
+        result = app.ask_question("test question")
+        assert "answer" in result or "result" in result
+    {% endif %}
+    
+    {% if include_tools %}
+    def test_use_tool(self):
+        """Test tool usage."""
+        from src.main import {{ project_name|replace('-', '_')|replace(' ', '_')|title }}Application
+        
+        app = {{ project_name|replace('-', '_')|replace(' ', '_')|title }}Application()
+        
+        # Mock a tool
+        mock_tool = Mock()
+        mock_tool.name = "test_tool"
+        mock_tool.run.return_value = "test result"
+        app.tools = [mock_tool]
+        
+        result = app.use_tool("test_tool", arg1="value1")
+        assert result["status"] == "success"
+        assert result["result"] == "test result"
+        
+        # Test nonexistent tool
+        result = app.use_tool("nonexistent_tool")
+        assert result["status"] == "error"
+    {% endif %}
+    
+    def test_get_stats(self):
+        """Test getting application statistics."""
+        from src.main import {{ project_name|replace('-', '_')|replace(' ', '_')|title }}Application
+        
+        app = {{ project_name|replace('-', '_')|replace(' ', '_')|title }}Application()
+        stats = app.get_stats()
+        
+        assert isinstance(stats, dict)
+        assert "app_type" in stats
+        assert "llm_model" in stats
+        assert "initialized" in stats
+
+{% if include_tools %}
+class TestTools:
+    """Test tool functionality."""
+    
+    def test_calculator_tool(self):
+        """Test calculator tool."""
+        from src.tools.custom_tools import CalculatorTool
+        
+        tool = CalculatorTool()
+        result = tool._run("2 + 2")
+        
+        assert "4" in result
+    
+    def test_calculator_tool_error(self):
+        """Test calculator tool error handling."""
+        from src.tools.custom_tools import CalculatorTool
+        
+        tool = CalculatorTool()
+        result = tool._run("invalid_expression")
+        
+        assert "failed" in result.lower() or "error" in result.lower()
+    
+    @patch('src.tools.custom_tools.requests')
+    def test_api_call_tool(self, mock_requests):
+        """Test API call tool."""
+        from src.tools.custom_tools import APICallTool
+        
+        # Mock successful response
+        mock_response = Mock()
+        mock_response.json.return_value = {"result": "success"}
+        mock_response.raise_for_status.return_value = None
+        mock_requests.request.return_value = mock_response
+        
+        tool = APICallTool()
+        result = tool._run("https://api.example.com/test")
+        
+        assert "success" in result
+    
+    def test_get_available_tools(self):
+        """Test getting available tools."""
+        from src.tools.custom_tools import get_available_tools
+        
+        tools = get_available_tools()
+        
+        assert isinstance(tools, list)
+        assert len(tools) > 0
+        
+        # Check that all tools have required attributes
+        for tool in tools:
+            assert hasattr(tool, 'name')
+            assert hasattr(tool, 'description')
+{% endif %}
+
+class TestConfiguration:
+    """Test configuration management."""
+    
+    def test_settings_initialization(self):
+        """Test settings are properly initialized."""
+        assert settings.PROJECT_NAME == "{{ project_name }}"
+        assert settings.APP_TYPE == "{{ app_type }}"
+        assert settings.LLM_MODEL is not None
+        assert isinstance(settings.CHAIN_TYPES, list)
+    
+    def test_settings_validation(self):
+        """Test settings validation."""
+        # Test that required settings exist
+        required_settings = [
+            "PROJECT_NAME",
+            "LLM_MODEL", 
+            "TEMPERATURE",
+            "MAX_TOKENS"
+        ]
+        
+        for setting_name in required_settings:
+            assert hasattr(settings, setting_name)
+            assert getattr(settings, setting_name) is not None
+
+if __name__ == "__main__":
+    pytest.main([__file__])

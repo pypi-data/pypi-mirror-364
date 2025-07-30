@@ -1,0 +1,287 @@
+"""Main chatbot engine for {{ project_name }}."""
+
+from typing import Dict, Any, List, Optional, Union
+import logging
+import asyncio
+from pathlib import Path
+{% if llm_provider == "openai" %}
+from langchain_openai import ChatOpenAI
+{% elif llm_provider == "anthropic" %}
+from langchain_anthropic import ChatAnthropic
+{% elif llm_provider == "ollama" %}
+from langchain_community.llms import Ollama
+{% endif %}
+from langchain.schema import HumanMessage, AIMessage, SystemMessage
+from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
+
+from .memory import ConversationMemory
+from .dialog_manager import DialogManager
+from ..config import settings
+{% if 'image' in modalities %}
+from ..processors.image_processor import ImageProcessor
+{% endif %}
+{% if 'audio' in modalities %}
+from ..processors.audio_processor import AudioProcessor
+{% endif %}
+
+logger = logging.getLogger(__name__)
+
+class MultimodalChatbotEngine:
+    """Main multimodal chatbot engine."""
+    
+    def __init__(self):
+        """Initialize the chatbot engine."""
+        # Initialize LLM
+        {% if llm_provider == "openai" %}
+        self.llm = ChatOpenAI(
+            model=settings.LLM_MODEL,
+            temperature=settings.RESPONSE_TEMPERATURE,
+            max_tokens=settings.MAX_TOKENS,
+            openai_api_key=settings.OPENAI_API_KEY,
+        )
+        {% elif llm_provider == "anthropic" %}
+        self.llm = ChatAnthropic(
+            model=settings.LLM_MODEL,
+            temperature=settings.RESPONSE_TEMPERATURE,
+            max_tokens=settings.MAX_TOKENS,
+            anthropic_api_key=settings.ANTHROPIC_API_KEY,
+        )
+        {% elif llm_provider == "ollama" %}
+        self.llm = Ollama(
+            base_url=settings.OLLAMA_BASE_URL,
+            model=settings.LLM_MODEL,
+            temperature=settings.RESPONSE_TEMPERATURE,
+        )
+        {% endif %}
+        
+        # Initialize components
+        self.memory = ConversationMemory()
+        self.dialog_manager = DialogManager()
+        
+        # Initialize processors
+        {% if 'image' in modalities %}
+        self.image_processor = ImageProcessor()
+        {% endif %}
+        {% if 'audio' in modalities %}
+        self.audio_processor = AudioProcessor()
+        {% endif %}
+        
+        # Create system prompt
+        self.system_prompt = self._create_system_prompt()
+        
+        logger.info("Multimodal chatbot engine initialized")
+    
+    def _create_system_prompt(self) -> str:
+        """Create the system prompt for the chatbot."""
+        modalities_text = ", ".join(settings.SUPPORTED_MODALITIES)
+        
+        prompt = f"""You are a helpful and intelligent multimodal AI assistant named {{ project_name|replace('_', ' ')|title }}.
+
+Your capabilities include:
+- Text conversation and question answering
+{% if 'image' in modalities %}
+- Image analysis and description
+{% if 'generation' in image_features %}
+- Image generation from text descriptions
+{% endif %}
+{% endif %}
+{% if 'audio' in modalities %}
+{% if 'stt' in audio_features %}
+- Audio transcription and analysis
+{% endif %}
+{% if 'tts' in audio_features %}
+- Text-to-speech conversion
+{% endif %}
+{% endif %}
+
+Guidelines:
+1. Be helpful, accurate, and engaging in your responses
+2. When analyzing images, provide detailed and accurate descriptions
+3. If you cannot process a specific modality, explain what you can do instead
+4. Ask clarifying questions when user intent is unclear
+5. Maintain context throughout the conversation
+6. Be concise but informative
+
+Currently supported modalities: {modalities_text}
+"""
+        return prompt
+    
+    async def process_message(
+        self, 
+        message: str, 
+        files: Optional[List[Dict[str, Any]]] = None,
+        session_id: str = "default"
+    ) -> Dict[str, Any]:
+        """Process a multimodal message."""
+        
+        try:
+            # Initialize session if needed
+            if not self.memory.has_session(session_id):
+                self.memory.create_session(session_id)
+            
+            # Process any uploaded files
+            processed_files = []
+            if files:
+                for file_info in files:
+                    processed_file = await self._process_file(file_info)
+                    if processed_file:
+                        processed_files.append(processed_file)
+            
+            # Create the user message with file context
+            user_message_content = message
+            
+            if processed_files:
+                file_descriptions = []
+                for pf in processed_files:
+                    if pf["type"] == "image":
+                        file_descriptions.append(f"Image: {pf['description']}")
+                    elif pf["type"] == "audio":
+                        file_descriptions.append(f"Audio: {pf['transcription']}")
+                
+                if file_descriptions:
+                    user_message_content += "\n\nFile context:\n" + "\n".join(file_descriptions)
+            
+            # Add to memory
+            self.memory.add_message(session_id, HumanMessage(content=user_message_content))
+            
+            # Get conversation history
+            history = self.memory.get_messages(session_id)
+            
+            # Create prompt with system message and history
+            prompt = ChatPromptTemplate.from_messages([
+                ("system", self.system_prompt),
+                MessagesPlaceholder(variable_name="history"),
+                ("human", "{input}")
+            ])
+            
+            # Generate response
+            chain = prompt | self.llm
+            
+            response = await chain.ainvoke({
+                "history": history[:-1],  # Exclude the current message
+                "input": user_message_content
+            })
+            
+            # Add AI response to memory
+            self.memory.add_message(session_id, AIMessage(content=response.content))
+            
+            # Prepare response
+            result = {
+                "response": response.content,
+                "session_id": session_id,
+                "processed_files": processed_files,
+                "conversation_turn": len(history) // 2 + 1
+            }
+            
+            logger.info(f"Processed message for session {session_id}")
+            return result
+            
+        except Exception as e:
+            logger.error(f"Error processing message: {e}")
+            return {
+                "response": "I apologize, but I encountered an error processing your message. Please try again.",
+                "session_id": session_id,
+                "processed_files": [],
+                "error": str(e)
+            }
+    
+    async def _process_file(self, file_info: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        """Process an uploaded file based on its type."""
+        
+        file_path = Path(file_info.get("path", ""))
+        file_type = file_info.get("type", "")
+        
+        if not file_path.exists():
+            logger.error(f"File not found: {file_path}")
+            return None
+        
+        try:
+            {% if 'image' in modalities %}
+            # Process images
+            if file_type.startswith("image/") or file_path.suffix.lower() in ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp']:
+                result = await self.image_processor.process_image(file_path)
+                return {
+                    "type": "image",
+                    "file_path": str(file_path),
+                    "description": result.get("description", ""),
+                    "analysis": result.get("analysis", {}),
+                    "file_info": file_info
+                }
+            {% endif %}
+            
+            {% if 'audio' in modalities %}
+            # Process audio
+            if file_type.startswith("audio/") or file_path.suffix.lower() in ['.mp3', '.wav', '.m4a', '.flac']:
+                result = await self.audio_processor.process_audio(file_path)
+                return {
+                    "type": "audio",
+                    "file_path": str(file_path),
+                    "transcription": result.get("transcription", ""),
+                    "metadata": result.get("metadata", {}),
+                    "file_info": file_info
+                }
+            {% endif %}
+            
+            # Handle text files
+            if file_type.startswith("text/") or file_path.suffix.lower() in ['.txt', '.md', '.csv']:
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                
+                return {
+                    "type": "text",
+                    "file_path": str(file_path),
+                    "content": content[:2000],  # Limit content length
+                    "file_info": file_info
+                }
+            
+            logger.warning(f"Unsupported file type: {file_type}")
+            return None
+            
+        except Exception as e:
+            logger.error(f"Error processing file {file_path}: {e}")
+            return None
+    
+    def get_conversation_history(self, session_id: str) -> List[Dict[str, Any]]:
+        """Get conversation history for a session."""
+        if not self.memory.has_session(session_id):
+            return []
+        
+        messages = self.memory.get_messages(session_id)
+        history = []
+        
+        for msg in messages:
+            history.append({
+                "role": "human" if isinstance(msg, HumanMessage) else "assistant",
+                "content": msg.content,
+                "timestamp": getattr(msg, 'timestamp', None)
+            })
+        
+        return history
+    
+    def clear_conversation(self, session_id: str) -> bool:
+        """Clear conversation history for a session."""
+        try:
+            self.memory.clear_session(session_id)
+            logger.info(f"Cleared conversation for session {session_id}")
+            return True
+        except Exception as e:
+            logger.error(f"Error clearing conversation: {e}")
+            return False
+    
+    def get_stats(self) -> Dict[str, Any]:
+        """Get chatbot statistics."""
+        return {
+            "supported_modalities": settings.SUPPORTED_MODALITIES,
+            "active_sessions": self.memory.get_session_count(),
+            "llm_model": settings.LLM_MODEL,
+            "max_memory_tokens": settings.MAX_MEMORY_TOKENS,
+            {% if 'image' in modalities %}
+            "image_processor_ready": hasattr(self, 'image_processor'),
+            {% endif %}
+            {% if 'audio' in modalities %}
+            "audio_processor_ready": hasattr(self, 'audio_processor'),
+            {% endif %}
+        }
+
+# Global chatbot instance
+chatbot = MultimodalChatbotEngine()

@@ -1,0 +1,67 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ai-bootstrap"
+version = "1.3.5"
+description = "A CLI tool for scaffolding AI projects with GitHub Codespace integration and AI-powered project planning"
+authors = [
+    {name = "Soham Chaudhari", email = "sohamrc0@gmail.com"},
+]
+requires-python = ">=3.8"
+readme = "README.md"
+license = {text = "MIT"}
+
+dependencies = [
+    "typer[all]",
+    "copier",
+    "rich",
+    "pyyaml",
+    "openai",
+    "anthropic",
+    "pydantic",
+    "jinja2",
+    "langchain-mistralai",
+    "langchain-openai",
+    "langchain-anthropic",
+    "langchain_core",
+    "langchain_community",
+
+    "python-dotenv",
+    "nest_asyncio",
+    "asyncio"
+]
+
+[project.optional-dependencies]
+llms = [
+    "langchain-ollama",
+    "langchain-llamaindex",
+    "langchain-langgraph",
+    "langchain-chainlit",
+    "langchain-chroma",
+    "langchain-faiss",
+    "langchain-streamlit",
+    "langchain-fastapi",
+    "langchain-cli",
+    "langchain-in_memory",
+    "langchain-redis",
+    "langchain-postgres"
+]
+
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "black>=24.0.0",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+ai-bootstrap = "ai_bootstrap.main:app"
+
+[project.urls]
+Homepage = "https://github.com/SohamChaudhari2004/AIBootstrap.git"
+Repository = "https://github.com/SohamChaudhari2004/AIBootstrap.git"
+
+[tool.hatch.build.targets.wheel]
+packages = ["ai_bootstrap"]

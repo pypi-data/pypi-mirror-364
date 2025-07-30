@@ -1,0 +1,352 @@
+"""LLM provider implementations for {{ project_name }}."""
+
+from typing import Dict, Any, List, Optional, Union
+import logging
+{% if llm_provider == "openai" %}
+from langchain_openai import ChatOpenAI
+{% elif llm_provider == "anthropic" %}
+from langchain_anthropic import ChatAnthropic
+{% elif llm_provider == "ollama" %}
+from langchain_community.llms import Ollama
+{% endif %}
+from langchain.schema.language_model import BaseLanguageModel
+
+from ..config import settings
+
+logger = logging.getLogger(__name__)
+
+# Model configurations
+MODEL_CONFIGS = {
+    {% if llm_provider == "openai" %}
+    "openai": {
+        "gpt-3.5-turbo": {
+            "max_tokens": 4096,
+            "context_window": 16385,
+            "cost_per_1k_tokens": {"input": 0.0015, "output": 0.002}
+        },
+        "gpt-4": {
+            "max_tokens": 8192,
+            "context_window": 32768,
+            "cost_per_1k_tokens": {"input": 0.03, "output": 0.06}
+        },
+        "gpt-4-turbo": {
+            "max_tokens": 4096,
+            "context_window": 128000,
+            "cost_per_1k_tokens": {"input": 0.01, "output": 0.03}
+        }
+    }
+    {% elif llm_provider == "anthropic" %}
+    "anthropic": {
+        "claude-3-haiku-20240307": {
+            "max_tokens": 4096,
+            "context_window": 200000,
+            "cost_per_1k_tokens": {"input": 0.00025, "output": 0.00125}
+        },
+        "claude-3-sonnet-20240229": {
+            "max_tokens": 4096,
+            "context_window": 200000,
+            "cost_per_1k_tokens": {"input": 0.003, "output": 0.015}
+        },
+        "claude-3-opus-20240229": {
+            "max_tokens": 4096,
+            "context_window": 200000,
+            "cost_per_1k_tokens": {"input": 0.015, "output": 0.075}
+        }
+    }
+    {% elif llm_provider == "ollama" %}
+    "ollama": {
+        "llama2": {
+            "max_tokens": 4096,
+            "context_window": 4096,
+            "cost_per_1k_tokens": {"input": 0.0, "output": 0.0}  # Local model
+        },
+        "mistral": {
+            "max_tokens": 4096,
+            "context_window": 8192,
+            "cost_per_1k_tokens": {"input": 0.0, "output": 0.0}  # Local model
+        },
+        "codellama": {
+            "max_tokens": 4096,
+            "context_window": 16384,
+            "cost_per_1k_tokens": {"input": 0.0, "output": 0.0}  # Local model
+        }
+    }
+    {% endif %}
+}
+
+{% if llm_provider == "openai" %}
+def get_openai_llm(
+    model: str = None,
+    temperature: float = None,
+    max_tokens: int = None,
+    **kwargs
+) -> ChatOpenAI:
+    """Create an OpenAI LLM instance.
+    
+    Args:
+        model: OpenAI model name
+        temperature: Temperature for response generation
+        max_tokens: Maximum tokens to generate
+        **kwargs: Additional arguments for ChatOpenAI
+        
+    Returns:
+        Configured ChatOpenAI instance
+    """
+    try:
+        # Use settings defaults if not provided
+        model = model or settings.LLM_MODEL
+        temperature = temperature if temperature is not None else settings.TEMPERATURE
+        max_tokens = max_tokens or settings.MAX_TOKENS
+        
+        # Validate model
+        if model not in MODEL_CONFIGS["openai"]:
+            logger.warning(f"Model {model} not in known configurations, using anyway")
+        
+        llm = ChatOpenAI(
+            model=model,
+            temperature=temperature,
+            max_tokens=max_tokens,
+            openai_api_key=settings.OPENAI_API_KEY,
+            **kwargs
+        )
+        
+        logger.info(f"Created OpenAI LLM: {model}")
+        return llm
+        
+    except Exception as e:
+        logger.error(f"Error creating OpenAI LLM: {e}")
+        raise
+
+{% elif llm_provider == "anthropic" %}
+def get_anthropic_llm(
+    model: str = None,
+    temperature: float = None,
+    max_tokens: int = None,
+    **kwargs
+) -> ChatAnthropic:
+    """Create an Anthropic LLM instance.
+    
+    Args:
+        model: Anthropic model name
+        temperature: Temperature for response generation
+        max_tokens: Maximum tokens to generate
+        **kwargs: Additional arguments for ChatAnthropic
+        
+    Returns:
+        Configured ChatAnthropic instance
+    """
+    try:
+        # Use settings defaults if not provided
+        model = model or settings.LLM_MODEL
+        temperature = temperature if temperature is not None else settings.TEMPERATURE
+        max_tokens = max_tokens or settings.MAX_TOKENS
+        
+        # Validate model
+        if model not in MODEL_CONFIGS["anthropic"]:
+            logger.warning(f"Model {model} not in known configurations, using anyway")
+        
+        llm = ChatAnthropic(
+            model=model,
+            temperature=temperature,
+            max_tokens=max_tokens,
+            anthropic_api_key=settings.ANTHROPIC_API_KEY,
+            **kwargs
+        )
+        
+        logger.info(f"Created Anthropic LLM: {model}")
+        return llm
+        
+    except Exception as e:
+        logger.error(f"Error creating Anthropic LLM: {e}")
+        raise
+
+{% elif llm_provider == "ollama" %}
+def get_ollama_llm(
+    model: str = None,
+    temperature: float = None,
+    **kwargs
+) -> Ollama:
+    """Create an Ollama LLM instance.
+    
+    Args:
+        model: Ollama model name
+        temperature: Temperature for response generation
+        **kwargs: Additional arguments for Ollama
+        
+    Returns:
+        Configured Ollama instance
+    """
+    try:
+        # Use settings defaults if not provided
+        model = model or settings.LLM_MODEL
+        temperature = temperature if temperature is not None else settings.TEMPERATURE
+        
+        # Validate model
+        if model not in MODEL_CONFIGS["ollama"]:
+            logger.warning(f"Model {model} not in known configurations, using anyway")
+        
+        llm = Ollama(
+            model=model,
+            temperature=temperature,
+            base_url=settings.OLLAMA_BASE_URL,
+            **kwargs
+        )
+        
+        logger.info(f"Created Ollama LLM: {model}")
+        return llm
+        
+    except Exception as e:
+        logger.error(f"Error creating Ollama LLM: {e}")
+        raise
+{% endif %}
+
+def get_llm(
+    provider: str = None,
+    model: str = None,
+    **kwargs
+) -> BaseLanguageModel:
+    """Get an LLM instance based on provider.
+    
+    Args:
+        provider: LLM provider name
+        model: Model name
+        **kwargs: Additional arguments for LLM initialization
+        
+    Returns:
+        Configured LLM instance
+    """
+    provider = provider or "{{ llm_provider }}"
+    
+    {% if llm_provider == "openai" %}
+    if provider == "openai":
+        return get_openai_llm(model=model, **kwargs)
+    {% elif llm_provider == "anthropic" %}
+    if provider == "anthropic":
+        return get_anthropic_llm(model=model, **kwargs)
+    {% elif llm_provider == "ollama" %}
+    if provider == "ollama":
+        return get_ollama_llm(model=model, **kwargs)
+    {% endif %}
+    else:
+        raise ValueError(f"Unsupported LLM provider: {provider}")
+
+def list_available_models(provider: str = None) -> Dict[str, List[str]]:
+    """List available models for each provider.
+    
+    Args:
+        provider: Specific provider to list models for
+        
+    Returns:
+        Dictionary mapping providers to their available models
+    """
+    if provider:
+        if provider in MODEL_CONFIGS:
+            return {provider: list(MODEL_CONFIGS[provider].keys())}
+        else:
+            return {provider: []}
+    
+    return {
+        provider: list(models.keys()) 
+        for provider, models in MODEL_CONFIGS.items()
+    }
+
+def get_model_info(provider: str, model: str) -> Dict[str, Any]:
+    """Get information about a specific model.
+    
+    Args:
+        provider: LLM provider name
+        model: Model name
+        
+    Returns:
+        Model configuration dictionary
+    """
+    if provider not in MODEL_CONFIGS:
+        raise ValueError(f"Unknown provider: {provider}")
+    
+    if model not in MODEL_CONFIGS[provider]:
+        raise ValueError(f"Unknown model: {model} for provider: {provider}")
+    
+    return MODEL_CONFIGS[provider][model]
+
+def estimate_cost(
+    provider: str,
+    model: str,
+    input_tokens: int,
+    output_tokens: int
+) -> float:
+    """Estimate the cost of using a model.
+    
+    Args:
+        provider: LLM provider name
+        model: Model name
+        input_tokens: Number of input tokens
+        output_tokens: Number of output tokens
+        
+    Returns:
+        Estimated cost in USD
+    """
+    try:
+        model_info = get_model_info(provider, model)
+        cost_info = model_info["cost_per_1k_tokens"]
+        
+        input_cost = (input_tokens / 1000) * cost_info["input"]
+        output_cost = (output_tokens / 1000) * cost_info["output"]
+        
+        return input_cost + output_cost
+        
+    except (KeyError, ValueError) as e:
+        logger.warning(f"Could not estimate cost: {e}")
+        return 0.0
+
+class LLMManager:
+    """Manager class for handling multiple LLM instances."""
+    
+    def __init__(self):
+        """Initialize the LLM manager."""
+        self._llms: Dict[str, BaseLanguageModel] = {}
+        self._default_provider = "{{ llm_provider }}"
+    
+    def get_llm(
+        self,
+        provider: str = None,
+        model: str = None,
+        cache: bool = True,
+        **kwargs
+    ) -> BaseLanguageModel:
+        """Get or create an LLM instance.
+        
+        Args:
+            provider: LLM provider name
+            model: Model name
+            cache: Whether to cache the LLM instance
+            **kwargs: Additional arguments for LLM initialization
+            
+        Returns:
+            LLM instance
+        """
+        provider = provider or self._default_provider
+        model = model or settings.LLM_MODEL
+        
+        cache_key = f"{provider}:{model}"
+        
+        if cache and cache_key in self._llms:
+            return self._llms[cache_key]
+        
+        llm = get_llm(provider=provider, model=model, **kwargs)
+        
+        if cache:
+            self._llms[cache_key] = llm
+        
+        return llm
+    
+    def clear_cache(self):
+        """Clear the LLM cache."""
+        self._llms.clear()
+        logger.info("LLM cache cleared")
+    
+    def list_cached_llms(self) -> List[str]:
+        """List cached LLM instances."""
+        return list(self._llms.keys())
+
+# Global LLM manager instance
+llm_manager = LLMManager()

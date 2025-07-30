@@ -1,0 +1,14 @@
+typer[all]
+copier
+pyyaml
+rich
+langchain-mistralai
+langchain-openai
+langchain-anthropic
+python-dotenv
+nest_asyncio
+asyncio
+jinja2
+pydantic
+langchain_core
+langchain_community

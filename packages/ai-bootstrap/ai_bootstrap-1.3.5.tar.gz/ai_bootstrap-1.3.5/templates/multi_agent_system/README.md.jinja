@@ -1,0 +1,276 @@
+# {{ project_name }}
+
+A multi-agent system built with LangGraph featuring collaborative AI agents with a supervisor pattern.
+
+## 🚀 Features
+
+- **LangGraph Framework**: State-based agent orchestration
+- **LLM Provider**: {{ llm_provider|title }}
+- **Memory Backend**: {{ memory_backend|title }}
+- **UI**: {{ ui_framework|title }}
+- **{{ agents|length }} Specialized Agents**:
+{% for agent in agents %}
+  - **{{ agent.name|replace('_', ' ')|title }}**: {{ agent.role }}
+{% endfor %}
+
+## 🏗️ Architecture
+
+This multi-agent system uses the supervisor pattern where a central supervisor agent coordinates the work of specialized agents:
+
+┌─────────────────┐
+│ Supervisor │
+│ Agent │
+└─────────┬───────┘
+│
+┌─────┴─────┐
+│ │
+▼ ▼
+{% for agent in agents %}
+┌─────────────┐
+│{{ agent.name|replace('_', ' ')|title|center(13) }}│
+└─────────────┘
+{% endfor %}
+
+ 
+
+## 📋 Prerequisites
+
+- Python {{ python_version }}+
+{% if llm_provider == "openai" %}
+- OpenAI API key
+{% elif llm_provider == "anthropic" %}
+- Anthropic API key
+{% elif llm_provider == "ollama" %}
+- Ollama installed and running
+{% endif %}
+- Tavily API key (for web search)
+{% if memory_backend == "redis" %}
+- Redis server (optional, for persistent memory)
+{% elif memory_backend == "postgres" %}
+- PostgreSQL database (optional, for persistent memory)
+{% endif %}
+
+## 🛠️ Installation
+
+1. **Clone and navigate to the project:**
+cd {{ project_name }}
+
+ 
+
+2. **Create and activate virtual environment:**
+python -m venv venv
+source venv/bin/activate # On Windows: venv\Scripts\activate
+
+ 
+
+3. **Install dependencies:**
+pip install -r requirements.txt
+
+ 
+
+4. **Set up environment variables:**
+cp .env.example .env
+
+Edit .env with your API keys and configuration
+ 
+
+## 📚 Usage
+
+### 1. Configure Environment
+
+Set up your `.env` file with the required API keys:
+
+{% if llm_provider == "openai" %}
+OPENAI_API_KEY=your_openai_api_key_here
+{% elif llm_provider == "anthropic" %}
+ANTHROPIC_API_KEY=your_anthropic_api_key_here
+{% elif llm_provider == "ollama" %}
+OLLAMA_BASE_URL=http://localhost:11434
+{% endif %}
+TAVILY_API_KEY=your_tavily_api_key_here
+
+ 
+
+### 2. Run the Application
+
+{% if ui_framework == "streamlit" %}
+**Streamlit Web Interface:**
+streamlit run app.py
+
+ 
+{% elif ui_framework == "chainlit" %}
+**Chainlit Chat Interface:**
+chainlit run app.py
+
+
+{% else %}
+**Interactive CLI:**
+python app.py --interactive
+
+
+
+**Single Task:**
+python app.py --task "Research the latest developments in AI and write a summary"
+
+
+
+**Streaming Mode:**
+python app.py --task "Analyze this code and suggest improvements" --stream
+
+
+{% endif %}
+
+## 🤖 Agent Capabilities
+
+{% for agent in agents %}
+### {{ agent.name|replace('_', ' ')|title }}
+{{ agent.role }}
+
+**Specialties:**
+{% if agent.name == "research_agent" %}
+- Web search and information gathering
+- Data analysis and synthesis
+- Fact-checking and verification
+- Report generation
+{% elif agent.name == "code_agent" %}
+- Code writing and analysis
+- Debugging and optimization
+- Code review and refactoring
+- Testing and validation
+{% elif agent.name == "review_agent" %}
+- Quality assurance and review
+- Error detection and correction
+- Best practices validation
+- Final output polishing
+{% else %}
+- Specialized task execution
+- Domain-specific analysis
+- Custom workflow integration
+{% endif %}
+
+{% endfor %}
+
+## ⚙️ Configuration
+
+Key settings in `.env`:
+
+- `MAX_ITERATIONS`: Maximum workflow iterations (default: 10)
+- `AGENT_TIMEOUT`: Timeout for individual agents (default: 60s)
+- `ENABLE_HUMAN_IN_LOOP`: Enable human approval steps (default: false)
+{% if memory_backend == "redis" %}
+- `REDIS_URL`: Redis connection URL for persistent memory
+{% elif memory_backend == "postgres" %}
+- `POSTGRES_URL`: PostgreSQL connection URL for persistent memory
+{% endif %}
+
+## 🧪 Development
+
+{% if include_tests %}
+**Run tests:**
+pytest tests/
+
+
+{% endif %}
+
+{% if include_notebooks %}
+**Use Jupyter notebooks:**
+jupyter notebook notebooks/
+
+
+{% endif %}
+
+**Monitor workflow execution:**
+Enable debug logging
+export LOG_LEVEL=DEBUG
+python app.py --interactive
+
+
+
+## 📁 Project Structure
+
+{{ project_name }}/
+├── src/
+│ ├── agents/ # Individual agent implementations
+│ │ ├── supervisor.py # Central coordinator agent
+{% for agent in agents %}
+│ │ ├── {{ agent.name }}.py # {{ agent.role }}
+{% endfor %}
+│ ├── tools/ # Shared tools and utilities
+│ │ ├── web_search.py # Web search capabilities
+│ │ └── file_io.py # File operations
+│ ├── state.py # Shared state definitions
+│ ├── graph.py # LangGraph workflow definition
+│ └── config.py # Configuration management
+├── app.py # Main application
+├── requirements.txt # Dependencies
+{% if include_notebooks %}
+├── notebooks/ # Jupyter notebooks
+{% endif %}
+{% if include_tests %}
+├── tests/ # Test files
+{% endif %}
+└── .env # Environment variables
+
+
+
+## 🔧 Customization
+
+### Adding New Agents
+
+1. Create a new agent file in `src/agents/`
+2. Implement the agent logic with LangGraph node function
+3. Update `src/graph.py` to include the new agent
+4. Add agent configuration to `src/config.py`
+
+### Custom Tools
+
+1. Create tool implementations in `src/tools/`
+2. Follow the LangChain `BaseTool` pattern
+3. Import and use in agent implementations
+
+### Workflow Modification
+
+Edit `src/graph.py` to:
+- Change agent execution order
+- Add conditional routing logic
+- Implement parallel agent execution
+- Add human-in-the-loop checkpoints
+
+## 🐛 Troubleshooting
+
+**Workflow not starting:**
+- Check API keys in `.env`
+- Verify LLM provider is accessible
+{% if llm_provider == "ollama" %}
+- Ensure Ollama is running: `ollama serve`
+{% endif %}
+
+**Agents not communicating:**
+- Check state definitions in `src/state.py`
+- Verify graph connections in `src/graph.py`
+- Review agent node implementations
+
+**Memory issues:**
+{% if memory_backend == "redis" %}
+- Ensure Redis server is running
+- Check Redis connection settings
+{% elif memory_backend == "postgres" %}
+- Verify PostgreSQL database is accessible
+- Check connection string format
+{% endif %}
+
+## 📄 License
+
+MIT License - see LICENSE file for details.
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Add new agents or tools
+4. Include tests
+5. Submit a pull request
+
+---
+
+Built with ❤️ using [AI Bootstrap](https://github.com/your-repo/ai-bootstrap)

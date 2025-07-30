@@ -1,0 +1,317 @@
+"""Audio processing capabilities for {{ project_name }}."""
+
+from typing import Dict, Any, Optional, Union
+import logging
+from pathlib import Path
+import asyncio
+import io
+import wave
+import tempfile
+{% if llm_provider == "openai" %}
+from openai import OpenAI
+{% elif llm_provider == "anthropic" %}
+import anthropic
+{% endif %}
+{% if 'stt' in audio_features or 'tts' in audio_features %}
+import speech_recognition as sr
+import pydub
+from pydub import AudioSegment
+{% endif %}
+
+from ..config import settings
+
+logger = logging.getLogger(__name__)
+
+class AudioProcessor:
+    """Handles audio processing{% if 'stt' in audio_features %}, speech-to-text{% endif %}{% if 'tts' in audio_features %}, and text-to-speech{% endif %}."""
+    
+    def __init__(self):
+        """Initialize the audio processor."""
+        {% if llm_provider == "openai" %}
+        self.client = OpenAI(api_key=settings.OPENAI_API_KEY)
+        {% elif llm_provider == "anthropic" %}
+        self.client = anthropic.Anthropic(api_key=settings.ANTHROPIC_API_KEY)
+        {% endif %}
+        
+        {% if 'stt' in audio_features %}
+        # Initialize speech recognition
+        self.recognizer = sr.Recognizer()
+        {% endif %}
+        
+        logger.info("Audio processor initialized")
+    
+    async def process_audio(self, audio_path: Path) -> Dict[str, Any]:
+        """Process an uploaded audio file."""
+        try:
+            # Validate file
+            if not self._is_valid_audio(audio_path):
+                return {"error": "Invalid or unsupported audio format"}
+            
+            # Get audio metadata
+            audio_info = self._get_audio_info(audio_path)
+            
+            result = {
+                "file_path": str(audio_path),
+                "metadata": audio_info,
+                "success": True
+            }
+            
+            {% if 'stt' in audio_features %}
+            # Transcribe audio
+            transcription = await self._transcribe_audio(audio_path)
+            result["transcription"] = transcription
+            {% endif %}
+            
+            logger.info(f"Successfully processed audio: {audio_path.name}")
+            return result
+            
+        except Exception as e:
+            logger.error(f"Error processing audio {audio_path}: {e}")
+            return {
+                "error": str(e),
+                "file_path": str(audio_path),
+                "success": False
+            }
+    
+    def _is_valid_audio(self, audio_path: Path) -> bool:
+        """Check if the file is a valid audio file."""
+        try:
+            # Check file size
+            file_size = audio_path.stat().st_size
+            if file_size > settings.MAX_AUDIO_SIZE:
+                logger.warning(f"Audio file too large: {file_size} bytes")
+                return False
+            
+            # Check file extension
+            if audio_path.suffix.lower()[1:] not in settings.SUPPORTED_AUDIO_FORMATS:
+                logger.warning(f"Unsupported audio format: {audio_path.suffix}")
+                return False
+            
+            # Try to load with pydub
+            AudioSegment.from_file(audio_path)
+            return True
+            
+        except Exception as e:
+            logger.error(f"Audio validation failed: {e}")
+            return False
+    
+    def _get_audio_info(self, audio_path: Path) -> Dict[str, Any]:
+        """Extract basic information from the audio file."""
+        try:
+            audio = AudioSegment.from_file(audio_path)
+            
+            return {
+                "duration_seconds": len(audio) / 1000.0,
+                "frame_rate": audio.frame_rate,
+                "channels": audio.channels,
+                "sample_width": audio.sample_width,
+                "format": audio_path.suffix.lower()[1:],
+                "file_size_bytes": audio_path.stat().st_size,
+            }
+            
+        except Exception as e:
+            logger.error(f"Error getting audio info: {e}")
+            return {"error": str(e)}
+    
+    {% if 'stt' in audio_features %}
+    async def _transcribe_audio(self, audio_path: Path) -> str:
+        """Transcribe audio to text."""
+        
+        {% if llm_provider == "openai" %}
+        try:
+            # Convert to compatible format if needed
+            converted_path = await self._convert_audio_for_whisper(audio_path)
+            
+            with open(converted_path, "rb") as audio_file:
+                transcript = self.client.audio.transcriptions.create(
+                    model=settings.STT_MODEL,
+                    file=audio_file,
+                    response_format="text"
+                )
+            
+            # Clean up temporary file if we created one
+            if converted_path != audio_path:
+                converted_path.unlink()
+            
+            return transcript
+            
+        except Exception as e:
+            logger.error(f"Error in OpenAI speech-to-text: {e}")
+            return f"Transcription error: {str(e)}"
+        
+        {% else %}
+        try:
+            # Fallback to speech_recognition library
+            # Convert to WAV format for speech_recognition
+            audio = AudioSegment.from_file(audio_path)
+            
+            # Create temporary WAV file
+            with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as temp_file:
+                temp_path = Path(temp_file.name)
+                audio.export(temp_path, format="wav")
+            
+            # Transcribe using speech_recognition
+            with sr.AudioFile(str(temp_path)) as source:
+                audio_data = self.recognizer.record(source)
+            
+            # Try different engines
+            try:
+                text = self.recognizer.recognize_google(audio_data)
+            except sr.UnknownValueError:
+                text = "Could not understand audio"
+            except sr.RequestError as e:
+                text = f"Speech recognition error: {e}"
+            
+            # Clean up
+            temp_path.unlink()
+            
+            return text
+            
+        except Exception as e:
+            logger.error(f"Error in speech-to-text: {e}")
+            return f"Transcription error: {str(e)}"
+        {% endif %}
+    
+    async def _convert_audio_for_whisper(self, audio_path: Path) -> Path:
+        """Convert audio to a format compatible with Whisper API."""
+        
+        # Whisper supports: mp3, mp4, mpeg, mpga, m4a, wav, webm
+        supported_formats = ["mp3", "mp4", "mpeg", "mpga", "m4a", "wav", "webm"]
+        current_format = audio_path.suffix.lower()[1:]
+        
+        if current_format in supported_formats:
+            return audio_path
+        
+        # Convert to mp3
+        try:
+            audio = AudioSegment.from_file(audio_path)
+            
+            # Create temporary mp3 file
+            temp_path = settings.DATA_PATH / "temp" / f"converted_{audio_path.stem}.mp3"
+            temp_path.parent.mkdir(parents=True, exist_ok=True)
+            
+            audio.export(temp_path, format="mp3")
+            
+            return temp_path
+            
+        except Exception as e:
+            logger.error(f"Error converting audio format: {e}")
+            return audio_path
+    {% endif %}
+    
+    {% if 'tts' in audio_features %}
+    async def text_to_speech(self, text: str, voice: str = None) -> Dict[str, Any]:
+        """Convert text to speech."""
+        
+        {% if llm_provider == "openai" %}
+        try:
+            voice = voice or settings.TTS_VOICE
+            
+            response = self.client.audio.speech.create(
+                model=settings.TTS_MODEL,
+                voice=voice,
+                input=text
+            )
+            
+            # Save audio to file
+            output_path = settings.DATA_PATH / "generated_audio" / f"tts_{datetime.now().strftime('%Y%m%d_%H%M%S')}.mp3"
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            
+            with open(output_path, "wb") as f:
+                f.write(response.content)
+            
+            return {
+                "success": True,
+                "audio_path": str(output_path),
+                "text": text,
+                "voice": voice,
+                "model_used": settings.TTS_MODEL
+            }
+            
+        except Exception as e:
+            logger.error(f"Error generating speech: {e}")
+            return {
+                "success": False,
+                "error": str(e),
+                "text": text
+            }
+        
+        {% else %}
+        # Fallback for other providers
+        logger.warning("Text-to-speech not supported for this provider")
+        return {
+            "success": False,
+            "error": "Text-to-speech not supported for the current provider",
+            "text": text
+        }
+        {% endif %}
+    {% endif %}
+    
+    def analyze_audio_sentiment(self, transcription: str) -> Dict[str, Any]:
+        """Analyze sentiment of transcribed audio."""
+        try:
+            # Simple keyword-based sentiment analysis
+            positive_words = ["good", "great", "excellent", "happy", "love", "wonderful", "amazing"]
+            negative_words = ["bad", "terrible", "awful", "hate", "horrible", "sad", "angry"]
+            
+            words = transcription.lower().split()
+            positive_count = sum(1 for word in words if word in positive_words)
+            negative_count = sum(1 for word in words if word in negative_words)
+            
+            if positive_count > negative_count:
+                sentiment = "positive"
+                confidence = min(0.9, 0.5 + (positive_count - negative_count) * 0.1)
+            elif negative_count > positive_count:
+                sentiment = "negative"
+                confidence = min(0.9, 0.5 + (negative_count - positive_count) * 0.1)
+            else:
+                sentiment = "neutral"
+                confidence = 0.5
+            
+            return {
+                "sentiment": sentiment,
+                "confidence": confidence,
+                "positive_indicators": positive_count,
+                "negative_indicators": negative_count
+            }
+            
+        except Exception as e:
+            logger.error(f"Error analyzing sentiment: {e}")
+            return {
+                "sentiment": "unknown",
+                "confidence": 0.0,
+                "error": str(e)
+            }
+    
+    def extract_audio_features(self, audio_path: Path) -> Dict[str, Any]:
+        """Extract basic audio features."""
+        try:
+            audio = AudioSegment.from_file(audio_path)
+            
+            # Calculate basic features
+            duration = len(audio) / 1000.0  # Convert to seconds
+            
+            # RMS (Root Mean Square) for volume analysis
+            rms = audio.rms
+            
+            # Detect silence
+            silence_thresh = audio.dBFS - 16  # 16dB below average
+            silence_chunks = [chunk for chunk in audio[::1000] if chunk.dBFS < silence_thresh]
+            silence_percentage = len(silence_chunks) / (duration) * 100 if duration > 0 else 0
+            
+            return {
+                "duration_seconds": duration,
+                "average_volume_rms": rms,
+                "average_volume_dbfs": audio.dBFS,
+                "silence_percentage": silence_percentage,
+                "max_volume": audio.max,
+                "frame_rate": audio.frame_rate,
+                "channels": audio.channels
+            }
+            
+        except Exception as e:
+            logger.error(f"Error extracting audio features: {e}")
+            return {"error": str(e)}
+
+# Global audio processor instance
+audio_processor = AudioProcessor()

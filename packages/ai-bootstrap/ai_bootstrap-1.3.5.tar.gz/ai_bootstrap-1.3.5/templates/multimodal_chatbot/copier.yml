@@ -1,0 +1,82 @@
+# Multimodal Chatbot Template Configuration
+_templates_suffix: .jinja
+_envops:
+    keep_trailing_newline: true
+
+# Questions for user input
+project_name:
+    type: str
+    help: Name of your multimodal chatbot project
+    default: my-multimodal-chatbot
+    validator: >-
+        {% if not (project_name | regex_search('^[a-zA-Z][a-zA-Z0-9_-]*$')) %}
+        Project name must start with a letter and contain only letters, numbers, hyphens, and underscores.
+        {% endif %}
+
+project_type:
+    type: str
+    help: Project type
+    default: multimodal-chatbot
+    when: false  # Don't ask, set by CLI
+
+llm_provider:
+    type: str
+    help: Choose your LLM provider
+    choices:
+        - openai
+        - anthropic
+        - ollama
+        - mistral
+    default: mistral
+
+
+modalities:
+    type: json
+    help: Supported modalities
+    default: '["image"]'
+
+image_features:
+    type: json
+    help: Image processing features
+    default: '["analysis"]'
+    when: "{{ 'image' in modalities }}"
+
+audio_features:
+    type: json
+    help: Audio processing features
+    default: '["stt", "tts"]'
+    when: "{{ 'audio' in modalities }}"
+
+ui_framework:
+    type: str
+    help: Choose your UI framework
+    choices:
+        - chainlit
+        - streamlit
+        - flask
+    default: chainlit
+
+python_version:
+    type: str
+    help: Python version for development environment
+    choices:
+        - "3.9"
+        - "3.10"
+        - "3.11"
+        - "3.12"
+    default: "3.11"
+
+include_notebooks:
+    type: bool
+    help: Include Jupyter notebooks for experimentation
+    default: true
+
+include_tests:
+    type: bool
+    help: Include test files
+    default: true
+
+include_docker:
+    type: bool
+    help: Include Docker configuration
+    default: false

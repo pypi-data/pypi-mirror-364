@@ -1,0 +1,61 @@
+"""Configuration management for {{ project_name }}."""
+
+import os
+from pathlib import Path
+from typing import Optional, List, Dict, Any
+from pydantic import BaseSettings, Field
+from pydantic_settings import BaseSettings
+
+class Settings(BaseSettings):
+    """Application settings for the multi-agent system."""
+    
+    # Project settings
+    PROJECT_NAME: str = "{{ project_name }}"
+    PROJECT_ROOT: Path = Path(__file__).parent.parent
+    
+    # LLM Provider settings
+    {% if llm_provider == "openai" %}
+    OPENAI_API_KEY: Optional[str] = Field(None, env="OPENAI_API_KEY")
+    LLM_MODEL: str = Field("gpt-4", env="LLM_MODEL")
+    {% elif llm_provider == "anthropic" %}
+    ANTHROPIC_API_KEY: Optional[str] = Field(None, env="ANTHROPIC_API_KEY")
+    LLM_MODEL: str = Field("claude-3-opus-20240229", env="LLM_MODEL")
+    {% elif llm_provider == "ollama" %}
+    OLLAMA_BASE_URL: str = Field("http://localhost:11434", env="OLLAMA_BASE_URL")
+    LLM_MODEL: str = Field("llama2", env="LLM_MODEL")
+    {% endif %}
+    
+    # Agent configuration
+    MAX_ITERATIONS: int = Field(10, env="MAX_ITERATIONS")
+    AGENT_TIMEOUT: int = Field(60, env="AGENT_TIMEOUT")
+    
+    # Memory backend settings
+    {% if memory_backend == "redis" %}
+    REDIS_URL: str = Field("redis://localhost:6379", env="REDIS_URL")
+    REDIS_DB: int = Field(0, env="REDIS_DB")
+    {% elif memory_backend == "postgres" %}
+    POSTGRES_URL: str = Field("postgresql://localhost:5432/{{ project_name }}", env="POSTGRES_URL")
+    {% endif %}
+    
+    # Tool configuration
+    TAVILY_API_KEY: Optional[str] = Field(None, env="TAVILY_API_KEY")
+    SERPER_API_KEY: Optional[str] = Field(None, env="SERPER_API_KEY")
+    
+    # Workflow settings
+    ENABLE_HUMAN_IN_LOOP: bool = Field(False, env="ENABLE_HUMAN_IN_LOOP")
+    LOG_LEVEL: str = Field("INFO", env="LOG_LEVEL")
+    
+    # UI settings
+    {% if ui_framework == "streamlit" %}
+    STREAMLIT_PORT: int = Field(8501, env="STREAMLIT_PORT")
+    {% elif ui_framework == "chainlit" %}
+    CHAINLIT_PORT: int = Field(8000, env="CHAINLIT_PORT")
+    {% endif %}
+    
+    class Config:
+        env_file = ".env"
+        env_file_encoding = "utf-8"
+        case_sensitive = True
+
+# Global settings instance
+settings = Settings()

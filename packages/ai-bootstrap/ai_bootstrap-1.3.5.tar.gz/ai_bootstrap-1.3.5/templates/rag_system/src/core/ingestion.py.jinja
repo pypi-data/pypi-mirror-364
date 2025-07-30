@@ -1,0 +1,220 @@
+"""Document ingestion and processing for {{ project_name }}."""
+
+import os
+from pathlib import Path
+from typing import List, Dict, Any, Optional
+import logging
+from langchain.document_loaders import (
+    PyPDFLoader,
+    TextLoader,
+    Docx2txtLoader,
+    UnstructuredMarkdownLoader,
+)
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.schema import Document
+{% if framework == "langchain" %}
+{% if llm_provider == "openai" %}
+from langchain_openai import OpenAIEmbeddings
+{% elif llm_provider == "ollama" %}
+from langchain_community.embeddings import OllamaEmbeddings
+{% endif %}
+{% if vector_store == "chroma" %}
+from langchain_community.vectorstores import Chroma
+{% elif vector_store == "faiss" %}
+from langchain_community.vectorstores import FAISS
+{% endif %}
+{% elif framework == "llamaindex" %}
+from llama_index.core import Document as LlamaDocument, VectorStoreIndex
+from llama_index.core.node_parser import SimpleNodeParser
+{% if llm_provider == "openai" %}
+from llama_index.embeddings.openai import OpenAIEmbedding
+{% elif llm_provider == "ollama" %}
+from llama_index.embeddings.ollama import OllamaEmbedding
+{% endif %}
+{% endif %}
+
+from ..config import settings
+
+logger = logging.getLogger(__name__)
+
+class DocumentIngestion:
+    """Document ingestion and processing pipeline."""
+    
+    def __init__(self):
+        """Initialize the ingestion pipeline."""
+        self.data_path = settings.DATA_PATH
+        self.vector_store_path = settings.VECTOR_STORE_PATH
+        
+        # Initialize text splitter
+        self.text_splitter = RecursiveCharacterTextSplitter(
+            chunk_size=settings.CHUNK_SIZE,
+            chunk_overlap=settings.CHUNK_OVERLAP,
+            separators=["\n\n", "\n", " ", ""],
+        )
+        
+        # Initialize embeddings
+        {% if framework == "langchain" %}
+        {% if llm_provider == "openai" %}
+        self.embeddings = OpenAIEmbeddings(
+            model=settings.EMBEDDING_MODEL,
+            openai_api_key=settings.OPENAI_API_KEY
+        )
+        {% elif llm_provider == "ollama" %}
+        self.embeddings = OllamaEmbeddings(
+            base_url=settings.OLLAMA_BASE_URL,
+            model=settings.EMBEDDING_MODEL
+        )
+        {% endif %}
+        {% elif framework == "llamaindex" %}
+        {% if llm_provider == "openai" %}
+        self.embeddings = OpenAIEmbedding(
+            model=settings.EMBEDDING_MODEL,
+            api_key=settings.OPENAI_API_KEY
+        )
+        {% elif llm_provider == "ollama" %}
+        self.embeddings = OllamaEmbedding(
+            base_url=settings.OLLAMA_BASE_URL,
+            model_name=settings.EMBEDDING_MODEL
+        )
+        {% endif %}
+        {% endif %}
+        
+        # File type loaders mapping
+        self.loaders = {
+            '.pdf': PyPDFLoader,
+            '.txt': TextLoader,
+            '.md': UnstructuredMarkdownLoader,
+            '.docx': Docx2txtLoader,
+        }
+    
+    def load_documents(self) -> List[Document]:
+        """Load documents from the data directory.
+        
+        Returns:
+            List of loaded documents.
+        """
+        documents = []
+        
+        if not self.data_path.exists():
+            logger.warning(f"Data path does not exist: {self.data_path}")
+            return documents
+        
+        for file_path in self.data_path.rglob("*"):
+            if file_path.is_file() and file_path.suffix.lower() in self.loaders:
+                try:
+                    loader_class = self.loaders[file_path.suffix.lower()]
+                    loader = loader_class(str(file_path))
+                    file_documents = loader.load()
+                    
+                    # Add metadata
+                    for doc in file_documents:
+                        doc.metadata.update({
+                            'source': str(file_path),
+                            'filename': file_path.name,
+                            'file_type': file_path.suffix.lower(),
+                        })
+                    
+                    documents.extend(file_documents)
+                    logger.info(f"Loaded {len(file_documents)} documents from {file_path}")
+                    
+                except Exception as e:
+                    logger.error(f"Error loading {file_path}: {e}")
+        
+        logger.info(f"Total documents loaded: {len(documents)}")
+        return documents
+    
+    def split_documents(self, documents: List[Document]) -> List[Document]:
+        """Split documents into chunks.
+        
+        Args:
+            documents: List of documents to split.
+            
+        Returns:
+            List of document chunks.
+        """
+        chunks = self.text_splitter.split_documents(documents)
+        logger.info(f"Split {len(documents)} documents into {len(chunks)} chunks")
+        return chunks
+    
+    def create_vector_store(self, documents: List[Document]) -> Any:
+        """Create and persist vector store from documents.
+        
+        Args:
+            documents: List of document chunks.
+            
+        Returns:
+            Vector store instance.
+        """
+        {% if framework == "langchain" %}
+        {% if vector_store == "chroma" %}
+        # Create Chroma vector store
+        vector_store = Chroma.from_documents(
+            documents=documents,
+            embedding=self.embeddings,
+            persist_directory=str(self.vector_store_path),
+            collection_name=settings.COLLECTION_NAME,
+        )
+        vector_store.persist()
+        {% elif vector_store == "faiss" %}
+        # Create FAISS vector store
+        vector_store = FAISS.from_documents(
+            documents=documents,
+            embedding=self.embeddings,
+        )
+        # Save FAISS index
+        self.vector_store_path.mkdir(parents=True, exist_ok=True)
+        vector_store.save_local(str(self.vector_store_path))
+        {% endif %}
+        {% elif framework == "llamaindex" %}
+        # Convert to LlamaIndex documents
+        llama_docs = [
+            LlamaDocument(
+                text=doc.page_content,
+                metadata=doc.metadata,
+            )
+            for doc in documents
+        ]
+        
+        # Create vector store index
+        vector_store = VectorStoreIndex.from_documents(
+            llama_docs,
+            embed_model=self.embeddings,
+        )
+        
+        # Persist index
+        self.vector_store_path.mkdir(parents=True, exist_ok=True)
+        vector_store.storage_context.persist(str(self.vector_store_path))
+        {% endif %}
+        
+        logger.info(f"Created vector store with {len(documents)} documents")
+        return vector_store
+    
+    def ingest_documents(self) -> Any:
+        """Complete document ingestion pipeline.
+        
+        Returns:
+            Created vector store.
+        """
+        logger.info("Starting document ingestion pipeline")
+        
+        # Load documents
+        documents = self.load_documents()
+        if not documents:
+            raise ValueError("No documents found to ingest")
+        
+        # Split documents
+        chunks = self.split_documents(documents)
+        
+        # Create vector store
+        vector_store = self.create_vector_store(chunks)
+        
+        logger.info("Document ingestion completed successfully")
+        return vector_store
+
+def main():
+    """Main function for running ingestion."""
+    ingestion = DocumentIngestion()
+    ingestion.ingest_documents()
+
+if __name__ == "__main__":
+    main()

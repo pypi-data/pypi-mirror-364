@@ -1,0 +1,403 @@
+"""Main application for {{ project_name }}."""
+
+{% if ui_framework == "chainlit" %}
+import chainlit as cl
+import asyncio
+from pathlib import Path
+import logging
+from src.chatbot.engine import chatbot
+from src.chatbot.dialog_manager import dialog_manager
+from src.config import settings
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+@cl.on_chat_start
+async def on_chat_start():
+    """Initialize the multimodal chatbot when chat starts."""
+    
+    # Get dialog context
+    session_id = cl.user_session.get("id", "default")
+    context = dialog_manager.get_or_create_context(session_id)
+    
+    # Update dialog state
+    dialog_manager.update_dialog_state(session_id, "Hello!", [])
+    
+    # Get system response context
+    response_context = dialog_manager.get_system_response_context(session_id)
+    
+    await cl.Message(
+        content=response_context.get("greeting_message", 
+            f"🤖 Welcome to {{ project_name|replace('_', ' ')|title }}!\n\n"
+            f"I'm your multimodal AI assistant. {response_context.get('capabilities', '')}\n\n"
+            "You can:\n"
+            "• Chat with me using text\n"
+            {% if 'image' in modalities %}
+            "• Upload images for analysis\n"
+            {% if 'generation' in image_features %}
+            "• Ask me to generate images\n"
+            {% endif %}
+            {% endif %}
+            {% if 'audio' in modalities %}
+            {% if 'stt' in audio_features %}
+            "• Upload audio files for transcription\n"
+            {% endif %}
+            {% if 'tts' in audio_features %}
+            "• Ask me to convert text to speech\n"
+            {% endif %}
+            {% endif %}
+            "\nHow can I help you today?"
+        )
+    ).send()
+
+@cl.on_message
+async def on_message(message: cl.Message):
+    """Handle incoming messages."""
+    
+    session_id = cl.user_session.get("id", "default")
+    
+    try:
+        # Process uploaded files
+        files = []
+        if message.elements:
+            for element in message.elements:
+                if hasattr(element, 'path') and element.path:
+                    files.append({
+                        "path": element.path,
+                        "name": element.name,
+                        "type": getattr(element, 'mime', 'application/octet-stream'),
+                        "size": Path(element.path).stat().st_size if Path(element.path).exists() else 0
+                    })
+        
+        # Update dialog state
+        dialog_manager.update_dialog_state(session_id, message.content, files)
+        
+        # Show typing indicator
+        async with cl.Step(name="Processing...") as step:
+            # Process message with chatbot engine
+            result = await chatbot.process_message(
+                message=message.content,
+                files=files,
+                session_id=session_id
+            )
+            
+            step.output = f"Processed message with {len(files)} file(s)"
+        
+        # Prepare response elements
+        elements = []
+        
+        # Add file processing results as elements
+        if result.get("processed_files"):
+            for pf in result["processed_files"]:
+                if pf["type"] == "image":
+                    elements.append(
+                        cl.Image(
+                            name=f"Processed: {Path(pf['file_path']).name}",
+                            path=pf["file_path"],
+                            display="inline"
+                        )
+                    )
+                elif pf["type"] == "audio" and pf.get("transcription"):
+                    elements.append(
+                        cl.Text(
+                            name="Audio Transcription",
+                            content=pf["transcription"],
+                            display="side"
+                        )
+                    )
+        
+        # Send response
+        await cl.Message(
+            content=result["response"],
+            elements=elements
+        ).send()
+        
+    except Exception as e:
+        logger.error(f"Error processing message: {e}")
+        await cl.Message(
+            content=f"❌ I apologize, but I encountered an error: {str(e)}"
+        ).send()
+
+@cl.on_audio_chunk
+async def on_audio_chunk(chunk: cl.AudioChunk):
+    """Handle streaming audio input."""
+    # This is for real-time audio processing
+    # Implementation depends on specific requirements
+    pass
+
+if __name__ == "__main__":
+    cl.run(
+        host=settings.CHAINLIT_HOST,
+        port=settings.CHAINLIT_PORT,
+        debug=False
+    )
+
+{% elif ui_framework == "streamlit" %}
+import streamlit as st
+import asyncio
+from pathlib import Path
+import logging
+from src.chatbot.engine import chatbot
+from src.chatbot.dialog_manager import dialog_manager
+from src.config import settings
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Page configuration
+st.set_page_config(
+    page_title="{{ project_name }}",
+    page_icon="🤖",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+def main():
+    """Main Streamlit application."""
+    st.title("🤖 {{ project_name|replace('_', ' ')|title }}")
+    st.markdown("Your Multimodal AI Assistant")
+    
+    # Initialize session state
+    if "session_id" not in st.session_state:
+        st.session_state.session_id = "streamlit_default"
+    
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
+    
+    # Sidebar
+    with st.sidebar:
+        st.header("⚙️ Configuration")
+        
+        # Display capabilities
+        st.subheader("🎯 Capabilities")
+        capabilities = []
+        {% if 'image' in modalities %}
+        capabilities.append("🖼️ Image Analysis")
+        {% if 'generation' in image_features %}
+        capabilities.append("🎨 Image Generation")
+        {% endif %}
+        {% endif %}
+        {% if 'audio' in modalities %}
+        {% if 'stt' in audio_features %}
+        capabilities.append("🎤 Speech-to-Text")
+        {% endif %}
+        {% if 'tts' in audio_features %}
+        capabilities.append("🔊 Text-to-Speech")
+        {% endif %}
+        {% endif %}
+        
+        for cap in capabilities:
+            st.success(cap)
+        
+        # Settings
+        st.subheader("🛠️ Settings")
+        max_turns = st.slider("Max conversation turns", 10, 100, 50)
+        
+        if st.button("🗑️ Clear Conversation"):
+            st.session_state.messages = []
+            chatbot.clear_conversation(st.session_state.session_id)
+            st.rerun()
+    
+    # File upload area
+    st.subheader("📁 Upload Files")
+    uploaded_files = st.file_uploader(
+        "Upload images, audio, or text files",
+        type=['png', 'jpg', 'jpeg', 'gif', 'bmp', 'webp', 'mp3', 'wav', 'm4a', 'flac', 'txt', 'md'],
+        accept_multiple_files=True
+    )
+    
+    # Display chat messages
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
+            
+            # Display any attachments
+            if "files" in message and message["files"]:
+                for file_info in message["files"]:
+                    if file_info["type"].startswith("image"):
+                        st.image(file_info["path"], caption=file_info["name"])
+                    elif "transcription" in file_info:
+                        st.audio(file_info["path"])
+                        st.caption(f"Transcription: {file_info['transcription']}")
+    
+    # Chat input
+    if prompt := st.chat_input("Type your message..."):
+        # Process uploaded files
+        files = []
+        if uploaded_files:
+            upload_dir = settings.UPLOAD_PATH
+            upload_dir.mkdir(parents=True, exist_ok=True)
+            
+            for uploaded_file in uploaded_files:
+                file_path = upload_dir / uploaded_file.name
+                with open(file_path, "wb") as f:
+                    f.write(uploaded_file.getbuffer())
+                
+                files.append({
+                    "path": str(file_path),
+                    "name": uploaded_file.name,
+                    "type": uploaded_file.type,
+                    "size": uploaded_file.size
+                })
+        
+        # Add user message
+        user_message = {"role": "user", "content": prompt}
+        if files:
+            user_message["files"] = files
+        st.session_state.messages.append(user_message)
+        
+        with st.chat_message("user"):
+            st.markdown(prompt)
+            for file_info in files:
+                if file_info["type"].startswith("image"):
+                    st.image(file_info["path"], caption=file_info["name"])
+                elif file_info["type"].startswith("audio"):
+                    st.audio(file_info["path"])
+        
+        # Generate response
+        with st.chat_message("assistant"):
+            with st.spinner("Processing..."):
+                result = asyncio.run(chatbot.process_message(
+                    message=prompt,
+                    files=files,
+                    session_id=st.session_state.session_id
+                ))
+            
+            st.markdown(result["response"])
+            
+            # Display processed files
+            if result.get("processed_files"):
+                for pf in result["processed_files"]:
+                    if pf["type"] == "audio" and pf.get("transcription"):
+                        st.success(f"Transcription: {pf['transcription']}")
+        
+        # Add assistant message
+        st.session_state.messages.append({
+            "role": "assistant", 
+            "content": result["response"]
+        })
+
+if __name__ == "__main__":
+    main()
+
+{% else %}
+# Flask Application
+from flask import Flask, render_template, request, jsonify, session
+import asyncio
+from pathlib import Path
+import logging
+import uuid
+from werkzeug.utils import secure_filename
+from src.chatbot.engine import chatbot
+from src.chatbot.dialog_manager import dialog_manager
+from src.config import settings
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+app = Flask(__name__)
+app.secret_key = "{{ project_name }}_secret_key_change_in_production"
+
+@app.route("/")
+def index():
+    """Main chat interface."""
+    if "session_id" not in session:
+        session["session_id"] = str(uuid.uuid4())
+    
+    return render_template("chat.html", 
+        project_name="{{ project_name|replace('_', ' ')|title }}",
+        capabilities=settings.SUPPORTED_MODALITIES
+    )
+
+@app.route("/api/chat", methods=["POST"])
+def chat():
+    """Handle chat messages."""
+    try:
+        data = request.get_json()
+        message = data.get("message", "")
+        session_id = session.get("session_id", "default")
+        
+        # Process the message
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        
+        result = loop.run_until_complete(
+            chatbot.process_message(
+                message=message,
+                files=[],  # File upload would be handled separately
+                session_id=session_id
+            )
+        )
+        
+        return jsonify({
+            "response": result["response"],
+            "session_id": session_id,
+            "success": True
+        })
+        
+    except Exception as e:
+        logger.error(f"Error in chat endpoint: {e}")
+        return jsonify({
+            "error": str(e),
+            "success": False
+        }), 500
+
+@app.route("/api/upload", methods=["POST"])
+def upload_file():
+    """Handle file uploads."""
+    try:
+        if "file" not in request.files:
+            return jsonify({"error": "No file provided"}), 400
+        
+        file = request.files["file"]
+        if file.filename == "":
+            return jsonify({"error": "No file selected"}), 400
+        
+        # Save uploaded file
+        filename = secure_filename(file.filename)
+        upload_path = settings.UPLOAD_PATH / filename
+        upload_path.parent.mkdir(parents=True, exist_ok=True)
+        file.save(upload_path)
+        
+        return jsonify({
+            "filename": filename,
+            "path": str(upload_path),
+            "success": True
+        })
+        
+    except Exception as e:
+        logger.error(f"Error in upload endpoint: {e}")
+        return jsonify({
+            "error": str(e),
+            "success": False
+        }), 500
+
+@app.route("/api/clear", methods=["POST"])
+def clear_conversation():
+    """Clear conversation history."""
+    try:
+        session_id = session.get("session_id", "default")
+        success = chatbot.clear_conversation(session_id)
+        
+        return jsonify({
+            "success": success,
+            "message": "Conversation cleared"
+        })
+        
+    except Exception as e:
+        logger.error(f"Error clearing conversation: {e}")
+        return jsonify({
+            "error": str(e),
+            "success": False
+        }), 500
+
+if __name__ == "__main__":
+    app.run(
+        host=settings.FLASK_HOST,
+        port=settings.FLASK_PORT,
+        debug=settings.FLASK_DEBUG
+    )
+{% endif %}

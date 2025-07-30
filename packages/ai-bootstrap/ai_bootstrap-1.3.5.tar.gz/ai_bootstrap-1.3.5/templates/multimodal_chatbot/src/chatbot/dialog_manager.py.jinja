@@ -1,0 +1,303 @@
+"""Dialog management for {{ project_name }}."""
+
+from typing import Dict, Any, List, Optional, Tuple
+import logging
+from enum import Enum
+from dataclasses import dataclass
+from datetime import datetime
+
+from ..config import settings
+
+logger = logging.getLogger(__name__)
+
+class DialogState(Enum):
+    """Dialog states for conversation flow."""
+    GREETING = "greeting"
+    CHATTING = "chatting"
+    PROCESSING_FILE = "processing_file"
+    WAITING_FOR_CLARIFICATION = "waiting_for_clarification"
+    GENERATING_RESPONSE = "generating_response"
+    ERROR = "error"
+    GOODBYE = "goodbye"
+
+class Intent(Enum):
+    """User intent classification."""
+    GREETING = "greeting"
+    QUESTION = "question"
+    FILE_UPLOAD = "file_upload"
+    {% if 'image' in modalities and 'generation' in image_features %}
+    IMAGE_GENERATION = "image_generation"
+    {% endif %}
+    {% if 'audio' in modalities and 'tts' in audio_features %}
+    TEXT_TO_SPEECH = "text_to_speech"
+    {% endif %}
+    CLARIFICATION = "clarification"
+    GOODBYE = "goodbye"
+    HELP = "help"
+    UNKNOWN = "unknown"
+
+@dataclass
+class DialogContext:
+    """Context information for dialog management."""
+    session_id: str
+    current_state: DialogState
+    user_intent: Intent
+    last_response: Optional[str]
+    pending_action: Optional[str]
+    context_data: Dict[str, Any]
+    turn_count: int
+    timestamp: datetime
+
+class DialogManager:
+    """Manages dialog flow and context for conversations."""
+    
+    def __init__(self):
+        """Initialize the dialog manager."""
+        self.contexts: Dict[str, DialogContext] = {}
+        self.intent_keywords = self._initialize_intent_keywords()
+        
+        logger.info("Dialog manager initialized")
+    
+    def _initialize_intent_keywords(self) -> Dict[Intent, List[str]]:
+        """Initialize keyword patterns for intent classification."""
+        return {
+            Intent.GREETING: ["hello", "hi", "hey", "good morning", "good afternoon", "good evening"],
+            Intent.GOODBYE: ["bye", "goodbye", "see you", "farewell", "exit", "quit"],
+            Intent.HELP: ["help", "how to", "what can you do", "capabilities", "commands"],
+            Intent.QUESTION: ["what", "how", "why", "when", "where", "who", "?"],
+            Intent.FILE_UPLOAD: ["analyze", "process", "upload", "file", "image", "audio", "document"],
+            {% if 'image' in modalities and 'generation' in image_features %}
+            Intent.IMAGE_GENERATION: ["generate", "create", "draw", "make image", "picture of"],
+            {% endif %}
+            {% if 'audio' in modalities and 'tts' in audio_features %}
+            Intent.TEXT_TO_SPEECH: ["read aloud", "speak", "voice", "audio", "tts", "text to speech"],
+            {% endif %}
+            Intent.CLARIFICATION: ["what do you mean", "clarify", "explain", "elaborate"],
+        }
+    
+    def get_or_create_context(self, session_id: str) -> DialogContext:
+        """Get existing context or create a new one."""
+        if session_id not in self.contexts:
+            self.contexts[session_id] = DialogContext(
+                session_id=session_id,
+                current_state=DialogState.GREETING,
+                user_intent=Intent.UNKNOWN,
+                last_response=None,
+                pending_action=None,
+                context_data={},
+                turn_count=0,
+                timestamp=datetime.now()
+            )
+        
+        return self.contexts[session_id]
+    
+    def classify_intent(self, message: str, has_files: bool = False) -> Intent:
+        """Classify user intent from message content."""
+        message_lower = message.lower()
+        
+        # Check for file upload context
+        if has_files:
+            return Intent.FILE_UPLOAD
+        
+        # Check keyword-based intents
+        for intent, keywords in self.intent_keywords.items():
+            if any(keyword in message_lower for keyword in keywords):
+                return intent
+        
+        # Default classification logic
+        if "?" in message or message_lower.startswith(("what", "how", "why", "when", "where", "who")):
+            return Intent.QUESTION
+        
+        return Intent.UNKNOWN
+    
+    def update_dialog_state(
+        self, 
+        session_id: str, 
+        message: str, 
+        files: Optional[List[Dict[str, Any]]] = None
+    ) -> Tuple[DialogState, Dict[str, Any]]:
+        """Update dialog state based on user input."""
+        
+        context = self.get_or_create_context(session_id)
+        context.turn_count += 1
+        context.timestamp = datetime.now()
+        
+        # Classify intent
+        has_files = files is not None and len(files) > 0
+        intent = self.classify_intent(message, has_files)
+        context.user_intent = intent
+        
+        # State transition logic
+        new_state, action_data = self._transition_state(context, message, has_files)
+        context.current_state = new_state
+        
+        # Update context data
+        if action_data:
+            context.context_data.update(action_data)
+        
+        logger.debug(f"Dialog state updated for {session_id}: {new_state}")
+        
+        return new_state, action_data
+    
+    def _transition_state(
+        self, 
+        context: DialogContext, 
+        message: str, 
+        has_files: bool
+    ) -> Tuple[DialogState, Dict[str, Any]]:
+        """Handle state transitions based on current state and input."""
+        
+        current_state = context.current_state
+        intent = context.user_intent
+        action_data = {}
+        
+        # State machine logic
+        if current_state == DialogState.GREETING:
+            if intent == Intent.GREETING:
+                return DialogState.CHATTING, {"should_greet": True}
+            elif intent == Intent.FILE_UPLOAD:
+                return DialogState.PROCESSING_FILE, {"processing_files": True}
+            else:
+                return DialogState.CHATTING, {}
+        
+        elif current_state == DialogState.CHATTING:
+            if intent == Intent.GOODBYE:
+                return DialogState.GOODBYE, {"should_say_goodbye": True}
+            elif intent == Intent.FILE_UPLOAD or has_files:
+                return DialogState.PROCESSING_FILE, {"processing_files": True}
+            elif intent == Intent.HELP:
+                return DialogState.CHATTING, {"should_show_help": True}
+            {% if 'image' in modalities and 'generation' in image_features %}
+            elif intent == Intent.IMAGE_GENERATION:
+                return DialogState.GENERATING_RESPONSE, {"action_type": "image_generation"}
+            {% endif %}
+            {% if 'audio' in modalities and 'tts' in audio_features %}
+            elif intent == Intent.TEXT_TO_SPEECH:
+                return DialogState.GENERATING_RESPONSE, {"action_type": "text_to_speech"}
+            {% endif %}
+            else:
+                return DialogState.GENERATING_RESPONSE, {"action_type": "normal_response"}
+        
+        elif current_state == DialogState.PROCESSING_FILE:
+            return DialogState.GENERATING_RESPONSE, {"action_type": "file_processed"}
+        
+        elif current_state == DialogState.GENERATING_RESPONSE:
+            if intent == Intent.GOODBYE:
+                return DialogState.GOODBYE, {"should_say_goodbye": True}
+            elif intent == Intent.CLARIFICATION:
+                return DialogState.WAITING_FOR_CLARIFICATION, {"needs_clarification": True}
+            else:
+                return DialogState.CHATTING, {}
+        
+        elif current_state == DialogState.WAITING_FOR_CLARIFICATION:
+            return DialogState.GENERATING_RESPONSE, {"action_type": "clarification_response"}
+        
+        elif current_state == DialogState.ERROR:
+            return DialogState.CHATTING, {"recovering_from_error": True}
+        
+        elif current_state == DialogState.GOODBYE:
+            if intent == Intent.GREETING:
+                return DialogState.CHATTING, {"should_greet": True}
+            else:
+                return DialogState.GOODBYE, {}
+        
+        # Default case
+        return current_state, action_data
+    
+    def get_system_response_context(self, session_id: str) -> Dict[str, Any]:
+        """Get context information for system response generation."""
+        
+        context = self.get_or_create_context(session_id)
+        
+        response_context = {
+            "session_id": session_id,
+            "current_state": context.current_state.value,
+            "user_intent": context.user_intent.value,
+            "turn_count": context.turn_count,
+            "context_data": context.context_data,
+            "capabilities": self._get_capability_description(),
+        }
+        
+        # Add state-specific context
+        if context.current_state == DialogState.GREETING:
+            response_context["greeting_message"] = self._get_greeting_message()
+        
+        elif context.current_state == DialogState.GOODBYE:
+            response_context["goodbye_message"] = self._get_goodbye_message()
+        
+        elif context.current_state == DialogState.PROCESSING_FILE:
+            response_context["file_processing_message"] = "I'm analyzing your uploaded file(s)..."
+        
+        return response_context
+    
+    def _get_capability_description(self) -> str:
+        """Get a description of the chatbot's capabilities."""
+        capabilities = ["text conversation"]
+        
+        {% if 'image' in modalities %}
+        capabilities.append("image analysis")
+        {% if 'generation' in image_features %}
+        capabilities.append("image generation")
+        {% endif %}
+        {% endif %}
+        
+        {% if 'audio' in modalities %}
+        {% if 'stt' in audio_features %}
+        capabilities.append("audio transcription")
+        {% endif %}
+        {% if 'tts' in audio_features %}
+        capabilities.append("text-to-speech")
+        {% endif %}
+        {% endif %}
+        
+        return f"I can help you with {', '.join(capabilities)}."
+    
+    def _get_greeting_message(self) -> str:
+        """Get an appropriate greeting message."""
+        return f"Hello! I'm {{ project_name|replace('_', ' ')|title }}, your multimodal AI assistant. {self._get_capability_description()} How can I help you today?"
+    
+    def _get_goodbye_message(self) -> str:
+        """Get an appropriate goodbye message."""
+        return "Thank you for chatting with me! Feel free to come back anytime if you need assistance."
+    
+    def handle_error(self, session_id: str, error: Exception) -> DialogState:
+        """Handle errors in dialog flow."""
+        context = self.get_or_create_context(session_id)
+        context.current_state = DialogState.ERROR
+        context.context_data["last_error"] = str(error)
+        context.timestamp = datetime.now()
+        
+        logger.error(f"Dialog error in session {session_id}: {error}")
+        
+        return DialogState.ERROR
+    
+    def reset_session(self, session_id: str) -> bool:
+        """Reset dialog context for a session."""
+        try:
+            if session_id in self.contexts:
+                del self.contexts[session_id]
+            
+            logger.info(f"Reset dialog context for session {session_id}")
+            return True
+            
+        except Exception as e:
+            logger.error(f"Error resetting session {session_id}: {e}")
+            return False
+    
+    def get_session_stats(self) -> Dict[str, Any]:
+        """Get statistics about active dialog sessions."""
+        total_sessions = len(self.contexts)
+        states_count = {}
+        
+        for context in self.contexts.values():
+            state = context.current_state.value
+            states_count[state] = states_count.get(state, 0) + 1
+        
+        return {
+            "total_sessions": total_sessions,
+            "states_distribution": states_count,
+            "average_turns": sum(c.turn_count for c in self.contexts.values()) / max(total_sessions, 1)
+        }
+
+# Global dialog manager instance
+dialog_manager = DialogManager()

@@ -1,0 +1,308 @@
+"""Complete RAG pipeline for {{ project_name }}."""
+
+from typing import List, Dict, Any, Optional
+import logging
+from pathlib import Path
+
+from .ingestion import DocumentIngestion
+from .retrieval import DocumentRetriever
+from .generation import AnswerGenerator
+from ..config import settings
+
+logger = logging.getLogger(__name__)
+
+class RAGPipeline:
+    """Complete RAG (Retrieval-Augmented Generation) pipeline."""
+    
+    def __init__(self):
+        """Initialize the RAG pipeline."""
+        self.ingestion = DocumentIngestion()
+        self.retriever = DocumentRetriever()
+        self.generator = AnswerGenerator()
+        
+        self._is_initialized = False
+    
+    def initialize(self, force_reindex: bool = False) -> bool:
+        """Initialize the pipeline by loading or creating vector store.
+        
+        Args:
+            force_reindex: Force reindexing of documents.
+            
+        Returns:
+            True if initialization successful, False otherwise.
+        """
+        try:
+            vector_store_exists = (
+                settings.VECTOR_STORE_PATH.exists() and 
+                any(settings.VECTOR_STORE_PATH.iterdir())
+            )
+            
+            if not vector_store_exists or force_reindex:
+                logger.info("Creating new vector store...")
+                
+                # Check if documents exist
+                if not settings.DATA_PATH.exists() or not any(settings.DATA_PATH.iterdir()):
+                    logger.warning(
+                        f"No documents found in {settings.DATA_PATH}. "
+                        "Please add documents before initializing."
+                    )
+                    return False
+                
+                # Run document ingestion
+                self.ingestion.ingest_documents()
+                logger.info("Document ingestion completed")
+            
+            # Load vector store
+            self.retriever.load_vector_store()
+            logger.info("Vector store loaded successfully")
+            
+            self._is_initialized = True
+            return True
+            
+        except Exception as e:
+            logger.error(f"Error initializing pipeline: {e}")
+            return False
+    
+    def query(
+        self, 
+        question: str, 
+        top_k: Optional[int] = None,
+        include_sources: bool = True,
+        **generation_kwargs
+    ) -> Dict[str, Any]:
+        """Query the RAG system.
+        
+        Args:
+            question: User question.
+            top_k: Number of documents to retrieve.
+            include_sources: Whether to include source information.
+            **generation_kwargs: Additional arguments for generation.
+            
+        Returns:
+            Dictionary containing answer and metadata.
+        """
+        if not self._is_initialized:
+            raise RuntimeError("Pipeline not initialized. Call initialize() first.")
+        
+        try:
+            # Step 1: Retrieve relevant documents
+            logger.info(f"Processing query: {question}")
+            
+            if top_k:
+                # Temporarily override settings
+                original_top_k = settings.SIMILARITY_TOP_K
+                settings.SIMILARITY_TOP_K = top_k
+                
+            retrieved_docs = self.retriever.retrieve_documents(question)
+            
+            if top_k:
+                settings.SIMILARITY_TOP_K = original_top_k
+            
+            if not retrieved_docs:
+                return {
+                    'answer': "I couldn't find any relevant information to answer your question.",
+                    'sources': [],
+                    'num_documents': 0,
+                    'query': question,
+                }
+            
+            # Step 2: Generate answer
+            result = self.generator.generate_answer(
+                question=question,
+                retrieved_documents=retrieved_docs,
+                **generation_kwargs
+            )
+            
+            # Step 3: Add query to result
+            result['query'] = question
+            
+            if not include_sources:
+                result.pop('sources', None)
+            
+            logger.info(f"Query processed successfully: {len(retrieved_docs)} docs retrieved")
+            return result
+            
+        except Exception as e:
+            logger.error(f"Error processing query: {e}")
+            return {
+                'answer': "I apologize, but I encountered an error while processing your question.",
+                'sources': [],
+                'num_documents': 0,
+                'query': question,
+                'error': str(e),
+            }
+    
+    def streaming_query(
+        self, 
+        question: str, 
+        top_k: Optional[int] = None
+    ):
+        """Query the RAG system with streaming response.
+        
+        Args:
+            question: User question.
+            top_k: Number of documents to retrieve.
+            
+        Yields:
+            Answer tokens as they are generated.
+        """
+        if not self._is_initialized:
+            yield "Error: Pipeline not initialized."
+            return
+        
+        try:
+            # Retrieve documents
+            if top_k:
+                original_top_k = settings.SIMILARITY_TOP_K
+                settings.SIMILARITY_TOP_K = top_k
+                
+            retrieved_docs = self.retriever.retrieve_documents(question)
+            
+            if top_k:
+                settings.SIMILARITY_TOP_K = original_top_k
+            
+            if not retrieved_docs:
+                yield "I couldn't find any relevant information to answer your question."
+                return
+            
+            # Generate streaming answer
+            for token in self.generator.generate_streaming_answer(question, retrieved_docs):
+                yield token
+                
+        except Exception as e:
+            logger.error(f"Error in streaming query: {e}")
+            yield f"Error: {str(e)}"
+    
+    def add_documents(self, file_paths: List[str]) -> bool:
+        """Add new documents to the system.
+        
+        Args:
+            file_paths: List of file paths to add.
+            
+        Returns:
+            True if successful, False otherwise.
+        """
+        try:
+            # Copy files to data directory
+            for file_path in file_paths:
+                source_path = Path(file_path)
+                if source_path.exists():
+                    dest_path = settings.DATA_PATH / source_path.name
+                    dest_path.parent.mkdir(parents=True, exist_ok=True)
+                    dest_path.write_bytes(source_path.read_bytes())
+                    logger.info(f"Added document: {source_path.name}")
+            
+            # Reinitialize with new documents
+            return self.initialize(force_reindex=True)
+            
+        except Exception as e:
+            logger.error(f"Error adding documents: {e}")
+            return False
+    
+    def get_stats(self) -> Dict[str, Any]:
+        """Get pipeline statistics.
+        
+        Returns:
+            Dictionary with pipeline statistics.
+        """
+        stats = {
+            'initialized': self._is_initialized,
+            'vector_store_exists': (
+                settings.VECTOR_STORE_PATH.exists() and 
+                any(settings.VECTOR_STORE_PATH.iterdir())
+            ),
+            'data_path': str(settings.DATA_PATH),
+            'vector_store_path': str(settings.VECTOR_STORE_PATH),
+        }
+        
+        # Count documents in data directory
+        if settings.DATA_PATH.exists():
+            data_files = list(settings.DATA_PATH.rglob("*"))
+            stats['data_files_count'] = len([f for f in data_files if f.is_file()])
+        else:
+            stats['data_files_count'] = 0
+        
+        # Get vector store info
+        if self._is_initialized:
+            try:
+                documents = self.retriever.list_documents()
+                stats['indexed_documents'] = len(documents)
+            except:
+                stats['indexed_documents'] = 'unknown'
+        else:
+            stats['indexed_documents'] = 0
+        
+        return stats
+    
+    def health_check(self) -> Dict[str, Any]:
+        """Perform a health check of the pipeline.
+        
+        Returns:
+            Dictionary with health check results.
+        """
+        health = {
+            'status': 'healthy',
+            'issues': [],
+            'recommendations': [],
+        }
+        
+        # Check if initialized
+        if not self._is_initialized:
+            health['status'] = 'not_ready'
+            health['issues'].append('Pipeline not initialized')
+            health['recommendations'].append('Call initialize() method')
+        
+        # Check data directory
+        if not settings.DATA_PATH.exists():
+            health['issues'].append('Data directory does not exist')
+            health['recommendations'].append(f'Create data directory: {settings.DATA_PATH}')
+        elif not any(settings.DATA_PATH.iterdir()):
+            health['issues'].append('No documents in data directory')
+            health['recommendations'].append('Add documents to data directory')
+        
+        # Check vector store
+        if not settings.VECTOR_STORE_PATH.exists():
+            health['issues'].append('Vector store does not exist')
+            health['recommendations'].append('Run document ingestion')
+        
+        # Check API keys
+        {% if llm_provider == "openai" %}
+        if not settings.OPENAI_API_KEY:
+            health['issues'].append('OpenAI API key not configured')
+            health['recommendations'].append('Set OPENAI_API_KEY environment variable')
+        {% endif %}
+        
+        if health['issues']:
+            health['status'] = 'issues_found'
+        
+        return health
+
+def main():
+    """Main function for testing the pipeline."""
+    # Initialize pipeline
+    pipeline = RAGPipeline()
+    
+    # Check health
+    health = pipeline.health_check()
+    print("Health Check:", health)
+    
+    if health['status'] != 'healthy':
+        print("Issues found. Please resolve them before using the pipeline.")
+        return
+    
+    # Initialize
+    if not pipeline.initialize():
+        print("Failed to initialize pipeline")
+        return
+    
+    # Test query
+    question = "What is this document about?"
+    result = pipeline.query(question)
+    
+    print(f"Question: {question}")
+    print(f"Answer: {result['answer']}")
+    print(f"Sources: {', '.join(result.get('sources', []))}")
+    print(f"Documents used: {result['num_documents']}")
+
+if __name__ == "__main__":
+    main()
