@@ -1,0 +1,32 @@
+Metadata-Version: 2.4
+Name: lucien-magic
+Version: 0.1.0
+Summary: Lucien jupyter magic
+Author-email: todd zhang <toddzhang@pathintegral.xyz>
+Requires-Python: >=3.10
+Requires-Dist: jsonrpc>=3.0.1
+Description-Content-Type: text/markdown
+
+# Lucien Magic
+
+A Jupyter notebook extension that provides access to Lucien resources through a magic command.
+
+## Installation
+
+You can install this extension directly from PyPI:
+
+```bash
+pip install lucien-magic
+```
+
+## Usage
+
+### Loading the Extension
+
+To load the extension in your Jupyter notebook:
+
+```python
+%load_ext lucien_magic
+```
+
+This will create a global object named `lucien` in your notebook namespace.
