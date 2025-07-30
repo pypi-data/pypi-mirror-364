@@ -1,0 +1,358 @@
+{% extends "base.html" %}
+
+{% block title %}Prompts - Ze Prompter{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1><i class="fas fa-file-alt"></i> Prompt Templates</h1>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createPromptModal">
+                <i class="fas fa-plus"></i> Create New Prompt
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped" id="promptsTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Content Preview</th>
+                                <th>Version</th>
+                                <th>Created</th>
+                                <th width="200">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="6" class="text-center">
+                                    <i class="fas fa-spinner fa-spin"></i> Loading...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Create Prompt Modal -->
+<div class="modal fade" id="createPromptModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fas fa-plus"></i> Create New Prompt Template
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="createPromptForm">
+                    <div class="mb-3">
+                        <label for="promptName" class="form-label">Name *</label>
+                        <input type="text" class="form-control" id="promptName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="promptDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="promptDescription" rows="2"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="promptContent" class="form-label">Content *</label>
+                        <textarea class="form-control" id="promptContent" rows="6" required
+                                  placeholder="Enter your prompt template here..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="createPromptBtn" onclick="createPrompt()">
+                    <i class="fas fa-save"></i> Create
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Prompt Modal -->
+<div class="modal fade" id="editPromptModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fas fa-edit"></i> Edit Prompt Template
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editPromptForm">
+                    <input type="hidden" id="editPromptId">
+                    <div class="mb-3">
+                        <label for="editPromptName" class="form-label">Name *</label>
+                        <input type="text" class="form-control" id="editPromptName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editPromptDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="editPromptDescription" rows="2"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editPromptContent" class="form-label">Content *</label>
+                        <textarea class="form-control" id="editPromptContent" rows="6" required></textarea>
+                    </div>
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i> Editing will create a new version of this template.
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="editPromptBtn" onclick="updatePrompt()">
+                    <i class="fas fa-save"></i> Update
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- View Versions Modal -->
+<div class="modal fade" id="versionsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fas fa-history"></i> Version History
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div id="versionsContent">
+                    <div class="text-center">
+                        <i class="fas fa-spinner fa-spin"></i> Loading versions...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function() {
+    loadPrompts();
+});
+
+function loadPrompts() {
+    makeAuthenticatedRequest('/api/prompts/')
+        .then(response => response.json())
+        .then(data => {
+            populatePromptsTable(data);
+        })
+        .catch(error => {
+            $('#promptsTable tbody').html(`
+                <tr>
+                    <td colspan="6" class="text-center text-danger">
+                        <i class="fas fa-exclamation-triangle"></i> Failed to load prompts
+                    </td>
+                </tr>
+            `);
+        });
+}
+
+function populatePromptsTable(prompts) {
+    if (prompts.length === 0) {
+        $('#promptsTable tbody').html(`
+            <tr>
+                <td colspan="6" class="text-center text-muted">
+                    <i class="fas fa-inbox"></i> No prompt templates found
+                </td>
+            </tr>
+        `);
+        return;
+    }
+
+    const rows = prompts.map(prompt => `
+        <tr>
+            <td>
+                <strong>${prompt.name}</strong>
+            </td>
+            <td>
+                <span class="text-muted">${prompt.description || 'No description'}</span>
+            </td>
+            <td>
+                <div class="content-preview">${prompt.content}</div>
+            </td>
+            <td>
+                <span class="badge bg-primary version-badge">v${prompt.version}</span>
+            </td>
+            <td>
+                <small class="text-muted">${new Date(prompt.created_at).toLocaleDateString()}</small>
+            </td>
+            <td>
+                <div class="btn-group btn-group-sm" role="group">
+                    <button class="btn btn-outline-info" onclick="viewVersions(${prompt.id})" title="View Versions">
+                        <i class="fas fa-history"></i>
+                    </button>
+                    <button class="btn btn-outline-primary" onclick="editPrompt(${prompt.id})" title="Edit">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn btn-outline-danger" onclick="deletePrompt(${prompt.id}, '${prompt.name}')" title="Delete">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>
+    `).join('');
+
+    $('#promptsTable tbody').html(rows);
+}
+
+function createPrompt() {
+    const name = $('#promptName').val().trim();
+    const description = $('#promptDescription').val().trim();
+    const content = $('#promptContent').val().trim();
+
+    if (!name || !content) {
+        showAlert('Please fill in all required fields', 'danger');
+        return;
+    }
+
+    const btn = $('#createPromptBtn');
+    btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Creating...');
+
+    makeAuthenticatedRequest('/api/prompts/', {
+        method: 'POST',
+        body: JSON.stringify({
+            name: name,
+            description: description || null,
+            content: content
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        showAlert('Prompt template created successfully!', 'success');
+        $('#createPromptModal').modal('hide');
+        $('#createPromptForm')[0].reset();
+        loadPrompts();
+    })
+    .catch(error => {
+        showAlert('Failed to create prompt template', 'danger');
+    })
+    .finally(() => {
+        btn.prop('disabled', false).html('<i class="fas fa-save"></i> Create');
+    });
+}
+
+function editPrompt(id) {
+    makeAuthenticatedRequest(`/api/prompts/${id}`)
+        .then(response => response.json())
+        .then(data => {
+            $('#editPromptId').val(data.id);
+            $('#editPromptName').val(data.name);
+            $('#editPromptDescription').val(data.description || '');
+            $('#editPromptContent').val(data.content);
+            $('#editPromptModal').modal('show');
+        })
+        .catch(error => {
+            showAlert('Failed to load prompt template', 'danger');
+        });
+}
+
+function updatePrompt() {
+    const id = $('#editPromptId').val();
+    const name = $('#editPromptName').val().trim();
+    const description = $('#editPromptDescription').val().trim();
+    const content = $('#editPromptContent').val().trim();
+
+    if (!name || !content) {
+        showAlert('Please fill in all required fields', 'danger');
+        return;
+    }
+
+    const btn = $('#editPromptBtn');
+    btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Updating...');
+
+    makeAuthenticatedRequest(`/api/prompts/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+            name: name,
+            description: description || null,
+            content: content
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        showAlert('Prompt template updated successfully!', 'success');
+        $('#editPromptModal').modal('hide');
+        loadPrompts();
+    })
+    .catch(error => {
+        showAlert('Failed to update prompt template', 'danger');
+    })
+    .finally(() => {
+        btn.prop('disabled', false).html('<i class="fas fa-save"></i> Update');
+    });
+}
+
+function deletePrompt(id, name) {
+    if (!confirm(`Are you sure you want to delete the prompt template "${name}"?\n\nThis action cannot be undone and will delete all versions.`)) {
+        return;
+    }
+
+    makeAuthenticatedRequest(`/api/prompts/${id}`, {
+        method: 'DELETE'
+    })
+    .then(response => {
+        if (response.ok) {
+            showAlert('Prompt template deleted successfully!', 'success');
+            loadPrompts();
+        } else {
+            throw new Error('Delete failed');
+        }
+    })
+    .catch(error => {
+        showAlert('Failed to delete prompt template', 'danger');
+    });
+}
+
+function viewVersions(id) {
+    $('#versionsContent').html('<div class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading versions...</div>');
+    $('#versionsModal').modal('show');
+
+    makeAuthenticatedRequest(`/api/prompts/${id}/versions`)
+        .then(response => response.json())
+        .then(versions => {
+            if (versions.length === 0) {
+                $('#versionsContent').html('<div class="text-muted">No versions found</div>');
+                return;
+            }
+
+            const versionsHtml = versions.map(version => `
+                <div class="card mb-3">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>${version.name}</strong>
+                            <span class="badge bg-primary ms-2">v${version.version}</span>
+                        </div>
+                        <small class="text-muted">${new Date(version.created_at).toLocaleString()}</small>
+                    </div>
+                    <div class="card-body">
+                        ${version.description ? `<p class="text-muted mb-2">${version.description}</p>` : ''}
+                        <pre class="bg-light p-3 rounded" style="white-space: pre-wrap; max-height: 200px; overflow-y: auto;">${version.content}</pre>
+                    </div>
+                </div>
+            `).join('');
+
+            $('#versionsContent').html(versionsHtml);
+        })
+        .catch(error => {
+            $('#versionsContent').html('<div class="text-danger">Failed to load versions</div>');
+        });
+}
+</script>
+{% endblock %}

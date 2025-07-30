@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Ze Prompter{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1><i class="fas fa-tachometer-alt"></i> Dashboard</h1>
+        <p class="lead">Welcome to the Ze Prompter management system.</p>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="fas fa-file-alt text-primary"></i> Prompt Templates
+                </h5>
+                <p class="card-text">Manage your prompt templates with version control.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="badge bg-primary fs-6" id="prompt-count">Loading...</span>
+                    <a href="/prompts" class="btn btn-primary">
+                        <i class="fas fa-arrow-right"></i> Manage Prompts
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="fas fa-robot text-success"></i> AI Models
+                </h5>
+                <p class="card-text">Manage your AI models and their configurations.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="badge bg-success fs-6" id="model-count">Loading...</span>
+                    <a href="/models" class="btn btn-success">
+                        <i class="fas fa-arrow-right"></i> Manage Models
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-chart-bar"></i> Recent Activity
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Recent Prompts</h6>
+                        <div id="recentPrompts" class="list-group list-group-flush">
+                            <div class="text-muted">Loading...</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Recent Models</h6>
+                        <div id="recentModels" class="list-group list-group-flush">
+                            <div class="text-muted">Loading...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function() {
+    loadDashboardData();
+});
+
+function loadDashboardData() {
+    // Load prompt count and recent prompts
+    makeAuthenticatedRequest('/api/prompts/')
+        .then(response => response.json())
+        .then(data => {
+            $('#prompt-count').text(`${data.length} Templates`);
+
+            const recentPrompts = data.slice(0, 5);
+            if (recentPrompts.length === 0) {
+                $('#recentPrompts').html('<div class="text-muted">No prompts yet</div>');
+            } else {
+                const promptsHtml = recentPrompts.map(prompt => `
+                    <div class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">${prompt.name}</h6>
+                            <small class="version-badge badge bg-primary">v${prompt.version}</small>
+                        </div>
+                        <p class="mb-1 text-muted">${prompt.description || 'No description'}</p>
+                    </div>
+                `).join('');
+                $('#recentPrompts').html(promptsHtml);
+            }
+        })
+        .catch(error => {
+            $('#prompt-count').text('Error');
+            $('#recentPrompts').html('<div class="text-danger">Failed to load prompts</div>');
+        });
+
+    // Load model count and recent models
+    makeAuthenticatedRequest('/api/models/')
+        .then(response => response.json())
+        .then(data => {
+            $('#model-count').text(`${data.length} Models`);
+
+            const recentModels = data.slice(0, 5);
+            if (recentModels.length === 0) {
+                $('#recentModels').html('<div class="text-muted">No models yet</div>');
+            } else {
+                const modelsHtml = recentModels.map(model => `
+                    <div class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">${model.name}</h6>
+                        </div>
+                        <p class="mb-1 text-muted">${model.description || 'No description'}</p>
+                    </div>
+                `).join('');
+                $('#recentModels').html(modelsHtml);
+            }
+        })
+        .catch(error => {
+            $('#model-count').text('Error');
+            $('#recentModels').html('<div class="text-danger">Failed to load models</div>');
+        });
+}
+</script>
+{% endblock %}
