@@ -1,0 +1,11 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "penteraction"
+version = "0.0.1"
+description = "Reserved package for future use"
+authors = [{name = "Penteraction, Inc.", email = "contact@penteraction.com"}]
+license = {text = "Proprietary"}
+classifiers = ["Programming Language :: Python :: 3"] 
