@@ -1,0 +1,2 @@
+[console_scripts]
+rexplain = rexplain.cli.main:main
