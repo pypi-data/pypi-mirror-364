@@ -1,0 +1,38 @@
+Metadata-Version: 2.4
+Name: wakanda-whisper
+Version: 0.1.0
+Summary: A framework for automatic speech recognition (ASR) for african languages using OpenAI Whisper
+Author-email: Lawrence Francis <lawrencedikeu@gmail.com>
+Maintainer-email: Lawrence Francis <lawrencedikeu@gmail.com>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/wakandaai/wakanda-whisper
+Project-URL: Issues, https://github.com/wakandaai/wakanda-whisper/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: openai-whisper
+Requires-Dist: huggingface_hub
+Dynamic: license-file
+
+# Wakanda Whisper
+
+Wakanda Whisper is a framework for automatic speech recognition (ASR) for African languages using OpenAI Whisper.
+
+## Installation
+
+```bash
+pip install wakanda-whisper
+```
+
+## Usage
+
+```python
+import  wakanda_whisper
+
+model = wakanda_whisper.from_pretrained("WakandaAI/wakanda-whisper-small-rw-v1")
+result = model.transcribe("path/to/audio.wav")
+
+print(result['text'].strip())
+```
