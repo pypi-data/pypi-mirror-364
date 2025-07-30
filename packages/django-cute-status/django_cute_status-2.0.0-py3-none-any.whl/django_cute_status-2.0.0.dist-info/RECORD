@@ -1,0 +1,10 @@
+django_cute_status/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_cute_status/apps.py,sha256=Fz4JytDHopOmaMPB4YcnnUPaktAuUu1Xu3KZkebZI5Y,210
+django_cute_status/middleware.py,sha256=6lgglOIwiY1zhOeHiKRj4yD-EvyvgzJQr9kqLuaDo7c,1814
+django_cute_status/conf/__init__.py,sha256=mmInPwbwg-1OSHA_2YIPDZPuZ6inco8feJaxd8Ot4-o,857
+django_cute_status/conf/defaults.py,sha256=rBDotNhR1xNxpzcEaTHxJnxkWQ-2yLB5dkUj5g5Pkyk,695
+django_cute_status/templates/django_cute_status/base.html,sha256=jFVFPFB-rhoQOEBhFNL36D_deWj9Wyo0vHXF6sVmwMI,536
+django_cute_status-2.0.0.dist-info/METADATA,sha256=FUyVeeElHksrGtsdsrnU7Y0by8aulkrWxE7vt9BOnbA,6729
+django_cute_status-2.0.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+django_cute_status-2.0.0.dist-info/licenses/LICENSE,sha256=AP796B84ouUOIXPekEHTTB4fxnaiGhVGPI93ZMk4u5o,1065
+django_cute_status-2.0.0.dist-info/RECORD,,
