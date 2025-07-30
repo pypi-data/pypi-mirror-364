@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.md
+example.py
+requirements.txt
+setup.py
+dootask/__init__.py
+dootask/client.py
+dootask/exceptions.py
+dootask/models.py
+dootask_tools.egg-info/PKG-INFO
+dootask_tools.egg-info/SOURCES.txt
+dootask_tools.egg-info/dependency_links.txt
+dootask_tools.egg-info/requires.txt
+dootask_tools.egg-info/top_level.txt
