@@ -1,0 +1,319 @@
+CHANGES
+=======
+
+0.1.0
+-----
+
+* Update build exception when using unified limits
+* Disable CPU power management
+* Update string format to address PEP8 E231
+* Wait for libvirt domain shutdown correctly
+* docs: Add DevStack configuration example to README
+* Update accessing nova compute logs for RBD check
+* Updates readme format
+* Discard the cpu-0 from dedicated set
+* Update docstring for VirtQEMUdManager
+* Update shared/dedicated cpu calculations
+* Verify vTPM creation after svc restart
+* Enable tests for tls in whitebox
+* Updated watchdog tests with machine type
+* verify vencrypt feature
+* Update detach/attach to handle sriov macvtap
+* Rebuild with uefi image property
+* Swtich to Ubuntu Noble image
+* Reduce ddt requirement to >=1.6.0
+* Adds libvirt watchdog
+* Add realtime mask as parameter
+* Stop using irrelevant-filed for whitebox-devstack-ceph-multinode
+* Use sudo when gather compute id information
+* Revert "Evalute adding serial decorator to tests"
+* extend pre-commit with basic python linting
+
+0.0.3
+-----
+
+* evacuation tests
+* real time cpu test
+* Add a waiter when checking pci allocation
+* Update shared set depending on microversion
+* Evalute adding serial decorator to tests
+* Add HyperV default enlightment tests
+* Deploy with CPU power management enabled
+* Update nodes yaml to use cpu architecture
+* add twine check and pre-commit
+* enable release jobs
+* Test resize with mem\_page\_size in flavor
+* Remove ctlplane addr pass to client
+* Add vIOMMU device tests
+* Add test support for bochs display device
+* "Fix" double declaration of barbican-templest-plugin
+* Cap barbican to 1.6.0 for Python 3.6
+* Test coverage for stable compute UUID
+* Add barbican-tempest-plugin to requirements.txt
+* Use compute-feature-enabled as the config group name
+* Add plugin specific sriov vnic port parameter
+* Remove unit tests
+* Add global nodes variable
+* Update requirements for paramiko for Downstream Train
+* Test nova's cpu host state management
+* Fix some dedicated CPU assumptions
+* Use old value for service report interval
+* Enable LM back and forth flag for SRIOV
+* Update network reference for sr-iov attach/detach
+* Convert the XML vlan value found from str to int
+* Add socket affinity testing
+* Update jobs for Bobcat development cycle
+* Add vdpa base movement tests
+* Use barbican client from barbican-templest-plugin
+* Add vTPM testcases
+* Update to Jammy image
+* Remove skipsdist to allow project install
+* Add initial vdpa smoke test
+* Add multi-numa tests for masked policy
+* Update UEFI check when secure is not present
+* Test deploying multiple vgpu types
+* Add check for max disk attach
+* Add UEFI boot based tests
+* Add vGPU inventory check of Resource Providers
+* Attach and detach an SR-IOV port
+* Update NUMA Affinity tests for per port policy
+* Update grep cmd when checking for vgpu device
+* Pull tempest helper from 28.1.0 to WB base class
+* Update vgpu flavor ram size as a param
+* Take into account shared CPUs per NUMA
+* Allow for guest ram to be configurable
+* Allow dynamic container for QEMUImgClient
+* Fix typo
+* Replace assertItemsEqual with assertCountEqual
+* Remove skip checks around compute\_api ext
+* Update to zed testing runtime
+* Handle libvirt modular daemon container names
+* Check for allocated or claimed PCI status in DB
+* Remove admin client use for SR-IOV port creation
+* Add barbican to our devstack job
+* Cleanup after every test instead of after the whole test class
+* Refactor ceph job definition
+* Consolidate roles into pre playbook as tasks
+* Remove NSM from SR-IOV Affinity Tests
+* Use admin client for vgpu flavor
+* Unskip test\_volume\_backed\_live\_migration
+* Unskip basic dedicated CPU policy test
+* Drop separate cpupinning jobs
+* Don't show server twice needlessly
+* Stop silently overriding clients with admin clients
+* Check the default video model
+* Remove NSM from collocation LM test
+* Remove NSM from NUMALiveMigrationTest
+* Remove NSM from emul thread tests
+* Mixed Dedicated and Shared cpu instances
+* Update cpu model for deployment
+* test\_volume\_encryption: Correctly lookup the rbd user from XML
+* Switch testing to Yoga testing runtime
+* Add Rbd direct download test
+* Start transition to declarative CPU pinning configs
+* Create NUMA helper mixin class
+* Clean up .zuul.yaml
+* Use new config\_all\_computes() helper in file backed memory tests
+* Remove resize\_server() helper
+* Remove reboot\_server() helper
+* Simplify test\_rx\_tx\_queue\_size
+* Simplify test\_pointer\_device\_type
+* Simplify test\_live\_migration
+* Simplify test\_multiqueue
+* Improve base compute and utils helper organization
+* Add vgpu resize tests
+* Allow for ethernet type in rx queue test
+* Replace freenode by OFTC
+* Changed minversion in tox to 3.18.0
+* Switch testing to Xena testing runtime
+* Test allow disabling CPU flags
+* Add vgpu cold migration testcases
+* Add SR-IOV Live Migration Test
+* Add VirtIO-RNG device server tests
+* Remove manager.EncryptionScenarioTest from TestQEMUVolumeEncryption
+* test\_virtio\_scsi\_attach: Improve the volume id lookups
+* zuul: Ensure subnode n-cpu is correctly configured
+* Add skip check to volume encryption tests
+* Added emulator thread pinning tests
+* Remove f string formatting
+* Update iniparse for py2.7 deployments
+* Introduce volume encryption tests
+* Added min\_microversion to SRIOVNumaAffinity
+* Unskip test\_rx\_tx\_queue\_size
+* Add sanity nvdimm test
+* Added SR-IOV numa affinity testcases
+* Update README
+* Remove restart\_command config option
+* Unskip test\_cpu\_model\_extra\_flags
+* Stop installing crudini and iniparse from source
+
+0.0.2
+-----
+
+* move whitebox-multinode-multinuma-devstack to third party ci
+* Modify the tests to run on any image size
+* Assert hugepages exist in domain XML
+* Add volume size flavor option in tempest.conf
+* Test soft reboot after live-migration
+* Unskip hw\_video\_type tests
+* Introduce libvirt (un)mask)\_command config option
+* Clean up service management
+* Test selinux labels in QEMU/KVM environment
+* Get rid of service start/stop sleep
+* Get rid of py27 jobs
+* Add paramiko version atleast 2.7.0 in requirement.txt
+* Test file\_backed\_memory instance resize/live migration operation
+* Introduce stopped() context manager
+* Added instance collocation migration test
+* Update exception message for nova service
+* create\_test\_server(): don't clobber passed \`wait\_until\`
+* Pass hostname to NovaServiceManager
+* Normalize list of single dict for equality tests
+* New [whitebox-hardware]/cpu\_topology option
+* Remove tempest and oslo.log from requirements.txt
+* Add setuptools>=17.1 to requirements.txt
+* Use nested-virt nodepool label
+* Smarter Nova service management
+* Trivial: use condition instead of try/except
+* Update compute cpu-model to kvm64
+* Add ensure-pip role
+* Change config\_option to config\_options
+* Introduce multicontext manager
+* Fix repo after rename
+* Remove setup\_clients from VirtioSCSIDisk
+* Validate hw\_video\_type image property
+* Rename nova-libvirt to libvirt
+* Do not install whitebox twice
+* Add setuptools>=17.1 to test-requirements.txt
+* Update hacking min version to 3.0.1
+* Add vgpu guest creation testcase
+* Update hacking for Python 3
+* Normalize numa\_topology for consistent equality tests
+* Add mock to test-requirements.txt
+* Follow up for I4660043fcccec6721e197c4d77390744e356c59e
+* trivial: rename test class
+* trivial: fix import order/paragraphs
+* Convert to compute services name scheme
+* Cap stestr at 2.6.0 for python27
+* conf: give available\_cinder\_storage a sensible default
+* Add tests for virtio scsi disks
+* compute: Add negative volume detach test
+* update requirements to support older releases
+* Updates to run NUMALiveMigrationTest in tripleO
+* disable the use of ssh agents
+* Add SSH tunneling gateway port parameter
+* NUMA rebuild tests
+* Increase service restart sleep from 5 to 15s
+* Use ansible\_become instead of become in multinode devstack gate
+* vPMU tests
+* Zuul job
+* devstack plugin
+* Wait after service restart
+* Skip hugepages LM test if no hugepages on hosts
+* Fix getting server CPU pins
+* Don't use addition to combine dict values() into larger list
+* Log SSH command and result
+* Skip test\_cpu\_model\_extra\_flags
+* Skip test\_rx\_queue\_size
+* Check [whitebox]/hypervisors before using it
+* Remove 'common' directory
+* Readd vcpu variable for CPUPolicy classes
+* Test NUMA live migration
+* Add database client
+* Prepare for emulator threads and NUMA LM tests
+* Unify create\_flavor()
+* Add get\_all\_hypervisors()
+* Add ServiceManager
+* Workaround crudini and iniparse unreleased py3 support
+* Add NUMAClient
+* Refactor SSHClient
+* Make default flavor root disks size to 1 GB
+* Make container executable configurable
+* Move .gitreview from RDO to OpenStack
+* Add Zuul jobs
+* OpenDev Migration Patch
+* Update gitignore
+* Bump hacking version
+* Use config fixture to avoid racing on self.flags()
+* Test multiqueue
+* Copy default image before setting props
+* Factor out get\_server\_xml()
+* Move get\_hypervisor\_ip() to base test
+* Rename BaseTest classes
+* Add max\_compute\_nodes option
+* Add NovaConfigClient to read nova.conf
+* Simplify the SSH clients
+* Improve SSH config options
+* Fix incorrect import
+* Adds tests to cover RX queue size
+* Test CPU model extra flags
+* Drop dependency on libvirt-python
+* Fixes a minor typo in the README
+* Adds hypervisors example to the README
+* Add cache-mode test for volume-backed live migration
+* Fix typo in MissingHypervisorException
+* Better explain the \`hypervisors\` config option
+* Add CPU thread pinning tests
+* Add CPU pinning tests
+* Convert get\_hypervisor\_ip to use hostnames
+* Removes outdated targets from tox.ini
+* Subclass API tests instead of scenario
+* tox: Rename flake8 -> linters
+* utils: Fix logging typo
+* Remove RefreshQuotaUsages
+* README: Add links to source code
+* Modify test\_pointer\_device\_type to use conf hvs
+* Allow hypervisor IPs in configuration file
+* Updates URL and info of tempest doc in README
+* base: Subclass 'ScenarioTest'
+* Add tempest hacking checks and flake8 extensions
+* Remove '\_create\_nova\_flavor'
+* Don't subclass 'setUpClass'
+* Correct typo in log
+* Make debugging 'test\_refresh\_quota\_usages' easier
+* Use Python to parse config files
+* Mark options as required
+* trivial: Use a sane option group name
+* trivial: Rework of options
+* trivial: Further deprecation item cleanup
+* trivial: Resolve deprecation warnings
+* Re-organize how the tests are structured
+* Re-home project
+* Remove 'api' tests
+* README: Update with roadmap
+* trivial: Post-move cleanup
+* .gitignore: Ignore swp files
+* tox: enable unit tests and fix flake8
+* Fixes for containerized deployments
+* Add support for containerized deployments
+* Updates install instructions on the README
+* Removes archive deleted rows
+* Simplifies the config option
+* Adds the test\_archive\_deleted\_rows test
+* Refactors the clients and introduce NovaManageClient
+* Refactors duplicated functions into a parent class
+* Updates gitignore
+* Adds the test\_pointer\_device\_type test
+* Modifies the sample ssh\_client test
+* Adds the refresh\_quota\_usages tests
+* Adds the MySQLClient
+* Cleans up old script
+* Removes whitespace in setup.cfg
+* Adds CONTRIBUTING instructions
+* Script to verify prefer, isolate and require cpu threads policy
+* Adds a simple example for the mysql client
+* Replaces MySQLdb with PyMySQL
+* Improves rst formatting of the README.rst
+* Deletes the tox virtualenv
+* Adds a mysql client lib
+* Adds tox and a style check job
+* Changes to README.rst to correct step numbers
+* Changes to README.rst to include more steps
+* Remove direct import to tempest.api.compute.base
+* Adds quickstart doc in the README.rst
+* Includes license and fixes copyright headers
+* test\_create\_server
+* Make the necessary pbr changes and add .gitignore
+* Initial commit
+* ManageSF commit
+* Initial empty repository

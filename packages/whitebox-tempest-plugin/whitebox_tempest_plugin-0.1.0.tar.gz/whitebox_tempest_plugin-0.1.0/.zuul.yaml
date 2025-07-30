@@ -1,0 +1,210 @@
+- nodeset:
+    name: nested-virt-multinode
+    nodes:
+      - name: controller
+        label: nested-virt-ubuntu-noble
+        # NOTE(artom) We can't name the node 'compute' because that seems to
+        # take precedence over the 'compute' group in playbooks, so things we
+        # want to run on all hosts in the 'compute' group would only run on the
+        # subnode.
+      - name: compute-host
+        label: nested-virt-ubuntu-noble
+    groups:
+      # Node where tests are executed and test results collected
+      - name: tempest
+        nodes:
+          - controller
+      # Nodes running the compute service
+      - name: compute
+        nodes:
+          - controller
+          - compute-host
+      # Nodes that are not the controller
+      - name: subnode
+        nodes:
+          - compute-host
+      # Switch node for multinode networking setup
+      - name: switch
+        nodes:
+          - controller
+      # Peer nodes for multinode networking setup
+      - name: peers
+        nodes:
+          - compute-host
+
+- job:
+    name: whitebox-devstack-multinode
+    parent: tempest-multinode-full-py3
+    nodeset: nested-virt-multinode
+    description: |
+      Runs the entire test suite on single-NUMA, non-SMT, nested virt VMs.
+    required-projects:
+      - openstack/whitebox-tempest-plugin
+      - openstack/barbican
+      - openstack/barbican-tempest-plugin
+    pre-run: playbooks/whitebox/pre.yaml
+    irrelevant-files:
+      - ^test-requirements.txt$
+    vars:
+      tox_envlist: all
+      tempest_concurrency: 1
+      tempest_test_regex: ^whitebox_tempest_plugin\.
+      # NOTE(jparker) in order for guest to boot via UEFI, the host will need the
+      # open source implementation of UEFI for VMs via the OVMF package. In
+      # addition to test vTPM hosts need swtpm as well
+      extra_packages: ovmf,swtpm-tools
+      tempest_exclude_regex: ^whitebox_tempest_plugin\.api\.compute\.test_hugepages
+      compute_node_template_name: whitebox-devstack-multinode.yaml.j2
+      devstack_services:
+        br-ex-tcpdump: false
+        tls-proxy: true
+      devstack_localrc:
+        MAX_COMPUTE_NODES: 2
+        NOVA_SERVICE_REPORT_INTERVAL: 10
+        LIBVIRT_TYPE: kvm
+        TEMPEST_PLUGINS: /opt/stack/whitebox-tempest-plugin /opt/stack/barbican-tempest-plugin
+        WHITEBOX_PRIVKEY_PATH: /home/tempest/.ssh/id_rsa
+        WHITEBOX_CPU_MODEL: Nehalem
+        WHITEBOX_CPU_MODEL_EXTRA_FLAGS: vme,+ssse3,-mmx
+        WHITEBOX_CPU_TOPOLOGY: "0: [0,1,2,3,4,5,6,7]"
+        WHITEBOX_DEDICATED_CPUS_PER_NUMA: 3
+        NOVA_CONSOLE_PROXY_COMPUTE_TLS: True
+      devstack_local_conf:
+        test-config:
+          $TEMPEST_CONFIG:
+            compute-feature-enabled:
+              volume_backed_live_migration: true
+              stable_compute_uuid_supported: true
+            auth:
+              tempest_roles: creator
+        post-config:
+          $NOVA_CONF:
+            key_manager:
+              backend: barbican
+            compute:
+              cpu_dedicated_set: '1-3'
+              cpu_shared_set: '4,5'
+              max_disk_devices_to_attach: '7'
+            libvirt:
+              cpu_mode: custom
+              cpu_models: Nehalem
+              cpu_model_extra_flags: vme,+ssse3,-mmx
+              virt_type: kvm
+              rx_queue_size: 1024
+              swtpm_enabled: True
+              swtpm_user: swtpm
+              swtpm_group: swtpm
+    group-vars:
+      subnode:
+        devstack_services:
+          br-ex-tcpdump: false
+          tls-proxy: true
+        devstack_localrc:
+          LIBVIRT_TYPE: kvm
+          NOVA_SERVICE_REPORT_INTERVAL: 10
+          NOVA_CONSOLE_PROXY_COMPUTE_TLS: True
+        devstack_local_conf:
+          post-config:
+            $NOVA_CONF:
+              key_manager:
+                backend: barbican
+              compute:
+                cpu_dedicated_set: '4-6'
+                cpu_shared_set: '2,3'
+                max_disk_devices_to_attach: '7'
+              libvirt:
+                cpu_mode: custom
+                cpu_models: Nehalem
+                cpu_model_extra_flags: vme,+ssse3,-mmx
+                virt_type: kvm
+                rx_queue_size: 1024
+                swtpm_enabled: True
+                swtpm_user: swtpm
+                swtpm_group: swtpm
+      tempest:
+        devstack_plugins:
+          barbican: https://opendev.org/openstack/barbican.git
+          whitebox-tempest-plugin: https://opendev.org/openstack/whitebox-tempest-plugin.git
+
+- job:
+    name: whitebox-devstack-multinode-hugepages
+    parent: whitebox-devstack-multinode
+    description: |
+      Runs the hugepages tests on a deployment that has set up hugepages on the hosts.
+    vars:
+      tempest_test_regex: ^whitebox_tempest_plugin\.api\.compute\.test_hugepages
+      # NOTE(artom) The parent job's exclude regex excludes the hugepages
+      # tests, so we need to overwrite it here with a regex that matches
+      # *nothing*.
+      tempest_exclude_regex: $^
+      num_2M_pages: 512
+      num_1G_pages: 1
+
+- job:
+    name: whitebox-devstack-ceph-multinode
+    parent: devstack-plugin-ceph-multinode-tempest-py3
+    description: |
+      Runs test_rbd_direct_download test on single-NUMA, non-SMT, nested virt
+      VMs with ceph plugin enabled.
+
+      The job uses the default qcow2 file based imagebackend for ephemeral
+      storage. It also enables the direct download of images via rbd into
+      the local imagecache for Nova.
+    voting: true
+    required-projects:
+      openstack/whitebox-tempest-plugin
+    pre-run: playbooks/whitebox/pre.yaml
+    files:
+      - whitebox_tempest_plugin/api/compute/test_rbd_direct_download.py$
+      - .zuul.yaml$
+    vars:
+      tox_envlist: all
+      tempest_concurrency: 1
+      compute_node_template_name: whitebox-devstack-ceph-multinode.yaml.j2
+      devstack_plugins:
+        whitebox-tempest-plugin: https://opendev.org/openstack/whitebox-tempest-plugin.git
+      tempest_test_regex: '^whitebox_tempest_plugin.api.compute.test_rbd_direct_download'
+      devstack_localrc:
+        NOVA_SERVICE_REPORT_INTERVAL: 10
+        COMPUTE_FEATURE_RBD_DOWNLOAD: True
+        TEMPEST_PLUGINS: /opt/stack/whitebox-tempest-plugin
+        WHITEBOX_PRIVKEY_PATH: /home/tempest/.ssh/id_rsa
+      devstack_local_conf:
+        post-config:
+          $NOVA_CPU_CONF:
+            glance:
+              enable_rbd_download: True
+              rbd_user: glance
+              rbd_ceph_conf: /etc/ceph/ceph.conf
+              rbd_pool: images
+            libvirt:
+              images_type: default
+    group-vars:
+      subnode:
+        devstack_local_conf:
+          post-config:
+            $NOVA_CPU_CONF:
+              glance:
+                enable_rbd_download: True
+                rbd_user: glance
+                rbd_ceph_conf: /etc/ceph/ceph.conf
+                rbd_pool: images
+              libvirt:
+                images_type: default
+
+- project:
+    templates:
+      - publish-to-pypi
+    check:
+      jobs:
+        - whitebox-devstack-multinode
+        - whitebox-devstack-ceph-multinode
+        - openstack-tox-pep8
+    gate:
+      jobs:
+        - whitebox-devstack-multinode
+        - whitebox-devstack-ceph-multinode
+        - openstack-tox-pep8
+    experimental:
+      jobs:
+        - whitebox-devstack-multinode-hugepages
