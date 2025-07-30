@@ -1,0 +1,50 @@
+Metadata-Version: 2.4
+Name: crosswordpy
+Version: 0.2.1
+Summary: No Hint Crossword Puzzle
+Project-URL: homepage, https://github.com/SaitoTsutomu/crosswordpy
+Author-email: Saito Tsutomu <tsutomu7@hotmail.co.jp>
+License-File: LICENSE
+Classifier: Development Status :: 1 - Planning
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Software Development
+Requires-Python: >=3.11
+Requires-Dist: pygame>=2.6.1
+Description-Content-Type: text/markdown
+
+## No Hint Crossword Puzzle
+
+語彙力と推理力で全5ステージをクリアしよう。
+
+* 同じ文字は一度に入力可能
+* クリアするとタイムを表示
+
+## インストール
+
+```
+uv tool install crosswordpy
+```
+
+## プレイ
+
+```
+crosswordpy
+```
+
+## アンインストール
+
+```
+uv tool uninstall crosswordpy
+```
+
+## 別データで上書きする場合
+
+もし、別データのURLがある場合は、以下のようにデータを上書きできます。
+
+```
+curl -L 該当URL -o crosswordpy_data.zip
+unzip -o crosswordpy_data.zip -d ~/.local/share/uv/tools/crosswordpy/lib/python3.1?/site-packages/crosswordpy
+rm crosswordpy_data.zip
+```
