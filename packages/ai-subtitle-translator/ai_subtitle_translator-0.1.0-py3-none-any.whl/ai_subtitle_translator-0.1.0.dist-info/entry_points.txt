@@ -1,0 +1,2 @@
+[console_scripts]
+translate-subtitles = llm_subtitle_translator.translate_subtitles:main

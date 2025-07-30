@@ -1,0 +1,14 @@
+llm_subtitle_translator/__init__.py,sha256=O7rB56CW-TTdUzUDzR91IKyWi2QNVneoQMvHfBtwX1M,201
+llm_subtitle_translator/app.py,sha256=ZNvWK4C1MXalW0YS5TlFrnzTG6SZ8e-HqNF17v0_LsM,17681
+llm_subtitle_translator/config.py,sha256=OErGuIRLFjnhHPRuDLDQN5tfjKZ1gLNFPVoLp-jgEds,730
+llm_subtitle_translator/console_utils.py,sha256=bE-9MDs1foA2miB05vZ8sHZeKfyOKyxvnTZLnwqFEmQ,7808
+llm_subtitle_translator/llm_translation.py,sha256=4WFYifHU0FapRNqXl2qINI9O_Y7XPVCbv2Tuq3gD32o,12495
+llm_subtitle_translator/main.py,sha256=n1ZbNTZC2dpbWiFGdjOuYNyQnix1IEeZ5xReyLuxDno,219
+llm_subtitle_translator/subtitle_handler.py,sha256=hyrbYeih2_vcDTeCDfHsvjgXTzHmc4MKE5_AsZTnZS4,5897
+llm_subtitle_translator/translate_subtitles.py,sha256=nFtQtahWMQV44V7skIP-aZVFLehfJ6pD_R_9ZZrVG-0,11088
+llm_subtitle_translator/utils.py,sha256=zFgwseaxjGeyIMi3Yhh4fcs6SCBc5U9xYLf-BUSAazo,2351
+ai_subtitle_translator-0.1.0.dist-info/METADATA,sha256=rUUVvD2oJEKtNNFl5LhsTF8q2e2PVh6dmGiFTa7wYhw,7688
+ai_subtitle_translator-0.1.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+ai_subtitle_translator-0.1.0.dist-info/entry_points.txt,sha256=IBucrjGPW5VovYaoxU_g1hj-oioHd_4SYQ1HAiMnDpA,89
+ai_subtitle_translator-0.1.0.dist-info/licenses/LICENSE,sha256=lBOQMoZTyf7EdKLqUm2Z8URNbO89lPKplEWP0X0c-Hk,1092
+ai_subtitle_translator-0.1.0.dist-info/RECORD,,
