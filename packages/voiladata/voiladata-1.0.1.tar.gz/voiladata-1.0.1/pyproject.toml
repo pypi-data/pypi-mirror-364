@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "voiladata"
+version = "1.0.1"
+description = "A versatile Python library to read various file formats into a pandas DataFrame, with robust handling of nested data."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+keywords = ["pandas", "dataframe", "ETL", "json", "yaml", "toml", "parquet"]
+authors = [
+  { name = "Debrup Mukherjee", email = "dmukherjeetextiles@gmail.com" },
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+# Core dependency
+dependencies = [
+    "pandas>=1.5.0"
+]
+
+# Optional dependencies (for pip install voiladata[extra])
+[project.optional-dependencies]
+yaml = ["PyYAML>=6.0"]
+toml = ["toml>=0.10.2"]
+excel = ["openpyxl>=3.0.0"]
+html = ["lxml>=4.9.0"]
+arrow = ["pyarrow>=10.0.0"]
+spss = ["pyreadstat>=1.2.0"]
+
+# An 'all' extra to install everything
+all = [
+    "voiladata[yaml]",
+    "voiladata[toml]",
+    "voiladata[excel]",
+    "voiladata[html]",
+    "voiladata[arrow]",
+    "voiladata[spss]",
+]
+
+[project.urls]
+Repository = "https://github.com/Dmukherjeetextiles/VoilaData"

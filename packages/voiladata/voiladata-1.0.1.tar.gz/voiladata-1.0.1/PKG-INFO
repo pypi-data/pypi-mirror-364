@@ -1,0 +1,131 @@
+Metadata-Version: 2.4
+Name: voiladata
+Version: 1.0.1
+Summary: A versatile Python library to read various file formats into a pandas DataFrame, with robust handling of nested data.
+Author: Debrup Mukherjee
+Author-email: Debrup Mukherjee <dmukherjeetextiles@gmail.com>
+License: MIT
+Project-URL: Repository, https://github.com/Dmukherjeetextiles/VoilaData
+Keywords: pandas,dataframe,ETL,json,yaml,toml,parquet
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pandas>=1.5.0
+Provides-Extra: yaml
+Requires-Dist: PyYAML>=6.0; extra == "yaml"
+Provides-Extra: toml
+Requires-Dist: toml>=0.10.2; extra == "toml"
+Provides-Extra: excel
+Requires-Dist: openpyxl>=3.0.0; extra == "excel"
+Provides-Extra: html
+Requires-Dist: lxml>=4.9.0; extra == "html"
+Provides-Extra: arrow
+Requires-Dist: pyarrow>=10.0.0; extra == "arrow"
+Provides-Extra: spss
+Requires-Dist: pyreadstat>=1.2.0; extra == "spss"
+Provides-Extra: all
+Requires-Dist: voiladata[yaml]; extra == "all"
+Requires-Dist: voiladata[toml]; extra == "all"
+Requires-Dist: voiladata[excel]; extra == "all"
+Requires-Dist: voiladata[html]; extra == "all"
+Requires-Dist: voiladata[arrow]; extra == "all"
+Requires-Dist: voiladata[spss]; extra == "all"
+Dynamic: author
+Dynamic: license-file
+
+# VoilaData
+A versatile Python library to read various file formats into a pandas DataFrame, with robust handling of deeply nested data structures.
+
+This package provides a single, convenient class `DataFrameReader` that automatically detects the file type from its extension and uses the best method to load it into a pandas DataFrame. For nested formats like JSON and YAML, it automatically flattens the data into a wide, easy-to-use format.
+
+## Key Features
+
+- **Simple Interface**: A single `read()` method for all supported file types.
+- **Wide Format Support**: Handles a large variety of common data file formats.
+- **Intelligent Flattening**: Converts deeply nested JSON and YAML into a flat, wide DataFrame.
+- **Extensible**: Easily add support for more file types.
+
+## Supported Formats
+
+- `.csv`, `.tsv`
+- `.xls`, `.xlsx`
+- `.json`, `.ndjson`
+- `.yaml`, `.yml`
+- `.toml`
+- `.parquet`
+- `.orc`
+- `.feather`
+- `.avro`
+- `.html`
+- `.dta` (Stata)
+- `.sav` (SPSS)
+
+
+## Usage
+
+Using the `DataFrameReader` is straightforward.
+
+```python
+from voiladata import DataFrameReader
+
+# 1. Initialize the reader with a file path
+reader = DataFrameReader('path/to/your/data.csv')
+
+# 2. Read the file into a pandas DataFrame
+df = reader.read()
+
+print(df.head())
+```
+
+### Reading Nested JSON
+
+The real power comes when dealing with nested data. Consider this JSON file (`data.json`):
+
+```json
+[
+    {
+        "id": "user1",
+        "profile": {
+            "name": "Alice",
+            "age": 30
+        },
+        "logins": [
+            {"timestamp": "2024-01-10T10:00:00Z", "ip": "192.168.1.1"},
+            {"timestamp": "2024-01-11T12:30:00Z", "ip": "192.168.1.2"}
+        ]
+    }
+]
+```
+
+`DataFrameReader` will automatically flatten it:
+
+```python
+from voiladata import DataFrameReader
+
+# Read the nested JSON
+reader = DataFrameReader('data.json')
+df = reader.read()
+
+# The resulting DataFrame is wide and flat
+print(df)
+```
+
+**Output:**
+
+| id    | profile_name | profile_age | logins_0_timestamp      | logins_0_ip | logins_1_timestamp      | logins_1_ip |
+|:------|:-------------|:------------|:------------------------|:------------|:------------------------|:------------|
+| user1 | Alice        | 30          | 2024-01-10T10:00:00Z | 192.168.1.1 | 2024-01-11T12:30:00Z | 192.168.1.2 |
+
+
+## License
+
+This project is licensed under the MIT [License](LICENSE).````
