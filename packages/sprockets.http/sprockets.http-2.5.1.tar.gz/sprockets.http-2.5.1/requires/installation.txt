@@ -1,0 +1,2 @@
+setuptools>=64
+tornado>=5,<7

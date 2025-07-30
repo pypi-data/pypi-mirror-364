@@ -1,0 +1,5 @@
+setuptools>=64
+tornado<7,>=5
+
+[sentry]
+sentry-sdk<2,>=1.5.4
