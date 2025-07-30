@@ -1,0 +1,29 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pytest-lobster"
+version = "0.1.0"
+authors = [
+  { name="Anders Arnholm", email="Anders@Arnholm.se" },
+]
+description = "Pytest to generate lobster tracing files"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Framework :: Pytest",
+]
+license = "ISC"
+license-files = ["LICEN[CS]E*"]
+dependencies = [
+  "pytest>=7.0",
+]
+[project.urls]
+Homepage = "https://codeberg.org/balp/pytest-lobster"
+Issues = "https://codeberg.org/balp/pytest-lobster/issues"
+
+[project.entry-points.pytest11]
+pytest_lobster = "pytest_lobster.lobster"
