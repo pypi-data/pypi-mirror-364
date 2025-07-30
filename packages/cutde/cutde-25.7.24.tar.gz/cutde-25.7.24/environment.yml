@@ -1,0 +1,27 @@
+name: cutde
+channels:
+  - conda-forge
+dependencies:
+  # needed for running cutde
+  - numpy
+  - pyproj
+
+  # developer tools
+  - pre-commit
+  - black
+  - flake8
+  - isort
+  - pytest
+  - pytest-cov
+  - ipdb
+  - pip
+  - twine
+  - scipy
+  - matplotlib
+
+  # build tools
+  - c-compiler
+  - cxx-compiler
+  - llvm-openmp  # [osx]
+  - pybind11
+  - mako
