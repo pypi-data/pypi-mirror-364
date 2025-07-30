@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling==1.26.3", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "stupa"
+version = "0.1.2"
+description = "A Django API toolkit for response utilities, exceptions, middleware, and alert handlers."
+readme = "README.md"
+license = {text = "MIT"}
+license-files = ["LICENSE"]
+authors = [
+  {name = "Ram Suthar", email = "ramsuthar305@gmail.com"}
+]
+dependencies = ["django"]
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Framework :: Django",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/stupa"]

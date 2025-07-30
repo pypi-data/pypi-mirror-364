@@ -1,0 +1,47 @@
+Metadata-Version: 2.3
+Name: stupa
+Version: 0.1.2
+Summary: A Django API toolkit for response utilities, exceptions, middleware, and alert handlers.
+Author-email: Ram Suthar <ramsuthar305@gmail.com>
+License: MIT
+Classifier: Development Status :: 3 - Alpha
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.8
+Requires-Dist: django
+Description-Content-Type: text/markdown
+
+# stupa
+
+A Django API toolkit for response utilities, exceptions, middleware, and alert handlers.
+
+_Open source version of Skillspe's stupa package_
+
+## Features
+
+- **Response Utilities**: Standardized response classes with consistent structure
+- **API Exceptions**: Custom exception handling for better error management
+- **Exception Middleware**: Middleware for graceful API error handling
+- **Alert Handlers**: Multi-platform alert system (Discord, Slack, Email)
+
+## Installation
+
+```bash
+pip install stupa
+```
+
+## Requirements
+
+- Python >= 3.7
+- Django
+
+## License
+
+MIT License
+
+## Links
+
+- [GitHub Repository](https://github.com/ramsuthar305/stupa)
+- [Issue Tracker](https://github.com/ramsuthar305/stupa/issues)
