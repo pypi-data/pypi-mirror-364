@@ -1,0 +1,14 @@
+mAbLab/__init__.py,sha256=l8Vj1KT4KwXqlI1atZzcRc9jzosXZXVexmPuuw_SloQ,263
+mAbLab/common_methods.py,sha256=VHwe9zaB_FBCMKio7PCmv4RCizUK0-K46SQyUtsGSpU,4589
+mAbLab/fc_constants.py,sha256=m8G2Jp-OFNh4llRxBRiD2QEQHvc1T_sQVmc-Xjz8I-E,42788
+mAbLab/hc_annotator.py,sha256=aloOCc5VXjIxpdsqLH7NG7X_SgiygLUQ3BD-Y9RJytk,45282
+mAbLab/heavy_chain.py,sha256=j7FK6OU2M2JrYjNbKrXJHy9it9eSG3gXcHN9urp_Cdc,10992
+mAbLab/lc_annotator.py,sha256=26Kufa_APafuTBbD0iSThpUaSHugXIPzyrO7IiYXOOs,14990
+mAbLab/light_chain.py,sha256=B_8qNXAsvtfDp82pi7al7obWUEQiudtYgYvM0cU6Hog,9782
+mAbLab/mab.py,sha256=suKkAdNDBJSKsWtmTwxwcAtqhijBvYdZqJy_sXYllBk,5868
+mAbLab/properties.py,sha256=bCH9NRFdckJ5oTN0pY-1uSgMss65YETN_4M-XiKC8Fc,4994
+mablab-1.0.5.dist-info/licenses/LICENSE,sha256=kIVF2u_pwHT7SnMQp7Z-L2a_uPGmbURQRIF0_Y-67VE,1087
+mablab-1.0.5.dist-info/METADATA,sha256=ojU_pfgKTh1Y6TEyrzoEKyToe7uld28LweYSfo1UIvk,2025
+mablab-1.0.5.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+mablab-1.0.5.dist-info/top_level.txt,sha256=Tv_Fa9MIgPWyhURwoDMTUW3zL4cdniZzlsx2ZyPCz_U,7
+mablab-1.0.5.dist-info/RECORD,,
