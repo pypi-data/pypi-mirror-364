@@ -1,0 +1,17 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+meridianalgo/__init__.py
+meridianalgo/ai_analyzer.py
+meridianalgo/backtest_engine.py
+meridianalgo/ensemble_models.py
+meridianalgo/indicators.py
+meridianalgo/ml_predictor.py
+meridianalgo/trading_engine.py
+meridianalgo/utils.py
+meridianalgo.egg-info/PKG-INFO
+meridianalgo.egg-info/SOURCES.txt
+meridianalgo.egg-info/dependency_links.txt
+meridianalgo.egg-info/requires.txt
+meridianalgo.egg-info/top_level.txt

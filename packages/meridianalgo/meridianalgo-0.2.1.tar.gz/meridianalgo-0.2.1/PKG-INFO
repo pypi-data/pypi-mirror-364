@@ -1,0 +1,814 @@
+Metadata-Version: 2.4
+Name: meridianalgo
+Version: 0.2.1
+Summary: A Python library for algorithmic trading and financial analysis with AI/ML capabilities
+Home-page: https://github.com/MeridianAlgo/Packages
+Author: MeridianAlgo
+Author-email: meridianalgo@gmail.com
+Project-URL: Bug Reports, https://github.com/MeridianAlgo/Packages/issues
+Project-URL: Source, https://github.com/MeridianAlgo/Packages
+Project-URL: Documentation, https://github.com/MeridianAlgo/Packages/wiki
+Keywords: trading,finance,machine learning,AI,stock analysis,algorithmic trading,backtesting
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Financial and Insurance Industry
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Office/Business :: Financial :: Investment
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: pandas>=1.3.0
+Requires-Dist: numpy>=1.21.0
+Requires-Dist: requests>=2.25.0
+Requires-Dist: python-dateutil>=2.8.0
+Requires-Dist: yfinance>=0.2.0
+Requires-Dist: scikit-learn>=1.0.0
+Provides-Extra: ml
+Requires-Dist: torch>=1.9.0; extra == "ml"
+Requires-Dist: torchvision>=0.10.0; extra == "ml"
+Requires-Dist: torchaudio>=0.9.0; extra == "ml"
+Provides-Extra: visualization
+Requires-Dist: matplotlib>=3.3.0; extra == "visualization"
+Requires-Dist: seaborn>=0.11.0; extra == "visualization"
+Requires-Dist: plotly>=5.0.0; extra == "visualization"
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0.0; extra == "dev"
+Requires-Dist: pytest-cov>=2.0.0; extra == "dev"
+Requires-Dist: black>=21.0.0; extra == "dev"
+Requires-Dist: flake8>=3.8.0; extra == "dev"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: project-url
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# MeridianAlgo - Quantum Meridian Update
+
+A comprehensive Python library for algorithmic trading and financial analysis, featuring both traditional trading tools and advanced AI/ML capabilities for quantitative finance.
+
+## Features Overview
+
+### Traditional Trading Features
+- **Trading Engine**: Live and paper trading with position management
+- **Backtesting Engine**: Strategy testing with performance metrics
+- **Technical Indicators**: 15+ indicators (RSI, MACD, Bollinger Bands, etc.)
+- **Risk Management**: Position sizing, P&L calculation, trade validation
+- **Portfolio Analytics**: Performance metrics, drawdown analysis
+
+### New AI/ML Features (v0.2.1)
+- **ML Predictor**: Neural networks and statistical ensemble models
+- **AI Analyzer**: Market sentiment and regime detection
+- **Ensemble Models**: Multiple ML models for enhanced accuracy
+- **GPU Acceleration**: NVIDIA, AMD, Intel, Apple Silicon support
+- **Smart Fallbacks**: Works with or without ML dependencies
+
+## Installation
+
+### Basic Installation
+```bash
+pip install meridianalgo
+```
+
+### With ML Support
+```bash
+pip install meridianalgo[ml]
+```
+
+### Full Installation (with visualization)
+```bash
+pip install meridianalgo[ml,visualization]
+```
+
+## Dependencies
+
+**Core Requirements:**
+- pandas >= 1.3.0
+- numpy >= 1.21.0  
+- requests >= 2.25.0
+- yfinance >= 0.2.0
+- scikit-learn >= 1.0.0
+
+**Optional ML Requirements:**
+- torch >= 1.9.0 (for neural networks)
+- torchvision >= 0.10.0
+- torchaudio >= 0.9.0
+
+**Optional Visualization:**
+- matplotlib >= 3.3.0
+- seaborn >= 0.11.0
+- plotly >= 5.0.0
+
+## Quick Start
+
+### 1. Trading Engine - Order Management
+```python
+from meridianalgo import TradingEngine
+
+# Initialize trading engine
+engine = TradingEngine(paper_trading=True)
+engine.connect()
+
+# Place market order
+order = engine.place_order("AAPL", "buy", 10, "market")
+print(f"Order: {order['id']} - {order['status']}")
+
+# Place limit order  
+limit_order = engine.place_order("TSLA", "buy", 5, "limit", price=250.00)
+
+# Check positions and P&L
+positions = engine.get_positions()
+pnl = engine.calculate_pnl("AAPL", current_price=155.00)
+print(f"AAPL P&L: ${pnl:.2f}")
+
+# View account info
+account = engine.get_account_info()
+print(f"Balance: ${account['balance']:.2f}")
+```
+
+### 2. Technical Indicators - Market Analysis
+```python
+from meridianalgo import Indicators
+import yfinance as yf
+
+# Get stock data
+data = yf.Ticker("AAPL").history(period="3mo")
+prices = data['Close'].values
+
+# Moving Averages
+sma_20 = Indicators.sma(prices, period=20)
+ema_12 = Indicators.ema(prices, period=12)
+
+# Oscillators
+rsi = Indicators.rsi(prices, period=14)
+macd_line, signal_line, histogram = Indicators.macd(prices)
+
+# Bollinger Bands
+upper, middle, lower = Indicators.bollinger_bands(prices, period=20, std_dev=2)
+
+# Volume Analysis
+volume_sma = Indicators.volume_sma(data['Volume'], period=20)
+
+# Advanced Indicators
+atr = Indicators.atr(data['High'], data['Low'], data['Close'], period=14)
+stoch_k, stoch_d = Indicators.stochastic(data['High'], data['Low'], data['Close'])
+
+print(f"Current RSI: {rsi.iloc[-1]:.2f}")
+print(f"Current MACD: {macd_line.iloc[-1]:.4f}")
+```
+
+### 3. Backtesting Engine - Strategy Testing
+```python
+from meridianalgo import BacktestEngine
+import pandas as pd
+
+# Prepare historical data
+data = yf.Ticker("AAPL").history(period="1y")
+backtest_data = data.reset_index().rename(columns={
+    'Date': 'timestamp', 'Open': 'open', 'High': 'high',
+    'Low': 'low', 'Close': 'close', 'Volume': 'volume'
+})
+
+# Define trading strategy
+def moving_average_strategy(row, positions, capital, **params):
+    """Simple moving average crossover strategy"""
+    if len(positions) == 0:  # No position
+        # Buy signal: price above MA
+        if row['close'] > params.get('ma_threshold', 150):
+            return {
+                'symbol': 'AAPL',
+                'action': 'buy', 
+                'quantity': int(capital * 0.1 / row['close'])  # 10% of capital
+            }
+    else:  # Have position
+        # Sell signal: price below MA
+        if row['close'] < params.get('ma_threshold', 150):
+            return {
+                'symbol': 'AAPL',
+                'action': 'sell',
+                'quantity': positions['AAPL']['quantity']
+            }
+    return None
+
+# Run backtest
+backtest = BacktestEngine(initial_capital=10000)
+backtest.load_data(backtest_data)
+
+results = backtest.run_backtest(
+    moving_average_strategy, 
+    ma_threshold=150
+)
+
+# Analyze results
+print(f"Total Return: {results['total_return']:.2%}")
+print(f"Sharpe Ratio: {results['sharpe_ratio']:.2f}")
+print(f"Max Drawdown: {results['max_drawdown']:.2%}")
+print(f"Total Trades: {results['total_trades']}")
+
+# Get detailed trade history
+trades_df = backtest.get_trades()
+equity_df = backtest.get_equity_curve()
+```
+
+### 4. Risk Management & Utilities
+```python
+from meridianalgo import TradeUtils
+
+# Position sizing based on risk
+capital = 10000
+risk_percent = 2.0  # Risk 2% of capital
+entry_price = 150.00
+stop_loss = 145.00
+
+position_size = TradeUtils.calculate_position_size(
+    capital, risk_percent, entry_price, stop_loss
+)
+print(f"Position size: {position_size:.0f} shares")
+
+# Risk-reward analysis
+target_price = 160.00
+risk_reward = TradeUtils.calculate_risk_reward_ratio(
+    entry_price, target_price, stop_loss
+)
+print(f"Risk-Reward Ratio: 1:{risk_reward:.2f}")
+
+# P&L calculations
+pnl = TradeUtils.calculate_pnl(entry_price, 155.00, position_size, "long")
+pnl_percent = TradeUtils.calculate_pnl_percent(entry_price, 155.00, "long")
+
+print(f"P&L: ${pnl:.2f} ({pnl_percent:.2f}%)")
+
+# Performance metrics
+trade_history = [
+    {'pnl': 150}, {'pnl': -80}, {'pnl': 200}, {'pnl': -50}, {'pnl': 300}
+]
+
+win_rate = TradeUtils.calculate_win_rate(trade_history)
+profit_factor = TradeUtils.calculate_profit_factor(trade_history)
+avg_win, avg_loss = TradeUtils.calculate_average_win_loss(trade_history)
+
+print(f"Win Rate: {win_rate:.1f}%")
+print(f"Profit Factor: {profit_factor:.2f}")
+print(f"Avg Win: ${avg_win:.2f}, Avg Loss: ${avg_loss:.2f}")
+```
+
+### 5. ML Predictor - Price Forecasting
+```python
+from meridianalgo import MLPredictor
+
+# Initialize ML predictor
+predictor = MLPredictor()
+
+# Simple statistical prediction (always works)
+result = predictor.predict_simple("AAPL", days=60, forecast_days=5)
+print(f"Current Price: ${result['current_price']:.2f}")
+print(f"5-Day Forecast: {[f'${p:.2f}' for p in result['predictions']]}")
+print(f"Confidence: {result['confidence']:.1f}%")
+print(f"Method: {result['method']}")
+
+# Technical indicators (automatically calculated)
+indicators = result['technical_indicators']
+print(f"RSI: {indicators['rsi']:.1f}")
+print(f"Trend (Short): {indicators['trend_short']:.3f}")
+
+# Advanced ML prediction with neural networks (requires PyTorch)
+try:
+    ml_result = predictor.predict_ml("AAPL", days=90, epochs=20)
+    print(f"Neural Network Predictions: {ml_result['predictions']}")
+    print(f"Device Used: {ml_result['device']}")
+    print(f"Model Confidence: {ml_result['confidence']:.1f}%")
+except Exception as e:
+    print(f"Advanced ML not available: {e}")
+
+# Calculate technical indicators separately
+data = yf.Ticker("AAPL").history(period="3mo")
+enhanced_data = predictor.calculate_technical_indicators(data)
+print(f"Available indicators: {list(enhanced_data.columns)}")
+```
+
+### 6. AI Analyzer - Market Intelligence
+```python
+from meridianalgo import AIAnalyzer
+import yfinance as yf
+
+# Initialize AI analyzer
+analyzer = AIAnalyzer()  # Optional: AIAnalyzer(api_key="your_gemini_key")
+
+# Get market data
+data = yf.Ticker("AAPL").history(period="3mo")
+
+# Comprehensive market analysis
+analysis = analyzer.comprehensive_analysis(data, "AAPL")
+
+print(f"=== Market Analysis for AAPL ===")
+print(f"Overall Score: {analysis['overall_score']}/100")
+
+# Sentiment Analysis
+sentiment = analysis['sentiment_analysis']
+print(f"\nSentiment: {sentiment['sentiment'].upper()}")
+print(f"Sentiment Score: {sentiment['sentiment_score']}/100")
+print(f"Positive Days: {sentiment['positive_days']}")
+print(f"Negative Days: {sentiment['negative_days']}")
+print(f"Volatility: {sentiment['volatility_level']}")
+
+# Market Regime
+regime = analysis['market_regime']
+print(f"\nMarket Regime: {regime['regime'].upper()}")
+print(f"Regime Confidence: {regime['regime_confidence']:.1f}%")
+print(f"Trend: {regime['trend']}")
+print(f"Volatility Regime: {regime['volatility_regime']}")
+
+# Support & Resistance
+sr = analysis['support_resistance']
+if sr['nearest_support'] and sr['nearest_resistance']:
+    print(f"\nSupport: ${sr['nearest_support']:.2f}")
+    print(f"Resistance: ${sr['nearest_resistance']:.2f}")
+    print(f"Current Price: ${sr['current_price']:.2f}")
+
+# Volume Analysis
+volume = analysis['volume_analysis']
+print(f"\nVolume Trend: {volume['volume_trend']}")
+print(f"Volume Ratio: {volume['volume_ratio']:.2f}")
+print(f"Price-Volume Correlation: {volume['price_volume_correlation']:.2f}")
+
+# Signal Summary
+signals = analysis['analysis_summary']
+print(f"\nSignals - Bullish: {signals['bullish_signals']}, "
+      f"Bearish: {signals['bearish_signals']}, "
+      f"Neutral: {signals['neutral_signals']}")
+
+# Individual analysis components
+sentiment_only = analyzer.analyze_market_sentiment(data)
+regime_only = analyzer.detect_market_regime(data)
+volume_only = analyzer.analyze_volume_profile(data)
+```
+
+### 7. Ensemble Models - Advanced ML
+```python
+from meridianalgo import EnsembleModels, MLPredictor
+import yfinance as yf
+
+# Initialize ensemble system
+ensemble = EnsembleModels()
+
+# Check available models and hardware
+model_info = ensemble.get_model_info()
+print(f"PyTorch Available: {model_info['torch_available']}")
+print(f"Scikit-learn Available: {model_info['sklearn_available']}")
+print(f"Device: {model_info['device']}")
+
+# Prepare data with technical indicators
+predictor = MLPredictor()
+data = yf.Ticker("AAPL").history(period="6mo")
+enhanced_data = predictor.calculate_technical_indicators(data)
+
+# Prepare features for ensemble training
+X, y = ensemble.prepare_ensemble_data(enhanced_data)
+print(f"Training data shape: {X.shape}")
+print(f"Features: {X.shape[1]}, Samples: {X.shape[0]}")
+
+# Train ensemble models
+print("Training ensemble models...")
+training_results = ensemble.train_ensemble(X, y, epochs=15, verbose=True)
+
+print(f"Models trained: {list(training_results.keys())}")
+print(f"Training samples: {training_results['training_samples']}")
+print(f"Validation samples: {training_results['validation_samples']}")
+
+# Make ensemble predictions
+predictions = ensemble.predict_ensemble(X, forecast_days=5)
+
+print(f"\n=== Ensemble Predictions ===")
+print(f"5-Day Forecast: {[f'${p:.2f}' for p in predictions['ensemble_predictions']]}")
+print(f"Ensemble Confidence: {predictions['confidence']:.1f}%")
+print(f"Models Used: {predictions['models_used']}")
+
+# Individual model predictions
+individual = predictions['individual_predictions']
+for model_name, preds in individual.items():
+    print(f"{model_name}: {[f'${p:.2f}' for p in preds[:3]]}")
+```
+
+## Complete API Reference
+
+### TradingEngine
+**Purpose**: Live and paper trading with order management
+
+**Key Methods**:
+- `connect()` - Connect to trading platform
+- `place_order(symbol, side, quantity, order_type, price)` - Execute trades
+- `get_positions()` - View current positions
+- `get_account_info()` - Account balance and details
+- `calculate_pnl(symbol, current_price)` - Profit/loss calculation
+- `get_trade_history()` - Complete trade log
+
+**Example Use Cases**:
+- Automated trading systems
+- Portfolio management
+- Order execution and tracking
+
+### BacktestEngine  
+**Purpose**: Strategy testing on historical data
+
+**Key Methods**:
+- `load_data(dataframe)` - Load OHLCV historical data
+- `run_backtest(strategy_function, **params)` - Execute strategy test
+- `get_equity_curve()` - Portfolio value over time
+- `get_trades()` - Detailed trade history
+
+**Performance Metrics**:
+- Total return, annualized return
+- Sharpe ratio, maximum drawdown
+- Win rate, profit factor
+- Trade statistics
+
+### Indicators
+**Purpose**: Technical analysis calculations
+
+**Available Indicators**:
+- **Moving Averages**: SMA, EMA
+- **Oscillators**: RSI, Stochastic, Williams %R, CCI
+- **Trend**: MACD, Bollinger Bands, Price Channels
+- **Volatility**: ATR (Average True Range)
+- **Volume**: Volume SMA, Volume analysis
+
+**All methods are static**: `Indicators.rsi(prices, period=14)`
+
+### TradeUtils
+**Purpose**: Risk management and trade utilities
+
+**Key Functions**:
+- `calculate_position_size()` - Risk-based position sizing
+- `calculate_risk_reward_ratio()` - Risk/reward analysis
+- `calculate_pnl()` - Profit/loss calculations
+- `calculate_sharpe_ratio()` - Performance metrics
+- `calculate_max_drawdown()` - Risk assessment
+- `validate_trade_params()` - Input validation
+
+### MLPredictor (New in v0.2.1)
+**Purpose**: Machine learning price prediction
+
+**Key Methods**:
+- `predict_simple(symbol, days, forecast_days)` - Statistical prediction
+- `predict_ml(symbol, days, epochs, forecast_days)` - Neural network prediction
+- `calculate_technical_indicators(data)` - Enhanced indicator calculation
+- `fetch_data(symbol, days)` - Market data retrieval
+
+**Features**:
+- Works with or without PyTorch
+- GPU acceleration support
+- Confidence scoring
+- Technical indicator integration
+
+### AIAnalyzer (New in v0.2.1)
+**Purpose**: AI-powered market analysis
+
+**Key Methods**:
+- `comprehensive_analysis(data, symbol)` - Complete market analysis
+- `analyze_market_sentiment(data)` - Bullish/bearish/neutral detection
+- `detect_market_regime(data)` - Trending/ranging/volatile classification
+- `calculate_support_resistance(data)` - Key price levels
+- `analyze_volume_profile(data)` - Volume pattern analysis
+
+**AI Features**:
+- Market sentiment scoring
+- Regime detection with confidence
+- Support/resistance identification
+- Optional Gemini AI integration
+
+### EnsembleModels (New in v0.2.1)
+**Purpose**: Multiple ML models for enhanced accuracy
+
+**Key Methods**:
+- `train_ensemble(X, y, epochs, verbose)` - Train multiple models
+- `predict_ensemble(X, forecast_days)` - Combined predictions
+- `prepare_ensemble_data(data)` - Feature preparation
+- `get_model_info()` - System capabilities
+
+**Models Included**:
+- Linear Regression (always available)
+- Random Forest (with scikit-learn)
+- Neural Networks (with PyTorch)
+- Automatic model weighting
+
+## Hardware Acceleration
+
+MeridianAlgo automatically detects and optimizes for available hardware:
+
+**Supported GPUs**:
+- **NVIDIA**: CUDA-compatible GPUs (GTX 10 series and newer)
+- **AMD**: ROCm (Linux) or DirectML (Windows) compatible GPUs  
+- **Intel**: Arc GPUs with XPU support
+- **Apple**: M1/M2/M3 Silicon with MPS acceleration
+
+**Performance Improvements**:
+- **CPU**: ~2-3 seconds per 10 epochs
+- **GPU**: ~0.5-1 seconds per 10 epochs (2-6x faster)
+- **Batch Size**: CPU=32, GPU=64+ (better accuracy)
+
+**Setup**:
+- Library automatically detects best available device
+- No manual configuration required
+- Graceful fallback to CPU if GPU unavailable
+- Check status: `predictor = MLPredictor(); print(predictor.device)`
+
+## Configuration
+
+### Environment Variables
+```bash
+# Optional: Enable AI insights with Gemini API
+export GEMINI_API_KEY="your_gemini_api_key_here"
+
+# Optional: Set device preference (auto-detected by default)
+export TORCH_DEVICE="cuda"  # or "cpu", "mps", "cuda"
+```
+
+### GPU Setup
+For optimal performance with ML features:
+
+**NVIDIA (CUDA)**:
+```bash
+# Install CUDA toolkit from nvidia.com
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+```
+
+**AMD (ROCm - Linux)**:
+```bash
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm5.4.2
+```
+
+**Intel Arc (XPU)**:
+```bash
+pip install intel-extension-for-pytorch
+```
+
+**Apple Silicon (MPS)**:
+```bash
+# Included with PyTorch on macOS 12.3+
+pip install torch torchvision torchaudio
+```
+
+## Complete Trading Workflow Example
+
+```python
+import yfinance as yf
+from meridianalgo import (
+    TradingEngine, BacktestEngine, Indicators, TradeUtils,
+    MLPredictor, AIAnalyzer, EnsembleModels
+)
+
+# === 1. Data Collection & Analysis ===
+symbol = "AAPL"
+data = yf.Ticker(symbol).history(period="1y")
+
+# Technical Analysis
+prices = data['Close'].values
+rsi = Indicators.rsi(prices, 14)
+macd_line, signal_line, histogram = Indicators.macd(prices)
+sma_20 = Indicators.sma(prices, 20)
+
+print(f"Current RSI: {rsi.iloc[-1]:.1f}")
+print(f"Current MACD: {macd_line.iloc[-1]:.4f}")
+
+# === 2. AI Market Analysis ===
+analyzer = AIAnalyzer()
+analysis = analyzer.comprehensive_analysis(data, symbol)
+
+print(f"Market Sentiment: {analysis['sentiment_analysis']['sentiment']}")
+print(f"Market Regime: {analysis['market_regime']['regime']}")
+print(f"Overall Score: {analysis['overall_score']}/100")
+
+# === 3. ML Price Prediction ===
+predictor = MLPredictor()
+ml_predictions = predictor.predict_simple(symbol, days=90, forecast_days=5)
+
+print(f"Current Price: ${ml_predictions['current_price']:.2f}")
+print(f"5-Day Forecast: {[f'${p:.2f}' for p in ml_predictions['predictions']]}")
+print(f"Confidence: {ml_predictions['confidence']:.1f}%")
+
+# === 4. Risk Management ===
+capital = 10000
+risk_percent = 2.0
+entry_price = ml_predictions['current_price']
+stop_loss = entry_price * 0.95  # 5% stop loss
+
+position_size = TradeUtils.calculate_position_size(
+    capital, risk_percent, entry_price, stop_loss
+)
+
+print(f"Recommended position size: {position_size:.0f} shares")
+
+# === 5. Strategy Development ===
+def comprehensive_strategy(row, positions, capital, **params):
+    """
+    Strategy combining technical analysis, AI insights, and ML predictions
+    """
+    current_price = row['close']
+    
+    # Get current indicators (simplified for example)
+    if len(positions) == 0:  # No position
+        # Buy conditions:
+        # 1. ML prediction is bullish
+        # 2. RSI not overbought
+        # 3. AI sentiment is positive
+        
+        ml_bullish = params.get('ml_prediction', 0) > current_price * 1.01
+        rsi_ok = params.get('current_rsi', 50) < 70
+        sentiment_positive = params.get('ai_sentiment', 'neutral') == 'bullish'
+        
+        if ml_bullish and rsi_ok and sentiment_positive:
+            return {
+                'symbol': symbol,
+                'action': 'buy',
+                'quantity': int(params.get('position_size', 10))
+            }
+    
+    else:  # Have position
+        # Sell conditions:
+        # 1. ML prediction is bearish
+        # 2. Stop loss hit
+        # 3. Take profit target reached
+        
+        ml_bearish = params.get('ml_prediction', 0) < current_price * 0.99
+        stop_loss_hit = current_price < params.get('stop_loss', 0)
+        take_profit = current_price > params.get('take_profit', float('inf'))
+        
+        if ml_bearish or stop_loss_hit or take_profit:
+            return {
+                'symbol': symbol,
+                'action': 'sell',
+                'quantity': positions[symbol]['quantity']
+            }
+    
+    return None
+
+# === 6. Backtesting ===
+backtest_data = data.reset_index().rename(columns={
+    'Date': 'timestamp', 'Open': 'open', 'High': 'high',
+    'Low': 'low', 'Close': 'close', 'Volume': 'volume'
+})
+
+backtest = BacktestEngine(initial_capital=capital)
+backtest.load_data(backtest_data)
+
+# Run backtest with strategy parameters
+results = backtest.run_backtest(
+    comprehensive_strategy,
+    ml_prediction=ml_predictions['predictions'][0],
+    current_rsi=rsi.iloc[-1],
+    ai_sentiment=analysis['sentiment_analysis']['sentiment'],
+    position_size=position_size,
+    stop_loss=entry_price * 0.95,
+    take_profit=entry_price * 1.10
+)
+
+# === 7. Results Analysis ===
+print(f"\n=== Backtest Results ===")
+print(f"Total Return: {results['total_return']:.2%}")
+print(f"Annualized Return: {results['annualized_return']:.2%}")
+print(f"Sharpe Ratio: {results['sharpe_ratio']:.2f}")
+print(f"Maximum Drawdown: {results['max_drawdown']:.2%}")
+print(f"Total Trades: {results['total_trades']}")
+print(f"Final Equity: ${results['final_equity']:.2f}")
+
+# Get detailed analysis
+trades_df = backtest.get_trades()
+if not trades_df.empty:
+    win_rate = TradeUtils.calculate_win_rate(trades_df.to_dict('records'))
+    profit_factor = TradeUtils.calculate_profit_factor(trades_df.to_dict('records'))
+    
+    print(f"Win Rate: {win_rate:.1f}%")
+    print(f"Profit Factor: {profit_factor:.2f}")
+
+# === 8. Live Trading Setup (Paper Trading) ===
+engine = TradingEngine(paper_trading=True)
+engine.connect()
+
+# Place order based on analysis
+if analysis['sentiment_analysis']['sentiment'] == 'bullish':
+    order = engine.place_order(
+        symbol, "buy", int(position_size), "market"
+    )
+    print(f"\nPaper trade executed: {order}")
+
+print(f"Account balance: ${engine.get_account_info()['balance']:.2f}")
+```
+
+## 🔧 Configuration
+
+### Environment Variables
+```bash
+# Optional: Enable AI insights
+export GEMINI_API_KEY="your_gemini_api_key"
+```
+
+### GPU Setup
+The library automatically detects available hardware. For optimal performance:
+- **NVIDIA**: Install CUDA toolkit
+- **AMD**: Install ROCm (Linux) or DirectML (Windows)
+- **Intel**: Install Intel Extension for PyTorch
+- **Apple**: macOS 12.3+ with Apple Silicon
+
+## Error Handling & Troubleshooting
+
+### Common Issues
+
+**Import Errors**:
+```python
+# If ML features unavailable, library falls back gracefully
+try:
+    from meridianalgo import MLPredictor
+    predictor = MLPredictor()
+    result = predictor.predict_ml("AAPL")  # Uses neural networks
+except:
+    result = predictor.predict_simple("AAPL")  # Uses statistics
+```
+
+**Data Issues**:
+```python
+# Always validate data before analysis
+if len(data) < 30:
+    print("Insufficient data for analysis")
+    
+# Handle missing data
+data = data.dropna()
+```
+
+**GPU Issues**:
+```python
+# Check device availability
+predictor = MLPredictor()
+print(f"Using device: {predictor.device}")
+
+# Force CPU if needed
+predictor = MLPredictor(device="cpu")
+```
+
+### Performance Tips
+
+1. **Use appropriate data sizes**: 60-200 days for most analyses
+2. **Enable GPU acceleration**: Install PyTorch with CUDA/ROCm
+3. **Batch operations**: Process multiple symbols together
+4. **Cache results**: Save predictions to avoid recomputation
+
+## Documentation & Support
+
+- **GitHub Repository**: [https://github.com/MeridianAlgo/Packages](https://github.com/MeridianAlgo/Packages)
+- **Issue Tracker**: Report bugs and request features
+- **Wiki**: Comprehensive guides and tutorials
+- **Examples**: Sample code and use cases
+
+## Contributing
+
+Contributions are welcome! Please:
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes with tests
+4. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## What's New in v0.2.1
+
+**Major Features Added**:
+- ML-based price prediction with ensemble models
+- AI-powered market sentiment and regime analysis
+- GPU acceleration for NVIDIA, AMD, Intel, Apple hardware
+- Enhanced technical indicators with ML integration
+- Comprehensive backtesting with ML strategies
+- Optional AI insights via Gemini API integration
+
+**Improvements**:
+- Better error handling and graceful fallbacks
+- Improved performance and reliability
+- Enhanced documentation with complete examples
+- Broader hardware support
+
+## Roadmap
+
+**Planned Features**:
+- Deep learning models (LSTM, Transformer, GAN)
+- Reinforcement learning for strategy optimization
+- Real-time data streaming and alerts
+- Advanced portfolio optimization algorithms
+- Options and derivatives analysis
+- Multi-asset and cross-market backtesting
+- Web dashboard and visualization tools
+
+---
+
+**MeridianAlgo - Empowering Quantitative Finance with AI**
