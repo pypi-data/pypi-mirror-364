@@ -1,0 +1,7 @@
+include CODE_VERSION.cfg
+include requirements.txt
+include README.md
+include LICENSE
+recursive-include paramorph *.py
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
