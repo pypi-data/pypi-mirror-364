@@ -1,0 +1,577 @@
+{
+  "F1": {
+    "table_name": "Interest Rates and Yields - Money Market",
+    "series": {
+      "FIRMMCRTD": {
+        "description": "Cash Rate Target",
+        "unit": "Percent per annum",
+        "type": "interest_rate"
+      },
+      "FIRMMBAB30D": {
+        "description": "30-day Bank Accepted Bills/Negotiable Certificates of Deposit",
+        "unit": "Percent per annum",
+        "type": "interest_rate"
+      },
+      "FIRMMBAB90D": {
+        "description": "90-day Bank Accepted Bills/Negotiable Certificates of Deposit",
+        "unit": "Percent per annum",
+        "type": "interest_rate"
+      },
+      "FIRMMBAB180D": {
+        "description": "180-day Bank Accepted Bills/Negotiable Certificates of Deposit",
+        "unit": "Percent per annum",
+        "type": "interest_rate"
+      },
+      "FCMYGBAG1": {
+        "description": "Australian Government 1 year bond",
+        "unit": "Percent per annum",
+        "type": "bond_yield"
+      },
+      "FCMYGBAG2": {
+        "description": "Australian Government 2 year bond",
+        "unit": "Percent per annum",
+        "type": "bond_yield"
+      },
+      "FCMYGBAG3": {
+        "description": "Australian Government 3 year bond",
+        "unit": "Percent per annum",
+        "type": "bond_yield"
+      },
+      "FCMYGBAG5": {
+        "description": "Australian Government 5 year bond",
+        "unit": "Percent per annum",
+        "type": "bond_yield"
+      },
+      "FCMYGBAG10": {
+        "description": "Australian Government 10 year bond",
+        "unit": "Percent per annum",
+        "type": "bond_yield"
+      },
+      "FMSWAPS1": {
+        "description": "1-year Interest Rate Swap",
+        "unit": "Percent per annum",
+        "type": "swap_rate"
+      },
+      "FMSWAPS2": {
+        "description": "2-year Interest Rate Swap",
+        "unit": "Percent per annum",
+        "type": "swap_rate"
+      },
+      "FMSWAPS3": {
+        "description": "3-year Interest Rate Swap",
+        "unit": "Percent per annum",
+        "type": "swap_rate"
+      },
+      "FMSWAPS5": {
+        "description": "5-year Interest Rate Swap",
+        "unit": "Percent per annum",
+        "type": "swap_rate"
+      },
+      "FMSWAPS10": {
+        "description": "10-year Interest Rate Swap",
+        "unit": "Percent per annum",
+        "type": "swap_rate"
+      },
+      "FIRMMCRI": {
+        "description": "Interbank Overnight Cash Rate",
+        "unit": "Percent per annum",
+        "type": "interest_rate"
+      },
+      "FIRMMBRT30": {
+        "description": "30-day Bank Term Deposit Rate",
+        "unit": "Percent per annum",
+        "type": "deposit_rate"
+      },
+      "FIRMMBRT90": {
+        "description": "90-day Bank Term Deposit Rate",
+        "unit": "Percent per annum",
+        "type": "deposit_rate"
+      },
+      "FIRMMBRT180": {
+        "description": "180-day Bank Term Deposit Rate",
+        "unit": "Percent per annum",
+        "type": "deposit_rate"
+      },
+      "FCMYGBAG7": {
+        "description": "Australian Government 7 year bond",
+        "unit": "Percent per annum",
+        "type": "bond_yield"
+      },
+      "FCMYGBAG15": {
+        "description": "Australian Government 15 year bond",
+        "unit": "Percent per annum",
+        "type": "bond_yield"
+      },
+      "FCMYGBAG20": {
+        "description": "Australian Government 20 year bond",
+        "unit": "Percent per annum",
+        "type": "bond_yield"
+      },
+      "FMSWAPS7": {
+        "description": "7-year Interest Rate Swap",
+        "unit": "Percent per annum",
+        "type": "swap_rate"
+      },
+      "FIRMMBAB270D": {
+        "description": "270-day Bank Accepted Bills/Negotiable Certificates of Deposit",
+        "unit": "Percent per annum",
+        "type": "interest_rate"
+      },
+      "FIRMOIR": {
+        "description": "Official Interest Rate",
+        "unit": "Percent per annum",
+        "type": "interest_rate"
+      },
+      "FCMTIBS3": {
+        "description": "3-year Treasury Indexed Bonds",
+        "unit": "Percent per annum",
+        "type": "indexed_bond"
+      },
+      "FCMTIBS5": {
+        "description": "5-year Treasury Indexed Bonds",
+        "unit": "Percent per annum",
+        "type": "indexed_bond"
+      },
+      "FCMTIBS10": {
+        "description": "10-year Treasury Indexed Bonds",
+        "unit": "Percent per annum",
+        "type": "indexed_bond"
+      },
+      "FCMTIBS15": {
+        "description": "15-year Treasury Indexed Bonds",
+        "unit": "Percent per annum",
+        "type": "indexed_bond"
+      },
+      "FCMTIBS20": {
+        "description": "20-year Treasury Indexed Bonds",
+        "unit": "Percent per annum",
+        "type": "indexed_bond"
+      },
+      "FIRMMBAB60D": {
+        "description": "60-day Bank Accepted Bills/Negotiable Certificates of Deposit",
+        "unit": "Percent per annum",
+        "type": "interest_rate"
+      },
+      "FIRMMBAB120D": {
+        "description": "120-day Bank Accepted Bills/Negotiable Certificates of Deposit",
+        "unit": "Percent per annum",
+        "type": "interest_rate"
+      },
+      "FCMYGBAG4": {
+        "description": "Australian Government 4 year bond",
+        "unit": "Percent per annum",
+        "type": "bond_yield"
+      },
+      "FCMYGBAG6": {
+        "description": "Australian Government 6 year bond",
+        "unit": "Percent per annum",
+        "type": "bond_yield"
+      },
+      "FCMYGBAG8": {
+        "description": "Australian Government 8 year bond",
+        "unit": "Percent per annum",
+        "type": "bond_yield"
+      },
+      "FCMYGBAG9": {
+        "description": "Australian Government 9 year bond",
+        "unit": "Percent per annum",
+        "type": "bond_yield"
+      },
+      "FCMYGBAG11": {
+        "description": "Australian Government 11 year bond",
+        "unit": "Percent per annum",
+        "type": "bond_yield"
+      },
+      "FCMYGBAG12": {
+        "description": "Australian Government 12 year bond",
+        "unit": "Percent per annum",
+        "type": "bond_yield"
+      },
+      "FCMYGBAG13": {
+        "description": "Australian Government 13 year bond",
+        "unit": "Percent per annum",
+        "type": "bond_yield"
+      },
+      "FCMYGBAG14": {
+        "description": "Australian Government 14 year bond",
+        "unit": "Percent per annum",
+        "type": "bond_yield"
+      },
+      "FMSWAPS4": {
+        "description": "4-year Interest Rate Swap",
+        "unit": "Percent per annum",
+        "type": "swap_rate"
+      },
+      "FMSWAPS6": {
+        "description": "6-year Interest Rate Swap",
+        "unit": "Percent per annum",
+        "type": "swap_rate"
+      },
+      "FMSWAPS8": {
+        "description": "8-year Interest Rate Swap",
+        "unit": "Percent per annum",
+        "type": "swap_rate"
+      },
+      "FMSWAPS9": {
+        "description": "9-year Interest Rate Swap",
+        "unit": "Percent per annum",
+        "type": "swap_rate"
+      },
+      "FIRMMBRR": {
+        "description": "Reference Rate for reset of Business Loans",
+        "unit": "Percent per annum",
+        "type": "reference_rate"
+      },
+      "FBAA0": {
+        "description": "A-1+ Short-term Corporate Paper Rate",
+        "unit": "Percent per annum",
+        "type": "corporate_rate"
+      },
+      "FBAA": {
+        "description": "A-1 Short-term Corporate Paper Rate",
+        "unit": "Percent per annum",
+        "type": "corporate_rate"
+      },
+      "FBA": {
+        "description": "A-2 Short-term Corporate Paper Rate",
+        "unit": "Percent per annum",
+        "type": "corporate_rate"
+      }
+    }
+  },
+  "F11": {
+    "table_name": "Exchange Rates",
+    "series": {
+      "FXRUSD": {
+        "description": "Australian Dollar/US Dollar Exchange Rate",
+        "unit": "Units of foreign currency per AUD",
+        "type": "exchange_rate"
+      },
+      "FXREUR": {
+        "description": "Australian Dollar/Euro Exchange Rate",
+        "unit": "Units of foreign currency per AUD",
+        "type": "exchange_rate"
+      },
+      "FXRJPY": {
+        "description": "Australian Dollar/Japanese Yen Exchange Rate",
+        "unit": "Units of foreign currency per AUD",
+        "type": "exchange_rate"
+      },
+      "FXRGBP": {
+        "description": "Australian Dollar/UK Pound Sterling Exchange Rate",
+        "unit": "Units of foreign currency per AUD",
+        "type": "exchange_rate"
+      },
+      "FXRCNY": {
+        "description": "Australian Dollar/Chinese Yuan Exchange Rate",
+        "unit": "Units of foreign currency per AUD",
+        "type": "exchange_rate"
+      },
+      "FXRTWI": {
+        "description": "Trade Weighted Index",
+        "unit": "Index May 1970 = 100",
+        "type": "exchange_rate_index"
+      },
+      "FXRNZD": {
+        "description": "Australian Dollar/New Zealand Dollar Exchange Rate",
+        "unit": "Units of foreign currency per AUD",
+        "type": "exchange_rate"
+      },
+      "FXRCAD": {
+        "description": "Australian Dollar/Canadian Dollar Exchange Rate",
+        "unit": "Units of foreign currency per AUD",
+        "type": "exchange_rate"
+      },
+      "FXRCHF": {
+        "description": "Australian Dollar/Swiss Franc Exchange Rate",
+        "unit": "Units of foreign currency per AUD",
+        "type": "exchange_rate"
+      },
+      "FXRSEK": {
+        "description": "Australian Dollar/Swedish Krona Exchange Rate",
+        "unit": "Units of foreign currency per AUD",
+        "type": "exchange_rate"
+      },
+      "FXRSGD": {
+        "description": "Australian Dollar/Singapore Dollar Exchange Rate",
+        "unit": "Units of foreign currency per AUD",
+        "type": "exchange_rate"
+      },
+      "FXRHKD": {
+        "description": "Australian Dollar/Hong Kong Dollar Exchange Rate",
+        "unit": "Units of foreign currency per AUD",
+        "type": "exchange_rate"
+      },
+      "FXRKRW": {
+        "description": "Australian Dollar/South Korean Won Exchange Rate",
+        "unit": "Units of foreign currency per AUD",
+        "type": "exchange_rate"
+      },
+      "FXRINR": {
+        "description": "Australian Dollar/Indian Rupee Exchange Rate",
+        "unit": "Units of foreign currency per AUD",
+        "type": "exchange_rate"
+      },
+      "FXRIDR": {
+        "description": "Australian Dollar/Indonesian Rupiah Exchange Rate",
+        "unit": "Units of foreign currency per AUD",
+        "type": "exchange_rate"
+      },
+      "FXRMYR": {
+        "description": "Australian Dollar/Malaysian Ringgit Exchange Rate",
+        "unit": "Units of foreign currency per AUD",
+        "type": "exchange_rate"
+      },
+      "FXRTHB": {
+        "description": "Australian Dollar/Thai Baht Exchange Rate",
+        "unit": "Units of foreign currency per AUD",
+        "type": "exchange_rate"
+      },
+      "FXRTWD": {
+        "description": "Australian Dollar/Taiwan Dollar Exchange Rate",
+        "unit": "Units of foreign currency per AUD",
+        "type": "exchange_rate"
+      },
+      "FXRVND": {
+        "description": "Australian Dollar/Vietnamese Dong Exchange Rate",
+        "unit": "Units of foreign currency per AUD",
+        "type": "exchange_rate"
+      },
+      "FXRPHP": {
+        "description": "Australian Dollar/Philippine Peso Exchange Rate",
+        "unit": "Units of foreign currency per AUD",
+        "type": "exchange_rate"
+      },
+      "FXRPGK": {
+        "description": "Australian Dollar/Papua New Guinea Kina Exchange Rate",
+        "unit": "Units of foreign currency per AUD",
+        "type": "exchange_rate"
+      },
+      "FXRAED": {
+        "description": "Australian Dollar/UAE Dirham Exchange Rate",
+        "unit": "Units of foreign currency per AUD",
+        "type": "exchange_rate"
+      },
+      "FXRSAR": {
+        "description": "Australian Dollar/Saudi Riyal Exchange Rate",
+        "unit": "Units of foreign currency per AUD",
+        "type": "exchange_rate"
+      },
+      "FXRZAR": {
+        "description": "Australian Dollar/South African Rand Exchange Rate",
+        "unit": "Units of foreign currency per AUD",
+        "type": "exchange_rate"
+      }
+    }
+  },
+  "G1": {
+    "table_name": "Consumer Price Inflation",
+    "series": {
+      "GCPIAGSAQP": {
+        "description": "Consumer Price Index (All Groups, Seasonally Adjusted)",
+        "unit": "Index 2011-12 = 100",
+        "type": "price_index"
+      },
+      "GCPIAGQP": {
+        "description": "Consumer Price Index (All Groups, Original)",
+        "unit": "Index 2011-12 = 100",
+        "type": "price_index"
+      },
+      "GCPITGSAQP": {
+        "description": "Consumer Price Index (Trimmed Mean, Seasonally Adjusted)",
+        "unit": "Index 2011-12 = 100",
+        "type": "price_index"
+      },
+      "GCPIWGSAQP": {
+        "description": "Consumer Price Index (Weighted Median, Seasonally Adjusted)",
+        "unit": "Index 2011-12 = 100",
+        "type": "price_index"
+      },
+      "GCPIAGSSAQA": {
+        "description": "Consumer Price Index (All Groups, Seasonally Adjusted, Annual % Change)",
+        "unit": "Percent",
+        "type": "inflation_rate"
+      },
+      "GCPIAGQA": {
+        "description": "Consumer Price Index (All Groups, Original, Annual % Change)",
+        "unit": "Percent",
+        "type": "inflation_rate"
+      },
+      "GCPITGSAQA": {
+        "description": "Consumer Price Index (Trimmed Mean, Seasonally Adjusted, Annual % Change)",
+        "unit": "Percent",
+        "type": "inflation_rate"
+      },
+      "GCPIWGSAQA": {
+        "description": "Consumer Price Index (Weighted Median, Seasonally Adjusted, Annual % Change)",
+        "unit": "Percent",
+        "type": "inflation_rate"
+      },
+      "GCPIEXGSAQP": {
+        "description": "Consumer Price Index (Excluding Volatile Items, Seasonally Adjusted)",
+        "unit": "Index 2011-12 = 100",
+        "type": "price_index"
+      },
+      "GCPIEXGSAQA": {
+        "description": "Consumer Price Index (Excluding Volatile Items, Seasonally Adjusted, Annual % Change)",
+        "unit": "Percent",
+        "type": "inflation_rate"
+      }
+    }
+  },
+  "D3": {
+    "table_name": "Monetary Aggregates",
+    "series": {
+      "DMACCY": {
+        "description": "Currency",
+        "unit": "$ million",
+        "type": "monetary_aggregate"
+      },
+      "DMABBN": {
+        "description": "Bank Deposits",
+        "unit": "$ million",
+        "type": "monetary_aggregate"
+      },
+      "DMABM1": {
+        "description": "M1",
+        "unit": "$ million",
+        "type": "monetary_aggregate"
+      },
+      "DMAM3": {
+        "description": "M3",
+        "unit": "$ million",
+        "type": "monetary_aggregate"
+      },
+      "DMABM": {
+        "description": "Broad Money",
+        "unit": "$ million",
+        "type": "monetary_aggregate"
+      },
+      "DMAMB": {
+        "description": "Money Base",
+        "unit": "$ million",
+        "type": "monetary_aggregate"
+      },
+      "DMACCP": {
+        "description": "Currency (% Change)",
+        "unit": "Percent",
+        "type": "growth_rate"
+      },
+      "DMABNP": {
+        "description": "Bank Deposits (% Change)",
+        "unit": "Percent",
+        "type": "growth_rate"
+      },
+      "DMAM1P": {
+        "description": "M1 (% Change)",
+        "unit": "Percent",
+        "type": "growth_rate"
+      },
+      "DMAM3P": {
+        "description": "M3 (% Change)",
+        "unit": "Percent",
+        "type": "growth_rate"
+      },
+      "DMABMP": {
+        "description": "Broad Money (% Change)",
+        "unit": "Percent",
+        "type": "growth_rate"
+      }
+    }
+  },
+  "A2": {
+    "table_name": "Changes in Monetary Policy and Administered Rates",
+    "series": {
+      "FIRMMCRT": {
+        "description": "Cash Rate Target",
+        "unit": "Percent per annum",
+        "type": "policy_rate"
+      },
+      "FIRMOIR": {
+        "description": "Official Interest Rate",
+        "unit": "Percent per annum",
+        "type": "policy_rate"
+      }
+    }
+  },
+  "F5": {
+    "table_name": "Indicator Lending Rates",
+    "series": {
+      "FILRHLBVS": {
+        "description": "Banks' Housing Loans - Variable Standard Rate",
+        "unit": "Percent per annum",
+        "type": "lending_rate"
+      },
+      "FILRHLBVD": {
+        "description": "Banks' Housing Loans - Variable Discounted Rate",
+        "unit": "Percent per annum",
+        "type": "lending_rate"
+      },
+      "FILRHLB3F": {
+        "description": "Banks' Housing Loans - 3 Year Fixed Rate",
+        "unit": "Percent per annum",
+        "type": "lending_rate"
+      },
+      "FILRSBSRLOV": {
+        "description": "Small Business - Residentially-secured Variable Rate (Outstanding)",
+        "unit": "Percent per annum",
+        "type": "lending_rate"
+      },
+      "FILRSBOV": {
+        "description": "Small Business - Variable Rate (Outstanding)",
+        "unit": "Percent per annum",
+        "type": "lending_rate"
+      },
+      "FILRLBOV": {
+        "description": "Large Business - Variable Rate (Outstanding)",
+        "unit": "Percent per annum",
+        "type": "lending_rate"
+      }
+    }
+  },
+  "D2": {
+    "table_name": "Lending and Credit Aggregates",
+    "series": {
+      "DLCACDS": {
+        "description": "Total Credit (Seasonally Adjusted)",
+        "unit": "$ million",
+        "type": "credit_aggregate"
+      },
+      "DLCACDH": {
+        "description": "Housing Credit",
+        "unit": "$ million",
+        "type": "credit_aggregate"
+      },
+      "DLCACDB": {
+        "description": "Business Credit",
+        "unit": "$ million",
+        "type": "credit_aggregate"
+      },
+      "DLCACDP": {
+        "description": "Personal Credit",
+        "unit": "$ million",
+        "type": "credit_aggregate"
+      },
+      "DLCACDSG": {
+        "description": "Total Credit Growth (Seasonally Adjusted)",
+        "unit": "Percent",
+        "type": "growth_rate"
+      },
+      "DLCACDHG": {
+        "description": "Housing Credit Growth",
+        "unit": "Percent",
+        "type": "growth_rate"
+      },
+      "DLCACDBG": {
+        "description": "Business Credit Growth",
+        "unit": "Percent",
+        "type": "growth_rate"
+      },
+      "DLCACDPG": {
+        "description": "Personal Credit Growth",
+        "unit": "Percent",
+        "type": "growth_rate"
+      }
+    }
+  }
+}
