@@ -1,0 +1,60 @@
+[build-system]
+requires = ["hatchling>=1.18"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ceilfeat"                    
+version = "0.1.2"                    
+description = "Ceilometer feature detection (clouds, precip, fog, layers) from NetCDF."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+authors = [{ name = "Daniel Wefer", email = "dweef1@gmail.com" }]
+dependencies = [
+  "numpy",
+  "pandas",
+  "xarray",
+  "opencv-python",
+  "scikit-image",
+  "act-atmos",
+]
+
+classifiers = [
+  "License :: OSI Approved :: GNU Lesser General Public License v2 or later (LGPLv2+)",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: Atmospheric Science",
+]
+
+[project.urls]
+Homepage = "https://github.com/DanielWefer/ceil-feature-detection"
+Issues   = "https://github.com/DanielWefer/ceil-feature-detection/issues"
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff", "mypy", "build", "twine"]
+
+[project.scripts]
+ceilfeat-run = "ceilfeat.pipeline:main"  
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ceilfeat"]
+
+[tool.hatch.build.targets.editable]
+packages = ["src/ceilfeat"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "src/ceilfeat",
+  "README.md",
+  "LICENSE",
+  "pyproject.toml",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
