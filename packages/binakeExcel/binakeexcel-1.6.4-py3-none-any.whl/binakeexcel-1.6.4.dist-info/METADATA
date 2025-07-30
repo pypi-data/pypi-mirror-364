@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: binakeExcel
+Version: 1.6.4
+Summary: easy to use excel by python.
+Author-email: qiao <binake@163.com>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/pypa/sampleproject
+Project-URL: Issues, https://github.com/pypa/sampleproject/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+Requires-Dist: openpyxl>=3.1.5
+Requires-Dist: xlrd==1.2.0
+Requires-Dist: xlwt>=1.3.0
+Dynamic: license-file
+
+# Example Package
+
+This is a simple example package. You can use
+[GitHub-flavored Markdown](https://guides.github.com/features/mastering-markdown/)
+to write your content.
