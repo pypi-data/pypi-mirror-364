@@ -1,0 +1,3 @@
+[pytest11]
+tpcp_snapshots=tpcp.testing._regression_utils
+
