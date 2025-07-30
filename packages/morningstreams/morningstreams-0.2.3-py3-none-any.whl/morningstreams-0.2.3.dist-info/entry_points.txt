@@ -1,0 +1,3 @@
+[console_scripts]
+morningstreams=morningstreams.cli:cli
+
