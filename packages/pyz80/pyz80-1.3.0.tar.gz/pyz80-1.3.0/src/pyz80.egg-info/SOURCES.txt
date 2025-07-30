@@ -1,0 +1,12 @@
+COPYING
+README.md
+ReadMe.md
+pyproject.toml
+src/pyz80/pyz80.py
+src/pyz80.egg-info/PKG-INFO
+src/pyz80.egg-info/SOURCES.txt
+src/pyz80.egg-info/dependency_links.txt
+src/pyz80.egg-info/entry_points.txt
+src/pyz80.egg-info/top_level.txt
+test/test_invalid.py
+test/test_valid.py
