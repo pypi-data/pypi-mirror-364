@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tokenlay"
+version = "0.0.1"
+description = "Python SDK for Tokenlay API (placeholder)"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Tokenlay", email = "hello@tokenlay.com"}
+]
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+requires-python = ">=3.8"
+
+[project.urls]
+Homepage = "https://tokenlay.com"
+Repository = "https://github.com/tokenlay/tokenlay-sdk-py"
