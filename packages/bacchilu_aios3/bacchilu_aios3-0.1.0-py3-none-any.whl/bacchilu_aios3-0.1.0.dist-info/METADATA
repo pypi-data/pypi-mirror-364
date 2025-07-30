@@ -1,0 +1,18 @@
+Metadata-Version: 2.4
+Name: bacchilu_aios3
+Version: 0.1.0
+Summary: Upload files to S3 using asyncio
+Author-email: Luca Bacchi <bacchilu@gmail.com>
+Requires-Python: >=3.13
+Requires-Dist: aioboto3>=15.0.0
+Requires-Dist: python-dotenv>=1.1.1
+Requires-Dist: python-magic>=0.4.27
+Description-Content-Type: text/markdown
+
+# bacchilu_aios3
+
+A very simple _Python_ library to upload files on _AWS S3_ storage.
+
+## usage
+
+See _main.py_ for usage.
