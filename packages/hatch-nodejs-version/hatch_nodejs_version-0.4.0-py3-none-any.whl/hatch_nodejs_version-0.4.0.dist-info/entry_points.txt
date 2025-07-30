@@ -1,0 +1,2 @@
+[hatch]
+nodejs = hatch_nodejs_version.hooks
