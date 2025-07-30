@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: interactive-dtree
+Version: 0.1.1
+Summary: Add your description here
+Requires-Python: >=3.11
+Requires-Dist: flask>=3.1.1
+Requires-Dist: pandas>=2.3.1
+Requires-Dist: pyarrow>=21.0.0
+Requires-Dist: pytest>=8.4.1
+Requires-Dist: python-dotenv>=1.1.1
+Requires-Dist: scikit-learn>=1.7.1
+Requires-Dist: setuptools>=80.9.0
