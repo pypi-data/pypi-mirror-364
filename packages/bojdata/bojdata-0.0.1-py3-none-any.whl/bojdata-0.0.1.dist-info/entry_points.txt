@@ -1,0 +1,2 @@
+[console_scripts]
+bojdata = bojdata.cli:main
