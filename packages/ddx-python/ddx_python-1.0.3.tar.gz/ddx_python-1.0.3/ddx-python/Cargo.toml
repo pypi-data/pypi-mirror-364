@@ -1,0 +1,32 @@
+[package]
+name = "ddx-python"
+# NOTE: The maturin.bash build script replaces this by the SEMVER env variable for distribution.
+version = "1.0.3"
+edition = "2021"
+
+[lib]
+name = "ddx_python"             # TODO: What is the implication of this name? I see no reference in the Maturin manual.
+crate-type = ["cdylib", "rlib"]
+
+[features]
+default = ["fixed_expiry_future", "index_fund"]
+index_fund = ["core-ddx/index_fund"]
+fixed_expiry_future = ["core-ddx/fixed_expiry_future"]
+insurance_fund_client_req = ["core-ddx/insurance_fund_client_req"]
+
+[dependencies]
+core-ddx = { path = "../ddx-operator/core", default-features = false, features = [
+    "python",
+    "database",
+    "eth-base",
+] }
+core-common = { path = "../core/common", default-features = false, features = [
+    "python",
+    "database",
+] }
+pyo3 = { version = "0.25", features = ["extension-module"] }
+pyo3-stub-gen = { git = "https://github.com/Jij-Inc/pyo3-stub-gen.git" }
+
+[[bin]]
+name = "stub_gen"
+doc = false
