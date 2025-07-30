@@ -1,0 +1,39 @@
+Metadata-Version: 2.4
+Name: metorial
+Version: 1.0.1
+Summary: Python SDK for Metorial - AI-powered tool calling and session management
+Project-URL: Homepage, https://metorial.com
+Project-URL: Documentation, https://metorial.com/docs
+Project-URL: Repository, https://github.com/metorial/metorial-enterprise
+Project-URL: Changelog, https://github.com/metorial/metorial-enterprise/blob/main/CHANGELOG.md
+Author-email: Metorial Team <support@metorial.com>
+License: MIT
+License-File: LICENSE
+Keywords: ai,anthropic,chat,completions,llm,mcp,metorial,model-context-protocol,openai,sessions,tools
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Internet :: WWW/HTTP :: HTTP Servers
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.9
+Requires-Dist: aiohttp-sse-client>=0.2.1
+Requires-Dist: aiohttp>=3.8.0
+Requires-Dist: metorial-core>=1.0.0
+Requires-Dist: metorial-mcp-session>=1.0.0
+Requires-Dist: typing-extensions>=4.0.0
+Provides-Extra: all
+Requires-Dist: metorial-openai>=1.0.0; extra == 'all'
+Provides-Extra: dev
+Requires-Dist: black>=22.0.0; extra == 'dev'
+Requires-Dist: flake8>=4.0.0; extra == 'dev'
+Requires-Dist: mypy>=0.910; extra == 'dev'
+Requires-Dist: pytest-asyncio>=0.20.0; extra == 'dev'
+Requires-Dist: pytest>=7.0.0; extra == 'dev'
+Provides-Extra: openai
+Requires-Dist: metorial-openai>=1.0.0; extra == 'openai'
