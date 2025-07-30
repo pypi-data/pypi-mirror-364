@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "python-alfresco-mcp-server-wheel-test": {
+      "command": "C:\\newdev3\\wheel-test\\.venv\\Scripts\\python.exe",
+      "args": [
+        "-m", "alfresco_mcp_server.fastmcp_server",
+        "--transport", "stdio"
+      ],
+      "cwd": "C:\\newdev3\\wheel-test",
+      "env": {
+        "ALFRESCO_URL": "http://localhost:8080",
+        "ALFRESCO_USERNAME": "admin",
+        "ALFRESCO_PASSWORD": "admin",
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONLEGACYWINDOWSSTDIO": "1"
+      }
+    }
+  }
+} 
