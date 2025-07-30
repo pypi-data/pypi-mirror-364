@@ -1,0 +1,3 @@
+include README.md
+include example/config.yaml
+include example/example_test.py
