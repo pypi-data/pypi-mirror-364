@@ -1,0 +1,286 @@
+Metadata-Version: 2.4
+Name: crystalyse-ai
+Version: 1.0.14
+Summary: CrystaLyse.AI - Autonomous AI agents for accelerated inorganic materials design through natural language interfaces
+Author: CrystaLyse.AI Development Team
+Maintainer: CrystaLyse.AI Development Team
+Project-URL: Homepage, https://github.com/ryannduma/CrystaLyse.AI
+Project-URL: Documentation, https://crystalyse-ai.readthedocs.io/
+Project-URL: Repository, https://github.com/ryannduma/CrystaLyse.AI.git
+Project-URL: Issues, https://github.com/ryannduma/CrystaLyse.AI/issues
+Project-URL: Changelog, https://github.com/ryannduma/CrystaLyse.AI/blob/main/CHANGELOG.md
+Keywords: materials-design,crystal-structure-prediction,formation-energy,computational-materials-science,ai,chemistry,inorganic-materials,autonomous-agents
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Education
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering :: Chemistry
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: openai>=1.0.0
+Requires-Dist: openai-agents>=0.0.16
+Requires-Dist: rdkit>=2023.9.1
+Requires-Dist: pymatgen>=2024.1.0
+Requires-Dist: ase>=3.22.0
+Requires-Dist: smact>=2.7.0
+Requires-Dist: torch>=2.0.0
+Requires-Dist: mace-torch>=0.3.4
+Requires-Dist: gitpython>=3.1.0
+Requires-Dist: fastmcp>=0.5.0
+Requires-Dist: numpy>=1.24.0
+Requires-Dist: pandas>=2.0.0
+Requires-Dist: scipy>=1.11.0
+Requires-Dist: typing-extensions>=4.5.0
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: click>=8.1.0
+Requires-Dist: rich>=13.0.0
+Requires-Dist: prompt-toolkit>=3.0.0
+Requires-Dist: asyncio>=3.4.3
+Requires-Dist: httpx>=0.24.0
+Requires-Dist: websockets>=11.0.0
+Requires-Dist: PyYAML>=6.0.0
+Requires-Dist: toml>=0.10.0
+Requires-Dist: python-dotenv>=1.0.0
+Requires-Dist: uvicorn>=0.23.0
+Requires-Dist: fastapi>=0.104.0
+Requires-Dist: starlette>=0.27.0
+Provides-Extra: visualization
+Requires-Dist: matplotlib>=3.7.0; extra == "visualization"
+Requires-Dist: plotly>=5.18.0; extra == "visualization"
+Requires-Dist: py3Dmol>=2.0.4; extra == "visualization"
+Requires-Dist: kaleido>=0.2.1; extra == "visualization"
+Requires-Dist: pymatviz>=0.8.5; extra == "visualization"
+Requires-Dist: seaborn>=0.12.0; extra == "visualization"
+Provides-Extra: quantum
+Requires-Dist: pyscf>=2.3.0; extra == "quantum"
+Requires-Dist: qiskit-nature>=0.7.0; extra == "quantum"
+Requires-Dist: pennylane>=0.32.0; extra == "quantum"
+Provides-Extra: materials
+Requires-Dist: pymatgen>=2024.1.0; extra == "materials"
+Requires-Dist: matminer>=0.9.0; extra == "materials"
+Requires-Dist: mp-api>=0.41.0; extra == "materials"
+Provides-Extra: ml
+Requires-Dist: scikit-learn>=1.3.0; extra == "ml"
+Requires-Dist: torch>=2.0.0; extra == "ml"
+Requires-Dist: transformers>=4.30.0; extra == "ml"
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.21.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0.0; extra == "dev"
+Requires-Dist: pytest-mock>=3.11.0; extra == "dev"
+Requires-Dist: ruff>=0.1.0; extra == "dev"
+Requires-Dist: mypy>=1.0.0; extra == "dev"
+Requires-Dist: black>=23.0.0; extra == "dev"
+Requires-Dist: isort>=5.12.0; extra == "dev"
+Requires-Dist: pre-commit>=3.0.0; extra == "dev"
+Provides-Extra: docs
+Requires-Dist: mkdocs>=1.5.0; extra == "docs"
+Requires-Dist: mkdocs-material>=9.0.0; extra == "docs"
+Requires-Dist: mkdocstrings[python]>=0.24.0; extra == "docs"
+Requires-Dist: mkdocs-jupyter>=0.24.0; extra == "docs"
+Provides-Extra: all
+Requires-Dist: crystalyse-ai[materials,ml,quantum,visualization]; extra == "all"
+
+# CrystaLyse.AI
+
+**CrystaLyse.AI - Autonomous AI agents for accelerated inorganic materials design through natural language interfaces**
+
+[![PyPI version](https://badge.fury.io/py/crystalyse-ai.svg)](https://badge.fury.io/py/crystalyse-ai)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+> **Status: Research Preview - Fully Functional Materials Design Platform**
+
+CrystaLyse.AI is a computational materials design platform that accelerates materials exploration through AI-powered analysis and validation. Built on the OpenAI Agents framework with Model Context Protocol (MCP) integration, it provides a dual-mode system for rapid materials design workflows.
+
+## 🚀 Quick Start
+
+### Installation
+
+```bash
+# Install from PyPI
+pip install crystalyse-ai
+
+# Set your OpenAI API key
+export OPENAI_API_KEY="sk-your-key-here"
+
+# Verify installation
+crystalyse --help
+```
+
+### Basic Usage
+
+```bash
+# Creative mode (fast exploration ~50 seconds)
+crystalyse analyse "Find stable perovskite materials for solar cells" --mode creative
+
+# Rigorous mode (complete validation 2-5 minutes)
+crystalyse analyse "Analyse CsSnI3 for photovoltaic applications" --mode rigorous
+
+# Interactive session
+crystalyse chat
+```
+
+## ✨ Key Features
+
+### 🔄 Dual-Mode Analysis System
+- **Creative Mode**: Fast exploration (~50 seconds) using Chemeleon + MACE
+- **Rigorous Mode**: Complete validation (2-5 minutes) with SMACT + Chemeleon + MACE + Analysis Suite
+- Real-time mode switching with unified interface
+
+### 🧪 Complete Materials Pipeline
+- **Composition Validation**: SMACT screening for chemically reasonable materials
+- **Structure Prediction**: Chemeleon crystal structure generation with multiple candidates
+- **Energy Calculations**: MACE formation energy evaluation with uncertainty quantification
+- **Comprehensive Analysis**: XRD patterns, RDF analysis, coordination studies
+- **3D Visualisation**: CIF file generation and professional analysis plots
+
+### 💻 Advanced Interface Options
+- **Unified CLI**: Single command interface with `/mode` and `/agent` switching
+- **Session Management**: Persistent conversation history across multi-day projects
+- **Interactive Chat**: Research-grade session-based workflows
+- **Batch Processing**: High-throughput materials screening capabilities
+
+## 🔬 Scientific Applications
+
+### Energy Materials
+- Battery cathodes and anodes (Li-ion, Na-ion, solid-state)
+- Solid electrolytes and ion conductors
+- Photovoltaic semiconductors and perovskites
+- Thermoelectric materials
+
+### Electronic Materials
+- Ferroelectric and multiferroic materials
+- Magnetic materials and spintronics
+- Semiconductor devices and memory materials
+- Superconductors and quantum materials
+
+## 📊 Performance Characteristics
+
+| Operation | Creative Mode | Rigorous Mode |
+|-----------|---------------|---------------|
+| Simple query | ~50 seconds | 2-3 minutes |
+| Complex analysis | 1-2 minutes | 3-5 minutes |
+| Batch processing | 5-10 minutes | 15-30 minutes |
+
+## 🛠️ Advanced Usage
+
+### Interactive Research Sessions
+
+```bash
+# Start a research session
+crystalyse chat -u researcher -s solar_project -m creative
+
+# Resume previous work
+crystalyse resume solar_project -u researcher
+
+# List all sessions
+crystalyse sessions -u researcher
+```
+
+### In-Session Commands
+
+```bash
+/mode creative     # Switch to creative mode
+/mode rigorous     # Switch to rigorous mode
+/agent chat        # Switch to chat agent
+/agent analyse     # Switch to analysis agent
+/help              # Show available commands
+/exit              # Exit interface
+```
+
+## 📈 Example Output
+
+### Creative Mode Results
+```
+╭─────────────────────── Discovery Results ────────────────────────────╮
+│ Generated 5 perovskite candidates with formation energies:            │
+│                                                                        │
+│ 1. CsGeI₃ - Formation energy: -2.558 eV/atom (most stable)           │
+│ 2. CsPbI₃ - Formation energy: -2.542 eV/atom                         │
+│ 3. CsSnI₃ - Formation energy: -2.529 eV/atom                         │
+│ 4. RbPbI₃ - Formation energy: -2.503 eV/atom                         │
+│ 5. RbSnI₃ - Formation energy: -2.488 eV/atom                         │
+│                                                                        │
+│ CIF files created: CsGeI3.cif, CsPbI3.cif, CsSnI3.cif               │
+╰────────────────────────────────────────────────────────────────────────╯
+```
+
+### Rigorous Mode Output
+- Complete SMACT composition validation
+- Multiple structure candidates per composition
+- Professional analysis plots (XRD, RDF, coordination analysis)
+- CIF file generation for all structures
+- Publication-ready results
+
+## 🔬 Scientific Integrity
+
+CrystaLyse.AI maintains computational honesty:
+
+- **100% Traceability**: Every result traces to actual tool calculations
+- **Zero Fabrication**: No estimated or hallucinated numerical values
+- **Complete Transparency**: Clear distinction between AI reasoning and computational validation
+- **Anti-Hallucination System**: Response validation prevents fabricated results
+
+## 🖥️ System Requirements
+
+- Python 3.11+
+- 8GB RAM minimum (16GB recommended)
+- OpenAI API key
+- Optional: NVIDIA GPU for MACE acceleration
+
+## 🔧 Development Installation
+
+For development or advanced usage:
+
+```bash
+# Clone repository
+git clone https://github.com/ryannduma/CrystaLyse.AI.git
+cd CrystaLyse.AI
+
+# Create conda environment
+conda create -n crystalyse python=3.11
+conda activate crystalyse
+
+# Install in development mode
+pip install -e .
+```
+
+## 🤝 Acknowledgments
+
+CrystaLyse.AI builds upon exceptional open-source tools:
+
+- **SMACT**: Semiconducting Materials by Analogy and Chemical Theory
+- **Chemeleon**: Crystal structure prediction with AI
+- **MACE**: Machine learning ACE force fields
+- **Pymatviz**: Materials visualisation toolkit
+- **OpenAI Agents SDK**: Production-ready agent framework
+
+## 📚 Citation
+
+If you use CrystaLyse.AI in your research, please cite the underlying tools:
+
+- **SMACT**: Davies et al., "SMACT: Semiconducting Materials by Analogy and Chemical Theory" JOSS 4, 1361 (2019)
+- **Chemeleon**: Park et al., "Exploration of crystal chemical space using text-guided generative artificial intelligence" Nature Communications (2025)
+- **MACE**: Batatia et al., "MACE: Higher Order Equivariant Message Passing Neural Networks for Fast and Accurate Force Fields" NeurIPS (2022)
+- **Pymatviz**: Riebesell et al., "Pymatviz: visualization toolkit for materials informatics" (2022)
+
+## 📄 License
+
+MIT License - see LICENSE for details.
+
+## 🐛 Issues & Support
+
+Report issues on [GitHub Issues](https://github.com/ryannduma/CrystaLyse.AI/issues)
+
+## 🔗 Links
+
+- [Homepage](https://github.com/ryannduma/CrystaLyse.AI)
+- [Documentation](https://crystalyse-ai.readthedocs.io/)
+- [Changelog](https://github.com/ryannduma/CrystaLyse.AI/blob/main/CHANGELOG.md)
