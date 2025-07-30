@@ -1,0 +1,42 @@
+Metadata-Version: 2.4
+Name: saksin_vect2
+Version: 0.1.6
+Summary: Python SDK for querying Saksin AI chunked retrieval API
+Home-page: https://github.com/kishanravi887321/saksin-vect2.git
+Author: Ravi Kishan
+Author-email: kishanravi887321@gmail.com
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Dynamic: author
+Dynamic: author-email
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# saksin-vect2
+
+SDK for accessing **Sākṣin Vector Database** APIs – designed to simplify querying and managing vectorized document chunks from Saksin’s intelligent retrieval system.
+
+![PyPI](https://img.shields.io/pypi/v/saksin-vect2)
+![Python](https://img.shields.io/pypi/pyversions/saksin-vect2)
+![License](https://img.shields.io/github/license/kishanravi887321/saksin-vect2)
+
+---
+
+## ✨ Features
+
+- Simple interface to interact with Saksin's document retriever.
+- Query vectorized chunks through clean abstraction.
+- Handles authorization and HTTP communication.
+- Integrates easily with LangChain or any LLM application.
+
+---
+
+## 📦 Installation
+
+```bash
+pip install saksin-vect2
