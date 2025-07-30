@@ -1,0 +1,122 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Type checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+
+# Virtual Environment
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.*.sw[op]
+*.sublime-workspace
+*.sublime-project
+
+# Test
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Logs
+*.log
+logs/
+log/
+
+# Documentation
+docs/_build/
+site/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# Profiling
+.prof
+
+# Cache
+.cache/
+
+# Local development
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Translations
+*.mo
+*.pot
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+
+# Flask
+instance/
+.webassets-cache
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# Environments
+.envrc
+
+# Mac OS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.directory
+.Trash-*
