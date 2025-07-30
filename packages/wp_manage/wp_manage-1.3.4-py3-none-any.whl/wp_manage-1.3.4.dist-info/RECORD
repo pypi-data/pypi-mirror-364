@@ -1,0 +1,10 @@
+wp_manage/VERSION,sha256=0P9ZdLaqUs9WK-pZIYQMAyqGCpGjUS9_6Pdo9rvgBfY,3
+wp_manage/__init__.py,sha256=X9oAYUAjwc1vfuV5i2TAnOoqinp2qPVwRcEIXTXzj2Q,249
+wp_manage/cli.py,sha256=35klsShmuKDpsbmNMtMiAwFgVm417jVXYoBVhjn-bl4,3663
+wp_manage/commands.py,sha256=CPho-YkO6z52acmyRVUZSwL_D_QoHCnGTNO0WfdkoU4,9015
+wp_manage/site_response.py,sha256=YFTPiq9rSnRHbtF5w96Xii2yFcIr-lMtIYBiz1mRQ4M,4311
+wp_manage/wp_manage.py,sha256=8TyX8hNnhf43Wn_YGGPwC-iaoVteCV-aItHoegXiKVY,264
+wp_manage-1.3.4.dist-info/METADATA,sha256=41hI6IbgYXDkb7cWwImien-89RM15AEHJQBeO8Ah4to,13753
+wp_manage-1.3.4.dist-info/WHEEL,sha256=IYZQI976HJqqOpQU6PHkJ8fb3tMNBFjg-Cn-pwAbaFM,88
+wp_manage-1.3.4.dist-info/entry_points.txt,sha256=_DYkXlMf-ilBlQoZrwVn01MaSUqhrgfkSt_m9i15M1U,54
+wp_manage-1.3.4.dist-info/RECORD,,

@@ -1,0 +1,256 @@
+Metadata-Version: 2.3
+Name: wp_manage
+Version: 1.3.4
+Summary: A command line interface (CLI) for updating WP Engine sites built off of the WP Engine SSH Gateway.
+Requires-Python: >=3.9
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: flake8 (>=7.1.1,<8.0.0)
+Requires-Dist: pytest (>=8.3.4,<9.0.0)
+Requires-Dist: pytest-cov (>=6.0.0,<7.0.0)
+Requires-Dist: pytest-mock (>=3.14.0,<4.0.0)
+Requires-Dist: requests (>=2.32.3,<3.0.0)
+Requires-Dist: responses (>=0.25.6,<0.26.0)
+Description-Content-Type: text/markdown
+
+# **wp-manage**
+A command line interface (CLI) for updating WP Engine sites built off of the WP Engine SSH Gateway.
+https://wpengine.com/support/ssh-gateway/
+## WP Engine SSH Set-up:
+To use the wp-manage CLI, you must connect through to the SSH Gateway by creating an SSH Key and adding the key to the WP Engine User Portal.
+
+### Generating a new SSH key: 
+See WP Engine Docs for further instructions on generating your first SSH key: https://wpengine.com/support/ssh-keys-for-shell-access/#Generate_New_SSH_Key
+
+1) Open a Terminal or Command Prompt window.
+2) Run the following command to generate a new key as shown below: 
+    ```sh
+    ssh-keygen -t ed25519 -f ~/.ssh/wpengine_ed25519
+     ```
+3) Hit return to leave the passphrase blank. If you'd like to set a passphrase you may.
+4) Once the process has completed, run the following command to print the contents of the new key file: 
+    ```sh
+    cat ~/.ssh/wpengine_ed25519.pub
+    ```
+   This must be copied to your WP Engine user profile! See the next steps.
+
+### Addding an SSH key to WP Engine profile : 
+1) Log in to the WP Engine User Portal and click the profile icon.
+2) Select **SHH Keys** and then select **New SSH key**.
+3) Paste your Public Key into the field (step 4) and click **Add SSH Key**.
+
+### Generating SSH Config:
+After generating an SSH key, it's best practice to store the key in an SSH configuration file. This file tells your computer how to connect to different servers easily without the overhead of remembering all the details each time you want to connect.
+See WP Engine Docs for further instructions on generating an SSH config file: https://wpengine.com/support/ssh-keys-for-shell-access/#SSH_Config_File
+1) Open a Terminal or Command Prompt window from your computer.
+2) Navigate to your .ssh directory.
+      - MacOS:
+      ```sh
+      cd ~/.ssh/
+      ```
+      - Windows:
+      ```sh
+      /c/Users/[youruser]/.ssh/
+      ```
+3) Create a config file by running the command:
+   ```sh
+      touch config
+   ```
+4) To edit the file run:
+   ```sh
+      vi config
+   ```
+5) Inside the file hit 'i' on your keyboard to insert text.
+6) Paste the following contents
+   ```sh
+   Host *.ssh.wpengine.net
+   IdentityFile ~/.ssh/wpengine_ed25519
+   IdentitiesOnly yes
+   ```
+7) To save and exit the editor click the 'esc' button then type ':wq'
+
+Congrats! You've successfully created an SSH Config file!
+
+## Set-up and Installing ```wp-manage```:
+
+1. Ensure you can run Python from the command line. You may check using the following command:
+
+Unix/macOS
+```sh
+   python3 --version
+```
+
+Windows 
+```sh
+   py --version
+```
+
+You should get some output like Python ``` 3.13.1 ```. If you do not have python, install the latest version above ```3.9``` from https://www.python.org/
+
+2. Next, ensure you can run pip (a Python package installer) from the command line. You can check this by running:
+
+Unix/macOS
+```sh
+   python3 -m pip --version
+```
+
+Windows
+```sh
+   py -m pip --version
+```
+
+If pip is _not_ installed, try running the following command:
+
+Unix/macOS
+```sh
+   python3 -m ensurepip --default-pip
+```
+
+Windows
+```sh
+   py -m ensurepip --default-pip
+```
+
+A successful installation will allow you run the command: ```python3 -m pip```. 
+If _not_, you may directly download pip from here: https://bootstrap.pypa.io/get-pip.py and run ```python3 get-pip.py``` 
+
+3. **Create** and **activate** a virtual environment. Python virtual environments allow Python packages to be installed independently in isolated locations, 
+rather than being installed globally. An activated virtual environment is required for installation and use of the package.
+
+Unix/macOS
+```shell
+   python3 -m venv tutorial_env
+   source tutorial_env/bin/activate
+```
+
+Windows
+```shell
+  py -m venv tutorial_env
+  tutorial_env\Scripts\activate
+```
+
+4. Now, Pip install the ```wp_manage``` package:
+
+Unix/macOS
+```shell 
+  python3 -m pip install wp_manage
+```
+
+Windows
+```shell 
+   py -m pip install wp_manage
+```
+
+You should now be able to run ```wp-manage``` commands from within the **virtual environment**.
+
+When you are done using the package, exit the virtual environment by running the ```deactivate``` command.
+
+To **upgrade** the ```wp-manage``` package to the latest version, run the following command from within your virtual environment:
+
+Unix/macOS
+```shell 
+  python3 -m pip install --upgrade wp_manage
+```
+
+
+Windows
+```shell 
+   py -m pip install --upgrade wp_manage
+```
+
+
+Helpful Resources  
+* Installing Python packages from PyPi:
+https://packaging.python.org/en/latest/tutorials/installing-packages/
+
+* ```wp_manage``` PyPi site: https://pypi.org/project/wp_manage/ with project description details.
+
+## wp-manage commands:
+All commands will begin with ```wp-manage``` and are run on either a singular site environment or on a group of environments.
+
+wp-manage commands are run in this basic structure:
+   ```sh
+   wp-manage [verbose (optional)] [environment] [subcommand] [action]
+   ```
+
+You may specify a single environment using the ```--env``` flag followed by the environment name or pass
+```--all-envs``` argument to run the command across all environments. You may use ```--print-envs``` to see list of known environments within the ```--all-envs``` group.
+
+
+**NOTE**: When you connect to a site for the first time, the WP SSH Gateway will prompt you and ask if you're sure you want to continue connecting.
+Type 'yes' and hit enter.
+
+### Optional/Help Flags
+
+| flag                     | description                                                                                                                     | example                                                                                                                                                                                                                                           |
+|--------------------------|---------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ```--help``` or ```-h``` | pass either flag to get a list of available commands printed to terminal.                                                       | ```wp-manage --help ``` shows help descriptions for all commands. To view the help descriptions for a specific pass the help flag after the command. For example: ```wp-manage plugin -h``` will list the help options for the plugin subcommand. |
+| ```--verbose```          | add this flag to the beginning of any command to create a log for the dev team for debugging purposes. Not necessary otherwise. | ``` wp-manage --verbose ...```                                                                                                                                                                                                                    |
+
+### Environment Arguments
+| flag               | description                                                                                                           | example                                     |
+|--------------------|-----------------------------------------------------------------------------------------------------------------------|---------------------------------------------|
+| ```--env```        | specify one environment for a command. Make sure to specify the environment name argument after the ```--env``` flag. | ```wp-manage --env uhtestsite2024 ... ```   |
+| ```--all-envs```   | run command on all known environments.                                                                                | ``` wp-manage --all-envs ...```             |
+| ```--print-envs``` | print all available environments to the terminal.                                                                     | ``` wp-manage --print-envs ```              |
+
+
+### Subcommands
+| subcommand    | description                                                   |
+|---------------|---------------------------------------------------------------|
+| plugin        | run plugin-related commands                                   |
+| theme         | run theme-related commands                                    | 
+| core          | run WordPress system-related commands                         |
+| test-response | send a https request to the site to check the response status | 
+
+
+### Plugin Actions
+
+
+| flag                 | description                                                                                              | example                                                             |
+|----------------------|----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
+| ```--list```         | list all active plugins on a site.                                                                       | ``` wp-manage --env uhtestsite2024 plugin --list ```                |                          
+| ```--update```       | perform an update on a specified plugin. Make sure to pass a plugin name after the ```--update``` flag.  | ``` wp-manage --env uhtestsite2024 plugin --update page-links-to``` |
+| ```--update-check``` | list all plugins with updates available.                                                                 | ``` wp-manage -all-envs plugin--update-check```                     |
+| ```--update-all```   | performs updates on all plugins with available updates on the site.                                      | ``` wp-manage --env uhtestsite2024 plugin --update-all```           |
+
+
+### Theme Actions
+
+**NOTE**: If installing/upgrading a theme, please ensure you have the latest theme stored locally on your machine and the file path readily available.
+
+| flag            | description                                                                                                                              | example                                                                                        |
+|-----------------|------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+| ```--list```    | list all themes installed on the site                                                                                                    | ``` wp-manage --env uhtestsite2024 theme --list ```                                            |                          
+| ```--status```  | returns the status and version details for a specified site. Make sure to specify the theme name argument after the ```--status``` flag. | ``` wp-manage --all-envs theme --status enfold```                                              |
+| ```--install``` | installs and activates a theme. Make sure to specify the name of the theme after ```--install``` flag.                                   | ``` wp-manage --env uhtestsite2024 theme --install enfold --zip-file-path path/to/theme.zip``` |
+| ```--install``` | path to the theme zip file to be installed or updated. Make sure to specify the ```--zip-file-path```  after the ```--install``` flag.   | ``` wp-manage --all-envs theme --install enfold --zip-file-path path/to/theme.zip```           |
+
+
+### Core Actions
+
+
+| flag                 | description                                                           | example                                             |
+|----------------------|-----------------------------------------------------------------------|-----------------------------------------------------| 
+| ```--update```       | performs a WordPress update on the site.                              | ``` wp-manage --env uhtestsite2024 core --update``` |
+| ```--update-check``` | checks to see if there is an WordPress update available for the site. | ``` wp-manage -all-envs core --update-check```      |
+
+
+
+### Checking the status codes of a site post update
+
+To send a request to a site and view the response, you use the ```test-response``` subcommand to return a response code.
+```sh
+   wp-manage [env argument] test-response
+```
+| Response Code | Meaning                                                                      | 
+|---------------|------------------------------------------------------------------------------|
+| 200           | "OK" status code for a successful HTTP request.                              | 
+| 401           | Occurs when authentication is required and missing from request.             |
+| 403           | A valid request was sent, but the server refused to accept the request.      |
+| 404           | A valid request was sent, but the server could not find the requested page   |  
+

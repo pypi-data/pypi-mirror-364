@@ -1,0 +1,3 @@
+[console_scripts]
+wp-manage=wp_manage.wp_manage:main
+
