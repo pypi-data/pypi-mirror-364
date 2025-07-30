@@ -1,0 +1,5 @@
+[console_scripts]
+skyline-nginx-generator = skyline_apiserver.cmd.generate_nginx:main
+skyline-policy-manager = skyline_apiserver.cmd.policy_manager:main
+skyline-sample-config-generator = skyline_apiserver.cmd.generate_sample_config:main
+skyline-swagger-generator = skyline_apiserver.cmd.generate_swagger:main
