@@ -1,0 +1,2 @@
+[mkdocs.plugins]
+mkdocs-sitemap-exclusion = mkdocs_sitemap_exclusion.plugin:ExcludeFromSitemapPlugin
