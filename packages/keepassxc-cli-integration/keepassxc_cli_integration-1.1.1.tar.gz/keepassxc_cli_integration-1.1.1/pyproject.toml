@@ -1,0 +1,37 @@
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[project]
+name = "keepassxc-cli-integration"
+version = "1.1.1"
+description = "CLI integration for KeepassXC GUI."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    {name = "oevergodofchaos", email = "vezonzzzzzz@gmail.com"}
+]
+keywords = [
+    "keepassxc",
+    "keepassxc-cli",
+    "keepass",
+    "password manager"
+]
+dependencies = [
+    "cffi==1.17.1",
+    "pycparser==2.22",
+    "PyNaCl==1.5.0",
+    "pywin32==308; sys_platform == 'win32'",
+    "toml==0.10.2",
+    "websockets==15.0",
+    "typer (>=0.16.0,<0.17.0)",
+]
+packages = [
+    { include = "keepassxc_cli_integration" }
+]
+
+[project.scripts]
+kpx = "keepassxc_cli_integration.kpx_cmd:main"
+
+[tool.poetry]
+package-mode = true
