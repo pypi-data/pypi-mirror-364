@@ -1,0 +1,19 @@
+# Inclure la doc principale
+include README.md
+include LICENSE
+include MANIFEST.in
+
+# Inclure les ressources de ezqt_app (tous sous-dossiers)
+recursive-include ezqt_app/resources *
+recursive-include ezqt_app/widgets *
+recursive-include ezqt_app/kernel *
+
+# Inclure le fichier de config de l'app
+include ezqt_app/app.yaml
+
+# Exclure les fichiers inutiles
+exclude build_upload.bat
+prune build
+prune dist
+prune EzQt_App.egg-info
+prune __pycache__
