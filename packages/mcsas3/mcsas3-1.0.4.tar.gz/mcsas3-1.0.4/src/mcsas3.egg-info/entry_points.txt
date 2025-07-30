@@ -1,0 +1,3 @@
+[console_scripts]
+mcsas3-histogrammer = mcsas3.mcsas3_cli_histogrammer:main
+mcsas3-runner = mcsas3.mcsas3_cli_runner:main
