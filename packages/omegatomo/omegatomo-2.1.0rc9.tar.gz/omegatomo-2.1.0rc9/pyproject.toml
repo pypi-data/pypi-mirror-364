@@ -1,0 +1,46 @@
+[build-system]
+requires = [
+    "setuptools>=45",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "omegatomo"
+version = "2.1.0rc9"
+authors = [
+  {name = "Ville-Veikko Wettenhovi", email = "villewe@uef.fi"},
+  {name = "Niilo Saarlemo", email = "niilo.saarlemo@uef.fi"},
+]
+description = "Open-source multi-dimensional tomographic reconstruction software for Python."
+readme = "README.md"
+requires-python = ">=3.6"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: Microsoft :: Windows",
+	"Operating System :: POSIX :: Linux",
+]
+license = "GPL-3.0-only"
+license-files = ["LICENSE"]
+keywords = ["tomography", "tomographic", "PET", "CT", "SPECT", "image reconstruction"]
+dependencies = [
+  "numpy",
+  "pymatreader",
+  "arrayfire",
+  "scikit-image",
+  "SimpleITK",
+]
+
+[project.optional-dependencies]
+cupy = ["cupy"]
+pyopencl = ["pyopencl"]
+pytorch = ["torch", "cupy"]
+
+[project.urls]
+Homepage = "https://github.com/villekf/OMEGA"
+Issues = "https://github.com/villekf/OMEGA/issues"
+Documentation = "https://omega-doc.readthedocs.io/en/latest/index.html"
+releasenotes = "https://github.com/villekf/OMEGA/blob/master/release_notes.md"
+
+[tool.setuptools.packages.find]
+where = ["src/"]
+include = ["omegatomo.fileio", "omegatomo.projector", "omegatomo.reconstruction", "omegatomo.util", "omegatomo.libs", "omegatomo.cpp", "omegatomo.opencl"]
