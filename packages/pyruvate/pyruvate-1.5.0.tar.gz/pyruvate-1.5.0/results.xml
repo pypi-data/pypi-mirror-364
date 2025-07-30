@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite id="0" name="cargo test #0" package="testsuite/cargo test #0" tests="81" errors="0" failures="0" hostname="localhost" timestamp="2025-07-24T06:15:44.416440021Z" time="2.671509039">
+    <testcase name="test_bytes_not_convertible" time="0.007554737" classname="filewrapper::tests" />
+    <testcase name="test_file_wrapper_new_no_args" time="0.007630757" classname="filewrapper::tests" />
+    <testcase name="test_no_fileno" time="0.00030417" classname="filewrapper::tests" />
+    <testcase name="test_no_read_method" time="0.000440831" classname="filewrapper::tests" />
+    <testcase name="test_send_file_content_length_lt_blocksize" time="0.000765211" classname="filewrapper::tests" />
+    <testcase name="test_send_file_updated_content_length" time="0.203988452" classname="filewrapper::tests" />
+    <testcase name="test_send_file_default_params" time="0.204943393" classname="filewrapper::tests" />
+    <testcase name="test_creation" time="0.000615111" classname="globals::tests" />
+    <testcase name="test_clear_pyerr" time="0.00012224" classname="pyutils::tests" />
+    <testcase name="test_python_threadinfo" time="0.008803419" classname="pyutils::tests" />
+    <testcase name="test_sync_logging" time="0.013547693" classname="pyutils::tests" />
+    <testcase name="test_content_length_only_digits" time="0.00011926" classname="request::tests" />
+    <testcase name="test_content_length_twice" time="0.00002079" classname="request::tests" />
+    <testcase name="test_environ_dict" time="0.000679021" classname="request::tests" />
+    <testcase name="test_error_url" time="0.00014258" classname="request::tests" />
+    <testcase name="test_get" time="0.00004957" classname="request::tests" />
+    <testcase name="test_latin1_path_info" time="0.00004907" classname="request::tests" />
+    <testcase name="test_latin1_url" time="0.0000437" classname="request::tests" />
+    <testcase name="test_parse_body_once" time="0.00002555" classname="request::tests" />
+    <testcase name="test_parse_content_length_transfer_encoding_present" time="0.00003282" classname="request::tests" />
+    <testcase name="test_parse_expect_continue" time="0.00025954" classname="request::tests" />
+    <testcase name="test_parse_multiple" time="0.00003309" classname="request::tests" />
+    <testcase name="test_parsing_stages" time="0.00000082" classname="request::tests" />
+    <testcase name="test_post_multipart_formdata" time="0.000352931" classname="request::tests" />
+    <testcase name="test_post_simple_form" time="0.00026742" classname="request::tests" />
+    <testcase name="test_url_decode" time="0.00004645" classname="request::tests" />
+    <testcase name="test_content_length_gt_data_len" time="0.000353241" classname="response::tests" />
+    <testcase name="test_content_length_gt_data_len_filewrapper" time="0.00040019" classname="response::tests" />
+    <testcase name="test_content_length_gt_data_len_head" time="0.00019273" classname="response::tests" />
+    <testcase name="test_content_length_gt_data_len_method_error" time="0.00027605" classname="response::tests" />
+    <testcase name="test_async_logging" time="0.230795998" classname="pyutils::tests" />
+    <testcase name="test_content_length_gt_data_len_sendfile" time="0.202496651" classname="response::tests" />
+    <testcase name="test_create" time="0.00040687" classname="response::tests" />
+    <testcase name="test_handle_request" time="0.001193471" classname="response::tests" />
+    <testcase name="test_handle_request_bad_request" time="0.000959321" classname="response::tests" />
+    <testcase name="test_handle_request_generator" time="0.000568501" classname="response::tests" />
+    <testcase name="test_handle_request_application_error" time="0.002669643" classname="response::tests" />
+    <testcase name="test_handle_request_multi_chunk_chunked_transfer" time="0.00061334" classname="response::tests" />
+    <testcase name="test_handle_request_multi_chunk_content_length" time="0.001333271" classname="response::tests" />
+    <testcase name="test_handle_request_result_is_empty_list" time="0.001281171" classname="response::tests" />
+    <testcase name="test_iterator" time="0.00046342" classname="response::tests" />
+    <testcase name="test_handle_request_result_not_iterable" time="0.001987412" classname="response::tests" />
+    <testcase name="test_render_next_chunk_filewrapper" time="0.001454941" classname="response::tests" />
+    <testcase name="test_render_next_chunk_no_bytes_in_iterator" time="0.000616851" classname="response::tests" />
+    <testcase name="test_render_next_chunk_no_iterator" time="0.00024302" classname="response::tests" />
+    <testcase name="test_set_bad_request" time="0.00017257" classname="response::tests" />
+    <testcase name="test_set_error" time="0.00008938" classname="response::tests" />
+    <testcase name="test_set_pyobject" time="0.0002251" classname="response::tests" />
+    <testcase name="test_write_chunk" time="0.0003083" classname="response::tests" />
+    <testcase name="test_write_chunk_sendfile_no_filewrapper" time="0.00073474" classname="response::tests" />
+    <testcase name="test_write_chunk_sendfile" time="0.207353115" classname="response::tests" />
+    <testcase name="test_create_blocking_server" time="0.207386145" classname="server::tests" />
+    <testcase name="test_create_server" time="0.001732031" classname="server::tests" />
+    <testcase name="test_create_server_socket_activation" time="0.001172411" classname="server::tests" />
+    <testcase name="test_handle_read_event" time="0.001082241" classname="server::tests" />
+    <testcase name="test_next" time="0.00000107" classname="server::tests" />
+    <testcase name="test_handle_read_event_too_many_headers" time="0.001798462" classname="server::tests" />
+    <testcase name="test_server_poll_once" time="0.102399687" classname="server::tests" />
+    <testcase name="startresponse::tests::test_exc_info_is_none" time="0">
+      <skipped />
+    </testcase>
+    <testcase name="test_honour_content_length_header" time="0.000771571" classname="startresponse::tests" />
+    <testcase name="test_write" time="0.00006182" classname="startresponse::tests" />
+    <testcase name="test_broken_pipe" time="0.00003368" classname="transport::tests" />
+    <testcase name="test_listening_unix_accept" time="0.00042032" classname="transport::tests" />
+    <testcase name="test_listening_unix_local_addr_string" time="0.00017374" classname="transport::tests" />
+    <testcase name="test_local_addr_string_tcp" time="0.00004544" classname="transport::tests" />
+    <testcase name="test_local_addr_string_unix" time="0.00013577" classname="transport::tests" />
+    <testcase name="test_parse_server_info" time="0.033159011" classname="transport::tests" />
+    <testcase name="test_peer_addr_unix" time="0.00016302" classname="transport::tests" />
+    <testcase name="test_persistent_connection_expire_reuse_count" time="0.00017784" classname="transport::tests" />
+    <testcase name="test_persistent_connection_reuse" time="0.00016262" classname="transport::tests" />
+    <testcase name="test_server_poll_once_expect_continue" time="0.204154795" classname="server::tests" />
+    <testcase name="test_persistent_connection_write_100_continue" time="0.000280298" classname="transport::tests" />
+    <testcase name="test_set_nonblocking" time="0.00012526" classname="transport::tests" />
+    <testcase name="test_would_block" time="0.00002073" classname="transport::tests" />
+    <testcase name="test_pool_simple" time="0.001271683" classname="workerpool::tests" />
+    <testcase name="test_handle_events" time="0.000959315" classname="workers::tests" />
+    <testcase name="test_handle_stashed_responses_timeout" time="0.001271303" classname="workers::tests" />
+    <testcase name="test_handle_write_event" time="0.000225489" classname="workers::tests" />
+    <testcase name="test_non_blocking_worker" time="0.002517266" classname="workers::tests" />
+    <testcase name="test_reuse_connection" time="0.00008303" classname="workers::tests" />
+    <testcase name="test_persistent_connection_timeout" time="1.001695068" classname="transport::tests" />
+  </testsuite>
+  <testsuite id="1" name="cargo test #1" package="testsuite/cargo test #1" tests="1" errors="0" failures="0" hostname="localhost" timestamp="2025-07-24T06:15:44.416440021Z" time="0.021773375">
+    <testcase name="create_async_logger" time="0.021773375" classname="" />
+  </testsuite>
+  <testsuite id="2" name="cargo test #2" package="testsuite/cargo test #2" tests="1" errors="0" failures="0" hostname="localhost" timestamp="2025-07-24T06:15:44.416440021Z" time="0.523777838">
+    <testcase name="test_serve" time="0.523777838" classname="" />
+  </testsuite>
+  <testsuite id="3" name="cargo test #3" package="testsuite/cargo test #3" tests="1" errors="0" failures="0" hostname="localhost" timestamp="2025-07-24T06:15:44.416440021Z" time="0.000287098">
+    <testcase name="socket_activation" time="0.000287098" classname="" />
+  </testsuite>
+  <testsuite id="4" name="cargo test #4" package="testsuite/cargo test #4" tests="1" errors="0" failures="0" hostname="localhost" timestamp="2025-07-24T06:15:44.416440021Z" time="0.020815791">
+    <testcase name="create_sync_logger" time="0.020815791" classname="" />
+  </testsuite>
+  <testsuite id="5" name="cargo test #5" package="testsuite/cargo test #5" tests="0" errors="0" failures="0" hostname="localhost" timestamp="2025-07-24T06:15:44.416440021Z" time="0" />
+</testsuites>
