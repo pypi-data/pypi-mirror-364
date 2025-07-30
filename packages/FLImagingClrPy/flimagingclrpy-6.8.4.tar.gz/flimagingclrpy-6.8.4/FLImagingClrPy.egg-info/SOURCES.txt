@@ -1,0 +1,10 @@
+README.md
+pyproject.toml
+setup.py
+FLImagingClrPy/FLImagingClrPyLoader.py
+FLImagingClrPy/__init__.py
+FLImagingClrPy.egg-info/PKG-INFO
+FLImagingClrPy.egg-info/SOURCES.txt
+FLImagingClrPy.egg-info/dependency_links.txt
+FLImagingClrPy.egg-info/requires.txt
+FLImagingClrPy.egg-info/top_level.txt
