@@ -1,0 +1,56 @@
+Metadata-Version: 2.4
+Name: djprod
+Version: 0.1.1
+Summary: Yet another production-ready Django project.
+Author-email: Ali Hassan <alihassan.pyc@gmail.com>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/elly-hacen/djprod
+Project-URL: Repository, https://github.com/elly-hacen/djprod
+Project-URL: Issues, https://github.com/elly-hacen/djprod/issues
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: django
+Requires-Dist: django-environ
+Requires-Dist: psycopg2-binary
+Requires-Dist: rich
+Dynamic: license-file
+
+# djprod
+
+### Yet another production-ready Django project.
+
+`djprod` provides a CLI for creating Django projects with a clean structure, ready for real-world deployments. It includes preconfigured settings, static directories, and environment support.
+
+## Features
+
+- CLI to generate Django apps and projects
+- Pre-separated settings: `base`, `local`, `production`
+- `.env` support via `django-environ`
+- PostgreSQL, Sentry, S3 configuration ready
+- Includes basic templates and static structure
+
+## Installation
+
+```bash
+pip install djprod
+````
+
+## Usage
+
+```bash
+djprod new myproject
+cd myproject
+````
+
+Rename `env.example` to `.env`:
+
+```bash
+mv env.example .env
+```
+
+Run the project using [`uv`](https://github.com/astral-sh/uv):
+
+```bash
+uv run manage.py runserver
+```
