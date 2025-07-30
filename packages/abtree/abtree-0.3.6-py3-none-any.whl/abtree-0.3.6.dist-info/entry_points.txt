@@ -1,0 +1,2 @@
+[console_scripts]
+abtree-cli = cli.abtree_cli:main
