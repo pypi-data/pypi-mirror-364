@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+setup.py
+vaultsphere/__init__.py
+vaultsphere/core.py
+vaultsphere/crypto.py
+vaultsphere/index.py
+vaultsphere/schema.py
+vaultsphere/utils.py
+vaultsphere.egg-info/PKG-INFO
+vaultsphere.egg-info/SOURCES.txt
+vaultsphere.egg-info/dependency_links.txt
+vaultsphere.egg-info/top_level.txt

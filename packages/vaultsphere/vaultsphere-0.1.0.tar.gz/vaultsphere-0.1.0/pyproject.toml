@@ -1,0 +1,15 @@
+[project]
+name = "vaultsphere"
+version = "0.1.0"
+description = "VaultSphere - A simple encrypted NoSQL-like database with base64 encoding."
+readme = "README.md"
+authors = [
+  {name = "zzzNeet"}
+]
+license = {file = "LICENSE"}
+dependencies = []
+requires-python = ">=3.7"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
