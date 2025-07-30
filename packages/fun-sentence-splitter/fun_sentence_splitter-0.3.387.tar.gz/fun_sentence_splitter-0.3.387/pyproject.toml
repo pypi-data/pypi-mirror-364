@@ -1,0 +1,65 @@
+[tool.poetry]
+name = "fun-sentence-splitter"
+version = "0.3.387"
+description = "A fundamental sentence splitter based on spacy."
+authors = ["Medical AI Engineering <engineering@m-ai.rhenus.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{ include = "fun_sentence_splitter" }]
+
+[tool.poetry.dependencies]
+python = ">3.9,<3.14"
+spacy = "3.8.7"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.11.0"
+mypy = "^1.17.0"
+pytest = "^8.0.0"
+pytest-cov = "^6.0.0"
+# update needs newer spacy version
+typer = "^0.16.0"
+types-tqdm = "^4.66.0.2"
+
+[tool.mypy]
+pretty = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_unreachable = true
+
+[tool.ruff]
+line-length = 120
+exclude = [".venv"]
+
+# these rule prefixes are used
+lint.select = [
+    "A", "B", "C", "E", "F", "G", "I", "N", "Q", "S", "T", "W",
+    "ANN", "ARG",
+    "BLE",
+    "COM",
+    "DJ", "DTZ",
+    "EM", "ERA", "EXE",
+    "FBT",
+    "ICN", "INP", "ISC",
+    "NPY", "PD", "PGH", "PIE", "PL", "PT", "PTH", "PYI",
+    "RET", "RSE", "RUF", "SIM", "SLF",
+    "TCH", "TID", "TRY",
+    "UP",
+    "YTT",
+]
+
+lint.ignore = [
+    "EM101",  # string literals in exceptions
+    "TRY003",  # custom messages for internal exceptions
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = [
+    "S101", # allow assertions
+]
+"tests/evaluate_sentence_splitter.py" = [
+    "T201", # allow print
+]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
