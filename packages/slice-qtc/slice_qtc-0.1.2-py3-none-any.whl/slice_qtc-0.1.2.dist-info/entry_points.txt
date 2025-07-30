@@ -1,0 +1,3 @@
+[console_scripts]
+sliceqtc=slice.slice:interactive_mode
+
