@@ -1,0 +1,184 @@
+Metadata-Version: 2.4
+Name: taintmonkey
+Version: 1.0.1
+Summary: Dynamic taint analysis of Python web applications using monkey patching.
+Author-email: Benson Liu <bensonhliu@gmail.com>, Anusha Iyer <aiyer720@gmail.com>, Sebastian Mercado <simercado07@gmail.com>, Aiden Chen <aidenchen.contact@gmail.com>, Carter Chew <carterkylechew@gmail.com>, Shayan Chatiwala <shayan.chatiwala@gmail.com>, Aarav Parikh <aaravp1223@gmail.com>
+License: MIT License
+        
+        Copyright (c) 2025 Benson Liu
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: Homepage, https://github.com/bliutech/taintmonkey
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Framework :: Pytest
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: antlerinator==1!3.0.0
+Requires-Dist: antlr4-python3-runtime==4.13.0
+Requires-Dist: autopep8==2.3.2
+Requires-Dist: blinker==1.9.0
+Requires-Dist: click==8.2.1
+Requires-Dist: coverage==7.9.2
+Requires-Dist: Flask==3.1.1
+Requires-Dist: grammarinator==23.7
+Requires-Dist: inators==2.1.0
+Requires-Dist: iniconfig==2.1.0
+Requires-Dist: itsdangerous==2.2.0
+Requires-Dist: Jinja2==3.1.6
+Requires-Dist: MarkupSafe==3.0.2
+Requires-Dist: packaging==25.0
+Requires-Dist: pluggy==1.6.0
+Requires-Dist: pycodestyle==2.14.0
+Requires-Dist: Pygments==2.19.2
+Requires-Dist: pytest==8.4.1
+Requires-Dist: pytest-cov==6.2.1
+Requires-Dist: setuptools==80.9.0
+Requires-Dist: Werkzeug==3.1.3
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Dynamic: license-file
+
+# TaintMonkey: Dynamic Taint Analysis of Python Web Applications Using Monkey Patching
+
+![TaintMonkey banner](.github/taintmonkey_banner.png)
+
+![CI - Run Unit Tests](https://github.com/bliutech/TaintMonkey/actions/workflows/test.yaml/badge.svg)
+![Wheel](https://img.shields.io/pypi/wheel/taintmonkey.svg)
+![PyPI](https://img.shields.io/pypi/v/taintmonkey.svg)
+
+TaintMonkey is a a dynamic taint analysis library for Python Flask web applications. It leverages monkey patching to instrument Flask applications without modifying source code. TaintMonkey includes a built-in fuzzer that helps developers test endpoints for specific vulnerabilities with randomized inputs. This repository also comes with *JungleGym*, a datatset of 100+ example Flask applications susceptible to web vulnerabilities from the Common Weakness Enumeration (CWE). 
+
+![TaintMonkey components](.github/taintmonkey_components.png)
+
+## Installation
+To install the latest version of TaintMonkey, you can run the following command.
+
+```
+pip install taintmonkey
+```
+
+## Usage
+In order to test a Flask endpoint for a particular vulnerability with TaintMonkey, you must first create a plugin.
+
+![TaintMonkey dataflow](.github/taintmonkey_dataflow.png)
+
+### Step 1: Monkey Patch the Source
+Monkey patch your endpoint's source to return a tainted string.
+
+Example for OS Command Injection:
+```python
+@patch_function("dataset.cwe_78_os_command_injection.insecure_novalidation.app.open_file_command")
+def new_open_file_command(file: TaintedStr):
+    return TaintedStr(original_function(file))
+```
+
+### Step 2: Create `taintmonkey()` Fixture
+Write a `taintmonkey()` fixture that passes your app's verifier, sanitizer, and sink functions to the `TaintMonkey` class. TaintMonkey automatically monkey patches these functions to add taint analysis instrumentation. Next, initialize and set a fuzzer (dictionary, mutation, or grammar-based) for TaintMonkey to use.
+
+Example:
+```python
+VERIFIERS = []
+SANITIZERS = []
+SINKS = ["os.popen"]
+
+@pytest.fixture()
+def taintmonkey():
+    from dataset.cwe_78_os_command_injection.insecure_novalidation.app import app
+
+    tm = TaintMonkey(app, verifiers=VERIFIERS, sanitizers=SANITIZERS, sinks=SINKS)
+
+    fuzzer = MutationBasedFuzzer(app, "plugins/cwe_78_os_command_injection/corpus.txt")
+    tm.set_fuzzer(fuzzer)
+
+    return tm
+```
+
+### Step 3: Write The Fuzzing Harness
+The fuzzing harness is how a TaintMonkey plugin uses inputs generated by the fuzzer to test an endpoint for vulnerabilities. Use the fuzzer's context manager to get a `TaintClient` object and input generator. Then iterate through the generated inputs and make requests to the endpoint using those inputs.
+
+Example:
+```python
+def test_fuzz(taintmonkey):
+    fuzzer = taintmonkey.get_fuzzer()
+
+    counter = 0
+    print()
+    with fuzzer.get_context() as (client, input_generator):
+        for _, data in zip(range(10), input_generator):
+            print(f"[Fuzz Attempt {counter}] {data}")
+
+            client.get(f"/insecure?{urlencode({'file': data})}")
+            counter += 1
+```
+
+### Step 4: Run Plugin
+Run the plugin to test if your Flask endpoint is vulnerable.
+
+Example:
+```
+PYTHONPATH=. pytest -s plugins/cwe_78_os_command_injection/__init__.py
+```
+
+During execution, a `TaintException` is raised if tainted input reaches a sink without proper verification or sanitization (assuming that verifiers, sanitizers, and sinks have been correctly registered with the `TaintMonkey` object).
+
+
+## Development
+To download the necessary packages for TaintMonkey, run
+```
+pip install -r requirements.txt
+```
+
+We use `ruff` to check the formatting of our code so before submitting a Pull Request, make sure to run the formatter using the following command.
+
+```
+python -m ruff format --no-cache
+```
+
+To run the unit test suite, use the following command.
+
+```
+PYTHONPATH=. pytest
+```
+
+To generate a coverage report of TaintMonkey, run the following commands.
+
+```
+PYTHONPATH=. pytest --cov=taintmonkey --cov-report html tests/
+cd htmlcov/
+python3 -m http.server
+```
+
+The HTML report generated by coverage-py should be available at http://localhost:8000.
+
+## Experiments
+In order to run experiments using the *JungleGym* dataset, make sure to set up the environment by doing the following.
+
+```
+python3 -m venv venv
+source venv/bin/activate
+bash experiments/setup.sh
+```
+
+## Authors
+TaintMonkey was developed by Shayan Chatiwala, Aiden Chen, Carter Chew, Sebastian Mercado, and Aarav Parikh for GSET 2025. The project was advised by Benson Liu as their project mentor and Anusha Iyer as their project Residential Teaching Assistant (RTA). For any questions or requests for additional information, please contact the authors.
+

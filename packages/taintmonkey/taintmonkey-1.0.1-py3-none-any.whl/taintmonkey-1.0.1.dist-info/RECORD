@@ -1,0 +1,12 @@
+taintmonkey/__init__.py,sha256=sQmz7ZdhvhD6H2YsRK-jU23nphGWLUbdza2o74WxT-w,4320
+taintmonkey/client.py,sha256=TexDYRfYDj1jrAYu0Q8oH0dt8rD7RY3uyt9hOBcNDZE,3719
+taintmonkey/fuzzer.py,sha256=RszpqlCPd5SDJNO-EH5HY_KOPNAWLLIOi8fvRogn8yA,22027
+taintmonkey/patch.py,sha256=MA7-oSOBTI1Zpj9MiXt3BEXvsc51U08FzfvQNoEKyYU,9185
+taintmonkey/plugin.py,sha256=LD1uDl5mBpwur2kIamKmRwsjCUAQ17LN6oV_OhrIT0Y,3608
+taintmonkey/taint.py,sha256=w_l14z4NfxZ__7CPbhn3MiRmjWtAFEMG6XWS4DyT0Us,4299
+taintmonkey-1.0.1.dist-info/licenses/LICENSE,sha256=V9np0nPZDDwEu8-M_VXxQ7t0LaLbS1ODfdIue5BacKk,1067
+taintmonkey-1.0.1.dist-info/METADATA,sha256=7EyGEbB0FZHkbyairKakJVwljL9yzC2XDj5RAuPgS7I,7447
+taintmonkey-1.0.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+taintmonkey-1.0.1.dist-info/entry_points.txt,sha256=atNXqRfInXQRfGy9PL1FD9ISnvV7AF79t3qrmy8AMD8,44
+taintmonkey-1.0.1.dist-info/top_level.txt,sha256=DZmbxotH5drXW113DTBK7e_bSvwrJ38UB21uF7Y_T6E,12
+taintmonkey-1.0.1.dist-info/RECORD,,
