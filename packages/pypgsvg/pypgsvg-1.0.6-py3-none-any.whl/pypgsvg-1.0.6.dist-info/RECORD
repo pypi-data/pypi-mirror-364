@@ -1,0 +1,14 @@
+pypgsvg/__init__.py,sha256=bPSuC8O9xKzNvQVO37qrA3meA5Y8zC2B4HDdSVtaekM,4250
+pypgsvg/__main__.py,sha256=FEwMUjuVmC8W7vgpY2XD9sdS53BIv-kwSbtwEBUxgrQ,149
+pypgsvg/colors.py,sha256=rLS7pHSBKfu0dDPy1GdXeAS_YBF6qjXUA7V8pX3alek,1740
+pypgsvg/db_parser.py,sha256=AluRpCuMut1XSnZnSCTmtwl8J1gTxm1pMZQ7JSPdqT8,5556
+pypgsvg/erd_generator.py,sha256=Y9kAmi-j2L_sPzuYKdeZQbONaL3nB8CJn3V9crE_kbc,8851
+pypgsvg/metadata_injector.py,sha256=bqTdn-1k4qfoOwFpj07sLU-HnS7J0Fn1XalIaNfaUFM,13628
+pypgsvg/svg_utils.py,sha256=xVGUrcMnl2uxO1Ibruuw5IjXMQEsL15RmFYdWSDM8XE,9795
+pypgsvg/utils.py,sha256=KZV6XmRDnihcYKmE2x-9IMTjlwFuPJepYed5yQVrgkU,2101
+pypgsvg-1.0.6.dist-info/licenses/LICENSE,sha256=hxdhgyClReB2LpncdYyaTHOX5A8d7QXiWsPxeOkW-GI,1067
+pypgsvg-1.0.6.dist-info/METADATA,sha256=tc_RTK75MdZEqsjiytPozghR4mfMig0XbNnW2YVZr8o,9289
+pypgsvg-1.0.6.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+pypgsvg-1.0.6.dist-info/entry_points.txt,sha256=olbU55bhf6m_rYGetoRM0SyKIszWivCa2X0FQoi78fA,41
+pypgsvg-1.0.6.dist-info/top_level.txt,sha256=HuzmM4yQyL6FeJ30xdm8JJsM85i3qzfqkuPxxW7MUCk,8
+pypgsvg-1.0.6.dist-info/RECORD,,
