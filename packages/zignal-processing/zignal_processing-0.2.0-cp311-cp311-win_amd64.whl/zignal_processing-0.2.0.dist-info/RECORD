@@ -1,0 +1,11 @@
+tests/__init__.py,sha256=F8H-xASpKxgTJsZUnUy4SMY5t_P04OYQJVV_RpxFYMQ,39
+tests/test_colors.py,sha256=TLF98E0KCaZpgN5Kh0WEGoHtob108TMYMM_eI1ZbwA8,8383
+tests/test_comprehensive.py,sha256=VpRl719gg09s6GIxMQdOKtTtg85EG5_Cjfmt22aVq7M,5853
+tests/test_numpy.py,sha256=uicVBeIneJFfCHsHNJ7tksoxzgbk6DzJDfU9aARvUWw,9672
+zignal/__init__.py,sha256=B3US_J-zFdTIfjia7PeapKFWBS88RQjN8z9pt1AxBf0,2366
+zignal/_zignal.cp311-win_amd64.pyd,sha256=Z8UPXRTLQ8XWjTWY_Tef3cXg1UNKCSdQPU1zKy7txSs,600064
+zignal/py.typed,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+zignal_processing-0.2.0.dist-info/METADATA,sha256=kt2qsNUeAu6tAo1LXz7lcJw-TyVx43isnhwWruDUTl0,5174
+zignal_processing-0.2.0.dist-info/WHEEL,sha256=JLOMsP7F5qtkAkINx5UnzbFguf8CqZeraV8o04b0I8I,101
+zignal_processing-0.2.0.dist-info/top_level.txt,sha256=5ttBw9m4sc1UMyStzEYsa8oV9kzy5CKP0hUl9bptOzg,13
+zignal_processing-0.2.0.dist-info/RECORD,,
