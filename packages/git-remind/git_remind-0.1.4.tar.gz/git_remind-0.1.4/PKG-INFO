@@ -1,0 +1,15 @@
+Metadata-Version: 2.4
+Name: git-remind
+Version: 0.1.4
+Summary: A Python package that reminds developers to take breaks
+Author: Anil Thapa
+Author-email: anilthapa4200@gmail.com
+License-File: LICENSE
+Requires-Dist: plyer
+Requires-Dist: playsound
+Requires-Dist: importlib_resources; python_version < "3.9"
+Dynamic: author
+Dynamic: author-email
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary
