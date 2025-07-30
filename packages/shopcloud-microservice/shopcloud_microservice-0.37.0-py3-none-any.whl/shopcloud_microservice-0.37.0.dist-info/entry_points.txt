@@ -1,0 +1,2 @@
+[console_scripts]
+microservice = shopcloud_microservice.cli:main
