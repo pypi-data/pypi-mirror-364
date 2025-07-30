@@ -1,0 +1,3 @@
+[console_scripts]
+yzm-mcp-test = yzm_mcp_test:main
+
