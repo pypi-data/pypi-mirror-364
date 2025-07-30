@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pybae"
+version = "0.1.5"
+description = "Core utilities for backend applications"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [
+    {name = "zangico", email = "zangico@gmail.com"}
+]
+keywords = ["backend", "configuration", "utilities", "pydantic", "dotenv"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "pydantic>=2.0.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "isort",
+    "mypy",
+    "ruff",
+]
+
+[project.urls]
+Homepage = "https://github.com/zangico/pybae"
+Repository = "https://github.com/zangico/pybae"
+Documentation = "https://github.com/zangico/pybae#readme"
+"Bug Tracker" = "https://github.com/zangico/pybae/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["pybae*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.ruff]
+target-version = "py311"
+line-length = 88
