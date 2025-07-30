@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: marmel-grammar
+Version: 0.1.2
+Summary: Грамматика Marmel для Python.
+Author: Dev-Marmel
+Requires-Python: >=3.7
+Dynamic: author
+Dynamic: requires-python
+Dynamic: summary
