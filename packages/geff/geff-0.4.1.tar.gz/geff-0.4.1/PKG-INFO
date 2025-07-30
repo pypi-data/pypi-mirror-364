@@ -1,0 +1,57 @@
+Metadata-Version: 2.4
+Name: geff
+Version: 0.4.1
+Summary: Reference implementation of the Graph Exchange File Format
+License: MIT License
+Project-URL: repository, https://github.com/live-image-tracking-tools/geff
+Project-URL: homepage, https://github.com/live-image-tracking-tools/geff
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: typer
+Requires-Dist: zarr<4,>2
+Requires-Dist: pydantic>=2
+Requires-Dist: numcodecs<0.16
+Requires-Dist: networkx
+Provides-Extra: spatial-graph
+Requires-Dist: spatial-graph; extra == "spatial-graph"
+Provides-Extra: ctc
+Requires-Dist: dask; extra == "ctc"
+Requires-Dist: scikit-image; extra == "ctc"
+Requires-Dist: tifffile; extra == "ctc"
+Requires-Dist: imagecodecs; extra == "ctc"
+Provides-Extra: rx
+Requires-Dist: rustworkx>=0.16.0; extra == "rx"
+Provides-Extra: trackmate-xml
+Requires-Dist: lxml; extra == "trackmate-xml"
+Dynamic: license-file
+
+# Graph Exchange File Format (geff)
+
+<!--intro-start-->
+
+[![License](https://img.shields.io/pypi/l/geff.svg?color=green)](https://github.com/funkelab/geff/raw/main/LICENSE)
+[![PyPI](https://img.shields.io/pypi/v/geff.svg?color=green)](https://pypi.org/project/geff)
+[![Python Version](https://img.shields.io/pypi/pyversions/geff.svg?color=green)](https://python.org)
+[![Test geff](https://github.com/funkelab/geff/actions/workflows/ci.yaml/badge.svg)](https://github.com/funkelab/geff/actions/workflows/ci.yaml)
+
+geff is a specification for a file format for **exchanging** spatial graph data. It is not intended to be mutable, editable, chunked, or optimized for use in an application setting.
+
+geff is the specification of the file format, but the library also includes implementations for writing from and reading to a networkx graph, a common Python in-memory graph data structure. The library uses semantic versioning, where changes to the specification bump the major or minor versions, and bugfixes for the example implementation bumps the patch version.
+
+Learn more in the [documentation](https://live-image-tracking-tools.github.io/geff/latest/) or check out the [source code](https://github.com/live-image-tracking-tools/geff).
+
+## Installation
+
+```
+pip install geff
+```
+<!--intro-end-->
