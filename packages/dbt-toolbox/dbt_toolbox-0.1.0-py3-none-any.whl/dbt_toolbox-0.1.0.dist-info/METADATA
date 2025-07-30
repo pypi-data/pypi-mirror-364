@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: dbt-toolbox
+Version: 0.1.0
+License-File: LICENSE
+Requires-Python: >=3.10
+Requires-Dist: jinja2>=3.1.6
+Requires-Dist: loguru>=0.7.3
+Requires-Dist: sqlglot[rs]>=26.25.3
+Requires-Dist: tomli>=2.2.1
+Requires-Dist: typer>=0.16.0
+Requires-Dist: yamlium>=0.1.3
