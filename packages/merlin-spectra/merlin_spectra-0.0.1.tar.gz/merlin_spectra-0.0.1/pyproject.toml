@@ -1,0 +1,40 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "merlin-spectra"
+version = "0.0.1"
+authors = [
+  { name="Braden Nowicki", email="bnowicki@terpmail.umd.edu" },
+]
+description = "Interface with Cloudy Photoionization Software data and RAMSES-RT Simulation data to create galaxy images and spectra in nebular emission lines."
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Astronomy",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+  "numpy>1.26",
+  "scipy>1.15",
+  "matplotlib>3.10",
+  "astropy>6.1",
+  "yt>4.4",
+  "pandas>2.2",
+]
+keywords = ["spectra", "astrophysics", "JWST"]
+
+[project.urls]
+Homepage = "https://github.com/BradenN6/Merlin"
+
+[tool.hatch.build]
+include = ["README.md", "LICENSE"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/merlin_spectra"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/merlin_spectra"]
