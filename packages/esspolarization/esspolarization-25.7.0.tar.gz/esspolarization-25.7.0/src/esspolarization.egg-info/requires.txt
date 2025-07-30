@@ -1,0 +1,11 @@
+dask>=2022.1.0
+graphviz
+sciline>=25.04.1
+scipp>=23.8.0
+scipy>=1.14
+essreduce>=24.07.1
+
+[test]
+pytest>=7.0
+pandas>=2.1.2
+pooch>=1.5
