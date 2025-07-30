@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+src/langnativ/__init__.py
+src/langnativ/__main__.py
+src/langnativ.egg-info/PKG-INFO
+src/langnativ.egg-info/SOURCES.txt
+src/langnativ.egg-info/dependency_links.txt
+src/langnativ.egg-info/requires.txt
+src/langnativ.egg-info/top_level.txt
+tests/test_dummy.py
