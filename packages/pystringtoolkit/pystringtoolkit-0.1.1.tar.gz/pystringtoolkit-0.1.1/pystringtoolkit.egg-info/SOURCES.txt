@@ -1,0 +1,14 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+pystringtoolkit.egg-info/PKG-INFO
+pystringtoolkit.egg-info/SOURCES.txt
+pystringtoolkit.egg-info/dependency_links.txt
+pystringtoolkit.egg-info/top_level.txt
+pystringutils/__init__.py
+pystringutils/cases.py
+pystringutils/cleaners.py
+pystringutils/generators.py
+tests/__init__.py
+tests/test_cases.py
