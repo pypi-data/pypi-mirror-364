@@ -1,0 +1,2 @@
+[console_scripts]
+auto_video_generator_mcp = auto_video_modules.main:main
