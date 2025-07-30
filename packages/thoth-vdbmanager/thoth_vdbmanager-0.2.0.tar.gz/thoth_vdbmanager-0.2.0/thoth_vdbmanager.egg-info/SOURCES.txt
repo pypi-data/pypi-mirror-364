@@ -1,0 +1,10 @@
+MANIFEST.in
+README.md
+pyproject.toml
+requirements-all.txt
+requirements.txt
+thoth_vdbmanager.egg-info/PKG-INFO
+thoth_vdbmanager.egg-info/SOURCES.txt
+thoth_vdbmanager.egg-info/dependency_links.txt
+thoth_vdbmanager.egg-info/requires.txt
+thoth_vdbmanager.egg-info/top_level.txt
