@@ -1,0 +1,2 @@
+[console_scripts]
+git-annex-remote-uncurl-publicneuro = datalad_publicneuro.annexremotes.uncurl_publicneuro:main
