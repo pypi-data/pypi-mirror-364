@@ -1,0 +1,43 @@
+[
+    {
+        "time": 1749718731299,
+        "latitude": 37.7749,
+        "longitude": -122.4194,
+        "altitude": 30.0,
+        "orientation": 0,
+        "images": [
+            {
+                "device": "20250612_090537_gx010001",
+                "video_name": "20250612_090537_gx010001",
+                "frame_number": 3,
+                "date": 1749718731299.0,
+                "elapsed": 100.1,
+                "frame_index": 3,
+                "parameters": {
+                    "matrix": {
+                        "fx": 0.0,
+                        "fy": 0.0,
+                        "cx": 0.0,
+                        "cy": 0.0,
+                        "s": 0.0 
+                    },
+                    "dist_coeffs": {
+                        "k1": 0.0,
+                        "k2": 0.0,
+                        "p1": 0.0,
+                        "p2": 0.0,
+                        "k3": 0.0
+                    },
+                    "pose": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 1.0,
+                        "roll": 0.0,
+                        "pitch": 30.0,
+                        "yaw": 0.0
+                    }
+                }
+            }
+        ]
+    }
+]
