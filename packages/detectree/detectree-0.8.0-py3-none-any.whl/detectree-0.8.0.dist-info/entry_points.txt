@@ -1,0 +1,2 @@
+[console_scripts]
+detectree = detectree.cli.main:cli
