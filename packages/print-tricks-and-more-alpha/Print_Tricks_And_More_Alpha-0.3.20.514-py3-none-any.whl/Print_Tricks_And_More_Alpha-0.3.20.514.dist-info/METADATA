@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: Print-Tricks-And-More-Alpha
+Version: 0.3.20.514
+Summary: Simple to use, Powerful Programming! Debugging, Printing, Analysis, and helpful tools!
+Home-page: https://github.com/developer-1v/print_tricks
+Author: developer-1v
+Author-email: developer_1v@proton.me
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+
