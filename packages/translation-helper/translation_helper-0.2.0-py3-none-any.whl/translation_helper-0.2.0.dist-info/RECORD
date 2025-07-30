@@ -1,0 +1,16 @@
+translation_helper/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+translation_helper/main.py,sha256=nimuKQGrybjVu_DKPauEdsNewrBajdq2enxVbrRJfl0,1473
+translation_helper/theme.json,sha256=PYuAomZUZXwxE-EIvpVPuFFlse1rAyZyt5HfqdLdF0o,4526
+translation_helper/components/CreateKeyWindow.py,sha256=WeQRykIQUwlDMWk6FEvPc2kbyXQJQCvO4ESKzxEPe10,2126
+translation_helper/components/KeysFrame.py,sha256=kryqHPkz8J6h8J6OYq09HOOphir4q28ZkG10vn3zams,6353
+translation_helper/components/LoadButton.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+translation_helper/components/ModuleSelectionWindow.py,sha256=nXVEimKXvDn0GArjj0KBbTcFe-EIFFloEqUaMl6qAx8,2199
+translation_helper/components/ValuesFrame.py,sha256=vSf7QAFI1Y_l20IQOW9BWpygo78wZlK0meLn_c5cT7U,2869
+translation_helper/components/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+translation_helper/data/TranslationManager.py,sha256=80rBbS1Fg0bPaB1Ln0XItbj806Qssxl-vT6aVrPv_GY,2070
+translation_helper/data/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+translation_helper-0.2.0.dist-info/METADATA,sha256=Fzn_5C-Tkf7a7E-rSMrUocWafWakhO9OzKu8-u9eWHE,284
+translation_helper-0.2.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+translation_helper-0.2.0.dist-info/entry_points.txt,sha256=EuoMx3QWuWHhLEmVsO0NhTezW4ktlyeIQ3PbIAK-NtE,67
+translation_helper-0.2.0.dist-info/top_level.txt,sha256=HO_JK8miCq7WzI3AMgNwhXIGkYdf0GVxwIT4t0BVIo8,19
+translation_helper-0.2.0.dist-info/RECORD,,
