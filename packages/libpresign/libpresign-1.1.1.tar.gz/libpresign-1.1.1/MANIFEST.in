@@ -1,0 +1,17 @@
+# Include source files
+include src/*.cpp
+include src/*.h
+
+# Include Python files
+include definitions.py
+include setup.py
+
+# Include build configuration
+include CMakeLists.txt
+recursive-include cmake *.cmake
+
+# Include documentation
+include README.md
+
+# Include project metadata
+include pyproject.toml
