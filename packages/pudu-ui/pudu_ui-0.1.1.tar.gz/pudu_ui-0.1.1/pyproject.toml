@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pudu-ui"
+version = "0.1.1"
+authors = [
+  { name="Jesus Henriquez" },
+]
+description = "UI library for Python based in pyglet"
+readme = "README.md"
+dependencies = [
+  "pyglet",
+]
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: User Interfaces",
+]
+license = "MIT"
+
+[project.urls]
+Homepage = "https://github.com/sombra-studio/pudu-ui"
+Issues = "https://github.com/sombra-studio/pudu-ui/issues"
+
+[tool.setuptools.packages.find]
+include = ["pudu_ui*"]
+exclude = ["tests*", "examples*"]
+
+[tool.setuptools.package-data]
+"pudu_ui.shaders" = ["*"]
