@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rdkit_buildutils"
+version = "0.1.0"
+description = "RDKit utilities for molecule construction from SMILES with placeholder substitution"
+readme = "README.md"
+requires-python = ">=3.7"
+authors = [{ name = "Fabio Nelli" }]
+license = { file = "LICENSE" }
+dependencies = ["rdkit"]
+
+[project.urls]
+Homepage = "https://github.com/nelli-datascience/rdkit_buildutils"

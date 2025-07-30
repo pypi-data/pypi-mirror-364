@@ -1,0 +1,10 @@
+LICENSE
+README.md
+pyproject.toml
+rdkit_buildutils/__init__.py
+rdkit_buildutils/core.py
+rdkit_buildutils.egg-info/PKG-INFO
+rdkit_buildutils.egg-info/SOURCES.txt
+rdkit_buildutils.egg-info/dependency_links.txt
+rdkit_buildutils.egg-info/requires.txt
+rdkit_buildutils.egg-info/top_level.txt
