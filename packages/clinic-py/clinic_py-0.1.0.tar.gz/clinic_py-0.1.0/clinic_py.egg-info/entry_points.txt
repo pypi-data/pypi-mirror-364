@@ -1,0 +1,2 @@
+[console_scripts]
+clinic-py = clinic_py.cli:main

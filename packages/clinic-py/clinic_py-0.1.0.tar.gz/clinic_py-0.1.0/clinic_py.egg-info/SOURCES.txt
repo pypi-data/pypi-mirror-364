@@ -1,0 +1,14 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+clinic_py/__init__.py
+clinic_py/__main__.py
+clinic_py/cli.py
+clinic_py/monitor.c
+clinic_py.egg-info/PKG-INFO
+clinic_py.egg-info/SOURCES.txt
+clinic_py.egg-info/dependency_links.txt
+clinic_py.egg-info/entry_points.txt
+clinic_py.egg-info/requires.txt
+clinic_py.egg-info/top_level.txt

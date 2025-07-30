@@ -1,0 +1,114 @@
+Metadata-Version: 2.4
+Name: clinic-py
+Version: 0.1.0
+Summary: Non‑invasive performance metrics collection for Python
+Author: fullzer4
+Author-email: fullzer4 <gabrielpelizzaro@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/fullzer4/clinic-py
+Project-URL: Repository, https://github.com/fullzer4/clinic-py
+Project-URL: Issues, https://github.com/fullzer4/clinic-py/issues
+Project-URL: Documentation, https://github.com/fullzer4/clinic-py#readme
+Keywords: performance,monitoring,metrics,python,profiling,clinic
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: C
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Monitoring
+Classifier: Topic :: Software Development :: Debuggers
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"
+Requires-Dist: black>=23.0; extra == "dev"
+Requires-Dist: flake8>=6.0; extra == "dev"
+Requires-Dist: mypy>=1.0; extra == "dev"
+Requires-Dist: build>=0.10.0; extra == "dev"
+Requires-Dist: twine>=4.0.0; extra == "dev"
+Dynamic: author
+Dynamic: license-file
+
+# clinic-py
+
+Non-invasive performance metrics collection for Python applications, inspired by Node.js clinic.
+
+## Features
+
+- **Non-invasive monitoring**: Collect performance metrics without modifying your code
+- **System metrics**: CPU usage, memory consumption, I/O operations, context switches
+- **Python stack analysis**: Categorize frames into application, library, and core code
+- **Binary metrics format**: Efficient storage and parsing of performance data
+- **Web dashboard**: Interactive visualization of collected metrics
+- **Cross-platform**: Supports Linux, macOS, and other Unix-like systems
+
+## Installation
+
+```bash
+pip install clinic-py
+```
+
+## Quick Start
+
+### Monitor a Python script
+
+```bash
+python -m clinic_py run your_script.py
+```
+
+This will execute your script and collect performance metrics in the `.clinic_py/` directory.
+
+### View results in web dashboard
+
+```bash
+python -m clinic_py serve
+```
+
+Then open http://localhost:8000 in your browser to explore the performance data.
+
+## Usage
+
+### Command Line Interface
+
+```bash
+# Run a script under monitoring
+python -m clinic_py run [--outdir DIR] script.py
+
+# Serve web dashboard
+python -m clinic_py serve [--outdir DIR] [--port PORT]
+```
+
+### Options
+
+- `--outdir`: Directory where metrics are stored (default: `.clinic_py`)
+- `--port`: Port for the web dashboard (default: 8000)
+
+## How it Works
+
+clinic-py uses a C extension to periodically sample system resources with minimal overhead:
+
+1. **Resource Sampling**: Collects CPU time, memory usage, I/O counters using `getrusage()`
+2. **Stack Sampling**: Analyzes Python call stacks to categorize code execution
+3. **Binary Storage**: Writes metrics to efficient binary format
+4. **Web Visualization**: Provides interactive charts and summaries
+
+## Requirements
+
+- Python 3.9+
+- Unix-like operating system (Linux, macOS, etc.)
+- C compiler for building the extension
+
+## License
+
+MIT License - see LICENSE file for details.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit issues and pull requests.
