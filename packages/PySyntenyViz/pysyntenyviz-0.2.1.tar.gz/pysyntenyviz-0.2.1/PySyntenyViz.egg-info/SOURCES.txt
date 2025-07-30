@@ -1,0 +1,16 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+PySyntenyViz/__init__.py
+PySyntenyViz/change_gbk_origin.py
+PySyntenyViz/cli.py
+PySyntenyViz/gbk_rc.py
+PySyntenyViz/reorder_gbk.py
+PySyntenyViz/synteny_viz.py
+PySyntenyViz.egg-info/PKG-INFO
+PySyntenyViz.egg-info/SOURCES.txt
+PySyntenyViz.egg-info/dependency_links.txt
+PySyntenyViz.egg-info/entry_points.txt
+PySyntenyViz.egg-info/requires.txt
+PySyntenyViz.egg-info/top_level.txt
