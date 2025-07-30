@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gstflow_interface"
+version = "1.1.0"
+description = "Python interface for interacting with native C/C++ libraries with defined Gstflow function signature"
+readme = "README.md"
+requires-python = ">=3.7"
+license = {text = "MIT"}
+authors = [
+  { name="Mohd Yusuf", email="yusuf.intelligentedgesystems@gmail.com" }
+]
+dependencies = ["numpy"]
+keywords = [
+  "deepstream",
+  "gstreamer",
+  "automation",
+  "ai",
+  "artificial intelligence",
+  "computer vision",
+  "edge",
+  "intelligent edge",
+  "craftifai",
+  "intelligent edge systems",
+  "ies",
+  "nvidia",
+  "jetson",
+  "inference",
+  "opencv"
+]
+
+[tool.setuptools.package-data]
+gstflow_interface = ["bin/*", "include/*", "lib/*"]
+
+include = ["gstflow_interface", "gstflow_interface.*"]
