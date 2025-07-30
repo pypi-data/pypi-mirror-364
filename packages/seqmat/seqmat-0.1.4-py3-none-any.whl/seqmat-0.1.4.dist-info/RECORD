@@ -1,0 +1,16 @@
+seqmat/__init__.py,sha256=YTbS4OJYIEaE5iRB8MZIydhWY4CA3J0tk1XFVn1foLA,1011
+seqmat/cli.py,sha256=rQW23AapKufaASb3MVVolYKiQkNl75XGaTmr1hPny8w,9241
+seqmat/config.py,sha256=MUvQ7kGZYm72hGUMdcjTnMz0ywpeT4cov3KpteTasao,3959
+seqmat/gene.py,sha256=Uru17dKj7v5QL2b9wV7-ZT-K-rvRBBnqn0eF1RqciRk,6653
+seqmat/seqmat.py,sha256=TH1E9AP24z_vkBqbaAnpEHcpWpkAoAyPg6X7npM4MmQ,17295
+seqmat/transcript.py,sha256=j-j-2WIDgLwOv0eFltmvRnVJTgzCpuep4XFc4535l1Q,12550
+seqmat/utils.py,sha256=BWywn3h3j77wMgXOLEGicCPTn94_1_BDuRtumIHpyIE,23566
+seqmat-0.1.4.dist-info/licenses/LICENSE,sha256=o0iF7ETATqOuavYeER-dY4wzlC3O93x7bWMoLHub-pY,1075
+tests/__init__.py,sha256=l7-QY_BWaDW5CrVaQw0phSkQJbG0TlN4wEpCMzbhjqo,30
+tests/test_gene.py,sha256=nmu3F9IgcYRYwhzOocpH5wlJDASwsx3sb-bG-TKEMEE,7261
+tests/test_seqmat.py,sha256=LKZAY_K4N5GRYlN0mvNva5XoUns94bVczXJ9ex417Fc,4220
+seqmat-0.1.4.dist-info/METADATA,sha256=nmMQ-HHH-qtvpfNTFdhKd0RyK-E3iW5mOICi8qT5X7Y,23172
+seqmat-0.1.4.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+seqmat-0.1.4.dist-info/entry_points.txt,sha256=4rdr2m1XlGtm-FHM2kM6IIQgR6cSPW15hxQWHx4hjFc,74
+seqmat-0.1.4.dist-info/top_level.txt,sha256=lw0LD1kMXJTenJ2tKqltc0nef22AV9ADA8zQtrJN6Bw,13
+seqmat-0.1.4.dist-info/RECORD,,
