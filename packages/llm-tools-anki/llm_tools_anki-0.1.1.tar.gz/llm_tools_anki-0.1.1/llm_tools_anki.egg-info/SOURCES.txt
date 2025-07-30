@@ -1,0 +1,11 @@
+LICENSE
+README.md
+llm_tools_anki.py
+pyproject.toml
+llm_tools_anki.egg-info/PKG-INFO
+llm_tools_anki.egg-info/SOURCES.txt
+llm_tools_anki.egg-info/dependency_links.txt
+llm_tools_anki.egg-info/entry_points.txt
+llm_tools_anki.egg-info/requires.txt
+llm_tools_anki.egg-info/top_level.txt
+tests/test_tools_anki.py
