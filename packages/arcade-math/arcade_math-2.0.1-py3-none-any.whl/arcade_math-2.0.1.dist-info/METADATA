@@ -1,0 +1,54 @@
+Metadata-Version: 2.4
+Name: arcade_math
+Version: 2.0.1
+Summary: Arcade.dev LLM tools for doing math
+Author-email: Arcade <dev@arcade.dev>
+License: # The Arcade Software License Agreement
+        
+        - Version 1.0
+        - Effective Date: July 24, 2025
+        
+        ---
+        
+        This software and associated documentation (collectively, the “Software”) are the intellectual property of Arcade Technologies, Inc. (“Arcade”). All rights are reserved.
+        
+        1. License Grant
+        
+        No license or other rights are granted to any party under this Agreement, whether by implication, estoppel, or otherwise. This Software is proprietary and confidential. Use, reproduction, modification, distribution, display, or creation of derivative works based on the Software is strictly prohibited without the prior written consent of Arcade.
+        
+        2. Commercial Use Only
+        
+        Any use of this Software requires a commercial license agreement with Arcade. You may not use any part of the Software for any purpose—including but not limited to evaluation, testing, or internal use—without first obtaining explicit written permission and entering into a commercial licensing arrangement.
+        
+        To inquire about licensing terms, contact Arcade at:
+        🔗 www.arcade.dev
+        
+        3. No Open Source Rights
+        
+        This Software is not licensed under an open-source license. No part of it may be incorporated into open-source or publicly available projects under any open-source terms or licenses.
+        
+        4. Ownership
+        
+        Arcade retains all right, title, and interest in and to the Software, including all intellectual property rights therein. No ownership or license rights are transferred under this Agreement.
+        
+        5. Disclaimer of Warranty
+        
+        The Software is provided “as is” without warranty of any kind. Arcade disclaims all warranties, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, and noninfringement.
+        
+        6. Limitation of Liability
+        
+        In no event shall Arcade be liable for any damages arising out of or in connection with the use or performance of the Software, whether in an action of contract, tort (including negligence), or otherwise.
+License-File: LICENSE
+Requires-Python: >=3.10
+Requires-Dist: arcade-tdk<3.0.0,>=2.0.0
+Provides-Extra: dev
+Requires-Dist: arcade-ai[evals]<3.0.0,>=2.0.0; extra == 'dev'
+Requires-Dist: arcade-serve<3.0.0,>=2.0.0; extra == 'dev'
+Requires-Dist: mypy<1.6.0,>=1.5.1; extra == 'dev'
+Requires-Dist: pre-commit<3.5.0,>=3.4.0; extra == 'dev'
+Requires-Dist: pytest-asyncio<0.25.0,>=0.24.0; extra == 'dev'
+Requires-Dist: pytest-cov<4.1.0,>=4.0.0; extra == 'dev'
+Requires-Dist: pytest-mock<3.12.0,>=3.11.1; extra == 'dev'
+Requires-Dist: pytest<8.4.0,>=8.3.0; extra == 'dev'
+Requires-Dist: ruff<0.8.0,>=0.7.4; extra == 'dev'
+Requires-Dist: tox<4.12.0,>=4.11.1; extra == 'dev'
