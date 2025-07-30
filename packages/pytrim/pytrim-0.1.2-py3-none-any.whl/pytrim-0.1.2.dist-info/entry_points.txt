@@ -1,0 +1,3 @@
+[console_scripts]
+pytrim = pytrim.cli:main
+trim = pytrim.cli:main
