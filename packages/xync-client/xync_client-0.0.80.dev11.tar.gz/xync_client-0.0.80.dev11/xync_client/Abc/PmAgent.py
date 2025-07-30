@@ -1,0 +1,91 @@
+from abc import abstractmethod, ABCMeta
+from asyncio import get_running_loop
+from enum import StrEnum
+
+from playwright.async_api import Page, Playwright
+from pyro_client.client.bot import BotClient
+
+from xync_client.loader import TOKEN
+from xync_schema.enums import UserStatus
+from xync_schema.models import PmAgent, User
+
+
+class LoginFailedException(Exception): ...
+
+
+class PmAgentClient(metaclass=ABCMeta):
+    class Pages(StrEnum):
+        base = "https://host"
+        LOGIN = base + "login"
+        SEND = base + "send"
+        OTP_LOGIN = base + "login/otp"
+
+    norm: str
+    uid: int
+    agent: PmAgent
+    bot: BotClient
+    page: Page
+    pages: type(StrEnum) = Pages
+    _is_started: bool = False
+
+    async def __aenter__(self, pw: Playwright = None, headed: bool = False) -> "PmAgentClient":
+        if not self._is_started:
+            return await self.start(pw, headed)
+        return self
+
+    async def __aexit__(self):
+        if self._is_started:
+            await self.stop()
+
+    async def start(self, pw: Playwright, headed: bool = False) -> "PmAgentClient":
+        dct = dict(user__status__gte=UserStatus.PAY, pm__norm=self.norm)
+        if self.uid:
+            dct.update({"user__username_id": self.uid})
+        self.agent = await PmAgent.get_or_none(**dct).prefetch_related("user__username__session")
+        if not self.agent:
+            await self.bot.send(
+                f"No active users with agent for {self.norm}!", self.uid, photo=await self.page.screenshot()
+            )
+            raise Exception(f"No active users for {self.norm}!")
+        self.bot = BotClient(TOKEN)
+        await self.bot.start()
+
+        browser = await pw.chromium.launch(channel="chrome", headless=not headed)
+        context = await browser.new_context(storage_state=self.agent.state)
+        self.page = await context.new_page()
+        await self.page.goto(self.pages.SEND)  # Оптимистично переходим сразу на страницу отправки
+        if self.page.url.startswith(self.pages.LOGIN):  # Если перебросило на страницу логина
+            await self._login()  # Логинимся
+        if not self.page.url.startswith(self.pages.SEND):  # Если в итоге не удалось попасть на отправку
+            await self.bot.send(self.norm + " not logged in!", self.uid, photo=await self.page.screenshot())
+            raise LoginFailedException(f"User {self.agent.user_id} has not logged in")
+        loop = get_running_loop()
+        loop.create_task(self._idle())  # Бесконечно пасёмся в фоне на странице отправки, что бы куки не протухли
+        self._is_started = True
+        return self
+
+    async def _idle(self):  # todo: не мешать другим процессам, обновлять на другой вкладке?
+        while (await User.get(username_id=self.uid)).status >= UserStatus.ACTIVE:
+            await self.page.wait_for_timeout(60 * 1000)
+            await self.page.reload()
+        await self.bot.send(self.norm + " stoped", self.uid)
+        await self.stop()
+
+    async def stop(self):
+        # save state
+        self.agent.state = await self.page.context.storage_state()
+        await self.agent.save()
+        # closing
+        await self.bot.stop()
+        await self.page.context.close()
+        await self.page.context.browser.close()
+        self._is_started = False
+
+    @abstractmethod
+    async def _login(self): ...
+
+    @abstractmethod
+    async def send(self, dest, amount: int, cur: str) -> tuple[int, bytes]: ...
+
+    def __init__(self, uid: int = None):
+        self.uid = uid
