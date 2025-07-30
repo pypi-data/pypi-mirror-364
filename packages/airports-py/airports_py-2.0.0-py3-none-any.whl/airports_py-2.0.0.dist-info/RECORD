@@ -1,0 +1,11 @@
+airports/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+airports/airport_data.py,sha256=bQPLa15EYHFhre5nIqSFifXq3H04hDT_ou1NdGYfygU,15429
+airports/data/airports.gz,sha256=GrmpScBuxR477PZ-UiLUOuQQpO0honajug6y5IR7I5s,617395
+airports/data/airports.json,sha256=Yy0-hPUWhnmNpJuvqZiSzU1SYNbvVDUidG4HWtzH0EI,4707186
+airports_py-2.0.0.dist-info/licenses/LICENSE,sha256=C_uSoI30WzKEK4-Ws0G8a2I5ii5uxeOcOoUaLtVJ_ug,1075
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/test_airport_data.py,sha256=lrAd2sXH805CCxsvFaGNpa1U_ysHCPlfrjRgU6ZEmbs,11340
+airports_py-2.0.0.dist-info/METADATA,sha256=T49mswqVvQ6DOzygpg-ACPHEiwT0EXG_Z_H1b9i6pB4,21092
+airports_py-2.0.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+airports_py-2.0.0.dist-info/top_level.txt,sha256=RTUVxgbNh2XuUOoxSscw3jwSskk-G71CWMRcStrh8I0,15
+airports_py-2.0.0.dist-info/RECORD,,
