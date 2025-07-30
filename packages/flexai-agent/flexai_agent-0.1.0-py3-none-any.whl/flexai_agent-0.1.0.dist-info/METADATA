@@ -1,0 +1,389 @@
+Metadata-Version: 2.4
+Name: flexai-agent
+Version: 0.1.0
+Summary: API-agnostic agentic Python package with configurable providers
+Home-page: https://github.com/kelleyblackmore/Flexai
+Author: Kelley Blackmore
+Author-email: Kelley Blackmore <kelleyblackmore@gmail.com>
+Maintainer-email: Kelley Blackmore <kelleyblackmore@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/kelleyblackmore/Flexai
+Project-URL: Documentation, https://github.com/kelleyblackmore/Flexai/tree/main/docs
+Project-URL: Repository, https://github.com/kelleyblackmore/Flexai
+Project-URL: Issues, https://github.com/kelleyblackmore/Flexai/issues
+Project-URL: Changelog, https://github.com/kelleyblackmore/Flexai/blob/main/UPDATES.md
+Keywords: ai,agent,openai,llm,code-generation,chat,automation
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Code Generators
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: click>=8.2.1
+Requires-Dist: openai>=1.97.0
+Requires-Dist: pyyaml>=6.0.2
+Requires-Dist: requests>=2.32.4
+Requires-Dist: rich>=14.0.0
+Dynamic: author
+Dynamic: home-page
+Dynamic: requires-python
+
+# Flexai
+
+An API-agnostic agentic Python package that provides Cursor/Replit-like functionality with configurable API providers. Build your own AI coding assistant that works with any OpenAI-compatible API!
+
+## Features
+
+- 🔗 **API Agnostic**: Works with OpenAI, local models, or any API following OpenAI format
+- 🤖 **Intelligent Agent**: Code generation, chat, analysis, debugging, and explanation capabilities
+- 📁 **Project-Aware Workflows**: Analyzes entire codebases and maintains context with `agent.md` files
+- ⚙️ **Multi-Provider**: Easy switching between different API providers (OpenAI, local LLMs, etc.)
+- 🖥️ **Rich CLI**: Beautiful terminal interface with syntax highlighting and markdown rendering
+- 🔒 **Safe Execution**: Sandboxed code execution with timeout protection for Python, JavaScript, and Bash
+- 📝 **Persistent Context**: Maintains chat history and project context across sessions
+- 🎨 **Professional Output**: Rich terminal formatting with code syntax highlighting
+
+## Quick Start
+
+### 1. Installation
+
+#### Option A: Using uv (Recommended)
+```bash
+# Clone the repository
+git clone https://github.com/kelleyblackmore/Flexai.git
+cd Flexai
+
+# Install uv if you don't have it
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Set up the project with uv
+uv sync
+
+# Set up OpenAI API key (get one from https://platform.openai.com)
+export OPENAI_API_KEY="your-api-key-here"
+
+# Quick setup with OpenAI
+uv run python scripts/test_flexai.py
+```
+
+#### Option B: Using pip
+```bash
+# Clone the repository
+git clone https://github.com/kelleyblackmore/Flexai.git
+cd Flexai
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -e .
+
+# Set up OpenAI API key (get one from https://platform.openai.com)
+export OPENAI_API_KEY="your-api-key-here"
+
+# Quick setup with OpenAI
+python scripts/test_flexai.py
+```
+
+### 2. Try the Examples
+
+```bash
+# Run the complete workflow demo
+uv run python examples/demo.py
+
+# Try the Ollama integration demo
+uv run python examples/example_workflow.py
+
+# Test with the sample project
+cd examples/example_project
+uv run python main.py
+```
+
+### 2. Basic Usage
+
+```bash
+# List available commands
+python main.py --help
+
+# Start interactive chat
+python main.py chat
+
+# Generate code
+python main.py generate "Create a web scraper in Python"
+
+# List configured providers
+python main.py list
+
+# Execute a code file
+python main.py execute my_script.py
+```
+
+## 🚀 Enhanced Project Workflow (NEW!)
+
+The most powerful feature - project-aware AI that understands your entire codebase:
+
+```bash
+# Analyze and work on any project with full context
+python flexai.py project --dir ./my-app --task "update README with installation instructions"
+python flexai.py project --dir ./backend --task "refactor user authentication module"  
+python flexai.py project --dir ./frontend --task "add dark mode toggle component"
+```
+
+## 📁 Project Structure
+
+```
+flexai/
+├── docs/                    # 📚 Documentation
+│   ├── README.md           # Documentation index
+│   ├── WORKFLOW_GUIDE.md   # Complete user guide
+│   ├── IMPLEMENTATION_SUMMARY.md # Technical overview
+│   └── GIT_SETUP.md        # Development setup
+├── examples/               # 🎯 Examples and demos
+│   ├── demo.py            # Complete workflow demo
+│   ├── example_workflow.py # Ollama integration demo
+│   ├── example_project/   # Sample project for testing
+│   └── README.md          # Examples guide
+├── scripts/               # 🛠️ Utility scripts
+│   ├── test_workflow.py   # Comprehensive test suite
+│   └── README.md          # Scripts guide
+├── flexai/                # 📦 Main package
+├── tests/                 # 🧪 Core tests
+├── flexai.py             # 🚀 CLI entry point
+└── README.md             # 📖 This file
+```
+
+### What makes this special:
+
+🔍 **Automatic Project Analysis**
+- Crawls entire project structure and key files
+- Detects dependencies and tech stack (Python, Node.js, etc.)
+- Analyzes README, package.json, requirements.txt, and config files
+
+📊 **Git Integration**  
+- Checks current branch and recent commits
+- Identifies uncommitted changes
+- Provides git context to AI for better understanding
+
+📝 **Agent Context Management**
+- Creates and maintains `agent.md` files for project-specific context
+- Tracks previous tasks and decisions
+- Provides persistent project memory across sessions
+
+🤖 **Enhanced AI Understanding**
+- AI receives complete project context before executing tasks
+- Understands existing patterns, dependencies, and architecture
+- Makes informed decisions that fit with your codebase
+
+### Example Project Workflow:
+
+```bash
+# The AI will automatically:
+# 1. Analyze your project structure and dependencies
+# 2. Check git status and recent changes  
+# 3. Read existing documentation and patterns
+# 4. Create/update agent.md with project context
+# 5. Execute your task with full understanding
+# 6. Update agent.md with completion notes
+
+python flexai.py project --dir ./my-web-app --task "add user authentication system"
+```
+
+## Advanced Configuration
+
+### Multiple API Providers
+
+You can configure multiple providers and switch between them:
+
+```bash
+# Configure OpenAI
+python main.py configure
+# Provider name: openai
+# API Key: your-openai-key
+# Base URL: https://api.openai.com/v1
+# Model: gpt-4o-mini
+
+# Configure a local model (e.g., Ollama)
+python main.py configure
+# Provider name: local
+# API Key: not-needed
+# Base URL: http://localhost:11434/v1
+# Model: llama2
+
+# Switch between providers
+python main.py switch local
+python main.py switch openai
+```
+
+### Programmatic Usage
+
+```python
+from flexai.config import Config
+from flexai.agent import Agent
+
+# Initialize
+config = Config()
+agent = Agent(config)
+
+# Chat
+response = agent.chat("Explain recursion in Python")
+
+# Generate code
+code = agent.generate_code("Sort a list using quicksort", "python")
+
+# Analyze code
+analysis = agent.analyze_code(code, "python")
+
+# Execute code safely
+result = agent.execute_code(code, "python")
+```
+
+## Supported Providers
+
+- **OpenAI**: GPT-4, GPT-4o, GPT-3.5-turbo
+- **Local Models**: Ollama, LM Studio, or any OpenAI-compatible endpoint
+- **Other Services**: Any API that follows OpenAI's chat completions format
+
+## Core Capabilities
+
+### 1. Code Generation
+Generate complete, production-ready code in multiple languages:
+- Python, JavaScript, Go, Rust, and more
+- Includes proper documentation and error handling
+- Follows language-specific best practices
+
+### 2. Code Analysis & Review
+- Quality assessment and bug detection
+- Performance optimization suggestions
+- Security vulnerability scanning
+- Best practice recommendations
+
+### 3. Interactive Debugging
+- Error explanation and fix suggestions
+- Step-by-step debugging guidance
+- Code improvement recommendations
+
+### 4. Safe Code Execution
+- Sandboxed execution environment
+- Timeout protection (30s default)
+- Support for Python, JavaScript, and Bash
+- Automatic cleanup of temporary files
+
+### 5. Multi-Provider Support
+- Easy switching between API providers
+- Fallback options for reliability
+- Cost optimization through provider selection
+
+## Examples
+
+### Chat Mode
+```bash
+$ python main.py chat
+💬 Chat Mode - Type 'exit' to quit
+
+You: How do I implement a binary search tree in Python?
+
+Agent: I'll help you implement a binary search tree in Python. Here's a complete implementation...
+```
+
+### Code Generation
+```bash
+$ python main.py generate "Create a REST API using Flask"
+```
+
+### Code Execution
+```bash
+$ python main.py execute fibonacci.py
+```
+
+## Configuration File
+
+Agentix stores configuration in `~/.agentix/config.yaml`:
+
+```yaml
+active_provider: openai
+providers:
+  openai:
+    api_key: your-key-here
+    base_url: https://api.openai.com/v1
+    model: gpt-4o-mini
+  local:
+    api_key: not-needed
+    base_url: http://localhost:11434/v1
+    model: llama2
+```
+
+## 📚 Documentation
+
+- **[Workflow Guide](docs/WORKFLOW_GUIDE.md)** - Complete user guide with examples
+- **[Implementation Summary](docs/IMPLEMENTATION_SUMMARY.md)** - Technical implementation details
+- **[Examples](examples/)** - Demo scripts and sample projects
+- **[Scripts](scripts/)** - Utility scripts and testing tools
+
+## 🧪 Testing
+
+```bash
+# Run the comprehensive test suite
+uv run python scripts/test_workflow.py
+
+# Run core tests
+uv run pytest tests/
+
+# Run specific test categories
+uv run pytest scripts/test_workflow.py::TestConfiguration -v
+```
+
+## Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+### Quick Start for Contributors
+```bash
+# Fork and clone the repository
+git clone https://github.com/your-username/Flexai.git
+cd Flexai
+
+# Set up development environment
+uv sync
+
+# Run tests
+uv run pytest tests/
+
+# Make your changes and submit a PR
+```
+
+### Development Tools
+```bash
+# Code formatting
+uv run black .
+
+# Linting
+uv run ruff check .
+
+# Type checking
+uv run mypy flexai/
+
+# Security scan
+uv run bandit -r flexai/
+```
+
+## 🚀 CI/CD Status
+
+[![Test](https://github.com/kelleyblackmore/Flexai/workflows/Test/badge.svg)](https://github.com/kelleyblackmore/Flexai/actions)
+[![Release](https://github.com/kelleyblackmore/Flexai/workflows/Release/badge.svg)](https://github.com/kelleyblackmore/Flexai/actions)
+
+Our CI/CD pipeline includes:
+- ✅ **Automated Testing** - Runs on Python 3.11, 3.12, 3.13
+- ✅ **Code Quality** - Linting, formatting, and type checking
+- ✅ **Security Scanning** - Vulnerability and security checks
+- ✅ **Automated Publishing** - PyPI releases on GitHub releases
+
+## License
+
+MIT License - see LICENSE file for details

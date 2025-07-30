@@ -1,0 +1,17 @@
+flexai/__init__.py,sha256=x1U6ATDM-SxLJ3ZIT2iA21GvV9ovke2z7qsrq_nohKo,471
+flexai/agent.py,sha256=P2q-v6KlksFVLc8W9mVaRnXk3LeLctjDX5HB3P5zxKA,10500
+flexai/cli.py,sha256=ijidoQO59VKKrQ-JDgeOnC4kDZvgK0FFzUXYH1wmtEY,20828
+flexai/client.py,sha256=jv3gdC0uU3GtZe_xJ-stQFTJ3By8I1XXUOpR4z71_7k,6083
+flexai/config.py,sha256=V8veEDzCtIHEalXPZ9xwjOdUM4xTb4hEVlGWIClXFj0,6140
+flexai/executor.py,sha256=OqlDnFz6ByXB6pWRDuJFKdeOIFv9pr3EWiOlyvx1_Pc,7861
+flexai/project.py,sha256=YA5QIU4pPscCktzyPML2YEvgrlpkbUELk4XnlMiTKj0,9844
+flexai/utils.py,sha256=JW5Hh_jBShkVf_TrB-pizxYdjK-mcl92ZJWjTkwolyc,5754
+flexai_agent-0.1.0.dist-info/licenses/LICENSE,sha256=XI4PV5OCBz2ZTmBkkpsus42a91eESakS63rMkS32gx8,1073
+tests/__init__.py,sha256=U_GAIhfQ6c1cJxXMRW1XB2RZhVzdpCTNIMIqhsbL5Fs,279
+tests/test_agent.py,sha256=PBCiZzxQ1TlkusMi6Scf4CK2tdZEdBInhFjUdRJdBW8,11251
+tests/test_client.py,sha256=KamgWV0Y1Ia7cdFvGD7m2CUxiBvq0MuwHacu6g5Ap-M,8770
+flexai_agent-0.1.0.dist-info/METADATA,sha256=TJG6VGSkeqtJvzbl5g74y4x-DfdqvUQjhqzmsZuDeWk,11412
+flexai_agent-0.1.0.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+flexai_agent-0.1.0.dist-info/entry_points.txt,sha256=aOM78BuwtFITOPtdzglROihr2fFLHMRv_CL1q9sZ8hA,49
+flexai_agent-0.1.0.dist-info/top_level.txt,sha256=jqJowmqmtP06vg8GIMei9AH-YK92XWJXzcdzJtjVkEc,13
+flexai_agent-0.1.0.dist-info/RECORD,,

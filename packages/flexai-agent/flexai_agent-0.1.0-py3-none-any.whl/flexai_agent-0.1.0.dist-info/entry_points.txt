@@ -1,0 +1,2 @@
+[console_scripts]
+flexai-agent = flexai.cli:main
