@@ -1,0 +1,14 @@
+[project]
+name = "pickaxe-mcp-open-alex"
+version = "0.1.0"
+description = "A fully open catalog of the global research system"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastmcp>=2.10.6",
+    "httpx>=0.28.1",
+    "mcp[cli]>=1.12.2",
+]
+
+[project.scripts]
+pickaxe-mcp-open-alex = "main:main"
