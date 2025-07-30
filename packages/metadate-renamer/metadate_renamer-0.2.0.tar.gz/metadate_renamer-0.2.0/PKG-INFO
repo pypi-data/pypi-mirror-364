@@ -1,0 +1,7 @@
+Metadata-Version: 2.3
+Name: metadate-renamer
+Version: 0.2.0
+Requires-Dist: hachoir>=3.3.0
+Requires-Dist: pillow>=11.3.0
+Requires-Dist: pyside6>=6.9.1
+Requires-Python: >=3.12
