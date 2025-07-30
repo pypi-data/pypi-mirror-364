@@ -1,0 +1,15 @@
+LICENSE
+README.md
+pyproject.toml
+src/clear_eval/__init__.py
+src/clear_eval/analysis_runner.py
+src/clear_eval/args.py
+src/clear_eval/cli.py
+src/clear_eval/load_ui.py
+src/clear_eval/logging_config.py
+src/clear_eval.egg-info/PKG-INFO
+src/clear_eval.egg-info/SOURCES.txt
+src/clear_eval.egg-info/dependency_links.txt
+src/clear_eval.egg-info/entry_points.txt
+src/clear_eval.egg-info/requires.txt
+src/clear_eval.egg-info/top_level.txt
