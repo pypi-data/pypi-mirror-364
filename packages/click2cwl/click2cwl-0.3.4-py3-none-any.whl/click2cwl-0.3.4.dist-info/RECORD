@@ -1,0 +1,14 @@
+click2cwl/__init__.py,sha256=HnEDkydnDg16SuqTsFYRLLQ15eT2kr796B8YFprpSng,181
+click2cwl/clt.py,sha256=yRMKMPORP5Y73rs560pqG0P_HvVKV7Yf9ONBqQsZUnk,1651
+click2cwl/cltexport.py,sha256=wMWRgTD7lok-oAQmCryG953OOId_49qKEZUptu0SB_0,1143
+click2cwl/cwl_constructor.py,sha256=3VqjVU9Q_p8MAr7k0uLBlAMVRncsBVfRDtl-BEjH0fs,8970
+click2cwl/cwlexport.py,sha256=NMI23yEXHvAqRX6a71lQ6RS7Og5znLtbVTnbeYvqJyg,1529
+click2cwl/cwlparam.py,sha256=zzPKRba4YHtpyWe8cCdo3xjZDlPBIto21T2b3SWL7-k,4620
+click2cwl/entry.py,sha256=72QvrrEte29eZV59fCm1qvX-tkrjie9KAQ53fwPY67s,3598
+click2cwl/metadata.py,sha256=7WKkVUywxYdguus6c4G_aRkaND37UA0sqXvy4vesMLs,874
+click2cwl/paramexport.py,sha256=md1628N61Wn-uyGgbBuzSdKqvhqGFhI092WwQ8P57GA,620
+click2cwl/tests.py,sha256=YodSd66h054AYjsN-KT1PK1Z2F_lGGWgP5ALpZ2pwLM,1852
+click2cwl/wf.py,sha256=BPWHNhxOTCGNPTTmecGzykwJuhaoQcMaPOO19veuydE,2298
+click2cwl-0.3.4.dist-info/METADATA,sha256=ul5_ysz7UCGPHVJJo9tSqgS7-DCE7dMe5NnyYNqH94w,6020
+click2cwl-0.3.4.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+click2cwl-0.3.4.dist-info/RECORD,,
