@@ -1,0 +1,16 @@
+pyproject.toml
+joinads/__init__.py
+joinads/cli.py
+joinads/core.py
+joinads/repository.py
+joinads/repository_protocol.py
+joinads.egg-info/PKG-INFO
+joinads.egg-info/SOURCES.txt
+joinads.egg-info/dependency_links.txt
+joinads.egg-info/entry_points.txt
+joinads.egg-info/requires.txt
+joinads.egg-info/top_level.txt
+joinads/SQL/__init__.py
+joinads/SQL/config.py
+joinads/SQL/connection.py
+joinads/SQL/query.py
