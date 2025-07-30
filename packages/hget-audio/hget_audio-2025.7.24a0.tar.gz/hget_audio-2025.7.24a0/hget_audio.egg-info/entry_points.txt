@@ -1,0 +1,2 @@
+[console_scripts]
+hget-audio = hget_audio.commands.crawl:Command.run
