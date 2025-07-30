@@ -1,0 +1,17 @@
+ewokscore>=2.0.0
+pypushflow>=1.1.0
+
+[dev]
+ewoksppf[test]
+black>=25
+flake8>=4
+
+[doc]
+ewoksppf[test]
+sphinx>=4.5
+sphinxcontrib-mermaid>=0.7
+sphinx-autodoc-typehints>=1.16
+pydata-sphinx-theme
+
+[test]
+pytest>=7
