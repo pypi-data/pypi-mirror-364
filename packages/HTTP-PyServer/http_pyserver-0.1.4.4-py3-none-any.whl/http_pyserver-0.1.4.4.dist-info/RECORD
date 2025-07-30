@@ -1,0 +1,16 @@
+http_pyserver-0.1.4.4.dist-info/licenses/LICENSE,sha256=5QXe0qWGr3B5_aQkkRKrlrxQ9erb_crzhdTe7Bp-JZA,1088
+server/__init__.py,sha256=2STUwwiJzxuLMdjNThv_AsjqZWF7_ASgwJFcwGthPXY,414
+server/cache.py,sha256=WVv1V27pi4vOzpRRGiyEThKYY12Et9ZME3iiEZpzkZU,2827
+server/render.py,sha256=g5KVP_nPFSPCqiWicZk0TyeKIbsgRxk-t1McAOEBa80,4851
+server/request.py,sha256=oiL02v2DnkSWb6EDodZNIxTQ7JhUCht_FwtS3KDElME,4894
+server/response.py,sha256=1awdUrOothdD-R5JyW1MQw94Y3InTl-cICmXa8pjWUg,2126
+server/response_codes.py,sha256=w4XiyoF_oiwtOImnwZAtXbjv_hSpIH-gGZgouZd9LDo,1618
+server/response_messages.py,sha256=7v9t3IJkSrSpchDST4LsQqHYoocDjlRVyju0k4dleHQ,2430
+server/routes.py,sha256=0iL4Z3i7rihEY2OLmDS0aldg65hcAXPFUXosz24Gitg,9389
+server/server.py,sha256=bS2_xmCPe63v3XFqM7SV_ynXZLltacymYERe8pQ-qWs,7983
+server/sessions.py,sha256=9nCQzW9GZK6fsBX3wFM_HZFZdUnSG-budTl6s4rWhiw,3588
+server/template.py,sha256=ibe7J4lMSv9kzAM4lxAO5qYSld7TbazQvQ5qQ5N0cBY,1055
+http_pyserver-0.1.4.4.dist-info/METADATA,sha256=Hns7kQe3fPg7lyr_Ru1HvlaVqzb5mrYB7tfz0LSCBZk,2713
+http_pyserver-0.1.4.4.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+http_pyserver-0.1.4.4.dist-info/top_level.txt,sha256=StKOSmRhvWS5IPcvhsDRbtxUTEofJgYFGOu5AAJdSWo,7
+http_pyserver-0.1.4.4.dist-info/RECORD,,
