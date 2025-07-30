@@ -1,0 +1,35 @@
+Metadata-Version: 2.4
+Name: xlhdnumpy
+Version: 0.1.0
+Summary: A simple numpy-like library for array operations
+Home-page: https://github.com/yourusername/xlhdnumpy
+Author: xiaolihuidao
+Author-email: Your Name <your@email.com>
+Project-URL: Homepage, https://github.com/yourusername/xlhdnumpy
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+
+# xlhdnumpy
+
+A simple numpy-like library for array operations.
+
+## Features
+
+- Create arrays
+- Basic array operations (add, subtract, multiply, divide)
+- Statistical functions (sum, mean)
+
+## Installation
+pip install xlhdnumpy
+## Usage
+from xlhdnumpy import array
+
+# Create an array
+arr = array([1, 2, 3, 4, 5])
+print(arr)
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
