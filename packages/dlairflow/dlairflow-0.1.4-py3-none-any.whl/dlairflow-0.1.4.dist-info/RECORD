@@ -1,0 +1,15 @@
+dlairflow/__init__.py,sha256=Rd_Apg2IlT3dLmk1bVQWSfvBd7h_6Z5dYE7alkKIZsI,256
+dlairflow/load.py,sha256=zlvd4Lt2AmxIjKxJ57cBQaFRYdku2pHVwSRUeY_FAQs,2018
+dlairflow/postgresql.py,sha256=Mydx3RaKVVMRKFmVSGXX1GD89mMPy3Jv6yw-lyR8_Ko,12463
+dlairflow/util.py,sha256=YOn5_PlCqmJAlbtv0hSgl_aaQ7g_u9HG-IJ-gAwaxFs,1505
+dlairflow/test/__init__.py,sha256=ZRzPli8bE46NqmehDyRknpMvrD6F7vsLJNVj_D_hMas,192
+dlairflow/test/test_load.py,sha256=n_4sQyyECHyeiuUnw654pkt2lpyqnmj5eLNWrVxtSf0,1317
+dlairflow/test/test_postgresql.py,sha256=fZKL5xZuu99eDy1dsQ6oeMJAB1YC2mJEApfneeItwKk,11186
+dlairflow/test/test_top_level.py,sha256=bXpKrSCzgSHqdqzaCUDePk-fwrBgkiQPvup0jo6ZLnQ,407
+dlairflow/test/test_util.py,sha256=YK2rsxktp09raBwKteZzUbGbBgdnaH0o-Aife8rT8t0,1433
+dlairflow-0.1.4.dist-info/licenses/LICENSE.md,sha256=DHVO_QFZaOLRMWiMxSU466ahd0nQGbIbn-NyQf5cmq4,1526
+dlairflow-0.1.4.dist-info/METADATA,sha256=RpLMcRk6ubfztHHpolutNaX7Fb3cyNsZhYiW56oco38,2344
+dlairflow-0.1.4.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+dlairflow-0.1.4.dist-info/top_level.txt,sha256=Wo0cV0SbJSHAXLVUnjxWTKQUnlNqaqh3DxiXg4TFkGA,10
+dlairflow-0.1.4.dist-info/zip-safe,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
+dlairflow-0.1.4.dist-info/RECORD,,
