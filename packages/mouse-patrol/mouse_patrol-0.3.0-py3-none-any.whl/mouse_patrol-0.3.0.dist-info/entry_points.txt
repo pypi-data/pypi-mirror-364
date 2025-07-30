@@ -1,0 +1,2 @@
+[console_scripts]
+mouse-patrol = mouse_patrol.main:main
