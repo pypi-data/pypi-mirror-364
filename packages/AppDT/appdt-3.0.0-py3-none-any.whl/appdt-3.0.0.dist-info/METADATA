@@ -1,0 +1,36 @@
+Metadata-Version: 2.4
+Name: AppDT
+Version: 3.0.0
+Summary: (This Is A Chinese Package)此工具箱可以帮您快速构建Windows™应用程序，也可以快速生成安装包
+Home-page: https://github.com/xumouren225588/AppDT
+Author: xumouren225588
+Author-email: xumouren225588@163.com
+License: Mulan Permissive Software License Version 2 (Mulan PSL v2)
+Classifier: Programming Language :: Python
+Classifier: Operating System :: Microsoft :: Windows
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pyinstaller
+Requires-Dist: PyQt5
+Requires-Dist: chardet
+Requires-Dist: wget
+Requires-Dist: tqdm
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# AppDT
+此工具箱可以帮您快速构建Windows应用程序，也可以快速生成安装包。安装完毕后请在命令行中输入“adt”来运行它
+# Pyenvdler
+此工具随AppDT第三方库版一起安装，exe安装包版暂不提供
+- 使用方法：
+- 在需要部署环境的目录下打开命令行，输入“Pyenvdler <需部署环境版本>”命令并执行即可

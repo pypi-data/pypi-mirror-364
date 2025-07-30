@@ -1,0 +1,3 @@
+[console_scripts]
+adt = AppDT.whlcode:adt
+pyenvdler = AppDT.whlcode:pyenvdler
