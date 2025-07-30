@@ -1,0 +1,11 @@
+README.md
+pyproject.toml
+orma/__init__.py
+orma/__main__.py
+orma.egg-info/PKG-INFO
+orma.egg-info/SOURCES.txt
+orma.egg-info/dependency_links.txt
+orma.egg-info/entry_points.txt
+orma.egg-info/requires.txt
+orma.egg-info/top_level.txt
+tests/test_dummy.py
