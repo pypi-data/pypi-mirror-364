@@ -1,0 +1,11 @@
+CHANGELOG.txt
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+sentiment_analysis_lib/__init__.py
+sentiment_analysis_lib/sentiment.py
+sentiment_analysis_lib.egg-info/PKG-INFO
+sentiment_analysis_lib.egg-info/SOURCES.txt
+sentiment_analysis_lib.egg-info/dependency_links.txt
+sentiment_analysis_lib.egg-info/top_level.txt
