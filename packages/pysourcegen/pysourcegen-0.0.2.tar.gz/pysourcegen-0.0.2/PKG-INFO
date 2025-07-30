@@ -1,0 +1,31 @@
+Metadata-Version: 2.4
+Name: pysourcegen
+Version: 0.0.2
+Summary: Python Source Code Generator
+Project-URL: Homepage, https://github.com/Compen/pysourcegen
+Project-URL: Issues, https://github.com/Compen/pysourcegen/issues
+Author-email: Pieter Compen <info@compen.net>
+License-File: LICENSE
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+
+# pysourcegen
+Python Source Code Generator
+
+A different approach for generating repetitive C/C++ source code using Python.
+
+## Examples
+
+### C++ - Hello World
+
+  run [src/hello_world_cpp_example.py](src/hello_world_cpp_example.py) to create an exectuble called `cpphello`:
+
+    ./hello_world_cpp_example.py | g++ -x c++ -o cpphello -
+
+### C - Hello World
+
+  run [src/hello_world_c_example.py](src/hello_world_c_example.py) to create an exectuble called `chello`:
+
+    ./hello_world_c_example.py | gcc -x c -o chello -
