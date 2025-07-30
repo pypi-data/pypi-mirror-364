@@ -1,0 +1,18 @@
+[project]
+name = "lazybrains"
+version = "0.0.5"
+description = "Model Selection Tool"
+authors = [{name = "Foresty", email = "dsparthsrivastava@email.com"}]
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "numpy",
+    "pandas"
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["lazybrains"]
