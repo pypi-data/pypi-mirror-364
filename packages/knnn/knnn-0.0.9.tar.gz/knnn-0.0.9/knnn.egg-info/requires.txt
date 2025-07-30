@@ -1,0 +1,13 @@
+numpy
+scipy
+tqdm
+faiss-cpu
+
+[faiss-gpu]
+faiss-gpu
+
+[tests]
+pytest
+datasets
+pandas
+faiss-gpu
