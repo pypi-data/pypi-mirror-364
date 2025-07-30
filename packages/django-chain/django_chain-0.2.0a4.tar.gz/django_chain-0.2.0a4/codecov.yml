@@ -1,0 +1,41 @@
+coverage:
+  status:
+    project:
+      default:
+        target: 80%
+        threshold: 20%
+    patch:
+      default:
+        target: 60%
+        threshold: 20%
+        informational: true
+
+comment:
+  layout: "reach, diff, flags, files"
+  behavior: default
+  require_changes: false
+
+ignore:
+  - "tests/*"
+  - "setup.py"
+  - "docs/*"
+  - "*.pyc"
+  - "*.pyo"
+  - "*.pyd"
+  - ".git/*"
+  - "*.so"
+  - "*.egg"
+  - "*.egg-info"
+  - "*.egg-info/*"
+  - "build/*"
+  - "dist/*"
+  - "*.egg-info/*"
+  - "*.egg-info"
+  - "*.egg"
+  - "*.pyc"
+  - "*.pyo"
+  - "*.pyd"
+  - ".git/*"
+  - "*.so"
+  - "build/*"
+  - "dist/*"
