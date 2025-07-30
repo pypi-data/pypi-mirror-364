@@ -1,0 +1,14 @@
+native/xrp/_init_robotpy_native_xrp.py,sha256=Qpa7eMEPmVUBPwb3SNhVahCNHH5s7BjGYhUz0-QuD3g,721
+native/xrp/robotpy-native-xrp.pc,sha256=GtYX2R6-aMVbNiSrWr73L0m7xN86kFcm4xHi2vf145A,296
+native/xrp/include/frc/xrp/XRPGyro.h,sha256=4oM3KkvK72ZgQokr7RfrqHHz0MXzYIxfYwj1q1lusBg,3117
+native/xrp/include/frc/xrp/XRPMotor.h,sha256=ByOHZOyRQJFRMW6upCrT3wuYXmHLLNK6oivOtWCRBFg,1394
+native/xrp/include/frc/xrp/XRPOnBoardIO.h,sha256=LORT9XQ1eeAuhQiJFQh2A7exqLPD2daS_eibJy3ycJs,1273
+native/xrp/include/frc/xrp/XRPRangefinder.h,sha256=Nprt1z2jRacSv-6RlBtQYC-_NCEnyEsqgx6Szl0SbKs,694
+native/xrp/include/frc/xrp/XRPReflectanceSensor.h,sha256=_ueqGolqEYD-aDZ53XiP8D7rwCHl5EDUibVoNi98hv0,870
+native/xrp/include/frc/xrp/XRPServo.h,sha256=VBCslmosx8FzLP2Z1gqUzfs21sS2pHrNuUEU2tK1VOY,1531
+native/xrp/lib/xrpVendordep.dll,sha256=09NY36yYtsslCylJNPYVTBaelsCzSDWMSET3Aaakwgc,41472
+native/xrp/lib/xrpVendordep.lib,sha256=CMfprYy4uRqagfDz5vFljRryBgYQpR9AI9jXy0BEbGo,53718
+robotpy_native_xrp-2027.0.0a2.dist-info/METADATA,sha256=x_ooTfBzjg4888eKOMs4wOog6c7EME3SJ8PGMod6Oyw,184
+robotpy_native_xrp-2027.0.0a2.dist-info/WHEEL,sha256=Vhj7RpPOKCXcsr4rUs7q4pISuo5nT6VsOuaQwH9GILY,94
+robotpy_native_xrp-2027.0.0a2.dist-info/entry_points.txt,sha256=U0zAFA3oE9hKW9otcFTV8W5UIzgJavybtkCI90O8FHU,30
+robotpy_native_xrp-2027.0.0a2.dist-info/RECORD,,
