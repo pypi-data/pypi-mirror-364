@@ -1,0 +1,2 @@
+[console_scripts]
+mtbmasker = mtbmasker.cli:app
