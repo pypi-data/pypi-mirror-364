@@ -1,0 +1,11 @@
+README.md
+pyproject.toml
+setup.py
+text_outputter/__init__.py
+text_outputter/cli.py
+text_outputter.egg-info/PKG-INFO
+text_outputter.egg-info/SOURCES.txt
+text_outputter.egg-info/dependency_links.txt
+text_outputter.egg-info/entry_points.txt
+text_outputter.egg-info/requires.txt
+text_outputter.egg-info/top_level.txt
