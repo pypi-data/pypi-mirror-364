@@ -1,0 +1,10 @@
+README.md
+setup.py
+vsai/__init__.py
+vsai/bot.py
+vsai.egg-info/PKG-INFO
+vsai.egg-info/SOURCES.txt
+vsai.egg-info/dependency_links.txt
+vsai.egg-info/entry_points.txt
+vsai.egg-info/requires.txt
+vsai.egg-info/top_level.txt

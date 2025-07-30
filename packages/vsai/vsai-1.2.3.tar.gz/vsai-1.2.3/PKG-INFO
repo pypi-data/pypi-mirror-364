@@ -1,0 +1,30 @@
+Metadata-Version: 2.2
+Name: vsai
+Version: 1.2.3
+Summary: A new AI assistant for your terminal
+Home-page: https://github.com/Virtosync/vsai
+Author: Virtosync
+Author-email: virtosync@gmail.com
+License: Virto License
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: nltk
+Requires-Dist: textblob
+Requires-Dist: requests
+Requires-Dist: pyttsx3
+Requires-Dist: SpeechRecognition
+Requires-Dist: cryptography
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: summary
+
+# VSAI
+
+Coming soon!
