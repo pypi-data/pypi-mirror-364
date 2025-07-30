@@ -1,0 +1,15 @@
+django_appgen/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_appgen/cli.py,sha256=iBB3e0zHn4uZFk4rUpqpVPXEh89ZTm5k2ntFeihS9i0,1823
+mon_app/__init__.py,sha256=5YdTwwQoP6maFB-_aV12Jf5cZJMLoUeunz-pb1XWKV0,14
+mon_app/admin.py,sha256=5UiYPcczK6HGZGRl8vN-4Jj2NvTjL7cgS7BqBL-L_mA,11
+mon_app/apps.py,sha256=ew0Z_bRytDqSXlB3y41JFpqB2gEFLrTfsLxt_je5QRM,155
+mon_app/tests.py,sha256=qY71lAFcdBHYt5Amzj_7KFOHfeRABTXWRVDpWIHg-ZY,11
+mon_app/urls.py,sha256=RSGv6uweodcV68YR4in32Zwj9OetasaSl6WgsR4_LEA,107
+mon_app/migrations/__init__.py,sha256=5YdTwwQoP6maFB-_aV12Jf5cZJMLoUeunz-pb1XWKV0,14
+mon_app/models/__init__.py,sha256=5YdTwwQoP6maFB-_aV12Jf5cZJMLoUeunz-pb1XWKV0,14
+mon_app/views/__init__.py,sha256=5YdTwwQoP6maFB-_aV12Jf5cZJMLoUeunz-pb1XWKV0,14
+djappgen-0.1.dist-info/METADATA,sha256=meOFT0szs016_GO6K96sCYM7x5PI6yK7jLzbUSKr_VU,174
+djappgen-0.1.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+djappgen-0.1.dist-info/entry_points.txt,sha256=zIgF4b0N-PHc3UMV8NFCiJDJqUpDQbvpVh7HT6o0ioY,57
+djappgen-0.1.dist-info/top_level.txt,sha256=E-TiShcFGCGvIDOoDeDoXjxjmQgKvoHrJM9am60esTE,22
+djappgen-0.1.dist-info/RECORD,,
