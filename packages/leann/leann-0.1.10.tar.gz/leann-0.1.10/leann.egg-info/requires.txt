@@ -1,0 +1,5 @@
+leann-core>=0.1.0
+leann-backend-hnsw>=0.1.0
+
+[diskann]
+leann-backend-diskann>=0.1.0
