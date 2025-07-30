@@ -1,0 +1,6 @@
+Metadata-Version: 2.2
+Name: leann-backend-diskann
+Version: 0.1.9
+Requires-Dist: leann-core==0.1.9
+Requires-Dist: numpy
+
