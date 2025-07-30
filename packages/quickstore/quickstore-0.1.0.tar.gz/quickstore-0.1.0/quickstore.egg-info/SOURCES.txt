@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+setup.py
+quickdb/__init__.py
+quickdb/cli.py
+quickdb/cli_entry.py
+quickdb/constants.py
+quickdb/db.py
+quickdb/filedb.py
+quickdb/utils.py
+quickstore.egg-info/PKG-INFO
+quickstore.egg-info/SOURCES.txt
+quickstore.egg-info/dependency_links.txt
+quickstore.egg-info/entry_points.txt
+quickstore.egg-info/top_level.txt
